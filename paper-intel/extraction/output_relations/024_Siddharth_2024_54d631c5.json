@@ -1,0 +1,134 @@
+[
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "EVALUATES_ON",
+    "target": "E_024_Siddharth_2024_54d631c5_2",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "EVALUATES_ON",
+    "target": "E_024_Siddharth_2024_54d631c5_2",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "REPORTS_METRIC",
+    "target": "E_024_Siddharth_2024_54d631c5_3",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "REPORTS_METRIC",
+    "target": "E_024_Siddharth_2024_54d631c5_3",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "USES_MODEL",
+    "target": "E_024_Siddharth_2024_54d631c5_1",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "USES_MODEL",
+    "target": "E_024_Siddharth_2024_54d631c5_1",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "USES_METHOD",
+    "target": "E_024_Siddharth_2024_54d631c5_7",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "USES_METHOD",
+    "target": "E_024_Siddharth_2024_54d631c5_6",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "USES_DATASET",
+    "target": "E_024_Siddharth_2024_54d631c5_2",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "USES_DATASET",
+    "target": "E_024_Siddharth_2024_54d631c5_2",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "CITES",
+    "target": "Chandrasekaran, 2005",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "CITES",
+    "target": "Li et al., 2022",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_17",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_18",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_19",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_20",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_21",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_22",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_23",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "CITES",
+    "target": "E_024_Siddharth_2024_54d631c5_24",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_25",
+    "type": "REPORTS_METRIC",
+    "target": "E_024_Siddharth_2024_54d631c5_3",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "source": "E_024_Siddharth_2024_54d631c5_25",
+    "type": "EVALUATES_ON",
+    "target": "E_024_Siddharth_2024_54d631c5_2",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  }
+]

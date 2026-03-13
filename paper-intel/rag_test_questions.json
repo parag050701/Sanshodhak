@@ -1,0 +1,162 @@
+[
+  {
+    "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+    "answer": "RAG frameworks integrate a retriever model that sources relevant context from a knowledge base and a generator model that synthesizes the retrieved information into coherent responses. This approach offers a promising alternative to fine-tuning large language models.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "According to the RAG research, what are the two main components of the RAG framework?",
+    "answer": "The two main components are: (1) a retriever model that searches a knowledge base and retrieves relevant documents, and (2) a generator model that synthesizes the retrieved information into coherent responses.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+    "answer": "Cosine similarity is commonly used, calculated as the dot product between two vectors divided by the product of their Euclidean norms. A value of 1 indicates maximal similarity.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+    "answer": "RAG offers a modular approach where components can be interchanged and optimized independently, avoiding the challenging and resource-intensive process of fine-tuning entire large language models. It allows leveraging external knowledge without retraining the base model.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "What base language models were compared in the RAG modularity experiments?",
+    "answer": "The experiments compared GPT and Palm as base language models to assess different configurations and determine which synergies most effectively capture the essence of the dataset.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "What are the two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems?",
+    "answer": "The two phases are: (1) the graph transformation phase which modifies the retrieved sub-knowledge graph at the graph level, and (2) the linearization phase which converts the sub-KG to text format.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "016_Tian_2025_454dd912",
+    "relevant_docs": ["016_Tian_2025_454dd912.txt"]
+  },
+  {
+    "question": "How does KGA address knowledge conflict in RAG systems?",
+    "answer": "KGA improves the efficiency of utilizing retrieved knowledge and enhances the quality of final generation, thereby reducing knowledge conflict by systematically aligning the knowledge graph with the generation process.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "016_Tian_2025_454dd912",
+    "relevant_docs": ["016_Tian_2025_454dd912.txt"]
+  },
+  {
+    "question": "What performance improvements can query optimization techniques achieve in database systems?",
+    "answer": "Query optimization techniques can significantly reduce query execution time, improve resource utilization, and enhance overall database performance through techniques like cost-based optimization, index selection, and query rewriting.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "014_Li_2026_f59e3685",
+    "relevant_docs": ["014_Li_2026_f59e3685.txt"]
+  },
+  {
+    "question": "What machine learning techniques are commonly used for performance prediction in large-scale systems?",
+    "answer": "Machine learning models, particularly neural networks and ensemble methods, are used for efficient performance prediction. Systems like Ernest use these models for optimizing query execution plans and predicting system behavior.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "014_Li_2026_f59e3685",
+    "relevant_docs": ["014_Li_2026_f59e3685.txt"]
+  },
+  {
+    "question": "How do hybrid retrieval mechanisms improve RAG system performance?",
+    "answer": "Hybrid retrieval mechanisms combine dense (semantic) and sparse (keyword-based like BM25) retrieval to reduce latency while maintaining high precision. Studies show latency reductions of up to 42% while preserving retrieval quality.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "042_Chandra_2025_fa92c458",
+    "relevant_docs": ["042_Chandra_2025_fa92c458.txt"]
+  },
+  {
+    "question": "What improvements did query-aware chunking demonstrate in RAG systems?",
+    "answer": "Query-aware chunking with multi-objective optimization frameworks showed 24.3% better NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency compared to traditional fixed-size chunking methods.",
+    "type": "factual",
+    "difficulty": "hard",
+    "paper_id": "035_Vangalapat_2025_4df032dd",
+    "relevant_docs": ["035_Vangalapat_2025_4df032dd.txt"]
+  },
+  {
+    "question": "What is the significance of the transformer architecture in modern NLP models?",
+    "answer": "The transformer architecture, exemplified in models like BERT and GPT, revolutionized NLP by enabling parallel processing of sequences, capturing long-range dependencies through attention mechanisms, and achieving state-of-the-art performance across multiple language tasks.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt", "037_Knollmeyer_2025_d92c5d07.txt"]
+  },
+  {
+    "question": "How does GPT-4 represent advances in artificial general intelligence according to recent research?",
+    "answer": "Research describes GPT-4 as showing 'sparks of artificial general intelligence' through its ability to perform diverse tasks, demonstrate reasoning capabilities, and exhibit emergent behaviors not explicitly programmed during training.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "037_Knollmeyer_2025_d92c5d07",
+    "relevant_docs": ["037_Knollmeyer_2025_d92c5d07.txt"]
+  },
+  {
+    "question": "What role does context play in RAG model performance?",
+    "answer": "Context significantly influences model performance by providing essential background information that affects the meaning and relevance of responses. The presence of context has been shown to drastically improve accuracy, particularly in specialized domains.",
+    "type": "analytical",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "What evaluation metrics are used to benchmark RAG system performance?",
+    "answer": "Common evaluation metrics include similarity scores between generated and reference answers (often using cosine similarity), average similarity scores across multiple queries, precision, recall, and NDCG for retrieval quality assessment.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt", "042_Chandra_2025_fa92c458.txt"]
+  },
+  {
+    "question": "How do embedding layers transform text data for computational processing in RAG systems?",
+    "answer": "Embedding layers transform raw text data into high-dimensional vectors (e.g., 1024-dimensional for BGE-M3) in a structured vector space, where semantic similarity can be computed mathematically using metrics like cosine similarity.",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "What is the advantage of modular RAG design over monolithic systems?",
+    "answer": "Modular RAG design allows independent testing and replacement of components (embedders, retrievers, generators), enables systematic evaluation of different configurations, and facilitates optimization without retraining entire systems.",
+    "type": "analytical",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "How does neural machine translation (NMT) represent a turning point in language comprehension?",
+    "answer": "NMT, exemplified by systems like Google Translate, marked a pivotal moment by demonstrating that neural networks could achieve human-like translation quality when paired with adequate computational infrastructure, paving the way for modern language models.",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "What is the cross-entropy loss used for in language model training?",
+    "answer": "Cross-entropy loss measures the difference between predicted and actual answers during training, serving as the objective function to optimize model weights. It quantifies how well the model's probability distribution matches the true distribution.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": ["040_Pichai_2023_cc391c15.txt"]
+  },
+  {
+    "question": "Why is reciprocal rank fusion (RRF) effective for combining retrieval results?",
+    "answer": "RRF effectively combines results from multiple retrieval methods (e.g., dense and sparse) by using reciprocal ranks instead of raw scores, which normalizes contributions and is robust to score scale differences between different retrieval systems.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "042_Chandra_2025_fa92c458",
+    "relevant_docs": ["042_Chandra_2025_fa92c458.txt", "035_Vangalapat_2025_4df032dd.txt"]
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_1",
+    "type": "Model",
+    "name": "LLMs",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_2",
+    "type": "Method",
+    "name": "Retrieval Augmented Generation RAG",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_3",
+    "type": "Method",
+    "name": "Iterative Prompt Refining for Retrieval Augmented Generation IPRAG",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_4",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_5",
+    "type": "Dataset",
+    "name": "GLUE",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_6",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_7",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_8",
+    "type": "Paper",
+    "name": "Data Intelligence 2",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_9",
+    "type": "Author",
+    "name": "Multiple Authors",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_10",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "007_Zhu_2025_e53c7a14",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_007_Zhu_2025_e53c7a14_11",
+    "type": "Result",
+    "name": "BLEU=Not specified on Not specified",
+    "source_paper_id": "007_Zhu_2025_e53c7a14",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "Not specified",
+      "dataset": "Not specified",
+      "experiment_description": "Not specified",
+      "improvement_over_baseline": ""
+    }
+  }
+]

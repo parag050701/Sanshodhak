@@ -1,0 +1,83 @@
+{
+  "paper_id": "026_Raghavan_2025_6dd89b7a",
+  "triples": [
+    [
+      "AR-RAG",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "AR-RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "None"
+    ],
+    [
+      "AR-RAG",
+      "AUTHORED_BY",
+      "None"
+    ],
+    [
+      "AR-RAG",
+      "STUDIES_TASK",
+      "Image generation"
+    ],
+    [
+      "DAiD",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "DAiD",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "DAiD",
+      "CITES",
+      "None"
+    ],
+    [
+      "DAiD",
+      "AUTHORED_BY",
+      "None"
+    ],
+    [
+      "DAiD",
+      "STUDIES_TASK",
+      "Image generation"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 10,
+    "relation_count": 12,
+    "triple_count": 12,
+    "extracted_at": "2025-12-06T02:43:39.920704"
+  },
+  "paper_metadata": {
+    "title": "AR-RAG: Autoregressive Retrieval Augmentation for Image Generation",
+    "authors": [
+      "Jingyuan Qi",
+      "Zhiyang Xu",
+      "Qifan Wang",
+      "Lifu Huang",
+      "Virginia Tech",
+      "U Davis"
+    ],
+    "year": "2025"
+  }
+}

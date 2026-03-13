@@ -1,0 +1,38 @@
+{
+  "Dense_vs_Hybrid": {
+    "comparison": "Dense vs Hybrid",
+    "n_queries": 300,
+    "mean_delta": -0.23019,
+    "statistic": 3631.0,
+    "p_value": 0.0,
+    "cohens_d": -1.132,
+    "effect_label": "large",
+    "significant": true,
+    "direction": "Hybrid > Dense",
+    "interpretation": "highly significant (p < 0.001); large effect (Hybrid > Dense); \u0394=-0.2302"
+  },
+  "Dense_vs_AHR": {
+    "comparison": "Dense vs AHR",
+    "n_queries": 300,
+    "mean_delta": -0.23019,
+    "statistic": 3631.0,
+    "p_value": 0.0,
+    "cohens_d": -1.132,
+    "effect_label": "large",
+    "significant": true,
+    "direction": "AHR > Dense",
+    "interpretation": "highly significant (p < 0.001); large effect (AHR > Dense); \u0394=-0.2302"
+  },
+  "Hybrid_vs_AHR": {
+    "comparison": "Hybrid vs AHR",
+    "n_queries": 300,
+    "mean_delta": 0.0,
+    "statistic": 22575.0,
+    "p_value": 1.0,
+    "cohens_d": 0.0,
+    "effect_label": "negligible",
+    "significant": false,
+    "direction": "AHR > Hybrid",
+    "interpretation": "not significant (p = 1.0000 \u2265 0.05); negligible effect (AHR > Hybrid); \u0394=+0.0000"
+  }
+}

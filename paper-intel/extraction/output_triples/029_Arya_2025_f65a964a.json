@@ -1,0 +1,110 @@
+{
+  "paper_id": "029_Arya_2025_f65a964a",
+  "triples": [
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Brown et al., 2020",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Chowdhery et al., 2022",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Ji et al., 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Lewis et al., 2020",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Yang et al., 2018",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Shao et al., 2023",
+      "CITES",
+      "ITER-RETGEN"
+    ],
+    [
+      "Jeong et al., 2024",
+      "CITES",
+      "Adaptive-RAG"
+    ],
+    [
+      "Asai et al., 2023",
+      "CITES",
+      "SELF-RAG"
+    ],
+    [
+      "FAIR-RAG",
+      "ACHIEVES_RESULT",
+      "complex queries"
+    ],
+    [
+      "FAIR-RAG",
+      "ACHIEVES_RESULT",
+      "robustness to noise"
+    ],
+    [
+      "FAIR-RAG",
+      "ACHIEVES_RESULT",
+      "faithfulness check"
+    ],
+    [
+      "FAIR-RAG",
+      "STUDIES_TASK",
+      "complex queries"
+    ],
+    [
+      "FAIR-RAG",
+      "STUDIES_TASK",
+      "robustness to noise"
+    ],
+    [
+      "FAIR-RAG",
+      "STUDIES_TASK",
+      "faithfulness check"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 12,
+    "relation_count": 18,
+    "triple_count": 18,
+    "extracted_at": "2025-12-06T02:40:29.346326"
+  },
+  "paper_metadata": {
+    "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+    "authors": [
+      "Mohammad Asl",
+      "Majid Asgari-Bidhendi",
+      "Behrooz Minaei-Bidgoli"
+    ],
+    "year": "2025"
+  }
+}

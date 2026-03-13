@@ -1,0 +1,129 @@
+{
+  "paper_id": "024_Siddharth_2024_54d631c5",
+  "triples": [
+    [
+      "Relation identification",
+      "EVALUATES_ON",
+      "USPTO patents"
+    ],
+    [
+      "Relation elicitation",
+      "EVALUATES_ON",
+      "USPTO patents"
+    ],
+    [
+      "Relation identification",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Relation elicitation",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Relation identification",
+      "USES_MODEL",
+      "BERT"
+    ],
+    [
+      "Relation elicitation",
+      "USES_MODEL",
+      "BERT"
+    ],
+    [
+      "Relation identification",
+      "USES_METHOD",
+      "Token classification"
+    ],
+    [
+      "Relation elicitation",
+      "USES_METHOD",
+      "Seq2Seq"
+    ],
+    [
+      "Relation identification",
+      "USES_DATASET",
+      "USPTO patents"
+    ],
+    [
+      "Relation elicitation",
+      "USES_DATASET",
+      "USPTO patents"
+    ],
+    [
+      "Relation identification",
+      "CITES",
+      "Chandrasekaran, 2005"
+    ],
+    [
+      "Relation elicitation",
+      "CITES",
+      "Li et al., 2022"
+    ],
+    [
+      "Relation identification",
+      "CITES",
+      "ACE"
+    ],
+    [
+      "Relation elicitation",
+      "CITES",
+      "W-NUT"
+    ],
+    [
+      "Relation identification",
+      "CITES",
+      "OntoNotes"
+    ],
+    [
+      "Relation identification",
+      "CITES",
+      "Zenodo"
+    ],
+    [
+      "Relation elicitation",
+      "CITES",
+      "Hugging Face"
+    ],
+    [
+      "Relation identification",
+      "CITES",
+      "GitHub"
+    ],
+    [
+      "Relation identification",
+      "CITES",
+      "USPTO"
+    ],
+    [
+      "Relation elicitation",
+      "CITES",
+      "RAG"
+    ],
+    [
+      "Accuracy=92.4% on USPTO patents",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on USPTO patents",
+      "EVALUATES_ON",
+      "USPTO patents"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 25,
+    "relation_count": 22,
+    "triple_count": 22,
+    "extracted_at": "2025-12-06T02:45:12.369851"
+  },
+  "paper_metadata": {
+    "title": "Retrieval Augmented Generation using Engineering Design Knowledge",
+    "authors": [
+      "L Siddharth",
+      "Jianxi Luo"
+    ],
+    "year": ""
+  }
+}

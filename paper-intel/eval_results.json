@@ -1,0 +1,3021 @@
+{
+  "VR-D (Dense)": {
+    "retrieval": {
+      "P@1": 0.35,
+      "R@1": 0.35,
+      "NDCG@1": 0.35,
+      "P@5": 0.18000000000000005,
+      "R@5": 0.825,
+      "NDCG@5": 0.6049903993657137,
+      "P@10": 0.09000000000000002,
+      "R@10": 0.825,
+      "NDCG@10": 0.6049903993657137,
+      "MRR": 0.5458333333333333,
+      "MAP": 0.5208333333333333
+    },
+    "generation": {
+      "rouge1": 0.2838653734264626,
+      "rouge2": 0.08310182919199517,
+      "rougeL": 0.19692383758647933,
+      "bleu": 0.021272970372993208,
+      "bertscore_precision": 0.8483977317810059,
+      "bertscore_recall": 0.8847776651382446,
+      "bertscore_f1": 0.8660691976547241
+    },
+    "latency": {
+      "mean_s": 14.22540249824524,
+      "median_s": 14.898758292198181,
+      "p95_s": 21.738676691055304
+    },
+    "per_question": [
+      {
+        "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+        "retrieved": [
+          "039_Unknown_2025_ce4a84f1.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.288,
+          "rouge2": 0.03252032520325203,
+          "rougeL": 0.17600000000000002,
+          "bleu": 0.0038746854543705096
+        },
+        "answer": "The main purpose of Retrieval-Augmented Generation (RAG) frameworks is to enhance the capabilities of generative models by incorporating external knowledge during the response generation process. This integration allows RAG to provide more accurate, relevant, and contextually informed outputs across a range of applications, including knowledge-intensive tasks, document fusion, recommendation systems, question answering, summarization, and machine translation. By leveraging external documents or information, RAG improves upon traditional generative models, offering up-to-date and domain-specific responses that are highly effective in various real-world scenarios.",
+        "reference_answer": "RAG frameworks integrate a retriever model that sources relevant context from a knowledge base and a generator model that synthesizes the retrieved information into coherent responses. This approach offers a promising alternative to fine-tuning large language models."
+      },
+      {
+        "question": "According to the RAG research, what are the two main components of the RAG framework?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "039_Unknown_2025_ce4a84f1.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.43067655807339306,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.43067655807339306,
+          "RR": 0.25,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.39999999999999997,
+          "rouge2": 0.12903225806451613,
+          "rougeL": 0.2736842105263158,
+          "bleu": 0.061977651772972715
+        },
+        "answer": "The two main components of the RAG framework are the **retriever** and the **generator**. The retriever fetches relevant text from a knowledge base in response to a query, while the generator processes this text along with the original query to produce a meaningful response.\n\nAnswer: According to the RAG research, the two main components of the RAG framework are the retriever and the generator.",
+        "reference_answer": "The two main components are: (1) a retriever model that searches a knowledge base and retrieves relevant documents, and (2) a generator model that synthesizes the retrieved information into coherent responses."
+      },
+      {
+        "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+        "retrieved": [
+          "047_Linders_2025_96b24cea.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "044_Qiao_2025_be8f4989.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.2,
+          "rouge2": 0.07692307692307691,
+          "rougeL": 0.15,
+          "bleu": 0.02073053023917325
+        },
+        "answer": "The commonly used similarity metric in RAG systems for comparing document embeddings is **cosine similarity**. This method helps capture semantically relevant content without exact word matches and is effective due to its effectiveness in NLP tasks.\n\nAnswer: Cosine similarity is the commonly used similarity metric in RAG systems for comparing document embeddings.",
+        "reference_answer": "Cosine similarity is commonly used, calculated as the dot product between two vectors divided by the product of their Euclidean norms. A value of 1 indicates maximal similarity."
+      },
+      {
+        "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "010_Kothapalli_2024_3b9952ed.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3404255319148936,
+          "rouge2": 0.043478260869565216,
+          "rougeL": 0.2127659574468085,
+          "bleu": 0.006555569265878262
+        },
+        "answer": "RAG addresses the limitations of traditional language model fine-tuning by integrating retrieval-augmented generation. This approach allows models to access external information sources for accurate and up-to-date responses, unlike fine-tuning which is limited by fixed datasets. RAG enables dynamic knowledge integration without extensive retraining, preventing hallucinations and ensuring relevance across time and domains.",
+        "reference_answer": "RAG offers a modular approach where components can be interchanged and optimized independently, avoiding the challenging and resource-intensive process of fine-tuning entire large language models. It allows leveraging external knowledge without retraining the base model."
+      },
+      {
+        "question": "What base language models were compared in the RAG modularity experiments?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "013_Patnaik_2025_6d024ae2.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3157894736842105,
+          "rouge2": 0.07272727272727272,
+          "rougeL": 0.2456140350877193,
+          "bleu": 0.0210536446703014
+        },
+        "answer": "The base language model compared in the RAG modularity experiments is **GPT-3.5-turbo**.\n\nAnswer: The base language model used in the RAG modularity experiments was GPT-3.5-turbo.",
+        "reference_answer": "The experiments compared GPT and Palm as base language models to assess different configurations and determine which synergies most effectively capture the essence of the dataset."
+      },
+      {
+        "question": "What are the two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "047_Linders_2025_96b24cea.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.5773195876288659,
+          "rouge2": 0.3368421052631579,
+          "rougeL": 0.5154639175257731,
+          "bleu": 0.03478918651921205
+        },
+        "answer": "The two phases of Knowledge Graph Alignment (KGA) are:\n\n1. **Graph Transformation Phase**: This involves modifying the retrieved sub-KG at the graph level to transform it into a more suitable form.\n\n2. **Linearization Phase**: This phase focuses on converting the transformed sub-KG into text, thereby achieving graph-to-text conversion.\n\nThese two phases together constitute the KGA process within KG+RAG systems.",
+        "reference_answer": "The two phases are: (1) the graph transformation phase which modifies the retrieved sub-knowledge graph at the graph level, and (2) the linearization phase which converts the sub-KG to text format."
+      },
+      {
+        "question": "How does KGA address knowledge conflict in RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "039_Unknown_2025_ce4a84f1.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.33962264150943394,
+          "rouge2": 0.07692307692307693,
+          "rougeL": 0.16981132075471697,
+          "bleu": 0.011105189309737733
+        },
+        "answer": "Knowledge Graph Alignment (KGA) addresses knowledge conflict in Retrieval-Augmented Generation (RAG) systems by leveraging structured Knowledge Graphs (KGs). These KGs organize information into entities and their relationships, ensuring consistency and coherence. By aligning the retrieval process with KG structures, RAG systems avoid conflicts arising from inconsistent or conflicting data sources. This alignment supports multi-hop reasoning, enabling accurate integration of diverse information while maintaining domain-specific relevance, thus enhancing the reliability and accuracy of AI responses.",
+        "reference_answer": "KGA improves the efficiency of utilizing retrieved knowledge and enhances the quality of final generation, thereby reducing knowledge conflict by systematically aligning the knowledge graph with the generation process."
+      },
+      {
+        "question": "What performance improvements can query optimization techniques achieve in database systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.43067655807339306,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.43067655807339306,
+          "RR": 0.25,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.2818791946308725,
+          "rouge2": 0.054421768707483,
+          "rougeL": 0.16107382550335575,
+          "bleu": 0.011287258606991075
+        },
+        "answer": "Query optimization techniques in database systems can achieve several significant performance improvements. These include:\n\n1. **Increased Throughput**: Techniques such as dynamic batch processing enhance the system's ability to handle a higher volume of queries efficiently.\n\n2. **Reduced Latency**: Implementing caching mechanisms significantly lowers response times, improving overall system speed.\n\n3. **Higher Accuracy and Efficiency**: Methods like query generalization or result aggregation ensure that the retrieved data is both relevant and accurate, maintaining high performance standards without compromising on quality.\n\n4. **Optimized Resource Utilization**: Techniques such as quantization can lead to more efficient use of computational resources, reducing memory footprint while preserving functionality.\n\nThese optimizations collectively contribute to faster query processing, improved system scalability, and better overall performance in database systems.",
+        "reference_answer": "Query optimization techniques can significantly reduce query execution time, improve resource utilization, and enhance overall database performance through techniques like cost-based optimization, index selection, and query rewriting."
+      },
+      {
+        "question": "What machine learning techniques are commonly used for performance prediction in large-scale systems?",
+        "retrieved": [
+          "011_Liu_2025_b9ebfa8e.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "014_Li_2026_f59e3685.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "024_Siddharth_2024_54d631c5.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.43067655807339306,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.43067655807339306,
+          "RR": 0.25,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.2087912087912088,
+          "rouge2": 0.03333333333333333,
+          "rougeL": 0.14285714285714288,
+          "bleu": 0.0049119203268932245
+        },
+        "answer": "The context highlights that SageDB uses deep learning techniques for several aspects of database systems, including indexing, join processing, query optimization, and workload balancing. Specifically, vector similarity clustering is mentioned as a technique contributing to workload balancing with 97.8% accuracy, which enhances real-time monitoring systems' performance by reducing latency. These techniques are integral to improving the efficiency and throughput of large-scale systems.\n\n**Answer:**\nThe machine learning techniques commonly used for performance prediction in large-scale systems, based on the provided context, include deep learning approaches applied to database architectures such as SageDB. Key techniques mentioned are vector similarity clustering for workload balancing, which achieves 97.8% accuracy, and these methods contribute to improving system efficiency, throughput (2.8TB per hour), vector store optimization, and real-time monitoring with minimal latency (75 microseconds). These advancements in deep learning enable more effective performance prediction and resource allocation within large-scale systems.",
+        "reference_answer": "Machine learning models, particularly neural networks and ensemble methods, are used for efficient performance prediction. Systems like Ernest use these models for optimizing query execution plans and predicting system behavior."
+      },
+      {
+        "question": "How do hybrid retrieval mechanisms improve RAG system performance?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "027_Nagilla_2025_5f584f97.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.18,
+          "rouge2": 0.0303030303030303,
+          "rougeL": 0.11,
+          "bleu": 0.007635819482079468
+        },
+        "answer": "Hybrid retrieval mechanisms enhance the performance of RAG (Retrieval-Augmented Generation) systems by integrating both neural and symbolic techniques. This combination allows RAG systems to effectively access diverse data sources, such as knowledge graphs and structured databases, which are essential for real-world applications. By leveraging these varied sources, hybrid mechanisms improve response accuracy and reduce hallucinations, ensuring that generated content is factually coherent and up-to-date.\n\nMoreover, the integration of neural methods excels in understanding patterns within large text datasets, while symbolic methods handle explicit rules and structured information efficiently. This synergy leads to more accurate retrieval and generation processes. The study demonstrates a 56.3% improvement in response accuracy and a 31.7% reduction in computational overhead, indicating enhanced efficiency. Optimizing precision and recall ensures that the retrieval component performs well, further boosting overall system performance.\n\nIn summary, hybrid mechanisms improve RAG systems by expanding data sources, increasing accuracy, reducing errors, optimizing efficiency, and enhancing retrieval metrics, thereby providing more reliable and high-quality responses.",
+        "reference_answer": "Hybrid retrieval mechanisms combine dense (semantic) and sparse (keyword-based like BM25) retrieval to reduce latency while maintaining high precision. Studies show latency reductions of up to 42% while preserving retrieval quality."
+      },
+      {
+        "question": "What improvements did query-aware chunking demonstrate in RAG systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.22222222222222224,
+          "rouge2": 0.06015037593984962,
+          "rougeL": 0.13333333333333333,
+          "bleu": 0.013284425541950251
+        },
+        "answer": "Query-aware chunking in RAG systems, such as the AQACO framework, demonstrated significant improvements through several key aspects:\n\n1. **Context Preservation**: Enhanced context preservation by 43.5% compared to traditional methods, likely due to more semantically coherent chunks.\n\n2. **End-to-End Optimization**: Allowed for global optimization of chunking parameters alongside retrieval and generation components, avoiding local optima.\n\n3. **Domain Adaptation**: Enabled automatic adaptation to new domains through query pattern analysis without additional storage or model calls.\n\n4. **Personalization**: Provided personalized chunking strategies based on user queries, enhancing user experience.\n\nThese improvements collectively enhance the performance, scalability, and effectiveness of RAG systems.",
+        "reference_answer": "Query-aware chunking with multi-objective optimization frameworks showed 24.3% better NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency compared to traditional fixed-size chunking methods."
+      },
+      {
+        "question": "What is the significance of the transformer architecture in modern NLP models?",
+        "retrieved": [
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "047_Linders_2025_96b24cea.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.2640681225725909,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.2640681225725909,
+          "RR": 0.25,
+          "AP": 0.125
+        },
+        "generation_metrics": {
+          "rouge1": 0.28888888888888886,
+          "rouge2": 0.07865168539325842,
+          "rougeL": 0.18888888888888888,
+          "bleu": 0.004670075371397677
+        },
+        "answer": "The significance of the transformer architecture in modern NLP models lies in its revolutionary impact on natural language processing tasks. Key contributions include:\n\n1. **Self-Attention Mechanism**: Introduced by Vaswani et al., this allows each word in a sentence to attend to other words, effectively capturing context and dependencies without vanishing gradients.\n\n2. **Parallel Processing**: Unlike RNNs or LSTMs, transformers process sequences in parallel, making them more efficient for tasks requiring handling of long-range dependencies.\n\n3. **Scalability and Flexibility**: The architecture is highly scalable and can be adapted to various domains, such as Quranic studies and manufacturing, through fine-tuning with custom datasets.\n\n4. **Efficiency in Contextual Understanding**: The self-attention mechanism enables better understanding of context, making transformers suitable for complex NLP tasks that require domain-specific knowledge.\n\nThese features have made transformers a cornerstone in advancing NLP capabilities across diverse applications.",
+        "reference_answer": "The transformer architecture, exemplified in models like BERT and GPT, revolutionized NLP by enabling parallel processing of sequences, capturing long-range dependencies through attention mechanisms, and achieving state-of-the-art performance across multiple language tasks."
+      },
+      {
+        "question": "How does GPT-4 represent advances in artificial general intelligence according to recent research?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "016_Tian_2025_454dd912.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "023_Fu_2023_33e90746.txt"
+        ],
+        "relevant_docs": [
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.16455696202531647,
+          "rouge2": 0.06410256410256411,
+          "rougeL": 0.12658227848101264,
+          "bleu": 0.00559129236232747
+        },
+        "answer": "GPT-4 represents significant progress in artificial general intelligence through its advancements in several key areas:\n\n1. **Integration of Retrieval and Generation**: GPT-4 effectively combines retrieval and generation at scale, using powerful embedding techniques to enhance how information is processed and retrieved.\n\n2. **Contextual Understanding and Accuracy**: It demonstrates improved context understanding and answer accuracy, particularly in specific domains like Quran-related questions, though its reliance on general-purpose models without domain-specific tuning limits its precision for nuanced queries.\n\n3. **Objective Information Retrieval**: Utilizing methods such as Retrieval-Augmented Generation (RAG), KWIC indexing, and quantifiable evidence-based categorization, GPT-4 enables more objective information retrieval compared to subjective classifications.\n\nThese advancements highlight GPT-4's contributions towards AGI, though it remains a step beyond current capabilities.",
+        "reference_answer": "Research describes GPT-4 as showing 'sparks of artificial general intelligence' through its ability to perform diverse tasks, demonstrate reasoning capabilities, and exhibit emergent behaviors not explicitly programmed during training."
+      },
+      {
+        "question": "What role does context play in RAG model performance?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "013_Patnaik_2025_6d024ae2.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.18000000000000002,
+          "rouge2": 0.0303030303030303,
+          "rougeL": 0.11,
+          "bleu": 0.007960611361101428
+        },
+        "answer": "Context plays a crucial role in enhancing RAG (Retrieval-Augmented Generation) model performance by improving response quality and evaluation beyond traditional metrics like precision and recall. It does this through several key mechanisms:\n\n1. **Evaluation Metrics**: Context introduces the Context-Aware Response Score (CARS), which provides a more nuanced assessment of response quality, distinguishing high-performing models from baseline models.\n\n2. **Semantic Vector Alignment**: Context helps align semantic vectors in language models, such as GPT or Palm, ensuring that retrieved information is better integrated into responses through native embeddings.\n\n3. **Model Size and Integration**: Larger RAG models benefit more from context because their increased parameter sizes allow for effective integration of retrieved knowledge, leading to higher performance across various metrics. Medium and small models also see improvements but face limitations due to capacity constraints affecting context alignment.\n\nIn conclusion, context is vital for RAG models as it enhances response quality through better evaluation mechanisms and improved semantic vector alignment, with larger models particularly benefiting from this integration.",
+        "reference_answer": "Context significantly influences model performance by providing essential background information that affects the meaning and relevance of responses. The presence of context has been shown to drastically improve accuracy, particularly in specialized domains."
+      },
+      {
+        "question": "What evaluation metrics are used to benchmark RAG system performance?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "027_Nagilla_2025_5f584f97.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.38685280723454163,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.38685280723454163,
+          "RR": 0.5,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.2222222222222222,
+          "rouge2": 0.05,
+          "rougeL": 0.13580246913580246,
+          "bleu": 0.02421291658474481
+        },
+        "answer": "The evaluation metrics used to benchmark RAG system performance include:\n\n1. **Precision**: Measures the accuracy of relevant information retrieved.\n2. **Recall**: Assesses the ability to retrieve all relevant information.\n3. **Normalized Cumulative Gain (NDCG)**: Evaluates ranking quality in retrieval tasks.\n4. **RAGAS (Retrieval-Augmented Generation Assessment System)**: A specific evaluation measure for RAG systems.\n5. **ROUGE (ROUGE-N, ROUGE-L, etc.)**: Assesses generated text relevance against a reference.\n6. **BLEU**: Measures fluency and adequacy of language generation.\n7. **BERTScore**: Evaluates semantic similarity between generated and reference texts.\n8. **Context-Aware Response Score (CARS)**: A measure introduced to assess response quality in a context-aware manner.\n9. **Hallucination Rate**: Tracks the frequency of misinformation in model outputs.\n\nThese metrics collectively help in assessing both retrieval and generation performance, ensuring comprehensive evaluation of RAG systems.",
+        "reference_answer": "Common evaluation metrics include similarity scores between generated and reference answers (often using cosine similarity), average similarity scores across multiple queries, precision, recall, and NDCG for retrieval quality assessment."
+      },
+      {
+        "question": "How do embedding layers transform text data for computational processing in RAG systems?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.24615384615384617,
+          "rouge2": 0.125,
+          "rougeL": 0.19999999999999998,
+          "bleu": 0.05820493600328758
+        },
+        "answer": "In RAG systems, embedding layers transform raw text data by converting each word or subword into a fixed-size numerical vector. This transformation involves several steps: \n\n1. **Tokenization**: The input text is split into tokens (words or subwords).\n2. **Embedding Mapping**: Each token is mapped to a high-dimensional vector using the embedding layer.\n3. **Semantic Representation**: These vectors capture the semantic meaning of the text, enabling efficient numerical comparisons.\n\nThis process allows the RAG system to perform retrieval by comparing query vectors with stored chunk vectors based on their semantic similarity, facilitating effective information retrieval.",
+        "reference_answer": "Embedding layers transform raw text data into high-dimensional vectors (e.g., 1024-dimensional for BGE-M3) in a structured vector space, where semantic similarity can be computed mathematically using metrics like cosine similarity."
+      },
+      {
+        "question": "What is the advantage of modular RAG design over monolithic systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "029_Arya_2025_f65a964a.txt",
+          "011_Liu_2025_b9ebfa8e.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.23008849557522124,
+          "rouge2": 0.036036036036036036,
+          "rougeL": 0.1592920353982301,
+          "bleu": 0.01391004452078366
+        },
+        "answer": "The advantage of modular RAG design over monolithic systems lies in its adaptability and efficiency. By breaking down the system into customizable modules, each component can be specifically designed for particular tasks such as search or memory functions. This modularity allows for customization, optimization, and independent scaling, making it easier to maintain and improve without affecting other parts of the system. As a result, modular RAG offers better performance, scalability, and adaptability compared to monolithic systems, which are more rigid and less suited for varied use cases.",
+        "reference_answer": "Modular RAG design allows independent testing and replacement of components (embedders, retrievers, generators), enables systematic evaluation of different configurations, and facilitates optimization without retraining entire systems."
+      },
+      {
+        "question": "How does neural machine translation (NMT) represent a turning point in language comprehension?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "011_Liu_2025_b9ebfa8e.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.24827586206896554,
+          "rouge2": 0.06993006993006994,
+          "rougeL": 0.16551724137931034,
+          "bleu": 0.029986975197485184
+        },
+        "answer": "Neural Machine Translation (NMT) represents a pivotal turning point in language comprehension by introducing an automated, rule-free approach to translation. This innovation enabled machines to perform translations with unprecedented speed and accuracy, moving beyond simple rote translation to encompass complex linguistic tasks. By eliminating reliance on pre-defined rules, NMT democratized access to accurate language processing, paving the way for broader applications of Large Language Models (LLMs) in summarization, conversational systems, and specialized domains like healthcare and finance. This advancement not only transformed machine translation but also showcased LLMs' potential to handle diverse linguistic tasks, significantly impacting various fields by enhancing their understanding and contextual awareness of human language.",
+        "reference_answer": "NMT, exemplified by systems like Google Translate, marked a pivotal moment by demonstrating that neural networks could achieve human-like translation quality when paired with adequate computational infrastructure, paving the way for modern language models."
+      },
+      {
+        "question": "What is the cross-entropy loss used for in language model training?",
+        "retrieved": [
+          "044_Qiao_2025_be8f4989.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "010_Kothapalli_2024_3b9952ed.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "024_Siddharth_2024_54d631c5.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.43661971830985913,
+          "rouge2": 0.2285714285714286,
+          "rougeL": 0.352112676056338,
+          "bleu": 0.07973970607281192
+        },
+        "answer": "Cross-Entropy loss is a fundamental loss function used in training language models. It measures the difference between two probability distributions: the predicted distribution of tokens generated by the model and the true distribution, which represents the correct labels or next tokens in the input data. During training, the goal is to minimize this loss, guiding the model to adjust its weights so that its predictions better align with the actual token sequences from the training dataset.\n\nIn simpler terms, Cross-Entropy loss quantifies how well the model's predicted probabilities match the true labels, providing a clear metric to optimize and improve the model's performance.",
+        "reference_answer": "Cross-entropy loss measures the difference between predicted and actual answers during training, serving as the objective function to optimize model weights. It quantifies how well the model's probability distribution matches the true distribution."
+      },
+      {
+        "question": "Why is reciprocal rank fusion (RRF) effective for combining retrieval results?",
+        "retrieved": [
+          "029_Arya_2025_f65a964a.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.2640681225725909,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.2640681225725909,
+          "RR": 0.25,
+          "AP": 0.125
+        },
+        "generation_metrics": {
+          "rouge1": 0.3064516129032258,
+          "rouge2": 0.03278688524590164,
+          "rougeL": 0.2096774193548387,
+          "bleu": 0.003976968796364505
+        },
+        "answer": "Reciprocal Rank Fusion (RRF) is effective for combining retrieval results because it aggregates ranked lists from different methods, such as BM25 and DPR, without requiring hyperparameter tuning. By considering each document's position across multiple systems, RRF provides an unbiased view that leverages the strengths of each method while mitigating their weaknesses. This fusion approach reduces variance and noise, leading to a more accurate and reliable ranking than any single retrieval system alone could achieve. Thus, RRF enhances precision and recall by integrating diverse perspectives on document relevance effectively.",
+        "reference_answer": "RRF effectively combines results from multiple retrieval methods (e.g., dense and sparse) by using reciprocal ranks instead of raw scores, which normalizes contributions and is robust to score scale differences between different retrieval systems."
+      }
+    ]
+  },
+  "VR-H (Hybrid)": {
+    "retrieval": {
+      "P@1": 0.3,
+      "R@1": 0.3,
+      "NDCG@1": 0.3,
+      "P@5": 0.16000000000000006,
+      "R@5": 0.725,
+      "NDCG@5": 0.5329087830157838,
+      "P@10": 0.08000000000000003,
+      "R@10": 0.725,
+      "NDCG@10": 0.5329087830157838,
+      "MRR": 0.4791666666666667,
+      "MAP": 0.4583333333333333
+    },
+    "generation": {
+      "rouge1": 0.31770916177464203,
+      "rouge2": 0.09692694607172764,
+      "rougeL": 0.2182183502590936,
+      "bleu": 0.046514072098055595,
+      "bertscore_precision": 0.0,
+      "bertscore_recall": 0.0,
+      "bertscore_f1": 0.0
+    },
+    "latency": {
+      "mean_s": 12.878917491436004,
+      "median_s": 13.20048177242279,
+      "p95_s": 16.68790954351425
+    },
+    "per_question": [
+      {
+        "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+        "retrieved": [
+          "039_Unknown_2025_ce4a84f1.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.33766233766233766,
+          "rouge2": 0.02666666666666667,
+          "rougeL": 0.15584415584415584,
+          "bleu": 0.007843772989359645
+        },
+        "answer": "The main purpose of Retrieval-Augmented Generation (RAG) frameworks is to enhance the generation of factually coherent and contextually informed responses by integrating external knowledge during the decoding process, thereby improving the accuracy and relevance of AI-generated content.",
+        "reference_answer": "RAG frameworks integrate a retriever model that sources relevant context from a knowledge base and a generator model that synthesizes the retrieved information into coherent responses. This approach offers a promising alternative to fine-tuning large language models."
+      },
+      {
+        "question": "According to the RAG research, what are the two main components of the RAG framework?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "039_Unknown_2025_ce4a84f1.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.43067655807339306,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.43067655807339306,
+          "RR": 0.25,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.49350649350649356,
+          "rouge2": 0.18666666666666668,
+          "rougeL": 0.3636363636363636,
+          "bleu": 0.07590370387577242
+        },
+        "answer": "The two main components of the RAG framework are:\n\n1. **Retriever**: This component retrieves relevant information from an external knowledge base, typically using methods like DPR with BERT encoders.\n\n2. **Generator**: This component combines retrieved information with the query to generate a fluent and accurate response.",
+        "reference_answer": "The two main components are: (1) a retriever model that searches a knowledge base and retrieves relevant documents, and (2) a generator model that synthesizes the retrieved information into coherent responses."
+      },
+      {
+        "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+        "retrieved": [
+          "047_Linders_2025_96b24cea.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "044_Qiao_2025_be8f4989.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.27906976744186046,
+          "rouge2": 0.04878048780487805,
+          "rougeL": 0.13953488372093023,
+          "bleu": 0.007312330115686333
+        },
+        "answer": "The common similarity metric used in RAG systems for comparing document embeddings is **cosine similarity**.",
+        "reference_answer": "Cosine similarity is commonly used, calculated as the dot product between two vectors divided by the product of their Euclidean norms. A value of 1 indicates maximal similarity."
+      },
+      {
+        "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3488372093023256,
+          "rouge2": 0.07142857142857144,
+          "rougeL": 0.18604651162790697,
+          "bleu": 0.013243489673261997
+        },
+        "answer": "RAG addresses the limitations of traditional language model fine-tuning by enabling integration of external knowledge through its retrieval module. This allows models to generate more accurate and up-to-date text beyond their training dataset, overcoming the limitation where they can't access or utilize new information effectively.",
+        "reference_answer": "RAG offers a modular approach where components can be interchanged and optimized independently, avoiding the challenging and resource-intensive process of fine-tuning entire large language models. It allows leveraging external knowledge without retraining the base model."
+      },
+      {
+        "question": "What base language models were compared in the RAG modularity experiments?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "011_Liu_2025_b9ebfa8e.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3111111111111111,
+          "rouge2": 0.09302325581395349,
+          "rougeL": 0.2222222222222222,
+          "bleu": 0.041461339498953025
+        },
+        "answer": "The provided sources do not specify any particular base language models that were compared in the RAG modularity experiments.",
+        "reference_answer": "The experiments compared GPT and Palm as base language models to assess different configurations and determine which synergies most effectively capture the essence of the dataset."
+      },
+      {
+        "question": "What are the two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "047_Linders_2025_96b24cea.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.44,
+          "rouge2": 0.16666666666666666,
+          "rougeL": 0.32,
+          "bleu": 0.027088082645252743
+        },
+        "answer": "The two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems are **graph transformation** and **linearization**.",
+        "reference_answer": "The two phases are: (1) the graph transformation phase which modifies the retrieved sub-knowledge graph at the graph level, and (2) the linearization phase which converts the sub-KG to text format."
+      },
+      {
+        "question": "How does KGA address knowledge conflict in RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "039_Unknown_2025_ce4a84f1.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.29166666666666663,
+          "rouge2": 0.0425531914893617,
+          "rougeL": 0.16666666666666663,
+          "bleu": 0.008363395025193864
+        },
+        "answer": "KGA addresses knowledge conflict in RAG systems by structuring data into entities and relationships within a Knowledge Graph. This organization allows for precise retrieval and reasoning, reducing ambiguous or conflicting answers by leveraging structured information, thereby improving response accuracy.\n\nAnswer: KGA organizes data using entities and relationships from KGs to enhance retrieval precision, thus minimizing knowledge conflicts in RAG systems by providing clearer guidance for response generation.",
+        "reference_answer": "KGA improves the efficiency of utilizing retrieved knowledge and enhances the quality of final generation, thereby reducing knowledge conflict by systematically aligning the knowledge graph with the generation process."
+      },
+      {
+        "question": "What performance improvements can query optimization techniques achieve in database systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "003_Unknown_2025_463160c3.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.47457627118644063,
+          "rouge2": 0.17543859649122806,
+          "rougeL": 0.3389830508474576,
+          "bleu": 0.1477630615267801
+        },
+        "answer": "Query optimization techniques can significantly enhance database performance by improving query handling speed, reducing latency, increasing throughput, and maintaining high accuracy through tailored strategies that leverage dynamic methods and batch processing.",
+        "reference_answer": "Query optimization techniques can significantly reduce query execution time, improve resource utilization, and enhance overall database performance through techniques like cost-based optimization, index selection, and query rewriting."
+      },
+      {
+        "question": "What machine learning techniques are commonly used for performance prediction in large-scale systems?",
+        "retrieved": [],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.0,
+          "rouge2": 0.0,
+          "rougeL": 0,
+          "bleu": 0
+        },
+        "answer": "",
+        "reference_answer": "Machine learning models, particularly neural networks and ensemble methods, are used for efficient performance prediction. Systems like Ernest use these models for optimizing query execution plans and predicting system behavior."
+      },
+      {
+        "question": "How do hybrid retrieval mechanisms improve RAG system performance?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.2857142857142857,
+          "rouge2": 0.0449438202247191,
+          "rougeL": 0.1978021978021978,
+          "bleu": 0.020504762097787167
+        },
+        "answer": "Hybrid retrieval mechanisms improve RAG (Retrieval-Augmented Generation) system performance by integrating multiple methods such as dense passage retrieval with generative models, enhancing attention patterns for better response generation, and improving metrics like precision and recall. This combination allows RAG systems to access external knowledge more effectively, generate factually coherent answers accurately, reduce hallucination, and maintain acceptable generation speeds.",
+        "reference_answer": "Hybrid retrieval mechanisms combine dense (semantic) and sparse (keyword-based like BM25) retrieval to reduce latency while maintaining high precision. Studies show latency reductions of up to 42% while preserving retrieval quality."
+      },
+      {
+        "question": "What improvements did query-aware chunking demonstrate in RAG systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.20689655172413793,
+          "rouge2": 0.047058823529411764,
+          "rougeL": 0.13793103448275862,
+          "bleu": 0.010393938326032186
+        },
+        "answer": "Query-aware chunking demonstrated significant improvements in RAG systems by enabling end-to-end optimization of chunking parameters with retrieval and generation components. It also allowed automatic domain adaptation without manual tuning, enhancing performance while maintaining computational efficiency. Furthermore, it supported scalable solutions through distributed architecture patterns that improved system throughput and storage requirements.",
+        "reference_answer": "Query-aware chunking with multi-objective optimization frameworks showed 24.3% better NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency compared to traditional fixed-size chunking methods."
+      },
+      {
+        "question": "What is the significance of the transformer architecture in modern NLP models?",
+        "retrieved": [
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "047_Linders_2025_96b24cea.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.2640681225725909,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.2640681225725909,
+          "RR": 0.25,
+          "AP": 0.125
+        },
+        "generation_metrics": {
+          "rouge1": 0.3157894736842105,
+          "rouge2": 0.04301075268817204,
+          "rougeL": 0.21052631578947367,
+          "bleu": 0.011023694672787125
+        },
+        "answer": "The transformer architecture is significant in modern NLP models due to its ability to efficiently handle natural language processing tasks by scaling well with extensive data, providing superior contextual understanding, and enabling versatility across various applications such as translation, summarization, and domain-specific queries. This architecture's scalability and efficiency contribute to advancements in multiple domains beyond traditional tasks.",
+        "reference_answer": "The transformer architecture, exemplified in models like BERT and GPT, revolutionized NLP by enabling parallel processing of sequences, capturing long-range dependencies through attention mechanisms, and achieving state-of-the-art performance across multiple language tasks."
+      },
+      {
+        "question": "How does GPT-4 represent advances in artificial general intelligence according to recent research?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "016_Tian_2025_454dd912.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "023_Fu_2023_33e90746.txt"
+        ],
+        "relevant_docs": [
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.25806451612903225,
+          "rouge2": 0.11475409836065574,
+          "rougeL": 0.22580645161290325,
+          "bleu": 0.05095028835822633
+        },
+        "answer": "GPT-4 represents significant progress in artificial general intelligence (AGI) through its ability to perform complex tasks such as conversational interactions, factual reasoning, and generation. It leverages advanced techniques like Retrieval-Augmented Generation (RAG), which enhances information retrieval using methods such as keyword indexing (KWIC). While GPT-4 has shown strengths in dialogue systems and large language model capabilities, it faces challenges with niche domains due to reliance on general-purpose models without domain-specific fine-tuning. However, ongoing research aims to address these limitations by integrating domain-specific knowledge and improving retrieval techniques.",
+        "reference_answer": "Research describes GPT-4 as showing 'sparks of artificial general intelligence' through its ability to perform diverse tasks, demonstrate reasoning capabilities, and exhibit emergent behaviors not explicitly programmed during training."
+      },
+      {
+        "question": "What role does context play in RAG model performance?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.2535211267605634,
+          "rouge2": 0.04285714285714286,
+          "rougeL": 0.16901408450704228,
+          "bleu": 0.01403079369783798
+        },
+        "answer": "Context plays a crucial role in enhancing the performance of RAG models by enabling them to retrieve and utilize relevant information effectively. The quality of the generated response heavily depends on the model's ability to incorporate and process this context accurately. Without appropriate context retrieval and utilization, the accuracy and consistency of responses are compromised. Various strategies such as fine-tuning, memory mechanisms, and evaluation metrics like CARS help improve context integration, leading to better performance across different applications.\n\nAnswer: Context plays a crucial role in enhancing RAG model performance by enabling effective retrieval and utilization of relevant information, which significantly impacts the accuracy and consistency of responses.",
+        "reference_answer": "Context significantly influences model performance by providing essential background information that affects the meaning and relevance of responses. The presence of context has been shown to drastically improve accuracy, particularly in specialized domains."
+      },
+      {
+        "question": "What evaluation metrics are used to benchmark RAG system performance?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "048_Agnihotram_2025_80af63d0.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.3065735963827292,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.3065735963827292,
+          "RR": 0.3333333333333333,
+          "AP": 0.16666666666666666
+        },
+        "generation_metrics": {
+          "rouge1": 0.24175824175824176,
+          "rouge2": 0.0449438202247191,
+          "rougeL": 0.1978021978021978,
+          "bleu": 0.010455596122702472
+        },
+        "answer": "The evaluation metrics used to benchmark RAG system performance include precision, recall, normalized cumulative gain (NDCG), ROUGE, BLEU, BERTScore from academic studies. Additionally, Source 2 mentions Classification Precision and Pattern Recognition Accuracy as relevant metrics for broader tasks that may apply to RAG systems.\n\nAnswer: The evaluation metrics used are precision, recall, NDCG, ROUGE, BLEU, BERTScore, Classification Precision, and Pattern Recognition Accuracy.",
+        "reference_answer": "Common evaluation metrics include similarity scores between generated and reference answers (often using cosine similarity), average similarity scores across multiple queries, precision, recall, and NDCG for retrieval quality assessment."
+      },
+      {
+        "question": "How do embedding layers transform text data for computational processing in RAG systems?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.34951456310679613,
+          "rouge2": 0.17821782178217824,
+          "rougeL": 0.29126213592233013,
+          "bleu": 0.11017622046088031
+        },
+        "answer": "In RAG systems, embedding layers transform raw text data into high-dimensional numerical vectors, enabling the system to represent text in a format that allows for efficient computational processing. This transformation is crucial for tasks such as indexing (converting documents into embeddings) and retrieval (comparing these embeddings for similarity). By converting text into dense vectors, embedding layers facilitate mathematical operations necessary for tasks like question answering and information retrieval.",
+        "reference_answer": "Embedding layers transform raw text data into high-dimensional vectors (e.g., 1024-dimensional for BGE-M3) in a structured vector space, where semantic similarity can be computed mathematically using metrics like cosine similarity."
+      },
+      {
+        "question": "What is the advantage of modular RAG design over monolithic systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "029_Arya_2025_f65a964a.txt",
+          "011_Liu_2025_b9ebfa8e.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.3389830508474576,
+          "rouge2": 0.07017543859649122,
+          "rougeL": 0.23728813559322037,
+          "bleu": 0.033247469388112155
+        },
+        "answer": "The advantage of modular RAG design is its adaptability and customization, allowing each component to be tailored and improved independently for specific tasks, unlike monolithic systems which are harder to adjust once implemented.",
+        "reference_answer": "Modular RAG design allows independent testing and replacement of components (embedders, retrievers, generators), enables systematic evaluation of different configurations, and facilitates optimization without retraining entire systems."
+      },
+      {
+        "question": "How does neural machine translation (NMT) represent a turning point in language comprehension?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "011_Liu_2025_b9ebfa8e.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3448275862068965,
+          "rouge2": 0.18823529411764706,
+          "rougeL": 0.2758620689655173,
+          "bleu": 0.1457756042688125
+        },
+        "answer": "Neural machine translation (NMT) represents a turning point in language comprehension by demonstrating that neural networks could effectively handle complex linguistic tasks, surpassing earlier rule-based approaches. This breakthrough showed the potential of neural models in natural language processing, paving the way for further advancements and applications in AI-driven NLP tasks.",
+        "reference_answer": "NMT, exemplified by systems like Google Translate, marked a pivotal moment by demonstrating that neural networks could achieve human-like translation quality when paired with adequate computational infrastructure, paving the way for modern language models."
+      },
+      {
+        "question": "What is the cross-entropy loss used for in language model training?",
+        "retrieved": [
+          "044_Qiao_2025_be8f4989.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "010_Kothapalli_2024_3b9952ed.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "024_Siddharth_2024_54d631c5.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.419047619047619,
+          "rouge2": 0.29126213592233013,
+          "rougeL": 0.2857142857142857,
+          "bleu": 0.18291386020723058
+        },
+        "answer": "Cross-entropy loss is a fundamental component in language model training, serving as a metric to quantify the discrepancy between predicted and actual outputs. By minimizing this loss through optimization algorithms, models like those described in Sources 3 and 4 adjust their parameters to enhance prediction accuracy.\n\nAnswer: Cross-Entropy loss measures the difference between predicted and actual answers during training, aiding in adjusting model weights to minimize this discrepancy.",
+        "reference_answer": "Cross-entropy loss measures the difference between predicted and actual answers during training, serving as the objective function to optimize model weights. It quantifies how well the model's probability distribution matches the true distribution."
+      },
+      {
+        "question": "Why is reciprocal rank fusion (RRF) effective for combining retrieval results?",
+        "retrieved": [
+          "029_Arya_2025_f65a964a.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.2640681225725909,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.2640681225725909,
+          "RR": 0.25,
+          "AP": 0.125
+        },
+        "generation_metrics": {
+          "rouge1": 0.36363636363636365,
+          "rouge2": 0.06185567010309277,
+          "rougeL": 0.2424242424242424,
+          "bleu": 0.01183003901044294
+        },
+        "answer": "Reciprocal Rank Fusion (RRF) is effective for combining retrieval results because it aggregates rankings from multiple methods without requiring hyperparameter tuning. By assigning weights based on the inverse rank of retrieved documents, RRF emphasizes those consistently ranked highly across different retrieval techniques, thus enhancing robustness and accuracy. This approach avoids the complexity and potential bias introduced by single-method reliance or manual parameter adjustment.",
+        "reference_answer": "RRF effectively combines results from multiple retrieval methods (e.g., dense and sparse) by using reciprocal ranks instead of raw scores, which normalizes contributions and is robust to score scale differences between different retrieval systems."
+      }
+    ]
+  },
+  "GR (Graph)": {
+    "retrieval": {
+      "P@1": 0.35,
+      "R@1": 0.35,
+      "NDCG@1": 0.35,
+      "P@5": 0.18000000000000005,
+      "R@5": 0.8,
+      "NDCG@5": 0.5953164571005088,
+      "P@10": 0.09000000000000002,
+      "R@10": 0.8,
+      "NDCG@10": 0.5953164571005088,
+      "MRR": 0.5333333333333333,
+      "MAP": 0.5183333333333333
+    },
+    "generation": {
+      "rouge1": 0.3159169760340218,
+      "rouge2": 0.07808023904141188,
+      "rougeL": 0.2060532642518972,
+      "bleu": 0.021769942839263222,
+      "bertscore_precision": 0.8593414425849915,
+      "bertscore_recall": 0.8798019289970398,
+      "bertscore_f1": 0.8692564964294434
+    },
+    "latency": {
+      "mean_s": 15.423065376281738,
+      "median_s": 14.628809332847595,
+      "p95_s": 27.09821141958237
+    },
+    "per_question": [
+      {
+        "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+        "retrieved": [
+          "039_Unknown_2025_ce4a84f1.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "010_Kothapalli_2024_3b9952ed.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.35616438356164387,
+          "rouge2": 0.056338028169014086,
+          "rougeL": 0.21917808219178084,
+          "bleu": 0.008429974542983422
+        },
+        "answer": "The main purpose of Retrieval-Augmented Generation (RAG) frameworks is to enhance generative models by incorporating external knowledge during the decoding process, enabling them to retrieve relevant information and generate contextually informed, factually coherent outputs.",
+        "reference_answer": "RAG frameworks integrate a retriever model that sources relevant context from a knowledge base and a generator model that synthesizes the retrieved information into coherent responses. This approach offers a promising alternative to fine-tuning large language models."
+      },
+      {
+        "question": "According to the RAG research, what are the two main components of the RAG framework?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.43067655807339306,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.43067655807339306,
+          "RR": 0.25,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.4810126582278481,
+          "rouge2": 0.20779220779220778,
+          "rougeL": 0.35443037974683544,
+          "bleu": 0.06869592482449395
+        },
+        "answer": "The two main components of the RAG framework are:\n\n1. **Retriever**: Responsible for retrieving relevant information from an external knowledge base.\n2. **Generator**: Combines retrieved information with the question to generate a fluent response.\n\nAnswer: The two main components of the RAG framework are the retriever and generator.",
+        "reference_answer": "The two main components are: (1) a retriever model that searches a knowledge base and retrieves relevant documents, and (2) a generator model that synthesizes the retrieved information into coherent responses."
+      },
+      {
+        "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+        "retrieved": [
+          "047_Linders_2025_96b24cea.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.2608695652173913,
+          "rouge2": 0.04545454545454545,
+          "rougeL": 0.13043478260869565,
+          "bleu": 0.015586805590469256
+        },
+        "answer": "The common similarity metric used in RAG systems for comparing document embeddings is **cosine similarity**.\n\nAnswer: Cosine similarity",
+        "reference_answer": "Cosine similarity is commonly used, calculated as the dot product between two vectors divided by the product of their Euclidean norms. A value of 1 indicates maximal similarity."
+      },
+      {
+        "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "010_Kothapalli_2024_3b9952ed.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "028_Saleh_2025_6dbefc04.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.37999999999999995,
+          "rouge2": 0.08163265306122448,
+          "rougeL": 0.2,
+          "bleu": 0.010801653085734744
+        },
+        "answer": "RAG addresses the limitations of traditional language model fine-tuning by integrating external knowledge sources through retrieval, allowing models to generate up-to-date and accurate content without retraining. Unlike fine-tuning, which modifies a pre-trained model's parameters based on new data, RAG leverages existing information to enhance responses dynamically, making it more efficient and context-aware for current information needs.",
+        "reference_answer": "RAG offers a modular approach where components can be interchanged and optimized independently, avoiding the challenging and resource-intensive process of fine-tuning entire large language models. It allows leveraging external knowledge without retraining the base model."
+      },
+      {
+        "question": "What base language models were compared in the RAG modularity experiments?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "039_Unknown_2025_ce4a84f1.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3902439024390244,
+          "rouge2": 0.10256410256410256,
+          "rougeL": 0.2439024390243902,
+          "bleu": 0.014762394498293278
+        },
+        "answer": "The base language model compared in the RAG modularity experiments was GPT-3.5-turbo.",
+        "reference_answer": "The experiments compared GPT and Palm as base language models to assess different configurations and determine which synergies most effectively capture the essence of the dataset."
+      },
+      {
+        "question": "What are the two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "029_Arya_2025_f65a964a.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.44,
+          "rouge2": 0.16666666666666666,
+          "rougeL": 0.32,
+          "bleu": 0.027088082645252743
+        },
+        "answer": "The two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems are **graph transformation** and **linearization**.",
+        "reference_answer": "The two phases are: (1) the graph transformation phase which modifies the retrieved sub-knowledge graph at the graph level, and (2) the linearization phase which converts the sub-KG to text format."
+      },
+      {
+        "question": "How does KGA address knowledge conflict in RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.39285714285714285,
+          "rouge2": 0.07407407407407408,
+          "rougeL": 0.2857142857142857,
+          "bleu": 0.010530536545370929
+        },
+        "answer": "KGA addresses knowledge conflicts in RAG systems by integrating structured Knowledge Graphs (KG) with Retrieval-Augmented Generation (RAG), ensuring consistent and reliable information through enhanced reasoning capabilities.",
+        "reference_answer": "KGA improves the efficiency of utilizing retrieved knowledge and enhances the quality of final generation, thereby reducing knowledge conflict by systematically aligning the knowledge graph with the generation process."
+      },
+      {
+        "question": "What performance improvements can query optimization techniques achieve in database systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "NDCG@10": 0.0,
+          "RR": 0.0,
+          "AP": 0.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.22077922077922077,
+          "rouge2": 0.06578947368421052,
+          "rougeL": 0.15584415584415587,
+          "bleu": 0.026342400334949632
+        },
+        "answer": "Query optimization techniques can achieve several significant performance improvements in database systems, including:\n\n1. **Reduced Latency**: Enhanced response times for top 1% queries (p99) by up to 90%, along with dynamic query routing improving system performance by 40%.\n\n2. **Increased Throughput**: Techniques like dynamic batch processing boost throughput to handle up to 123 queries per second, with additional gains in managing repeated queries via caching mechanisms.\n\n3. **Improved Accuracy and Efficiency**: Quantization techniques reduce memory usage while maintaining high accuracy (96.2%), enabling higher query volumes (up to 200 per GPU).\n\n4. **Enhanced Retrieval Quality**: Methods such as query generalization, narrowing, expansion, and result aggregation improve the relevance of search outcomes.\n\n5. **Scalability**: Optimized systems can handle increased workloads more effectively, contributing to scalable database performance.",
+        "reference_answer": "Query optimization techniques can significantly reduce query execution time, improve resource utilization, and enhance overall database performance through techniques like cost-based optimization, index selection, and query rewriting."
+      },
+      {
+        "question": "What machine learning techniques are commonly used for performance prediction in large-scale systems?",
+        "retrieved": [
+          "011_Liu_2025_b9ebfa8e.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "014_Li_2026_f59e3685.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "024_Siddharth_2024_54d631c5.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.43067655807339306,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.43067655807339306,
+          "RR": 0.25,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.2831858407079646,
+          "rouge2": 0.07207207207207209,
+          "rougeL": 0.19469026548672566,
+          "bleu": 0.010127171102984852
+        },
+        "answer": "The machine learning techniques commonly used for performance prediction in large-scale systems include:\n\n1. **Retrieval-Augmented Generation (RAG)**: Enhances text generation by incorporating external data sources, improving the accuracy and relevance of outputs.\n\n2. **Deep Learning Techniques**: Specifically applied in databases to optimize tasks like indexing, join processing, and query optimization, such as SageDB which leverages deep learning for efficient data management.\n\nThese techniques address performance issues related to static datasets and improve system efficiency through enhanced data handling and retrieval processes.",
+        "reference_answer": "Machine learning models, particularly neural networks and ensemble methods, are used for efficient performance prediction. Systems like Ernest use these models for optimizing query execution plans and predicting system behavior."
+      },
+      {
+        "question": "How do hybrid retrieval mechanisms improve RAG system performance?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.25,
+          "rouge2": 0.05128205128205128,
+          "rougeL": 0.17500000000000002,
+          "bleu": 0.02501418024138638
+        },
+        "answer": "Hybrid retrieval mechanisms enhance RAG systems by integrating diverse data sources, including structured (like knowledge graphs) and unstructured text, which improves response accuracy and reduces hallucinations. End-to-end optimization of retrieval and generation allows for seamless learning, boosting efficiency and effectiveness compared to traditional two-stage methods.",
+        "reference_answer": "Hybrid retrieval mechanisms combine dense (semantic) and sparse (keyword-based like BM25) retrieval to reduce latency while maintaining high precision. Studies show latency reductions of up to 42% while preserving retrieval quality."
+      },
+      {
+        "question": "What improvements did query-aware chunking demonstrate in RAG systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.25,
+          "rouge2": 0.03636363636363637,
+          "rougeL": 0.14285714285714285,
+          "bleu": 0.007139456270504083
+        },
+        "answer": "Query-aware chunking demonstrated several key improvements in RAG systems: it enhanced context preservation through more effective text splitting strategies (as seen in Source 1), enabled end-to-end optimization of retrieval and generation processes (Sources 2 and 4), reduced reliance on manual tuning, adapted to new domains via query pattern analysis without intervention (Source 2), ensured semantically coherent chunks for better understanding (Source 3), and provided a theoretical framework for balancing multiple optimization objectives in chunking (Source 4).",
+        "reference_answer": "Query-aware chunking with multi-objective optimization frameworks showed 24.3% better NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency compared to traditional fixed-size chunking methods."
+      },
+      {
+        "question": "What is the significance of the transformer architecture in modern NLP models?",
+        "retrieved": [
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.4,
+          "R@5": 1.0,
+          "NDCG@5": 0.5012658353418871,
+          "P@10": 0.2,
+          "R@10": 1.0,
+          "NDCG@10": 0.5012658353418871,
+          "RR": 0.25,
+          "AP": 0.325
+        },
+        "generation_metrics": {
+          "rouge1": 0.2647058823529412,
+          "rouge2": 0.02985074626865672,
+          "rougeL": 0.16176470588235295,
+          "bleu": 0.0061589939669637215
+        },
+        "answer": "The transformer architecture is significant in modern NLP models for its efficiency in capturing contextual patterns, enabling a wide range of applications such as summarization, translation, and answering both general and domain-specific questions. It also serves as an effective annotator and shows improved scalability compared to other architectures like RNNs and LSTMs.\n\nAnswer: The transformer architecture is significant because it efficiently captures contextual patterns in natural language, enabling various NLP tasks including summarization, translation, and specialized applications across domains such as manufacturing or Quranic studies. It also outperforms alternative architectures by offering improved scalability and adaptability to different contexts.",
+        "reference_answer": "The transformer architecture, exemplified in models like BERT and GPT, revolutionized NLP by enabling parallel processing of sequences, capturing long-range dependencies through attention mechanisms, and achieving state-of-the-art performance across multiple language tasks."
+      },
+      {
+        "question": "How does GPT-4 represent advances in artificial general intelligence according to recent research?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "016_Tian_2025_454dd912.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "034_Ghosh_2025_d28a3948.txt"
+        ],
+        "relevant_docs": [
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.23622047244094488,
+          "rouge2": 0.04800000000000001,
+          "rougeL": 0.1574803149606299,
+          "bleu": 0.006501598919483674
+        },
+        "answer": "GPT-4 represents a significant advancement in artificial intelligence as demonstrated through various studies, particularly highlighting its capability to generate human-like text and perform complex reasoning tasks. However, it is acknowledged that GPT-4 currently relies on general-purpose models without domain-specific fine-tuning or retrieval-augmented generation (RAG), which limits its effectiveness in nuanced domains requiring specialized knowledge. This suggests that while GPT-4 marks an early milestone toward artificial general intelligence (AGI), further development and customization, especially through techniques like RAG, are necessary to enhance its reliability and performance in expert-level tasks.",
+        "reference_answer": "Research describes GPT-4 as showing 'sparks of artificial general intelligence' through its ability to perform diverse tasks, demonstrate reasoning capabilities, and exhibit emergent behaviors not explicitly programmed during training."
+      },
+      {
+        "question": "What role does context play in RAG model performance?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.23463687150837986,
+          "rouge2": 0.04519774011299435,
+          "rougeL": 0.14525139664804468,
+          "bleu": 0.010366700583648917
+        },
+        "answer": "Context plays a crucial role in enhancing the performance of RAG (Retrieval-Augmented Generation) models by improving several key aspects:\n\n1. **Alignment of Semantic Representations**: Context helps align the model's internal embeddings, leading to higher similarity scores between relevant text and queries.\n\n2. **Enhanced Response Quality**: Through evaluation metrics like Context-Aware Response Score (CARS), context ensures that generated responses are more coherent and accurate.\n\n3. **Relevance and Meaning**: Context provides necessary background information, ensuring that responses are semantically meaningful and accurately convey the intended content, as highlighted in studies focusing on indigenous knowledge and biodiversity.\n\n4. **Consistency and Coherence**: By effectively utilizing retrieved context, RAG models produce consistent and high-quality responses, crucial for tasks such as conversational systems and machine translation.\n\nIn summary, context significantly enhances RAG model performance by improving internal alignment, response quality, relevance, consistency, and coherence in various AI applications.",
+        "reference_answer": "Context significantly influences model performance by providing essential background information that affects the meaning and relevance of responses. The presence of context has been shown to drastically improve accuracy, particularly in specialized domains."
+      },
+      {
+        "question": "What evaluation metrics are used to benchmark RAG system performance?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.38685280723454163,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.38685280723454163,
+          "RR": 0.5,
+          "AP": 0.25
+        },
+        "generation_metrics": {
+          "rouge1": 0.256,
+          "rouge2": 0.016260162601626018,
+          "rougeL": 0.14400000000000002,
+          "bleu": 0.005292164213785695
+        },
+        "answer": "The evaluation metrics used to benchmark RAG system performance include:\n\n1. **Precision** - Measures the accuracy of retrieval.\n2. **Recall** - Assesses the ability to find all relevant results.\n3. **Normalized Discounted Cumulative Gain (NDCG)** - Evaluates ranking quality.\n4. **RAGAS** - An evaluation framework component for assessing RAG systems.\n5. **ROUGE** - A text similarity metric used to gauge response relevance and fluency.\n6. **BLEU** - Evaluates the quality of machine-generated text against references.\n7. **BERTScore** - Measures model quality based on human evaluations.\n\nThese metrics collectively assess both retrieval and generation performance in RAG systems, ensuring a comprehensive evaluation framework.",
+        "reference_answer": "Common evaluation metrics include similarity scores between generated and reference answers (often using cosine similarity), average similarity scores across multiple queries, precision, recall, and NDCG for retrieval quality assessment."
+      },
+      {
+        "question": "How do embedding layers transform text data for computational processing in RAG systems?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.24489795918367344,
+          "rouge2": 0.08333333333333333,
+          "rougeL": 0.1836734693877551,
+          "bleu": 0.013033247937897598
+        },
+        "answer": "In RAG systems, text data undergoes transformation through embedding layers as follows:\n\n1. **Chunking**: Raw text is divided into manageable chunks.\n2. **Embedding**: Each chunk is converted into a numerical vector representation by an embedding model.\n3. **Indexing**: These vectors are stored in a vector database for efficient retrieval.\n\nThis process enables the system to efficiently retrieve and generate relevant information during query processing.",
+        "reference_answer": "Embedding layers transform raw text data into high-dimensional vectors (e.g., 1024-dimensional for BGE-M3) in a structured vector space, where semantic similarity can be computed mathematically using metrics like cosine similarity."
+      },
+      {
+        "question": "What is the advantage of modular RAG design over monolithic systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "029_Arya_2025_f65a964a.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.3103448275862069,
+          "rouge2": 0.07142857142857142,
+          "rougeL": 0.20689655172413793,
+          "bleu": 0.03550467708240432
+        },
+        "answer": "The advantage of modular RAG design over monolithic systems lies in its enhanced scalability, adaptability, and maintainability due to its component-based architecture, allowing for easier updates and management across diverse applications.",
+        "reference_answer": "Modular RAG design allows independent testing and replacement of components (embedders, retrievers, generators), enables systematic evaluation of different configurations, and facilitates optimization without retraining entire systems."
+      },
+      {
+        "question": "How does neural machine translation (NMT) represent a turning point in language comprehension?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.35616438356164387,
+          "rouge2": 0.08450704225352113,
+          "rougeL": 0.21917808219178084,
+          "bleu": 0.01588436203293868
+        },
+        "answer": "Neural machine translation (NMT) marks a turning point in language comprehension by introducing highly accurate and context-aware models, transitioning from rule-based systems to advanced neural networks that revolutionize tasks like translation, content generation, and conversational systems.",
+        "reference_answer": "NMT, exemplified by systems like Google Translate, marked a pivotal moment by demonstrating that neural networks could achieve human-like translation quality when paired with adequate computational infrastructure, paving the way for modern language models."
+      },
+      {
+        "question": "What is the cross-entropy loss used for in language model training?",
+        "retrieved": [
+          "044_Qiao_2025_be8f4989.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "010_Kothapalli_2024_3b9952ed.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.3833333333333333,
+          "rouge2": 0.20338983050847456,
+          "rougeL": 0.25,
+          "bleu": 0.11296518360842496
+        },
+        "answer": "Cross-Entropy loss is used as a loss function in the training of language models. It measures the difference between the predicted probabilities and the actual labels, guiding the model to adjust its parameters to minimize prediction errors. This is crucial for tasks like question answering where the model predicts answers based on prompts.\n\nAnswer: Cross-entropy loss is used to measure the difference between predicted and actual answers during training of language models, helping them learn to predict correct responses by minimizing prediction errors.",
+        "reference_answer": "Cross-entropy loss measures the difference between predicted and actual answers during training, serving as the objective function to optimize model weights. It quantifies how well the model's probability distribution matches the true distribution."
+      },
+      {
+        "question": "Why is reciprocal rank fusion (RRF) effective for combining retrieval results?",
+        "retrieved": [
+          "029_Arya_2025_f65a964a.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "032_Yang_2025_38ff6c3a.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "028_Saleh_2025_6dbefc04.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.2640681225725909,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.2640681225725909,
+          "RR": 0.25,
+          "AP": 0.125
+        },
+        "generation_metrics": {
+          "rouge1": 0.3269230769230769,
+          "rouge2": 0.019607843137254905,
+          "rougeL": 0.23076923076923075,
+          "bleu": 0.00517334875729358
+        },
+        "answer": "Reciprocal Rank Fusion (RRF) is effective for combining retrieval results because it aggregates multiple ranked lists without requiring hyperparameter tuning. By converting ranks into reciprocal values, averaging them, and re-inverting, RRF produces a robust combined ranking that reduces the impact of any single source, leading to a more stable and reliable result. This method avoids issues with outliers and provides an efficient way to fuse diverse retrieval outputs.",
+        "reference_answer": "RRF effectively combines results from multiple retrieval methods (e.g., dense and sparse) by using reciprocal ranks instead of raw scores, which normalizes contributions and is robust to score scale differences between different retrieval systems."
+      }
+    ],
+    "graph_stats": {
+      "nodes": 36,
+      "edges": 443,
+      "avg_degree": 24.61111111111111,
+      "max_degree": 30,
+      "density": 0.7031746031746032,
+      "connected_components": 1
+    }
+  },
+  "HGR (Hybrid+Graph)": {
+    "retrieval": {
+      "P@1": 0.45,
+      "R@1": 0.45,
+      "NDCG@1": 0.45,
+      "P@5": 0.18000000000000002,
+      "R@5": 0.85,
+      "NDCG@5": 0.665281540814747,
+      "P@10": 0.10000000000000002,
+      "R@10": 0.925,
+      "NDCG@10": 0.6940122720110564,
+      "MRR": 0.6266666666666667,
+      "MAP": 0.6091666666666666
+    },
+    "generation": {
+      "rouge1": 0.3457333747108784,
+      "rouge2": 0.10008156511708746,
+      "rougeL": 0.23295971496568293,
+      "bleu": 0.034080785211973566,
+      "bertscore_precision": 0.8650375604629517,
+      "bertscore_recall": 0.8863603472709656,
+      "bertscore_f1": 0.875389575958252
+    },
+    "latency": {
+      "mean_s": 14.797827219963073,
+      "median_s": 13.382909536361694,
+      "p95_s": 21.410876405239115
+    },
+    "per_question": [
+      {
+        "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+        "retrieved": [
+          "039_Unknown_2025_ce4a84f1.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "018_Pichappan_2025_ca0f06b1.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "045_Xiong_2025_456cccfe.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "028_Saleh_2025_6dbefc04.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.34285714285714286,
+          "rouge2": 0.029411764705882353,
+          "rougeL": 0.17142857142857143,
+          "bleu": 0.007989063081298271
+        },
+        "answer": "The main purpose of Retrieval-Augmented Generation (RAG) frameworks is to combine information retrieval with text generation to produce accurate, relevant, and up-to-date content by utilizing external knowledge sources effectively.",
+        "reference_answer": "RAG frameworks integrate a retriever model that sources relevant context from a knowledge base and a generator model that synthesizes the retrieved information into coherent responses. This approach offers a promising alternative to fine-tuning large language models."
+      },
+      {
+        "question": "According to the RAG research, what are the two main components of the RAG framework?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "027_Nagilla_2025_5f584f97.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.45614035087719296,
+          "rouge2": 0.14545454545454545,
+          "rougeL": 0.3859649122807018,
+          "bleu": 0.09138336831870636
+        },
+        "answer": "The two main components of the RAG framework are the retriever, which fetches relevant information, and the generator, which processes this information to produce a response.",
+        "reference_answer": "The two main components are: (1) a retriever model that searches a knowledge base and retrieves relevant documents, and (2) a generator model that synthesizes the retrieved information into coherent responses."
+      },
+      {
+        "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+        "retrieved": [
+          "044_Qiao_2025_be8f4989.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.3562071871080222,
+          "RR": 0.16666666666666666,
+          "AP": 0.16666666666666666
+        },
+        "generation_metrics": {
+          "rouge1": 0.2891566265060241,
+          "rouge2": 0.024691358024691357,
+          "rougeL": 0.14457831325301204,
+          "bleu": 0.005697859151313652
+        },
+        "answer": "The common similarity metric used in RAG systems for comparing document embeddings is **cosine similarity**. This conclusion is supported by multiple sources: it is explicitly mentioned as a strategy alongside vector encoding using a learnable encoder, employed in evaluating retrieval mechanisms like TF-IDF scores, and utilized in structured knowledge integration with cosine product calculations.",
+        "reference_answer": "Cosine similarity is commonly used, calculated as the dot product between two vectors divided by the product of their Euclidean norms. A value of 1 indicates maximal similarity."
+      },
+      {
+        "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "018_Pichappan_2025_ca0f06b1.txt",
+          "029_Arya_2025_f65a964a.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.21857923497267762,
+          "rouge2": 0.06629834254143646,
+          "rougeL": 0.14207650273224046,
+          "bleu": 0.004651809849275326
+        },
+        "answer": "RAG addresses the limitations of traditional language model fine-tuning by enabling direct integration of external information sources during text generation. Unlike traditional fine-tuning, which may require extensive and domain-specific retraining, RAG leverages external knowledge to generate outputs grounded in current data, thus avoiding reliance on pre-trained models without access to relevant context. This approach ensures more accurate and up-to-date responses by bypassing the need for extensive retraining, offering a solution that doesn't depend on fine-tuning limitations.\n\nAnswer: \n\nRAG addresses the limitations of traditional language model fine-tuning by integrating external information sources during generation, ensuring outputs are grounded in current data without requiring extensive or domain-specific retraining. This approach avoids the reliance on off-the-shelf models and the need for fine-tuning, offering a solution that enhances accuracy and relevance through direct access to external knowledge.",
+        "reference_answer": "RAG offers a modular approach where components can be interchanged and optimized independently, avoiding the challenging and resource-intensive process of fine-tuning entire large language models. It allows leveraging external knowledge without retraining the base model."
+      },
+      {
+        "question": "What base language models were compared in the RAG modularity experiments?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.48000000000000004,
+          "rouge2": 0.16666666666666666,
+          "rougeL": 0.35999999999999993,
+          "bleu": 0.055181311072403615
+        },
+        "answer": "The base language models compared in the RAG modularity experiments included GPT and Palm.\n\nAnswer: The base language models compared were **GPT** and **Palm**.",
+        "reference_answer": "The experiments compared GPT and Palm as base language models to assess different configurations and determine which synergies most effectively capture the essence of the dataset."
+      },
+      {
+        "question": "What are the two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "029_Arya_2025_f65a964a.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.5591397849462365,
+          "rouge2": 0.32967032967032966,
+          "rougeL": 0.47311827956989244,
+          "bleu": 0.035405163495399156
+        },
+        "answer": "The two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems are:\n\n1. **Graph Transformation Phase**: This involves modifying the retrieved sub-KG at the graph level to transform it into a more suitable form for processing.\n\n2. **Linearization Phase**: This phase focuses on converting the transformed graph into text, enabling effective interaction with Retrieval Augmented Generation (RAG) systems.",
+        "reference_answer": "The two phases are: (1) the graph transformation phase which modifies the retrieved sub-knowledge graph at the graph level, and (2) the linearization phase which converts the sub-KG to text format."
+      },
+      {
+        "question": "How does KGA address knowledge conflict in RAG systems?",
+        "retrieved": [
+          "016_Tian_2025_454dd912.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "016_Tian_2025_454dd912.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.35955056179775285,
+          "rouge2": 0.06896551724137932,
+          "rougeL": 0.20224719101123598,
+          "bleu": 0.024877272326433525
+        },
+        "answer": "KGA (Knowledge Graph Aggregation) addresses knowledge conflict in RAG (Retrieval-Augmented Generation) systems by ensuring the integrity of the knowledge graph used. It likely does this by validating information within the KG to prevent contradictions, either by integrating multiple KGs cohesively or by resolving conflicts before they impact the system's responses, thereby maintaining consistency and reliability in AI outputs.",
+        "reference_answer": "KGA improves the efficiency of utilizing retrieved knowledge and enhances the quality of final generation, thereby reducing knowledge conflict by systematically aligning the knowledge graph with the generation process."
+      },
+      {
+        "question": "What performance improvements can query optimization techniques achieve in database systems?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "014_Li_2026_f59e3685.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.6309297535714575,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.6309297535714575,
+          "RR": 0.5,
+          "AP": 0.5
+        },
+        "generation_metrics": {
+          "rouge1": 0.24858757062146894,
+          "rouge2": 0.057142857142857155,
+          "rougeL": 0.15819209039548024,
+          "bleu": 0.010857254460183376
+        },
+        "answer": "Query optimization techniques in database systems can achieve several key improvements:\n\n1. **Enhanced Query Processing Speed**: Techniques like dynamic query routing and hybrid search approaches significantly boost performance by reducing response times and increasing throughput.\n\n2. **Reduction in Latency**: Innovations such as deep learning models and hybrid search methods decrease latency, particularly p99 latency, by substantial percentages.\n\n3. **Improved Accuracy and Recall**: Implementing quantization and model-based optimizations maintain high accuracy while improving recall rates.\n\n4. **Scalability and Resource Efficiency**: Architectural advancements ensure systems can scale efficiently and utilize resources like memory effectively.\n\n5. **Handling Complex Queries**: Enhanced methods enable better processing of complex queries, ensuring optimal query execution plans.\n\n6. **Adaptability Under Varying Conditions**: Dynamic strategies improve system performance across different load conditions by routing queries optimally based on complexity metrics.\n\nThese advancements collectively ensure faster, more accurate, and scalable database systems capable of handling diverse tasks efficiently.",
+        "reference_answer": "Query optimization techniques can significantly reduce query execution time, improve resource utilization, and enhance overall database performance through techniques like cost-based optimization, index selection, and query rewriting."
+      },
+      {
+        "question": "What machine learning techniques are commonly used for performance prediction in large-scale systems?",
+        "retrieved": [
+          "014_Li_2026_f59e3685.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "032_Yang_2025_38ff6c3a.txt"
+        ],
+        "relevant_docs": [
+          "014_Li_2026_f59e3685.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.32478632478632474,
+          "rouge2": 0.10434782608695653,
+          "rougeL": 0.20512820512820515,
+          "bleu": 0.017785182877597484
+        },
+        "answer": "The research papers highlight two primary machine learning techniques for performance prediction in large-scale systems:\n\n1. **Process-aware Recommender Systems (PAR Systems)**: These utilize machine learning models to analyze historical event logs, predict outcomes, and recommend interventions to enhance system efficiency.\n\n2. **Deep Reinforcement Learning**: This technique is applied to optimize join queries, improving the system's performance by dynamically adjusting parameters or strategies based on real-time data adjustments.\n\nThese methods are used for monitoring, predicting, and optimizing key performance indicators in large-scale systems.",
+        "reference_answer": "Machine learning models, particularly neural networks and ensemble methods, are used for efficient performance prediction. Systems like Ernest use these models for optimizing query execution plans and predicting system behavior."
+      },
+      {
+        "question": "How do hybrid retrieval mechanisms improve RAG system performance?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "013_Patnaik_2025_6d024ae2.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "016_Tian_2025_454dd912.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.17500000000000002,
+          "rouge2": 0.05128205128205128,
+          "rougeL": 0.15,
+          "bleu": 0.02300991908919148
+        },
+        "answer": "Hybrid retrieval mechanisms enhance RAG (Retrieval-Augmented Generation) performance by integrating multiple approaches that improve accuracy, reduce computational overhead, and ensure consistency. These mechanisms enable iterative refinement, multimodal handling, verification steps, and efficient resource allocation, leading to more reliable and accurate responses through optimized information access and processing.",
+        "reference_answer": "Hybrid retrieval mechanisms combine dense (semantic) and sparse (keyword-based like BM25) retrieval to reduce latency while maintaining high precision. Studies show latency reductions of up to 42% while preserving retrieval quality."
+      },
+      {
+        "question": "What improvements did query-aware chunking demonstrate in RAG systems?",
+        "retrieved": [
+          "035_Vangalapat_2025_4df032dd.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt"
+        ],
+        "relevant_docs": [
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.1346153846153846,
+          "rouge2": 0.019417475728155338,
+          "rougeL": 0.10576923076923075,
+          "bleu": 0.0018065316784163553
+        },
+        "answer": "AQACO, as introduced in the context of RAG systems, demonstrated several key improvements through query-aware chunking:\n\n1. **Enhanced Performance**: AQACO significantly improves the performance of RAG systems by optimizing chunking dynamically based on user queries and patterns.\n\n2. **Query-Aware Optimization**: It adapts chunk selection to better align with the complexity and requirements of specific queries, enhancing relevance and accuracy in retrieval and generation tasks.\n\n3. **Automatic Domain Adaptation**: The system can automatically adjust to new domains without manual tuning, reducing setup time and effort.\n\n4. **User Experience Improvement**: Personalized chunking strategies improve user experience by tailoring document preprocessing to individual query patterns.\n\n5. **Efficient Computational Process**: By optimizing across retrieval and generation components simultaneously, AQACO achieves global optima rather than local ones, leading to more efficient processing.\n\n6. **Handling Multihop Reasoning**: The adaptive approach mitigates challenges with complex reasoning scenarios, supporting better integration of knowledge across documents despite potential disruptions from chunking.\n\nIn summary, AQACO improves RAG systems by enhancing optimization efficiency, adaptability, and user experience through query-aware and adaptive document preprocessing.",
+        "reference_answer": "Query-aware chunking with multi-objective optimization frameworks showed 24.3% better NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency compared to traditional fixed-size chunking methods."
+      },
+      {
+        "question": "What is the significance of the transformer architecture in modern NLP models?",
+        "retrieved": [
+          "041_Yao_2024_33642b2d.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "047_Linders_2025_96b24cea.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "003_Unknown_2025_463160c3.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.23719771276929622,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.23719771276929622,
+          "RR": 0.2,
+          "AP": 0.1
+        },
+        "generation_metrics": {
+          "rouge1": 0.28282828282828276,
+          "rouge2": 0.061855670103092786,
+          "rougeL": 0.18181818181818182,
+          "bleu": 0.009571763961486927
+        },
+        "answer": "The transformer architecture is significant in modern NLP models due to its efficiency in capturing contextual patterns, handling intricate natural language tasks, and its versatility across diverse applications such as Quranic studies, legal analysis, healthcare, and manufacturing. Its scalability and improved contextual understanding have made it a cornerstone of advanced LLMs, driving innovation in various domains through enhanced capabilities in comprehension and generation.",
+        "reference_answer": "The transformer architecture, exemplified in models like BERT and GPT, revolutionized NLP by enabling parallel processing of sequences, capturing long-range dependencies through attention mechanisms, and achieving state-of-the-art performance across multiple language tasks."
+      },
+      {
+        "question": "How does GPT-4 represent advances in artificial general intelligence according to recent research?",
+        "retrieved": [
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "016_Tian_2025_454dd912.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "044_Qiao_2025_be8f4989.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "037_Knollmeyer_2025_d92c5d07.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3035714285714286,
+          "rouge2": 0.07272727272727272,
+          "rougeL": 0.19642857142857145,
+          "bleu": 0.00699902307094887
+        },
+        "answer": "According to recent research, GPT-4 represents an early experimental step towards Artificial General Intelligence (AGI), demonstrating capabilities such as language understanding and generating coherent text. However, it shows limitations in handling long-tail knowledge and exhibits hallucination tendencies, especially in specialized or nuanced tasks like Quran-related queries where domain-specific fine-tuning is crucial for better accuracy. While GPT-4 has potential through techniques like Retrieval-Augmented Generation (RAG), it currently requires additional training to improve performance in specific domains.",
+        "reference_answer": "Research describes GPT-4 as showing 'sparks of artificial general intelligence' through its ability to perform diverse tasks, demonstrate reasoning capabilities, and exhibit emergent behaviors not explicitly programmed during training."
+      },
+      {
+        "question": "What role does context play in RAG model performance?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "016_Tian_2025_454dd912.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.3614457831325301,
+          "rouge2": 0.04938271604938272,
+          "rougeL": 0.24096385542168675,
+          "bleu": 0.02731592909925092
+        },
+        "answer": "Context plays a pivotal role in enhancing RAG (Retrieval-Augmented Generation) model performance by aiding accurate retrieval of relevant information and enriching responses with pertinent details. It is particularly significant for tasks requiring specialized knowledge or addressing data-limited scenarios, where context helps improve relevance and accuracy across various datasets.",
+        "reference_answer": "Context significantly influences model performance by providing essential background information that affects the meaning and relevance of responses. The presence of context has been shown to drastically improve accuracy, particularly in specialized domains."
+      },
+      {
+        "question": "What evaluation metrics are used to benchmark RAG system performance?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "042_Chandra_2025_fa92c458.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt",
+          "042_Chandra_2025_fa92c458.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.5,
+          "NDCG@5": 0.3065735963827292,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.3065735963827292,
+          "RR": 0.3333333333333333,
+          "AP": 0.16666666666666666
+        },
+        "generation_metrics": {
+          "rouge1": 0.3050847457627119,
+          "rouge2": 0.07017543859649124,
+          "rougeL": 0.20338983050847456,
+          "bleu": 0.020667362144729137
+        },
+        "answer": "The evaluation metrics used to benchmark RAG system performance include precision, recall, normalized cumulative gain (NDCG), RAGAS, ROUGE, BLEU, BERTScore, and a Composite Performance Score (CPS) that aggregates these metrics.",
+        "reference_answer": "Common evaluation metrics include similarity scores between generated and reference answers (often using cosine similarity), average similarity scores across multiple queries, precision, recall, and NDCG for retrieval quality assessment."
+      },
+      {
+        "question": "How do embedding layers transform text data for computational processing in RAG systems?",
+        "retrieved": [
+          "003_Unknown_2025_463160c3.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "046_Niederhaus_2025_c41834f5.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.42105263157894735,
+          "rouge2": 0.2150537634408602,
+          "rougeL": 0.3157894736842105,
+          "bleu": 0.13309113854877103
+        },
+        "answer": "In RAG systems, embedding layers transform raw text data into numerical vectors through a process called vectorization. This involves breaking down text into manageable chunks, which are then encoded into high-dimensional vectors using embedding models. These vectors enable computational processing for tasks such as similarity scoring, retrieval, and generation by providing structured representations that can be analyzed and manipulated computationally.",
+        "reference_answer": "Embedding layers transform raw text data into high-dimensional vectors (e.g., 1024-dimensional for BGE-M3) in a structured vector space, where semantic similarity can be computed mathematically using metrics like cosine similarity."
+      },
+      {
+        "question": "What is the advantage of modular RAG design over monolithic systems?",
+        "retrieved": [
+          "042_Chandra_2025_fa92c458.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "040_Pichai_2023_cc391c15.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "041_Yao_2024_33642b2d.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 0.5,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 0.5,
+          "RR": 0.3333333333333333,
+          "AP": 0.3333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.3823529411764706,
+          "rouge2": 0.06060606060606061,
+          "rougeL": 0.2647058823529412,
+          "bleu": 0.030118579559893055
+        },
+        "answer": "The advantage of a modular RAG design over monolithic systems is that it allows for domain-specific customization, improves scalability by enabling independent optimization of individual components, and addresses the limitations of monolithic architectures by enhancing adaptability and performance through tailored solutions.",
+        "reference_answer": "Modular RAG design allows independent testing and replacement of components (embedders, retrievers, generators), enables systematic evaluation of different configurations, and facilitates optimization without retraining entire systems."
+      },
+      {
+        "question": "How does neural machine translation (NMT) represent a turning point in language comprehension?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "008_Dimitrova_2025_c23d445c.txt",
+          "030_Bahr_2025_01879ac7.txt",
+          "041_Yao_2024_33642b2d.txt",
+          "044_Qiao_2025_be8f4989.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "039_Unknown_2025_ce4a84f1.txt",
+          "028_Saleh_2025_6dbefc04.txt",
+          "032_Yang_2025_38ff6c3a.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.3333333333333333,
+          "rouge2": 0.06896551724137931,
+          "rougeL": 0.23333333333333334,
+          "bleu": 0.014288340929343151
+        },
+        "answer": "Neural machine translation (NMT) marked a turning point by providing accurate, context-aware translations using neural networks, surpassing the limitations of earlier rule-based systems.",
+        "reference_answer": "NMT, exemplified by systems like Google Translate, marked a pivotal moment by demonstrating that neural networks could achieve human-like translation quality when paired with adequate computational infrastructure, paving the way for modern language models."
+      },
+      {
+        "question": "What is the cross-entropy loss used for in language model training?",
+        "retrieved": [
+          "040_Pichai_2023_cc391c15.txt",
+          "044_Qiao_2025_be8f4989.txt",
+          "007_Zhu_2025_e53c7a14.txt",
+          "010_Kothapalli_2024_3b9952ed.txt",
+          "026_Raghavan_2025_6dd89b7a.txt",
+          "024_Siddharth_2024_54d631c5.txt",
+          "012_Singh_2025_ddd8dbc0.txt",
+          "028_Saleh_2025_6dbefc04.txt"
+        ],
+        "relevant_docs": [
+          "040_Pichai_2023_cc391c15.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 1.0,
+          "R@1": 1.0,
+          "NDCG@1": 1.0,
+          "P@5": 0.2,
+          "R@5": 1.0,
+          "NDCG@5": 1.0,
+          "P@10": 0.1,
+          "R@10": 1.0,
+          "NDCG@10": 1.0,
+          "RR": 1.0,
+          "AP": 1.0
+        },
+        "generation_metrics": {
+          "rouge1": 0.5365853658536586,
+          "rouge2": 0.275,
+          "rougeL": 0.2926829268292683,
+          "bleu": 0.14826553208087553
+        },
+        "answer": "Cross-entropy loss is used as the loss function during the fine-tuning and training process of language models, particularly in tasks such as question answering and image generation. It quantifies the difference between predicted and actual answers, guiding the model to minimize errors and improve accuracy.",
+        "reference_answer": "Cross-entropy loss measures the difference between predicted and actual answers during training, serving as the objective function to optimize model weights. It quantifies how well the model's probability distribution matches the true distribution."
+      },
+      {
+        "question": "Why is reciprocal rank fusion (RRF) effective for combining retrieval results?",
+        "retrieved": [
+          "029_Arya_2025_f65a964a.txt",
+          "048_Agnihotram_2025_80af63d0.txt",
+          "034_Ghosh_2025_d28a3948.txt",
+          "011_Liu_2025_b9ebfa8e.txt",
+          "037_Knollmeyer_2025_d92c5d07.txt",
+          "035_Vangalapat_2025_4df032dd.txt",
+          "003_Unknown_2025_463160c3.txt",
+          "008_Dimitrova_2025_c23d445c.txt"
+        ],
+        "relevant_docs": [
+          "042_Chandra_2025_fa92c458.txt",
+          "035_Vangalapat_2025_4df032dd.txt"
+        ],
+        "retrieval_metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "NDCG@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "NDCG@5": 0.0,
+          "P@10": 0.1,
+          "R@10": 0.5,
+          "NDCG@10": 0.21840743681816419,
+          "RR": 0.16666666666666666,
+          "AP": 0.08333333333333333
+        },
+        "generation_metrics": {
+          "rouge1": 0.4,
+          "rouge2": 0.06451612903225808,
+          "rougeL": 0.23157894736842102,
+          "bleu": 0.012653299443953998
+        },
+        "answer": "Reciprocal Rank Fusion (RRF) is effective because it combines rankings from different retrieval methods without requiring parameter tuning. By focusing on the relative positions of documents across methods, RRF leverages consensus to produce a more reliable and consistent merged list. This approach ensures higher priority for documents consistently ranked highly by multiple methods, enhancing robustness and accuracy in retrieval results.",
+        "reference_answer": "RRF effectively combines results from multiple retrieval methods (e.g., dense and sparse) by using reciprocal ranks instead of raw scores, which normalizes contributions and is robust to score scale differences between different retrieval systems."
+      }
+    ],
+    "graph_stats": {
+      "nodes": 36,
+      "edges": 443,
+      "avg_degree": 24.61111111111111,
+      "max_degree": 30,
+      "density": 0.7031746031746032,
+      "connected_components": 1
+    }
+  }
+}

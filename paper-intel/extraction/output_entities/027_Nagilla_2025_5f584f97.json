@@ -1,0 +1,166 @@
+[
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_1",
+    "type": "Model",
+    "name": "RAG",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_2",
+    "type": "Method",
+    "name": "Retrieval-Augmented Generation",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_3",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_4",
+    "type": "Dataset",
+    "name": "GLUE",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_5",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_6",
+    "type": "Metric",
+    "name": "F1-score",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_7",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_8",
+    "type": "Paper",
+    "name": "Medida",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_9",
+    "type": "Paper",
+    "name": "GeeksforGeeks",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_10",
+    "type": "Author",
+    "name": "editoriaeme.com",
+    "source_paper_id": "027_Nagilla_2025_5f584f97"
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_11",
+    "type": "Result",
+    "name": "Accuracy=85-95% on ImageNet",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "85-95%",
+      "dataset": "ImageNet",
+      "experiment_description": "Contextual analysis",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_12",
+    "type": "Result",
+    "name": "F1-score=73% on Mixed data types",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "F1-score",
+      "metric_value": "73%",
+      "dataset": "Mixed data types",
+      "experiment_description": "Domain-specific applications",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_13",
+    "type": "Result",
+    "name": "BLEU=89% on Domain-specific applications",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "89%",
+      "dataset": "Domain-specific applications",
+      "experiment_description": "Domain-specific applications",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_14",
+    "type": "Result",
+    "name": "Accuracy=45-55% on Mixed data types",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "45-55%",
+      "dataset": "Mixed data types",
+      "experiment_description": "Traditional NLP approaches",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_15",
+    "type": "Result",
+    "name": "Query latency=76.3% on Mixed data types",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "Query latency",
+      "metric_value": "76.3%",
+      "dataset": "Mixed data types",
+      "experiment_description": "Vector search capabilities",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_16",
+    "type": "Result",
+    "name": "Search relevance=78% on Mixed data types",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "Search relevance",
+      "metric_value": "78%",
+      "dataset": "Mixed data types",
+      "experiment_description": "Vector search capabilities",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_17",
+    "type": "Result",
+    "name": "Response time=247 milliseconds on Mixed data types",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "Response time",
+      "metric_value": "247 milliseconds",
+      "dataset": "Mixed data types",
+      "experiment_description": "Real-time processing",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_027_Nagilla_2025_5f584f97_18",
+    "type": "Result",
+    "name": "Processing overhead=72% on Mixed data types",
+    "source_paper_id": "027_Nagilla_2025_5f584f97",
+    "properties": {
+      "metric_name": "Processing overhead",
+      "metric_value": "72%",
+      "dataset": "Mixed data types",
+      "experiment_description": "Hybrid analytics systems",
+      "improvement_over_baseline": ""
+    }
+  }
+]

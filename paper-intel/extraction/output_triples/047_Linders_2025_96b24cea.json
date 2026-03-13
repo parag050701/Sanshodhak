@@ -1,0 +1,54 @@
+{
+  "paper_id": "047_Linders_2025_96b24cea",
+  "triples": [
+    [
+      "LLMs",
+      "USES_MODEL",
+      "Knowledge Graphs"
+    ],
+    [
+      "Knowledge Graphs",
+      "EVALUATES_ON",
+      "LLMs"
+    ],
+    [
+      "LLMs",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "KAPING",
+      "CITES",
+      "LLMs"
+    ],
+    [
+      "KAPING",
+      "AUTHORED_BY",
+      "Unknown"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge Graphs",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge Graphs",
+      "EVALUATES_ON",
+      "Knowledge Graphs"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 6,
+    "relation_count": 7,
+    "triple_count": 7,
+    "extracted_at": "2025-12-06T02:30:10.096718"
+  },
+  "paper_metadata": {
+    "title": "Knowledge graph-extended retrieval augmented generation for question answering",
+    "authors": [
+      "Jasper Linders",
+      "Jakub Tomczak"
+    ],
+    "year": "2025"
+  }
+}

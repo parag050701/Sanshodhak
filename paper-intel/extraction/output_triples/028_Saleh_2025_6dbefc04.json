@@ -1,0 +1,1033 @@
+{
+  "paper_id": "028_Saleh_2025_6dbefc04",
+  "triples": [
+    [
+      "AR-RAG",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "AR-RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "Vanilla Image Generation Prompt"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "patch-based autoregressive retrieval augmentation"
+    ],
+    [
+      "DAiD",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "FAiD",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "AR-RAG",
+      "ACHIEVES_RESULT",
+      "ImageNet"
+    ],
+    [
+      "AR-RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "AR-RAG",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "None"
+    ],
+    [
+      "AR-RAG",
+      "AUTHORED_BY",
+      "None"
+    ],
+    [
+      "AR-RAG",
+      "STUDIES_TASK",
+      "image generation"
+    ],
+    [
+      "DAiD",
+      "ACHIEVES_RESULT",
+      "ImageNet"
+    ],
+    [
+      "DAiD",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "DAiD",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "Midjourney-30K 2"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "DPG-Bench"
+    ],
+    [
+      "Janus-Pro",
+      "USES_MODEL",
+      "DAiD"
+    ],
+    [
+      "Janus-Pro",
+      "USES_MODEL",
+      "FAiD"
+    ],
+    [
+      "DAiD",
+      "CITES",
+      "Quantized autoencoder [37]"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "Quantized autoencoder [37]"
+    ],
+    [
+      "FAiD",
+      "ACHIEVES_RESULT",
+      "6.67 FID on Midjourney-30K"
+    ],
+    [
+      "FAiD",
+      "ACHIEVES_RESULT",
+      "0.78 overall score on GenEval"
+    ],
+    [
+      "FAiD",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "FAiD",
+      "REPORTS_METRIC",
+      "Overall score"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Janus-Pro",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "DAiD",
+      "USES_MODEL",
+      "Janus-Pro"
+    ],
+    [
+      "DAiD",
+      "USES_METHOD",
+      "Quantized autoencoder"
+    ],
+    [
+      "DAiD",
+      "USES_METHOD",
+      "Backpropagation"
+    ],
+    [
+      "DAiD",
+      "USES_METHOD",
+      "Attention mechanism"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Quantized autoencoder"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Backpropagation"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Attention mechanism"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "DAiD"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "FAiD"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "DAiD"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "Quantized autoencoder"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "Backpropagation"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "Attention mechanism"
+    ],
+    [
+      "FAiD",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "FAiD",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Multi-Scale Feature Smoothing"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Convolution"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Softmax"
+    ],
+    [
+      "FAiD",
+      "USES_METHOD",
+      "Embedding"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "Janus-Pro SPB"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "Feature-Augmentation in Decoding (FAiD)"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "Unknown"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "DPG-Bench"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "Midjourney-30k"
+    ],
+    [
+      "Show-o",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Show-o",
+      "EVALUATES_ON",
+      "DPG-Bench"
+    ],
+    [
+      "Show-o",
+      "EVALUATES_ON",
+      "Midjourney-30k"
+    ],
+    [
+      "LlamaGen",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "LDM",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Stable Diffusion",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "PixArt-alpha",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "DALL-E 2",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "RA-CM3",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Janus-Pro",
+      "CITES",
+      "https://huggingface.co/da"
+    ],
+    [
+      "DAiD",
+      "EVALUATES_ON",
+      "DPGBench"
+    ],
+    [
+      "FAiD",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "DAiD",
+      "ACHIEVES_RESULT",
+      "CMMD"
+    ],
+    [
+      "FAiD",
+      "ACHIEVES_RESULT",
+      "FWD"
+    ],
+    [
+      "DAiD",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "FAiD",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "ImageRAG",
+      "CITES",
+      "AR-RAG"
+    ],
+    [
+      "ImageRAG",
+      "CITES",
+      "AR-RAG"
+    ],
+    [
+      "ImageRAG",
+      "CITES",
+      "AR-RAG"
+    ],
+    [
+      "DAiD",
+      "STUDIES_TASK",
+      "image generation"
+    ],
+    [
+      "FAiD",
+      "STUDIES_TASK",
+      "image generation"
+    ],
+    [
+      "ImageRAG",
+      "CITES",
+      "ImageRAG"
+    ],
+    [
+      "AR-RAG",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "AR-RAG",
+      "REPORTS_METRIC",
+      "Inference Time"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "Retrieval-augmented generation"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "KNN-Diffusion"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "Early approaches"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "Recent methods"
+    ],
+    [
+      "AR-RAG",
+      "CITES",
+      "Multimodal retrievals"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "L40"
+    ],
+    [
+      "Janus-Pro",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "DAiD",
+      "EVALUATES_ON",
+      "L40"
+    ],
+    [
+      "DAiD",
+      "REPORTS_METRIC",
+      "Inference Time"
+    ],
+    [
+      "FAiD",
+      "EVALUATES_ON",
+      "L40"
+    ],
+    [
+      "FAiD",
+      "REPORTS_METRIC",
+      "Inference Time"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "AR-RAG"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "Janus-Pro"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "DAiD"
+    ],
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Towards effective long conversation generation with dynamic topic tracking and recommendation"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Deepseek llm: Scaling open-source language models with longtermism"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Semiparametric neural image synthesis"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Improving language models by retrieving from trillions of tokens"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Conceptual 12m: Pushing web-scale image-text pre-training to recognize long-tail visual concepts"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Blip3-o: A family of fully open unified multimodal models-architecture, training and dataset"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Pixart-α: Fast training of diffusion transformer for photorealistic text-to-image synthesis"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Re-imagen: Retrievalaugmented text-to-image generator"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Janus-pro: Unified multimodal understanding and generation with data and model scaling"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Scaling rectified flow transformers for high-resolution image synthesis"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Frido: Feature pyramid diffusion for complex scene image synthesis"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Towards effective long conversation generation with dynamic topic tracking and recommendation"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Deepseek llm: Scaling open-source language models with longtermism"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Semiparametric neural image synthesis"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Improving language models by retrieving from trillions of tokens"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Conceptual 12m: Pushing web-scale image-text pre-training to recognize long-tail visual concepts"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Blip3-o: A family of fully open unified multimodal models-architecture, training and dataset"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Pixart-α: Fast training of diffusion transformer for photorealistic text-to-image synthesis"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Re-imagen: Retrievalaugmented text-to-image generator"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Janus-pro: Unified multimodal understanding and generation with data and model scaling"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Scaling rectified flow transformers for high-resolution image synthesis"
+    ],
+    [
+      "BERT",
+      "AUTHORED_BY",
+      "Frido: Feature pyramid diffusion for complex scene image synthesis"
+    ],
+    [
+      "CLIP",
+      "EVALUATES_ON",
+      "CC12M"
+    ],
+    [
+      "CLIP",
+      "EVALUATES_ON",
+      "JourneyDB"
+    ],
+    [
+      "Janus-Pro",
+      "USES_MODEL",
+      "CLIP"
+    ],
+    [
+      "Janus-Pro",
+      "ACHIEVES_RESULT",
+      "cosine similarity"
+    ],
+    [
+      "Janus-Pro",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "Janus-Pro",
+      "EVALUATES_ON",
+      "Show-o"
+    ],
+    [
+      "Janus-Pro",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Show-o",
+      "EVALUATES_ON",
+      "Janus-Pro"
+    ],
+    [
+      "Show-o",
+      "CITES",
+      "Janus-Pro"
+    ],
+    [
+      "Show-o",
+      "USES_METHOD",
+      "patch-based autoregressive retrieval augmentation"
+    ],
+    [
+      "Show-o",
+      "USES_METHOD",
+      "masked token decoding"
+    ],
+    [
+      "Show-o",
+      "USES_DATASET",
+      "Show-o"
+    ],
+    [
+      "DAiD",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "FAiD",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "Janus-Pro-1B",
+      "EVALUATES_ON",
+      "CC12M"
+    ],
+    [
+      "Janus-Pro-1B",
+      "EVALUATES_ON",
+      "Midjourney-v6"
+    ],
+    [
+      "Show-o",
+      "EVALUATES_ON",
+      "CC12M"
+    ],
+    [
+      "Show-o",
+      "EVALUATES_ON",
+      "Midjourney-v6"
+    ],
+    [
+      "Janus-Pro-1B",
+      "CITES",
+      "Janus-Pro model"
+    ],
+    [
+      "Show-o",
+      "CITES",
+      "Show-o model"
+    ],
+    [
+      "Janus-Pro-1B",
+      "AUTHORED_BY",
+      "N/A"
+    ],
+    [
+      "Show-o",
+      "AUTHORED_BY",
+      "N/A"
+    ],
+    [
+      "DAiD",
+      "EVALUATES_ON",
+      "Midjourney-10K"
+    ],
+    [
+      "DAiD",
+      "REPORTS_METRIC",
+      "FID score"
+    ],
+    [
+      "FAiD",
+      "EVALUATES_ON",
+      "Midjourney-10K"
+    ],
+    [
+      "FAiD",
+      "REPORTS_METRIC",
+      "FID score"
+    ],
+    [
+      "DAiD",
+      "CITES",
+      "Patch-based Autoregressive Retrieval"
+    ],
+    [
+      "FAiD",
+      "CITES",
+      "Patch-based Autoregressive Retrieval"
+    ],
+    [
+      "Midjourney-10K",
+      "EVALUATES_ON",
+      "Fréchet Inception Distance (FID)"
+    ],
+    [
+      "Midjourney-10K",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "Fréchet Inception Distance (FID)",
+      "CITES",
+      "DAiD"
+    ],
+    [
+      "Fréchet Inception Distance (FID)",
+      "CITES",
+      "FAiD"
+    ],
+    [
+      "DAiD",
+      "ACHIEVES_RESULT",
+      "14.12"
+    ],
+    [
+      "FAiD",
+      "ACHIEVES_RESULT",
+      "13.13"
+    ],
+    [
+      "DAiD",
+      "AUTHORED_BY",
+      "AR-RAG"
+    ],
+    [
+      "FAiD",
+      "AUTHORED_BY",
+      "AR-RAG"
+    ],
+    [
+      "Janus-Pro",
+      "AUTHORED_BY",
+      "AR-RAG"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BLEU=None on ImageNet",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=None on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "FID=6.67 on Midjourney-30K",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "Overall score=0.78 on GenEval",
+      "REPORTS_METRIC",
+      "Overall score"
+    ],
+    [
+      "Overall score=0.78 on GenEval",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "FID=lower score on Midjourney-30k",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "CMMD=lower score on Midjourney-30k",
+      "REPORTS_METRIC",
+      "CMMD"
+    ],
+    [
+      "FWD=lower score on Midjourney-30k",
+      "REPORTS_METRIC",
+      "FWD"
+    ],
+    [
+      "CMMD=improved on DPGBench",
+      "REPORTS_METRIC",
+      "CMMD"
+    ],
+    [
+      "CMMD=improved on DPGBench",
+      "EVALUATES_ON",
+      "DPGBench"
+    ],
+    [
+      "FWD=improved on GenEval",
+      "REPORTS_METRIC",
+      "FWD"
+    ],
+    [
+      "FWD=improved on GenEval",
+      "EVALUATES_ON",
+      "GenEval"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Inference Time=879.64 on L40",
+      "REPORTS_METRIC",
+      "Inference Time"
+    ],
+    [
+      "Inference Time=879.64 on L40",
+      "EVALUATES_ON",
+      "L40"
+    ],
+    [
+      "Inference Time=457.74 on L40",
+      "REPORTS_METRIC",
+      "Inference Time"
+    ],
+    [
+      "Inference Time=457.74 on L40",
+      "EVALUATES_ON",
+      "L40"
+    ],
+    [
+      "Inference Time=623.01 on L40",
+      "REPORTS_METRIC",
+      "Inference Time"
+    ],
+    [
+      "Inference Time=623.01 on L40",
+      "EVALUATES_ON",
+      "L40"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "cosine similarity=0.9 on CC12M",
+      "REPORTS_METRIC",
+      "cosine similarity"
+    ],
+    [
+      "cosine similarity=0.9 on CC12M",
+      "EVALUATES_ON",
+      "CC12M"
+    ],
+    [
+      "accuracy=92.4% on JourneyDB",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "accuracy=92.4% on JourneyDB",
+      "EVALUATES_ON",
+      "JourneyDB"
+    ],
+    [
+      "Accuracy=92.4% on Show-o",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Show-o",
+      "EVALUATES_ON",
+      "Show-o"
+    ],
+    [
+      "GenEval=N/A on CC12M",
+      "REPORTS_METRIC",
+      "GenEval"
+    ],
+    [
+      "GenEval=N/A on CC12M",
+      "EVALUATES_ON",
+      "CC12M"
+    ],
+    [
+      "DPG-Bench=N/A on Midjourney-30k",
+      "REPORTS_METRIC",
+      "DPG-Bench"
+    ],
+    [
+      "FID=N/A on Midjourney-30k",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "FWD=N/A on Midjourney-30k",
+      "REPORTS_METRIC",
+      "FWD"
+    ],
+    [
+      "FID score=None on Midjourney-10K",
+      "REPORTS_METRIC",
+      "FID score"
+    ],
+    [
+      "FID score=None on Midjourney-10K",
+      "EVALUATES_ON",
+      "Midjourney-10K"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "FID=14.12 on Midjourney-10K",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "FID=14.12 on Midjourney-10K",
+      "EVALUATES_ON",
+      "Midjourney-10K"
+    ],
+    [
+      "FID=13.13 on Midjourney-10K",
+      "REPORTS_METRIC",
+      "FID"
+    ],
+    [
+      "FID=13.13 on Midjourney-10K",
+      "EVALUATES_ON",
+      "Midjourney-10K"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 143,
+    "relation_count": 203,
+    "triple_count": 203,
+    "extracted_at": "2025-12-06T02:28:41.845345"
+  },
+  "paper_metadata": {
+    "title": "AR-RAG: Autoregressive Retrieval Augmentation for Image Generation",
+    "authors": [
+      "Jingyuan Qi; Zhiyang Xu; Qifan Wang; Lifu Huang"
+    ],
+    "year": ""
+  }
+}

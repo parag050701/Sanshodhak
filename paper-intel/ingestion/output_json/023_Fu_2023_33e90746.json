@@ -1,0 +1,246 @@
+{
+  "paper_id": "023_Fu_2023_33e90746",
+  "source_pdf": "023_Fu_2023.pdf",
+  "title": "Guest Editorial Special Issue on Geometric Deep Learning in Medical Imaging",
+  "authors": [
+    "Huazhu Fu",
+    "Yitian Zhao",
+    "Pew-Thian Yap",
+    "Carola-Bibiane Schönlieb",
+    "Alejandro Frangi"
+  ],
+  "abstract": "",
+  "sections": {
+    "introduction": "Guest Editorial Special Issue on Geometric DeepLearning in Medical Imaging I. INTRODUCTION I N RECENT years, more and more attention has been devoted to geometric deep learning (GDL) and its applications to various problems in medical imaging. Unlike convolutional neural networks (CNNs) limited to 2-D/3-D grid-structured data, GDL can handle non-Euclidean data (i.e., graphs and manifolds) and is hence well-suited for medical imaging data such as structure-function connectivity networks, imaging genetics and omics, spatio-temporal anatomical representations, physics-informed GDL for optimal imaging sampling and acquisition, GDL in imaging inverse problems, etc. However, despite recent advances in GDL research, questions remain on how best to learn representations of non-Euclidean medical imaging data; how to convolve effectively on graphs; how to perform graph pooling/unpooling; how to handle heterogeneous data; and how to improve the interpretability of GDL. After discussing many other domain experts, we identify the need for a special issue that brings to the attention of the medical imaging community these interesting topics.This Special Issue of IEEE TRANSACTIONS ON MEDICAL IMAGING timely focuses on state-of-the-art GDL techniques and their applications in medical imaging.This Special Issue received a large interest from the scientific community, i.e., 57 manuscripts were submitted and 19 articles were finally selected for publication. Each article was carefully reviewed by three to four experts in the field and went through a rigorous review process, composed of typically two rounds of revisions. In the following section, we provide key elements of each of the manuscripts included in this Special Issue. II. ARTICLES INCLUDED IN THE SPECIAL ISSUEIn [A1], Ma et al. develop a novel framework to efficiently predict postoperative facial appearance by leveraging the power of geometric deep learning. They introduce a facial shape change prediction network (FSC-Net) to learn the nonlinear mapping from bony shape changes to facial shape changes. The FSC-Net is capable of predicting postoperative facial appearances significantly faster than biomechanical modeling methods but with comparable shape accuracy. The experiments on MIDAS dataset demonstrated the effectiveness of the proposed model on TOF-MRA representations, andDigital Object Identifier 10.1109/TMI.2022.3231755 tested the GCS model with state-of-the-art semi-supervised methods using the proposed model as the backbone.In [A2], Chen et al. propose a novel semi-supervised learning framework named generative consistency-based semisupervised (GCS) model to utilize reconstruction consistency to improve the texture representation. They employ a new model as the backbone of the GSC model, which transfers time-of-flight magnetic resonance angiography (TOF-MRA) into graph space and establishes correlation using Transformer. Finally, a dataset of 40 patients (24 females and 16 males) with jaw deformities is utilized to evaluate the proposed method. Evaluation",
+    "related_work": "",
+    "methods": "proposed method is effective and superior to other related algorithms.In [A4], Zhuang et al. propose a unified graph representation for all three knee cartilages (i.e., attached to femur, tibia, and patella) per subject. And then, guided by the cartilage graph representation, they design a cartilage surface network (CSNet) to enhance the cartilage structure identification and give strong interpretability. The two major steps in the framework enhance the knee cartilage representation and improve defect assessment accordingly. The comprehensive experiments show that the proposed method yields superior performance in knee cartilage defect assessment, plus its convenient 3-D visualization for interpretability.In [A5], Song et al. propose an interpretable structureconstrained graph neural network (ISGNN) with enhanced features to automatically discriminate between pseudo progression and true tumor progression. Their network employs a metric-based meta-learning strategy to aggregate class-specific graph nodes, and focus on meta-tasks associated with various small graphs. Furthermore, a model interpretation scheme for the GNN model is designed to justify the predictions and improve the model reliability. Comprehensive experimental evaluation on the in-house dataset demonstrates excellent interpretable results in the diagnosis of glioma progression.In [A6], Peng et al. propose a self-supervised learning (SSL) framework on GCNs, namely Graph CCA for temporal sElfsupervised learning on fMRI analysis (GATE). The proposed GATE system can tackle the spurious factors in dynamic FC analysis by developing a GCN-based CCA regularization with the designed multi-view temporal augmentation strategy on BOLD signals. The experiments on two fMRI datasets [autism brain imaging data exchange (ABIDE), and Frontotemporal dementia (FTD)] demonstrate that GATE achieves state-ofthe-art performance under the label-efficient setting.In [A7], Jiang et al. present a new approach to exploit the geometry and physics underlying electrocardiographic imaging (ECGI) to learn efficiently with a relatively small dataset. A spatial-temporal graph convolutional neural network (ST-GCNN) is introduced to describe the unknown and measurement variables over their respective geometrical domains. Then, the geometry-dependent physics between the two domains is explicitly modeled via a bipartite graph over their graphical embeddings. Both simulation and real data experiments demonstrate its ability to be quickly fine-tuned to new geometry using a modest amount of data.In In [A10], Zhang et al. propose a local-to-global graph neural network (LG-GNN) to classify brain disorders with rs-fMRI in an end-to-end fashion, which employs a local ROI-GNN to learn good brain graph embeddings and identify biomarkers, and a global subject-GNN to incorporate the non-imaging information and the relationships between subjects into the framework. A pooling strategy based on an attention mechanism is proposed to select the most discriminative feature embeddings generated by the local ROI-GNN. The experimental results on two public medical datasets (e.g., ABIDE and ADNI) demonstrate that the proposed LG-GNN achieves state-of-the-art performance.In [A11], Cai et al. present a graph transformer geometric learning framework to model the multimodal brain network constructed by structural MRI (sMRI) and diffusion tensor imaging (DTI) for brain age estimation. In the method, a multi-level construction of brain graph networks with diversified connections based on spatial relation, feature correlation and cross-modal association is employed. Then, a multi-level construction of brain graph networks with diversified connections based on spatial relation, feature correlation and cross-modal association. The proposed method is evaluated with the sMRI and DTI data from UK Biobank and Alzheimer's Disease Neuroimaging Initiative database. Experimental results demonstrate that the method has achieved promising performances for brain age estimation and AD diagnosis.In In [A13], Xu et al. propose a CNN module to generate an initial segmentation, followed by a GNN to improve the connectivity of the initial segmentation for identification of the arteriole and venule in optical coherence tomography angiography (OCTA). Based on this way, domain specific information is incorporated into the GNN module. This method was extensively evaluated on multi-center clinical datasets with different field-of-views (FOVs).In [A14], Cui et al. present Brain Graph Neural Network Benchmark (BrainGB), a benchmark for brain network analysis with GNNs. BrainGB standardizes the process by 1) summarizing brain network construction pipelines for both functional and structural neuroimaging modalities and 2) modularizing the implementation of GNN designs. In this works, the authors summarize the preprocessing and construction pipelines for both functional and structural brain networks to bridge the gap between the neuroimaging and deep learning community. They also conduct a variety of empirical studies and suggest a set of general recipes for effective GNN designs on brain networks, which could be a starting point for further studies. The hosted website of BrainGB is at https://braingb.usIn [A15], Chen et al. propose a Graph-Structured Knowledge Transfer (GraphSKT) framework to perform hierarchical reasoning by modeling both the intra-and inter-domain topological structures for domain adaptive lesion detection task. GraphSKT contains two modules: 1) IntraSKT, a geometric and semantic relation graph to model long-term dependencies via feature aggregation and enhance the discriminability of learned instance-level features; 2) InterSKT, the cross-domain region-wise dependencies modeled via a heterogeneous relation graph and guided by the GW discrepancy, reinforcing the transferability of learned instance-level features. The extensive experiments on two types of datasets (Colonoscopic Polyp Detection and Colonoscopic Polyp Detection) demonstrate that the proposed GraphSKT significantly outperforms the state-ofthe-art approaches for the detection of polyps in colonoscopy images and of mass in mammographic images.In [A16], Tang et al. present a self-supervised method for non-rigid registration between 3-D surfaces to learn shape correspondences directly from a group of bone surfaces segmented from CT scans, without supervision from timeconsuming and error-prone manual annotations. The key to the proposed method is the observation that a shape can be naturally aligned with itself under affine transformation, and enhancing the similarity of embeddings in the spectral domain significantly benefits near-isometric shape matching, which both can be used as strong and effective self-supervisions in training functional correspondences. The proposed method achieves state-of-the-art results on several public benchmarks and provides informative and discriminative features for non-rigid registration.In [A17], Kong et al. present a self-supervised method for non-rigid registration between 3-D surfaces to learn shape correspondences directly from a group of bone surfaces segmented from CT scans, without any supervision from timeconsuming and error-prone manual annotations. The key to the proposed method is the observation that a shape can be naturally aligned with itself under affine transformation, and enhancing the similarity of embeddings in spectral domain significantly benefits near-isometric shape matching, which both can be used as strong and effective self-supervisions in training functional correspondences. The proposed method achieves state-of-the-art results on several public benchmarks and provides informative and discriminative features for non-rigid registration.In [A18], Gaggion et al. introduce HybridGNet, an encoderdecoder neural architecture that leverages standard convolutions for image feature encoding and GCN networks (GCNNs) to decode plausible representations of anatomical structures. They also present the \"image-to-graph skip connections\" (IGSC) module, which allows localized features to flow from standard convolutional blocks to GCNN blocks, and show that it improves segmentation accuracy. Their study confirms that incorporating connectivity information through the graph adjacency matrix helps to improve the anatomical plausibility and accuracy of the results when compared with other landmarkbased and pixel-level segmentation models. Their comprehensive experimental setup compares HybridGNet with other landmark and pixel-based models for anatomical segmentation in chest X-ray images, and shows that it produces anatomically plausible results in challenging scenarios where other models tend to fail.In [A19], Liu et al. propose a framework for COVID-19 diagnosis, termed Structural Attention Graph Neural Network (SAGNN), which can combine the multi-source information including features extracted from chest CT, latent lung structural distribution, and non-imaging patient information to conduct diagnosis of COVID-19 severity and predict the conversion time from mild to severe. They provide a structural attention mechanism with node-level and subgraph-level attention to effectively distinguish different infection degrees of left and right lungs.",
+    "experiments": "Experiments are conducted on a real dataset with 1687 chest CT scans, which includes 1328 mild cases and 359 severe cases. The experimental results validated that the proposed SAGNN achieved the best performance compared with existing methods in identifying severe cases and predicting conversion time.[A8],Meng et al. propose a weakly and semi-supervised graph-based network that investigates geometric associations and domain knowledge between segmentation probability maps (PM), modified signed distance function representations (mSDF), and boundary region of interest characteristics (B-ROI) in three aspects. A dual adaptive graph convolutional network (DAGCN) is proposed to reason the cross-domain segmentation probability maps and modified signed distance function representations. A dual consistency-based paradigm on region and boundary geometric associations is utilized in a semi-supervised manner. Experiments on six large-scale datasets demonstrate the proposed model's superior performance on optic disc (OD) and optic cup (OC) segmentation and vertical cup to disc ratio (vCDR) estimation.In[A9], Ma et al. present CortexODE, a deep learning framework for cortical surface reconstruction. CortexODE leverages neural ordinary differential equations (ODEs) to deform an input surface into a target shape by learning a diffeomorphic flow. The proposed CortexODE can be integrated to an automatic learning-based pipeline, which reconstructs cortical surfaces efficiently in less than 5 s. The pipeline utilizes a 3-D U-Net to predict a white matter segmentation from brain Magnetic Resonance Imaging (MRI) scans, and further generates a signed distance function that represents an initial surface. The experiments on three datatsets (Alzheimer's Disease Neuroimaging Initiative (ADNI) dataset, the WU-Minn Human Connectome Project (HCP) Young Adult dataset, and the developing HCP (dHCP) dataset) demonstrate that the CortexODE-based pipeline can achieve less than 0.2 mm average geometric error while being orders of magnitude faster compared to conventional processing pipelines. [A12], Liu et al. propose a novel self-supervised learning framework, named STSNet, to boost the performance of 3-D tooth segmentation leveraging on large-scale unlabeled intraoral scanned (IOS) data. The framework follows two stage training, i.e., pre-training and fine-tuning. In pre-training, three hierarchical-level contrastive losses are proposed for un-supervised representation learning on a set of predefined matched points from different augmented views. The pretrained segmentation backbone is further fine-tuned in a supervised manner with a small number of labeled IOS meshes. The experiments convincingly corroborate the effectiveness of the proposed unsupervised pre-training strategy for helping alleviate the necessity of large-scale labeled training data for accurate 3-D tooth segmentation.",
+    "results": "results indicate that FSC-Net achieves 15x speedup with accuracy comparable to a state-of-the-art (SOTA) finite-element modeling (FEM) method.In [A3], Song et al. propose a dual-modality fused brain connectivity network combining the resting-state functional magnetic resonance imaging (fMRI) and diffusion tensor imaging (DTI). Three mechanisms (a multi-center attention graph, a multi-channel mechanism, and a pooling mechanism) are introduced into the current graph convolutional network (GCN) to improve the classifier performance. Experimental results on three datasets (i.e., an ADNI 2 dataset, an ADNI 3 dataset, and an in-house dataset) indicate that the",
+    "discussion": "",
+    "conclusion": ""
+  },
+  "references": [
+    {
+      "id": "b0",
+      "title": "",
+      "authors": [
+        "Schönlieb"
+      ],
+      "year": "",
+      "venue": "Guest Editor DAMTP University of Cambridge Cambridge CB2 1TN, U.K. e-mail: cbs31@cam"
+    },
+    {
+      "id": "b1",
+      "title": "",
+      "authors": [
+        "Frangi"
+      ],
+      "year": "",
+      "venue": "Guest Editor Computational Medicine and Royal Academy University of Leeds Leeds LS2 9JT, U.K. KU Leuven 3000 Leuven"
+    },
+    {
+      "id": "b2",
+      "title": "Simulation of postoperative facial appearances via geometric deep learning for efficient orthognathic surgical planning",
+      "authors": [
+        "Ma"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b3",
+      "title": "Generative consistency for semi-supervised cerebrovascular segmentation from TOF-MRA",
+      "authors": [
+        "Chen",
+        "Zhou",
+        "Wang",
+        "Xiao"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b4",
+      "title": "Multicenter and multichannel pooling GCN for early AD diagnosis based on dual-modality fused brain network",
+      "authors": [
+        "Song"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b5",
+      "title": "Knee cartilage defect assessment by graph representation and surface convolution",
+      "authors": [
+        "Zhuang"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b6",
+      "title": "Diagnosis of glioblastoma multiforme progression via interpretable structure-constrained graph neural networks",
+      "authors": [
+        "Song",
+        "Li",
+        "Qian"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b7",
+      "title": "GATE: Graph CCA for temporal Self-supervised Learning for label-efficient fMRI analysis",
+      "authors": [
+        "Peng",
+        "Wang",
+        "Xu",
+        "Zhu",
+        "Li"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b8",
+      "title": "Improving generalization by learning geometrydependent and physics-based reconstruction of image sequences",
+      "authors": [
+        "Jiang"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b9",
+      "title": "Dual consistency enabled weakly and semi-supervised optic disc and cup segmentation with dual adaptive graph convolutional networks",
+      "authors": [
+        "Meng"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b10",
+      "title": "CortexODE: Learning cortical surface reconstruction by neural ODEs",
+      "authors": [
+        "Ma",
+        "Li",
+        "Robinson",
+        "Kainz",
+        "Rueckert",
+        "Alansary"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b11",
+      "title": "Classification of brain disorders in rs-fMRI via localto-global graph neural networks",
+      "authors": [
+        "Zhang"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b12",
+      "title": "Graph transformer geometric learning of brain networks using multimodal MR images for brain age estimation",
+      "authors": [
+        "Cai",
+        "Gao",
+        "Liu"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b13",
+      "title": "Hierarchical self-supervised learning for 3D tooth segmentation in intra-oral mesh scans",
+      "authors": [
+        "Liu"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b14",
+      "title": "AV-casNet: Fully automatic arteriole-venule segmentation and differentiation in OCT angiography",
+      "authors": [
+        "Xu"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b15",
+      "title": "BrainGB: A benchmark for brain network analysis with graph neural networks",
+      "authors": [
+        "Cui"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b16",
+      "title": "GraphSKT: Graphguided structured knowledge transfer for domain adaptive lesion detection",
+      "authors": [
+        "Chen",
+        "Wang",
+        "Pan",
+        "Bian",
+        "Zhang"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b17",
+      "title": "Self-supervised learning for nonrigid registration between near-isometric 3D surfaces in medical imaging",
+      "authors": [
+        "Tang",
+        "Zhou",
+        "Huang"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b18",
+      "title": "Learning whole heart mesh generation from patient images for computational simulations",
+      "authors": [
+        "Kong",
+        "Shadden"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b19",
+      "title": "Improving anatomical plausibility in medical image segmentation via hybrid graph neural networks: Applications to chest X-ray analysis",
+      "authors": [
+        "Gaggion",
+        "Mansilla",
+        "Mosquera",
+        "Milone",
+        "Ferrante"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    },
+    {
+      "id": "b20",
+      "title": "Structural attention graph neural network for diagnosis and prediction of COVID-19 severity",
+      "authors": [
+        "Liu"
+      ],
+      "year": "2023",
+      "venue": "IEEE Trans. Med. Imag"
+    }
+  ],
+  "metadata": {
+    "year": "2023",
+    "doi": "10.1109/tmi.2022.3231755",
+    "venue": "IEEE Transactions on Medical Imaging",
+    "processed_at": "2025-12-06T00:57:13.903424"
+  }
+}

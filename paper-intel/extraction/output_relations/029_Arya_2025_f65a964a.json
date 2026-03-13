@@ -1,0 +1,110 @@
+[
+  {
+    "source": "E_029_Arya_2025_f65a964a_1",
+    "type": "EVALUATES_ON",
+    "target": "E_029_Arya_2025_f65a964a_2",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "E_029_Arya_2025_f65a964a_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_029_Arya_2025_f65a964a_3",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Brown et al., 2020",
+    "type": "CITES",
+    "target": "E_029_Arya_2025_f65a964a_1",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Chowdhery et al., 2022",
+    "type": "CITES",
+    "target": "E_029_Arya_2025_f65a964a_1",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Ji et al., 2023",
+    "type": "CITES",
+    "target": "E_029_Arya_2025_f65a964a_1",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Lewis et al., 2020",
+    "type": "CITES",
+    "target": "E_029_Arya_2025_f65a964a_1",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Yang et al., 2018",
+    "type": "CITES",
+    "target": "E_029_Arya_2025_f65a964a_1",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Shao et al., 2023",
+    "type": "CITES",
+    "target": "ITER-RETGEN",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Jeong et al., 2024",
+    "type": "CITES",
+    "target": "Adaptive-RAG",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "Asai et al., 2023",
+    "type": "CITES",
+    "target": "SELF-RAG",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "FAIR-RAG",
+    "type": "ACHIEVES_RESULT",
+    "target": "complex queries",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "FAIR-RAG",
+    "type": "ACHIEVES_RESULT",
+    "target": "robustness to noise",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "FAIR-RAG",
+    "type": "ACHIEVES_RESULT",
+    "target": "faithfulness check",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "FAIR-RAG",
+    "type": "STUDIES_TASK",
+    "target": "complex queries",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "FAIR-RAG",
+    "type": "STUDIES_TASK",
+    "target": "robustness to noise",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "FAIR-RAG",
+    "type": "STUDIES_TASK",
+    "target": "faithfulness check",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "E_029_Arya_2025_f65a964a_12",
+    "type": "REPORTS_METRIC",
+    "target": "E_029_Arya_2025_f65a964a_3",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "source": "E_029_Arya_2025_f65a964a_12",
+    "type": "EVALUATES_ON",
+    "target": "E_029_Arya_2025_f65a964a_2",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  }
+]

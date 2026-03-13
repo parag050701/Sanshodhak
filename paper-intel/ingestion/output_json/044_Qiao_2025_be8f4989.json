@@ -1,0 +1,749 @@
+{
+  "paper_id": "044_Qiao_2025_be8f4989",
+  "source_pdf": "044_Qiao_2025.pdf",
+  "title": "Advancing Retrosynthesis with Retrieval-Augmented Graph Generation",
+  "authors": [
+    "Anjie Qiao",
+    "Zhen Wang",
+    "Jiahua Rao",
+    "Yuedong Yang",
+    "Zhewei Wei"
+  ],
+  "abstract": "Diffusion-based molecular graph generative models have achieved significant success in template-free, single-step retrosynthesis prediction. However, these models typically generate reactants from scratch, often overlooking the fact that the scaffold of a product molecule typically remains unchanged during chemical reactions. To leverage this useful observation, we introduce a retrieval-augmented molecular graph generation framework. Our framework comprises three key components: a retrieval component that identifies similar molecules for the given product, an integration component that learns valuable clues from these molecules about which part of the product should remain unchanged, and a base generative model that is prompted by these clues to generate the corresponding reactants. We explore various design choices for critical and under-explored aspects of this framework and instantiate it as the Retrieval-Augmented RetroBridge (RARB). RARB demonstrates state-of-the-art performance on standard benchmarks, achieving a 14.8% relative improvement in top-1 accuracy over its base generative model, highlighting the effectiveness of retrieval augmentation. Additionally, RARB excels in handling out-of-distribution molecules, and its advantages remain significant even with smaller models or fewer denoising steps. These strengths make RARB highly valuable for real-world retrosynthesis applications, where extrapolation to novel molecules and high-throughput prediction are essential.",
+  "sections": {
+    "introduction": "IntroductionIn recent years, machine learning methods have shown great promise in accelerating the de novo drug discovery process (Blakemore et al. 2018). A crucial stage of this process is retrosynthesis prediction-designing the synthesis routes that can lead to the target molecules through a series of chemical reactions (Strieth-Kalthoff et al. 2020). In this paper, we focus on template-free, single-step prediction, namely identifying direct precursor(s) of a given product molecule, which can serve as a building block in designing the entire synthesis pathway (Segler, Preuss, and Waller 2018;Zhong et al. 2023).Figure 1: Randomly sampled chemical reactions and retrieved molecules similar to the given product, showcasing the intuition that they can provide clues about which parts of the product should remain unchanged.Many existing methods formulate this prediction task as a sequence-to-sequence translation problem based on the SMILES (Weininger 1988) of reactants and products (Zheng et al. 2019;Tetko et al. 2020;Kim et al. 2021;Wan et al. 2022;Zhong et al. 2022;Zeng et al. 2024;Han et al. 2024). Despite their advantages, such as simplicity and efficiency, representing molecules as sequences can lose important structural information from the molecular graph, which might lead to less accurate predictions (Shi et al. 2020).However, turning to graph-to-graph translation problem is not a free lunch since graph generation is challenging, mainly due to the combinatorial nature of graph data that often",
+    "related_work": "Related WorkRetrosynthesis Modeling. Recent retrosynthesis prediction methods can be categorized into three main groups based on their dependency on prior chemical knowledge (Zhong et al. 2023;Liu et al. 2023) (Wang et al. 2023;Laabid et al. 2024). Igashov et al. (2024) proposed a Markov bridgebased approach to model the probabilistic dependency between the spaces of products and reactants, outperforming vanilla diffusion models for conditional graph generation. However, existing diffusion model-based methods often overlook the observation that the molecular graph remains largely unchanged during chemical reactions (Zeng et al. 2024). Our proposed RARB introduces a retrieval- augmented strategy to leverage common substructures in similar molecules, framing retrosynthesis as a substructurelevel generative task.Retrieval-Augmented Generation. Despite the impressive performance of recently proposed generative models, they still face challenges such as outdated knowledge, lack of long-tailed knowledge, and significant demands in energy consumption and training time (Zhao et al. 2024). Retrieval-Augmented Generation (RAG) aims to mitigate these issues using external memory and flexible retrieval dataset (Carlini et al. 2021;Mallen et al. 2023;Kang et al. 2024).Most existing works focus on text-related tasks facilitated by large language models, with limited exploration into other modalities (Xu et al. 2021). Blattmann et al. (2022) proposed retrieval-augmented diffusion model for image synthesis task. To the best of our knowledge, our proposed RARB is the first successful attempt to apply a retrievalaugmented diffusion model to reactants generation.",
+    "methods": "MethodologyIn our work, we represent a molecular graph as G = (X, E), where X ∈ R N xKa is the matrix of atom feature, and E ∈ R N xN xK b is the matrix of bond feature. Here, N denotes the number of atoms, and each atom and bond have K a and K b categories, respectively. Thus, we can denote each given product as a graph G P and, without loss of generality, represent a set of its reactant molecules as G R , where each molecule corresponds to a connected component. Given that a product can have multiple sets of reactants that lead to its formation, we frame the template-free, single-step retrosynthesis prediction task as estimating the conditional density function p(G R |G P )1 based on a finite sample of observed graph pairs, denoted asD obs = {(G Pi , G Ri )} |Dobs| i=1 .To this end, we propose a retrieval-augmented molecular graph generation framework. As depicted in Fig. 2, our framework includes a retrieval component, an integration component, and a base generative model that work synergistically to enable the sampling of G R for a given G P . A key feature is the use of an external dataset of commercially available molecules, denoted asD ext = {G j } |Dext| j=1 .Intuitively, the retrieval component searches for \"relevant\" graphs from D ext for each given G P , while the integration component extracts helpful information from the search results to prompt the base generative model. Any generative modeling method that can incorporate this additional information can serve as our base model, with the prompt seamlessly integrated to enhance its generative capabilities. Below, we elaborate on these three components, focusing on critical design choices and how they culminate in the development of our specific instance, RARB. Retrieval ComponentGiven a query, i.e., a product G P , this component searches D ext and returns a specified number of molecules. We denote the search results for k molecules as S 2023) also attempt to extract common substructures from an external dataset, allowing them to focus on predicting the SMILES of the remaining fragments. Their external dataset is derived from their product-reactant pairs that are used for model training. However, recent RAG research in CV and NLP has shown that relying solely on the training data for retrieval can potentially limit the model's generalization capacity (Blattmann et al. 2022). Hence, we conjecture that an external dataset D ext that includes a diverse and extensive collection of molecules is more likely to yield common substructures resembling the product's scaffold.To verify our conjecture, we train and evaluate RARB on the USPTO-50k dataset. Accordingly, we compare two distinct choices for D ext : (i) USPTO-50k: A subset of all reactants in the training split is used as D ext for model training and validation, and a subset of all reactant in both the training and validation splits is used as D ext for testing. (ii) USPTO-applications: a subset of all reactants collected from the USPTO 2001-2016 applications, which is significantly larger and more diverse than USPTO-50k. Pilot Experiment 1: We compare the performance of RARB using these two choices of D ext . USPTO-applications dataset demonstrates improved performance across all metrics, with the top-1 accuracy increasing by 16.6% compared to that using USPTO-50k.More details can be found in Appendix C.1.Retrieval Strategy. Conventionally, S(k)Dext (G P ) can be defined as the top-k instances in D ext that maximizes a specific similarity function w.r.t. the query, i.e., f (G P , •). When calculating similarity, we need to design how to represent the molecule and select an appropriate similarity metric. There are two main strategies: (i) computing the cosine similarity between two vector representations encoded by a learnable encoder, and (ii) computing a general or domain-specific similarity metric based on manually designed features.Most RAG methods in the CV and NLP domains adopt the former strategy. However, despite recent advances in representation learning for molecular graphs (Zhou et al. 2023;Qiang et al. 2023), there is no universally adopted \"standard\" molecule encoder akin to CLIP in those domains. This raises a concern: will the representation issue become an obstacle to applying RAG to molecular graphs?We argue that features based on structural patterns predefined by domain experts can meet the need since we aim to retrieve molecules that share similar sub-structures, particularly the scaffold, with the query. As a potential design, we consider using Morgan fingerprints to obtain the bit vector v j for molecule G j and use the Tanimoto coefficient (Bajusz, Rácz, and Héberger 2015)as similarity func- tion f (G i , G j ) = vi•vj ∥vi∥ 2 +∥vj ∥ 2 -vi•vj . We conduct a prelim- inary experiment to evaluate this design: Pilot Experiment 2: We compute f (G P , G j ), G j ∈ {G R } ∪ D extand rank all G j s in descending order. Then, we evaluate the ranking of G R . Our design, namely, Morgan Fingerprint (radius: 2, bit: 4096) results in an averaged ranking 1.22, which implies the validity of our design.In this pilot experiment, the rationale is that, if we want the molecules retrieved based on G P to be informative about the ground-truth reactants G R , then f (G P , G R ) should be higher than for most of the candidates. More details about this pilot experiments can be found in Appendix C.2. It is worth noticing that our RAG framework neither requires nor expects D ext to include the ground-truth reactant molecules.More importantly, in Sec. 4.1, we explicitly exclude the ground-truth reactants from our adopted D ext . Integration ComponentThis component generates a prompt vector c GP for a given product G P based on its search results S (k) Dext (G P ). This prompt is then injected into the base generative model. We begin by explaining why we prefer encoding the retrieved molecules rather than directly feeding them into the base generative model. Next, we present the neural architecture designed to extract useful clues from these encoded molecules.Molecule Representation. In estimating p(G R |G P ), a natural solution is to treat G P as a conditioning factor and feed it into a parametric generative model such as the denoiser of a diffusion model D θ . In the t-th step of its denoising process, we denote the current state by G (t) R to emphasize the eventual target is the reactant, and D θ (G (Laabid et al. 2024). When conditioned on G P , \"alignment\" between the reactant and the product is necessary for a permutation-equivariant D θ to express identity reaction, where the \"alignment\" has been realized via either Markov bridge (Igashov et al. 2024) or explicit atom mappings (Laabid et al. 2024).(t) R , G P ) is encour- aged to predict G RWhen augmented with SDext (G P ), a natural solution is to input all k molecular graphs directly into D θ , thus preserving as much of the retrieved information as possible. However, unless eachG i ∈ S (k) Dext (G P ) is \"aligned\" to the re- actant, a permutation-equivariant D θ (G (t) R , G P , G 1 , . . . , G k )may not be expressive enough to solve what we define as \"union reaction\", a simple and necessary capability. Due to the limited space, we defer our detailed analysis to Appendix A. If we follow Laabid et al. (2024) to achieve alignment by the atom mapping matrices, we would need to perform k graph matchings for each G P , which is unaffordable in practice.Thus, we encode S (k)Dext = {G i } ki=1 into graph-level representations before further processing. Intuitively, we prefer molecule representation learned in a self-supervised manner so that it would not be biased towards certain kind of task. Specifically, for our RARB instance, we adopt Uni-RXN (Qiang et al. 2023), a contrastive learning-based method, and apply its permutation-invariant encoder E(•) to transform each G i into an embedding h i .Prompt Extraction. Recall that our objective is to extract common structural information from {G i } k i=1 as clues about which parts of G P remain unchanged. To achieve this, we design a prompt extractor that is fed with {h i } k i=1 and converts them into a single prompt vector c GP .Intuitively, mining the common structural information among k molecules requires carefully comparing them pairwise and then aggregating results from each of them. Hence, we parameterize our prompt extractor f ϕ primarily using a multi-head self-attention block, followed by a sum pooling layer and a linear layer to transform the token embeddings into the final prompt vector. Additionally, we posit that the rankings of these k molecules can reflect their contributions to identifying the unchanged subgraph(s) in the given product, as these rankings are determined by their similarity to the product. Thus, we apply a linear layer to transform the rankings into positional encodings {P E i } k i=1 , which are then added to the molecule embeddings to form the initial token embeddings {h i + P E i } k i=1 . These token embeddings are fed into our prompt extractor to produce a d p -dimensional prompt vector, i.e., c GP = f ϕ ({h i + P E i } k i=1 ). The entire neural architecture is visualized in Fig. 3.We conduct a preliminary experiment to validate the effectiveness of our prompt extractor parameterization: Pilot Experiment 3: We compare our design for f ϕ with an alternative that directly applies an multi-layer perceptron (MLP) to the concatenation [h 1 , . . . , h k ]. When incorporated with the same base generative model, our design achieves a 65.3% relative improvement in top-1 accuracy over the MLP-based approach, demonstrating its superiority in capturing common substructure information.More details are provided in Appendix C.3. Base Generative ModelWe adopt RetroBridge (Igashov et al. 2024), a state-of-theart method, as the base generative model for RARB. However, our framework is flexible enough to incorporate the retrieval augmentation into any parametric conditional generative model.Modeling. RetroBridge is built on the Markov bridge framework (C ¸etin and Danilova 2016), which is particularly well-suited for estimating a conditional distribution, such as p(G R |G P ) in retrosynthesis, from samples drawn from the joint distribution, e.g.,D obs = {(G Pi , G Ri )} |Dobs| i=1. Unlike traditional diffusion models, RetroBridge replaces the sampling-friendly initial distribution (e.g., Uniform) by the marginal distribution p(G P ). Consequently, the denoising process starts with G (t) R = G P at t = T , where we useG (t)R to denote the state at timestep t out of a total of T steps. At each step, the ground-truth reactant is predicted by a parametric denoiser based on the current state, i.e., Ĝ(0)R = D θ (G (t)R ). The predicted reactant is then used for sampling the state of the next step G (t-1) R , and this routine continues until t = 0.In RetroBridge, the arguments of the denoiser often include conditioning factors such as G P and/or some (graphlevel) global features y (t) of the current state G (t) R . For RARB, it is natural to include the prompt extracted from G P 's retrieval results as the additional input, i.e., D θ (G (t) R , G P , y (t) , c GP ). As shown in Fig. 3, we use a Graph Transformer-based neural architecture (Dwivedi and Bresson 2021;Vignac et al. 2023) as the backbone of our denoiser, maintaining consistency with RetroBridge. Additionally, we add the extracted prompt c GP to the global features y (t) before processing them through the Transformer layers.Optimization. Generally, diffusion models are optimized by maximizing the Variational Lower Bound (VLB) of the original intractable log-likelihood function. However, Di-Gress (Vignac et al. 2023) simplifies this by directly minimizing the Cross-Entropy (CE) loss between predicted state at t = 0 and the ground-truth target. While RetroBridge prefers VLB and has observed its advantages over CE in retrosynthesis prediction tasks, we consider both options in RARB and compare them in Sec. 4, revealing that each has its own strengths.As a retrieval-augmented model, RARB faces the risk that the denoiser D θ (G (t) R , G P , y (t) , c GP ) might rely too heavily on the provided prompt c GP . On one hand, we expect this prompt to contain rich information that aids in accurately predicting the correct G R , which should enhance the accuracy of conditional generation. On the other hand, such a helpful conditioning factor might encourage D θ to use it as a shortcut, potentially leading to an under-utilization of the current stateG (t) R .It is worth noticing that the prompt c GP is determined solely by the given product G P and remains fixed throughout the entire denoising process, while the state G (t) R is stochastic. Over-reliance on the former while neglecting the latter could reduce the diversity of denoising results, resulting in a very limited number of distinct reactants for a given product.To mitigate the potential decrease in diversity caused by retrieval, we introduce two strategies to increase the randomness ingrained in c GP : S1: to use a dropout rate in the prompt extractor f ϕ that is higher than that of D θ . S2: to retrieve the top-(k + e) similar molecules through our retrieval component and then randomly select k out of them as the retrieval results S ExperimentsTo evaluate the retrieval augmentation introduced in our framework, including both its benefits and potential draw-we conducted quantitative evaluations to address the following research questions: RQ1: Can the retrieval augmentation enhance the performance of the base generative model? RQ2: Does it improve out-of-distribution generalization? RQ3: Do smaller diffusion models or those with fewer denoising steps still benefit from this augmentation? RQ4: Does the retrieval stage negatively impact diversity and efficiency? RQ5: Does the quality of retrieved results impact the base generative model? Due to space constraints, the qualitative case study is provided in Appendix D. Experimental SetupDatasets. We conduct our experiments using the USPTO-50k dataset (Schneider, Stiefl, and Landrum 2016), adhering to the standard train/validation/test splits (Dai et al. 2019;Somnath et al. 2021). To assess RARB's ability to handle out-of-distribution data, we construct a more challenging dataset by applying a cluster splitting strategy (Zheng et al. 2019) to USPTO-50k. Specifically, we first use Morgan fingerprints to measure the scaffold similarities between products and employ the Butina algorithm (Butina 1999) to cluster them with a similarity threshold of 0.6. Then, we sort the clusters in descending order by size, and we split these sorted clusters into train/validation/test splits with an 8/1/1 ratio, resulting in our USPTO-50K-cluster dataset. For the external dataset, we utilize data from USPTO 2001-2016 applications, comprising 1,939,254 raw reactions. We process these raw data using the method proposed by Dai et al. (2019). Importantly, we then remove duplicates, empty reactants, and reactants also present in USPTO-50k, resulting in a final retrieval dataset of 969,307 molecules. Baselines. We compare RARB with representative methods across three categories: template-based, semi-template, and template-free approaches. Since RARB is a templatefree method that incorporates RetroBridge as a component, the comparison will primarily focus on RetroBridge and RARB. Additionally, we evaluate RARB using two commonly employed loss functions: Cross-Entropy and the Variational Lower Bound (VLB).We select RetroBridge, based on the Graph Transformer architecture, as the base model primarily due to its state-ofthe-art performance. We also note that another recent work, DiffAlign (Laabid et al. 2024), which shows comparable performance, is based on a GNN architecture. Our framework is general enough to incorporate various neural architectures, e.g., injecting our encoded retrieval results to a GNN via a virtual node connected to all atoms. Due to the limited space, we will show consistent improvements across multiple base models to further validate our framework in the future. Metrics. For each input product, we sample 100 reactant sets from RARB and rank them based on their confidence scores, determined by the frequency of their occurrences. We then report top-k (exact match) accuracy, which is the proportion of input products for which the model successfully generates the correct reactants within its top-k distinct samples. Next, we use the forward reaction prediction model Molecular Transformer (Schwaller et al. 2019) to predict the products of these top-k samples. We report round-trip accu- racy (Schwaller et al. 2020) as the percentage of correctly predicted reactants among all predictions. Predicted reactants are considered correct if they either match the ground truth or, when processed by the forward prediction model, lead back to the original input product. We also report roundtrip coverage, which measures whether there is at least one correct prediction among the top-k samples. Moreover, we define diversity as the number of distinct reactants within the 100 samples and report the average diversity value for the test products. on the standard test split of USPTO-50k, as shown in Table 1. RARB using VLB outperforms other methods across all top-k accuracy, while the RARB using Cross-Entropy achieves higher top-1 accuracy, even surpassing templatebased methods. Given the significantly faster training and convergence, we choose Cross-Entropy as our loss function for the remaining experiments.Next, we compare round-trip coverage and accuracy of RARB and its base generative model, as well as templatebased methods, as shown in Table 2. RARB not only outperforms its base generative model but also surpasses state-ofthe-art template-based methods in all top-k round-trip metrics. These results indicate that the retrieval augmentation introduced by our framework enhances the performance of the base generative model.(RQ2) Out-of-distribution Generalization. Given that the real-world chemical space is vastly larger than the space covered by the training set, the model's ability to handle out-of-distribution (OOD) data becomes particularly critical. Thus, we compare RARB with RetroBridge on the USPTO-50k-cluster dataset, which was divided based on scaffold similarity clustering to effectively simulate OOD scenarios. Retrosynthesis prediction on such a test split is more challenging, as the reactions in the validation and test sets exhibit lower similarity to those in the training set.As shown in Table 3, RARB's performance on the USPTO-50k-cluster only slightly decreases compared to that on the standard splits, while its improvement relative to its base generative model, RetroBridge, becomes more pronounced. Notably, in terms of top-1 accuracy, the relative improvement increases to 28%. This result demonstrates that our framework enhances its base generative model's ability to handle OOD molecules.(RQ3) Performance with Reduced Model Complexity. The retrieved information functions as a non-parametric memory, providing additional context to guide the generation process and helping to bridge gaps in the model's learned knowledge. This approach has the potential to enhance the performance of generative models in resourceconstrained scenarios. As shown in Table 5, RARB, without any specific strategy to improve diversity, generates molecules that are less diverse than those generated by its base generative model, confirming our concern. Increasing the dropout rate for prompt extractor to 0.5 (i.e., our first strategy (S1) ) not only enhances RARB's diversity but also improves its accuracy, supporting our rationale of reducing the denoiser's reliance on shortcuts. Additionally, we further add our second strategy (S2) to RARB, namely, randomly selecting 3 out of the top-5 ranked molecules as the retrieval results. These two strategies, we proposed in Sec. 3.3, together lead to a 60.7% increase in diversity compared to RARB without these strategies, while also delivering better top-k accuracy.(2) Efficiency. While retrieving additional information and extracting prompt for the base generative model does add some time overhead, our evaluation shows that this overhead is negligible compared to the denoising process of RetroBridge. Specifically, the retrieval of the top-10 similar molecules from the USPTO-applications dataset and their conversion into embeddings takes approximately 2 seconds per sample, resulting in only a 1.9% increase in overall inference time. This slight increase is expected, given that the time-intensive sampling in diffusion models far outweighs the retrieval process. (RQ5) Influence of Retrieval Quality. The retrievalaugmented strategy may raise a potential concern: how the relevance between the query and the retrieved information impacts the performance of the base generative model. Here, we assess the effect of varying similarity levels between the product and retrieved molecules, focusing particularly for those with low similarity or complex molecules.To do this, We rank the standard test set by the average similarity between the product and the retrieved top-3 molecules, in ascending order. We then divide the set into four equal groups. Finally, we compute the relative improvements of RARB over RetroBridge for each groups, as shown in Table 6.The results suggest that the benefits of retrieved molecules for the base model generally increase with higher similarity. In the least similar group, accuracy slightly declined, likely due to irrelevant noise introduced by low-similarity retrievals. Moreover, in the most similar group, the improvements become less significant, as highly similar molecules may limit the diversity of functional groups, potentially overlooking those crucial for the reactants.In Sec. 3.3, we propose the S1 and S2 strategies to promote diversity in generative model sampling. Here, we incorporate these strategies into RARB and evaluate the relative improvements across these groups. As shown in Table 7, the results demonstrate that, with these strategies, even the least similar group shows positive benefits. This suggests that our strategies further enhance the model's robustness to low-similarity retrievals.In reality, the reaction centers of product molecules may involve multiple bonds or atoms, referred to multiple reaction centers. These products often have complex structures, and the retrieved molecules may vary significantly. In the following, we focus on the performance of RARB on such complex products.We adopt the scheme from (Wan et al. 2022) to identify Average similarity k=1 3 5 10 75%∼100% (most similar) 2.8 4.4 5.1 3.4 50%∼75% 9.0 6.3 6.3 5.0 25%∼50% 8.4 8.0 7.5 6.4 0%∼25% (least similar) 0.6 2.5 3.3 3.4 reaction centers (RC) and classify products with more than one RC as complex. In the standard test set, 252 out of 5007 products are categorized as complex. We then calculate the relative improvement of RARB over the base model for both groups, as shown in Table 8. The results show that RARB's improvements on complex products are more modest compared to the full test set, highlighting the need for future work to develop retrieval strategies tailored to the unique characteristics of complex molecules.",
+    "experiments": "experiments and comprehensive analysis to instantiate our framework as Retrieval-Augmented RetroBridge (RARB), using the Markov bridge-based RetroBridge (Igashov et al. 2024) as the base generative model. We compare RARB with the state-of-the-art retrosynthesis prediction methods on standard benchmarks. RARB not only achieves the best performance in regular settings but also show that retrieval augmentation can provide advantages for handling out-of-distribution molecules. Moreover, RARB maintains remarkable advantages even with smaller models or fewer denoising steps. Meanwhile, our introduced retrieval augmentation preserves both the diversity and efficiency of the adopted base generative model at nearly the same level.We summarize our contributions as follows: • We propose a retrieval-augmented molecular graph gen-eration framework for retrosynthesis prediction that can be easily plugged into various generative models, seamlessly enhancing their performance.• We thoroughly investigate the design choices for our proposed framework and gain useful insights to develop RARB as a practical instance. • RARB achieves state-of-the-art performance, with a notable 14.8% relative improvement in top-1 accuracy over the base generative model. Additionally, RARB shows advantages in handling out-of-distribution products.",
+    "results": "results in a high intrinsic dimension. As even a single error in predicting a bond or atom type can make the whole synthesized graph incorrect, traditional one-shot graph generation methods struggle to achieve satisfactory performance (Igashov et al. 2024). Recently, diffusion models have become the state-of-the-art for molecular graph generation, where an iterative process decomposes the original one-shot generation into a series of small graph edits (Vignac et al. 2023). Therefore, some recent works utilize diffusion models to frame retrosynthesis prediction as a conditional graph generation problem, achieving unprecedented successes (Wang et al. 2023;Laabid et al. 2024;Igashov et al. 2024).Although the decomposition strategy of diffusion models effectively addresses the high-dimensional nature of graph data to some extent, we note that these methods approach retrosynthesis prediction by generating molecular graphs from scratch, thereby overlooking a common phenomenon in chemical reaction: the product's scaffold largely remains unchanged during the reaction, with changes occurring primarily at the reaction center (Fang et al. 2023). Consequently, what needs to be conditionally generated are the small subgraphs that change in the chemical reaction, if given both the product itself and the unchanged part of it. This observation motivates us to introduce an idea (visualized in Fig. 1): We augment the conditioned product with similar molecules, where analyzing their substructures or fragments can provide valuable clues about what should remain unchanged. Therefore, we propose a retrieval-augmented molecular graph generation framework specially designed for template-free, single-step retrosynthesis prediction task, as illustrated in Fig. 2. Our framework consists of three main components: a retrieval component, an integration component, and a base generative model. Given a product, the retrieval component uses it as the query to search for similar molecules from an external dataset of commercially available molecules. The retrieval results are processed by the integration component to extract useful clues, which are then fed into the base generative model. With these clues, the generative model is expected to achieve more competitive performance.Nevertheless, applying Retrieval-Augmented Generation (RAG) to retrosynthesis prediction is nontrivial. For our retrieval component, determining which external dataset to use and how to effectively retrieve molecular graphs requires exploration, given that the chemical space is larger and more diverse than natural images, and there is no direct counterpart of CLIP encoders (Radford et al. 2021) for graph data. For our integration component, it is essential to study how to represent the retrieved molecules and which neural architecture is suitable for the augmented generative model. The cross-attention mechanisms that successfully serve textto-image generation (Peebles and Xie 2023) may not directly translate for facilitating interactions among tokens (i.e., atoms) of different graphs.Hence, we explore various potential design choices through pilot",
+    "discussion": "",
+    "conclusion": "ConclusionIn this work, we propose a RAG framework for templatefree, single-step retrosynthesis prediction, driven by our key insight that similar molecules can provide valuable clues about the invariant substructures during chemical reactions. We instantiate our framework as RARB, which significantly enhances the performance of its base generative model, RetroBridge, across all relevant metrics. Particularly, RARB's superiority in handling out-of-distribution molecules addresses a critical need in real-world applications.We believe that the success of RARB paves the way for further applications of RAG within drug discovery and a broader range of molecule-centric scientific tasks. Meanwhile, as the improvements introduced by RAG tend to heavily depend on the quality of retrieval, a novel fragment/molecule retrieval scheme would be an important research topic. Besides, the risk of data leakage should be carefully considered, which might require more fair evaluation protocol for RAG-based generative models.Figure 2 :2Figure 2: Overview of our retrieval-augmented molecular graph generation framework. The '*' symbol indicates \"dummy\" atoms, which represent atoms that may be denoised into real atoms in the final reactant. Dext (G P ). Determining both the appropriate external dataset D ext and the strategy for producingS (k) Dext (G P ) is crucial.External Dataset. Based on our observation in Fig.1, the quality of retrieved molecules directly influences the substructure information extracted as clues about which part of G P should remain unchanged.Fang et al. ( Figure 3 :3Figure 3: The prompt extractor transforms embeddings of retrieved molecules into a prompt vector, which is then added to the global features of the graph at current step. Dext (G P ). The extra number of retrieved molecules e is a hyper-parameter, which controls how we balance accuracy and diversity. The second strategy can be consistently applied during both training and inference stages. Table 1 :1Top-k (exact match) accuracy on the standard test split of USPTO-50k. The best-performing methods in each group are highlighted in bold.Modelk=1 3510Template-BasedGLN (Dai et al. 2019)52.5 69.0 75.6 83.7LocalRetro (Chen and Jung 2021) 53.4 77.5 85.9 92.4Semi-TemplateMEGAN (Sacha et al. 2021)48.0 70.9 78.1 85.4G2G (Shi et al. 2020)48.9 67.6 72.5 75.5RetroXpert (Yan et al. 2020)50.4 61.1 62.3 63.4RetroPrime (Wang et al. 2021)51.4 70.8 74.0 76.1Retrodiff (Wang et al. 2023)52.6 71.2 81.0 83.3GraphRetro (Somnath et al. 2021) 53.7 68.3 72.2 75.5Template-FreeSCROP (Zheng et al. 2019)43.7 60.0 65.2 68.7Tied Transformer (Kim et al. 2021) 47.1 67.1 73.1 76.3Aug. Transformer (Tetko et al. 2020) 48.3 -73.4 77.4GTA aug (Seo et al. 2021)51.1 67.6 74.8 81.6Graph2SMILES (Tu and Coley 2022) 52.9 66.5 70.0 72.9Retroformer (Wan et al. 2022)52.9 68.2 72.5 76.4DualTF aug (Sun et al. 2021)53.6 70.7 74.6 77.0DiffAlign (Laabid et al. 2024)54.7 73.3 77.8 81.8RetroBridge (Igashov et al. 2024) 50.8 74.1 80.6 85.6RARB (VLB)56.2 77.4 82.4 86.1RARB (Cross-Entropy)58.3 75.2 78.8 81.5 Table 2 :2Implementation. We implement RARB based on the opensourced code of RetroBridge. More details are deferred to Appendix B. Our code is available at this repository: https://github.com/anjie-qiao/RARB. Top-k round-trip coverage and accuracy on the standard test split of USPTO-50k.4.2 Results and Analysis(RQ1) Improving Base Generative Model. We comparethe top-k (exact match) accuracy of RARB with baselinesModelk=1Coverage 35k=1Accuracy 35Template-BasedGLN82.5 92.0 94.0 82.5 71.0 66.2LocalRetro 82.1 92.3 94.7 82.1 71.0 66.7Template-FreeRetroBridge 84.2 94.3 95.9 84.2 71.7 66.3RARB85.2 95.1 96.7 85.2 72.7 67.5 Table 3 :3Top-k (exact match) accuracy on the USPTO-50kcluster dataset's test split. Table 4 :4To validate this, we train RARB Top-k (exact match) accuracy with reduced model complexity. in two conditions: (i) using only about 60% of the base model's parameters, and (ii) reducing the base generative model's denoising steps from 500 to 200. The results are shown in Table4. Even with fewer parameters or denoising steps, RARB outperforms the base generative model across all top-k accuracy metrics. Notably, reducing the denoising steps by 60% has only a minimal impact on RARB.Model#param #step k=13510RetroBridge 4.8M500 50.8 71.1 76.0 80.3RARB2.8M 4.8M500 54.9 73.7 78.3 82.2 200 57.2 74.9 79.0 82.0 Table 5 :5Comparisons of diversity on USPTO-50k, where S1 means dropout=0.5 for our prompt extractor, and S2 means sampling 3 out of top-5 molecules as retrieval results.similarityk=1351075%∼100% (most similar) 4.82.51.5 -0.150%∼75%12.3 6.14.53.025%∼50%12.2 8.35.94.20%∼25% (least similar)0.8 -0.6 -0.9 -2.4 Table 6 :6Relative improvements of RARB over the base generative model in Top-k (exact match) accuracy across different similarity groups of the test set. Table 7 :7Relative improvements of RARB with S1&S2 strategies over the base generative model in Top-k (exact match) accuracy across all groups of the test set.Productsk=13510RC=15.5 5.5 5.8 4.8RC>10.4 1.3 1.2 1.2Full Test Set 5.2 5.3 5.6 4.6 Table 8 :8Relative improvements of RARB over the base generative model in Top-k (exact match) accuracy across different groups of the test set. The Thirty-Ninth AAAI Conference on Artificial Intelligence For simplicity, we use this graph notation to denote both the random variable and its realization."
+  },
+  "references": [
+    {
+      "id": "b0",
+      "title": "Structured Denoising Diffusion Models in Discrete State-Spaces",
+      "authors": [
+        "Austin",
+        "Johnson",
+        "Tarlow",
+        "Van Den Berg"
+      ],
+      "year": "2021",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b1",
+      "title": "Why is Tanimoto index an appropriate choice for fingerprint-based similarity calculations",
+      "authors": [
+        "Bajusz",
+        "Rácz",
+        "Héberger"
+      ],
+      "year": "2015",
+      "venue": "Journal of Cheminformatics"
+    },
+    {
+      "id": "b2",
+      "title": "Organic synthesis provides opportunities to transform drug discovery",
+      "authors": [
+        "Blakemore",
+        "Castro",
+        "Churcher",
+        "Rees",
+        "Thomas",
+        "Wilson",
+        "Wood"
+      ],
+      "year": "2018",
+      "venue": "Nature Chemistry"
+    },
+    {
+      "id": "b3",
+      "title": "Retrieval-augmented diffusion models",
+      "authors": [
+        "Blattmann",
+        "Rombach",
+        "Oktay",
+        "Müller",
+        "Ommer"
+      ],
+      "year": "2022",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b4",
+      "title": "Unsupervised Data Base Clustering Based on Daylight's Fingerprint and Tanimoto Similarity: A Fast and Automated Way To Cluster Small and Large Data Sets",
+      "authors": [
+        "Butina"
+      ],
+      "year": "1999",
+      "venue": "Journal of Chemical Information and Computer Sciences"
+    },
+    {
+      "id": "b5",
+      "title": "Erlingsson, U.; et al. 2021. Extracting training data from large language models",
+      "authors": [
+        "Carlini",
+        "Tramer",
+        "Wallace",
+        "Jagielski",
+        "Herbert-Voss",
+        "Lee",
+        "Roberts",
+        "Brown",
+        "Song"
+      ],
+      "year": "",
+      "venue": "USENIX Security Symposium"
+    },
+    {
+      "id": "b6",
+      "title": "Markov bridges: SDE representation",
+      "authors": [
+        "C ¸etin",
+        "Danilova"
+      ],
+      "year": "2016",
+      "venue": "Stochastic Processes and their Applications"
+    },
+    {
+      "id": "b7",
+      "title": "Deep retrosynthetic reaction prediction using local reactivity and global attention",
+      "authors": [
+        "Chen",
+        "Jung"
+      ],
+      "year": "2021",
+      "venue": "Journal of the American Chemical Society Au"
+    },
+    {
+      "id": "b8",
+      "title": "Retrosynthesis prediction with conditional graph logic network",
+      "authors": [
+        "Dai",
+        "Li",
+        "Coley",
+        "Dai",
+        "Song"
+      ],
+      "year": "2019",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b9",
+      "title": "Diffusion models beat gans on image synthesis",
+      "authors": [
+        "Dhariwal",
+        "Nichol"
+      ],
+      "year": "2021",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b10",
+      "title": "A Generalization of Transformer Networks to Graphs",
+      "authors": [
+        "Dwivedi",
+        "Bresson"
+      ],
+      "year": "2021",
+      "venue": "AAAI Workshop on Deep Learning on Graphs: Methods and Applications"
+    },
+    {
+      "id": "b11",
+      "title": "Single-step retrosynthesis prediction by leveraging commonly preserved substructures",
+      "authors": [
+        "Fang",
+        "Li",
+        "Zhao",
+        "Tan",
+        "Lou"
+      ],
+      "year": "2023",
+      "venue": "Nature Communications"
+    },
+    {
+      "id": "b12",
+      "title": "Retrosynthesis prediction with an iterative string editing model",
+      "authors": [
+        "Han",
+        "Xu",
+        "Hsieh",
+        "Ding",
+        "Xu",
+        "Xu",
+        "Hou",
+        "Zhang",
+        "Chen"
+      ],
+      "year": "2024",
+      "venue": "Nature Communications"
+    },
+    {
+      "id": "b13",
+      "title": "Denoising diffusion probabilistic models",
+      "authors": [
+        "Ho",
+        "Jain",
+        "Abbeel"
+      ],
+      "year": "2020",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b14",
+      "title": "Video diffusion models",
+      "authors": [
+        "Ho",
+        "Salimans",
+        "Gritsenko",
+        "Chan",
+        "Norouzi",
+        "Fleet"
+      ],
+      "year": "2022",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b15",
+      "title": "Equivariant diffusion for molecule generation in 3d",
+      "authors": [
+        "Hoogeboom",
+        "Satorras",
+        "Vignac",
+        "Welling"
+      ],
+      "year": "2022",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b16",
+      "title": "RetroBridge: Modeling Retrosynthesis with Markov Bridges",
+      "authors": [
+        "Igashov",
+        "Schneuing",
+        "Segler",
+        "Bronstein",
+        "Correia"
+      ],
+      "year": "2024",
+      "venue": "International Conference on Learning Representations (ICLR)"
+    },
+    {
+      "id": "b17",
+      "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models",
+      "authors": [
+        "Kang",
+        "Gürel",
+        "Yu",
+        "Song",
+        "Li"
+      ],
+      "year": "2024",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b18",
+      "title": "Valid, plausible, and diverse retrosynthesis using tied two-way transformers with latent variables",
+      "authors": [
+        "Kim",
+        "Lee",
+        "Kwon",
+        "Park",
+        "Choi"
+      ],
+      "year": "2021",
+      "venue": "Journal of Chemical Information and Modeling"
+    },
+    {
+      "id": "b19",
+      "title": "DiffWave: A Versatile Diffusion Model for Audio Synthesis",
+      "authors": [
+        "Kong",
+        "Ping",
+        "Huang",
+        "Zhao",
+        "Catanzaro"
+      ],
+      "year": "2021",
+      "venue": "International Conference on Learning Representations"
+    },
+    {
+      "id": "b20",
+      "title": "",
+      "authors": [
+        "Laabid",
+        "Rissanen",
+        "Heinonen",
+        "Solin",
+        "Garg"
+      ],
+      "year": "2024",
+      "venue": "Alignment is Key for Applying Diffusion Models to Retrosynthesis"
+    },
+    {
+      "id": "b21",
+      "title": "Diffusion-lm improves controllable text generation",
+      "authors": [
+        "Li",
+        "Thickstun",
+        "Gulrajani",
+        "Liang",
+        "Hashimoto"
+      ],
+      "year": "2022",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b22",
+      "title": "FusionRetro: molecule representation fusion via in-context learning for retrosynthetic planning",
+      "authors": [
+        "Liu",
+        "Tu",
+        "Xu",
+        "Zhang",
+        "Lin",
+        "Ying",
+        "Tang",
+        "Zhao",
+        "Wu"
+      ],
+      "year": "2023",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b23",
+      "title": "",
+      "authors": [
+        "Mallen",
+        "Asai",
+        "Zhong",
+        "Das",
+        "Khashabi",
+        "Hajishirzi"
+      ],
+      "year": "2023",
+      "venue": "When Not to Trust Language Models: Investigating Effectiveness of Parametric and Non-Parametric Memories"
+    },
+    {
+      "id": "b24",
+      "title": "Scalable Diffusion Models with Transformers",
+      "authors": [
+        "Peebles",
+        "Xie"
+      ],
+      "year": "2023",
+      "venue": "IEEE/CVF International Conference on Computer Vision (ICCV)"
+    },
+    {
+      "id": "b25",
+      "title": "Bridging the gap between chemical reaction pretraining and conditional molecule generation with a unified model",
+      "authors": [
+        "Qiang",
+        "Zhou",
+        "Ding",
+        "Liu",
+        "Song",
+        "Zhang",
+        "Huang",
+        "Liu"
+      ],
+      "year": "2023",
+      "venue": "Nature Machine Intelligence"
+    },
+    {
+      "id": "b26",
+      "title": "Learning transferable visual models from natural language supervision",
+      "authors": [
+        "Radford",
+        "Kim",
+        "Hallacy",
+        "Ramesh",
+        "Goh",
+        "Agarwal",
+        "Sastry",
+        "Askell",
+        "Mishkin",
+        "Clark"
+      ],
+      "year": "2021",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b27",
+      "title": "Molecule edit graph attention network: modeling chemical reactions as sequences of graph",
+      "authors": [
+        "Sacha",
+        "Błaz",
+        "Byrski",
+        "Dabrowski-Tumanski",
+        "Chrominski",
+        "Loska",
+        "Włodarczyk-Pruszynski",
+        "Jastrzebski"
+      ],
+      "year": "2021",
+      "venue": "Journal of Chemical Information and Modeling"
+    },
+    {
+      "id": "b28",
+      "title": "What's what: The (nearly) definitive guide to reaction role assignment",
+      "authors": [
+        "Schneider",
+        "Stiefl",
+        "Landrum"
+      ],
+      "year": "2016",
+      "venue": "Journal of Chemical Information and Modeling"
+    },
+    {
+      "id": "b29",
+      "title": "Molecular transformer: a model for uncertainty-calibrated chemical reaction prediction",
+      "authors": [
+        "Schwaller",
+        "Laino",
+        "Gaudin",
+        "Bolgar",
+        "Hunter",
+        "Bekas",
+        "Lee"
+      ],
+      "year": "2019",
+      "venue": "ACS Central Science"
+    },
+    {
+      "id": "b30",
+      "title": "Predicting retrosynthetic pathways using transformerbased models and a hyper-graph exploration strategy",
+      "authors": [
+        "Schwaller",
+        "Petraglia",
+        "Zullo",
+        "Nair",
+        "Haeuselmann",
+        "Pisoni",
+        "Bekas",
+        "Iuliano",
+        "Laino"
+      ],
+      "year": "2020",
+      "venue": "Chemical Science"
+    },
+    {
+      "id": "b31",
+      "title": "Planning chemical syntheses with deep neural networks and symbolic AI",
+      "authors": [
+        "Segler",
+        "Preuss",
+        "Waller"
+      ],
+      "year": "2018",
+      "venue": "Nature"
+    },
+    {
+      "id": "b32",
+      "title": "GTA: Graph truncated attention for retrosynthesis",
+      "authors": [
+        "Seo",
+        "Song",
+        "Yang",
+        "Bae",
+        "Lee",
+        "Shin",
+        "Hwang",
+        "Yang"
+      ],
+      "year": "2021",
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)"
+    },
+    {
+      "id": "b33",
+      "title": "A graph to graphs framework for retrosynthesis prediction",
+      "authors": [
+        "Shi",
+        "Xu",
+        "Guo",
+        "Zhang",
+        "Tang"
+      ],
+      "year": "2020",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b34",
+      "title": "Deep unsupervised learning using nonequilibrium thermodynamics",
+      "authors": [
+        "Sohl-Dickstein",
+        "Weiss",
+        "Maheswaranathan",
+        "Ganguli"
+      ],
+      "year": "2015",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b35",
+      "title": "Learning graph models for retrosynthesis prediction",
+      "authors": [
+        "Somnath",
+        "Bunne",
+        "Coley",
+        "Krause",
+        "Barzilay"
+      ],
+      "year": "2021",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b36",
+      "title": "Machine learning the ropes: principles, applications and directions in synthetic chemistry",
+      "authors": [
+        "Strieth-Kalthoff",
+        "Sandfort",
+        "Segler",
+        "Glorius"
+      ],
+      "year": "2020",
+      "venue": "Chemical Society Reviews"
+    },
+    {
+      "id": "b37",
+      "title": "Towards understanding retrosynthesis by energy-based models",
+      "authors": [
+        "Sun",
+        "Dai",
+        "Li",
+        "Kearnes",
+        "Dai"
+      ],
+      "year": "2021",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b38",
+      "title": "State-of-the-art augmented NLP transformer models for direct and single-step retrosynthesis",
+      "authors": [
+        "Tetko",
+        "Karpov",
+        "Van Deursen",
+        "Godin"
+      ],
+      "year": "2020",
+      "venue": "Nature Communications"
+    },
+    {
+      "id": "b39",
+      "title": "Permutation invariant graphto-sequence model for template-free retrosynthesis and reaction prediction",
+      "authors": [
+        "Tu",
+        "Coley"
+      ],
+      "year": "2022",
+      "venue": "Journal of Chemical Information and Modeling"
+    },
+    {
+      "id": "b40",
+      "title": "Digress: Discrete denoising diffusion for graph generation",
+      "authors": [
+        "Vignac",
+        "Krawczuk",
+        "Siraudin",
+        "Wang",
+        "Cevher",
+        "Frossard"
+      ],
+      "year": "2023",
+      "venue": "International Conference on Learning Representations (ICLR)"
+    },
+    {
+      "id": "b41",
+      "title": "Retroformer: Pushing the limits of end-to-end retrosynthesis transformer",
+      "authors": [
+        "Wan",
+        "Hsieh",
+        "Liao",
+        "Zhang"
+      ],
+      "year": "2022",
+      "venue": "International Conference on Machine Learning (ICML)"
+    },
+    {
+      "id": "b42",
+      "title": "RetroPrime: A Diverse, plausible and Transformer-based method for Single-Step retrosynthesis predictions",
+      "authors": [
+        "Wang",
+        "Li",
+        "Qiu",
+        "Chen",
+        "Liu",
+        "Liao",
+        "Hsieh",
+        "Yao"
+      ],
+      "year": "2021",
+      "venue": "Chemical Engineering Journal"
+    },
+    {
+      "id": "b43",
+      "title": "",
+      "authors": [
+        "Wang",
+        "Song",
+        "Xu",
+        "Wang",
+        "Zhou",
+        "Ma"
+      ],
+      "year": "2023",
+      "venue": ""
+    },
+    {
+      "id": "b44",
+      "title": "SMILES, a chemical language and information system. 1. Introduction to methodology and encoding rules",
+      "authors": [
+        "Weininger"
+      ],
+      "year": "1988",
+      "venue": "Journal of Chemical Information and Computer Sciences"
+    },
+    {
+      "id": "b45",
+      "title": "Texture memory-augmented deep patch-based image inpainting",
+      "authors": [
+        "Xu",
+        "Guo",
+        "Wang",
+        "Li",
+        "Zhou",
+        "Loy"
+      ],
+      "year": "2021",
+      "venue": "IEEE Transactions on Image Processing"
+    },
+    {
+      "id": "b46",
+      "title": "Retroxpert: Decompose retrosynthesis prediction like a chemist",
+      "authors": [
+        "Yan",
+        "Ding",
+        "Zhao",
+        "Zheng",
+        "Yang",
+        "Yu",
+        "Huang"
+      ],
+      "year": "2020",
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)"
+    },
+    {
+      "id": "b47",
+      "title": "Ualign: pushing the limit of template-free retrosynthesis prediction with unsupervised SMILES alignment",
+      "authors": [
+        "Zeng",
+        "Yang",
+        "Zhao",
+        "Zhang",
+        "Nie",
+        "Yang",
+        "Jin",
+        "Xu",
+        "Zhang",
+        "Mo",
+        "Wang",
+        "Yang"
+      ],
+      "year": "2024",
+      "venue": "Journal of Cheminformatics"
+    },
+    {
+      "id": "b48",
+      "title": "Predicting retrosynthetic reactions using self-corrected transformer neural networks",
+      "authors": [
+        "Zhao",
+        "Zhang",
+        "Yu",
+        "Wang",
+        "Geng",
+        "Fu",
+        "Yang",
+        "Zhang",
+        "Jiang",
+        "Cui",
+        "Zheng",
+        "Rao",
+        "Zhang",
+        "Xu",
+        "Yang"
+      ],
+      "year": "2019",
+      "venue": "Journal of Chemical Information and Modeling"
+    },
+    {
+      "id": "b49",
+      "title": "Retrosynthesis prediction using an end-to-end graph generative architecture for molecular graph editing",
+      "authors": [
+        "Zhong",
+        "Yang",
+        "Chen",
+        "-C"
+      ],
+      "year": "2023",
+      "venue": "Nature Communications"
+    },
+    {
+      "id": "b50",
+      "title": "",
+      "authors": [
+        "Zhong",
+        "Song",
+        "Feng",
+        "Liu",
+        "Jia",
+        "Yao",
+        "Hou",
+        "Song"
+      ],
+      "year": "2023",
+      "venue": ""
+    },
+    {
+      "id": "b51",
+      "title": "Root-aligned SMILES: a tight representation for chemical reaction prediction",
+      "authors": [
+        "Zhong",
+        "Song",
+        "Feng",
+        "Liu",
+        "Jia",
+        "Yao",
+        "Wu",
+        "Hou",
+        "Song"
+      ],
+      "year": "2022",
+      "venue": "Chemical Science"
+    },
+    {
+      "id": "b52",
+      "title": "Uni-Mol: A Universal 3D Molecular Representation Learning Framework",
+      "authors": [
+        "Zhou",
+        "Gao",
+        "Ding",
+        "Zheng",
+        "Xu",
+        "Wei",
+        "Zhang",
+        "Ke"
+      ],
+      "year": "2023",
+      "venue": "International Conference on Learning Representations (ICLR)"
+    }
+  ],
+  "metadata": {
+    "year": "",
+    "doi": "",
+    "venue": "",
+    "processed_at": "2025-12-06T01:04:08.147488"
+  }
+}

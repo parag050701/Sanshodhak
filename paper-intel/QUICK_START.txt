@@ -1,0 +1,48 @@
+════════════════════════════════════════════════════════════════════════════════
+🚀 QUICK START - RUN YOUR DEMO NOW
+════════════════════════════════════════════════════════════════════════════════
+
+cd /home/admin-/Desktop/Sanshodhak/paper-intel
+./PRESENT.sh
+
+OR:
+
+python3 demo_existing_data.py
+
+════════════════════════════════════════════════════════════════════════════════
+💬 WHAT TO TYPE IN THE DEMO
+════════════════════════════════════════════════════════════════════════════════
+
+1. ASK A QUESTION:
+   What are transformers?
+
+2. GET RESOURCES:
+   resources Deep Learning
+
+3. ANOTHER QUESTION:
+   How does self-attention work?
+
+4. MORE RESOURCES:
+   resources Transformers
+
+5. EXIT:
+   quit
+
+════════════════════════════════════════════════════════════════════════════════
+✅ FEATURES
+════════════════════════════════════════════════════════════════════════════════
+
+✅ Ask ANY question about your 11 papers
+✅ Get resource recommendations (GitHub, HuggingFace, Web)
+✅ See source citations with confidence scores
+✅ 2,376 chunks indexed and searchable
+
+════════════════════════════════════════════════════════════════════════════════
+📖 READ MORE
+════════════════════════════════════════════════════════════════════════════════
+
+README_DEMO.txt            - Complete guide
+PRESENTATION_CHEAT_SHEET.md - Tips for presenting
+START_HERE.md              - Detailed walkthrough
+
+🎉 YOU'RE READY! GO PRESENT!

@@ -1,0 +1,1376 @@
+[
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_2",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_3",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_4",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_5",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_6",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_8",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Gao et al., 2023",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Yu, 2022",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "S¸evket Polan",
+    "type": "AUTHORED_BY",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "S¸evket Polan",
+    "type": "AUTHORED_BY",
+    "target": "Gao et al., 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "S¸evket Polan",
+    "type": "AUTHORED_BY",
+    "target": "Yu, 2022",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_21",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_22",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "normalized cumulative gain (NDCG)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_24",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_27",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "CITES",
+    "target": "Khattab et al., 2022",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "RAG Architecture",
+    "type": "AUTHORED_BY",
+    "target": "E_003_Unknown_2025_463160c3_29",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_30",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_31",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_32",
+    "type": "USES_MODEL",
+    "target": "E_003_Unknown_2025_463160c3_30",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_32",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_31",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_33",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_31",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_33",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_33",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_33",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_34",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_33",
+    "type": "AUTHORED_BY",
+    "target": "E_003_Unknown_2025_463160c3_35",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_39",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_36",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_41",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_38",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_42",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_36",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_36",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_38",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_37",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_39",
+    "type": "USES_DATASET",
+    "target": "E_003_Unknown_2025_463160c3_14",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_40",
+    "type": "USES_DATASET",
+    "target": "E_003_Unknown_2025_463160c3_38",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Es et al., 2024",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_36",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Gao et al., 2023",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_38",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Ram et al., 2023",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_36",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Wang et al., 2025",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Chen et al., 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Miao et al., 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Wu et al., 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Gao et al., 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_45",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_45",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "OpenAI's ada-002",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "OpenAI's ada-002",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_54",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_54",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Wang et al. (2025)",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_54",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Borgeaud et al. (2022)",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Borgeaud et al. (2022)",
+    "type": "ACHIEVES_RESULT",
+    "target": "DeepMind’s RETRO study",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Gao et al. (2023)",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_30",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Shi et al. (2024)",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_30",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_66",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_54",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_67",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_54",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_68",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_54",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_54",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Mallen et al. (2023)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Liu et al. (2023)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "CITES",
+    "target": "Khattab et al. (2022)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_54",
+    "type": "ACHIEVES_RESULT",
+    "target": "6.3% improvement",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_54",
+    "type": "ACHIEVES_RESULT",
+    "target": "92.4% accuracy",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_74",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_75",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_64",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_63",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_76",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Augmentation-Adapted Retriever (AAR)",
+    "type": "EVALUATES_ON",
+    "target": "Yu et al. (2024)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_78",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_79",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_79",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_80",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_80",
+    "type": "EVALUATES_ON",
+    "target": "Min et al. (2023)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_85",
+    "type": "AUTHORED_BY",
+    "target": "RETRIEVAL-AUGMENTED GENERATION: ARCHITECTURE...",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_86",
+    "type": "CITES",
+    "target": "Yu et al. (2024)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Yu et al. (2024)",
+    "type": "CITES",
+    "target": "Min et al. (2023)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Khattab et al. (2022)",
+    "type": "CITES",
+    "target": "Manakul et al. (2023)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Manakul et al. (2023)",
+    "type": "CITES",
+    "target": "Min et al. (2023)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Min et al. (2023)",
+    "type": "CITES",
+    "target": "ChatGPT",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_21",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_22",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_89",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "Mean Average Precision (MAP)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "Normalized Discounted Cumulative Gain (NDCG)",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_27",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "CITES",
+    "target": "Es et al., 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "CITES",
+    "target": "Yu et al., 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_21",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_22",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_89",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Mean Average Precision (MAP)",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Normalized Discounted Cumulative Gain (NDCG)",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_25",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_26",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_27",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_92",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_92",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_80",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_92",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_92",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "USES_MODEL",
+    "target": "E_003_Unknown_2025_463160c3_92",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_80",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "USES_DATASET",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "USES_DATASET",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_80",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_92",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_25",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_92",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_80",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_80",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_25",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_25",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_92",
+    "type": "AUTHORED_BY",
+    "target": "POLAN: RETRIEVAL-AUGMENTED GENERATION: ARCHITECTURE",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_97",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_94",
+    "type": "STUDIES_TASK",
+    "target": "E_003_Unknown_2025_463160c3_2",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG) Systems",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_101",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG) Systems",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_102",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG) Systems",
+    "type": "USES_METHOD",
+    "target": "E_003_Unknown_2025_463160c3_103",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Gao et al. (2023)",
+    "type": "CITES",
+    "target": "Retrieval-Augmented Generation (RAG) Systems",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Gao et al. (2023)",
+    "type": "AUTHORED_BY",
+    "target": "E_003_Unknown_2025_463160c3_103",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Gao et al. (2023)",
+    "type": "AUTHORED_BY",
+    "target": "E_003_Unknown_2025_463160c3_102",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_108",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_105",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_106",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_104",
+    "type": "ACHIEVES_RESULT",
+    "target": "efficient retrieval",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_105",
+    "type": "ACHIEVES_RESULT",
+    "target": "structured response",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_106",
+    "type": "ACHIEVES_RESULT",
+    "target": "dynamic computation power",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_113",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "Shuster et al., 2022",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_1",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "ACHIEVES_RESULT",
+    "target": "2024 cancer clinical trials",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_1",
+    "type": "STUDIES_TASK",
+    "target": "domain-specific applications",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_14",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_116",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_117",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_47",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_48",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_49",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_47",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_80",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "Integrating retrieval-augmented generation with large language models in nephrology: Advancing practical applications",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_121",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "REPLUG: Retrieval-augmented black-box language models",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "Blenderbot 3: A deployed conversational agent that continually learns to responsibly engage",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "Towards reliable vector database management systems: A software testing roadmap for 2030",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "Evaluation of retrievalaugmented generation: A survey",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "KRAGEN",
+    "type": "CITES",
+    "target": "E_003_Unknown_2025_463160c3_126",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_127",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_127",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_4",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_128",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_8",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_128",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_5",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_129",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_21",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_129",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_130",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_22",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_130",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_131",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_132",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_24",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_132",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_133",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_133",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_134",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_134",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_135",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_27",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_135",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_20",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_136",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_136",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_31",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_137",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_137",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_39",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_138",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_41",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_138",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_39",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_139",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_42",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_139",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_39",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_140",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_140",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_141",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_49",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_141",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_142",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_142",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_143",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_143",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_144",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_145",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_145",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_147",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_147",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_148",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_49",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_148",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_149",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_149",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_150",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_151",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_21",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_152",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_22",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_153",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_89",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_156",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_157",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_158",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_27",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_159",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_159",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_160",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_93",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_160",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_161",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_161",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_162",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_162",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_163",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_163",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_164",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_49",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_164",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_165",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_165",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_107",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_166",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_166",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_113",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_167",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_168",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_7",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_168",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_169",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_49",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_169",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_48",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_170",
+    "type": "REPORTS_METRIC",
+    "target": "E_003_Unknown_2025_463160c3_26",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "source": "E_003_Unknown_2025_463160c3_170",
+    "type": "EVALUATES_ON",
+    "target": "E_003_Unknown_2025_463160c3_47",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  }
+]

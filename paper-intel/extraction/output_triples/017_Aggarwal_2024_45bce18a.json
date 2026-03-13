@@ -1,0 +1,621 @@
+{
+  "paper_id": "017_Aggarwal_2024_45bce18a",
+  "triples": [
+    [
+      "PHENIX",
+      "EVALUATES_ON",
+      "Relativistic Heavy Ion Collider"
+    ],
+    [
+      "PHENIX",
+      "REPORTS_METRIC",
+      "K0 S and K∗0 meson production"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "PHENIX experiment"
+    ],
+    [
+      "φ meson",
+      "STUDIES_TASK",
+      "centrality"
+    ],
+    [
+      "π0 meson",
+      "STUDIES_TASK",
+      "centrality"
+    ],
+    [
+      "combinatorial Hough Transform",
+      "USES_METHOD",
+      "φ meson"
+    ],
+    [
+      "asymmetric particle-identification (PID)",
+      "USES_METHOD",
+      "π0 meson"
+    ],
+    [
+      "multiple scattering",
+      "USES_METHOD",
+      "φ meson"
+    ],
+    [
+      "intrinsic angular resolution",
+      "USES_METHOD",
+      "φ meson"
+    ],
+    [
+      "d+Au",
+      "EVALUATES_ON",
+      "centrality"
+    ],
+    [
+      "Cu+Cu",
+      "EVALUATES_ON",
+      "centrality"
+    ],
+    [
+      "p+p",
+      "EVALUATES_ON",
+      "centrality"
+    ],
+    [
+      "Ref [43]",
+      "CITES",
+      "PHENIX detector"
+    ],
+    [
+      "Ref [44]",
+      "CITES",
+      "PHENIX detector"
+    ],
+    [
+      "Ref [45]",
+      "CITES",
+      "beambeam counters"
+    ],
+    [
+      "Ref [46]",
+      "CITES",
+      "beambeam counters"
+    ],
+    [
+      "Ref [47]",
+      "CITES",
+      "combinatorial Hough Transform"
+    ],
+    [
+      "Ref [48]",
+      "CITES",
+      "combinatorial Hough Transform"
+    ],
+    [
+      "Ref [49]",
+      "CITES",
+      "PHENIX tracking"
+    ],
+    [
+      "Ref [50]",
+      "CITES",
+      "TOF detector"
+    ],
+    [
+      "Ref [51]",
+      "CITES",
+      "asymmetric particle-identification (PID)"
+    ],
+    [
+      "Ref [52]",
+      "CITES",
+      "EMCal"
+    ],
+    [
+      "PHENIX",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "PHENIX",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "PHENIX",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Ref. [39]"
+    ],
+    [
+      "PHENIX",
+      "AUTHORED_BY",
+      "None"
+    ],
+    [
+      "K∗0",
+      "REPORTS_METRIC",
+      "Invariant mass"
+    ],
+    [
+      "PHENIX data",
+      "EVALUATES_ON",
+      "K∗0"
+    ],
+    [
+      "Relativistic Breit-Wigner function",
+      "ACHIEVES_RESULT",
+      "K∗0 meson yield"
+    ],
+    [
+      "PHENIX data analysis",
+      "CITES",
+      "PHENIX data"
+    ],
+    [
+      "EMCal",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "Trigger Efficiency"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "EMCal energy resolution"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "EMCal scale uncertainty"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "π0 selection uncertainty"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "γ conversion uncertainty"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "Branching ratio"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "BBC cross section uncertainty"
+    ],
+    [
+      "EMCal",
+      "REPORTS_METRIC",
+      "Momentum reconstruction uncertainty"
+    ],
+    [
+      "Tsallis function",
+      "EVALUATES_ON",
+      "p+p collisions at √s = 200 GeV"
+    ],
+    [
+      "Tsallis function",
+      "REPORTS_METRIC",
+      "Invariant yield"
+    ],
+    [
+      "Tsallis function",
+      "REPORTS_METRIC",
+      "pT spectra"
+    ],
+    [
+      "STAR collaboration",
+      "CITES",
+      "Tsallis function [39]"
+    ],
+    [
+      "STAR collaboration",
+      "AUTHORED_BY",
+      "STAR collaboration [40]"
+    ],
+    [
+      "Tsallis function authors",
+      "AUTHORED_BY",
+      "Tsallis function [39]"
+    ],
+    [
+      "[39]",
+      "CITES",
+      "None"
+    ],
+    [
+      "[53]",
+      "CITES",
+      "None"
+    ],
+    [
+      "[58]",
+      "CITES",
+      "None"
+    ],
+    [
+      "[59]",
+      "CITES",
+      "None"
+    ],
+    [
+      "NN",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "NN",
+      "REPORTS_METRIC",
+      "Nuclear modification factor"
+    ],
+    [
+      "NN",
+      "REPORTS_METRIC",
+      "pT"
+    ],
+    [
+      "NN",
+      "REPORTS_METRIC",
+      "Statistical error"
+    ],
+    [
+      "NN",
+      "REPORTS_METRIC",
+      "Systematic uncertainty"
+    ],
+    [
+      "NN",
+      "REPORTS_METRIC",
+      "Global p+p uncertainty"
+    ],
+    [
+      "PHENIX",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "PHENIX",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "PHENIX",
+      "USES_METHOD",
+      "backpropagation"
+    ],
+    [
+      "PHENIX",
+      "USES_METHOD",
+      "attention mechanism"
+    ],
+    [
+      "PHENIX",
+      "USES_DATASET",
+      "ImageNet"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Phys. Repts. 61, 71 (1980)"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Nucl. Phys. A 750, 30 (2005)"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Lect. Notes Phys. 583, 209 (2002)"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Phys. Rev. D 44, 2625 (1991)"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Lect. Notes Phys. 785, 285 (2010)"
+    ],
+    [
+      "PHENIX",
+      "CITES",
+      "Phys. Rev. Lett. 68, 1480 (1992)"
+    ],
+    [
+      "PHENIX",
+      "AUTHORED_BY",
+      "PHENIX Collabo"
+    ],
+    [
+      "K0 S and K∗0 meson production=systematic study on Relativistic Heavy Ion Collider",
+      "EVALUATES_ON",
+      "Relativistic Heavy Ion Collider"
+    ],
+    [
+      "centrality=0-20, 20-40, 40-60, 60-88 on d+Au",
+      "REPORTS_METRIC",
+      "centrality"
+    ],
+    [
+      "centrality=0-20, 20-40, 40-60, 60-88 on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "pT range=2.0-13.0, 3.0-12.0, 1.1-8.5 on d+Au, Cu+Cu",
+      "REPORTS_METRIC",
+      "pT range"
+    ],
+    [
+      "vertex position resolution=∼1.1 cm, ∼3 mm on p+p, Au+Au",
+      "REPORTS_METRIC",
+      "vertex position resolution"
+    ],
+    [
+      "momentum resolution=δp/p = 0.7 ⊕1.1 % p (GeV/c) on d+Au",
+      "REPORTS_METRIC",
+      "momentum resolution"
+    ],
+    [
+      "momentum resolution=δp/p = 0.7 ⊕1.1 % p (GeV/c) on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "timing resolution=130 ps on TOF detector",
+      "REPORTS_METRIC",
+      "timing resolution"
+    ],
+    [
+      "position resolution=σz ∼1.7 mm on PC1",
+      "REPORTS_METRIC",
+      "position resolution"
+    ],
+    [
+      "energy resolution=EMCal on EMCal",
+      "REPORTS_METRIC",
+      "energy resolution"
+    ],
+    [
+      "Accuracy=92.4% on d+Au",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "BR=30.69 ± 0.05% on d+Au",
+      "REPORTS_METRIC",
+      "BR"
+    ],
+    [
+      "BR=30.69 ± 0.05% on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "RM=None on d+Au",
+      "REPORTS_METRIC",
+      "RM"
+    ],
+    [
+      "RM=None on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "Rσ=None on d+Au",
+      "REPORTS_METRIC",
+      "Rσ"
+    ],
+    [
+      "Rσ=None on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "RM(pT)=None on None",
+      "EVALUATES_ON",
+      "None"
+    ],
+    [
+      "Rσ(pT)=None on None",
+      "EVALUATES_ON",
+      "None"
+    ],
+    [
+      "None=None on None",
+      "REPORTS_METRIC",
+      "None"
+    ],
+    [
+      "None=None on None",
+      "EVALUATES_ON",
+      "None"
+    ],
+    [
+      "Invariant mass=2.3 GeV/c on PHENIX data",
+      "REPORTS_METRIC",
+      "Invariant mass"
+    ],
+    [
+      "Invariant mass=2.3 GeV/c on PHENIX data",
+      "EVALUATES_ON",
+      "PHENIX data"
+    ],
+    [
+      "K∗0 meson yield=0.5 on PHENIX data",
+      "EVALUATES_ON",
+      "PHENIX data"
+    ],
+    [
+      "Trigger Efficiency=0.4 on Cu+Cu",
+      "REPORTS_METRIC",
+      "Trigger Efficiency"
+    ],
+    [
+      "Trigger Efficiency=0.4 on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "EMCal energy resolution=4-5 on Cu+Cu",
+      "REPORTS_METRIC",
+      "EMCal energy resolution"
+    ],
+    [
+      "EMCal energy resolution=4-5 on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "EMCal scale uncertainty=4-5 on Cu+Cu",
+      "REPORTS_METRIC",
+      "EMCal scale uncertainty"
+    ],
+    [
+      "EMCal scale uncertainty=4-5 on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "π0 selection uncertainty=5-11 on Cu+Cu",
+      "REPORTS_METRIC",
+      "π0 selection uncertainty"
+    ],
+    [
+      "π0 selection uncertainty=5-11 on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "γ conversion uncertainty=6% on Cu+Cu",
+      "REPORTS_METRIC",
+      "γ conversion uncertainty"
+    ],
+    [
+      "γ conversion uncertainty=6% on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "Branching ratio=0.2 on Cu+Cu",
+      "REPORTS_METRIC",
+      "Branching ratio"
+    ],
+    [
+      "Branching ratio=0.2 on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "BBC cross section uncertainty=- on Cu+Cu",
+      "REPORTS_METRIC",
+      "BBC cross section uncertainty"
+    ],
+    [
+      "BBC cross section uncertainty=- on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "Momentum reconstruction uncertainty=0.5% on Cu+Cu",
+      "REPORTS_METRIC",
+      "Momentum reconstruction uncertainty"
+    ],
+    [
+      "Momentum reconstruction uncertainty=0.5% on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "Invariant yield=200 GeV s on p+p collisions at √s = 200 GeV",
+      "REPORTS_METRIC",
+      "Invariant yield"
+    ],
+    [
+      "pT spectra=0.5 GeV/c on p+p collisions at √s = 200 GeV",
+      "REPORTS_METRIC",
+      "pT spectra"
+    ],
+    [
+      "Centrality bins=20-40% on p+p collisions at √s = 200 GeV",
+      "REPORTS_METRIC",
+      "Centrality bins"
+    ],
+    [
+      "K∗0 yield=None on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "K0 S yield=None on Cu+Cu",
+      "REPORTS_METRIC",
+      "K0 S yield"
+    ],
+    [
+      "K0 S yield=None on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "pT spectrum=None on d+Au",
+      "REPORTS_METRIC",
+      "pT spectrum"
+    ],
+    [
+      "pT spectrum=None on d+Au",
+      "EVALUATES_ON",
+      "d+Au"
+    ],
+    [
+      "Nuclear modification factor=94% on Cu+Cu",
+      "REPORTS_METRIC",
+      "Nuclear modification factor"
+    ],
+    [
+      "Nuclear modification factor=94% on Cu+Cu",
+      "EVALUATES_ON",
+      "Cu+Cu"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 129,
+    "relation_count": 121,
+    "triple_count": 121,
+    "extracted_at": "2025-12-06T02:43:20.139115"
+  },
+  "paper_metadata": {
+    "title": "",
+    "authors": [],
+    "year": ""
+  }
+}

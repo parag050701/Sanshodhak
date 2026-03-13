@@ -1,0 +1,128 @@
+[
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Bahdanau, 2016",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Devlin, 2018",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Vaswani, 2017",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Radford, 2018",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Lewis, 2020",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Siriwardhana, 2023",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_1",
+    "type": "CITES",
+    "target": "Yu, 2022",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_2",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_2",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_3",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_3",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_4",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_4",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_5",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_5",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_6",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_6",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_20",
+    "type": "REPORTS_METRIC",
+    "target": "E_040_Pichai_2023_cc391c15_10",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "source": "E_040_Pichai_2023_cc391c15_20",
+    "type": "EVALUATES_ON",
+    "target": "E_040_Pichai_2023_cc391c15_7",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  }
+]

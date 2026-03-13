@@ -1,0 +1,94 @@
+[
+  {
+    "id": "E_041_Yao_2024_33642b2d_1",
+    "type": "Model",
+    "name": "GPT-4",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_2",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_3",
+    "type": "Dataset",
+    "name": "Quranic dataset",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_4",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_5",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_6",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_7",
+    "type": "Paper",
+    "name": "Alnefie et al. 2023",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_8",
+    "type": "Paper",
+    "name": "Pipitone and Alami 2024",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_9",
+    "type": "Author",
+    "name": "Alnefie",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_10",
+    "type": "Author",
+    "name": "Pipitone",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_11",
+    "type": "Author",
+    "name": "Alami",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_12",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Quranic dataset",
+    "source_paper_id": "041_Yao_2024_33642b2d",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Quranic dataset",
+      "experiment_description": "Top-1 accuracy on Quranic dataset validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_041_Yao_2024_33642b2d_13",
+    "type": "Result",
+    "name": "BLEU=0.85 on ImageNet",
+    "source_paper_id": "041_Yao_2024_33642b2d",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "0.85",
+      "dataset": "ImageNet",
+      "experiment_description": "BLEU score on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

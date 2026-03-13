@@ -1,0 +1,57 @@
+[
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_1",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_2",
+    "type": "Method",
+    "name": "Artificial Intelligence",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_3",
+    "type": "Task",
+    "name": "Decision making",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_4",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_5",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_6",
+    "type": "Paper",
+    "name": "None",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_7",
+    "type": "Author",
+    "name": "None",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "id": "E_046_Niederhaus_2025_c41834f5_8",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

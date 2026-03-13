@@ -1,0 +1,1070 @@
+[
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "Model",
+    "name": "AR-RAG",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_2",
+    "type": "Method",
+    "name": "Distribution-Augmentation in Decoding DAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_3",
+    "type": "Method",
+    "name": "Feature-Augmentation in Decoding FAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_4",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_5",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_6",
+    "type": "Paper",
+    "name": "AR-RAG",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_7",
+    "type": "Author",
+    "name": "Jingyuan Qi",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_8",
+    "type": "Author",
+    "name": "Zhiyang Xu",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_9",
+    "type": "Author",
+    "name": "Qifan Wang",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_10",
+    "type": "Author",
+    "name": "Lifu Huang",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_11",
+    "type": "Method",
+    "name": "Autoregressive Retrieval Augmentation",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_12",
+    "type": "Method",
+    "name": "DistributionAugmentation in Decoding DAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_13",
+    "type": "Dataset",
+    "name": "DPG-Bench",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_14",
+    "type": "Dataset",
+    "name": "GenEval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_15",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_16",
+    "type": "Paper",
+    "name": "None",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "Model",
+    "name": "Janus-Pro",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_18",
+    "type": "Dataset",
+    "name": "Midjourney-30K 2",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_19",
+    "type": "Metric",
+    "name": "FID",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_20",
+    "type": "Metric",
+    "name": "Overall score",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_21",
+    "type": "Paper",
+    "name": "Janus-Pro 9",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_22",
+    "type": "Paper",
+    "name": "Quantized autoencoder 37",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_23",
+    "type": "Paper",
+    "name": "LlamaGen 37",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_24",
+    "type": "Paper",
+    "name": "Show-o 44",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_25",
+    "type": "Paper",
+    "name": "VAR 38",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_26",
+    "type": "Method",
+    "name": "Quantized autoencoder",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_27",
+    "type": "Method",
+    "name": "Backpropagation",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_28",
+    "type": "Method",
+    "name": "Attention mechanism",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "Paper",
+    "name": "DAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "Paper",
+    "name": "FAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_31",
+    "type": "Paper",
+    "name": "Quantized autoencoder",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_32",
+    "type": "Author",
+    "name": "Janus-Pro",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_33",
+    "type": "Author",
+    "name": "DAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_34",
+    "type": "Author",
+    "name": "FAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_35",
+    "type": "Model",
+    "name": "FAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_36",
+    "type": "Method",
+    "name": "Multi-Scale Feature Smoothing",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_37",
+    "type": "Method",
+    "name": "Convolution",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_38",
+    "type": "Method",
+    "name": "Softmax",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_39",
+    "type": "Method",
+    "name": "Embedding",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_40",
+    "type": "Paper",
+    "name": "Janus-Pro SPB",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_41",
+    "type": "Paper",
+    "name": "Feature-Augmentation in Decoding FAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_42",
+    "type": "Author",
+    "name": "Unknown",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "Model",
+    "name": "Show-o",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_44",
+    "type": "Model",
+    "name": "LlamaGen",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_45",
+    "type": "Model",
+    "name": "LDM",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_46",
+    "type": "Model",
+    "name": "Stable Diffusion",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_47",
+    "type": "Model",
+    "name": "PixArt-alpha",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_48",
+    "type": "Model",
+    "name": "DALL-E 2",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_49",
+    "type": "Model",
+    "name": "RA-CM3",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_50",
+    "type": "Dataset",
+    "name": "CC12M",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_51",
+    "type": "Dataset",
+    "name": "JourneyDB",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_52",
+    "type": "Dataset",
+    "name": "DataComp",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_53",
+    "type": "Metric",
+    "name": "CMMD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_54",
+    "type": "Metric",
+    "name": "FWD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_55",
+    "type": "Model",
+    "name": "DAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_56",
+    "type": "Task",
+    "name": "image generation",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_57",
+    "type": "Dataset",
+    "name": "DPGBench",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_58",
+    "type": "Author",
+    "name": "Janus-Pro DAiD FAiD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_59",
+    "type": "Method",
+    "name": "autoregressive retrieval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_60",
+    "type": "Method",
+    "name": "k-nearest neighbor",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_61",
+    "type": "Method",
+    "name": "CLIP",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_62",
+    "type": "Method",
+    "name": "VAE",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_63",
+    "type": "Method",
+    "name": "diffusion process",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_64",
+    "type": "Method",
+    "name": "adaptive retrieval pipeline",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_65",
+    "type": "Method",
+    "name": "multimodal large language model",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_66",
+    "type": "Dataset",
+    "name": "L40",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_67",
+    "type": "Metric",
+    "name": "Inference Time",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_68",
+    "type": "Paper",
+    "name": "Retrieval-augmented generation",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_69",
+    "type": "Paper",
+    "name": "KNN-Diffusion",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_70",
+    "type": "Paper",
+    "name": "Early approaches",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_71",
+    "type": "Paper",
+    "name": "Recent methods",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_72",
+    "type": "Paper",
+    "name": "Multimodal retrievals",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_73",
+    "type": "Author",
+    "name": "AR-RAG",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_75",
+    "type": "Model",
+    "name": "ResNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_76",
+    "type": "Model",
+    "name": "GPT",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_77",
+    "type": "Dataset",
+    "name": "GLUE",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_78",
+    "type": "Metric",
+    "name": "F1-score",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_79",
+    "type": "Paper",
+    "name": "Towards effective long conversation generation with dynamic topic tracking and recommendation",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_80",
+    "type": "Paper",
+    "name": "Deepseek llm Scaling open-source language models with longtermism",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_81",
+    "type": "Paper",
+    "name": "Semiparametric neural image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_82",
+    "type": "Paper",
+    "name": "Improving language models by retrieving from trillions of tokens",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_83",
+    "type": "Paper",
+    "name": "Conceptual 12m Pushing web-scale image-text pre-training to recognize long-tail visual concepts",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_84",
+    "type": "Paper",
+    "name": "Blip3-o A family of fully open unified multimodal models-architecture training and dataset",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_85",
+    "type": "Paper",
+    "name": "Pixart-α Fast training of diffusion transformer for photorealistic text-to-image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_86",
+    "type": "Paper",
+    "name": "Re-imagen Retrievalaugmented text-to-image generator",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_87",
+    "type": "Paper",
+    "name": "Janus-pro Unified multimodal understanding and generation with data and model scaling",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_88",
+    "type": "Paper",
+    "name": "Scaling rectified flow transformers for high-resolution image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_89",
+    "type": "Paper",
+    "name": "Frido Feature pyramid diffusion for complex scene image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_90",
+    "type": "Model",
+    "name": "CLIP",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_91",
+    "type": "Metric",
+    "name": "cosine similarity",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_92",
+    "type": "Method",
+    "name": "patch-based autoregressive retrieval augmentation",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_93",
+    "type": "Method",
+    "name": "masked token decoding",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_94",
+    "type": "Dataset",
+    "name": "Show-o",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_95",
+    "type": "Author",
+    "name": "None",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_96",
+    "type": "Model",
+    "name": "Janus-Pro-1B",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_97",
+    "type": "Dataset",
+    "name": "Midjourney-v6",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_98",
+    "type": "Metric",
+    "name": "GenEval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_99",
+    "type": "Metric",
+    "name": "DPG-Bench",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_100",
+    "type": "Metric",
+    "name": "Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_101",
+    "type": "Metric",
+    "name": "Fréchet Inception Distance FID",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_102",
+    "type": "Metric",
+    "name": "CLIP-MMD CMMD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_103",
+    "type": "Metric",
+    "name": "Fréchet Wavelet Distance FWD",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_104",
+    "type": "Paper",
+    "name": "Janus-Pro model",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_105",
+    "type": "Paper",
+    "name": "Show-o model",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_106",
+    "type": "Paper",
+    "name": "CC12M",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_107",
+    "type": "Paper",
+    "name": "Midjourney-v6",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_108",
+    "type": "Author",
+    "name": "NA",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_109",
+    "type": "Dataset",
+    "name": "Midjourney-10K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_110",
+    "type": "Metric",
+    "name": "FID score",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_111",
+    "type": "Paper",
+    "name": "Patch-based Autoregressive Retrieval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_112",
+    "type": "Model",
+    "name": "Midjourney-10K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_113",
+    "type": "Method",
+    "name": "Fréchet Inception Distance FID",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_114",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_115",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_116",
+    "type": "Result",
+    "name": "BLEU=None on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "None",
+      "dataset": "ImageNet",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_117",
+    "type": "Result",
+    "name": "FID=6.67 on Midjourney-30K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FID",
+      "metric_value": "6.67",
+      "dataset": "Midjourney-30K",
+      "experiment_description": "AR-RAG achieves 6.67 FID on Midjourney-30K",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_118",
+    "type": "Result",
+    "name": "Overall score=0.78 on GenEval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Overall score",
+      "metric_value": "0.78",
+      "dataset": "GenEval",
+      "experiment_description": "AR-RAG achieves 0.78 overall score on GenEval",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_119",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_120",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_121",
+    "type": "Result",
+    "name": "FID=lower score on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FID",
+      "metric_value": "lower score",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "measuring statistical similarity between generated and real image distributions",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_122",
+    "type": "Result",
+    "name": "CMMD=lower score on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "CMMD",
+      "metric_value": "lower score",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "assessing alignment with human perception using CLIP embeddings",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_123",
+    "type": "Result",
+    "name": "FWD=lower score on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FWD",
+      "metric_value": "lower score",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "evaluating spatial and frequency coherence through wavelet packet coefficients",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_124",
+    "type": "Result",
+    "name": "CMMD=improved on DPGBench",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "CMMD",
+      "metric_value": "improved",
+      "dataset": "DPGBench",
+      "experiment_description": "reduced visual distortions",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_125",
+    "type": "Result",
+    "name": "FWD=improved on GenEval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FWD",
+      "metric_value": "improved",
+      "dataset": "GenEval",
+      "experiment_description": "enhanced coherence",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_126",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_127",
+    "type": "Result",
+    "name": "Inference Time=879.64 on L40",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Inference Time",
+      "metric_value": "879.64",
+      "dataset": "L40",
+      "experiment_description": "Inference time for generating 100 images on a single L40 card",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_128",
+    "type": "Result",
+    "name": "Inference Time=457.74 on L40",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Inference Time",
+      "metric_value": "457.74",
+      "dataset": "L40",
+      "experiment_description": "Inference time for generating 100 images on a single L40 card",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_129",
+    "type": "Result",
+    "name": "Inference Time=623.01 on L40",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Inference Time",
+      "metric_value": "623.01",
+      "dataset": "L40",
+      "experiment_description": "Inference time for generating 100 images on a single L40 card",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_130",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_131",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_132",
+    "type": "Result",
+    "name": "cosine similarity=0.9 on CC12M",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "cosine similarity",
+      "metric_value": "0.9",
+      "dataset": "CC12M",
+      "experiment_description": "Retrieval similarity between text prompt and image representations",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_133",
+    "type": "Result",
+    "name": "accuracy=92.4% on JourneyDB",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "accuracy",
+      "metric_value": "92.4%",
+      "dataset": "JourneyDB",
+      "experiment_description": "Image-level retrieval-augmented generation",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_134",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Show-o",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Show-o",
+      "experiment_description": "Top-1 accuracy on Show-o validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_135",
+    "type": "Result",
+    "name": "GenEval=N/A on CC12M",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "GenEval",
+      "metric_value": "N/A",
+      "dataset": "CC12M",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_136",
+    "type": "Result",
+    "name": "DPG-Bench=N/A on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "DPG-Bench",
+      "metric_value": "N/A",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_137",
+    "type": "Result",
+    "name": "FID=N/A on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FID",
+      "metric_value": "N/A",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_138",
+    "type": "Result",
+    "name": "CLIP-MMD (CMMD)=N/A on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "CLIP-MMD (CMMD)",
+      "metric_value": "N/A",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_139",
+    "type": "Result",
+    "name": "FWD=N/A on Midjourney-30k",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FWD",
+      "metric_value": "N/A",
+      "dataset": "Midjourney-30k",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_140",
+    "type": "Result",
+    "name": "FID score=None on Midjourney-10K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FID score",
+      "metric_value": "None",
+      "dataset": "Midjourney-10K",
+      "experiment_description": "Optimal configurations highlighted by red borders",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_141",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_142",
+    "type": "Result",
+    "name": "FID=14.12 on Midjourney-10K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FID",
+      "metric_value": "14.12",
+      "dataset": "Midjourney-10K",
+      "experiment_description": "DAiD performance on Midjourney-10K validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_028_Saleh_2025_6dbefc04_143",
+    "type": "Result",
+    "name": "FID=13.13 on Midjourney-10K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04",
+    "properties": {
+      "metric_name": "FID",
+      "metric_value": "13.13",
+      "dataset": "Midjourney-10K",
+      "experiment_description": "FAiD performance on Midjourney-10K validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

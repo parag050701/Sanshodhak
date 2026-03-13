@@ -1,0 +1,45 @@
+[
+  {
+    "id": "E_047_Linders_2025_96b24cea_1",
+    "type": "Model",
+    "name": "LLMs",
+    "source_paper_id": "047_Linders_2025_96b24cea"
+  },
+  {
+    "id": "E_047_Linders_2025_96b24cea_2",
+    "type": "Dataset",
+    "name": "Knowledge Graphs",
+    "source_paper_id": "047_Linders_2025_96b24cea"
+  },
+  {
+    "id": "E_047_Linders_2025_96b24cea_3",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "047_Linders_2025_96b24cea"
+  },
+  {
+    "id": "E_047_Linders_2025_96b24cea_4",
+    "type": "Paper",
+    "name": "KAPING",
+    "source_paper_id": "047_Linders_2025_96b24cea"
+  },
+  {
+    "id": "E_047_Linders_2025_96b24cea_5",
+    "type": "Author",
+    "name": "Unknown",
+    "source_paper_id": "047_Linders_2025_96b24cea"
+  },
+  {
+    "id": "E_047_Linders_2025_96b24cea_6",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Knowledge Graphs",
+    "source_paper_id": "047_Linders_2025_96b24cea",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Knowledge Graphs",
+      "experiment_description": "Top-1 accuracy on Knowledge Graphs validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

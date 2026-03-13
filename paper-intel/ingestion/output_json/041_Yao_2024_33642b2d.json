@@ -1,0 +1,594 @@
+{
+  "paper_id": "041_Yao_2024_33642b2d",
+  "source_pdf": "041_Yao_2024.pdf",
+  "title": "Investigating Retrieval-Augmented Generation in Quranic Studies: A Study of 13 Open-Source Large Language Models",
+  "authors": [
+    "Zahra Khalila",
+    "Arbi Nasution",
+    "Winda Monika",
+    "Aytug Onan",
+    "Yohei Murakami",
+    "Yasir Bin",
+    "Ismail Radi",
+    "Mohammad Osmani"
+  ],
+  "abstract": "Accurate and contextually faithful responses are critical when applying large language models (LLMs) to sensitive and domain-specific tasks, such as answering queries related to quranic studies. General-purpose LLMs often struggle with hallucinations, where generated responses deviate from authoritative sources, raising concerns about their reliability in religious contexts. This challenge highlights the need for systems that can integrate domain-specific knowledge while maintaining response accuracy, relevance, and faithfulness. In this study, we investigate 13 open-source LLMs categorized into large (e.g.",
+  "sections": {
+    "introduction": "I. INTRODUCTIONNatural language processing (NLP) has been transformed as a result of the development of large language models (LLMs), which made it possible for these models to handle a wide range of activities. These include summarization and translation, as well as answering domain-specific questions [1]. Further, these models can even serve as a good annotator for a number of NLP tasks [2]. Recent studies have explored the use of NLP in various domain-specific including Quranic studies, legal system, and medical field focusing on developing question-answering system. Alnefie et al. (2023) [3] has evaluated the effectiveness of GPT-4 in answering Quran-related questions and highlighting challenges in context understanding and answer accuracy. However, their work is limited by its reliance on a general-purpose LLM without domain-specific fine-tuning, which affects responce precision for nuance religious queries. Retrieval-Augmented Generation (RAG) has been succesfully applied in general knowledge such as medical domains to mitigate these issues [4], and legal domain such as research conducted by Pipitone and Alami (2024) [5] introduced LegalBench-RAG to evaluate retrieval accuracy in legal question-answering tasks. While significant progress has been made across these domains, challenges related to data quality, retrieval precision, domainspecific adaptation, and computational efficiency persist. This study builds upon these works by benchmarking open-source LLMs using the RAG framework to address the challenges in Quranic knowledge retrieval [6] while highlighting the balance between model size, performance, and efficiency. Using LLMs in religious or culturally sensitive environments has certain challenges [7], including ensuring the accuracy, contextual relevance, and authenticity of the generated responses. These issues are particularly significant when engaging with content derived from religious texts, as distortion or hallucination may result in misunderstandings and a loss of faith in AI systems [8].This paper examines the role of LLMs in quranic studies [9]. We use a dataset from a book about the 114 surahs of the Qur'an [10], rather than the Qur'an text itself. This dataset provides thorough information about each surah, including meaning, provenance of revelation, and historical context. Descriptive insights are essential for offering relevant and accurate answers to questions regarding quranic studies.Since Qur'an is the sacred revelation that remains intact in today's world without any human involvement, and the Qur'an is the only source to link human beings with their creator, an attempt to identify the reliable and trustworthy LLMs is really important. As they provide useful resources for the readers, accuracy and truthfulness must be given due importance while exploring the provided information from such sources.In order to overcome the difficulties associated with hallucination and accuracy, we have implemented a framework known as Retrieval-Augmented Generation (RAG) [11], [12], [13]. This method integrates LLM semantics with a vector database to retrieve relevant data from descriptive datasets [14], [15]. The RAG method guarantees that responses derive from authoritative sources that are contextually appropriate, thereby reducing the probability of delivering content that is unsubstantiated or irrelevant. Citations are supplied in each response, which enables users to trace the information back to the descriptive dataset. This further enhances the level of trust and transparency [16].The objectives of this research are threefold: (1) to compare 13 open-source LLMs in terms of their ability to respond accurately and faithfully to questions about quranic studies [17], (2) to assess the effectiveness of the RAG approach in reducing hallucination and ensuring response relevance [18], and (3) to provide insights into the use of descriptive datasets for religious education and AI-based knowledge systems [19]. The evaluation criteria consist of context relevance, response faithfulness, and answer relevance, and they are evaluated using human evaluation. [14].This study provides a robust framework for integrating LLMs with descriptive datasets, thereby contributing to the expanding field of domain-specific AI applications [20]. It emphasizes the strengths and limitations of current LLMs in managing sensitive religious topics and establishes a foundation for future developments in AI-driven educational and informational tools.The rest of this paper is organized as follows: Section 1 introduces the challenges of using LLMs for Quranic studies and outlines the research objectives. Section 2 reviews related work, discussing previous studies on LLM applications in religious text analysis and RAG-based retrieval systems. Section 3 provides a detailed description of the experimental setup, covering the dataset, NLP tasks and evaluation guidelines, dataset selection and curation, human evaluators, metrics for quality evaluation, large language models, and hardware and software configuration. Section 4 presents the experimental results of various LLM models. Section 5 discusses key findings, including performance insights based on model size, the effectiveness of the RAG framework, the trade-off between computational resources and response quality, the surprising performance of Llama3.2:3b, and implications for domainspecific tasks. Section 6 concludes the paper by summarizing the main contributions and providing suggestions for future research. II. MATERIALS AND METHODSThis section outlines the methodical strategy employed in our research. We begin by analyzing the dataset, detailing its source, structure, and descriptive content. Subsequently, the system's responsibilities are thoroughly delineated, encompassing the formulation of solutions to user concerns concerning Islamic doctrines [21]. In addition, we provide a summary of the rules that have been set for human evaluators who are responsible for evaluating the outputs of the system. To ensure that the evaluations are reliable and consistent, we have produced these guidelines. A. DatasetsThe dataset used in this research comes from a descriptive book providing a thorough study of the 114 surahs (Chapters) of the Qur'an. In this preliminary study, 20 surahs were selected and tested out of the total 114 surahs. The dataset includes numerous descriptive elements for each surah, such as but not limited to:• Number of Verses: The total number of verses in each surah.• Meaning of its Name: A description of the surah's title and its importance.• Reason for its Name: An explanation for the designation of the surah, frequently linked to its subject matter or motifs.• Names: Alternative titles or names linked to the surah, if relevant.• General Objective: A brief explanation of the primary message or objective of the surah.• Reason for its Revelation: The circumstances or context in which the surah was revealed, as available.• Virtues: Key benefits or spiritual rewards associated with reciting or understanding the surah, often supported by hadith (sayings of the Prophet Muhammad, peace be upon him).• Relationships: Insights into the connections between the beginning and end of the surah, or its relationship to preceding or succeeding chapters.For instance, Surah Al-Hadid (Chapter 57) is described as follows:• Number of Verses: 29.• Meaning of its Name: \"Al-Hadid\" translates to \"The Iron\" in Arabic.• Reason for its Name: It is the only chapter where the benefits of iron are mentioned, symbolizing strength and utility.• General Objective: Encourages the virtue of spending in the cause of Allah as an appreciation of His favors.• Virtues: Includes a hadith where the Prophet Muhammad (peace be upon him) recommends reciting this chapter as one of three glorifications of Allah.• Relationships: Highlights thematic continuity between its verses and connections to preceding chapters, such as Surah Al-Waqi'ah.The dataset was preprocessed and organized into structured fields to ensure efficient retrieval and usability in the study. Key steps included:• Field Segmentation: Each descriptive element (e.g., \"virtues,\" \"relationships\") was extracted and stored as a separate field for better semantic alignment with queries.• Vectorization: Text data was transformed into highdimensional vector embeddings through the use of cutting-edge NLP models, which facilitated the search for semantic similarity [22].• Storage in a Vector Database: The organized and scalar data was kept in a scaled vector database so that it would be easy to find the right descriptions during query processing [23], [22].This particular dataset provides lots of information that goes beyond the actual text of the Qur'an, including contextual and interpretative details. Based on this, it is a great instrument for evaluating the ability of LLMs to produce responses that are true, accurate, and relevant to the context in which they are being used. By emphasizing descriptive elements, the dataset ensures that responses align with established interpretations and scholarly perspectives. B. NLP Tasks and Evaluation GuidelinesA Retrieval-Augmented Generation (RAG) architecture will be utilized in order to accomplish the objective of this study, which is to evaluate large language models (LLMs) in the context of answering questions related to quranic studies [24]. The RAG approach combines LLMs with semantic retrieval to provide contextually relevant and authoritative responses from a descriptive dataset. The primary tasks and evaluation guidelines used to assess the system's performance are outlined in full below [14].1) NLP Tasks: The research's primary NLP task is to generate semantically pertinent and contextually accurate responses to inquiries regarding quranic studies. The system employs a Retrieval-Augmented Generation (RAG) architecture, combining retrieval-based and generative methodologies, to ensure that responses are both dataset-based and linguistically coherent. The system executes the following tasks:• Semantic Search and Retrieval: Upon a user's query submission, the system does a semantic similarity search over the vectorized dataset obtained from Qur'anic surah descriptions [19]. This procedure determines the most contextually pertinent entries from the dataset to respond to the query.• Response Generation: The retrieved descriptions are submitted to the LLMs, which produce a comprehensive response [14]. This response integrates the retrieved information and provides explanatory content to address the query.• Citations and Contextualization: Each generated response includes references to the original dataset entries (e.g., surah descriptions or specific virtues), allowing users to trace the information back to its source [25].2) Evaluation Guidelines: To assess the quality of the responses generated by the system, human evaluators followed a structured set of evaluation guidelines. These guidelines provided a consistent framework for scoring responses across three key dimensions: Context Relevance, Answer Faithfulness, and Answer Relevance [14]. Each dimension is explained below, along with its calculation method and examples.• Context Relevance evaluates how precisely the retrieved and generated responses align with the user query while avoiding irrelevant or extraneous information. The relevance score is calculated using the precision@k metric, where k represents the number of top retrieved results considered as shown in Equation 1.Precision@k = No. of relevant results in the top-k responses k(1)Example:• Query: \"What is the reason for Surah Al-Fatihah being named Umm Al-Kitab?\" • Retrieved Information:1) Surah Al-Fatihah is named Umm Al-Kitab because it summarizes the essence of the Qur'an (relevant). 2) It is recited in every unit of prayer (relevant). 3) Surah Al-Baqarah discusses laws and stories (irrelevant). 4) Surah Al-Fatihah has seven verses (relevant). 5) Surah An-Nas is the last chapter of the Qur'an (irrelevant). If k = 5, then 3 out of the 5 retrieved results are relevant:Precision@5 = 3 5 = 0.6The context relevance score for this response is therefore 0.6.• Answer Faithfulness ensures that the generated responses accurately represent the retrieved information without introducing unsupported content or hallucinations. Evaluators compare the generated response with the dataset to verify factual consistency. Example:• Query: \"What does Surah Al-Fatihah emphasize?\" • Retrieved Information: Surah Al-Fatihah emphasizes monotheism, gratitude, and seeking guidance from Allah. • Faithful Response: Surah Al-Fatihah highlights the themes of monotheism, gratitude, and the importance of seeking Allah's guidance. • Non-Faithful Response: Surah Al-Fatihah emphasizes the stories of past prophets.The faithful response adheres strictly to the retrieved information, while the non-faithful response introduces unsupported content.• Answer Relevance measures whether the response directly addresses the query while maintaining semantic and theological appropriateness. It assesses completeness, clarity, and alignment with the question. Example:• Query: \"Why is Surah Al-Fatihah called Umm Al-Kitab?\" • Relevant Response: Surah Al-Fatihah is called Umm Al-Kitab because it summarizes the central teachings of the Qur'an and is recited in every unit of prayer. • Irrelevant Response: Surah Al-Fatihah has seven verses and is the first chapter of the Qur'an. The relevant response directly answers the query, providing reasoning, while the irrelevant response, though factually correct, fails to address the specific question.3) Evaluation Process: Human evaluators assessed the system-generated responses through a web-based platform, where they were presented with prompts, the corresponding responses, and an interface for scoring. The evaluation process included the following steps:• Reviewing Responses: The process of reviewing responses was a critical step in evaluating the quality of the outputs generated by the large language models (LLMs). Human evaluators carried out this task through a web-based platform specifically designed to facilitate structured and unbiased assessments.• Scoring System: For each response, evaluators assigned scores on a Likert scale (1 to 5) for the three evaluation criteria: Context Relevance, Answer Faithfulness, and Answer Relevance. In addition to numerical scores, evaluators could provide written feedback to justify their evaluations [16]. This qualitative feedback emphasized specific faults or applauded features of the response, providing more insight into the system's performance.• Reevaluation and Calibration: Since numerous replies were provided for each query, evaluators could compare the quality of outputs from various LLMs. This comparative approach was instrumental in identifying the models' relative strengths and limitations, thereby enabling a more thorough evaluation [26]. To verify the dependability of their judgments, evaluators returned to a subset of previously evaluated responses on a regular basis and reassessed them. This consistency check allowed evaluators to reflect on their scoring processes and ensure they were in line with the rating criteria.The structured evaluation guidelines guaranteed that the assessment process was meticulous, consistent, and transparent. The guidelines established a comprehensive framework for assessing the system's performance by emphasizing context relevance, answer faithfulness, and answer relevance [27]. This method enable a thorough comparison of several LLMs and provided vital insights into their performance in answering Islamic queries with contextual precision and faithfulness [15], [27]. The evaluations were submitted through the platform after all responses to a specific query were evaluated, scored, and commented on. In order to provide a comprehensive dataset for the purpose of investigating the LLMs, the platform logged and stored the data for research [28]. C. Dataset Selection and CurationThe dataset used in this study was carefully selected and organized to guarantee it aligns with the goals of assessing large language models (LLMs) within the framework of quranic studies. The process of selection and curation included identifying a reliable source, organizing the data, and confirming its alignment with the research goals [15], [28].1) Selection Criteria: The dataset was chosen according to these specific criteria:• Authenticity: The source underwent a thorough review to confirm its compliance with recognized Islamic scholarship and the absence of speculative interpretations [26], [27].• Descriptive Richness: The dataset must deliver comprehensive, contextually rich descriptions that can be effectively employed for semantic search and response generation [27], [29].• Clarity and Accessibility: The content needed to be created in a structured and clear manner, facilitating both manual review and computational processing [15], [28].• Relevance: The dataset was meticulously curated to facilitate the process of addressing inquiries related to quranic studies, emphasizing themes that are frequently observed in these discussions [26] 2) Curation Process: A comprehensive curation procedure was carried out on the dataset in order to get it ready for integration with the retrieval-augmented generation (RAG) system and LLMs:• Data Digitization: The text from the source book was digitized to generate a dataset that can be accessed by machines. Optical Character Recognition (OCR) tools were employed where necessary to convert printed material into digital text [15], [28].• Data Structuring: The content was segmented into surah name, number of verses, reason for the name, general objective, virtues, and relationships. Each field was carefully labeled to facilitate precise retrieval [27].• Content Validation: The digitized and structured dataset was reviewed by experts in Islamic studies to verify its accuracy and alignment with the original source [26].• Preprocessing: Unnecessary or redundant information was removed, and inconsistencies were corrected. Tokenization was performed to split the text into smaller, manageable units for processing by the semantic search system.• Vectorization: The structured data was transformed into high-dimensional vector embeddings using pretrained language models [30]. This step allowed for efficient and accurate semantic similarity searches within the dataset.• Storage in a Vector Database: The vectorized dataset was stored in a scalable and efficient vector database, enabling quick retrieval of relevant entries based on user queries [22].3) Dataset Integrity: To ensure the integrity and reliability of the dataset, multiple layers of validation were employed, including manual review and automated consistency checks, regular audits of the data were conducted to identify and rectify any errors or discrepancies, and a backup of the raw and processed datasets was maintained for reproducibility and future reference. 4) Strengths of the Dataset:• Richness in Context: The dataset goes beyond literal translations, providing thematic, historical, and theological insights.• High Relevance: The information directly supports answering user queries about quranic studies.• Scalability: The vectorized format enables integration with modern NLP systems and future upgrades.This curated dataset ensures that the responses generated by the system are accurate, faithful, and contextually relevant, thereby serving as the foundation for the investigating and evaluation of the LLMs D. Human EvaluatorsIn this research, human evaluators were instrumental in evaluating the responses produced by the large language models (LLMs) [31]. The evaluations were carried out using a specially designed website that focused on optimizing the evaluation process and maintaining consistency. The website offered evaluators with questions and responses from several LLMs, allowing for a systematic assessment using preset criteria which are context relevance, answer faithfulness, and answer relevance.1) Evaluator Selection: The evaluators were selected with careful consideration to guarantee that they had the proper knowledge and comprehension of quranic studies, given that the study centers on inquiries pertaining to Islamic content. Criteria for selection included:• Knowledge of quranic studies: Evaluators who had either formal education or significant experience in Islamic studies were prioritized.• Analytical Skills: In order to evaluate the quality of responses across multiple dimensions, evaluators were required to possess strong analytical skills.• Familiarity with Evaluation Tasks: It was considered beneficial to have prior experience analyzing textual data or utilizing NLP technologies.Evaluators from a variety of backgrounds were included to make sure the replies were evaluated fairly and without bias.2) Evaluation Platform: The evaluation process was conducted through a dedicated website designed to facilitate efficient and user-friendly assessments. The platform included the following features:• Query-Response Display:• Each evaluation session displayed a prompt (query) along with responses generated by different LLMs. • Responses were anonymized to prevent bias, ensuring that evaluators were not influenced by the identity of the LLM responsible for generating a response.• Scoring Interface: Evaluators rated each response based on the three evaluation criteria:• Context Relevance: Precision and alignment of the response with the query. • Answer Faithfulness: Accuracy of the response in relation to the retrieved dataset content. • Answer Relevance: Appropriateness and direct pertinence of the response to the query. A Likert scale (1-5) was used for scoring, where 1 indicated poor performance and 5 indicated excellent performance.• Feedback Mechanism: Evaluators could provide written comments to justify their scores or highlight specific issues in the responses. This feature allowed the identification of nuanced errors that might not be captured by numerical scores alone.3) Significance of Human Evaluations: The use of human evaluators provided an essential layer of validation for the study, ensuring that the generated responses were assessed not only for technical accuracy but also for their theological and contextual integrity [31]. By leveraging a well-structured platform and robust evaluation criteria, the study ensured that the investigation of LLMs was both rigorous and comprehensive, offering valuable insights into their performance in responding to Islamic queries [32]. E. Metric for Quality EvaluationThis study employs Inter-Evaluator Agreement (IEA) as the primary metric to ensure the quality, reliability, and consistency of human evaluations [33]. Since human evaluators, rather than annotators, were tasked with assessing the generated responses, IEA provides a robust measure of agreement across evaluators, validating the credibility of the evaluation process and the results.IEA measures the level of consistency between evaluators when scoring responses based on predefined criteria: context relevance, answer faithfulness, and answer relevance. An elevated IEA score signifies uniform application of evaluation criteria by assessors, whereas a diminished score reveals inconsistencies that may necessitate recalibration. Fleiss' Kappa, as presented in Equation 2, was employed to calculate IEA due to its appropriateness for evaluating agreement among multiple evaluators concurrently [33]. The consistent monitoring of IEA scores allowed the research team to detect discrepancies promptly and facilitate recalibration sessions as needed, ensuring evaluators' comprehension and interpretation of the scoring guidelines were aligned. This methodical approach guaranteed that the evaluation process was dependable, replicable, and aligned with the study's goals.κ = P -Pe 1 -Pe(2)where:P = 1 N N i=1 P i and Pe = K k=1 p 2 k(3)with:P i = 1 n(n -1) K k=1 n ik (n ik -1), p k = N i=1 n ik N n(4)where:• κ: Fleiss' Kappa value.• P : Average observed agreement across all items.• Pe : Expected agreement based on chance.• P i : Proportion of agreement for item i.• p k : Proportion of ratings in category k.• n: Total number of ratings per item.• n ik : Number of raters who assigned category k to item i.• N : Total number of items.• K: Total number of categories. F. Large Language ModelsThe efficacy of numerous large language models (LLMs) in responding to inquiries regarding quranic studies is assessed in this study using a Retrieval-Augmented Generation (RAG) framework [34]. A comprehensive comparison of the capabilities of the LLMs selected for investigation is possible due to the fact that they represent a variety of architectures and parameter scales. More information about the models, how they are put together, and how they relate to this study is given below.1) Llama: Meta AI has developed the Llama (Large Language Model Meta AI) family of models, which are stateof-the-art transformer-based architectures that are optimized for natural language understanding and generation [35]. Llama models are trained on vast, diversified corpora to do various NLP tasks such as contextual reasoning, question answering, and text summarization. They are available in a variety of parameter values, which provides a degree of flexibility in terms of computational requirements and performance. The Llama models were incorporated in this investigation due to their adaptability and superior performance across various parameter sizes. A thorough investigation of how model size affects the capacity to produce faithful, accurate, and contextually relevant replies was made possible by the range of configurations. The comparison of Llama generations (e.g., Llama3 with Llama3.1) yielded insights on the impact of incremental architectural enhancements on performance.2) Gemma: Google's DeepMind developed the Gemma family of large language models, which are a set of transformer-based designs that are best for understanding and creating natural language. The Gemma models are engineered to provide superior performance while ensuring efficiency, rendering them adaptable for various jobs. These models have undergone pre-training on varied and comprehensive datasets, enabling them to generalize effectively across multiple domains [36]. Gemma models are offered in many parameter scales, including 27b, 9b, and 2b, providing flexibility to optimize performance and computational demands. Their versatility renders them appropriate for applications from resource-intensive jobs to real-time implementations in limited surroundings.3) QwQ: The QwQ model developed by Alibaba Cloud, which has 32 billion parameters, is a large-scale transformerbased language model designed to handle complex natural language processing tasks [37]. While specific information about the QwQ model's architecture or pre-training details is limited in comparison to more established models like Llama and Gemma, its parameter scale positions it as a powerful model capable of capturing complex relationships in textual data. Its large size enables it to perform effectively on tasks requiring nuanced comprehension, contextual reasoning, and content generation across a wide range of subjects. 4) Phi:Microsoft created the Phi family of language models, which are a group of lightweight transformer-based models that work best for jobs that involve processing natural language. Even though the Phi models have lower parameter sizes compared to other large-scale models such as Llama and Gemma, they are engineered to exceed expectations, providing robust performance while ensuring computational efficiency [38]. They are pretrained on rigorously selected datasets that prioritize high-quality information, enabling effective generalization across tasks despite a reduced number of parameters. This method guarantees that Phi models provide an exceptional equilibrium between performance and resource demands, rendering them especially appropriate for resourcelimited settings and real-time applications. 5) Key Features of the Models:From smaller-scale models (e.g., 1 billion parameters) to large-scale ones (e.g., 70 billion parameters), the chosen models encompass a wide spectrum of parameter sizes. This variation enables a study of the trade-offs between response quality and computing efficiency. Smaller models might lose accuracy and contextual depth, yet producing faster responses with reduced processing expenses. On the other hand, it is anticipated that larger models will produce more nuanced and high-fidelity outputs, although at the expense of increased computational demands.The models use transformer architectures, which are efficient in comprehending and producing natural language content. Their architecture allows to capturing the intricate patterns, correlations, and contextual subtleties within the dataset. This work emphasizes the models' capacity to adjust to specific domains, such as quranic studies, despite being trained on varied datasets. The assessment analyzes the efficacy of these models when enhanced with domain-specific data through the RAG methodology. The study evaluates the models in a zero-shot context, without any fine-tuning on the unique dataset. This method emphasizes the models' intrinsic capacity to generalize and appropriately respond by utilizing external information obtained from the descriptive dataset.6) Integration with the RAG Framework: The selected LLMs were integrated with the RAG framework, allowing them to generate contextually relevant responses based on the dataset. The RAG framework enhances the performance of the models by providing contextual input, reducing hallucination, and facilitating citations. G. Hardware and Software ConfigurationThe",
+    "related_work": "",
+    "methods": "",
+    "experiments": "experiments were conducted using a high-performance computing system equipped with an Intel(R) Xeon(R) Gold 5318Y CPU operating at 2.10 GHz with 24 cores. The system featured four NVIDIA RTX A6000 GPUs, each providing 48 GB of VRAM, enabling efficient handling of computationally intensive tasks, particularly those involving deep learning models. Additionally, the system was supported by 128 GB of RAM, ensuring smooth execution of memory-intensive operations and facilitating large-scale data processing. This configuration provided the computational resources necessary to run and evaluate the models effectively. III.",
+    "results": "RESULTSThe results of this study are based on the implementation of a RAG architecture, designed to evaluate the performance of 13 LLMs in answering questions related to Quranic studies. By leveraging a descriptive dataset of Quranic surahs, the RAG system facilitates the integration of external knowledge to address the limitations of standalone models. The comparative analysis focuses on assessing the relevance, faithfulness, and contextual accuracy of the responses generated by the LLMs within this framework. A. Experimental ResultsThe experimental evaluation assessed the capacity of a variety of large language models (LLMs) to respond to queries related to quranic studies. The models were assessed based on three critical metrics: context relevance, answer faithfulness, and answer relevance. The models were categorized into three categories based on their parameter sizes: large models (marked in red), medium models (marked in yellow), and small models (marked in green). Therefore, the results were analyzed. The following is a comprehensive analysis of the performance of each category. (0.508), despite being categorized as a small model. Both Llama3.1:70b and Gemma2:27b achieved competitive scores of 0.492 and 0.429, respectively, while QwQ:32b recorded 0.397. These models excel at retrieving relevant information and aligning responses with the query intent due to their larger parameter size.• Medium Models (Yellow): Among the medium models, Gemma2:9b performed best with a score of 0.492, comparable to some large models. Llama3:8b and Llama3.1:8b followed with scores of 0.381 and 0.317, respectively. These models demonstrated decent performance but lagged behind the large models in handling complex or nuanced queries.• Small Models (Green): The small models struggled overall, with Llama3.2:1b achieving the lowest score of 0.254. Phi3.5:3.8b and Phi3:3.8b performed moderately with scores of 0.333, while Gemma2:2b achieved 0.413. Notably, Llama3.2:3b outperformed all expectations with a score of 0.508, surpassing even some medium and large models.2) Answer Faithfulness: Answer faithfulness as shown in Figure 2 measures whether the responses remain consistent with the retrieved content, avoiding inaccuracies or hallucinations. • Large Models (Red): The large models dominated this metric, with Llama3.2:3b (exceptionally performing despite its small category) achieving the top score of 4.619. Llama3:70b and Llama3.1:70b scored 4.571 and 4.476, respectively, while Gemma2:27b and QwQ:32b followed with scores of 4.238 and 4.095. Their ability to maintain faithfulness highlights the advantages of larger parameter sizes.• Medium Models (Yellow): The medium models showed reliable performance, with Gemma2:9b scoring 4.143 and Llama3:8b achieving 3.762. Llama3.1:8b, while consistent, lagged slightly behind with 3.238. These models balanced faithfulness and efficiency but struggled with queries requiring deep contextual reasoning.• Small Models (Green): The small models faced significant challenges. Llama3.2:1b recorded the lowest faithfulness score of 1.381, and Phi3.5:3.8b achieved 2.000, indicating frequent inconsistencies. While Phi3:3.8b scored slightly higher at 2.476, Llama3.2:3b stood out with a score of 4.619, showcasing exceptional faithfulness that rivaled larger models.3) Answer Relevance: Answer relevance as shown in Figure 3 assesses whether the generated responses address the query's intent effectively. • Large Models (Red): The Llama3.2:3b, while classified as small, achieved the highest relevance score of 4.857, followed closely by Llama3:70b and Llama3.1:70b, both scoring 4.571. Gemma2:27b and QwQ:32b continued to perform well, with scores of 4.381 and 4.095, respectively. These models consistently delivered relevant responses aligned with the intent behind complex queries.• Medium Models (Yellow): The medium models provided strong performance, particularly Gemma2:9b, which achieved 4.143. Llama3:8b followed with 3.810, and Llama3.1:8b recorded a slightly lower score of 3.238. These models addressed moderately complex queries effectively but occasionally lacked depth.• Small Models (Green): The small models exhibited varied performance, with Llama3.2:1b scoring the lowest at 1.381. Phi3.5:3.8b and Phi3:3.8b recorded scores of 2.000 and 2.476, respectively, indicating challenges in providing fully relevant responses. However, Llama3.2:3b once again stood out, achieving the highest score of 4.857, performing on par with the best large models. 4) Intercoder Agreement:We assessed intercoder agreement, which measures the extent to which evaluators within the same group report the same evaluation for a given instance. To compute this metric, we examined the percentage of instances where both evaluators assigned identical evaluation scores independently. This measure enabled us to evaluate the degree of concordance between evaluators and assess their consistency in evaluation. In Table I, we delve into the inter-annotator agreement analysis, which measures the level of agreement between human evaluators across different models using Fleiss' Kappa. This indicates a similar level of agreement between the evaluators. IV. DISCUSSIONThis section discusses the experimental findings, analyzing the performance of various LLMs categorized into large, medium, and small models across the three evaluation metrics: context relevance, answer faithfulness, and answer relevance [14]. This study examines the relationship among model size, response quality, and computational trade-offs, as well as the behavior of models within the Retrieval-Augmented Generation (RAG) framework. A. Performance Insights Based on Model SizeThe experimental results show that the quality of the responses across all three evaluation criteria is significantly affected by the model size.• Large Models (Red): Large models, including Llama3:70b, Llama3.1:70b, Llama3.3:70b, Gemma2:27b, and QwQ:32b, consistently demonstrate superior performance compared to medium and small models. The models demonstrated superior context relevance due to their larger parameter sizes [39], which facilitate a deeper semantic understanding and enhance their ability to retrieve and integrate pertinent information. Furthermore, their enhanced performance in answer faithfulness and relevance indicates that large models are more adept at minimizing hallucinations [40] and producing responses that accurately address user queries. However, their computational demands remain a major trade-off, requiring substantial memory and processing power. This limits their accessibility in resource-constrained environments, making them more suitable for high-performance systems.• Medium Models (Yellow): Medium-sized models like Gemma2:9b, Llama3:8b, and Llama3.1:8b demonstrated strong performance relative to their parameter sizes, particularly in answer faithfulness and relevance. These models provide a balance between computational efficiency and response quality, making them ideal for systems where resources are limited but accuracy cannot be compromised. However, their performance in context relevance was slightly lower than that of large models, indicating limitations in capturing deeper relationships within the data. Medium models present a viable option for applications requiring moderate precision while maintaining resource efficiency.• Small Models (Green): The small models, including Llama3.2:3b, Llama3.2:1b, Gemma2:2b, Phi3:3.8b, and Phi3.5:3.8b, faced significant challenges in delivering high-quality responses. Models like Llama3.2:1b and Phi3.5:3.8b scored the lowest across all metrics, reflecting their inability to process complex queries effectively due to their smaller parameter size. Interestingly, Llama3.2:3b emerged as an outlier, achieving performance levels comparable to the large models, particularly in answer faithfulness (4.619) and answer relevance (4.857). This unexpected performance demonstrates the efficacy of architectural improvements and pre-training techniques, even on smaller models. Although small models are computationally efficient and well-suited for lightweight tasks [41], their overall limitations render them less suitable for complex queries that necessitate a deep comprehension of semantics. B. Effectiveness of the RAG FrameworkThe implementation of the Retrieval-Augmented Generation (RAG) framework significantly enhanced the response quality of the evaluated models [42]. By incorporating external knowledge from the descriptive Qur'anic dataset, the models can retrieve pertinent information prior to formulating responses. This method alleviated the prevalent issue of hallucination, where language models produce factually inaccurate or irrelevant responses.The results demonstrate that the larger models derived the greatest advantage from the RAG framework, as their higher parameter sizes facilitated more effective integration of the retrieved context, resulting in enhanced performance across all metrics. Medium and small models showed enhancements, nevertheless, their capacity limitation affected the integration of retrieved knowledge, leading to lower context alignment and fewer accurate responses. C. Trade-Off Between Computational Resources and Response QualityThe results of this research highlight the trade-off between response quality and computational efficiency throughout several model sizes.• Large Models deliver outstanding performance but they are less practical for real-time or cost-sensitive installations since they need large computational resources.• Medium Models fit for uses with intermediate hardware availability since they offer a useful compromise between dependability of performance and low resource usage.• Small Models are quick and light-weight, yet they usually underperform on jobs needing sophisticated thinking. Nonetheless, the unexpected findings in Llama3.2:3b suggest that smaller models can still show good performance.This trade-off emphasizes the need of choosing the suitable model size depending on particular application criteria including accuracy, speed, and resource availability. D. Surprising Performance of Llama3.2:3bThis study's outstanding discovery is the exceptional performance of Llama3.2:3b, despite its classification as a small model. It outperformed a number of medium and even big models, achieving the highest results in answer faithfulness and answer relevance. According to this finding, factors including pre-training quality, data efficiency, and architectural upgrades can have an impact on model performance, in addition to parameter size. The potential for smaller models to produce high-quality outputs in resource-efficient environments is underscored by the robust performance of Llama3.2:3b when used in conjunction with effective frameworks such as RAG. E. Implications for Domain-Specific TasksThe research emphasizes both the difficulties and potential benefits of utilizing general-purpose LLMs for specialized tasks, including responding to inquiries about quranic studies. Although large models excelled in aligning responses with the given dataset, their effectiveness is significantly dependent on the quality and organization of the retrieved content. This research demonstrates how important it is to add domain-specific knowledge [4], like curated descriptive datasets, to improve the models' abilities and lower the risk of hallucinations. The RAG framework proved to be an effective technique for ensuring that responses were contextually correct and based on credible sources.The experimental results offer important insights into the performance of LLMs of different sizes. Large models provide exceptional accuracy and relevance, though they require significant resources, whereas medium models offer a practical compromise between performance and efficiency. Smaller models, while typically less powerful, demonstrated surprising potential, especially Llama3.2:3b, which excelled across various metrics. The use of the RAG framework enhanced the models' performance by reducing hallucinations and grounding responses in reliable data. These findings highlight the importance of model selection, optimization strategies, and retrieval mechanisms when applying LLMs to domain-specific tasks. Future work will include conducting an ablation study to compare the performance of models with and without the RAG framework, evaluating additional large language models (LLMs), and leveraging LLMs for automatic evaluation of answer faithfulness and answer relevance metrics. Additional fine-tuning strategies and assessments in other specialized domains can also be explored. V.",
+    "discussion": "",
+    "conclusion": "CONCLUSIONSThis study evaluated multiple large language models (LLMs) of different sizes in responding to Quranic studiesrelated queries using a Retrieval-Augmented Generation (RAG) framework. The findings indicate that large models, such as Llama3:70b, Llama3.1:70b, and Gemma2:27b, consistently delivered superior performance in context relevance, answer faithfulness, and answer relevance. However, their computational demands pose challenges for practical deployment. Medium-sized models, including Gemma2:9b and Llama3:8b, demonstrated a balance between efficiency and performance, making them suitable for moderately complex tasks. Interestingly, Llama3.2:3b, a small model, performed comparably to larger models in certain aspects, particularly in answer faithfulness and relevance, suggesting that architectural optimizations can enhance the capabilities of smaller models.The study also highlights the importance of the RAG framework in improving response quality by grounding answers in external domain-specific knowledge, reducing hallucinations, and ensuring more reliable outputs. These findings emphasize the trade-offs between model size, performance, and computational efficiency, indicating that while large models are ideal for high-accuracy tasks, smaller models, when optimized, can serve as viable alternatives. Future research can focus on further optimizations, fine-tuning strategies, and expanding dataset diversity to enhance model performance across different applications.1 )1Context Relevance: Context relevance as shown in Figure 1 evaluates how well the generated responses align with the query's context. • Large Models (Red): The large models outperformed other categories, with Llama3.3:70b achieving the highest score of 0.583, followed by Llama3.2:3b Fig. 1 .1Fig. 1. Context Relevance by the 13 LLMs. Fig. 2 .2Fig. 2. Answer Faithfulness by the 13 LLMs. Fig. 3 .3Fig. 3. Answer Relevance by the 13 LLMs. TABLE II.THE KAPPA VALUES FOR THE EVALUATIONCreatorModelEvaluatorMetaLlama 3.3 70B0.80MetaLlama 3.2 3B0.90MetaLlama 3.2 1B0.82MetaLlama 3.1 70B0.82MetaLlama 3.1 8B0.85MetaLlama 3 70B0.92MetaLlama 3 8B0.80GoogleGemma 2 27B0.90GoogleGemma 2 9B0.92GoogleGemma 2 2B0.83MicrosoftPhi 3.5 3.8B0.83MicrosoftPhi 3.3 3.8B0.93AlibabaQwQ 32B0.89 www.ijacsa.thesai.org"
+  },
+  "references": [
+    {
+      "id": "b0",
+      "title": "A review on large language models: Architectures, applications, taxonomies, open issues and challenges",
+      "authors": [
+        "Raiaan",
+        "Mukta",
+        "Fatema",
+        "Fahad",
+        "Sakib",
+        "Mim",
+        "Ahmad",
+        "Ali",
+        "Azam"
+      ],
+      "year": "2024",
+      "venue": "IEEE Access"
+    },
+    {
+      "id": "b1",
+      "title": "Chatgpt label: Comparing the quality of human-generated and llm-generated annotations in low-resource language nlp tasks",
+      "authors": [
+        "Nasution",
+        "Onan"
+      ],
+      "year": "2024",
+      "venue": "IEEE Access"
+    },
+    {
+      "id": "b2",
+      "title": "Is gpt-4 a good islamic expert for answering quran questions",
+      "authors": [
+        "Alnefaie",
+        "Atwell",
+        "Alsalka"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the 35th Conference on Computational Linguistics and Speech Processing"
+    },
+    {
+      "id": "b3",
+      "title": "Gastrobot: a chinese gastrointestinal disease chatbot based on the retrieval-augmented generation",
+      "authors": [
+        "Zhou",
+        "Liu",
+        "Duan",
+        "Sun",
+        "Li",
+        "Kan",
+        "Gu",
+        "Shu",
+        "Hu"
+      ],
+      "year": "2024",
+      "venue": "Frontiers in Medicine"
+    },
+    {
+      "id": "b4",
+      "title": "",
+      "authors": [
+        "Pipitone",
+        "Alami"
+      ],
+      "year": "2024",
+      "venue": "Legalbench-rag: A benchmark for retrieval-augmented generation in the legal domain"
+    },
+    {
+      "id": "b5",
+      "title": "Challenges and opportunities for arabic question-answering systems: current techniques and future directions",
+      "authors": [
+        "Alrayzah",
+        "Alsolami",
+        "Saleh"
+      ],
+      "year": "1633",
+      "venue": "PeerJ Computer Science"
+    },
+    {
+      "id": "b6",
+      "title": "A survey on rag meeting llms: Towards retrieval-augmented large language models",
+      "authors": [
+        "Fan",
+        "Ding",
+        "Ning",
+        "Wang",
+        "Li",
+        "Yin",
+        "Chua",
+        "Li"
+      ],
+      "year": "2024",
+      "venue": "Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining"
+    },
+    {
+      "id": "b7",
+      "title": "",
+      "authors": [
+        "Sun",
+        "Zang",
+        "Zheng",
+        "Song",
+        "Xu",
+        "Zhang",
+        "Yu",
+        "Li"
+      ],
+      "year": "2024",
+      "venue": "Redeep: Detecting hallucination in retrieval-augmented generation via mechanistic interpretability"
+    },
+    {
+      "id": "b8",
+      "title": "",
+      "authors": [
+        "Patel",
+        "Kane",
+        "Patel"
+      ],
+      "year": "2023",
+      "venue": "Building domain-specific llms faithful to the islamic worldview: Mirage or technical possibility?"
+    },
+    {
+      "id": "b9",
+      "title": "",
+      "authors": [
+        "Radi"
+      ],
+      "year": "2023",
+      "venue": "Al-Bitaqat: Chapters of the Noble Quran Explored in 114 Cards"
+    },
+    {
+      "id": "b10",
+      "title": "Enhancing rag-retrieval to improve llms robustness and resilience to hallucinations",
+      "authors": [
+        "Njeh",
+        "Nakouri",
+        "Jaafar"
+      ],
+      "year": "2024",
+      "venue": "International Conference on Hybrid Artificial Intelligence Systems"
+    },
+    {
+      "id": "b11",
+      "title": "Retrievalaugmented generation for knowledge-intensive nlp tasks",
+      "authors": [
+        "Lewis",
+        "Perez",
+        "Piktus",
+        "Petroni",
+        "Karpukhin",
+        "Goyal",
+        "Küttler",
+        "Lewis",
+        "-T. Yih",
+        "Rocktäschel"
+      ],
+      "year": "2020",
+      "venue": "Advances in Neural Information Processing Systems"
+    },
+    {
+      "id": "b12",
+      "title": "Language models are few-shot learners",
+      "authors": [
+        "Brown",
+        "Mann",
+        "Ryder",
+        "Subbiah",
+        "Kaplan",
+        "Dhariwal",
+        "Neelakantan",
+        "Shyam",
+        "Sastry",
+        "Askell"
+      ],
+      "year": "2020",
+      "venue": "Advances in neural information processing systems"
+    },
+    {
+      "id": "b13",
+      "title": "",
+      "authors": [
+        "Gao",
+        "Xiong",
+        "Gao",
+        "Jia",
+        "Pan",
+        "Bi",
+        "Dai",
+        "Sun",
+        "Wang"
+      ],
+      "year": "2023",
+      "venue": "Retrieval-augmented generation for large language models: A survey"
+    },
+    {
+      "id": "b14",
+      "title": "",
+      "authors": [
+        "Kamalloo",
+        "Dziri",
+        "Clarke",
+        "Rafiei"
+      ],
+      "year": "2023",
+      "venue": "Evaluating opendomain question answering in the era of large language models"
+    },
+    {
+      "id": "b15",
+      "title": "",
+      "authors": [
+        "Zhou",
+        "Liu",
+        "Li",
+        "Jin",
+        "Qian",
+        "Liu",
+        "Li",
+        "Dou",
+        "Ho",
+        "Yu"
+      ],
+      "year": "2024",
+      "venue": "Trustworthiness in retrieval-augmented generation systems: A survey"
+    },
+    {
+      "id": "b16",
+      "title": "",
+      "authors": [
+        "Patel",
+        "Kane",
+        "Patel"
+      ],
+      "year": "2023",
+      "venue": "Building domain-specific llms faithful to the islamic worldview: Mirage or technical possibility?"
+    },
+    {
+      "id": "b17",
+      "title": "",
+      "authors": [
+        "Gupta",
+        "Ranjan",
+        "Singh"
+      ],
+      "year": "2024",
+      "venue": "A comprehensive survey of retrieval-augmented generation (rag): Evolution, current landscape and future directions"
+    },
+    {
+      "id": "b18",
+      "title": "",
+      "authors": [],
+      "year": "2024",
+      "venue": "Datasets for large language models: A comprehensive survey"
+    },
+    {
+      "id": "b19",
+      "title": "Qasina: Religious domain question answering using sirah nabawiyah",
+      "authors": [
+        "Rizqullah",
+        "Purwarianti",
+        "Aji"
+      ],
+      "year": "2023",
+      "venue": "2023 10th International Conference on Advanced Informatics: Concept, Theory and Application (ICAICTA)"
+    },
+    {
+      "id": "b20",
+      "title": "Evaluating the potential of artificial intelligence in islamic religious education: A swot analysis overview",
+      "authors": [
+        "Abubakari",
+        "Shafik",
+        "Hidayatullah"
+      ],
+      "year": "2024",
+      "venue": "AI-Enhanced Teaching Methods"
+    },
+    {
+      "id": "b21",
+      "title": "",
+      "authors": [
+        "Han",
+        "Liu",
+        "Wang"
+      ],
+      "year": "2023",
+      "venue": "A comprehensive survey on vector database: Storage and retrieval technique, challenge"
+    },
+    {
+      "id": "b22",
+      "title": "",
+      "authors": [
+        "Jing",
+        "Su",
+        "Han",
+        "Yuan",
+        "Xu",
+        "Liu",
+        "Chen",
+        "Zhang"
+      ],
+      "year": "2024",
+      "venue": "When large language models meet vector databases: A survey"
+    },
+    {
+      "id": "b23",
+      "title": "Improving the domain adaptation of retrieval augmented generation (rag) models for open domain question answering",
+      "authors": [
+        "Siriwardhana",
+        "Weerasekera",
+        "Wen",
+        "Kaluarachchi",
+        "Rana",
+        "Nanayakkara"
+      ],
+      "year": "2023",
+      "venue": "Transactions of the Association for Computational Linguistics"
+    },
+    {
+      "id": "b24",
+      "title": "",
+      "authors": [
+        "Alan",
+        "Karaarslan",
+        "Aydin"
+      ],
+      "year": "2024",
+      "venue": "A rag-based question answering system proposal for understanding islam: Mufassirqas llm"
+    },
+    {
+      "id": "b25",
+      "title": "",
+      "authors": [
+        "Tam",
+        "Mascarenhas",
+        "Zhang",
+        "Kwan",
+        "Bansal",
+        "Raffel"
+      ],
+      "year": "2022",
+      "venue": "Evaluating the factual consistency of large language models through summarization"
+    },
+    {
+      "id": "b26",
+      "title": "",
+      "authors": [
+        "Zhou",
+        "Zhang",
+        "Poon",
+        "Chen"
+      ],
+      "year": "2023",
+      "venue": "Context-faithful prompting for large language models"
+    },
+    {
+      "id": "b27",
+      "title": "Evaluating open-qa evaluation",
+      "authors": [
+        "Wang",
+        "Cheng",
+        "Guo",
+        "Yue",
+        "Ding",
+        "Xu",
+        "Wang",
+        "Hu",
+        "Zhang",
+        "Zhang"
+      ],
+      "year": "2024",
+      "venue": "Advances in Neural Information Processing Systems"
+    },
+    {
+      "id": "b28",
+      "title": "",
+      "authors": [
+        "Huang",
+        "Chen",
+        "Cai",
+        "Dhingra"
+      ],
+      "year": "2024",
+      "venue": "Enhancing large language models' situated faithfulness to external contexts"
+    },
+    {
+      "id": "b29",
+      "title": "",
+      "authors": [
+        "Monir",
+        "Lau",
+        "Yang",
+        "Zhao"
+      ],
+      "year": "2024",
+      "venue": "Vectorsearch: Enhancing document retrieval with semantic embeddings and optimized search"
+    },
+    {
+      "id": "b30",
+      "title": "",
+      "authors": [
+        "Elangovan",
+        "Liu",
+        "Xu",
+        "Bodapati",
+        "Roth"
+      ],
+      "year": "2024",
+      "venue": "Considersthe-human evaluation framework: Rethinking human evaluation for generative large language models"
+    },
+    {
+      "id": "b31",
+      "title": "",
+      "authors": [
+        "Feng",
+        "Ding",
+        "Ma",
+        "Wang",
+        "Zhang",
+        "Chen"
+      ],
+      "year": "2024",
+      "venue": "Sampleefficient human evaluation of large language models via maximum discrepancy competition"
+    },
+    {
+      "id": "b32",
+      "title": "",
+      "authors": [
+        "Moons",
+        "Vandervieren"
+      ],
+      "year": "2023",
+      "venue": "Measuring agreement among several raters classifying subjects into one-or-more (hierarchical) nominal categories. a generalisation of fleiss' kappa"
+    },
+    {
+      "id": "b33",
+      "title": "",
+      "authors": [
+        "Islam",
+        "Rahman",
+        "Hossain",
+        "Hoque",
+        "Joty",
+        "Parvez"
+      ],
+      "year": "2024",
+      "venue": "Open-rag: Enhanced retrieval-augmented reasoning with opensource large language models"
+    },
+    {
+      "id": "b34",
+      "title": "",
+      "authors": [
+        "Touvron",
+        "Lavril",
+        "Izacard",
+        "Martinet",
+        "Lachaux",
+        "Lacroix",
+        "Rozière",
+        "Goyal",
+        "Hambro",
+        "Azhar"
+      ],
+      "year": "2023",
+      "venue": "Llama: Open and efficient foundation language models"
+    },
+    {
+      "id": "b35",
+      "title": "",
+      "authors": [
+        "Team",
+        "Riviere",
+        "Pathak",
+        "Sessa",
+        "Hardin",
+        "Bhupatiraju",
+        "Hussenot",
+        "Mesnard",
+        "Shahriari",
+        "Ramé"
+      ],
+      "year": "2024",
+      "venue": "Gemma 2: Improving open language models at a practical size"
+    },
+    {
+      "id": "b36",
+      "title": "",
+      "authors": [
+        "Bai",
+        "Bai",
+        "Chu",
+        "Cui",
+        "Dang",
+        "Deng",
+        "Fan",
+        "Ge",
+        "Han",
+        "Huang"
+      ],
+      "year": "2023",
+      "venue": "Qwen technical report"
+    },
+    {
+      "id": "b37",
+      "title": "",
+      "authors": [
+        "Abdin",
+        "Aneja",
+        "Awadalla",
+        "Awadallah",
+        "Awan",
+        "Bach",
+        "Bahree",
+        "Bakhtiari",
+        "Bao",
+        "Behl"
+      ],
+      "year": "2024",
+      "venue": "Phi-3 technical report: A highly capable language model locally on your phone"
+    },
+    {
+      "id": "b38",
+      "title": "",
+      "authors": [
+        "Badshah",
+        "Sajjad"
+      ],
+      "year": "2024",
+      "venue": "Quantifying the capabilities of llms across scale and precision"
+    },
+    {
+      "id": "b39",
+      "title": "",
+      "authors": [
+        "Tonmoy",
+        "Zaman",
+        "Jain",
+        "Rani",
+        "Rawte",
+        "Chadha",
+        "Das"
+      ],
+      "year": "2024",
+      "venue": "A comprehensive survey of hallucination mitigation techniques in large language models"
+    },
+    {
+      "id": "b40",
+      "title": "",
+      "authors": [
+        "Chen",
+        "Varoquaux"
+      ],
+      "year": "2024",
+      "venue": "What is the role of small models in the llm era: A survey"
+    },
+    {
+      "id": "b41",
+      "title": "",
+      "authors": [
+        "Su",
+        "Gu"
+      ],
+      "year": "2024",
+      "venue": "Implementing retrieval-augmented generation (rag) for large language models to build confidence in traditional chinese medicine"
+    }
+  ],
+  "metadata": {
+    "year": "2025",
+    "doi": "",
+    "venue": "",
+    "processed_at": "2025-12-06T01:04:42.809382"
+  }
+}

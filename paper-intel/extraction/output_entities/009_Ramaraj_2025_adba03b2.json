@@ -1,0 +1,57 @@
+[
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_1",
+    "type": "Model",
+    "name": "GoogleNet Inception v3",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_2",
+    "type": "Dataset",
+    "name": "Dermoscopy and Photographic Images",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_3",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_4",
+    "type": "Method",
+    "name": "Transfer Learning",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_5",
+    "type": "Task",
+    "name": "Skin Cancer Classification",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_6",
+    "type": "Paper",
+    "name": "Esteva et al. 2017",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_7",
+    "type": "Author",
+    "name": "Esteva",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2"
+  },
+  {
+    "id": "E_009_Ramaraj_2025_adba03b2_8",
+    "type": "Result",
+    "name": "Accuracy=dermatologist-level on Dermoscopy and Photographic Images",
+    "source_paper_id": "009_Ramaraj_2025_adba03b2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "dermatologist-level",
+      "dataset": "Dermoscopy and Photographic Images",
+      "experiment_description": "Classifying skin cancer from clinical images",
+      "improvement_over_baseline": ""
+    }
+  }
+]

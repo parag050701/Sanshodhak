@@ -1,0 +1,100 @@
+{
+  "paper_id": "030_Bahr_2025_01879ac7",
+  "triples": [
+    [
+      "ISO/IEC 31010",
+      "CITES",
+      "Serrat"
+    ],
+    [
+      "ISO/IEC 31010",
+      "CITES",
+      "Ruijters"
+    ],
+    [
+      "ISO/IEC 31010",
+      "CITES",
+      "Stoelinga"
+    ],
+    [
+      "ISO/IEC 31010",
+      "CITES",
+      "Schmitt"
+    ],
+    [
+      "ISO/IEC 31010",
+      "CITES",
+      "Pfeife"
+    ],
+    [
+      "FMEA",
+      "ACHIEVES_RESULT",
+      "Risk assessment in manufacturing"
+    ],
+    [
+      "FMEA",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "FMEA",
+      "REPORTS_METRIC",
+      "Context recall"
+    ],
+    [
+      "FMEA",
+      "REPORTS_METRIC",
+      "Precision"
+    ],
+    [
+      "KG-RAG",
+      "ACHIEVES_RESULT",
+      "KG-enhanced RAG framework"
+    ],
+    [
+      "KG-RAG",
+      "REPORTS_METRIC",
+      "KG graph query"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Context recall=85.6% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Precision=92.1% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 14,
+    "relation_count": 15,
+    "triple_count": 15,
+    "extracted_at": "2025-12-06T02:44:04.951928"
+  },
+  "paper_metadata": {
+    "title": "Knowledge graph enhanced retrieval-augmented generation for failure mode and effects analysis",
+    "authors": [
+      "Lukas Bahr",
+      "Christoph Wehner",
+      "Judith Wewerka",
+      "José Bittencourt",
+      "Ute Schmid",
+      "Rüdiger Daub",
+      "Mann",
+      "Herbert-Voss Agarwal"
+    ],
+    "year": "2025"
+  }
+}

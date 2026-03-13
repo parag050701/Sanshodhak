@@ -1,0 +1,76 @@
+{
+  "paper_id": "007_Zhu_2025_e53c7a14",
+  "triples": [
+    [
+      "LLMs",
+      "USES_MODEL",
+      "Retrieval Augmented Generation (RAG)"
+    ],
+    [
+      "Retrieval Augmented Generation (RAG)",
+      "USES_METHOD",
+      "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)"
+    ],
+    [
+      "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+      "CITES",
+      "Data Intelligence 2"
+    ],
+    [
+      "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+      "AUTHORED_BY",
+      "Multiple Authors"
+    ],
+    [
+      "Retrieval Augmented Generation (RAG)",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Retrieval Augmented Generation (RAG)",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BLEU=Not specified on Not specified",
+      "REPORTS_METRIC",
+      "BLEU"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 11,
+    "relation_count": 11,
+    "triple_count": 11,
+    "extracted_at": "2025-12-06T02:44:46.018015"
+  },
+  "paper_metadata": {
+    "title": "A Benchmark Dataset with Larger Context for Non-Factoid Question-Answering over Islamic Text",
+    "authors": [
+      "Faiza Qamar",
+      "Seemab Latif",
+      "Nor Jamail",
+      "Rabia Latif"
+    ],
+    "year": "2025"
+  }
+}

@@ -1,0 +1,1161 @@
+{
+  "paper_id": "003_Unknown_2025_463160c3",
+  "triples": [
+    [
+      "RAG",
+      "USES_METHOD",
+      "Information retrieval"
+    ],
+    [
+      "RAG",
+      "USES_METHOD",
+      "Text generation"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Knowledge bases"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Documents"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Vector databases"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Reliability"
+    ],
+    [
+      "Gao et al., 2023",
+      "CITES",
+      "RAG"
+    ],
+    [
+      "Yu, 2022",
+      "CITES",
+      "RAG"
+    ],
+    [
+      "S¸evket Polan",
+      "AUTHORED_BY",
+      "RAG"
+    ],
+    [
+      "S¸evket Polan",
+      "AUTHORED_BY",
+      "Gao et al., 2023"
+    ],
+    [
+      "S¸evket Polan",
+      "AUTHORED_BY",
+      "Yu, 2022"
+    ],
+    [
+      "RAG Architecture",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "precision"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "recall"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "normalized cumulative gain (NDCG)"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "RAGAS"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "ROUGE"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "RAG Architecture",
+      "REPORTS_METRIC",
+      "BERTScore"
+    ],
+    [
+      "RAG Architecture",
+      "CITES",
+      "Khattab et al., 2022"
+    ],
+    [
+      "RAG Architecture",
+      "AUTHORED_BY",
+      "Khattab"
+    ],
+    [
+      "LLM",
+      "EVALUATES_ON",
+      "dataset"
+    ],
+    [
+      "Embedding",
+      "USES_MODEL",
+      "LLM"
+    ],
+    [
+      "Embedding",
+      "USES_METHOD",
+      "dataset"
+    ],
+    [
+      "Text Retrieval",
+      "STUDIES_TASK",
+      "dataset"
+    ],
+    [
+      "Text Retrieval",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "Text Retrieval",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Text Retrieval",
+      "CITES",
+      "Journal of Modern Technology and Engineering"
+    ],
+    [
+      "Text Retrieval",
+      "AUTHORED_BY",
+      "Unknown"
+    ],
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "Wikipedia"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "BM25",
+      "REPORTS_METRIC",
+      "TF-IDF"
+    ],
+    [
+      "BERT-based embedding model",
+      "REPORTS_METRIC",
+      "Cosine similarity"
+    ],
+    [
+      "BM25",
+      "USES_METHOD",
+      "BM25"
+    ],
+    [
+      "BERT-based embedding model",
+      "USES_METHOD",
+      "embedding-based dense retrieval"
+    ],
+    [
+      "Wikipedia",
+      "USES_DATASET",
+      "BERT"
+    ],
+    [
+      "knowledge graph",
+      "USES_DATASET",
+      "BERT-based embedding model"
+    ],
+    [
+      "Es et al., 2024",
+      "CITES",
+      "BM25"
+    ],
+    [
+      "Gao et al., 2023",
+      "CITES",
+      "BERT-based embedding model"
+    ],
+    [
+      "Ram et al., 2023",
+      "CITES",
+      "BM25"
+    ],
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Wang et al., 2025"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Chen et al., 2024"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Miao et al., 2024"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Wu et al., 2024"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Gao et al., 2023"
+    ],
+    [
+      "RoBERTa",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "RoBERTa",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "OpenAI's ada-002",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "OpenAI's ada-002",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "GPT-3",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "GPT-3",
+      "ACHIEVES_RESULT",
+      "ImageNet"
+    ],
+    [
+      "Wang et al. (2025)",
+      "CITES",
+      "GPT-3"
+    ],
+    [
+      "Borgeaud et al. (2022)",
+      "ACHIEVES_RESULT",
+      "Accuracy"
+    ],
+    [
+      "Borgeaud et al. (2022)",
+      "ACHIEVES_RESULT",
+      "DeepMind’s RETRO study"
+    ],
+    [
+      "Gao et al. (2023)",
+      "STUDIES_TASK",
+      "LLM"
+    ],
+    [
+      "Shi et al. (2024)",
+      "STUDIES_TASK",
+      "LLM"
+    ],
+    [
+      "Weaviate",
+      "EVALUATES_ON",
+      "GPT-3"
+    ],
+    [
+      "Qdrant",
+      "EVALUATES_ON",
+      "GPT-3"
+    ],
+    [
+      "Pinecone",
+      "EVALUATES_ON",
+      "GPT-3"
+    ],
+    [
+      "GPT-3",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "GPT-3",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Mallen et al. (2023)"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Liu et al. (2023)"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Khattab et al. (2022)"
+    ],
+    [
+      "GPT-3",
+      "ACHIEVES_RESULT",
+      "6.3% improvement"
+    ],
+    [
+      "GPT-3",
+      "ACHIEVES_RESULT",
+      "92.4% accuracy"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "language modeling"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "multi-step reasoning"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "Image classification"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "Machine translation"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "REPLUG",
+      "EVALUATES_ON",
+      "RAG"
+    ],
+    [
+      "Augmentation-Adapted Retriever (AAR)",
+      "EVALUATES_ON",
+      "Yu et al. (2024)"
+    ],
+    [
+      "Iterative refinement",
+      "EVALUATES_ON",
+      "SelfCheckGPT"
+    ],
+    [
+      "SelfCheckGPT",
+      "EVALUATES_ON",
+      "FactScore"
+    ],
+    [
+      "FactScore",
+      "EVALUATES_ON",
+      "Min et al. (2023)"
+    ],
+    [
+      "POLAN",
+      "AUTHORED_BY",
+      "RETRIEVAL-AUGMENTED GENERATION: ARCHITECTURE..."
+    ],
+    [
+      "Lewis",
+      "CITES",
+      "Yu et al. (2024)"
+    ],
+    [
+      "Yu et al. (2024)",
+      "CITES",
+      "Min et al. (2023)"
+    ],
+    [
+      "Khattab et al. (2022)",
+      "CITES",
+      "Manakul et al. (2023)"
+    ],
+    [
+      "Manakul et al. (2023)",
+      "CITES",
+      "Min et al. (2023)"
+    ],
+    [
+      "Min et al. (2023)",
+      "CITES",
+      "ChatGPT"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "precision"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "recall"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Top-n Precision"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Mean Average Precision (MAP)"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Normalized Discounted Cumulative Gain (NDCG)"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "ROUGE"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "BLEU"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "BERTScore"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "Es et al., 2024"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "Yu et al., 2024"
+    ],
+    [
+      "precision",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "recall",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "Top-n Precision",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "Mean Average Precision (MAP)",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "Normalized Discounted Cumulative Gain (NDCG)",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "ROUGE",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "BLEU",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "BERTScore",
+      "REPORTS_METRIC",
+      "RAG"
+    ],
+    [
+      "GPT-4",
+      "EVALUATES_ON",
+      "ROUGE"
+    ],
+    [
+      "GPT-4",
+      "EVALUATES_ON",
+      "FactScore"
+    ],
+    [
+      "GPT-4",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "GPT-4",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "retrieval-augmented generation",
+      "USES_MODEL",
+      "GPT-4"
+    ],
+    [
+      "retrieval-augmented generation",
+      "USES_METHOD",
+      "FactScore"
+    ],
+    [
+      "retrieval-augmented generation",
+      "USES_METHOD",
+      "ROUGE"
+    ],
+    [
+      "retrieval-augmented generation",
+      "USES_DATASET",
+      "ImageNet"
+    ],
+    [
+      "retrieval-augmented generation",
+      "USES_DATASET",
+      "GLUE"
+    ],
+    [
+      "FactScore",
+      "REPORTS_METRIC",
+      "GPT-4"
+    ],
+    [
+      "ROUGE",
+      "REPORTS_METRIC",
+      "GPT-4"
+    ],
+    [
+      "FactScore",
+      "REPORTS_METRIC",
+      "ImageNet"
+    ],
+    [
+      "FactScore",
+      "REPORTS_METRIC",
+      "GLUE"
+    ],
+    [
+      "ROUGE",
+      "REPORTS_METRIC",
+      "ImageNet"
+    ],
+    [
+      "ROUGE",
+      "REPORTS_METRIC",
+      "GLUE"
+    ],
+    [
+      "GPT-4",
+      "AUTHORED_BY",
+      "POLAN: RETRIEVAL-AUGMENTED GENERATION: ARCHITECTURE"
+    ],
+    [
+      "retrieval-augmented generation",
+      "STUDIES_TASK",
+      "language generation"
+    ],
+    [
+      "retrieval-augmented generation",
+      "STUDIES_TASK",
+      "Information retrieval"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG) Systems",
+      "USES_METHOD",
+      "Hallucination problem"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG) Systems",
+      "USES_METHOD",
+      "Dynamic data indexing"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG) Systems",
+      "USES_METHOD",
+      "Modular RAG paradigm"
+    ],
+    [
+      "Gao et al. (2023)",
+      "CITES",
+      "Retrieval-Augmented Generation (RAG) Systems"
+    ],
+    [
+      "Gao et al. (2023)",
+      "AUTHORED_BY",
+      "Modular RAG paradigm"
+    ],
+    [
+      "Gao et al. (2023)",
+      "AUTHORED_BY",
+      "Dynamic data indexing"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "Towards Reliable VDBMS"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "Knowledge-Graph Augmented RAG"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "LLM + Tools approach"
+    ],
+    [
+      "Adaptive RAG",
+      "ACHIEVES_RESULT",
+      "efficient retrieval"
+    ],
+    [
+      "Knowledge-Graph Augmented RAG",
+      "ACHIEVES_RESULT",
+      "structured response"
+    ],
+    [
+      "LLM + Tools approach",
+      "ACHIEVES_RESULT",
+      "dynamic computation power"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "BlenderBot 3"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Shuster et al., 2022",
+      "CITES",
+      "RAG"
+    ],
+    [
+      "RAG",
+      "ACHIEVES_RESULT",
+      "2024 cancer clinical trials"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "domain-specific applications"
+    ],
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "GPT",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "ResNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "ImageNet",
+      "EVALUATES_ON",
+      "Accuracy"
+    ],
+    [
+      "GLUE",
+      "EVALUATES_ON",
+      "F1-score"
+    ],
+    [
+      "ImageNet",
+      "EVALUATES_ON",
+      "BLEU"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "FactScore"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "Integrating retrieval-augmented generation with large language models in nephrology: Advancing practical applications"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "In-context retrieval-augmented language models"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "REPLUG: Retrieval-augmented black-box language models"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "Blenderbot 3: A deployed conversational agent that continually learns to responsibly engage"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "Towards reliable vector database management systems: A software testing roadmap for 2030"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "Evaluation of retrievalaugmented generation: A survey"
+    ],
+    [
+      "KRAGEN",
+      "CITES",
+      "Retrieval-augmented generation across heterogeneous knowledge"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge bases",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge bases",
+      "EVALUATES_ON",
+      "Knowledge bases"
+    ],
+    [
+      "Reliability=enhanced on Documents",
+      "REPORTS_METRIC",
+      "Reliability"
+    ],
+    [
+      "Reliability=enhanced on Documents",
+      "EVALUATES_ON",
+      "Documents"
+    ],
+    [
+      "precision=N/A on FAISS",
+      "REPORTS_METRIC",
+      "precision"
+    ],
+    [
+      "precision=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "recall=N/A on FAISS",
+      "REPORTS_METRIC",
+      "recall"
+    ],
+    [
+      "recall=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "normalized cumulative gain (NDCG)=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "RAGAS=N/A on FAISS",
+      "REPORTS_METRIC",
+      "RAGAS"
+    ],
+    [
+      "RAGAS=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "ROUGE=N/A on FAISS",
+      "REPORTS_METRIC",
+      "ROUGE"
+    ],
+    [
+      "ROUGE=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "BLEU=N/A on FAISS",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "BERTScore=N/A on FAISS",
+      "REPORTS_METRIC",
+      "BERTScore"
+    ],
+    [
+      "BERTScore=N/A on FAISS",
+      "EVALUATES_ON",
+      "FAISS"
+    ],
+    [
+      "Accuracy=92.4% on dataset",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on dataset",
+      "EVALUATES_ON",
+      "dataset"
+    ],
+    [
+      "Accuracy=92.4% on Wikipedia",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Wikipedia",
+      "EVALUATES_ON",
+      "Wikipedia"
+    ],
+    [
+      "TF-IDF=N/A on Wikipedia",
+      "REPORTS_METRIC",
+      "TF-IDF"
+    ],
+    [
+      "TF-IDF=N/A on Wikipedia",
+      "EVALUATES_ON",
+      "Wikipedia"
+    ],
+    [
+      "Cosine similarity=N/A on Wikipedia",
+      "REPORTS_METRIC",
+      "Cosine similarity"
+    ],
+    [
+      "Cosine similarity=N/A on Wikipedia",
+      "EVALUATES_ON",
+      "Wikipedia"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "BLEU=92.1% on ImageNet",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=92.1% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=100% on DeepMind’s RETRO study",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "BLEU=94.2% on ImageNet",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=94.2% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=58% on ChatGPT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Precision=80% on None",
+      "REPORTS_METRIC",
+      "precision"
+    ],
+    [
+      "Recall=80% on None",
+      "REPORTS_METRIC",
+      "recall"
+    ],
+    [
+      "Top-n Precision=None on None",
+      "REPORTS_METRIC",
+      "Top-n Precision"
+    ],
+    [
+      "ROUGE=None on None",
+      "REPORTS_METRIC",
+      "ROUGE"
+    ],
+    [
+      "BLEU=None on None",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BERTScore=None on None",
+      "REPORTS_METRIC",
+      "BERTScore"
+    ],
+    [
+      "ROUGE=high on ImageNet",
+      "REPORTS_METRIC",
+      "ROUGE"
+    ],
+    [
+      "ROUGE=high on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "FactScore=high on GLUE",
+      "REPORTS_METRIC",
+      "FactScore"
+    ],
+    [
+      "FactScore=high on GLUE",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "BLEU=94.2% on Knowledge graphs and databases",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=94.2% on Knowledge graphs and databases",
+      "EVALUATES_ON",
+      "Knowledge graphs and databases"
+    ],
+    [
+      "BLEU=no specific value on BlenderBot 3",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=no specific value on BlenderBot 3",
+      "EVALUATES_ON",
+      "BlenderBot 3"
+    ],
+    [
+      "Accuracy=no specific value on no specific dataset",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "F1-score=85.6% on GLUE",
+      "EVALUATES_ON",
+      "GLUE"
+    ],
+    [
+      "BLEU=94.2% on ImageNet",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=94.2% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 170,
+    "relation_count": 229,
+    "triple_count": 229,
+    "extracted_at": "2025-12-06T02:33:59.071252"
+  },
+  "paper_metadata": {
+    "title": "",
+    "authors": [],
+    "year": ""
+  }
+}

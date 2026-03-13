@@ -1,0 +1,74 @@
+[
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_1",
+    "type": "EVALUATES_ON",
+    "target": "E_026_Raghavan_2025_6dd89b7a_4",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_026_Raghavan_2025_6dd89b7a_6",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_1",
+    "type": "CITES",
+    "target": "E_026_Raghavan_2025_6dd89b7a_8",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_1",
+    "type": "AUTHORED_BY",
+    "target": "E_026_Raghavan_2025_6dd89b7a_8",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_1",
+    "type": "STUDIES_TASK",
+    "target": "Image generation",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "DAiD",
+    "type": "EVALUATES_ON",
+    "target": "E_026_Raghavan_2025_6dd89b7a_4",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "DAiD",
+    "type": "REPORTS_METRIC",
+    "target": "E_026_Raghavan_2025_6dd89b7a_6",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "DAiD",
+    "type": "CITES",
+    "target": "E_026_Raghavan_2025_6dd89b7a_8",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "DAiD",
+    "type": "AUTHORED_BY",
+    "target": "E_026_Raghavan_2025_6dd89b7a_8",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "DAiD",
+    "type": "STUDIES_TASK",
+    "target": "Image generation",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_10",
+    "type": "REPORTS_METRIC",
+    "target": "E_026_Raghavan_2025_6dd89b7a_6",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "source": "E_026_Raghavan_2025_6dd89b7a_10",
+    "type": "EVALUATES_ON",
+    "target": "E_026_Raghavan_2025_6dd89b7a_4",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  }
+]

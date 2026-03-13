@@ -1,0 +1,398 @@
+Review began 06/15/2023 
+Review ended 06/21/2023 
+Published 06/24/2023
+© Copyright 2023
+Li et al. This is an open access article
+distributed under the terms of the Creative
+Commons Attribution License CC-BY 4.0.,
+which permits unrestricted use, distribution,
+and reproduction in any medium, provided
+the original author and source are credited.
+ChatDoctor: A Medical Chat Model Fine-Tuned on
+a Large Language Model Meta-AI (LLaMA) Using
+Medical Domain Knowledge
+Yunxiang Li  , Zihan Li  , Kai Zhang  , Ruilong Dan  , Steve Jiang  , You Zhang 
+1. Department of Radiation Oncology, University of Texas Southwestern Medical Center, Dallas, USA 2. Department of
+Computer Science, University of Illinois at Urbana-Champaign, Illinois, USA 3. Department of Computer Science and
+Engineering, The Ohio State University, Columbus, USA 4. College of Computer Science and Technology, Hangzhou
+Dianzi University, Hangzhou, CHN
+Corresponding author: You Zhang, you.zhang@utsouthwestern.edu
+Abstract
+Objective
+The primary aim of this research was to address the limitations observed in the medical knowledge of
+prevalent large language models (LLMs) such as ChatGPT, by creating a specialized language model with
+enhanced accuracy in medical advice.
+Methods
+We achieved this by adapting and refining the large language model meta-AI (LLaMA) using a large dataset
+of 100,000 patient-doctor dialogues sourced from a widely used online medical consultation platform. These
+conversations were cleaned and anonymized to respect privacy concerns. In addition to the model
+refinement, we incorporated a self-directed information retrieval mechanism, allowing the model to access
+and utilize real-time information from online sources like Wikipedia and data from curated offline medical
+databases.
+Results
+The fine-tuning of the model with real-world patient-doctor interactions significantly improved the model's
+ability to understand patient needs and provide informed advice. By equipping the model with self-directed
+information retrieval from reliable online and offline sources, we observed substantial improvements in the
+accuracy of its responses.
+Conclusion
+Our proposed ChatDoctor, represents a significant advancement in medical LLMs, demonstrating a
+significant improvement in understanding patient inquiries and providing accurate advice. Given the high
+stakes and low error tolerance in the medical field, such enhancements in providing accurate and reliable
+information are not only beneficial but essential.
+Categories: Family/General Practice, Medical Physics, Integrative/Complementary Medicine
+Keywords: ai chatbot, large language model, llama, chat gpt, gpt
+Introduction
+The development of instruction-following large language models (LLMs), such as ChatGPT [1], has gained
+significant attention due to their remarkable success in instruction understanding and human-like response
+generation. These auto-regressive LLMs [2] are pre-trained on web-scale natural language by predicting the
+next token and then fine-tuned to follow large-scale human instructions. These models show robust
+performance on a wide range of natural language processing (NLP) tasks and can generalize to unseen tasks,
+demonstrating their potential as unified solutions to various problems in natural language understanding,
+text generation, and conversational artificial intelligence. However, the exploration of such general-domain
+LLMs in the medical domain remains relatively scarce [3], despite their great potential in revolutionizing
+medical communication and decision-making [4]. In general, these common-domain models were not
+trained to capture the medical-domain knowledge specifically or in detail, resulting in models that often
+provide incorrect medical responses.
+By fine-tuning large linguistic dialogue models on data from real-world patient-physician conversations,
+these models’ ability in understanding patients’ inquiries and needs can be significantly improved. In
+addition, to further enhance the models’ credibility, a knowledge brain based on online sources such as
+Wikipedia or offline sources like medical-domain databases can be incorporated into the models to retrieve
+real-time information to facilitate answering medical questions. The enhanced reliability of such answers is
+1
+2
+3
+4
+1
+1
+ 
+Open Access Original
+Article
+ DOI: 10.7759/cureus.40895
+How to cite this article
+Li Y, Li Z, Zhang K, et al. (June 24, 2023) ChatDoctor: A Medical Chat Model Fine-Tuned on a Large Language Model Meta-AI (LLaMA) Using
+Medical Domain Knowledge. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+
+
+vital for the medical field, as a wrong answer can be detrimental to patients’ treatments and well-being. In
+this study, we investigated the use of these two strategies: model fine-tuning and knowledge brain
+instillation, to enhance the capability of LLMs to serve as medical chatbots. Since the prevalent ChatGPT
+model is not open source, we used Meta’s public large language model meta-AI (LLaMA) model as the
+platform for development and evaluation. In detail, we first trained a generic conversation model based
+on LLaMA, using 52K instruction-following data from Stanford University’s Alpaca project [5]. We then fine-
+tuned the conversation model on our collected dataset of 100K patient-physician conversations from an
+online medical consultation website (www.healthcaremagic.com). Through extensive experiments, we found
+that the fine-tuned model by patient-physician dialogues outperforms ChatGPT in terms of precision, recall,
+and the F1 score [6]. In addition, the autonomous ChatDoctor model, which is able to retrieve the latest
+online/offline information, can also answer medical questions about relatively new diseases that are not
+included in the patient-physician training dialogues, for instance, the Monkeypox (Mpox) disease [7,8].
+In summary, the ChatDoctor model has the following three main contributions:
+1. We established a methodology for fine-tuning LLMs for application in the medical field.
+2. We compiled and publicly shared a comprehensive dataset of 100,000 patient-doctor interactions to serve
+as a training resource for refining the LLM. This dataset includes a wealth of terms, knowledge, and
+expertise essential for training LLMs in the medical domain. Additionally, we curated and openly shared
+another dataset consisting of 10,000 patient-doctor conversations from a separate source (www.icliniq.com)
+to serve as a testing resource for the model. To support and stimulate future advancements in the
+development of dialogue models in healthcare, we provide public access to all relevant resources such as
+source codes, datasets, and model weights. These can be found at https://github.com/Kent0n-Li/ChatDoctor.
+3. We proposed an autonomous ChatDoctor model that can retrieve online and offline medical domain
+knowledge to answer medical questions on up-to-date medical terms and diseases, which can potentially
+reduce the errors and hallucinations of LLMs [9-11].
+This article was previously posted to the arXiv preprint server on March 24, 2023.
+Materials And Methods
+Collection and preparation of patient-physician conversation dataset
+The initial step in refining our model involved curating a dataset comprising patient-physician interactions.
+Often, patients describe their symptoms in casual and somewhat superficial language. If we attempted to
+generate these dialogues synthetically, similar to Alpaca [5], it could lead to over-specific descriptions with
+limited diversity and relevance to the real world. Hence, we chose to gather authentic patient-doctor
+conversations, collecting around 100k such interactions from the online medical consultation website,
+HealthCareMagic. The data were filtered both manually and automatically. Specifically, we automatically
+filtered out conversations that were too short, most of which did not answer anything of practical
+significance. And we manually filtered the content of the responses that had errors. To maintain privacy, we
+erased any information identifying the doctor or the patient and employed LanguageTool to rectify any
+grammatical errors. This dataset was labeled HealthCareMagic100k, illustrated in Figure 1. We also sourced
+roughly 10k additional conversations from another independent online medical consultation site, iCliniq, to
+test our model's performance. The iCliniq dataset was chosen randomly in a stratified manner to guarantee
+representation across various medical specialties. It was also made certain that the selected data contained
+no identifiable patient information, in strict compliance with privacy and ethical standards.
+FIGURE 1: A summary of the process involved in gathering the patient-
+physician conversation dataset and the steps involved in training the
+ChatDoctor model.
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+2 of 12
+
+
+Creation of external knowledge database
+LLMs typically predict the next word in a sequence, leading to potential inaccuracies or erroneous responses
+to questions (hallucinations) [12]. In addition, the model's output can be unpredictable to some extent,
+which is unacceptable in the medical field. However, the accuracy of these models could be significantly
+improved if they could generate or assess responses based on a reliable knowledge database, depicted in
+Figure 2. Consequently, we curated a database (sample shown in Figure 3) encompassing diseases, their
+symptoms, relevant medical tests/treatment procedures, and potential medications. This database serves as
+an external and offline knowledge brain for ChatDoctor. Continually updatable without requiring model
+retraining, this database can be tailored to specific diseases or medical specialties. We utilized MedlinePlus
+to construct this disease database, but other reliable sources can also be used. Additionally, online
+information sources like Wikipedia can supplement the knowledge base of our autonomous model. It is
+worth noting that Wikipedia may not be a fully reliable database, but our framework can be easily extended
+to more reliable online databases such as reputable academic journals.
+FIGURE 2: Overview of the autonomous ChatDoctor model based on
+information retrieval from an external knowledge brain.
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+3 of 12
+
+
+FIGURE 3: Some samples in our offline disease database consist of
+symptoms, clinical test/treatment approaches, and medication
+suggestions.
+Development of autonomous ChatDoctor with knowledge brain
+Armed with the external knowledge brain, i.e., Wikipedia or our custom disease database, ChatDoctor can
+more accurately answer patient inquiries by retrieving reliable information. Upon establishing the external
+knowledge brain, we devised a mechanism to enable ChatDoctor to autonomously retrieve necessary
+information to answer queries. This was accomplished by constructing appropriate prompts to input into the
+ChatDoctor model. Specifically, we designed keyword mining prompts (Figure 4) as the initial step for
+ChatDoctor to extract key terms from patient queries for relevant knowledge search. Based on these
+keywords, top-ranked information was retrieved from the knowledge brain using a term-matching retrieval
+system [13]. Given the LLM's word limit (token size), we divided the texts to be read into equal sections and
+ranked each section by the number of keyword hits. The ChatDoctor model then reads the first N sections
+(five used in our study) sequentially, selecting and summarizing pertinent information via prompts (Figure
+5). Ultimately, the model processes and compiles all the knowledge entries to generate a final response
+(Figure 6). This information retrieval approach ensures patients receive precise, well-informed responses
+backed by credible sources and can serve as a verification method for responses generated by ChatDoctor
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+4 of 12
+
+
+from prior knowledge.
+FIGURE 4: Autonomously extract keywords for information retrieval.
+FIGURE 5: Autonomous information retrieval from the disease database
+through the prompt.
+FIGURE 6: Instruct the ChatDoctor to read the retrieved domain
+knowledge and provide a reliable answer.
+Model training
+We developed the ChatDoctor model using Meta’s publicly accessible LLaMA-7B model [14], which uses
+Transformers with the structure of the decoder only. Despite its relatively modest 7 billion parameters, the
+LLaMA model exhibits comparable performance to the much larger GPT-3 model (with 175 billion
+parameters) across several NLP benchmarks. This performance enhancement was achieved by diversifying
+the training data rather than increasing network parameters. Specifically, LLaMA was trained on 1.0 trillion
+tokens from publicly accessible data sources like CommonCrawl and arXiv documents. We used
+conversations from HealthCareMagic-100k to fine-tune the LLaMA model [15] in line with Stanford Alpaca
+[5] training methodology. The model was first fine-tuned with Alpaca’s data to acquire basic conversation
+skills, followed by further refinement on HealthCareMagic-100k using 6 * A100 GPUs for three hours. The
+training process followed these hyperparameters: total batch size of 192, learning rate of 
+, 3 epochs,
+maximum sequence length of 512 tokens, and a warmup ratio of 0.03, with no weight decay.
+Results
+To evaluate the proficiency of the autonomous ChatDoctor model, we tested it using a variety of
+contemporary medical queries. One of these included a question related to “Monkeypox” (abbreviated as
+Mpox), as illustrated in Figure 7. Monkeypox was recently designated by the World Health Organization
+(WHO) on November 28, 2022, making it a relatively novel term. While ChatGPT was incapable of providing
+a satisfactory response, ChatDoctor, due to its autonomous knowledge retrieval feature, was able to extract
+pertinent information about Monkeypox from Wikipedia and deliver a precise answer. Similarly, for more
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+5 of 12
+
+
+general medical inquiries such as “Otitis,” as shown in Figure 8, ChatDoctor was able to provide a reliable
+response following the retrieval of relevant knowledge. In another instance, a question about “Daybue,” a
+drug that received FDA approval in March 2023, was accurately addressed by our model after it
+autonomously retrieved relevant information, demonstrating an advantage over ChatGPT, as shown in
+Figure 9.
+FIGURE 7: Comparison between the ChatGPT and the autonomous
+ChatDoctor for relatively new medical diseases/terms. The ChatGPT
+cannot recognize the word Mpox (aka, Monkeypox), while our
+ChatDoctor can provide the precise answer for the relevant medical
+tests of Mpox, with the help of the external knowledge brain.
+FIGURE 8: Comparison between the ChatGPT and the autonomous
+ChatDoctor. The ChatGPT provided a more general answer about otitis,
+while the ChatDoctor provided a more specialized response about the
+treatments of otitis, with the help of the external knowledge brain.
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+6 of 12
+
+
+FIGURE 9: Comparison between the ChatGPT and the autonomous
+ChatDoctor. The ChatGPT is unfamiliar with the “Daybue” medication
+which received approval from the Food and Drug Administration (FDA)
+in early 2023. The ChatDoctor accurately pointed out the purpose of
+Daybue (trofinetide), with the help of the external knowledge brain.
+For a quantitative evaluation of ChatDoctor's performance, we utilized questions from the independently
+sourced iCliniq database as inputs, with the corresponding responses from actual human physicians serving
+as the benchmark or “ground truth.” We compared these with responses generated by both ChatDoctor and
+ChatGPT. In this evaluation, we employed BERTScore [6] to compute Precision, Recall, and F1 scores for both
+ChatDoctor and ChatGPT. BERTScore leverages pre-trained BERT to match words in the candidate and
+reference sentences via cosine similarity, and BERTScore was chosen for its ability to evaluate the semantic
+similarity between our model's responses and the reference sentences, which we believe is of utmost
+importance in the medical context. This method of evaluation closely aligns with human judgment at both
+sentence and system levels. In all three metrics, a higher value denotes a better match. As seen in the results
+illustrated in Table 1, the fine-tuned ChatDoctor model outperforms ChatGPT across all three metrics, with
+specific dialogue examples detailed in Figures 10-13.
+ 
+ChatGPT
+ChatDoctor
+P-value
+Precision
+0.837±0.0188
+0.8444±0.0185
+Recall
+0.8445±0.0164
+0.8451±0.0157
+F1 Score
+0.8406±0.0143
+0.8446±0.0138
+TABLE 1: Quantitative comparison with BERTScore between ChatDoctor and ChatGPT. The p-
+values in the table are derived from our paired t-test.
+ 
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+7 of 12
+
+
+FIGURE 10: Example 1: a patient suffering from a unilateral headache
+expressed concerns about a potential association with a brain tumor.
+Our ChatDoctor accurately proposed sinusitis as a possible cause for
+the headache, mirroring the diagnosis provided by the physician from
+iCliniq. On the other hand, ChatGPT failed to deliver a congruent
+interpretation regarding the root cause of the one-sided headache.
+ 
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+8 of 12
+
+
+FIGURE 11: Example 2: a patient reported having a white lump in their
+throat for several months and expressed concerns about potential
+cancer. All three entities, iCliniq, ChatGPT, and ChatDoctor suggested
+that the patient could be dealing with abnormally enlarged lymph
+nodes. Both iCliniq and ChatDoctor additionally recommended that a
+biopsy and radiological diagnosis would be necessary if initial
+treatments proved unsuccessful. However, ChatGPT's response was
+limited to advising the patient to consult with an Ear, Nose, and Throat
+(ENT) specialist.
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+9 of 12
+
+
+FIGURE 12: Example 3: a patient reported experiencing a sharp back
+pain during exercise, which intensified during breathing and rotation of
+the torso or neck. The patient was unsure whether urgent medical
+attention was necessary. ChatDoctor generated a closer answer to
+iCliniq than ChatGPT.
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+10 of 12
+
+
+FIGURE 13: Example 4: a patient experienced blurred vision and was
+particularly concerned about the health of their left eye. Taking into
+consideration the patient's past medical history of retinal detachment,
+all three sources—iCliniq, ChatGPT, and ChatDoctor—advised the
+individual to seek professional consultation with ophthalmologists for a
+comprehensive assessment and swift treatment. Due to possible
+limitations in providing medical diagnoses (and advice), ChatGPT did
+not speculate on the cause of the diminished vision. On the other hand,
+both iCliniq and ChatDoctor identified the possibility of retinal
+detachment or bleeding as potential issues.
+Discussion
+The medical LLM, ChatDoctor, which has been fine-tuned on medical data, has extensive potential uses.
+These range from preliminary patient assessment and automated case adjudication to proactive healthcare
+measures. Nevertheless, owing to the complex nature of medical information [16], any concealed
+inaccuracies in diagnoses and health advice could lead to severe outcomes [17]. LLMs are known to
+occasionally generate fallacious and harmful assertions (hallucinations) about areas beyond their knowledge
+expertise, potentially causing medical malpractice [18]. To mitigate this, ChatDoctor has been trained using
+real-world patient-doctor interactions to better understand patients' questions and deliver more
+knowledgeable responses. To make the model most capable of answering questions about the latest medical
+terms (which may not be contained in the training dataset), and to introduce additional external references
+for verification, we also equipped the ChatDoctor model with the ability to autonomously retrieve
+information from external knowledge brains to provide answers, further enhancing the credibility of the
+model [19]. Such external knowledge retrieval can be called by inputting pre-configured prompts into the
+model. In future developments, the internal prior knowledge of the ChatDoctor model (gained through
+training) and the external knowledge brain can be further combined by training ChatDoctor to select a more
+trustworthy answer, or merge and fuse both answers or provide alternative opinions.
+Limitations
+It is important to emphasize that the current ChatDoctor model is still in the investigation phase and has
+been developed for academic research only. The actual clinical use is subject to the risk of wrong answers
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+11 of 12
+
+
+being output by the model, and the use of exclusively LLMs in medical diagnosis is still plagued by false
+positives and false negatives for the time being. Additional security measures, including automated
+reference checking and human expert evaluation, are needed to cross-validate the answers provided by
+ChatDoctor to flag potentially inaccurate answers and prevent hallucinations. The exact design,
+development and deployment of such security measures remains an important topic for further research. A
+more secure application at this stage is the use of LLMs to assist physicians in their face-to-face
+consultations. Physicians and ChatDoctor work together to ensure not only that the technology is consistent
+with clinical practice, but also that patient safety is ensured. The evaluation and potential approval of such
+tools for healthcare-related purposes also needs further investigation.
+Conclusions
+With adequate training and online/offline supervision, ChatDoctor can potentially improve accuracy and
+efficiency in medical diagnosis and reduce the workload for medical professionals. It may also increase
+access to high-quality medical consultations, especially for patients in underserved regions with limited
+medical resources. The further developments and applications of ChatDoctor may eventually help to
+improve patient outcomes and advance medical research.
+Additional Information
+Disclosures
+Human subjects: All authors have confirmed that this study did not involve human participants or tissue.
+Animal subjects: All authors have confirmed that this study did not involve animal subjects or tissue.
+Conflicts of interest: In compliance with the ICMJE uniform disclosure form, all authors declare the
+following: Payment/services info: This work was supported by the National Institutes of Health (Grant No.
+R01 CA240808, R01 CA258987). Financial relationships: All authors have declared that they have no
+financial relationships at present or within the previous three years with any organizations that might have
+an interest in the submitted work. Other relationships: All authors have declared that there are no other
+relationships or activities that could appear to have influenced the submitted work.
+References
+1. 
+Training language models to follow instructions with human feedback . (2022). Accessed: April 3, 2023:
+http://arXiv:2203.02155.
+2. 
+Self-instruct: aligning language model with self generated instructions. (2022). Accessed: December 20,
+2022: http://arXiv:2212.10560.
+3. 
+Aidan Gilson, Conrad W Safranek, Thomas Huang, et al.: How does chatgpt perform on the united states
+medical licensing examination? the implications of large language models for medical education and
+knowledge assessment. JMIR Med Educ. 2023, 9:45312-2023.
+4. 
+Abacha AB, Zweigenbaum P: Means: a medical question-answering system combining NLP techniques and
+semantic web technologies. Inf Process Manag. 2015, 51:570-94.
+5. 
+Stanford alpaca: an instruction-following llama model. (2023). Accessed: April 3, 2023:
+https://github.com/tatsu-lab/stanford_alpaca.
+6. 
+Bertscore: Evaluating text generation with bert. (2020). Accessed: April 21, 2020: http://arXiv:1904.09675.
+7. 
+Gessain A, Nakoune E, Yazdanpanah Y: Monkeypox. N Engl J Med. 2022, 387:1783-93.
+10.1056/NEJMra2208860
+8. 
+Beeson AM, Haston J, McCormick DW, Reynolds M, Chatham-Stephens K, McCollum AM, Godfred-Cato S:
+Mpox in children and adolescents: epidemiology, clinical features, diagnosis, and management . Pediatrics.
+2023, 151:e2022060179.
+9. 
+A multitask, multilingual, multimodal evaluation of chatgpt on reasoning, hallucination, and interactivity .
+(2023). Accessed: February 8, 2023: http://arXiv:2302.04023.
+10. 
+Selfcheckgpt: zero-resource black-box hallucination detection for generative large language models . (2023).
+Accessed: March 15, 2023: http://arXiv:2303.08896.
+11. 
+Salvagno M, Taccone FS, Gerli AG: Artificial intelligence hallucinations. Crit Care. 2023, 27:180.
+10.1186/s13054-023-04473-y
+12. 
+Beutel G, Geerits E, Kielstein JT: Artificial hallucination: GPT on LSD?. Crit Care. 2023, 27:148.
+10.1186/s13054-023-04425-6
+13. 
+Retrieval system evaluation. (2005). Accessed: September 26, 2005:
+https://www.nist.gov/publications/retrieval-system-evaluation.
+14. 
+LLaMA: open and efficient foundation language models. (2023). Accessed: February 27, 2023:
+http://arXiv:2302.13971.
+15. 
+Raise a child in large language model: towards effective and generalizable fine-tuning . (2021). Accessed:
+September 13, 2021: http://arXiv:2109.05687.
+16. 
+Hammerling JA: A review of medical errors in laboratory diagnostics and where we are today . Laboratory
+Med. 2012, 43:41-4. 10.1309/LM6ER9WJR1IHQAUY
+17. 
+Lee P, Bubeck S, Petro J: Benefits, limits, and risks of GPT-4 as an AI chatbot for medicine . New England J
+Med. 2023, 388:1233-9.
+18. 
+Vaishya R, Misra A, Vaish A: ChatGPT: is this version good for healthcare and research? . Diabet Metabol
+Syndr. 2023, 17:102744.
+19. 
+Hatherley JJ: Limits of trust in medical AI. J Med Ethics. 2020, 46:478-81. 10.1136/medethics-2019-105935
+2023 Li et al. Cureus 15(6): e40895. DOI 10.7759/cureus.40895
+12 of 12

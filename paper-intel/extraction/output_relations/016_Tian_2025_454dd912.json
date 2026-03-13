@@ -1,0 +1,158 @@
+[
+  {
+    "source": "E_016_Tian_2025_454dd912_1",
+    "type": "EVALUATES_ON",
+    "target": "E_016_Tian_2025_454dd912_2",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_016_Tian_2025_454dd912_3",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_9",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_10",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_11",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_12",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_13",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_14",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_15",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "Rawte, Sheth, and Das 2023",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_17",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_18",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_19",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_20",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_21",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_22",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_23",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_24",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_25",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_26",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_27",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "Wen, Wang, and Sun 2024",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_29",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_30",
+    "type": "CITES",
+    "target": "E_016_Tian_2025_454dd912_1",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_31",
+    "type": "REPORTS_METRIC",
+    "target": "E_016_Tian_2025_454dd912_3",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "source": "E_016_Tian_2025_454dd912_31",
+    "type": "EVALUATES_ON",
+    "target": "E_016_Tian_2025_454dd912_2",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  }
+]

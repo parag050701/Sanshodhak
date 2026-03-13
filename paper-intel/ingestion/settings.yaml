@@ -1,0 +1,27 @@
+# Phase 1: PDF → TEXT → JSON Configuration
+
+# GROBID Server
+grobid_url: "http://localhost:8070"
+grobid_timeout: 120  # seconds per PDF
+grobid_retries: 3
+
+# Processing
+workers: 4  # Concurrent PDF processing
+batch_size: 10  # PDFs per batch
+
+# Text Cleaning
+remove_headers_footers: true
+normalize_unicode: true
+fix_hyphenation: true
+
+# Section Splitting
+section_confidence_threshold: 0.6
+fallback_to_fulltext: true
+
+# Output
+save_raw_text: true
+save_tei_xml: false  # Set true to keep intermediate TEI
+pretty_json: true  # Indented JSON output
+
+# Logging
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR

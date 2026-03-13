@@ -1,0 +1,283 @@
+{
+  "topic": "Graph Retrieval Augmented Generation",
+  "timestamp": "2025-12-06T01:05:08.301427",
+  "target": 25,
+  "downloaded": 25,
+  "success_rate": "100.0%",
+  "sources": {
+    "arxiv": 12,
+    "unpaywall": 12,
+    "openalex": 1
+  },
+  "papers": [
+    {
+      "title": "Graph Retrieval-Augmented Generation: A Survey",
+      "authors": [
+        "Boci Peng",
+        "Yun Zhu",
+        "Yongchao Liu"
+      ],
+      "year": 2025,
+      "doi": "10.1145/3777378",
+      "file": "002_Peng_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Retrieval-Augmented Generation: Architecture, Techniques, and Evaluations",
+      "authors": [],
+      "year": 2025,
+      "doi": "10.62476/jmte.10142",
+      "file": "003_Unknown_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "When Knowledge Graph Meets Retrieval Augmented Generation for Wireless Networks: A Tutorial and Case Study",
+      "authors": [
+        "Yang Xiong",
+        "Ruichen Zhang",
+        "Yinqiu Liu"
+      ],
+      "year": 2025,
+      "doi": "10.1109/mwc.2025.3600951",
+      "file": "005_Xiong_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "IPRAG: Iterative Prompt Refining for Retrieval Augmented Generation",
+      "authors": [
+        "Jia Zhu",
+        "Zhangze Chen",
+        "Changqin Huang"
+      ],
+      "year": 2025,
+      "doi": "10.3724/2096-7004.di.2025.0081",
+      "file": "007_Zhu_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Retrieval-Augmented Generation (RAG): Advances and Challenges",
+      "authors": [
+        "Miroslava Dimitrova"
+      ],
+      "year": 2025,
+      "doi": "10.7546/pecr.83.25.03",
+      "file": "008_Dimitrova_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "The Practical Applications of Retrieval-Augmented Generation in AI",
+      "authors": [
+        "Mounika Kothapalli"
+      ],
+      "year": 2024,
+      "doi": "10.17303/jcssd.2024.3.205",
+      "file": "010_Kothapalli_2024.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Retrieval-Augmented Generation: Methods, Applications and Challenges",
+      "authors": [
+        "Yicheng Liu"
+      ],
+      "year": 2025,
+      "doi": "10.54254/2755-2721/2025.kl22312",
+      "file": "011_Liu_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "authors": [
+        "Abhai Pratap Singh",
+        "Adit Jamdar",
+        "Prerna Kaul"
+      ],
+      "year": 2025,
+      "doi": "10.14445/22312803/ijctt-v73i1p111",
+      "file": "012_Singh_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "authors": [
+        "Raja Patnaik"
+      ],
+      "year": 2025,
+      "doi": "10.21275/sr251104092705",
+      "file": "013_Patnaik_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "BuildingGPT: Query building semantic data using large language models and vector-graph retrieval-augmented generation",
+      "authors": [
+        "Mingchen Li",
+        "Zhe Wang"
+      ],
+      "year": 2026,
+      "doi": "10.1016/j.buildenv.2025.113855",
+      "file": "014_Li_2026.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "A Systematic Exploration of Knowledge Graph Alignment with Large Language Models in Retrieval Augmented Generation",
+      "authors": [
+        "Shiyu Tian",
+        "Shuyue Xing",
+        "Xingrui Li"
+      ],
+      "year": 2025,
+      "doi": "10.1609/aaai.v39i24.34716",
+      "file": "016_Tian_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Empowering Large Language Model Reasoning : Hybridizing Layered Retrieval Augmented Generation and Knowledge Graph Synthesis",
+      "authors": [
+        "Vedanth Aggarwal"
+      ],
+      "year": 2024,
+      "doi": "10.36838/v6i12.11",
+      "file": "017_Aggarwal_2024.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Adaptive and Enhanced Retrieval Augmented Generation (RAG) Systems: A Summarised Survey",
+      "authors": [
+        "Pit Pichappan"
+      ],
+      "year": 2025,
+      "doi": "10.6025/jdim/2025/23/3/190-195",
+      "file": "018_Pichappan_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Retrieval augmented generation using engineering design knowledge",
+      "authors": [
+        "L. Siddharth",
+        "Jianxi Luo"
+      ],
+      "year": 2024,
+      "doi": "10.1016/j.knosys.2024.112410",
+      "file": "024_Siddharth_2024.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Abhinav Kimothi on Retrieval-Augmented Generation",
+      "authors": [
+        "Priyanka Raghavan"
+      ],
+      "year": 2025,
+      "doi": "10.1109/ms.2025.3597030",
+      "file": "026_Raghavan_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "ENHANCING DATA ANALYTICS WITH RETRIEVAL-AUGMENTED GENERATION WORKLOADS",
+      "authors": [
+        "Abhilash Nagilla"
+      ],
+      "year": 2025,
+      "doi": "10.34218/ijcet_16_01_244",
+      "file": "027_Nagilla_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "SG-RAG MOT: SubGraph Retrieval Augmented Generation with Merging and Ordering Triplets for Knowledge Graph Multi-Hop Question Answering",
+      "authors": [
+        "Ahmmad O. M. Saleh",
+        "Gokhan Tur",
+        "Yucel Saygin"
+      ],
+      "year": 2025,
+      "doi": "10.3390/make7030074",
+      "file": "028_Saleh_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Advances in Retrieval-Augmented Generation (RAG) and Related Frameworks",
+      "authors": [
+        "Sumedha Arya",
+        "Nirmal Gaud -"
+      ],
+      "year": 2025,
+      "doi": "10.71097/ijsat.v16.i3.7595",
+      "file": "029_Arya_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Knowledge graph enhanced retrieval-augmented generation for failure mode and effects analysis",
+      "authors": [
+        "Lukas Bahr",
+        "Christoph Wehner",
+        "Judith Wewerka"
+      ],
+      "year": 2025,
+      "doi": "10.1016/j.jii.2025.100807",
+      "file": "030_Bahr_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Hierarchical knowledge graph-based QA systems with retrieval-augmented generation",
+      "authors": [
+        "Wan-Chi Yang",
+        "Xuan Li",
+        "Chih-Yung Chang"
+      ],
+      "year": 2025,
+      "doi": "10.1080/17517575.2025.2580477",
+      "file": "032_Yang_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Advancing engineering research through context-aware and knowledge graph\u2013based retrieval-augmented generation",
+      "authors": [
+        "Soham Ghosh",
+        "Gaurav Mittal"
+      ],
+      "year": 2025,
+      "doi": "10.3389/frai.2025.1697169",
+      "file": "034_Ghosh_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "authors": [
+        "Tharakesavulu Vangalapat",
+        "Lohith Kumar Deshpande"
+      ],
+      "year": 2025,
+      "doi": "10.21275/sr25329182150",
+      "file": "035_Vangalapat_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Document GraphRAG: Knowledge Graph Enhanced Retrieval Augmented Generation for Document Question Answering Within the Manufacturing Domain",
+      "authors": [
+        "Simon Knollmeyer",
+        "O\u011fuz Caymazer",
+        "Daniel Grossmann"
+      ],
+      "year": 2025,
+      "doi": "10.3390/electronics14112102",
+      "file": "037_Knollmeyer_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "OPTIMIZING LATENCY AND ACCURACY TRADE-OFFS IN LARGE-SCALE RETRIEVAL-AUGMENTED GENERATION PIPELINES",
+      "authors": [],
+      "year": 2025,
+      "doi": "10.56726/irjmets80949",
+      "file": "039_Unknown_2025.pdf",
+      "source": "openalex"
+    },
+    {
+      "title": "A Retrieval-Augmented Generation Based Large Language Model Benchmarked On a Novel Dataset",
+      "authors": [
+        "Kieran Pichai"
+      ],
+      "year": 2023,
+      "doi": "10.47611/jsrhs.v12i4.6213",
+      "file": "040_Pichai_2023.pdf",
+      "source": "unpaywall"
+    }
+  ]
+}

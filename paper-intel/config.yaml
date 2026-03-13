@@ -1,0 +1,82 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Sanshodhak Configuration
+# Edit this file to customise models, thresholds, and system behaviour.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Embeddings ────────────────────────────────────────────────────────────────
+embedding:
+  model: "BAAI/bge-m3"        # sentence-transformers model (primary)
+  ollama_model: "bge-m3"      # Ollama model tag (fallback when ST unavailable)
+  ollama_url: "http://localhost:11434"
+  batch_size: 32              # embedding batch size (reduce if OOM on CPU)
+
+# ── LLM (for /query endpoint) ─────────────────────────────────────────────────
+llm:
+  model: "deepseek-r1:7b"
+  ollama_url: "http://localhost:11434"
+
+# ── Retrieval ─────────────────────────────────────────────────────────────────
+retrieval:
+  chunk_size: 600             # words per chunk (for document chunking)
+  chunk_overlap: 100          # word overlap between chunks
+  bm25_k1: 1.5               # BM25 term-frequency saturation
+  bm25_b: 0.75               # BM25 document-length normalisation
+  rrf_k: 60                  # RRF smoothing constant (Cormack et al. 2009)
+  dense_weight: 1.0           # RRF weight for dense ranked list
+  bm25_weight: 1.0            # RRF weight for BM25 ranked list
+  top_k: 20                  # default number of results
+
+# ── Knowledge Graph ───────────────────────────────────────────────────────────
+graph:
+  enabled: true
+  alpha: 0.5                 # weight for Jaccard similarity in edge formula
+  beta: 0.5                  # weight for embedding cosine in edge formula
+  jaccard_threshold: 0.10    # minimum Jaccard to create a vocabulary edge
+  embed_threshold: 0.75      # minimum cosine to create an embedding edge
+  fuzzy_title_threshold: 0.30  # minimum title token Jaccard for fuzzy-title match
+  citation_boost: 0.20       # extra weight per DOI/fuzzy-title citation match
+  min_shared_tokens: 2       # inverted-index gate (higher = fewer edges, faster build)
+  max_candidates: 50         # max neighbour candidates per document
+  expansion_mode: "1hop"     # 1hop | 2hop | ppr | qbpr
+  max_corpus_size: 30000     # skip graph if corpus exceeds this size
+
+# ── Adaptive Budget ───────────────────────────────────────────────────────────
+adaptive_budget:
+  enabled: true
+  base_fraction: 0.25        # base graph slot fraction (k/4)
+  min_slots: 1               # guaranteed minimum graph result slots
+
+# ── Cross-encoder Reranker ────────────────────────────────────────────────────
+reranker:
+  enabled: false             # set to true to enable (downloads ~66 MB model)
+  model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  top_rerank: 50             # rerank window size
+
+# ── API Server ────────────────────────────────────────────────────────────────
+api:
+  host: "0.0.0.0"
+  port: 8087
+  log_level: "INFO"          # DEBUG | INFO | WARNING
+  index_dir: "enhanced_rag_index"   # directory with pre-built faiss.index, bm25.pkl, graph.pkl
+
+# ── BEIR Evaluation ───────────────────────────────────────────────────────────
+beir:
+  datasets:
+    - scifact
+    - nfcorpus
+    - fiqa
+    - arguana
+    - trec-covid
+  data_dir: "beir_datasets"
+  output_dir: "beir_results"
+  k_values: [10, 100]
+  skip_graph_for_large: true
+  graph_max_corpus: 30000
+
+# ── Scalability Analysis ─────────────────────────────────────────────────────
+scalability:
+  corpus_sizes: [1000, 5000, 10000, 50000]
+  n_queries: 20
+  output_dir: "scalability_results"
+  include_graph: true
+  graph_max_corpus: 15000    # skip graph for sizes above this in scalability test

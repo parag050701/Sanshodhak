@@ -1,0 +1,1007 @@
+[
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "Model",
+    "name": "PHENIX",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_2",
+    "type": "Dataset",
+    "name": "Relativistic Heavy Ion Collider",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_3",
+    "type": "Metric",
+    "name": "K0 S and K0 meson production",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_4",
+    "type": "Paper",
+    "name": "PHENIX experiment",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_5",
+    "type": "Author",
+    "name": "PHENIX collaboration",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_6",
+    "type": "Model",
+    "name": "φ meson",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_7",
+    "type": "Model",
+    "name": "π0 meson",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_8",
+    "type": "Method",
+    "name": "combinatorial Hough Transform",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_9",
+    "type": "Method",
+    "name": "asymmetric particle-identification PID",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_10",
+    "type": "Method",
+    "name": "multiple scattering",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_11",
+    "type": "Method",
+    "name": "intrinsic angular resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_12",
+    "type": "Dataset",
+    "name": "d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_13",
+    "type": "Dataset",
+    "name": "Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_14",
+    "type": "Dataset",
+    "name": "p+p",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_15",
+    "type": "Metric",
+    "name": "centrality",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_16",
+    "type": "Metric",
+    "name": "pT range",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_17",
+    "type": "Metric",
+    "name": "vertex position resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_18",
+    "type": "Metric",
+    "name": "momentum resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_19",
+    "type": "Metric",
+    "name": "timing resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_20",
+    "type": "Metric",
+    "name": "position resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_21",
+    "type": "Metric",
+    "name": "energy resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_22",
+    "type": "Paper",
+    "name": "Ref 43",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_23",
+    "type": "Paper",
+    "name": "Ref 44",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_24",
+    "type": "Paper",
+    "name": "Ref 45",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_25",
+    "type": "Paper",
+    "name": "Ref 46",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_26",
+    "type": "Paper",
+    "name": "Ref 47",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_27",
+    "type": "Paper",
+    "name": "Ref 48",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_28",
+    "type": "Paper",
+    "name": "Ref 49",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_29",
+    "type": "Paper",
+    "name": "Ref 50",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_30",
+    "type": "Paper",
+    "name": "Ref 51",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_31",
+    "type": "Paper",
+    "name": "Ref 52",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_32",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_33",
+    "type": "Metric",
+    "name": "BR",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_34",
+    "type": "Metric",
+    "name": "RM",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_35",
+    "type": "Metric",
+    "name": "Rσ",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_36",
+    "type": "Paper",
+    "name": "Ref. 39",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_37",
+    "type": "Author",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_38",
+    "type": "Model",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_39",
+    "type": "Dataset",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_40",
+    "type": "Metric",
+    "name": "RMpT",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_41",
+    "type": "Metric",
+    "name": "RσpT",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_42",
+    "type": "Metric",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_43",
+    "type": "Paper",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_44",
+    "type": "Method",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_45",
+    "type": "Task",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_46",
+    "type": "Result",
+    "name": "None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_47",
+    "type": "Model",
+    "name": "K0",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_48",
+    "type": "Method",
+    "name": "Relativistic Breit-Wigner function",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_49",
+    "type": "Task",
+    "name": "Invariant mass reconstruction",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_50",
+    "type": "Dataset",
+    "name": "PHENIX data",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_51",
+    "type": "Metric",
+    "name": "Invariant mass",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_52",
+    "type": "Result",
+    "name": "K0 meson yield",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_53",
+    "type": "Paper",
+    "name": "PHENIX data analysis",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "Model",
+    "name": "EMCal",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_55",
+    "type": "Metric",
+    "name": "Trigger Efficiency",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_56",
+    "type": "Metric",
+    "name": "EMCal energy resolution",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_57",
+    "type": "Metric",
+    "name": "EMCal scale uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_58",
+    "type": "Metric",
+    "name": "π0 selection uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_59",
+    "type": "Metric",
+    "name": "γ conversion uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_60",
+    "type": "Metric",
+    "name": "Branching ratio",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_61",
+    "type": "Metric",
+    "name": "BBC cross section uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_62",
+    "type": "Metric",
+    "name": "Momentum reconstruction uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_63",
+    "type": "Model",
+    "name": "Tsallis function",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_64",
+    "type": "Dataset",
+    "name": "p+p collisions at s 200 GeV",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_65",
+    "type": "Metric",
+    "name": "Invariant yield",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_66",
+    "type": "Metric",
+    "name": "pT spectra",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_67",
+    "type": "Metric",
+    "name": "Centrality bins",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_68",
+    "type": "Paper",
+    "name": "STAR collaboration 40",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_69",
+    "type": "Paper",
+    "name": "Tsallis function 39",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_70",
+    "type": "Author",
+    "name": "STAR collaboration",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_71",
+    "type": "Author",
+    "name": "Tsallis function authors",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_72",
+    "type": "Metric",
+    "name": "K0 yield",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_73",
+    "type": "Metric",
+    "name": "K0 S yield",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_74",
+    "type": "Metric",
+    "name": "pT spectrum",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_75",
+    "type": "Paper",
+    "name": "39",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_76",
+    "type": "Paper",
+    "name": "53",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_77",
+    "type": "Paper",
+    "name": "58",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_78",
+    "type": "Paper",
+    "name": "59",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "Model",
+    "name": "NN",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_80",
+    "type": "Metric",
+    "name": "pT",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_81",
+    "type": "Metric",
+    "name": "Nuclear modification factor",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_82",
+    "type": "Metric",
+    "name": "Statistical error",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_83",
+    "type": "Metric",
+    "name": "Systematic uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_84",
+    "type": "Metric",
+    "name": "Global p+p uncertainty",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_85",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_86",
+    "type": "Method",
+    "name": "backpropagation",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_87",
+    "type": "Method",
+    "name": "attention mechanism",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_88",
+    "type": "Task",
+    "name": "nuclear modification factor",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_89",
+    "type": "Task",
+    "name": "particle species dependence",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_90",
+    "type": "Paper",
+    "name": "Phys. Repts. 61 71 1980",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_91",
+    "type": "Paper",
+    "name": "Nucl. Phys. A 750 30 2005",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_92",
+    "type": "Paper",
+    "name": "Lect. Notes Phys. 583 209 2002",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_93",
+    "type": "Paper",
+    "name": "Phys. Rev. D 44 2625 1991",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_94",
+    "type": "Paper",
+    "name": "Lect. Notes Phys. 785 285 2010",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_95",
+    "type": "Paper",
+    "name": "Phys. Rev. Lett. 68 1480 1992",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_96",
+    "type": "Paper",
+    "name": "PHENIX Collabo",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_97",
+    "type": "Result",
+    "name": "K0 S and K∗0 meson production=systematic study on Relativistic Heavy Ion Collider",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "K0 S and K∗0 meson production",
+      "metric_value": "systematic study",
+      "dataset": "Relativistic Heavy Ion Collider",
+      "experiment_description": "midrapidity in p+p, d+Au, and Cu+Cu collisions at √sNN = 200 GeV",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_98",
+    "type": "Result",
+    "name": "centrality=0-20, 20-40, 40-60, 60-88 on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "centrality",
+      "metric_value": "0-20, 20-40, 40-60, 60-88",
+      "dataset": "d+Au",
+      "experiment_description": "centrality bins",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_99",
+    "type": "Result",
+    "name": "pT range=2.0-13.0, 3.0-12.0, 1.1-8.5 on d+Au, Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "pT range",
+      "metric_value": "2.0-13.0, 3.0-12.0, 1.1-8.5",
+      "dataset": "d+Au, Cu+Cu",
+      "experiment_description": "pT ranges",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_100",
+    "type": "Result",
+    "name": "vertex position resolution=∼1.1 cm, ∼3 mm on p+p, Au+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "vertex position resolution",
+      "metric_value": "∼1.1 cm, ∼3 mm",
+      "dataset": "p+p, Au+Au",
+      "experiment_description": "vertex position resolution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_101",
+    "type": "Result",
+    "name": "momentum resolution=δp/p = 0.7 ⊕1.1 % p (GeV/c) on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "momentum resolution",
+      "metric_value": "δp/p = 0.7 ⊕1.1 % p (GeV/c)",
+      "dataset": "d+Au",
+      "experiment_description": "momentum resolution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_102",
+    "type": "Result",
+    "name": "timing resolution=130 ps on TOF detector",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "timing resolution",
+      "metric_value": "130 ps",
+      "dataset": "TOF detector",
+      "experiment_description": "timing resolution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_103",
+    "type": "Result",
+    "name": "position resolution=σz ∼1.7 mm on PC1",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "position resolution",
+      "metric_value": "σz ∼1.7 mm",
+      "dataset": "PC1",
+      "experiment_description": "position resolution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_104",
+    "type": "Result",
+    "name": "energy resolution=EMCal on EMCal",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "energy resolution",
+      "metric_value": "EMCal",
+      "dataset": "EMCal",
+      "experiment_description": "energy resolution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_105",
+    "type": "Result",
+    "name": "Accuracy=92.4% on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "d+Au",
+      "experiment_description": "Top-1 accuracy on d+Au validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_106",
+    "type": "Result",
+    "name": "BR=30.69 ± 0.05% on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "BR",
+      "metric_value": "30.69 ± 0.05%",
+      "dataset": "d+Au",
+      "experiment_description": "Branching ratio for K0 S meson decay",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_107",
+    "type": "Result",
+    "name": "RM=None on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "RM",
+      "metric_value": "None",
+      "dataset": "d+Au",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_108",
+    "type": "Result",
+    "name": "Rσ=None on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Rσ",
+      "metric_value": "None",
+      "dataset": "d+Au",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_109",
+    "type": "Result",
+    "name": "RM(pT)=None on None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "RM(pT)",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_110",
+    "type": "Result",
+    "name": "Rσ(pT)=None on None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Rσ(pT)",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_111",
+    "type": "Result",
+    "name": "None=None on None",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "None",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_112",
+    "type": "Result",
+    "name": "Invariant mass=2.3 GeV/c on PHENIX data",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Invariant mass",
+      "metric_value": "2.3 GeV/c",
+      "dataset": "PHENIX data",
+      "experiment_description": "Kπ candidate invariant mass distribution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_113",
+    "type": "Result",
+    "name": "K∗0 meson yield=0.5 on PHENIX data",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "K∗0 meson yield",
+      "metric_value": "0.5",
+      "dataset": "PHENIX data",
+      "experiment_description": "Raw yield of the K∗0 meson in each pT bin",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_114",
+    "type": "Result",
+    "name": "Trigger Efficiency=0.4 on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Trigger Efficiency",
+      "metric_value": "0.4",
+      "dataset": "Cu+Cu",
+      "experiment_description": "Trigger efficiency for single photons as a function of cluster energy",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_115",
+    "type": "Result",
+    "name": "EMCal energy resolution=4-5 on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "EMCal energy resolution",
+      "metric_value": "4-5",
+      "dataset": "Cu+Cu",
+      "experiment_description": "EMCal energy resolution",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_116",
+    "type": "Result",
+    "name": "EMCal scale uncertainty=4-5 on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "EMCal scale uncertainty",
+      "metric_value": "4-5",
+      "dataset": "Cu+Cu",
+      "experiment_description": "EMCal scale uncertainty",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_117",
+    "type": "Result",
+    "name": "π0 selection uncertainty=5-11 on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "π0 selection uncertainty",
+      "metric_value": "5-11",
+      "dataset": "Cu+Cu",
+      "experiment_description": "π0 selection uncertainty",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_118",
+    "type": "Result",
+    "name": "γ conversion uncertainty=6% on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "γ conversion uncertainty",
+      "metric_value": "6%",
+      "dataset": "Cu+Cu",
+      "experiment_description": "γ conversion uncertainty",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_119",
+    "type": "Result",
+    "name": "Branching ratio=0.2 on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Branching ratio",
+      "metric_value": "0.2",
+      "dataset": "Cu+Cu",
+      "experiment_description": "Branching ratio",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_120",
+    "type": "Result",
+    "name": "BBC cross section uncertainty=- on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "BBC cross section uncertainty",
+      "metric_value": "-",
+      "dataset": "Cu+Cu",
+      "experiment_description": "BBC cross section uncertainty",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_121",
+    "type": "Result",
+    "name": "Momentum reconstruction uncertainty=0.5% on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Momentum reconstruction uncertainty",
+      "metric_value": "0.5%",
+      "dataset": "Cu+Cu",
+      "experiment_description": "Momentum reconstruction uncertainty",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_122",
+    "type": "Result",
+    "name": "Invariant yield=200 GeV s on p+p collisions at √s = 200 GeV",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Invariant yield",
+      "metric_value": "200 GeV s",
+      "dataset": "p+p collisions at √s = 200 GeV",
+      "experiment_description": "K∗0 meson invariant yield as a function of pT",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_123",
+    "type": "Result",
+    "name": "pT spectra=0.5 GeV/c on p+p collisions at √s = 200 GeV",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "pT spectra",
+      "metric_value": "0.5 GeV/c",
+      "dataset": "p+p collisions at √s = 200 GeV",
+      "experiment_description": "K∗0 meson invariant pT spectra",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_124",
+    "type": "Result",
+    "name": "Centrality bins=20-40% on p+p collisions at √s = 200 GeV",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Centrality bins",
+      "metric_value": "20-40%",
+      "dataset": "p+p collisions at √s = 200 GeV",
+      "experiment_description": "Centrality bins for K∗0 meson invariant pT spectra",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_125",
+    "type": "Result",
+    "name": "K∗0 yield=None on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "K∗0 yield",
+      "metric_value": "None",
+      "dataset": "d+Au",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_126",
+    "type": "Result",
+    "name": "K0 S yield=None on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "K0 S yield",
+      "metric_value": "None",
+      "dataset": "Cu+Cu",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_127",
+    "type": "Result",
+    "name": "pT spectrum=None on d+Au",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "pT spectrum",
+      "metric_value": "None",
+      "dataset": "d+Au",
+      "experiment_description": "None",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_128",
+    "type": "Result",
+    "name": "Nuclear modification factor=94% on Cu+Cu",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Nuclear modification factor",
+      "metric_value": "94%",
+      "dataset": "Cu+Cu",
+      "experiment_description": "as a function of pT for K0 S, K∗0 for centralities (a) 0%-20%, (b) 0%-94% (MB) and (c) 60%-94% in Cu+Cu collisions at √sNN = 200 GeV",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_017_Aggarwal_2024_45bce18a_129",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

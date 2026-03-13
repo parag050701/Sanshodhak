@@ -1,0 +1,601 @@
+comparison,qid,query,query_length,oov_ratio,Dense_ndcg@10,AHR_ndcg@10,delta,improved,worsened
+Dense→AHR,1,0-dimensional biomaterials show inductive properties.,5,0.2,0.0,0.0,0.0,0,0
+Dense→AHR,100,All hematopoietic stem cells segregate their chromosomes randomly.,8,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,1012,Radioiodine treatment of non-toxic multinodular goitre reduces thyroid volume.,9,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1014,Rapamycin decreases the concentration of triacylglycerols in fruit flies.,9,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1019,Rapid phosphotransfer rates govern fidelity in two component systems,9,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,1020,Rapid up-regulation and higher basal expression of interferon-induced genes increase survival of granule cell neurons that are infected by West Nile virus.,22,0.0455,0.0,0.3562,0.3562,1,0
+Dense→AHR,1021,Rapid up-regulation and higher basal expression of interferon-induced genes reduce survival of granule cell neurons that are infected by West Nile virus.,22,0.0455,0.0,0.3562,0.3562,1,0
+Dense→AHR,1024,Recurrent mutations occur frequently within CTCF anchor sites adjacent to oncogenes.,11,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,1029,Reduced responsiveness to interleukin-2 in regulatory T cells is associated with greater resistance to autoimmune diseases such as Type 1 Diabetes.,21,0.0,0.0,0.3152,0.3152,1,0
+Dense→AHR,1041,Replacement of histone H2A with H2A.Z slows gene activation in yeasts by stabilizing +1 nucleosomes.,15,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1049,Ribosomopathies have a low degree of cell and tissue specific pathology.,11,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1062,S-nitrosylated GAPDH physiologically transnitrosylates histone deacetylases.,6,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,1086,Sildenafil improves erectile function in men who experience sexual dysfunction as a result of the use of SSRI antidepressants.,19,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,1088,Silencing of Bcl2 is important for the maintenance and progression of tumors.,12,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1089,Smc5/6 engagment drives the activation of SUMO E3 ligase Mms21 by ATP-dependent remolding.,13,0.1538,0.0,0.3562,0.3562,1,0
+Dense→AHR,1099,Statins decrease blood cholesterol.,4,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1100,Statins increase blood cholesterol.,4,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1104,Stroke patients with prior use of direct oral anticoagulants have a lower risk of in-hospital mortality than stroke patients with prior use of warfarin.,24,0.0417,0.0,0.3155,0.3155,1,0
+Dense→AHR,1107,Subcutaneous fat depots undergo extensive browning processes after cold exposure.,10,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,1110,Suboptimal nutrition is not predictive of chronic disease,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1121,Synaptic activity enhances local release of brain derived neurotrophic factor from postsynaptic dendrites.,13,0.0,0.0,0.2891,0.2891,1,0
+Dense→AHR,113,Angiotensin converting enzyme inhibitors are associated with increased risk for functional renal insufficiency.,13,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,1130,T regulatory cells (tTregs) lacking αvβ8 are more adept at suppressing pathogenic T-cell responses during active inflammation.,17,0.1176,0.0,0.3333,0.3333,1,0
+Dense→AHR,1132,TCR/CD3 microdomains are a required to induce the immunologic synapse to activate T cells.,14,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1137,TNFAIP3 is a tumor suppressor in glioblastoma.,7,0.1429,0.0,0.0,0.0,0,0
+Dense→AHR,1140,Taking 400mg of α-tocopheryl acetate helps to prevent prostate cancer.,10,0.2,0.0,0.0,0.0,0,0
+Dense→AHR,1144,Taxation of sugar-sweetened beverages had no effect on the incidence rate of type II diabetes in India.,17,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,1146,Teaching hospitals do not provide better care than non-teaching hospitals.,10,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,115,Anthrax spores can be disposed of easily after they are dispersed.,11,0.2727,0.0,0.3869,0.3869,1,0
+Dense→AHR,1150,Tetraspanin-3 is a causative factor in the development of acute myelogenous leukemia,12,0.0833,0.0,0.6309,0.6309,1,0
+Dense→AHR,1163,The DdrB protein from Deinococcus radiodurans is an alternative SSB.,10,0.1,0.0,0.3869,0.3869,1,0
+Dense→AHR,1175,The PPR MDA5 has two N-terminal CARD domains.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1179,The PRR MDA5 has a central DExD/H RNA helices domain.,10,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,118,Antibiotic induced alterations in the gut microbiome reduce resistance against Clostridium difficile,12,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1180,The PRR MDA5 is a sensor of RNA virus infection.,10,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1185,The US health care system can save up to $750 million if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.,28,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,1187,The YAP1 and TEAD complex tanslocates into the nucleus where it interacts with transcription factors and DNA-binding proteins that modulate target gene transcription.,23,0.087,0.0,0.3869,0.3869,1,0
+Dense→AHR,1191,The amount of publicly available DNA data doubles every 10 years.,11,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1194,The arm density of TatAd complexes is due to structural rearrangements within Class1 TatAd complexes such as the 'charge zipper mechanism'.,21,0.1429,0.0,0.0,0.0,0,0
+Dense→AHR,1196,The availability of safe places to study is effective at decreasing homelessness.,12,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1197,The availability of safe places to study is not effective at decreasing homelessness.,13,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1199,The benefits of colchicine were achieved with effective widespread use of secondary prevention strategies such as high-dose statins.,18,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1200,The binding orientation of the ML-SA1 activator at hTRPML2 is different from the binding orientation of the ML-SA1 activator at hTRPML1.,21,0.1905,0.0,0.0,0.0,0,0
+Dense→AHR,1202,The center of the granuloma in an immune cell induces a pro-inflammatory immune response.,14,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1204,The combination of H3K4me3 and H3K79me2 is found in quiescent hair follicle stem cells.,14,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1207,The composition of myosin-II isoform switches from the polarizable B isoform to the more homogenous A isoform during hematopoietic differentiation.,20,0.05,0.0,0.5,0.5,1,0
+Dense→AHR,1213,The deregulated and prolonged activation of monocytes has deleterious effects in inflammatory diseases.,13,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1216,The extracellular domain of TMEM27 is cleaved in human beta cells.,11,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,1221,The genomic aberrations found in matasteses are very similar to those found in the primary tumor.,16,0.0625,0.0,0.0,0.0,0,0
+Dense→AHR,1225,The locus rs647161 is associated with colorectal carcinoma.,8,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,1226,"The loss of the TET protein functions may have dire biological consequences, such as myeloid cancers.",16,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1232,The minor G allele of FOXO3 is related to more severe symptoms of Crohn's Disease.,15,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,124,Antiretroviral therapy reduces rates of tuberculosis across a broad range of CD4 strata.,13,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1241,The myocardial lineage develops from cardiac progenitors of mesodermal origin.,10,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1245,The one-child policy has been successful in lowering population growth.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,1259,The relationship between a breast cancer patient's capacity to metabolize tamoxifen and treatment outcome is dependent on the patient's genetic make-up.,21,0.0476,0.0,0.0,0.0,0,0
+Dense→AHR,1262,The repair of Cas9-induced double strand breaks in human DNA is error-prone.,12,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,1266,"The risk of breast cancer among parous women increases with placental weight of pregnancies, and this association is strongest for premenopausal breast cancer.",23,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,127,Arginine 90 in p150n is important for interaction with EB1.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,1270,The risk of male prisoners harming themselves is ten times that of female prisoners.,14,0.0714,0.0,0.3155,0.3155,1,0
+Dense→AHR,1271,The severity of cardiac involvement in amyloidosis can be described by the degree of transmurality of late gadolinium enhancement in MRI.,21,0.0476,0.0,0.3869,0.3869,1,0
+Dense→AHR,1272,The single flash-evoked ERG b-wave is generated by activity of ON-bipolar cells.,12,0.1667,0.0,0.0,0.0,0,0
+Dense→AHR,1273,The sliding activity of kinesin-8 protein Kip3 promotes bipolar spindle assembly.,11,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,1274,The tip of the inner tube of the toxic type VI secretion system (T6SS) antibacterial effector in Escherichia coli (E. coli) carries toxic effector proteins.,25,0.0,0.0,0.3084,0.3084,1,0
+Dense→AHR,1278,The treatment of cancer patients with co-IR blockade does not cause any adverse autoimmune events.,15,0.0667,0.0,0.0,0.0,0,0
+Dense→AHR,1279,The treatment of cancer patients with co-IR blockade precipitates adverse autoimmune events.,12,0.0833,0.0,0.0,0.0,0,0
+Dense→AHR,128,Arterioles have a larger lumen diameter than venules.,8,0.125,0.0,0.0,0.0,0,0
+Dense→AHR,1280,"The ureABIEFGH gene cluster encodes urease maturation proteins : UreD/UreH, UreE, UreF, and UreG.",14,0.1429,0.0,0.0,0.0,0,0
+Dense→AHR,1281,The ureABIEFGH gene cluster is induced by nickel (II) ion.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,1282,Therapeutic use of the drug Dapsone to treat pyoderma gangrenous is based on anecdotal evidence.,15,0.0667,0.0,0.0,0.0,0,0
+Dense→AHR,129,Articles published in open access format are less likely to be cited than traditional journals.,15,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1290,There is an inverse relationship between hip fractures and statin use.,11,0.0,0.0,0.6309,0.6309,1,0
+Dense→AHR,1292,There is no association between HNF4A mutations and diabetes risks.,10,0.0,0.0,0.6309,0.6309,1,0
+Dense→AHR,1298,Thigh-length graduated compression stockings (GCS) did not reduce deep vein thrombosis in patients admitted to hospital who are immobile because of acute stroke.,23,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,13,5% of perinatal mortality is due to low birth weight.,10,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,130,Articles published in open access format are more likely to be cited than traditional journals.,15,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,1303,Tirasemtiv has no effect on fast-twitch muscle.,7,0.2857,0.0,0.0,0.0,0,0
+Dense→AHR,1316,Transferred UCB T cells acquire a memory-like phenotype in recipients.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,1319,Transplanted human glial cells can differentiate within the host animal.,10,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,132,Aspirin inhibits the production of PGE2.,6,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1320,Transplanted human glial progenitor cells are incapable of forming a neural network with host animals' neurons.,16,0.0625,0.0,0.5,0.5,1,0
+Dense→AHR,133,"Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",19,0.0526,0.0,0.098,0.098,1,0
+Dense→AHR,1332,Tumor necrosis factor alpha (TNF-α) and interleukin-1 (IL-1) are pro-inflammatory cytokines that inhibit IL-6 and IL-10.,16,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1335,UCB T cells maintain high TCR diversity after transplantation.,9,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,1336,UCB T cells reduce TCR diversity after transplantation.,8,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,1337,Ubiquitin ligase UBC13 generates a K63-linked polyubiquitin moiety at PCNA K164.,11,0.1818,0.0,0.6309,0.6309,1,0
+Dense→AHR,1339,Ultrasound guidance significantly raises the number of traumatic procedures when attempting needle insertion.,13,0.0769,0.0,0.5,0.5,1,0
+Dense→AHR,1344,Up-regulation of the p53 pathway and related molecular events casues cancer resistance and results in a significantly shortened lifespan marked by senescent cells and accelerated organismal aging.,27,0.037,0.0,0.4307,0.4307,1,0
+Dense→AHR,1352,Upregulation of mosGCTL-1 is induced upon infection with West Nile virus.,11,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,1359,Varenicline monotherapy is more effective after 12 weeks of treatment compared to combination nicotine replacement therapies with varenicline or bupropion.,20,0.05,0.0,0.4307,0.4307,1,0
+Dense→AHR,1362,Venules have a larger lumen diameter than arterioles.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1363,Venules have a thinner or absent smooth layer compared to arterioles.,11,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1368,Vitamin D deficiency effects the term of delivery.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,137,Asymptomatic visual impairment screening in elderly populations does not lead to improved vision.,13,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,1370,Vitamin D deficiency is unrelated to birth weight.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,1379,Women with a higher birth weight are more likely to develop breast cancer later in life.,16,0.0,0.0,0.2566,0.2566,1,0
+Dense→AHR,1382,aPKCz causes tumour enhancement by affecting glutamine metabolism.,8,0.125,0.0,0.0,0.0,0,0
+Dense→AHR,1385,cSMAC formation enhances weak ligand signalling.,6,0.0,0.0,0.2891,0.2891,1,0
+Dense→AHR,1389,mTORC2 regulates intracellular cysteine levels through xCT inhibition.,8,0.125,0.0,0.4307,0.4307,1,0
+Dense→AHR,1395,p16INK4A accumulation is  linked to an abnormal wound response caused by the microinvasive step of advanced Oral Potentially Malignant Lesions (OPMLs).,21,0.0952,0.0,0.0,0.0,0,0
+Dense→AHR,141,Auditory entrainment is strengthened when people see congruent visual and auditory information.,12,0.0,0.6131,0.7977,0.1846,1,0
+Dense→AHR,142,Autologous transplantation of mesenchymal stem cells causes a higher rate of opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.,20,0.05,0.0,0.5,0.5,1,0
+Dense→AHR,143,Autologous transplantation of mesenchymal stem cells causes fewer opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.,17,0.0588,0.0,0.5,0.5,1,0
+Dense→AHR,146,Autologous transplantation of mesenchymal stem cells has lower rates of rejection than induction therapy with anti-interleukin-2 receptor antibodies.,18,0.0556,0.0,0.3155,0.3155,1,0
+Dense→AHR,148,Autophagy declines in aged organisms.,5,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,163,Bariatric surgery has a positive impact on mental health.,9,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,171,Basophils counteract disease development in patients with systemic lupus erythematosus (SLE).,11,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,179,Birth-weight is positively associated with breast cancer.,7,0.1429,0.0,0.0,0.0,0,0
+Dense→AHR,180,Blocking the interaction between TDP-43 and respiratory complex I proteins ND3 and ND6 leads to increased TDP-43-induced neuronal loss.,19,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,183,Bone marrow cells contribute to adult macrophage compartments.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,185,Breast cancer development is determined exclusively by genetic factors.,9,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,198,CCL19 is absent within dLNs.,5,0.2,1.0,0.6309,-0.3691,0,1
+Dense→AHR,208,CHEK2 is not associated with breast cancer.,7,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,212,CR is associated with higher methylation age.,7,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,213,CRP is not predictive of postoperative mortality following Coronary Artery Bypass Graft (CABG) surgery.,14,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,216,CX3CR1 on the Th2 cells impairs T cell survival,9,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,217,CX3CR1 on the Th2 cells promotes T cell survival,9,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,218,CX3CR1 on the Th2 cells promotes airway inflammation.,8,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,219,CX3CR1 on the Th2 cells suppresses airway inflammation.,8,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,230,Carriers of the alcohol aldehyde dehydrogenase deficiency mutation drink less that non-carries.,12,0.0833,0.0,0.3562,0.3562,1,0
+Dense→AHR,232,Cataract and trachoma are the primary cause of blindness in Southern Sudan.,12,0.0,0.0,0.2891,0.2891,1,0
+Dense→AHR,233,Cell autonomous sex determination in somatic cells does not occur in Galliformes.,12,0.0833,0.0,0.3333,0.3333,1,0
+Dense→AHR,236,Cell autonomous sex determination in somatic cells occurs in Passeriformes.,10,0.1,0.0,0.4307,0.4307,1,0
+Dense→AHR,237,Cells lacking clpC have a defect in sporulation efficiency in Bacillus subtilis.,12,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,238,Cells undergoing methionine restriction may activate miRNAs.,7,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,239,Cellular aging closely links to an older appearance.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,248,Chenodeosycholic acid treatment increases whole-body energy expenditure.,7,0.1429,0.0,0.3155,0.3155,1,0
+Dense→AHR,249,Chenodeosycholic acid treatment reduces whole-body energy expenditure.,7,0.1429,0.0,0.3155,0.3155,1,0
+Dense→AHR,261,"Chronic aerobic exercise alters endothelial function, improving vasodilating mechanisms mediated by NO.",12,0.0833,0.0,0.1934,0.1934,1,0
+Dense→AHR,268,Cold exposure increases BAT recruitment.,5,0.0,0.0,0.6309,0.6309,1,0
+Dense→AHR,269,Cold exposure reduces BAT recruitment.,5,0.0,0.0,0.6309,0.6309,1,0
+Dense→AHR,274,Combination nicotine replacement therapies with varenicline or bupropion lead to significantly higher long-term abstinence rates at 52 weeks than varenicline monotherapy.,21,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,275,Combining phosphatidylinositide 3-kinase and MEK 1/2 inhibitors is effective at treating KRAS mutant tumors.,14,0.0,0.0,0.2021,0.2021,1,0
+Dense→AHR,279,Commelina yellow mottle virus' (ComYMV) genome consists of 7489 baise pairs.,11,0.2727,0.0,0.4307,0.4307,1,0
+Dense→AHR,294,Crossover hot spots are not found within gene promoters in Saccharomyces cerevisiae.,12,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,295,Crosstalk between dendritic cells (DCs) and innate lymphoid cells (ILCs) is important in the regulation of intestinal homeostasis.,18,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,298,Cytochrome c is released from the mitochondrial intermembrane space to cytosol during apoptosis.,13,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,3,"1,000 genomes project enables mapping of genetic sequence variation consisting of rare variants with larger penetrance effects than common variants.",20,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,300,Cytosolic proteins bind to iron-responsive elements on mRNAs coding for DMT1. Cytosolic proteins bind to iron-responsive elements on mRNAs coding for proteins involved in iron uptake.,26,0.0385,0.0,0.0,0.0,0,0
+Dense→AHR,303,DMRT1 is a sex-determining gene that is epigenetically regulated by the MHM region.,13,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,312,De novo assembly of sequence data has more specific contigs than unassembled sequence data.,14,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,314,Deamination of cytidine to uridine on the minus strand of viral DNA results in catastrophic G-to-A mutations in the viral genome.,21,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,324,Deleting Raptor reduces G-CSF levels.,5,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,327,Deletion of αvβ8 does not result in a spontaneous inflammatory phenotype.,11,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,338,Dexamethasone decreases risk of postoperative bleeding.,6,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,343,Diabetic patients with acute coronary syndrome experience increased short-term and long-term risk for bleeding events.,15,0.0,0.0,0.1934,0.1934,1,0
+Dense→AHR,350,Discrimination between the initiator and elongation tRNAs depends on the translation initiation factor IF3.,14,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,354,Downregulation and mislocalization of Scribble prevents cell transformation and mammary tumorigenesis.,11,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,36,A deficiency of vitamin B12 increases blood levels of homocysteine.,10,0.0,0.6131,0.3066,-0.3066,0,1
+Dense→AHR,362,During the primary early antibody response activated B cells migrate toward the inner-and outer paracortical areas where oxysterol accumulation is generated by stromal cells.,24,0.0833,0.0,0.5,0.5,1,0
+Dense→AHR,380,Enhanced early production of inflammatory chemokines improves viral control in the lung.,12,0.0,0.0,0.2891,0.2891,1,0
+Dense→AHR,384,Epidemiological disease burden from noncommunicable diseases is more prevalent in low economic settings.,13,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,385,Epigenetic modulating agents (EMAs) modulate antitumor immune response in a cancer model system.,13,0.0769,0.0,0.1934,0.1934,1,0
+Dense→AHR,386,Errors in peripheral IV drug administration are most common during bolus administration and multiple-step medicine preparations.,16,0.0625,0.0,0.6309,0.6309,1,0
+Dense→AHR,388,Ethanol stress decreases the expression of IBP in bacteria.,9,0.1111,0.0,0.3333,0.3333,1,0
+Dense→AHR,399,Exposure to fine particulate air pollution is relate to anxiety prevalence.,11,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,410,Febrile seizures increase the threshold for development of epilepsy.,9,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,411,Febrile seizures reduce the threshold for development of epilepsy.,9,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,415,Female carriers of the Apolipoprotein E4 (APOE4) allele have increased risk for dementia.,13,0.0769,0.0,0.0,0.0,0,0
+Dense→AHR,42,A high microerythrocyte count raises vulnerability to severe anemia in homozygous alpha (+)- thalassemia trait subjects.,16,0.0625,0.0,0.3869,0.3869,1,0
+Dense→AHR,421,Flexible molecules experience greater steric hindrance in the tumor microenviroment than rigid molecules.,13,0.1538,0.0,0.0,0.0,0,0
+Dense→AHR,431,FoxO3a activation in neuronal death is mediated by reactive oxygen species (ROS).,12,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,436,Free histones are degraded by a Rad53-dependent mechanism once DNA has been replicated.,13,0.0769,0.0,0.4307,0.4307,1,0
+Dense→AHR,437,Functional consequences of genomic alterations due to Myelodysplastic syndrome (MDS) are poorly understood due to the lack of an animal model.,21,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,439,Fz/PCP-dependent Pk localizes to the anterior membrane of neuroectoderm cells during zebrafish neuralation,13,0.2308,0.0,0.0,0.0,0,0
+Dense→AHR,440,Fz/PCP-dependent Pk localizes to the anterior membrane of notochord cells during zebrafish neuralation.,13,0.1538,0.0,0.0,0.0,0,0
+Dense→AHR,443,GATA-3 is important for hematopoietic stem cell (HSC) function.,9,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,452,Gene expression does not vary appreciably across genetically identical cells.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,475,Glycolysis is one of the primary glycometabolic pathways in cells.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,478,Golli-deficient T-cells prefer to differentiate into an anergic phenotype in the adaptive immune response when there are increased levels of Ca2+ in the cytosol.,24,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,48,"A total of 1,000 people in the UK are asymptomatic carriers of vCJD infection.",14,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,49,ADAR1 binds to Dicer to cleave pre-miRNA.,7,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,491,HNF4A mutations can cause diabetes in mutant carriers by the age of 14 years,14,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,5,1/2000 in UK have abnormal PrP positivity.,7,0.4286,0.0,0.5,0.5,1,0
+Dense→AHR,50,AIRE is expressed in some skin tumors.,7,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,501,Headaches are not correlated with cognitive impairment.,7,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,502,"Healthcare delivery efficiency in crowded delivery centers is impaired by improving structural, logistical, and interpersonal elements.",16,0.0625,0.0,0.0,0.0,0,0
+Dense→AHR,507,Helminths interfere with immune system control of macrophages activated by IL-4 favor Mycobacterium tuberculosis replication.,15,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,508,Hematopoietic Stem Cell purification reaches purity rate of up to 50%.,11,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,51,ALDH1 expression is associated with better breast cancer outcomes.,9,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,513,High cardiopulmonary fitness causes increased mortality rate.,7,0.0,0.0,0.2891,0.2891,1,0
+Dense→AHR,514,High dietary calcium intakes are unnecessary for prevention of secondary hyperparathyroidism in subjects with 25(OH)D levels above 75 nmol/liter.,19,0.0526,0.0,0.0,0.0,0,0
+Dense→AHR,516,High levels of CRP reduces the risk of exacerbations in chronic obstructive pulmonary disease (COPD).,15,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,517,High levels of copeptin decrease risk of diabetes.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,521,High-sensitivity cardiac troponin T (HSCT-T) dosage may not be diagnostic if the onset of symptoms occurs less than 3 hours before acute myocardial injury (AMI).,25,0.04,0.0,0.4307,0.4307,1,0
+Dense→AHR,525,Histone demethylase recruitment and a transient decrease in histone methylation is necessary for ligand-dependent induction of transcription by nuclear receptors.,20,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,527,Homozygous deletion of murine Sbds gene from osterix-expressing mesenchymal stem and progenitor cells (MPCs) prevents oxidative stress.,17,0.1176,0.0,0.3562,0.3562,1,0
+Dense→AHR,528,Human T-lymphotropic virus type-I-associated myelopathy / tropical spastic paraparesis (HAM/TSP) patients produce Immunoglobulin G (IgG) antibodies which cross-react with an immunodominant epitope in Tax.,24,0.125,0.0,0.4307,0.4307,1,0
+Dense→AHR,53,ALDH1 expression is associated with poorer prognosis in breast cancer.,10,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,532,Hyperfibrinogenemia decreases rates of femoropopliteal bypass thrombosis.,7,0.1429,0.0,0.3562,0.3562,1,0
+Dense→AHR,533,Hyperfibrinogenemia increases rates of femoropopliteal bypass thrombosis.,7,0.1429,0.0,0.5,0.5,1,0
+Dense→AHR,535,Hypertension is frequently observed in type 1 diabetes patients.,9,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,536,Hypocretin neurones induce panicprone state in rats.,7,0.2857,0.0,0.0,0.0,0,0
+Dense→AHR,539,Hypoglycemia increases the risk of dementia.,6,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,54,AMP-activated protein kinase (AMPK) activation increases inflammation-related fibrosis in the lungs.,11,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,540,Hypothalamic glutamate neurotransmission is crucial to energy balance.,8,0.0,0.0,0.2184,0.2184,1,0
+Dense→AHR,544,IFIT1 restricts viral replication by sequestrating mis-capped viral RNAs.,9,0.3333,0.0,0.0,0.0,0,0
+Dense→AHR,549,IRG1 has antiviral effects against neurotropic viruses.,7,0.0,0.0,0.4307,0.4307,1,0
+Dense→AHR,551,ITAM phosphorylation prevents the transfer of the T cell receptor (TCR) signal from the echo-domain to the cytoplasmic tail of the T cell receptor (TCR).,25,0.08,0.0,0.0,0.0,0,0
+Dense→AHR,552,IgA plasma cells that are specific for transglutaminase 2 accumulate in the duodenal mucosa on commencement of a gluten-free diet.,20,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,554,Immune complex triggered cell death leads to extracellular release of neutrophil protein HMGB1.,13,0.0769,0.0,0.5,0.5,1,0
+Dense→AHR,56,APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation causing GABA neuron degeneration.,15,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,560,Immune responses result in the development of inflammatory Th17 cells and anti-inflammatory iTregs.,13,0.0769,0.0,0.0,0.0,0,0
+Dense→AHR,569,"In adult tissue, most T cells are memory T cells.",10,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,57,"APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation, delaying GABA neuron degeneration.",15,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,575,"In domesticated populations of Saccharomyces cerevisiae, whole chromosome aneuploidy is very uncommon.",12,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,577,"In mice, P. chabaudi parasites are able to proliferate faster early in infection when inoculated at lower numbers than when inoculated at high numbers.",24,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,578,"In mouse models, the loss of CSF1R facilitates MOZ-TIF2-induced leuekmogenesis.",10,0.2,0.0,0.4307,0.4307,1,0
+Dense→AHR,587,"In transgenic mice harboring green florescent protein under the control of the Sox2 promoter, less than ten percent of the cells with green florescent colocalize with cell proliferation markers.",29,0.069,0.0,0.0,0.0,0,0
+Dense→AHR,589,"In young and middle-aged adults, current or remote uses of ADHD medications do not increase the risk of serious cardiovascular events.",21,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,593,Incidence of heart failure decreased by 10% in women since 1979.,11,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,597,Incidence rates of cervical cancer have decreased.,7,0.0,0.0,0.3152,0.3152,1,0
+Dense→AHR,598,Incidence rates of cervical cancer have increased due to nationwide screening programs based primarily on cytology to detect uterine cervical cancer.,21,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,613,Increased microtubule acetylation repairs LRRK2 Roc-COR domain mutation induced locomotor deficits.,11,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,619,Increased vessel density along with a reduction in fibrosis decreases the efficacy of chemotherapy treatments.,15,0.0,0.0,0.1846,0.1846,1,0
+Dense→AHR,623,Individuals with low serum vitamin D concentrations have increased risk of multiple sclerosis.,13,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,628,Infection of human T-cell lymphotropic virus type 1 is most frequent in individuals of African origin.,16,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,636,"Inositol lipid 3-phosphatase PTEN converts Ptdlns(3,4)P 2 into phosphatidylinositol 4-phosphate.",10,0.3,0.0,0.0,0.0,0,0
+Dense→AHR,637,Input from  mental and physical health care professionals is effective at decreasing homelessness.,13,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,641,Insomnia can be effectively treated with cognitive behavioral therapy.,9,0.0,0.0,0.2184,0.2184,1,0
+Dense→AHR,644,Insulin increases risk of severe kidney failure.,7,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,649,Integrating classroom-based collaborative learning with Web-based collaborative learning leads to subpar class performance,13,0.1538,0.0,0.301,0.301,1,0
+Dense→AHR,659,Ivermectin is used to treat lymphatic filariasis.,7,0.2857,0.0,0.0,0.0,0,0
+Dense→AHR,660,Ivermectin is used to treat onchocerciasis.,6,0.3333,0.0,0.0,0.0,0,0
+Dense→AHR,674,LDL cholesterol has no involvement in the development of cardiovascular disease.,11,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,684,Lack of clpC does not affect sporulation efficiency in Bacillus subtilis cells.,12,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,690,Less than 10% of the gabonese children with Schimmelpenning-Feuerstein-Mims syndrome (SFM) had a plasma lactate of more than 5mmol/L.,19,0.1579,0.0,0.0,0.0,0,0
+Dense→AHR,691,Leukemia associated Rho guanine nucleotide-exchange factor represses RhoA in response to SRC activation.,13,0.0769,0.0,0.4307,0.4307,1,0
+Dense→AHR,692,Leuko-increased blood increases infectious complications in red blood cell transfusion.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,693,Leuko-reduced blood reduces infectious complications in red blood cell transfusion.,10,0.1,0.0,0.2891,0.2891,1,0
+Dense→AHR,70,Activation of PPM1D suppresses p53 function.,6,0.0,0.0,0.4825,0.4825,1,0
+Dense→AHR,700,Localization of PIN1 in the Arabidopsis embryo does not require VPS9a,11,0.0909,0.0,0.3155,0.3155,1,0
+Dense→AHR,702,Localization of PIN1 in the roots of Arabidopsis does not require VPS9a,12,0.0833,0.0,0.0,0.0,0,0
+Dense→AHR,715,Low expression of miR7a does represses target genes and exerts a biological function in ovaries.,15,0.0667,0.0,0.0,0.0,0,0
+Dense→AHR,716,Low expression of miR7a exerts a biological function in testis.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,718,Low nucleosome occupancy correlates with low methylation levels across species.,10,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,72,Activator-inhibitor pairs are provided dorsally by Admpchordin.,7,0.2857,0.0,0.3562,0.3562,1,0
+Dense→AHR,721,Lupus-prone mice infected with curliproducing bacteria have higher autoantibody titers compared to controls.,13,0.0769,0.0,0.5,0.5,1,0
+Dense→AHR,723,Ly49Q directs the organization of neutrophil migration to inflammation sites by regulating membrane raft functions.,15,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,727,Ly6C hi monocytes have a lower inflammatory capacity compared to their Ly6C lo counterparts.,14,0.1429,0.0,0.0,0.0,0,0
+Dense→AHR,728,Ly6C hi monocytes have a lower inflammatory capacity than Ly6C lo monocytes.,12,0.1667,0.0,0.3066,0.3066,1,0
+Dense→AHR,729,Lymphadenopathy is observed in knockin mouse lacking the SHP-2 MAPK pathway.,11,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,742,Macrolides have no protective effect against myocardial infarction.,8,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,743,Macrolides protect against myocardial infarction.,5,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,744,Macropinocytosis contributes to a cell's supply of amino acids via the intracellular uptake of protein.,15,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,75,"Active H. pylori urease has a polymeric structure that compromises two subunits, UreA and UreB.",15,0.0667,0.0,0.4307,0.4307,1,0
+Dense→AHR,756,Many proteins in human cells can be post-translationally modified at lysine residues via acetylation.,14,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,759,Mathematical models predict that using Artemisinin-based combination therapy over nongametocytocidal drugs have a dramatic impact in reducing malaria transmission.,19,0.0526,0.0,0.3869,0.3869,1,0
+Dense→AHR,768,Mercaptopurine is anabolized into the inactive methylmercaptopurine by thiopurine methyltrasnferase (TPMT).,11,0.4545,0.0,0.0,0.0,0,0
+Dense→AHR,770,Metastatic colorectal cancer treated with a single agent fluoropyrimidines resulted in reduced efficacy and lower quality of life when compared with oxaliplatin-based chemotherapy in elderly patients.,26,0.0385,0.0,0.4307,0.4307,1,0
+Dense→AHR,775,Mice defective for deoxyribonucleic acid (DNA) polymerase I (polI) reveal increased sensitivity to ionizing radiation (IR).,16,0.125,0.0,0.0,0.0,0,0
+Dense→AHR,781,Mice that lack Interferon-γ or its receptor exhibit high resistance to experimental autoimmune myocarditis.,14,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,783,Mice without IFN-γ or its receptor are resistant to EAM induced with α-MyHC/CFA.,13,0.0769,0.0,0.0,0.0,0,0
+Dense→AHR,784,MicroRNA is involved in the regulation of Neural Stem Cell (NSC) differentiation and proliferation dynamic homeostasis,16,0.0625,0.0,0.5,0.5,1,0
+Dense→AHR,785,Microarray results from culture-amplified mixtures of serotypes correlate poorly with microarray results from uncultured mixtures.,15,0.2,0.0,0.3155,0.3155,1,0
+Dense→AHR,793,Mitochondria are uninvolved in apoptosis.,5,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,800,Modifying the epigenome in the brain affects the normal human aging process by affecting certain genes related to neurogenesis.,19,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,805,Monoclonal antibody targeting of N-cadherin inhibits metastasis.,7,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,808,Most termination events in Okazaki fragments are sequence specific.,9,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,811,Mutant mice lacking SVCT2 have greatly increased ascorbic acid levels in both brain and adrenals.,15,0.0667,0.0,0.3333,0.3333,1,0
+Dense→AHR,814,"Mutations in G-Beta protein GNB2 are present in many cancers, resulting in loss of interaction with G-alpha subunits and concomitant activation of AKT pathway.",24,0.0833,0.0,0.5,0.5,1,0
+Dense→AHR,820,N-terminal cleavage increases success identifying transcription start sites.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,821,N-terminal cleavage reduces success identifying transcription start sites.,8,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,823,N348I mutations cause resistance to zidovudine (AZT).,7,0.1429,0.0,0.3562,0.3562,1,0
+Dense→AHR,830,NF2 (Merlin) causes phosphorylation and subsequent cytoplasmic sequestration of YAP in Drosophila by activating LATS1/2 kinases.,16,0.1875,0.0,0.0,0.0,0,0
+Dense→AHR,831,NF2 (Merlin) prevents phosphorylation and subsequent cytoplasmic sequestration of YAP in Drosophila.,12,0.1667,0.0,0.0,0.0,0,0
+Dense→AHR,832,NFAT4 activation requires IP3R-mediated Ca2+ mobilization.,6,0.1667,0.0,0.3869,0.3869,1,0
+Dense→AHR,834,NOX2-independent pathways can generate peroxynitrite by reacting with nitrogen intermediates.,10,0.1,0.0,0.0,0.0,0,0
+Dense→AHR,837,NR5A2 is important in development of endometrial tissues.,8,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,839,Nanoparticles can be targeted against specific cell types by incorporating aptamers into lipid nanoparticles.,14,0.0714,0.0,0.2891,0.2891,1,0
+Dense→AHR,845,Neutrophil extracellular traps (NETs) are released by ANCA-stimulated neutrophils.,9,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,847,New drugs for tuberculosis often do not penetrate the necrotic portion of a tuberculosis lesion in high concentrations.,18,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,852,Non-invasive ventilation use should be decreased if there is inadequate response to conventional treatment.,14,0.0,0.0,0.3155,0.3155,1,0
+Dense→AHR,859,Normal expression of RUNX1 has tumor-promoting effects.,7,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,870,Obesity decreases life quality.,4,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,873,Obesity is determined solely by environmental factors.,7,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,879,Occupancy of ribosomes by IncRNAs do not make functional peptides.,10,0.1,0.0,0.4307,0.4307,1,0
+Dense→AHR,880,Occupancy of ribosomes by IncRNAs mirror 5 0-UTRs,8,0.25,0.0,0.5,0.5,1,0
+Dense→AHR,882,Omnivores produce less trimethylamine N-oxide from dietary I-carnitine than vegetarians.,10,0.2,0.0,0.4307,0.4307,1,0
+Dense→AHR,887,Only a minority of cells survive development after differentiation into stress-resistant spores.,12,0.0833,0.0,0.0,0.0,0,0
+Dense→AHR,903,PD-1 triggering on monocytes reduces IL-10 production by monocytes.,9,0.0,0.0,0.3869,0.3869,1,0
+Dense→AHR,904,PDPN promotes efficient motility along stromal surfaces by activating the C-type lectin receptor to rearrange the actin cytoskeleton in dendritic cells.,21,0.0476,0.0,0.3562,0.3562,1,0
+Dense→AHR,907,PGE 2 promotes intestinal tumor growth by altering the expression of tumor suppressing and DNA repair genes.,17,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,911,PKG-la plays an essential role in expression of pain hypersensitivity in PGK-la knockout mice.,14,0.1429,0.0,0.3869,0.3869,1,0
+Dense→AHR,913,PPAR-RXRs are inhibited by PPAR ligands.,6,0.1667,0.0,0.0,0.0,0,0
+Dense→AHR,914,PPAR-RXRs can be activated by PPAR ligands.,7,0.1429,0.0,0.0,0.0,0,0
+Dense→AHR,921,Participating in six months of physical activity improves cognitive functioning.,10,0.0,0.0,0.2891,0.2891,1,0
+Dense→AHR,922,Patients in stable partnerships have a faster progression from HIV to AIDS.,12,0.0,0.0,0.5,0.5,1,0
+Dense→AHR,936,Peroxynitrite is required for nitration of TCR/CD8.,7,0.1429,0.0,0.6309,0.6309,1,0
+Dense→AHR,94,Albendazole is used to treat lymphatic filariasis.,7,0.2857,0.0,0.0,0.0,0,0
+Dense→AHR,956,Pleiotropic coupling of GLP-1R to intracellular effectors promotes distinct profiles of cellular signaling.,13,0.0,0.0,0.3333,0.3333,1,0
+Dense→AHR,957,Podocytes are motile and migrate in the presence of injury.,10,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,960,Polymeal nutrition reduces cardiovascular mortality.,5,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,967,Pretreatment with the Arp2/3 inhibitor CK-666 affects lamelliopodia formation.,9,0.2222,0.0,0.1934,0.1934,1,0
+Dense→AHR,971,Primary cervical cancer screening with HPV detection has higher longitudinal sensitivity than conventional cytology to detect cervical intraepithelial neoplasia grade 2.,21,0.0,0.0,0.1175,0.1175,1,0
+Dense→AHR,975,Primary pro-inflammatory cytokines induce secondary pro- and anti-inflammatory mediators.,9,0.0,0.0,0.0,0.0,0,0
+Dense→AHR,982,Proteins synthesized at the growth cone are ubiquitinated at a higher rate than proteins from the cell body.,18,0.0,0.0,0.301,0.301,1,0
+Dense→AHR,985,Pseudogene PTENP1 regulates the expression of PTEN by functioning as an miRNA decoy.,13,0.0769,0.0,0.3562,0.3562,1,0
+Dense→AHR,99,Alizarin forms hydrogen bonds with residues involved in PGAM1 substrate binding.,11,0.0,0.0,0.3562,0.3562,1,0
+Dense→AHR,993,Pyridostatin destabilizes the G - quadruplex in the telomeric region.,10,0.0,0.0,0.3155,0.3155,1,0
+Hybrid→AHR,1,0-dimensional biomaterials show inductive properties.,5,0.2,,0.0,0.0,0,0
+Hybrid→AHR,100,All hematopoietic stem cells segregate their chromosomes randomly.,8,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,1012,Radioiodine treatment of non-toxic multinodular goitre reduces thyroid volume.,9,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1014,Rapamycin decreases the concentration of triacylglycerols in fruit flies.,9,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1019,Rapid phosphotransfer rates govern fidelity in two component systems,9,0.0,,0.301,0.0,0,0
+Hybrid→AHR,1020,Rapid up-regulation and higher basal expression of interferon-induced genes increase survival of granule cell neurons that are infected by West Nile virus.,22,0.0455,,0.3562,0.0,0,0
+Hybrid→AHR,1021,Rapid up-regulation and higher basal expression of interferon-induced genes reduce survival of granule cell neurons that are infected by West Nile virus.,22,0.0455,,0.3562,0.0,0,0
+Hybrid→AHR,1024,Recurrent mutations occur frequently within CTCF anchor sites adjacent to oncogenes.,11,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,1029,Reduced responsiveness to interleukin-2 in regulatory T cells is associated with greater resistance to autoimmune diseases such as Type 1 Diabetes.,21,0.0,,0.3152,0.0,0,0
+Hybrid→AHR,1041,Replacement of histone H2A with H2A.Z slows gene activation in yeasts by stabilizing +1 nucleosomes.,15,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1049,Ribosomopathies have a low degree of cell and tissue specific pathology.,11,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1062,S-nitrosylated GAPDH physiologically transnitrosylates histone deacetylases.,6,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,1086,Sildenafil improves erectile function in men who experience sexual dysfunction as a result of the use of SSRI antidepressants.,19,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,1088,Silencing of Bcl2 is important for the maintenance and progression of tumors.,12,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1089,Smc5/6 engagment drives the activation of SUMO E3 ligase Mms21 by ATP-dependent remolding.,13,0.1538,,0.3562,0.0,0,0
+Hybrid→AHR,1099,Statins decrease blood cholesterol.,4,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1100,Statins increase blood cholesterol.,4,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1104,Stroke patients with prior use of direct oral anticoagulants have a lower risk of in-hospital mortality than stroke patients with prior use of warfarin.,24,0.0417,,0.3155,0.0,0,0
+Hybrid→AHR,1107,Subcutaneous fat depots undergo extensive browning processes after cold exposure.,10,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,1110,Suboptimal nutrition is not predictive of chronic disease,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1121,Synaptic activity enhances local release of brain derived neurotrophic factor from postsynaptic dendrites.,13,0.0,,0.2891,0.0,0,0
+Hybrid→AHR,113,Angiotensin converting enzyme inhibitors are associated with increased risk for functional renal insufficiency.,13,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,1130,T regulatory cells (tTregs) lacking αvβ8 are more adept at suppressing pathogenic T-cell responses during active inflammation.,17,0.1176,,0.3333,0.0,0,0
+Hybrid→AHR,1132,TCR/CD3 microdomains are a required to induce the immunologic synapse to activate T cells.,14,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1137,TNFAIP3 is a tumor suppressor in glioblastoma.,7,0.1429,,0.0,0.0,0,0
+Hybrid→AHR,1140,Taking 400mg of α-tocopheryl acetate helps to prevent prostate cancer.,10,0.2,,0.0,0.0,0,0
+Hybrid→AHR,1144,Taxation of sugar-sweetened beverages had no effect on the incidence rate of type II diabetes in India.,17,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,1146,Teaching hospitals do not provide better care than non-teaching hospitals.,10,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,115,Anthrax spores can be disposed of easily after they are dispersed.,11,0.2727,,0.3869,0.0,0,0
+Hybrid→AHR,1150,Tetraspanin-3 is a causative factor in the development of acute myelogenous leukemia,12,0.0833,,0.6309,0.0,0,0
+Hybrid→AHR,1163,The DdrB protein from Deinococcus radiodurans is an alternative SSB.,10,0.1,,0.3869,0.0,0,0
+Hybrid→AHR,1175,The PPR MDA5 has two N-terminal CARD domains.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1179,The PRR MDA5 has a central DExD/H RNA helices domain.,10,0.0,,0.0,0.0,0,0
+Hybrid→AHR,118,Antibiotic induced alterations in the gut microbiome reduce resistance against Clostridium difficile,12,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1180,The PRR MDA5 is a sensor of RNA virus infection.,10,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1185,The US health care system can save up to $750 million if 7% of patients waiting for kidney transplants participate in the optimized national kidney paired donation program.,28,0.0,,0.5,0.0,0,0
+Hybrid→AHR,1187,The YAP1 and TEAD complex tanslocates into the nucleus where it interacts with transcription factors and DNA-binding proteins that modulate target gene transcription.,23,0.087,,0.3869,0.0,0,0
+Hybrid→AHR,1191,The amount of publicly available DNA data doubles every 10 years.,11,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1194,The arm density of TatAd complexes is due to structural rearrangements within Class1 TatAd complexes such as the 'charge zipper mechanism'.,21,0.1429,,0.0,0.0,0,0
+Hybrid→AHR,1196,The availability of safe places to study is effective at decreasing homelessness.,12,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1197,The availability of safe places to study is not effective at decreasing homelessness.,13,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1199,The benefits of colchicine were achieved with effective widespread use of secondary prevention strategies such as high-dose statins.,18,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1200,The binding orientation of the ML-SA1 activator at hTRPML2 is different from the binding orientation of the ML-SA1 activator at hTRPML1.,21,0.1905,,0.0,0.0,0,0
+Hybrid→AHR,1202,The center of the granuloma in an immune cell induces a pro-inflammatory immune response.,14,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1204,The combination of H3K4me3 and H3K79me2 is found in quiescent hair follicle stem cells.,14,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1207,The composition of myosin-II isoform switches from the polarizable B isoform to the more homogenous A isoform during hematopoietic differentiation.,20,0.05,,0.5,0.0,0,0
+Hybrid→AHR,1213,The deregulated and prolonged activation of monocytes has deleterious effects in inflammatory diseases.,13,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1216,The extracellular domain of TMEM27 is cleaved in human beta cells.,11,0.0,,0.5,0.0,0,0
+Hybrid→AHR,1221,The genomic aberrations found in matasteses are very similar to those found in the primary tumor.,16,0.0625,,0.0,0.0,0,0
+Hybrid→AHR,1225,The locus rs647161 is associated with colorectal carcinoma.,8,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,1226,"The loss of the TET protein functions may have dire biological consequences, such as myeloid cancers.",16,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1232,The minor G allele of FOXO3 is related to more severe symptoms of Crohn's Disease.,15,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,124,Antiretroviral therapy reduces rates of tuberculosis across a broad range of CD4 strata.,13,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1241,The myocardial lineage develops from cardiac progenitors of mesodermal origin.,10,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1245,The one-child policy has been successful in lowering population growth.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,1259,The relationship between a breast cancer patient's capacity to metabolize tamoxifen and treatment outcome is dependent on the patient's genetic make-up.,21,0.0476,,0.0,0.0,0,0
+Hybrid→AHR,1262,The repair of Cas9-induced double strand breaks in human DNA is error-prone.,12,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,1266,"The risk of breast cancer among parous women increases with placental weight of pregnancies, and this association is strongest for premenopausal breast cancer.",23,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,127,Arginine 90 in p150n is important for interaction with EB1.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,1270,The risk of male prisoners harming themselves is ten times that of female prisoners.,14,0.0714,,0.3155,0.0,0,0
+Hybrid→AHR,1271,The severity of cardiac involvement in amyloidosis can be described by the degree of transmurality of late gadolinium enhancement in MRI.,21,0.0476,,0.3869,0.0,0,0
+Hybrid→AHR,1272,The single flash-evoked ERG b-wave is generated by activity of ON-bipolar cells.,12,0.1667,,0.0,0.0,0,0
+Hybrid→AHR,1273,The sliding activity of kinesin-8 protein Kip3 promotes bipolar spindle assembly.,11,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,1274,The tip of the inner tube of the toxic type VI secretion system (T6SS) antibacterial effector in Escherichia coli (E. coli) carries toxic effector proteins.,25,0.0,,0.3084,0.0,0,0
+Hybrid→AHR,1278,The treatment of cancer patients with co-IR blockade does not cause any adverse autoimmune events.,15,0.0667,,0.0,0.0,0,0
+Hybrid→AHR,1279,The treatment of cancer patients with co-IR blockade precipitates adverse autoimmune events.,12,0.0833,,0.0,0.0,0,0
+Hybrid→AHR,128,Arterioles have a larger lumen diameter than venules.,8,0.125,,0.0,0.0,0,0
+Hybrid→AHR,1280,"The ureABIEFGH gene cluster encodes urease maturation proteins : UreD/UreH, UreE, UreF, and UreG.",14,0.1429,,0.0,0.0,0,0
+Hybrid→AHR,1281,The ureABIEFGH gene cluster is induced by nickel (II) ion.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,1282,Therapeutic use of the drug Dapsone to treat pyoderma gangrenous is based on anecdotal evidence.,15,0.0667,,0.0,0.0,0,0
+Hybrid→AHR,129,Articles published in open access format are less likely to be cited than traditional journals.,15,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1290,There is an inverse relationship between hip fractures and statin use.,11,0.0,,0.6309,0.0,0,0
+Hybrid→AHR,1292,There is no association between HNF4A mutations and diabetes risks.,10,0.0,,0.6309,0.0,0,0
+Hybrid→AHR,1298,Thigh-length graduated compression stockings (GCS) did not reduce deep vein thrombosis in patients admitted to hospital who are immobile because of acute stroke.,23,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,13,5% of perinatal mortality is due to low birth weight.,10,0.0,,0.0,0.0,0,0
+Hybrid→AHR,130,Articles published in open access format are more likely to be cited than traditional journals.,15,0.0,,0.5,0.0,0,0
+Hybrid→AHR,1303,Tirasemtiv has no effect on fast-twitch muscle.,7,0.2857,,0.0,0.0,0,0
+Hybrid→AHR,1316,Transferred UCB T cells acquire a memory-like phenotype in recipients.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,1319,Transplanted human glial cells can differentiate within the host animal.,10,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,132,Aspirin inhibits the production of PGE2.,6,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1320,Transplanted human glial progenitor cells are incapable of forming a neural network with host animals' neurons.,16,0.0625,,0.5,0.0,0,0
+Hybrid→AHR,133,"Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",19,0.0526,,0.098,0.0,0,0
+Hybrid→AHR,1332,Tumor necrosis factor alpha (TNF-α) and interleukin-1 (IL-1) are pro-inflammatory cytokines that inhibit IL-6 and IL-10.,16,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1335,UCB T cells maintain high TCR diversity after transplantation.,9,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,1336,UCB T cells reduce TCR diversity after transplantation.,8,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,1337,Ubiquitin ligase UBC13 generates a K63-linked polyubiquitin moiety at PCNA K164.,11,0.1818,,0.6309,0.0,0,0
+Hybrid→AHR,1339,Ultrasound guidance significantly raises the number of traumatic procedures when attempting needle insertion.,13,0.0769,,0.5,0.0,0,0
+Hybrid→AHR,1344,Up-regulation of the p53 pathway and related molecular events casues cancer resistance and results in a significantly shortened lifespan marked by senescent cells and accelerated organismal aging.,27,0.037,,0.4307,0.0,0,0
+Hybrid→AHR,1352,Upregulation of mosGCTL-1 is induced upon infection with West Nile virus.,11,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,1359,Varenicline monotherapy is more effective after 12 weeks of treatment compared to combination nicotine replacement therapies with varenicline or bupropion.,20,0.05,,0.4307,0.0,0,0
+Hybrid→AHR,1362,Venules have a larger lumen diameter than arterioles.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1363,Venules have a thinner or absent smooth layer compared to arterioles.,11,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1368,Vitamin D deficiency effects the term of delivery.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,137,Asymptomatic visual impairment screening in elderly populations does not lead to improved vision.,13,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,1370,Vitamin D deficiency is unrelated to birth weight.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,1379,Women with a higher birth weight are more likely to develop breast cancer later in life.,16,0.0,,0.2566,0.0,0,0
+Hybrid→AHR,1382,aPKCz causes tumour enhancement by affecting glutamine metabolism.,8,0.125,,0.0,0.0,0,0
+Hybrid→AHR,1385,cSMAC formation enhances weak ligand signalling.,6,0.0,,0.2891,0.0,0,0
+Hybrid→AHR,1389,mTORC2 regulates intracellular cysteine levels through xCT inhibition.,8,0.125,,0.4307,0.0,0,0
+Hybrid→AHR,1395,p16INK4A accumulation is  linked to an abnormal wound response caused by the microinvasive step of advanced Oral Potentially Malignant Lesions (OPMLs).,21,0.0952,,0.0,0.0,0,0
+Hybrid→AHR,141,Auditory entrainment is strengthened when people see congruent visual and auditory information.,12,0.0,,0.7977,0.0,0,0
+Hybrid→AHR,142,Autologous transplantation of mesenchymal stem cells causes a higher rate of opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.,20,0.05,,0.5,0.0,0,0
+Hybrid→AHR,143,Autologous transplantation of mesenchymal stem cells causes fewer opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.,17,0.0588,,0.5,0.0,0,0
+Hybrid→AHR,146,Autologous transplantation of mesenchymal stem cells has lower rates of rejection than induction therapy with anti-interleukin-2 receptor antibodies.,18,0.0556,,0.3155,0.0,0,0
+Hybrid→AHR,148,Autophagy declines in aged organisms.,5,0.0,,0.5,0.0,0,0
+Hybrid→AHR,163,Bariatric surgery has a positive impact on mental health.,9,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,171,Basophils counteract disease development in patients with systemic lupus erythematosus (SLE).,11,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,179,Birth-weight is positively associated with breast cancer.,7,0.1429,,0.0,0.0,0,0
+Hybrid→AHR,180,Blocking the interaction between TDP-43 and respiratory complex I proteins ND3 and ND6 leads to increased TDP-43-induced neuronal loss.,19,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,183,Bone marrow cells contribute to adult macrophage compartments.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,185,Breast cancer development is determined exclusively by genetic factors.,9,0.0,,0.301,0.0,0,0
+Hybrid→AHR,198,CCL19 is absent within dLNs.,5,0.2,,0.6309,0.0,0,0
+Hybrid→AHR,208,CHEK2 is not associated with breast cancer.,7,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,212,CR is associated with higher methylation age.,7,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,213,CRP is not predictive of postoperative mortality following Coronary Artery Bypass Graft (CABG) surgery.,14,0.0,,0.0,0.0,0,0
+Hybrid→AHR,216,CX3CR1 on the Th2 cells impairs T cell survival,9,0.0,,0.5,0.0,0,0
+Hybrid→AHR,217,CX3CR1 on the Th2 cells promotes T cell survival,9,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,218,CX3CR1 on the Th2 cells promotes airway inflammation.,8,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,219,CX3CR1 on the Th2 cells suppresses airway inflammation.,8,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,230,Carriers of the alcohol aldehyde dehydrogenase deficiency mutation drink less that non-carries.,12,0.0833,,0.3562,0.0,0,0
+Hybrid→AHR,232,Cataract and trachoma are the primary cause of blindness in Southern Sudan.,12,0.0,,0.2891,0.0,0,0
+Hybrid→AHR,233,Cell autonomous sex determination in somatic cells does not occur in Galliformes.,12,0.0833,,0.3333,0.0,0,0
+Hybrid→AHR,236,Cell autonomous sex determination in somatic cells occurs in Passeriformes.,10,0.1,,0.4307,0.0,0,0
+Hybrid→AHR,237,Cells lacking clpC have a defect in sporulation efficiency in Bacillus subtilis.,12,0.0,,0.301,0.0,0,0
+Hybrid→AHR,238,Cells undergoing methionine restriction may activate miRNAs.,7,0.0,,0.0,0.0,0,0
+Hybrid→AHR,239,Cellular aging closely links to an older appearance.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,248,Chenodeosycholic acid treatment increases whole-body energy expenditure.,7,0.1429,,0.3155,0.0,0,0
+Hybrid→AHR,249,Chenodeosycholic acid treatment reduces whole-body energy expenditure.,7,0.1429,,0.3155,0.0,0,0
+Hybrid→AHR,261,"Chronic aerobic exercise alters endothelial function, improving vasodilating mechanisms mediated by NO.",12,0.0833,,0.1934,0.0,0,0
+Hybrid→AHR,268,Cold exposure increases BAT recruitment.,5,0.0,,0.6309,0.0,0,0
+Hybrid→AHR,269,Cold exposure reduces BAT recruitment.,5,0.0,,0.6309,0.0,0,0
+Hybrid→AHR,274,Combination nicotine replacement therapies with varenicline or bupropion lead to significantly higher long-term abstinence rates at 52 weeks than varenicline monotherapy.,21,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,275,Combining phosphatidylinositide 3-kinase and MEK 1/2 inhibitors is effective at treating KRAS mutant tumors.,14,0.0,,0.2021,0.0,0,0
+Hybrid→AHR,279,Commelina yellow mottle virus' (ComYMV) genome consists of 7489 baise pairs.,11,0.2727,,0.4307,0.0,0,0
+Hybrid→AHR,294,Crossover hot spots are not found within gene promoters in Saccharomyces cerevisiae.,12,0.0,,0.0,0.0,0,0
+Hybrid→AHR,295,Crosstalk between dendritic cells (DCs) and innate lymphoid cells (ILCs) is important in the regulation of intestinal homeostasis.,18,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,298,Cytochrome c is released from the mitochondrial intermembrane space to cytosol during apoptosis.,13,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,3,"1,000 genomes project enables mapping of genetic sequence variation consisting of rare variants with larger penetrance effects than common variants.",20,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,300,Cytosolic proteins bind to iron-responsive elements on mRNAs coding for DMT1. Cytosolic proteins bind to iron-responsive elements on mRNAs coding for proteins involved in iron uptake.,26,0.0385,,0.0,0.0,0,0
+Hybrid→AHR,303,DMRT1 is a sex-determining gene that is epigenetically regulated by the MHM region.,13,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,312,De novo assembly of sequence data has more specific contigs than unassembled sequence data.,14,0.0,,0.0,0.0,0,0
+Hybrid→AHR,314,Deamination of cytidine to uridine on the minus strand of viral DNA results in catastrophic G-to-A mutations in the viral genome.,21,0.0,,0.0,0.0,0,0
+Hybrid→AHR,324,Deleting Raptor reduces G-CSF levels.,5,0.0,,0.0,0.0,0,0
+Hybrid→AHR,327,Deletion of αvβ8 does not result in a spontaneous inflammatory phenotype.,11,0.0,,0.5,0.0,0,0
+Hybrid→AHR,338,Dexamethasone decreases risk of postoperative bleeding.,6,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,343,Diabetic patients with acute coronary syndrome experience increased short-term and long-term risk for bleeding events.,15,0.0,,0.1934,0.0,0,0
+Hybrid→AHR,350,Discrimination between the initiator and elongation tRNAs depends on the translation initiation factor IF3.,14,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,354,Downregulation and mislocalization of Scribble prevents cell transformation and mammary tumorigenesis.,11,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,36,A deficiency of vitamin B12 increases blood levels of homocysteine.,10,0.0,,0.3066,0.0,0,0
+Hybrid→AHR,362,During the primary early antibody response activated B cells migrate toward the inner-and outer paracortical areas where oxysterol accumulation is generated by stromal cells.,24,0.0833,,0.5,0.0,0,0
+Hybrid→AHR,380,Enhanced early production of inflammatory chemokines improves viral control in the lung.,12,0.0,,0.2891,0.0,0,0
+Hybrid→AHR,384,Epidemiological disease burden from noncommunicable diseases is more prevalent in low economic settings.,13,0.0,,0.0,0.0,0,0
+Hybrid→AHR,385,Epigenetic modulating agents (EMAs) modulate antitumor immune response in a cancer model system.,13,0.0769,,0.1934,0.0,0,0
+Hybrid→AHR,386,Errors in peripheral IV drug administration are most common during bolus administration and multiple-step medicine preparations.,16,0.0625,,0.6309,0.0,0,0
+Hybrid→AHR,388,Ethanol stress decreases the expression of IBP in bacteria.,9,0.1111,,0.3333,0.0,0,0
+Hybrid→AHR,399,Exposure to fine particulate air pollution is relate to anxiety prevalence.,11,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,410,Febrile seizures increase the threshold for development of epilepsy.,9,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,411,Febrile seizures reduce the threshold for development of epilepsy.,9,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,415,Female carriers of the Apolipoprotein E4 (APOE4) allele have increased risk for dementia.,13,0.0769,,0.0,0.0,0,0
+Hybrid→AHR,42,A high microerythrocyte count raises vulnerability to severe anemia in homozygous alpha (+)- thalassemia trait subjects.,16,0.0625,,0.3869,0.0,0,0
+Hybrid→AHR,421,Flexible molecules experience greater steric hindrance in the tumor microenviroment than rigid molecules.,13,0.1538,,0.0,0.0,0,0
+Hybrid→AHR,431,FoxO3a activation in neuronal death is mediated by reactive oxygen species (ROS).,12,0.0,,0.0,0.0,0,0
+Hybrid→AHR,436,Free histones are degraded by a Rad53-dependent mechanism once DNA has been replicated.,13,0.0769,,0.4307,0.0,0,0
+Hybrid→AHR,437,Functional consequences of genomic alterations due to Myelodysplastic syndrome (MDS) are poorly understood due to the lack of an animal model.,21,0.0,,0.0,0.0,0,0
+Hybrid→AHR,439,Fz/PCP-dependent Pk localizes to the anterior membrane of neuroectoderm cells during zebrafish neuralation,13,0.2308,,0.0,0.0,0,0
+Hybrid→AHR,440,Fz/PCP-dependent Pk localizes to the anterior membrane of notochord cells during zebrafish neuralation.,13,0.1538,,0.0,0.0,0,0
+Hybrid→AHR,443,GATA-3 is important for hematopoietic stem cell (HSC) function.,9,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,452,Gene expression does not vary appreciably across genetically identical cells.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,475,Glycolysis is one of the primary glycometabolic pathways in cells.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,478,Golli-deficient T-cells prefer to differentiate into an anergic phenotype in the adaptive immune response when there are increased levels of Ca2+ in the cytosol.,24,0.0,,0.0,0.0,0,0
+Hybrid→AHR,48,"A total of 1,000 people in the UK are asymptomatic carriers of vCJD infection.",14,0.0,,0.301,0.0,0,0
+Hybrid→AHR,49,ADAR1 binds to Dicer to cleave pre-miRNA.,7,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,491,HNF4A mutations can cause diabetes in mutant carriers by the age of 14 years,14,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,5,1/2000 in UK have abnormal PrP positivity.,7,0.4286,,0.5,0.0,0,0
+Hybrid→AHR,50,AIRE is expressed in some skin tumors.,7,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,501,Headaches are not correlated with cognitive impairment.,7,0.0,,0.0,0.0,0,0
+Hybrid→AHR,502,"Healthcare delivery efficiency in crowded delivery centers is impaired by improving structural, logistical, and interpersonal elements.",16,0.0625,,0.0,0.0,0,0
+Hybrid→AHR,507,Helminths interfere with immune system control of macrophages activated by IL-4 favor Mycobacterium tuberculosis replication.,15,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,508,Hematopoietic Stem Cell purification reaches purity rate of up to 50%.,11,0.0,,0.0,0.0,0,0
+Hybrid→AHR,51,ALDH1 expression is associated with better breast cancer outcomes.,9,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,513,High cardiopulmonary fitness causes increased mortality rate.,7,0.0,,0.2891,0.0,0,0
+Hybrid→AHR,514,High dietary calcium intakes are unnecessary for prevention of secondary hyperparathyroidism in subjects with 25(OH)D levels above 75 nmol/liter.,19,0.0526,,0.0,0.0,0,0
+Hybrid→AHR,516,High levels of CRP reduces the risk of exacerbations in chronic obstructive pulmonary disease (COPD).,15,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,517,High levels of copeptin decrease risk of diabetes.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,521,High-sensitivity cardiac troponin T (HSCT-T) dosage may not be diagnostic if the onset of symptoms occurs less than 3 hours before acute myocardial injury (AMI).,25,0.04,,0.4307,0.0,0,0
+Hybrid→AHR,525,Histone demethylase recruitment and a transient decrease in histone methylation is necessary for ligand-dependent induction of transcription by nuclear receptors.,20,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,527,Homozygous deletion of murine Sbds gene from osterix-expressing mesenchymal stem and progenitor cells (MPCs) prevents oxidative stress.,17,0.1176,,0.3562,0.0,0,0
+Hybrid→AHR,528,Human T-lymphotropic virus type-I-associated myelopathy / tropical spastic paraparesis (HAM/TSP) patients produce Immunoglobulin G (IgG) antibodies which cross-react with an immunodominant epitope in Tax.,24,0.125,,0.4307,0.0,0,0
+Hybrid→AHR,53,ALDH1 expression is associated with poorer prognosis in breast cancer.,10,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,532,Hyperfibrinogenemia decreases rates of femoropopliteal bypass thrombosis.,7,0.1429,,0.3562,0.0,0,0
+Hybrid→AHR,533,Hyperfibrinogenemia increases rates of femoropopliteal bypass thrombosis.,7,0.1429,,0.5,0.0,0,0
+Hybrid→AHR,535,Hypertension is frequently observed in type 1 diabetes patients.,9,0.0,,0.0,0.0,0,0
+Hybrid→AHR,536,Hypocretin neurones induce panicprone state in rats.,7,0.2857,,0.0,0.0,0,0
+Hybrid→AHR,539,Hypoglycemia increases the risk of dementia.,6,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,54,AMP-activated protein kinase (AMPK) activation increases inflammation-related fibrosis in the lungs.,11,0.0,,0.0,0.0,0,0
+Hybrid→AHR,540,Hypothalamic glutamate neurotransmission is crucial to energy balance.,8,0.0,,0.2184,0.0,0,0
+Hybrid→AHR,544,IFIT1 restricts viral replication by sequestrating mis-capped viral RNAs.,9,0.3333,,0.0,0.0,0,0
+Hybrid→AHR,549,IRG1 has antiviral effects against neurotropic viruses.,7,0.0,,0.4307,0.0,0,0
+Hybrid→AHR,551,ITAM phosphorylation prevents the transfer of the T cell receptor (TCR) signal from the echo-domain to the cytoplasmic tail of the T cell receptor (TCR).,25,0.08,,0.0,0.0,0,0
+Hybrid→AHR,552,IgA plasma cells that are specific for transglutaminase 2 accumulate in the duodenal mucosa on commencement of a gluten-free diet.,20,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,554,Immune complex triggered cell death leads to extracellular release of neutrophil protein HMGB1.,13,0.0769,,0.5,0.0,0,0
+Hybrid→AHR,56,APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation causing GABA neuron degeneration.,15,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,560,Immune responses result in the development of inflammatory Th17 cells and anti-inflammatory iTregs.,13,0.0769,,0.0,0.0,0,0
+Hybrid→AHR,569,"In adult tissue, most T cells are memory T cells.",10,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,57,"APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation, delaying GABA neuron degeneration.",15,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,575,"In domesticated populations of Saccharomyces cerevisiae, whole chromosome aneuploidy is very uncommon.",12,0.0,,0.0,0.0,0,0
+Hybrid→AHR,577,"In mice, P. chabaudi parasites are able to proliferate faster early in infection when inoculated at lower numbers than when inoculated at high numbers.",24,0.0,,0.0,0.0,0,0
+Hybrid→AHR,578,"In mouse models, the loss of CSF1R facilitates MOZ-TIF2-induced leuekmogenesis.",10,0.2,,0.4307,0.0,0,0
+Hybrid→AHR,587,"In transgenic mice harboring green florescent protein under the control of the Sox2 promoter, less than ten percent of the cells with green florescent colocalize with cell proliferation markers.",29,0.069,,0.0,0.0,0,0
+Hybrid→AHR,589,"In young and middle-aged adults, current or remote uses of ADHD medications do not increase the risk of serious cardiovascular events.",21,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,593,Incidence of heart failure decreased by 10% in women since 1979.,11,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,597,Incidence rates of cervical cancer have decreased.,7,0.0,,0.3152,0.0,0,0
+Hybrid→AHR,598,Incidence rates of cervical cancer have increased due to nationwide screening programs based primarily on cytology to detect uterine cervical cancer.,21,0.0,,0.0,0.0,0,0
+Hybrid→AHR,613,Increased microtubule acetylation repairs LRRK2 Roc-COR domain mutation induced locomotor deficits.,11,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,619,Increased vessel density along with a reduction in fibrosis decreases the efficacy of chemotherapy treatments.,15,0.0,,0.1846,0.0,0,0
+Hybrid→AHR,623,Individuals with low serum vitamin D concentrations have increased risk of multiple sclerosis.,13,0.0,,0.0,0.0,0,0
+Hybrid→AHR,628,Infection of human T-cell lymphotropic virus type 1 is most frequent in individuals of African origin.,16,0.0,,0.0,0.0,0,0
+Hybrid→AHR,636,"Inositol lipid 3-phosphatase PTEN converts Ptdlns(3,4)P 2 into phosphatidylinositol 4-phosphate.",10,0.3,,0.0,0.0,0,0
+Hybrid→AHR,637,Input from  mental and physical health care professionals is effective at decreasing homelessness.,13,0.0,,0.0,0.0,0,0
+Hybrid→AHR,641,Insomnia can be effectively treated with cognitive behavioral therapy.,9,0.0,,0.2184,0.0,0,0
+Hybrid→AHR,644,Insulin increases risk of severe kidney failure.,7,0.0,,0.301,0.0,0,0
+Hybrid→AHR,649,Integrating classroom-based collaborative learning with Web-based collaborative learning leads to subpar class performance,13,0.1538,,0.301,0.0,0,0
+Hybrid→AHR,659,Ivermectin is used to treat lymphatic filariasis.,7,0.2857,,0.0,0.0,0,0
+Hybrid→AHR,660,Ivermectin is used to treat onchocerciasis.,6,0.3333,,0.0,0.0,0,0
+Hybrid→AHR,674,LDL cholesterol has no involvement in the development of cardiovascular disease.,11,0.0,,0.0,0.0,0,0
+Hybrid→AHR,684,Lack of clpC does not affect sporulation efficiency in Bacillus subtilis cells.,12,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,690,Less than 10% of the gabonese children with Schimmelpenning-Feuerstein-Mims syndrome (SFM) had a plasma lactate of more than 5mmol/L.,19,0.1579,,0.0,0.0,0,0
+Hybrid→AHR,691,Leukemia associated Rho guanine nucleotide-exchange factor represses RhoA in response to SRC activation.,13,0.0769,,0.4307,0.0,0,0
+Hybrid→AHR,692,Leuko-increased blood increases infectious complications in red blood cell transfusion.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,693,Leuko-reduced blood reduces infectious complications in red blood cell transfusion.,10,0.1,,0.2891,0.0,0,0
+Hybrid→AHR,70,Activation of PPM1D suppresses p53 function.,6,0.0,,0.4825,0.0,0,0
+Hybrid→AHR,700,Localization of PIN1 in the Arabidopsis embryo does not require VPS9a,11,0.0909,,0.3155,0.0,0,0
+Hybrid→AHR,702,Localization of PIN1 in the roots of Arabidopsis does not require VPS9a,12,0.0833,,0.0,0.0,0,0
+Hybrid→AHR,715,Low expression of miR7a does represses target genes and exerts a biological function in ovaries.,15,0.0667,,0.0,0.0,0,0
+Hybrid→AHR,716,Low expression of miR7a exerts a biological function in testis.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,718,Low nucleosome occupancy correlates with low methylation levels across species.,10,0.0,,0.0,0.0,0,0
+Hybrid→AHR,72,Activator-inhibitor pairs are provided dorsally by Admpchordin.,7,0.2857,,0.3562,0.0,0,0
+Hybrid→AHR,721,Lupus-prone mice infected with curliproducing bacteria have higher autoantibody titers compared to controls.,13,0.0769,,0.5,0.0,0,0
+Hybrid→AHR,723,Ly49Q directs the organization of neutrophil migration to inflammation sites by regulating membrane raft functions.,15,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,727,Ly6C hi monocytes have a lower inflammatory capacity compared to their Ly6C lo counterparts.,14,0.1429,,0.0,0.0,0,0
+Hybrid→AHR,728,Ly6C hi monocytes have a lower inflammatory capacity than Ly6C lo monocytes.,12,0.1667,,0.3066,0.0,0,0
+Hybrid→AHR,729,Lymphadenopathy is observed in knockin mouse lacking the SHP-2 MAPK pathway.,11,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,742,Macrolides have no protective effect against myocardial infarction.,8,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,743,Macrolides protect against myocardial infarction.,5,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,744,Macropinocytosis contributes to a cell's supply of amino acids via the intracellular uptake of protein.,15,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,75,"Active H. pylori urease has a polymeric structure that compromises two subunits, UreA and UreB.",15,0.0667,,0.4307,0.0,0,0
+Hybrid→AHR,756,Many proteins in human cells can be post-translationally modified at lysine residues via acetylation.,14,0.0,,0.0,0.0,0,0
+Hybrid→AHR,759,Mathematical models predict that using Artemisinin-based combination therapy over nongametocytocidal drugs have a dramatic impact in reducing malaria transmission.,19,0.0526,,0.3869,0.0,0,0
+Hybrid→AHR,768,Mercaptopurine is anabolized into the inactive methylmercaptopurine by thiopurine methyltrasnferase (TPMT).,11,0.4545,,0.0,0.0,0,0
+Hybrid→AHR,770,Metastatic colorectal cancer treated with a single agent fluoropyrimidines resulted in reduced efficacy and lower quality of life when compared with oxaliplatin-based chemotherapy in elderly patients.,26,0.0385,,0.4307,0.0,0,0
+Hybrid→AHR,775,Mice defective for deoxyribonucleic acid (DNA) polymerase I (polI) reveal increased sensitivity to ionizing radiation (IR).,16,0.125,,0.0,0.0,0,0
+Hybrid→AHR,781,Mice that lack Interferon-γ or its receptor exhibit high resistance to experimental autoimmune myocarditis.,14,0.0,,0.0,0.0,0,0
+Hybrid→AHR,783,Mice without IFN-γ or its receptor are resistant to EAM induced with α-MyHC/CFA.,13,0.0769,,0.0,0.0,0,0
+Hybrid→AHR,784,MicroRNA is involved in the regulation of Neural Stem Cell (NSC) differentiation and proliferation dynamic homeostasis,16,0.0625,,0.5,0.0,0,0
+Hybrid→AHR,785,Microarray results from culture-amplified mixtures of serotypes correlate poorly with microarray results from uncultured mixtures.,15,0.2,,0.3155,0.0,0,0
+Hybrid→AHR,793,Mitochondria are uninvolved in apoptosis.,5,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,800,Modifying the epigenome in the brain affects the normal human aging process by affecting certain genes related to neurogenesis.,19,0.0,,0.0,0.0,0,0
+Hybrid→AHR,805,Monoclonal antibody targeting of N-cadherin inhibits metastasis.,7,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,808,Most termination events in Okazaki fragments are sequence specific.,9,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,811,Mutant mice lacking SVCT2 have greatly increased ascorbic acid levels in both brain and adrenals.,15,0.0667,,0.3333,0.0,0,0
+Hybrid→AHR,814,"Mutations in G-Beta protein GNB2 are present in many cancers, resulting in loss of interaction with G-alpha subunits and concomitant activation of AKT pathway.",24,0.0833,,0.5,0.0,0,0
+Hybrid→AHR,820,N-terminal cleavage increases success identifying transcription start sites.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,821,N-terminal cleavage reduces success identifying transcription start sites.,8,0.0,,0.0,0.0,0,0
+Hybrid→AHR,823,N348I mutations cause resistance to zidovudine (AZT).,7,0.1429,,0.3562,0.0,0,0
+Hybrid→AHR,830,NF2 (Merlin) causes phosphorylation and subsequent cytoplasmic sequestration of YAP in Drosophila by activating LATS1/2 kinases.,16,0.1875,,0.0,0.0,0,0
+Hybrid→AHR,831,NF2 (Merlin) prevents phosphorylation and subsequent cytoplasmic sequestration of YAP in Drosophila.,12,0.1667,,0.0,0.0,0,0
+Hybrid→AHR,832,NFAT4 activation requires IP3R-mediated Ca2+ mobilization.,6,0.1667,,0.3869,0.0,0,0
+Hybrid→AHR,834,NOX2-independent pathways can generate peroxynitrite by reacting with nitrogen intermediates.,10,0.1,,0.0,0.0,0,0
+Hybrid→AHR,837,NR5A2 is important in development of endometrial tissues.,8,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,839,Nanoparticles can be targeted against specific cell types by incorporating aptamers into lipid nanoparticles.,14,0.0714,,0.2891,0.0,0,0
+Hybrid→AHR,845,Neutrophil extracellular traps (NETs) are released by ANCA-stimulated neutrophils.,9,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,847,New drugs for tuberculosis often do not penetrate the necrotic portion of a tuberculosis lesion in high concentrations.,18,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,852,Non-invasive ventilation use should be decreased if there is inadequate response to conventional treatment.,14,0.0,,0.3155,0.0,0,0
+Hybrid→AHR,859,Normal expression of RUNX1 has tumor-promoting effects.,7,0.0,,0.0,0.0,0,0
+Hybrid→AHR,870,Obesity decreases life quality.,4,0.0,,0.0,0.0,0,0
+Hybrid→AHR,873,Obesity is determined solely by environmental factors.,7,0.0,,0.0,0.0,0,0
+Hybrid→AHR,879,Occupancy of ribosomes by IncRNAs do not make functional peptides.,10,0.1,,0.4307,0.0,0,0
+Hybrid→AHR,880,Occupancy of ribosomes by IncRNAs mirror 5 0-UTRs,8,0.25,,0.5,0.0,0,0
+Hybrid→AHR,882,Omnivores produce less trimethylamine N-oxide from dietary I-carnitine than vegetarians.,10,0.2,,0.4307,0.0,0,0
+Hybrid→AHR,887,Only a minority of cells survive development after differentiation into stress-resistant spores.,12,0.0833,,0.0,0.0,0,0
+Hybrid→AHR,903,PD-1 triggering on monocytes reduces IL-10 production by monocytes.,9,0.0,,0.3869,0.0,0,0
+Hybrid→AHR,904,PDPN promotes efficient motility along stromal surfaces by activating the C-type lectin receptor to rearrange the actin cytoskeleton in dendritic cells.,21,0.0476,,0.3562,0.0,0,0
+Hybrid→AHR,907,PGE 2 promotes intestinal tumor growth by altering the expression of tumor suppressing and DNA repair genes.,17,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,911,PKG-la plays an essential role in expression of pain hypersensitivity in PGK-la knockout mice.,14,0.1429,,0.3869,0.0,0,0
+Hybrid→AHR,913,PPAR-RXRs are inhibited by PPAR ligands.,6,0.1667,,0.0,0.0,0,0
+Hybrid→AHR,914,PPAR-RXRs can be activated by PPAR ligands.,7,0.1429,,0.0,0.0,0,0
+Hybrid→AHR,921,Participating in six months of physical activity improves cognitive functioning.,10,0.0,,0.2891,0.0,0,0
+Hybrid→AHR,922,Patients in stable partnerships have a faster progression from HIV to AIDS.,12,0.0,,0.5,0.0,0,0
+Hybrid→AHR,936,Peroxynitrite is required for nitration of TCR/CD8.,7,0.1429,,0.6309,0.0,0,0
+Hybrid→AHR,94,Albendazole is used to treat lymphatic filariasis.,7,0.2857,,0.0,0.0,0,0
+Hybrid→AHR,956,Pleiotropic coupling of GLP-1R to intracellular effectors promotes distinct profiles of cellular signaling.,13,0.0,,0.3333,0.0,0,0
+Hybrid→AHR,957,Podocytes are motile and migrate in the presence of injury.,10,0.0,,0.301,0.0,0,0
+Hybrid→AHR,960,Polymeal nutrition reduces cardiovascular mortality.,5,0.0,,0.0,0.0,0,0
+Hybrid→AHR,967,Pretreatment with the Arp2/3 inhibitor CK-666 affects lamelliopodia formation.,9,0.2222,,0.1934,0.0,0,0
+Hybrid→AHR,971,Primary cervical cancer screening with HPV detection has higher longitudinal sensitivity than conventional cytology to detect cervical intraepithelial neoplasia grade 2.,21,0.0,,0.1175,0.0,0,0
+Hybrid→AHR,975,Primary pro-inflammatory cytokines induce secondary pro- and anti-inflammatory mediators.,9,0.0,,0.0,0.0,0,0
+Hybrid→AHR,982,Proteins synthesized at the growth cone are ubiquitinated at a higher rate than proteins from the cell body.,18,0.0,,0.301,0.0,0,0
+Hybrid→AHR,985,Pseudogene PTENP1 regulates the expression of PTEN by functioning as an miRNA decoy.,13,0.0769,,0.3562,0.0,0,0
+Hybrid→AHR,99,Alizarin forms hydrogen bonds with residues involved in PGAM1 substrate binding.,11,0.0,,0.3562,0.0,0,0
+Hybrid→AHR,993,Pyridostatin destabilizes the G - quadruplex in the telomeric region.,10,0.0,,0.3155,0.0,0,0

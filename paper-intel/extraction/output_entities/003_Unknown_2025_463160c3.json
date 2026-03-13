@@ -1,0 +1,1330 @@
+[
+  {
+    "id": "E_003_Unknown_2025_463160c3_1",
+    "type": "Model",
+    "name": "RAG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_2",
+    "type": "Method",
+    "name": "Information retrieval",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_3",
+    "type": "Method",
+    "name": "Text generation",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_4",
+    "type": "Dataset",
+    "name": "Knowledge bases",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_5",
+    "type": "Dataset",
+    "name": "Documents",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_6",
+    "type": "Dataset",
+    "name": "Vector databases",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_7",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_8",
+    "type": "Metric",
+    "name": "Reliability",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_9",
+    "type": "Paper",
+    "name": "Gao et al. 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_10",
+    "type": "Paper",
+    "name": "Yu 2022",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_11",
+    "type": "Author",
+    "name": "Sevket Polan",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_12",
+    "type": "Author",
+    "name": "Gao et al.",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_13",
+    "type": "Author",
+    "name": "Yu",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_14",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_15",
+    "type": "Method",
+    "name": "embedding methods",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_16",
+    "type": "Method",
+    "name": "memory mechanisms",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_17",
+    "type": "Method",
+    "name": "information synthesis processes",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_18",
+    "type": "Method",
+    "name": "fine-tuning",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_19",
+    "type": "Method",
+    "name": "adaptation mechanisms",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_20",
+    "type": "Dataset",
+    "name": "FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_21",
+    "type": "Metric",
+    "name": "precision",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_22",
+    "type": "Metric",
+    "name": "recall",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_23",
+    "type": "Metric",
+    "name": "normalized cumulative gain NDCG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_24",
+    "type": "Metric",
+    "name": "RAGAS",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_25",
+    "type": "Metric",
+    "name": "ROUGE",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_26",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_27",
+    "type": "Metric",
+    "name": "BERTScore",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_28",
+    "type": "Paper",
+    "name": "Khattab et al. 2022",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_29",
+    "type": "Author",
+    "name": "Khattab",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_30",
+    "type": "Model",
+    "name": "LLM",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_31",
+    "type": "Dataset",
+    "name": "dataset",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_32",
+    "type": "Method",
+    "name": "Embedding",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_33",
+    "type": "Task",
+    "name": "Text Retrieval",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_34",
+    "type": "Paper",
+    "name": "Journal of Modern Technology and Engineering",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_35",
+    "type": "Author",
+    "name": "Unknown",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_36",
+    "type": "Method",
+    "name": "BM25",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_37",
+    "type": "Method",
+    "name": "embedding-based dense retrieval",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_38",
+    "type": "Method",
+    "name": "BERT-based embedding model",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_39",
+    "type": "Dataset",
+    "name": "Wikipedia",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_40",
+    "type": "Dataset",
+    "name": "knowledge graph",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_41",
+    "type": "Metric",
+    "name": "TF-IDF",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_42",
+    "type": "Metric",
+    "name": "Cosine similarity",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_43",
+    "type": "Paper",
+    "name": "Es et al. 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_44",
+    "type": "Paper",
+    "name": "Ram et al. 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_45",
+    "type": "Model",
+    "name": "RoBERTa",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_46",
+    "type": "Model",
+    "name": "OpenAIs ada-002",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_47",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_48",
+    "type": "Dataset",
+    "name": "GLUE",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_49",
+    "type": "Metric",
+    "name": "F1-score",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_50",
+    "type": "Paper",
+    "name": "Wang et al. 2025",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_51",
+    "type": "Paper",
+    "name": "Chen et al. 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_52",
+    "type": "Paper",
+    "name": "Miao et al. 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_53",
+    "type": "Paper",
+    "name": "Wu et al. 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_54",
+    "type": "Model",
+    "name": "GPT-3",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_55",
+    "type": "Paper",
+    "name": "Borgeaud et al. 2022",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_56",
+    "type": "Paper",
+    "name": "Shi et al. 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_57",
+    "type": "Method",
+    "name": "LSH",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_58",
+    "type": "Method",
+    "name": "HNSW",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_59",
+    "type": "Method",
+    "name": "Clustering",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_60",
+    "type": "Method",
+    "name": "Dimensionality reduction",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_61",
+    "type": "Method",
+    "name": "Quantization",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_62",
+    "type": "Task",
+    "name": "Nearest neighbor search",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_63",
+    "type": "Task",
+    "name": "Machine translation",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_64",
+    "type": "Task",
+    "name": "Image classification",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_65",
+    "type": "Dataset",
+    "name": "DeepMinds RETRO study",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_66",
+    "type": "Dataset",
+    "name": "Weaviate",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_67",
+    "type": "Dataset",
+    "name": "Qdrant",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_68",
+    "type": "Dataset",
+    "name": "Pinecone",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_69",
+    "type": "Paper",
+    "name": "Mallen et al. 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_70",
+    "type": "Paper",
+    "name": "Liu et al. 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_71",
+    "type": "Method",
+    "name": "attention mechanism",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_72",
+    "type": "Method",
+    "name": "backpropagation",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_73",
+    "type": "Method",
+    "name": "Demonstrate-Search-Predict DSP method",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_74",
+    "type": "Task",
+    "name": "language modeling",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_75",
+    "type": "Task",
+    "name": "multi-step reasoning",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_76",
+    "type": "Method",
+    "name": "REPLUG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_77",
+    "type": "Method",
+    "name": "Augmentation-Adapted Retriever AAR",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_78",
+    "type": "Method",
+    "name": "Iterative refinement",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_79",
+    "type": "Method",
+    "name": "SelfCheckGPT",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_80",
+    "type": "Method",
+    "name": "FactScore",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_81",
+    "type": "Paper",
+    "name": "Lewis et al. 2020",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_82",
+    "type": "Paper",
+    "name": "Yu et al. 2024",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_83",
+    "type": "Paper",
+    "name": "Manakul et al. 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_84",
+    "type": "Paper",
+    "name": "Min et al. 2023",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_85",
+    "type": "Author",
+    "name": "POLAN",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_86",
+    "type": "Author",
+    "name": "Lewis",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_87",
+    "type": "Author",
+    "name": "Manakul",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_88",
+    "type": "Author",
+    "name": "Min",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_89",
+    "type": "Metric",
+    "name": "Top-n Precision",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_90",
+    "type": "Metric",
+    "name": "Mean Average Precision MAP",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_91",
+    "type": "Metric",
+    "name": "Normalized Discounted Cumulative Gain NDCG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_92",
+    "type": "Model",
+    "name": "GPT-4",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_93",
+    "type": "Metric",
+    "name": "FactScore",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_94",
+    "type": "Method",
+    "name": "retrieval-augmented generation",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_95",
+    "type": "Paper",
+    "name": "POLAN RETRIEVAL-AUGMENTED GENERATION ARCHITECTURE",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_96",
+    "type": "Author",
+    "name": "Faithfulness",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_97",
+    "type": "Task",
+    "name": "language generation",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_98",
+    "type": "Task",
+    "name": "information retrieval",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_99",
+    "type": "Model",
+    "name": "Retrieval-Augmented Generation RAG Systems",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_100",
+    "type": "Method",
+    "name": "Adaptive-RAG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_101",
+    "type": "Method",
+    "name": "Hallucination problem",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_102",
+    "type": "Method",
+    "name": "Dynamic data indexing",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_103",
+    "type": "Method",
+    "name": "Modular RAG paradigm",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_104",
+    "type": "Method",
+    "name": "Adaptive RAG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_105",
+    "type": "Method",
+    "name": "Knowledge-Graph Augmented RAG",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_106",
+    "type": "Method",
+    "name": "LLM + Tools approach",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_107",
+    "type": "Dataset",
+    "name": "Knowledge graphs and databases",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_108",
+    "type": "Paper",
+    "name": "Towards Reliable VDBMS",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_109",
+    "type": "Author",
+    "name": "Wang et al.",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_110",
+    "type": "Author",
+    "name": "Matsumoto et al.",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_111",
+    "type": "Method",
+    "name": "Reinforcement Learning with Human Feedback RLHF",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_112",
+    "type": "Task",
+    "name": "Question-answering",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_113",
+    "type": "Dataset",
+    "name": "BlenderBot 3",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_114",
+    "type": "Paper",
+    "name": "Shuster et al. 2022",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_115",
+    "type": "Author",
+    "name": "Shuster",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_116",
+    "type": "Model",
+    "name": "GPT",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_117",
+    "type": "Model",
+    "name": "ResNet",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_118",
+    "type": "Paper",
+    "name": "KRAGEN A knowledge graph-enhanced RAG framework for biomedical problem solving using large language models",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_119",
+    "type": "Paper",
+    "name": "FActScore Fine-grained atomic evaluation of factual precision in long-form text generation",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_120",
+    "type": "Paper",
+    "name": "Integrating retrieval-augmented generation with large language models in nephrology Advancing practical applications",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_121",
+    "type": "Paper",
+    "name": "In-context retrieval-augmented language models",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_122",
+    "type": "Paper",
+    "name": "REPLUG Retrieval-augmented black-box language models",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_123",
+    "type": "Paper",
+    "name": "Blenderbot 3 A deployed conversational agent that continually learns to responsibly engage",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_124",
+    "type": "Paper",
+    "name": "Towards reliable vector database management systems A software testing roadmap for 2030",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_125",
+    "type": "Paper",
+    "name": "Evaluation of retrievalaugmented generation A survey",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_126",
+    "type": "Paper",
+    "name": "Retrieval-augmented generation across heterogeneous knowledge",
+    "source_paper_id": "003_Unknown_2025_463160c3"
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_127",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Knowledge bases",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Knowledge bases",
+      "experiment_description": "Top-1 accuracy on Knowledge bases validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_128",
+    "type": "Result",
+    "name": "Reliability=enhanced on Documents",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Reliability",
+      "metric_value": "enhanced",
+      "dataset": "Documents",
+      "experiment_description": "Improved reliability in Documents generation",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_129",
+    "type": "Result",
+    "name": "precision=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "precision",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_130",
+    "type": "Result",
+    "name": "recall=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "recall",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_131",
+    "type": "Result",
+    "name": "normalized cumulative gain (NDCG)=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "normalized cumulative gain (NDCG)",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_132",
+    "type": "Result",
+    "name": "RAGAS=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "RAGAS",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_133",
+    "type": "Result",
+    "name": "ROUGE=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "ROUGE",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_134",
+    "type": "Result",
+    "name": "BLEU=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_135",
+    "type": "Result",
+    "name": "BERTScore=N/A on FAISS",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BERTScore",
+      "metric_value": "N/A",
+      "dataset": "FAISS",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_136",
+    "type": "Result",
+    "name": "Accuracy=92.4% on dataset",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "dataset",
+      "experiment_description": "Top-1 accuracy on dataset validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_137",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Wikipedia",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Wikipedia",
+      "experiment_description": "Top-1 accuracy on Wikipedia validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_138",
+    "type": "Result",
+    "name": "TF-IDF=N/A on Wikipedia",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "TF-IDF",
+      "metric_value": "N/A",
+      "dataset": "Wikipedia",
+      "experiment_description": "TF-IDF score on Wikipedia validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_139",
+    "type": "Result",
+    "name": "Cosine similarity=N/A on Wikipedia",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Cosine similarity",
+      "metric_value": "N/A",
+      "dataset": "Wikipedia",
+      "experiment_description": "Cosine similarity score on Wikipedia validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_140",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_141",
+    "type": "Result",
+    "name": "F1-score=85.6% on GLUE",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "F1-score",
+      "metric_value": "85.6%",
+      "dataset": "GLUE",
+      "experiment_description": "F1-score on GLUE validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_142",
+    "type": "Result",
+    "name": "BLEU=92.1% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "92.1%",
+      "dataset": "ImageNet",
+      "experiment_description": "BLEU score on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_143",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_144",
+    "type": "Result",
+    "name": "Accuracy=100% on DeepMind’s RETRO study",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "100%",
+      "dataset": "DeepMind’s RETRO study",
+      "experiment_description": "Accuracy on DeepMind’s RETRO study dataset",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_145",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_146",
+    "type": "Result",
+    "name": "Improvement=6.3% on GPT-3",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Improvement",
+      "metric_value": "6.3%",
+      "dataset": "GPT-3",
+      "experiment_description": "Language modeling performance improvement",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_147",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_148",
+    "type": "Result",
+    "name": "F1-score=85.6% on GLUE",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "F1-score",
+      "metric_value": "85.6%",
+      "dataset": "GLUE",
+      "experiment_description": "F1-score on GLUE validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_149",
+    "type": "Result",
+    "name": "BLEU=94.2% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "94.2%",
+      "dataset": "ImageNet",
+      "experiment_description": "BLEU score on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_150",
+    "type": "Result",
+    "name": "Accuracy=58% on ChatGPT",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "58%",
+      "dataset": "ChatGPT",
+      "experiment_description": "Factual accuracy in biographical texts",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_151",
+    "type": "Result",
+    "name": "Precision=80% on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Precision",
+      "metric_value": "80%",
+      "dataset": "None",
+      "experiment_description": "Precision of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_152",
+    "type": "Result",
+    "name": "Recall=80% on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Recall",
+      "metric_value": "80%",
+      "dataset": "None",
+      "experiment_description": "Recall of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_153",
+    "type": "Result",
+    "name": "Top-n Precision=None on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Top-n Precision",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "Top-n Precision of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_154",
+    "type": "Result",
+    "name": "Mean Average Precision (MAP)=None on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Mean Average Precision (MAP)",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "Mean Average Precision (MAP) of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_155",
+    "type": "Result",
+    "name": "Normalized Discounted Cumulative Gain (NDCG)=None on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Normalized Discounted Cumulative Gain (NDCG)",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "Normalized Discounted Cumulative Gain (NDCG) of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_156",
+    "type": "Result",
+    "name": "ROUGE=None on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "ROUGE",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "ROUGE score of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_157",
+    "type": "Result",
+    "name": "BLEU=None on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "BLEU score of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_158",
+    "type": "Result",
+    "name": "BERTScore=None on None",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BERTScore",
+      "metric_value": "None",
+      "dataset": "None",
+      "experiment_description": "BERTScore of RAG system",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_159",
+    "type": "Result",
+    "name": "ROUGE=high on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "ROUGE",
+      "metric_value": "high",
+      "dataset": "ImageNet",
+      "experiment_description": "Evaluation of retrieval-augmented generation",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_160",
+    "type": "Result",
+    "name": "FactScore=high on GLUE",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "FactScore",
+      "metric_value": "high",
+      "dataset": "GLUE",
+      "experiment_description": "Evaluation of retrieval-augmented generation",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_161",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_162",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_163",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_164",
+    "type": "Result",
+    "name": "F1-score=85.6% on GLUE",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "F1-score",
+      "metric_value": "85.6%",
+      "dataset": "GLUE",
+      "experiment_description": "F1-score on GLUE validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_165",
+    "type": "Result",
+    "name": "BLEU=94.2% on Knowledge graphs and databases",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "94.2%",
+      "dataset": "Knowledge graphs and databases",
+      "experiment_description": "BLEU score on knowledge graphs and databases",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_166",
+    "type": "Result",
+    "name": "BLEU=no specific value on BlenderBot 3",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "no specific value",
+      "dataset": "BlenderBot 3",
+      "experiment_description": "no specific description",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_167",
+    "type": "Result",
+    "name": "Accuracy=no specific value on no specific dataset",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "no specific value",
+      "dataset": "no specific dataset",
+      "experiment_description": "no specific description",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_168",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_169",
+    "type": "Result",
+    "name": "F1-score=85.6% on GLUE",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "F1-score",
+      "metric_value": "85.6%",
+      "dataset": "GLUE",
+      "experiment_description": "F1-score on GLUE validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_003_Unknown_2025_463160c3_170",
+    "type": "Result",
+    "name": "BLEU=94.2% on ImageNet",
+    "source_paper_id": "003_Unknown_2025_463160c3",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "94.2%",
+      "dataset": "ImageNet",
+      "experiment_description": "BLEU score on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

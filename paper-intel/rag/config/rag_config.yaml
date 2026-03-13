@@ -1,0 +1,148 @@
+# Research-Grade RAG Configuration
+
+# Embedding Models
+embeddings:
+  dense:
+    model_name: "BAAI/bge-m3"
+    device: "cuda"
+    batch_size: 32
+    max_length: 512
+    normalize: true
+  
+  sparse:
+    k1: 1.5
+    b: 0.75
+
+# Vector Database
+vectordb:
+  type: "faiss"
+  index_type: "IVF1024,Flat"  # For <1M vectors
+  metric: "cosine"
+  nprobe: 64
+  use_gpu: true
+
+# Chunking Strategy
+chunking:
+  chunk_size: 512
+  chunk_overlap: 128
+  min_chunk_size: 100
+  max_chunk_size: 1024
+  
+# Query Processing
+query:
+  # Query Expansion
+  expansion:
+    enabled: true
+    method: "llm"  # llm, wordnet, word2vec
+    num_expansions: 3
+    
+  # Query Rewriting
+  rewrite:
+    enabled: true
+    method: "llm"
+    
+  # Hypothetical Document Embeddings (HyDE)
+  hyde:
+    enabled: true
+    num_generations: 2
+
+# Retrieval
+retrieval:
+  # Hybrid Search
+  hybrid:
+    enabled: true
+    dense_weight: 0.7
+    sparse_weight: 0.3
+    fusion_method: "rrf"  # rrf (reciprocal rank fusion), linear, dbsf
+  
+  # Initial Retrieval
+  top_k: 100
+  min_score: 0.3
+  
+  # Reranking
+  reranking:
+    enabled: true
+    model: "BAAI/bge-reranker-v2-m3"
+    top_k: 20
+    batch_size: 16
+    
+  # Diversity
+  diversity:
+    enabled: true
+    method: "mmr"  # mmr (maximal marginal relevance), clustering
+    lambda_param: 0.7
+    final_top_k: 10
+
+# Generation
+generation:
+  model: "meta-llama/llama-3.2-3b-instruct"
+  provider: "openrouter"
+  temperature: 0.1
+  max_tokens: 2000
+  
+  # Prompt Engineering
+  system_prompt: |
+    You are a research assistant with expertise in academic literature.
+    Answer questions based on the provided context from research papers.
+    Always cite sources using paper IDs.
+    If information is not in the context, say so clearly.
+  
+  # Citation
+  include_citations: true
+  citation_format: "[Paper: {paper_id}, Page: {page}]"
+
+# Evaluation
+evaluation:
+  # Retrieval Metrics
+  retrieval:
+    - "precision@k"
+    - "recall@k"
+    - "mrr"  # Mean Reciprocal Rank
+    - "ndcg@k"  # Normalized Discounted Cumulative Gain
+    - "map"  # Mean Average Precision
+    
+  # Generation Metrics
+  generation:
+    - "faithfulness"  # Are answers grounded in context?
+    - "answer_relevance"  # Does answer match question?
+    - "context_relevance"  # Is retrieved context relevant?
+    - "bleu"
+    - "rouge"
+    - "bertscore"
+    
+  # End-to-End
+  end_to_end:
+    - "answer_correctness"
+    - "hallucination_rate"
+    - "citation_accuracy"
+    
+  # Performance
+  performance:
+    - "latency"
+    - "throughput"
+    - "token_efficiency"
+
+# Optimization
+optimization:
+  # Caching
+  cache:
+    enabled: true
+    type: "redis"  # redis, memory, disk
+    ttl: 3600
+    
+  # Batching
+  batching:
+    enabled: true
+    max_batch_size: 32
+    timeout_ms: 100
+    
+  # Async Processing
+  async:
+    enabled: true
+    max_workers: 4
+
+# Logging
+logging:
+  level: "INFO"
+  file: "rag/logs/rag.log"
+  metrics_file: "rag/logs/metrics.jsonl"

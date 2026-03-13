@@ -1,0 +1,393 @@
+{
+  "paper_id": "035_Vangalapat_2025_4df032dd",
+  "source_pdf": "035_Vangalapat_2025.pdf",
+  "title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+  "authors": [
+    "Tharakesavulu Vangalapat",
+    "Lohith Kumar Deshpande"
+  ],
+  "abstract": "Background: Retrieval-Augmented Generation (RAG) systems have revolutionized knowledge-intensive natural language processing tasks, yet their performance is fundamentally constrained by static document chunking strategies that ignore query characteristics and domain-specific requirements. Methods: We introduce AQACO (Adaptive Query-Aware Chunking Optimization), a novel framework that dynamically optimizes chunking parameters through multi-objective Bayesian optimization combined with reinforcement learning. Our approach analyzes query patterns to predict optimal chunking strategies, considering retrieval quality, context completeness, and computational efficiency simultaneously. We evaluated AQACO on six public datasets across four domains (MS MARCO, Natural Questions, HotpotQA, FEVER, SciFact, and FiQA-2018). Results: AQACO achieves substantial improvements: 24.3% higher NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency compared to state-of-the-art static chunking methods. Conclusions: Our query-aware optimization paradigm establishes new benchmarks for adaptive document processing in RAG systems, with open-source implementation and reproducible experiments available for the research community.",
+  "sections": {
+    "introduction": "IntroductionRetrieval-Augmented Generation (RAG) has emerged as the dominant paradigm for enhancing large language models with external knowledge, enabling applications spanning from question answering to document analysis [1,2]. The effectiveness of RAG systems fundamentally depends on the quality of retrieved Context, which is directly influenced by document chunking strategies used during preprocessing.Current chunking approaches employ static methodologiesfixed-size windows, sentence boundaries, or paragraph divisions-that treat all queries uniformly regardless of their complexity, scope, or domain-specific requirements [3,4].This one-size-fits-all approach creates several critical limitations: (1) information fragmentation, where semantically coherent information spans multiple chunks; (2) context dilution, where irrelevant content reduces retrieval precision; and (3) efficiency degradation, where suboptimal chunk sizes increase computational overhead without improving quality.This paper introduces AQACO (Adaptive Query-Aware Chunking Optimization), a comprehensive framework that addresses these limitations through three key innovations: 1) Query-Aware Optimization Framework: We present the first systematic approach to optimize chunking parameters based on anticipated query distributions, incorporating query complexity, semantic scope, and information requirements into chunking decisions.",
+    "related_work": "Related Work Document Chunking StrategiesTraditional document chunking approaches can be categorized into three main paradigms. Fixed-size chunking divides documents into uniform character or token windows, providing predictable computational costs but ignoring semantic boundaries [27,28]. Content-aware methods respect structural elements such as paragraphs and sections but remain static across different query types [3].Recent semantic chunking approaches use embedding similarity to identify natural breakpoints [6,7]. The ClusterSemanticChunker groups semantically similar sentences [9], while embedding-based boundary detection identifies coherence shifts [10]. However, these methods optimize for content coherence without considering queryspecific requirements.The Mix-of-Granularity (MoG) approach represents current state-of-the-art, combining multiple chunk sizes for the same document [8]. While MoG addresses granularity limitations, it lacks query-aware adaptation and increases storage overhead linearly with granularity levels. Query-Aware Information RetrievalQuery classification and adaptation have been extensively studied in classical information retrieval [11,12]. Recent work demonstrates that query complexity significantly impacts optimal retrieval parameters [13], while query intent classification shows promise for adaptive retrieval strategies [14].However, existing query-aware approaches focus on retrieval algorithm parameters rather than document preprocessing. The disconnect between query analysis and document segmentation represents a fundamental limitation in current RAG architectures. Optimization in RAG SystemsRecent optimization efforts in RAG systems target embedding model selection [15], retrieval algorithm tuning [16], and generation parameter optimization [17]. AutoRAG provides automated hyperparameter tuning for RAG pipelines but treats chunking as fixed preprocessing [18].Reinforcement learning applications in information retrieval demonstrate potential for adaptive systems [19,20], but existing work focuses on ranking and recommendation rather than document preprocessing optimization. Research GapDespite extensive research in individual components, no existing work addresses the fundamental challenge of queryaware chunking optimization. Current systems optimize retrieval and generation components while leaving chunking strategies static, creating a significant performance bottleneck that AQACO directly addresses.",
+    "methods": "Methods Problem FormulationLet D = {d1,d2,...,dn} represent a document collection and Q = {q1,q2,...,qm} a distribution of anticipated queries. For each document di, we seek an optimal chunking strategy that maximizes retrieval performance across the query distribution.Formally, we define the chunking optimization problem as:C * = argmaxEq∼Q,d∼D[R(q,C(d)) -λ • L(C(d))] (1 3.2.1Query Pattern AnalyzerThe Query Pattern Analyzer extracts features from query distributions to inform chunking decisions. For each query q, we compute:The analyzer maintains a query profile matrix P ∈ R |Q|xdfeat where each row represents a query's feature vector. Document Structure ProfilerFor each document d, we extract structural and semantic characteristics: Structural Analysis:hd = max depth(structure(d)) (8) Bd = {b1,b2,...,bk}(9)(10) Semantic Coherence Mapping: We compute semantic coherence scores between adjacent passages: coherence(pi,pi+1) = cosine sim(embed(pi), embed(pi+1)) (11) This creates a coherence profile C ⃗ d = [c1,c2,...,cn-1] used for boundary detection. Multi-Objective Bayesian OptimizerThe core optimization component uses Gaussian Processbased Bayesian Optimization to find optimal chunking parameters. We define the parameter space Θ = {chunk size, overlap ratio, boundary strategy, context window}. Our acquisition function balances exploration and exploitation:α(θ) = µ(θ) + βσ(θ) + γ • diversity(θ) (12)where µ(θ) and σ(θ) are GP posterior mean and variance, β controls exploration-exploitation tradeoff, and γ • diversity(θ) encourages parameter space exploration. Multi-Objective Formulation:We optimize three objectives simultaneously:Using scalarization with dynamic weights: Reinforcement Learning AdapterTo enable online adaptation, we implement a policy gradient method that refines chunking decisions based on retrieval feedback: Reward Function: Statert = α • ∆NDCG + β • ∆completeness -γ • ∆latency (19)Policy Update: Using REINFORCE with baseline: ∇θJ(θ ) = E[(rt -bt)∇θ logπθ(at|st)] (20) Implementation AlgorithmAlgorithm 1 presents the complete AQACO optimization procedure. Algorithm 1 AQACO OptimizationRequire: Documents D, Query patterns Q, Initial parameters θ0 Ensure: Optimized chunking strategy C *• Natural Questions [22]: 307K naturally occurring questions from Google search with Wikipedia answers Multi-hop Reasoning:• HotpotQA [23]: 113K questions requiring reasoning over multiple documentsFact Verification:• FEVER [24]: 185K claims for verification against Wikipedia passages Scientific/Technical:• SciFact [25]: Scientific claim verification with research papers Financial:• FiQA-2018 [26]: Financial question answering with earnings reports and SEC filings",
+    "experiments": "evaluation across six public datasets spanning four domains, we demonstrated substantial improvements over state-of-the-art methods: 24.3% better NDCG@5, 28.7% reduction in answer fragmentation, and 19.4% lower processing latency.Our key contributions include: (1) the first systematic approach to queryaware chunking optimization, (2) a principled multi-objective optimization framework combining Bayesian optimization with reinforcement learning, (3) comprehensive empirical validation establishing new performance benchmarks, and (4) open-source implementation enabling reproducible research.AQACO addresses fundamental limitations in current RAG systems by treating document chunking as an adaptive, learnable component rather than static preprocessing. This paradigm shift enables significant performance improvements while maintaining computational efficiency, with clear paths for production deployment. Future work will explore hierarchical chunking strategies, cross-modal document processing, and integration with endto-end neural architectures. We release our implementation, datasets, and experimental protocols to facilitate reproducible research in adaptive document processing.Figure 1 :1Figure 1: Motivation example showing how different query types require different chunking strategies. Simple factual queries benefit from smaller, focused chunks, while complex analytical queries require larger, contextually rich chunks. Current static approaches cannot adapt to this variability. ) C where: • R(q,C(d)) measures retrieval quality for query q given chunking C(d) Volume 14 Issue 3, March 2025 Fully Refereed | Open Access | Double Blind Peer Reviewed Journal www.ijsr.net • L(C(d)) represents computational cost (storage, processing latency) • λ balances quality-efficiency tradeoffs 3.2 AQACO Framework Architecture AQACO consists of four integrated components operating in a feedback loop, as illustrated in Figure 2. Figure 2 :2Figure 2: AQACO framework architecture showing the integration of query pattern analysis, document profiling, Bayesian optimization, and reinforcement learning components. Representation: st = [query features(qt), document features(dt), current params(θt)] (17) Action Space: at ∈ {adjust chunk size, modify overlap, change boundary strategy} (18) Paper ID: SR25329182150 DOI: https://dx.doi.org/10.21275/SR25329182150 Volume 14 Issue 3, March 2025 Fully Refereed | Open Access | Double Blind Peer Reviewed Journal www.ijsr.net Figure 3 :3Figure 3: NDCG@5 performance across different datasets. AQACO shows consistent improvements, with largest gains on complex reasoning tasks (HotpotQA, SciFact) and significant improvements on large-scale datasets (MS MARCO, Natural Questions)• FEVER: 18.4% improvement with significant latency reduction (-26%) Figure 4 :4Figure 4: Performance improvement over MoG baseline across query complexity levels. AQACO provides greatest benefits for complex queries requiring sophisticated context assembly • Complex queries (analytical, comparative): 43.6% improvement Figure 5 Figure 5 :55Figure 5: Efficiency analysis showing processing latency and storage overhead vs. dataset size. AQACO maintains competitive efficiency while significantly improving retrieval quality Table 1 :1Summarizes the dataset characteristics and evaluation splitsDatasetDomainQueriesDocsAvg Q LenAvg D LenMS MARCO Web Search1,010K8.8M5.9287Natural Q Encyclopedic307K2.7M9.1342HotpotQAMulti-hop113K1.3M17.8156FEVERFact Verify185K5.4M8.278SciFactScientific1.4K5K12.32,847FiQA-2018Financial8.7K57K11.71,2343.4 Baseline Methods3.5 Evaluation MetricsWe compare against seven established chunking strategiesPrimary Retrieval Metrics:representing current state-of-the-art:1) Fixed-256/512/1024: Fixed-size chunking with differentwindow sizes2) Recursive Character Splitter: Respects structuralboundaries (LangChain implementation)3) Semantic Chunking: Embedding-based boundarydetection [6]Context Quality Metrics:4) ClusterSemanticChunker:Sentenceclustering•Completeness Score: Fraction of query-relevantapproach [9]information captured in retrieved chunks5) Mix-of-Granularity (MoG): Multiple chunk sizes per•Fragmentation Rate: Percentage of answers requiringdocument [8]information from multiple chunks6) Oracle Chunking: Human-optimized boundaries (upperbound)• NDCG@k (k=1,3,5,10): Normalized discounted cumulative gain • Recall@k: Fraction of relevant chunks retrieved in topk • MRR: Mean reciprocal rank of first relevant chunk • Context Coherence: Semantic consistency of retrieved context Efficiency Metrics: • Processing Latency: End-to-end chunking and retrieval time • Storage Overhead: Index size compared to original documents • Query Throughput: Queries processed per second Paper ID: SR25329182150 DOI: https://dx.doi.org/10.21275/SR25329182150 Volume 14 Issue 3, March 2025 Fully Refereed | Open Access | Double Blind Peer Reviewed Journal www.ijsr.net Table 2 :2Overall Performance Comparison (Average Across All Datasets)MethodNDCG@5 Recall@10 MRR Latency (ms) Storage OHFixed-2560.6210.7040.5982431.0xFixed-5120.6540.7380.6272671.0xFixed-10240.6310.7210.6082891.0xRecursive0.6680.7510.6412781.1xSemantic0.6920.7740.6633011.2xClusterSem0.7070.7870.6783181.3xMoG0.7340.8060.7013422.1xAQACO0.9130.8910.8472751.4xOracle0.9450.9230.8713251.5x• Language Model: GPT-3.5-turbo API for answer generation evaluation Hyperparameters: • Bayesian Optimization: 50 iterations, GP kernel: RBF + Mat´ern • Reinforcement Learning: Learning rate 0.001, γ = 0.99 • Evaluation: 5-fold cross-validation across all datasets • Batch Processing: Optimized for consumer hardware constraints Table 3 :3Ablation Study: Component Contribution AnalysisConfiguration NDCG@5Latency (ms)NotesBaseline (Fixed-512)0.654267Static chunking+ Query Features0.721274Query-aware only+ Bayesian Opt0.798289No online adaptation+ Document Prof0.836283No RL componentFull AQACO0.913275 Complete framework-Query Features0.747271Content-only optimization-Bayesian Opt0.763243RL only-RL Component0.851298No online adaptation Extension to multimedia documents incorporating images, tables, and structured data. Collaborative optimization across organizations while preserving data privacy. End-to-end learnable segmentation using transformer architectures trained specifically for retrieval optimization.in production systems. The framework is designed to beefficient and accessible without requiring specializedGPU infrastructure.• Integration Complexity: Framework integrates withexisting RAG pipelines through standardized APIs withminimal modifications.• Monitoring and Maintenance: Online adaptationrequires continuous performance monitoring andoccasional model retraining.6. Future Research DirectionsAQACO opens several promising research avenues:• Hierarchical Chunking: Multi-level optimization acrossdocument hierarchies for complex document structures.• Query-Document Interaction Modeling: Formalizeshow query characteristics should influence documentsegmentation decisions.• Convergence Guarantees: Bayesian optimizationcomponent ensures convergence to locally optimalsolutions with theoretical backing.5.3 Practical Deployment ConsiderationsProduction deployment of AQACO requires consideration ofseveral factors:• Computational Resources: Initial optimization requires modest compute resources and can be performed on consumer hardware (e.g., modern laptops with sufficient RAM). Training time ranges from 4-8 hours per dataset on a MacBook M1 Pro, which amortizes across query volume • Cross-modal Adaptation: • Federated Learning: • Neural Chunking: DOI: https://dx.doi.org/10.21275/SR25329182150",
+    "results": "Results Overall PerformanceTable 2 presents comprehensive results across all datasets and metrics. AQACO consistently outperforms baseline methods, achieving substantial improvements in both retrieval quality and efficiency.AQACO achieves 24.3% improvement in NDCG@5 over the strongest baseline (MoG) while maintaining competitive efficiency. Notably, our approach reaches 96.6% of Oracle performance, indicating highly effective automated optimization. Dataset-Specific AnalysisFigure 3 shows performance breakdown by dataset, revealing domain-specific optimization patterns. Key Observations:• MS MARCO: 22.1% improvement due to diverse query complexity requiring adaptive chunking • Natural Questions: 19.7% improvement with excellent fragmentation reduction (-38%) • HotpotQA: 31.2% improvement, largest gains due to complex multi-hop reasoning requirements • FiQA-2018: 27.3% improvement, strong performance on numerical reasoning queries Ablation StudiesTable 3 analyzes individual component contributions to understand the source of AQACO's improvements.The query-aware component provides the largest single improvement (+10.2% NDCG@5), validating our core hypothesis. The combination of all components achieves optimal performance-efficiency balance. Query Complexity AnalysisFigure 4 analyzes performance across query complexity levels, demonstrating AQACO's adaptive capabilities.Performance by Query Type:• Simple queries (factual, single-hop): 14.2% improvement over baselines • Medium queries (multi-step reasoning): 29.8% improvement This pattern confirms that AQACO's adaptive approach provides greatest benefits for challenging queries requiring sophisticated context assembly. • Scalability: Linear scaling with document collection size; implementation optimized for resource-constrained environments Efficiency Analysis Error Analysis and LimitationsFailure Cases:• Very short documents (<100 tokens): Limited optimization benefit due to minimal chunking variability Discussion Implications for RAG System DesignAQACO fundamentally changes how we approach document preprocessing in RAG systems. By treating chunking as a learnable component rather than fixed preprocessing, we enable several key improvements:• End-to-end Optimization: Chunking parameters can be jointly optimized with retrieval and generation components, leading to global rather than local optima.• Domain Adaptation: Systems can automatically adapt to new domains through query pattern analysis without manual tuning.• Personalization: Individual user query patterns can drive personalized chunking strategies for improved user experience. Theoretical ContributionsOur work establishes theoretical foundations for adaptive document processing:• Multi-objective Formulation: Provides principled framework for balancing competing objectives in chunking optimization.",
+    "discussion": "",
+    "conclusion": "ConclusionWe presented AQACO, a novel framework for adaptive query-aware chunking optimization in RAG systems. Through comprehensive"
+  },
+  "references": [
+    {
+      "id": "b0",
+      "title": "Retrievalaugmented generation for knowledge-intensive NLP tasks",
+      "authors": [
+        "Lewis",
+        "Perez",
+        "Piktus",
+        "Petroni",
+        "Karpukhin",
+        "Goyal",
+        "Ku¨ttler",
+        "Lewis",
+        "Yih",
+        "Rockt¨aschel",
+        "Riedel",
+        "Kiela"
+      ],
+      "year": "2020",
+      "venue": "Advances in Neural Information Processing Systems"
+    },
+    {
+      "id": "b1",
+      "title": "Dense passage retrieval for open-domain question answering",
+      "authors": [
+        "Karpukhin",
+        "Oguz",
+        "Min",
+        "Lewis",
+        "Wu",
+        "Edunov",
+        "Chen",
+        "Yih"
+      ],
+      "year": "2020",
+      "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b2",
+      "title": "",
+      "authors": [
+        "Langchain"
+      ],
+      "year": "2023",
+      "venue": "Text splitters documentation"
+    },
+    {
+      "id": "b3",
+      "title": "",
+      "authors": [
+        "Llamaindex"
+      ],
+      "year": "2023",
+      "venue": "Data connectors and chunking strategies"
+    },
+    {
+      "id": "b4",
+      "title": "",
+      "authors": [
+        "Chen",
+        "Zhang",
+        "Liu",
+        "Wang"
+      ],
+      "year": "2023",
+      "venue": "The impact of chunking strategies on retrieval performance in RAG systems"
+    },
+    {
+      "id": "b5",
+      "title": "Semantic chunking for improved document retrieval",
+      "authors": [
+        "Zhang",
+        "Li",
+        "Johnson"
+      ],
+      "year": "2024",
+      "venue": "Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval"
+    },
+    {
+      "id": "b6",
+      "title": "Coherence-based boundary detection in document chunking",
+      "authors": [
+        "Wang",
+        "Chen",
+        "Brown"
+      ],
+      "year": "2024",
+      "venue": "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b7",
+      "title": "",
+      "authors": [
+        "Li",
+        "Zhang",
+        "Liu",
+        "Wang"
+      ],
+      "year": "2024",
+      "venue": "Mix-ofgranularity: Optimize the chunking granularity for retrieval-augmented generation"
+    },
+    {
+      "id": "b8",
+      "title": "",
+      "authors": [
+        "Anthropic"
+      ],
+      "year": "2024",
+      "venue": "ClusterSemanticChunker: Advanced document segmentation"
+    },
+    {
+      "id": "b9",
+      "title": "Embedding-based boundary detection for semantic chunking",
+      "authors": [
+        "Wang",
+        "Liu",
+        "Miller"
+      ],
+      "year": "2024",
+      "venue": "Proceedings of ACL 2024"
+    },
+    {
+      "id": "b10",
+      "title": "Predicting query performance",
+      "authors": [
+        "Cronen-Townsend",
+        "Zhou",
+        "Croft"
+      ],
+      "year": "2002",
+      "venue": "Proceedings of the 25th Annual International ACM SIGIR Conference"
+    },
+    {
+      "id": "b11",
+      "title": "A survey of preretrieval query performance predictors",
+      "authors": [
+        "Hauff",
+        "Hiemstra",
+        "De"
+      ],
+      "year": "2008",
+      "venue": "Proceedings of the 17th ACM Conference on Information and Knowledge Management"
+    },
+    {
+      "id": "b12",
+      "title": "Query complexity and retrieval optimization in modern search systems",
+      "authors": [
+        "Zhang",
+        "Wang",
+        "Chen"
+      ],
+      "year": "2023",
+      "venue": "ACM Transactions on Information Systems"
+    },
+    {
+      "id": "b13",
+      "title": "Query intent classification for adaptive retrieval systems",
+      "authors": [
+        "Benczur",
+        "Nagy",
+        "Kovacs"
+      ],
+      "year": "2024",
+      "venue": "Proceedings of the Web Conference"
+    },
+    {
+      "id": "b14",
+      "title": "MTEB: Massive text embedding benchmark",
+      "authors": [
+        "Muennighoff",
+        "Tazi",
+        "Magne",
+        "Reimers"
+      ],
+      "year": "2022",
+      "venue": "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b15",
+      "title": "BEIR: A heterogeneous benchmark for zero-shot evaluation of information retrieval models",
+      "authors": [
+        "Thakur",
+        "Reimers",
+        "Ru¨ckl´e",
+        "Srivastava",
+        "Gurevych"
+      ],
+      "year": "2021",
+      "venue": "Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks"
+    },
+    {
+      "id": "b16",
+      "title": "REALM: Retrievalaugmented language model pre-training",
+      "authors": [
+        "Gao",
+        "Dai",
+        "Chen"
+      ],
+      "year": "2020",
+      "venue": "International Conference on Machine Learning"
+    },
+    {
+      "id": "b17",
+      "title": "AutoRAG: Automated retrievalaugmented generation optimization",
+      "authors": [
+        "Kulkarni",
+        "Patel",
+        "Singh"
+      ],
+      "year": "2024",
+      "venue": "International Conference on Learning Representations"
+    },
+    {
+      "id": "b18",
+      "title": "Statistical language models for information retrieval",
+      "authors": [
+        "Zhai",
+        "Lafferty"
+      ],
+      "year": "2008",
+      "venue": "Annual Review of Information Science and Technology"
+    },
+    {
+      "id": "b19",
+      "title": "Learning to rank for information retrieval",
+      "authors": [
+        "Liu"
+      ],
+      "year": "2009",
+      "venue": "Foundations and Trends in Information Retrieval"
+    },
+    {
+      "id": "b20",
+      "title": "MS MARCO: A human generated machine reading comprehension dataset",
+      "authors": [
+        "Nguyen",
+        "Rosenberg",
+        "Song",
+        "Gao",
+        "Tiwary",
+        "Majumder",
+        "Deng"
+      ],
+      "year": "2016",
+      "venue": "Proceedings of the Workshop on Cognitive Computation: Integrating Neural and Symbolic Approaches"
+    },
+    {
+      "id": "b21",
+      "title": "Natural questions: A benchmark for question answering research",
+      "authors": [
+        "Kwiatkowski",
+        "Palomaki",
+        "Redfield",
+        "Collins",
+        "Parikh",
+        "Alberti",
+        "Epstein",
+        "Polosukhin",
+        "Devlin",
+        "Lee",
+        "Toutanova",
+        "Jones",
+        "Kelcey",
+        "Chang",
+        "Dai",
+        "Uszkoreit",
+        "Le",
+        "Petrov"
+      ],
+      "year": "2019",
+      "venue": "Transactions of the Association for Computational Linguistics"
+    },
+    {
+      "id": "b22",
+      "title": "HotpotQA: A dataset for diverse, explainable multi-hop question answering",
+      "authors": [
+        "Yang",
+        "Qi",
+        "Zhang",
+        "Bengio",
+        "Cohen",
+        "Salakhutdinov",
+        "Manning"
+      ],
+      "year": "2018",
+      "venue": "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b23",
+      "title": "FEVER: A large-scale dataset for fact extraction and VERification",
+      "authors": [
+        "Thorne",
+        "Vlachos",
+        "Christodoulopoulos",
+        "Mittal"
+      ],
+      "year": "2018",
+      "venue": "Proceedings of the 2018 Conference of the North American Chapter"
+    },
+    {
+      "id": "b24",
+      "title": "",
+      "authors": [
+        "Wadden",
+        "Lin",
+        "Lo",
+        "Wang",
+        "Van Zuylen",
+        "Cohan"
+      ],
+      "year": "",
+      "venue": ""
+    },
+    {
+      "id": "b25",
+      "title": "Fact or fiction: Verifying scientific claims",
+      "authors": [
+        "Hajishirzi"
+      ],
+      "year": "2020",
+      "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b26",
+      "title": "WWW'18 open challenge: Financial opinion mining and question answering",
+      "authors": [
+        "Maia",
+        "Handschuh",
+        "Freitas",
+        "Davis",
+        "Mcdermott",
+        "Zarrouk",
+        "Balahur"
+      ],
+      "year": "2018",
+      "venue": "Companion Proceedings of The Web Conference"
+    },
+    {
+      "id": "b27",
+      "title": "BERT: Pre-training of deep bidirectional transformers for language understanding",
+      "authors": [
+        "Devlin",
+        "Chang",
+        "Lee",
+        "Toutanova"
+      ],
+      "year": "2019",
+      "venue": "Proceedings of the 2019 Conference of the North American Chapter"
+    },
+    {
+      "id": "b28",
+      "title": "",
+      "authors": [
+        "Liu",
+        "Ott",
+        "Goyal",
+        "Du",
+        "Joshi",
+        "Chen",
+        "Levy",
+        "Lewis",
+        "Zettlemoyer",
+        "Stoyanov"
+      ],
+      "year": "2019",
+      "venue": "RoBERTa: A robustly optimized BERT pretraining approach"
+    }
+  ],
+  "metadata": {
+    "year": "2025",
+    "doi": "10.21275/sr25329182150",
+    "venue": "International Journal of Science and Research (IJSR)",
+    "processed_at": "2025-12-06T01:03:05.710890"
+  }
+}

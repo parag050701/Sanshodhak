@@ -1,0 +1,159 @@
+[
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_1",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_2",
+    "type": "Dataset",
+    "name": "USPTO patents",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_3",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_4",
+    "type": "Method",
+    "name": "Relation identification",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_5",
+    "type": "Method",
+    "name": "Relation elicitation",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_6",
+    "type": "Method",
+    "name": "Seq2Seq",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_7",
+    "type": "Method",
+    "name": "Token classification",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_8",
+    "type": "Task",
+    "name": "Knowledge extraction",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_9",
+    "type": "Task",
+    "name": "Named Entity Recognition",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_10",
+    "type": "Task",
+    "name": "Relationship prediction",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_11",
+    "type": "Paper",
+    "name": "Quintana-Amate et al. 2015",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_12",
+    "type": "Paper",
+    "name": "Siddharth et al. 2018",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_13",
+    "type": "Paper",
+    "name": "Siddharth et al. 2020",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_14",
+    "type": "Paper",
+    "name": "Siddharth et al. 2022b",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_15",
+    "type": "Paper",
+    "name": "Chandrasekaran 2005",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_16",
+    "type": "Paper",
+    "name": "Li et al. 2022",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_17",
+    "type": "Paper",
+    "name": "ACE",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_18",
+    "type": "Paper",
+    "name": "W-NUT",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_19",
+    "type": "Paper",
+    "name": "OntoNotes",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_20",
+    "type": "Paper",
+    "name": "Zenodo",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_21",
+    "type": "Paper",
+    "name": "Hugging Face",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_22",
+    "type": "Paper",
+    "name": "GitHub",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_23",
+    "type": "Paper",
+    "name": "USPTO",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_24",
+    "type": "Paper",
+    "name": "RAG",
+    "source_paper_id": "024_Siddharth_2024_54d631c5"
+  },
+  {
+    "id": "E_024_Siddharth_2024_54d631c5_25",
+    "type": "Result",
+    "name": "Accuracy=92.4% on USPTO patents",
+    "source_paper_id": "024_Siddharth_2024_54d631c5",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "USPTO patents",
+      "experiment_description": "Top-1 accuracy on USPTO patents validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

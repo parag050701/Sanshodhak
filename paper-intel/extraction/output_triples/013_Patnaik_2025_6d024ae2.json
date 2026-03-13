@@ -1,0 +1,398 @@
+{
+  "paper_id": "013_Patnaik_2025_6d024ae2",
+  "triples": [
+    [
+      "Large Language Models (LLMs)",
+      "USES_MODEL",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG)",
+      "EVALUATES_ON",
+      "Enterprise databases"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG)",
+      "EVALUATES_ON",
+      "Knowledge articles"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG)",
+      "EVALUATES_ON",
+      "Documents"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG)",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Raja Patnaik",
+      "AUTHORED_BY",
+      "International Journal of Science and Research (IJSR)"
+    ],
+    [
+      "Raja Patnaik",
+      "AUTHORED_BY",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG)",
+      "CITES",
+      "Raja Patnaik, International Journal of Science and Research (IJSR)"
+    ],
+    [
+      "Retrieval-Augmented Generation (RAG)",
+      "CITES",
+      "Raja Patnaik"
+    ],
+    [
+      "RAG",
+      "ACHIEVES_RESULT",
+      "Improved accuracy"
+    ],
+    [
+      "RAG",
+      "ACHIEVES_RESULT",
+      "Increased trustworthiness"
+    ],
+    [
+      "RAG",
+      "ACHIEVES_RESULT",
+      "Keeps AI relevant and adaptable"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "Paper ID: SR251104092705"
+    ],
+    [
+      "RAG",
+      "AUTHORED_BY",
+      "Unknown"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "Customer engagement"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "SR251104092705"
+    ],
+    [
+      "RAG",
+      "USES_MODEL",
+      "Semantic vector search"
+    ],
+    [
+      "RAG",
+      "USES_MODEL",
+      "Hybrid approach"
+    ],
+    [
+      "RAG",
+      "USES_DATASET",
+      "Knowledge base"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "RAG",
+      "AUTHORED_BY",
+      "International Journal of Science and Research (IJSR)"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "Knowledge retrieval"
+    ],
+    [
+      "RAG",
+      "STUDIES_TASK",
+      "Text generation"
+    ],
+    [
+      "RAG",
+      "ACHIEVES_RESULT",
+      "Improved accuracy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Knowledge base"
+    ],
+    [
+      "RAG",
+      "USES_DATASET",
+      "Knowledge base"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "SR251104092705"
+    ],
+    [
+      "SR251104092705",
+      "AUTHORED_BY",
+      "International Journal of Science and Research"
+    ],
+    [
+      "RAG",
+      "USES_MODEL",
+      "Retrieval-Augmented Generation"
+    ],
+    [
+      "RAG",
+      "USES_METHOD",
+      "Retrieval-Augmented Generation"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Customer Support"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Healthcare"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Finance and Compliance"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Enterprise Knowledge Search"
+    ],
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "Education and Training"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Compliance Risks"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Data Privacy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Knowledge Base Integrity"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Injection Attacks"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Over-Reliance on Retrieved Data"
+    ],
+    [
+      "What Is Retrieval-Augmented Generation (RAG)",
+      "CITES",
+      "Agentforce and RAG: Best Practices for Better Agents"
+    ],
+    [
+      "Agentforce and RAG: Best Practices for Better Agents",
+      "CITES",
+      "Hybrid Search"
+    ],
+    [
+      "Hybrid Search",
+      "CITES",
+      "RAG"
+    ],
+    [
+      "RAG",
+      "CITES",
+      "Knowledge in Agentforce"
+    ],
+    [
+      "Knowledge in Agentforce",
+      "CITES",
+      "Agent Instructions"
+    ],
+    [
+      "Agent Instructions",
+      "CITES",
+      "Why AI Agents and RAG Pipeline Fail"
+    ],
+    [
+      "Why AI Agents and RAG Pipeline Fail",
+      "CITES",
+      "Generative AI Hallucinations"
+    ],
+    [
+      "Generative AI Hallucinations",
+      "CITES",
+      "Why Language Model Hallucinate"
+    ],
+    [
+      "Why Language Model Hallucinate",
+      "CITES",
+      "Security Best Practices with Agentforce"
+    ],
+    [
+      "Security Best Practices with Agentforce",
+      "CITES",
+      "How does RAG Work?"
+    ],
+    [
+      "Accuracy=non-negotiable on Enterprise databases",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=non-negotiable on Knowledge articles",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=non-negotiable on Documents",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=non-negotiable on Documents",
+      "EVALUATES_ON",
+      "Documents"
+    ],
+    [
+      "Accuracy=Improved on Knowledge sources",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=Improved on Knowledge sources",
+      "EVALUATES_ON",
+      "Knowledge sources"
+    ],
+    [
+      "Trustworthiness=Increased on Knowledge sources",
+      "REPORTS_METRIC",
+      "Trustworthiness"
+    ],
+    [
+      "Trustworthiness=Increased on Knowledge sources",
+      "EVALUATES_ON",
+      "Knowledge sources"
+    ],
+    [
+      "Relevance and adaptability=Keeps AI relevant and adaptable on Knowledge sources",
+      "EVALUATES_ON",
+      "Knowledge sources"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge base",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge base",
+      "EVALUATES_ON",
+      "Knowledge base"
+    ],
+    [
+      "F1-score=N/A on Knowledge base",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "F1-score=N/A on Knowledge base",
+      "EVALUATES_ON",
+      "Knowledge base"
+    ],
+    [
+      "BLEU=N/A on Knowledge base",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=N/A on Knowledge base",
+      "EVALUATES_ON",
+      "Knowledge base"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge Base",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Knowledge Base",
+      "EVALUATES_ON",
+      "Knowledge base"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 55,
+    "relation_count": 76,
+    "triple_count": 76,
+    "extracted_at": "2025-12-06T02:40:19.658392"
+  },
+  "paper_metadata": {
+    "title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge",
+    "authors": [
+      "Raja Patnaik"
+    ],
+    "year": ""
+  }
+}

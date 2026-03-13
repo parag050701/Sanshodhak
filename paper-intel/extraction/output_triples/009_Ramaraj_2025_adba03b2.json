@@ -1,0 +1,49 @@
+{
+  "paper_id": "009_Ramaraj_2025_adba03b2",
+  "triples": [
+    [
+      "GoogleNet Inception v3",
+      "EVALUATES_ON",
+      "Dermoscopy and Photographic Images"
+    ],
+    [
+      "GoogleNet Inception v3",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Esteva et al. (2017)",
+      "CITES",
+      "GoogleNet Inception v3"
+    ],
+    [
+      "Esteva et al. (2017)",
+      "AUTHORED_BY",
+      "Esteva"
+    ],
+    [
+      "Accuracy=dermatologist-level on Dermoscopy and Photographic Images",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=dermatologist-level on Dermoscopy and Photographic Images",
+      "EVALUATES_ON",
+      "Dermoscopy and Photographic Images"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 8,
+    "relation_count": 6,
+    "triple_count": 6,
+    "extracted_at": "2025-12-06T02:40:22.885391"
+  },
+  "paper_metadata": {
+    "title": "DEEP LEARNING MODELS FOR AUTOMATED MEDICAL IMAGING: ACCURACY, ETHICS, AND DEPLOYMENT CHALLENGES",
+    "authors": [
+      "Prasanth Ramaraj",
+      "Mohit Mittal"
+    ],
+    "year": "2025"
+  }
+}

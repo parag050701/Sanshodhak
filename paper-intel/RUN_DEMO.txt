@@ -1,0 +1,48 @@
+════════════════════════════════════════════════════════════════════════════════
+🎯 RUN YOUR DEMO NOW
+════════════════════════════════════════════════════════════════════════════════
+
+cd /home/admin-/Desktop/Sanshodhak/paper-intel
+./DEMO_LAUNCHER.sh
+
+Then choose:
+
+  1 = Quick Demo (30 sec setup, 3-5 min demo)
+      → Uses existing data
+      → Interactive Q&A
+      → Resource recommendations
+      → SAFE CHOICE ✅
+      
+  2 = Full Pipeline (5-15 min)
+      → Downloads NEW papers
+      → Shows all 7 stages LIVE
+      → Complete execution
+      → IMPRESSIVE 🚀
+
+════════════════════════════════════════════════════════════════════════════════
+QUICK DEMO COMMANDS
+════════════════════════════════════════════════════════════════════════════════
+
+What are transformers?           → Ask question
+resources Deep Learning          → Get GitHub/HuggingFace
+quit                             → Exit
+
+════════════════════════════════════════════════════════════════════════════════
+FULL PIPELINE - WHAT TO ENTER
+════════════════════════════════════════════════════════════════════════════════
+
+Topic: Graph Neural Networks     ← Good success rate
+Papers: 5                        ← Fast execution
+Year: 2020                       ← Recent papers
+
+Other good topics:
+  • Vision Transformers
+  • BERT
+  • Generative AI
+  • Reinforcement Learning
+
+AVOID: Medical/Healthcare (paywalled)
+
+════════════════════════════════════════════════════════════════════════════════
+✅ BOTH OPTIONS READY - JUST RUN IT!
+════════════════════════════════════════════════════════════════════════════════

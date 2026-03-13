@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanshodhak - Agentic Research Assistant</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --accent-orange-dark: #e85d31;
+            --accent-orange-light: #ff8c5a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #707070;
+            --success: #00ff88;
+            --error: #ff4444;
+            --border: #333333;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 2px solid var(--accent-orange);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .logo-text h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-top: -5px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            font-size: 0.85em;
+            border: 1px solid var(--border);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 30px;
+        }
+
+        .search-panel {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 1.05em;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            background: var(--bg-primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .btn {
+            padding: 16px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-primary);
+            border-color: var(--accent-orange);
+        }
+
+        .mode-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .mode-btn {
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .mode-btn:hover {
+            border-color: var(--accent-orange);
+            background: var(--bg-primary);
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-dark) 100%);
+            color: white;
+            border-color: var(--accent-orange);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .progress-container {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .progress-container.active {
+            display: block;
+        }
+
+        .progress-title {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .stage {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .stage.pending {
+            opacity: 0.5;
+        }
+
+        .stage.running {
+            border-left-color: var(--accent-orange);
+            animation: pulse-border 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(255, 107, 53, 0); }
+        }
+
+        .stage.completed {
+            border-left-color: var(--success);
+        }
+
+        .stage.failed {
+            border-left-color: var(--error);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .stage-name {
+            font-weight: 600;
+            font-size: 1.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stage-status {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .stage-status.pending {
+            background: var(--bg-primary);
+            color: var(--text-muted);
+        }
+
+        .stage-status.running {
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--accent-orange);
+        }
+
+        .stage-status.completed {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--success);
+        }
+
+        .stage-status.failed {
+            background: rgba(255, 68, 68, 0.2);
+            color: var(--error);
+        }
+
+        .stage-message {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .stage-data {
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 1200px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-panel {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .panel-title {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: var(--accent-orange);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .answer-box {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-orange);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .citation {
+            background: var(--bg-primary);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--accent-orange);
+            transition: all 0.3s;
+        }
+
+        .citation:hover {
+            border-left-width: 5px;
+            transform: translateX(3px);
+        }
+
+        .citation-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .citation-meta {
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+
+        .resource-card {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .resource-meta {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .resource-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .error-message {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .success-message {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔬</div>
+                <div class="logo-text">
+                    <h1>SANSHODHAK</h1>
+                    <p>Agentic Research Assistant</p>
+                </div>
+            </div>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                <span id="systemStatus">System Online</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-panel">
+            <div class="search-input-group">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="queryInput"
+                    placeholder="Enter your research question..."
+                    onkeypress="handleKeyPress(event)">
+                <button class="btn btn-primary" onclick="executeQuery()">
+                    <span id="btnText">🚀 Execute</span>
+                </button>
+            </div>
+
+            <div class="mode-selector">
+                <button class="mode-btn active" onclick="setMode('full')" id="mode-full">
+                    🔄 Full Pipeline
+                </button>
+                <button class="mode-btn" onclick="setMode('retrieve')" id="mode-retrieve">
+                    💡 Retrieval Engine
+                </button>
+                <button class="mode-btn" onclick="setMode('recommend')" id="mode-recommend">
+                    🎯 Resources Only
+                </button>
+            </div>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-title">🔄 Pipeline Progress</div>
+            <div id="stagesContainer"></div>
+        </div>
+
+        <div id="resultsArea">
+            <div class="result-panel">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🔬</div>
+                    <h2>Welcome to Sanshodhak</h2>
+                    <p style="margin-top: 10px; line-height: 1.8;">
+                        Enter your research question above to start the agentic pipeline:<br>
+                        <strong>Search → Download → Parse → Embed → Retrieve → Recommend</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        let currentMode = 'full';
+        let stages = {};
+
+        // WebSocket connection
+        socket.on('connect', () => {
+            console.log('Connected to Sanshodhak');
+            updateSystemStatus('Connected', true);
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from Sanshodhak');
+            updateSystemStatus('Disconnected', false);
+        });
+
+        socket.on('progress', (update) => {
+            console.log('Progress update:', update);
+            updateStage(update);
+        });
+
+        function updateSystemStatus(status, online) {
+            const statusEl = document.getElementById('systemStatus');
+            statusEl.textContent = status;
+            const dot = document.querySelector('.status-dot');
+            dot.style.background = online ? 'var(--success)' : 'var(--error)';
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`mode-${mode}`).classList.add('active');
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                executeQuery();
+            }
+        }
+
+        function executeQuery() {
+            const query = document.getElementById('queryInput').value.trim();
+            if (!query) {
+                alert('Please enter a research question');
+                return;
+            }
+
+            // Clear previous results
+            stages = {};
+            document.getElementById('stagesContainer').innerHTML = '';
+            document.getElementById('resultsArea').innerHTML = '';
+            
+            // Show progress container
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.classList.add('active');
+
+            // Update button
+            const btnText = document.getElementById('btnText');
+            btnText.innerHTML = '<span class="loading-spinner"></span> Processing...';
+
+            // Execute based on mode
+            if (currentMode === 'full') {
+                executeFullPipeline(query);
+            } else if (currentMode === 'retrieve') {
+                executeRetrieval(query);
+            } else if (currentMode === 'recommend') {
+                executeRecommendations(query);
+            }
+        }
+
+        function executeFullPipeline(query) {
+            fetch('/api/full_pipeline', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    query: query,
+                    required_papers: 30,  // 10X search will fetch 300 papers
+                    min_year: 2020
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    displayFullResults(data.result);
+                }
+                resetButton();
+            })
+            .catch(error => {
+                showError(`Error: ${error.message}`);
+                resetButton();
+            });
+        }
+
+        function executeRetrieval(query) {
+            fetch('/api/query', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: query, top_k: 5 })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    displayRetrievalResults(data);
+                }
+                resetButton();
+            })
+            .catch(error => {
+                showError(`Error: ${error.message}`);
+                resetButton();
+            });
+        }
+
+        function executeRecommendations(query) {
+            fetch('/api/recommend', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    displayRecommendationResults(data.recommendations);
+                }
+                resetButton();
+            })
+            .catch(error => {
+                showError(`Error: ${error.message}`);
+                resetButton();
+            });
+        }
+
+        function updateStage(update) {
+            stages[update.stage] = update;
+            renderStages();
+        }
+
+        function renderStages() {
+            const container = document.getElementById('stagesContainer');
+            const stageOrder = ['search', 'download', 'parse', 'embed', 'retrieve', 'recommend'];
+            
+            container.innerHTML = stageOrder.map(stageName => {
+                const stage = stages[stageName] || { status: 'pending', message: 'Waiting...' };
+                return `
+                    <div class="stage ${stage.status}">
+                        <div class="stage-header">
+                            <div class="stage-name">
+                                ${getStageIcon(stageName)} ${stageName.toUpperCase()}
+                            </div>
+                            <div class="stage-status ${stage.status}">${stage.status}</div>
+                        </div>
+                        <div class="stage-message">${stage.message}</div>
+                        ${stage.data ? `<div class="stage-data">${JSON.stringify(stage.data, null, 2)}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getStageIcon(stage) {
+            const icons = {
+                search: '🔍',
+                download: '📥',
+                parse: '📄',
+                embed: '🧬',
+                retrieve: '💡',
+                recommend: '🎯'
+            };
+            return icons[stage] || '•';
+        }
+
+        function displayFullResults(result) {
+            const retrieve = result.stages.retrieve || {};
+            const recommend = result.stages.recommend || {};
+
+            const html = `
+                <div class="results-grid">
+                    <div class="result-panel">
+                        <div class="panel-title">💡 Sanshodhak Answer</div>
+                        <div class="answer-box">
+                            ${retrieve.answer || 'No answer generated'}
+                        </div>
+                        
+                        ${retrieve.citations && retrieve.citations.length > 0 ? `
+                            <h3 style="margin: 20px 0 15px 0; color: var(--accent-orange);">📚 Citations</h3>
+                            ${retrieve.citations.map(c => `
+                                <div class="citation">
+                                    <div class="citation-title">${c.file}</div>
+                                    <div class="citation-meta">Score: ${c.score} | ${c.snippet}</div>
+                                </div>
+                            `).join('')}
+                        ` : ''}
+                    </div>
+                    
+                    <div>
+                        ${displayResources(recommend)}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('resultsArea').innerHTML = html;
+        }
+
+        function displayRetrievalResults(data) {
+            const html = `
+                <div class="result-panel">
+                    <div class="panel-title">💡 Sanshodhak Answer</div>
+                    <div class="answer-box">
+                        ${data.answer || 'No answer generated'}
+                    </div>
+                    
+                    ${data.citations && data.citations.length > 0 ? `
+                        <h3 style="margin: 20px 0 15px 0; color: var(--accent-orange);">📚 Citations</h3>
+                        ${data.citations.map(c => `
+                            <div class="citation">
+                                <div class="citation-title">${c.file}</div>
+                                <div class="citation-meta">Score: ${c.score} | ${c.snippet}</div>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                </div>
+            `;
+
+            document.getElementById('resultsArea').innerHTML = html;
+        }
+
+        function displayRecommendationResults(recommendations) {
+            document.getElementById('resultsArea').innerHTML = displayResources(recommendations);
+        }
+
+        function displayResources(recommendations) {
+            if (!recommendations) return '';
+
+            const hf = recommendations.huggingface_models || [];
+            const gh = recommendations.github_repos || [];
+            const web = recommendations.web_resources || [];
+
+            return `
+                <div class="result-panel">
+                    <div class="panel-title">🤗 HuggingFace Models</div>
+                    ${hf.slice(0, 5).map(m => `
+                        <div class="resource-card">
+                            <div class="resource-title">${m.name}</div>
+                            <div class="resource-meta">
+                                ${m.task} | 💙 ${m.likes.toLocaleString()} | ⬇️ ${m.downloads.toLocaleString()}
+                            </div>
+                            <a href="${m.url}" target="_blank" class="resource-link">View Model →</a>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="result-panel" style="margin-top: 20px;">
+                    <div class="panel-title">⭐ GitHub Repositories</div>
+                    ${gh.slice(0, 5).map(r => `
+                        <div class="resource-card">
+                            <div class="resource-title">${r.name}</div>
+                            <div class="resource-meta">⭐ ${r.stars.toLocaleString()} stars</div>
+                            <a href="${r.url}" target="_blank" class="resource-link">View Repository →</a>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="result-panel" style="margin-top: 20px;">
+                    <div class="panel-title">🌐 Web Resources</div>
+                    ${web.slice(0, 3).map(w => `
+                        <div class="resource-card">
+                            <div class="resource-title">${w.title}</div>
+                            <a href="${w.url}" target="_blank" class="resource-link">Visit →</a>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            document.getElementById('resultsArea').innerHTML = `
+                <div class="error-message">
+                    <strong>❌ Error:</strong> ${message}
+                </div>
+            `;
+        }
+
+        function resetButton() {
+            document.getElementById('btnText').innerHTML = '🚀 Execute';
+        }
+
+        // Initialize stages on load
+        renderStages();
+    </script>
+</body>
+</html>

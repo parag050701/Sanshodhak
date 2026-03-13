@@ -1,0 +1,512 @@
+{
+  "query": "Retrieval-Augmented Generation with transformers and vector databases",
+  "timestamp": "2025-12-06T06:53:49.980992",
+  "search_keywords": {
+    "huggingface": [
+      "retrieval-augmented-generation",
+      "transformers",
+      "vector-databases"
+    ],
+    "github": [
+      "langchain",
+      "transformers",
+      "huggingface"
+    ],
+    "web": [
+      "RAG tutorial",
+      "transformer architecture guide",
+      "vector database integration"
+    ]
+  },
+  "relevant_papers": [],
+  "technical_terms": {
+    "models": [
+      "transformer"
+    ],
+    "frameworks": [
+      "transformers"
+    ],
+    "tasks": [
+      "generation",
+      "retrieval"
+    ]
+  },
+  "huggingface": {
+    "models": [
+      {
+        "name": "sentence-transformers/all-MiniLM-L6-v2",
+        "task": "sentence-similarity",
+        "downloads": 148223928,
+        "likes": 4186,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "pytorch",
+          "tf",
+          "rust",
+          "onnx"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+      },
+      {
+        "name": "sentence-transformers/all-mpnet-base-v2",
+        "task": "sentence-similarity",
+        "downloads": 23498470,
+        "likes": 1198,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "pytorch",
+          "onnx",
+          "safetensors",
+          "openvino"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/all-mpnet-base-v2"
+      },
+      {
+        "name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "task": "sentence-similarity",
+        "downloads": 14803167,
+        "likes": 1071,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "pytorch",
+          "tf",
+          "onnx",
+          "safetensors"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+      },
+      {
+        "name": "sentence-transformers/LaBSE",
+        "task": "sentence-similarity",
+        "downloads": 921865,
+        "likes": 325,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "pytorch",
+          "tf",
+          "jax",
+          "onnx"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/LaBSE"
+      },
+      {
+        "name": "sentence-transformers/distiluse-base-multilingual-cased-v2",
+        "task": "sentence-similarity",
+        "downloads": 803850,
+        "likes": 199,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "pytorch",
+          "tf",
+          "onnx",
+          "safetensors"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v2"
+      },
+      {
+        "name": "sentence-transformers/static-similarity-mrl-multilingual-v1",
+        "task": "sentence-similarity",
+        "downloads": 0,
+        "likes": 74,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "onnx",
+          "safetensors",
+          "sentence-similarity",
+          "feature-extraction"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/static-similarity-mrl-multilingual-v1"
+      },
+      {
+        "name": "sentence-transformers/embeddinggemma-300m-medical",
+        "task": "sentence-similarity",
+        "downloads": 12445,
+        "likes": 37,
+        "library": "sentence-transformers",
+        "tags": [
+          "sentence-transformers",
+          "safetensors",
+          "gemma3_text",
+          "sentence-similarity",
+          "feature-extraction"
+        ],
+        "url": "https://huggingface.co/sentence-transformers/embeddinggemma-300m-medical"
+      },
+      {
+        "name": "Shrideep/Retrieval_Augmented_Generation",
+        "task": "unknown",
+        "downloads": 0,
+        "likes": 1,
+        "library": "transformers",
+        "tags": [
+          "RAG",
+          "Retrieval Augmented Generation",
+          "llama-index",
+          "en",
+          "dataset:chromadb/paul_graham_essay"
+        ],
+        "url": "https://huggingface.co/Shrideep/Retrieval_Augmented_Generation"
+      },
+      {
+        "name": "amaumau/retrieval-augmented-lm",
+        "task": "unknown",
+        "downloads": 4,
+        "likes": 0,
+        "library": "transformers",
+        "tags": [
+          "transformers",
+          "safetensors",
+          "gemma",
+          "arxiv:1910.09700",
+          "text-generation-inference"
+        ],
+        "url": "https://huggingface.co/amaumau/retrieval-augmented-lm"
+      },
+      {
+        "name": "GooFBoY007/Retrieval_augmented_generation",
+        "task": "unknown",
+        "downloads": 0,
+        "likes": 0,
+        "library": "transformers",
+        "tags": [
+          "license:apache-2.0",
+          "region:us"
+        ],
+        "url": "https://huggingface.co/GooFBoY007/Retrieval_augmented_generation"
+      }
+    ],
+    "datasets": [
+      {
+        "name": "sentence-transformers/embedding-training-data",
+        "downloads": 1221,
+        "likes": 139,
+        "tags": [
+          "task_categories:feature-extraction",
+          "language:en",
+          "region:us"
+        ],
+        "url": "https://huggingface.co/datasets/sentence-transformers/embedding-training-data"
+      },
+      {
+        "name": "transformersbook/codeparrot",
+        "downloads": 11272,
+        "likes": 61,
+        "tags": [
+          "size_categories:10M<n<100M",
+          "format:json",
+          "modality:text",
+          "library:datasets",
+          "library:dask"
+        ],
+        "url": "https://huggingface.co/datasets/transformersbook/codeparrot"
+      },
+      {
+        "name": "huggingface/transformers-metadata",
+        "downloads": 1463,
+        "likes": 31,
+        "tags": [
+          "size_categories:1K<n<10K",
+          "format:json",
+          "modality:text",
+          "library:datasets",
+          "library:pandas"
+        ],
+        "url": "https://huggingface.co/datasets/huggingface/transformers-metadata"
+      },
+      {
+        "name": "sentence-transformers/natural-questions",
+        "downloads": 2881,
+        "likes": 24,
+        "tags": [
+          "task_categories:feature-extraction",
+          "task_categories:sentence-similarity",
+          "multilinguality:monolingual",
+          "language:en",
+          "size_categories:100K<n<1M"
+        ],
+        "url": "https://huggingface.co/datasets/sentence-transformers/natural-questions"
+      },
+      {
+        "name": "maykcaldas/smiles-transformers",
+        "downloads": 4153,
+        "likes": 18,
+        "tags": [
+          "language:en",
+          "license:mit",
+          "size_categories:1B<n<10B",
+          "format:parquet",
+          "modality:tabular"
+        ],
+        "url": "https://huggingface.co/datasets/maykcaldas/smiles-transformers"
+      },
+      {
+        "name": "sentence-transformers/eli5",
+        "downloads": 990,
+        "likes": 15,
+        "tags": [
+          "task_categories:feature-extraction",
+          "task_categories:sentence-similarity",
+          "multilinguality:monolingual",
+          "language:en",
+          "size_categories:100K<n<1M"
+        ],
+        "url": "https://huggingface.co/datasets/sentence-transformers/eli5"
+      },
+      {
+        "name": "sentence-transformers/parallel-sentences-jw300",
+        "downloads": 1491,
+        "likes": 7,
+        "tags": [
+          "task_categories:feature-extraction",
+          "task_categories:sentence-similarity",
+          "language:en",
+          "language:multilingual",
+          "language:ar"
+        ],
+        "url": "https://huggingface.co/datasets/sentence-transformers/parallel-sentences-jw300"
+      },
+      {
+        "name": "sentence-transformers/hotpotqa",
+        "downloads": 225,
+        "likes": 3,
+        "tags": [
+          "task_categories:feature-extraction",
+          "task_categories:sentence-similarity",
+          "multilinguality:monolingual",
+          "language:en",
+          "size_categories:1M<n<10M"
+        ],
+        "url": "https://huggingface.co/datasets/sentence-transformers/hotpotqa"
+      },
+      {
+        "name": "sentence-transformers/wikipedia-sections",
+        "downloads": 89,
+        "likes": 1,
+        "tags": [
+          "task_categories:feature-extraction",
+          "task_categories:sentence-similarity",
+          "multilinguality:monolingual",
+          "language:en",
+          "size_categories:1M<n<10M"
+        ],
+        "url": "https://huggingface.co/datasets/sentence-transformers/wikipedia-sections"
+      },
+      {
+        "name": "hf-internal-testing/transformers-metadata",
+        "downloads": 14,
+        "likes": 0,
+        "tags": [
+          "region:us"
+        ],
+        "url": "https://huggingface.co/datasets/hf-internal-testing/transformers-metadata"
+      }
+    ]
+  },
+  "github_repositories": [
+    {
+      "name": "langchain-ai/langchain",
+      "url": "https://github.com/langchain-ai/langchain",
+      "description": "\ud83e\udd9c\ud83d\udd17 The platform for reliable agents.",
+      "stars": 121251,
+      "language": "Python",
+      "topics": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "ai-agents-framework",
+        "aiagentframework"
+      ]
+    },
+    {
+      "name": "microsoft/markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "stars": 83886,
+      "language": "Python",
+      "topics": [
+        "autogen",
+        "autogen-extension",
+        "langchain",
+        "markdown",
+        "microsoft-office"
+      ]
+    },
+    {
+      "name": "FlowiseAI/Flowise",
+      "url": "https://github.com/FlowiseAI/Flowise",
+      "description": "Build AI Agents, Visually",
+      "stars": 47116,
+      "language": "TypeScript",
+      "topics": [
+        "agentic-ai",
+        "agentic-workflow",
+        "agents",
+        "artificial-intelligence",
+        "chatbot"
+      ]
+    },
+    {
+      "name": "chatchat-space/Langchain-Chatchat",
+      "url": "https://github.com/chatchat-space/Langchain-Chatchat",
+      "description": "Langchain-Chatchat\uff08\u539fLangchain-ChatGLM\uff09\u57fa\u4e8e Langchain \u4e0e ChatGLM, Qwen \u4e0e Llama \u7b49\u8bed\u8a00\u6a21\u578b\u7684 RAG \u4e0e Agent \u5e94\u7528 | Langchain-Chatchat (formerly langchain-ChatGLM), local knowledge based LLM (like ChatGLM, Qwen and Llama) RAG and Agent app with langchain ",
+      "stars": 36721,
+      "language": "Python",
+      "topics": [
+        "chatbot",
+        "chatchat",
+        "chatglm",
+        "chatgpt",
+        "embedding"
+      ]
+    },
+    {
+      "name": "reworkd/AgentGPT",
+      "url": "https://github.com/reworkd/AgentGPT",
+      "description": "\ud83e\udd16 Assemble, configure, and deploy autonomous AI Agents in your browser.",
+      "stars": 35302,
+      "language": "TypeScript",
+      "topics": [
+        "agent",
+        "agentgpt",
+        "agi",
+        "autogpt",
+        "baby-agi"
+      ]
+    },
+    {
+      "name": "danny-avila/LibreChat",
+      "url": "https://github.com/danny-avila/LibreChat",
+      "description": "Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active.",
+      "stars": 32185,
+      "language": "TypeScript",
+      "topics": [
+        "ai",
+        "anthropic",
+        "artifacts",
+        "aws",
+        "azure"
+      ]
+    },
+    {
+      "name": "BerriAI/litellm",
+      "url": "https://github.com/BerriAI/litellm",
+      "description": "Python SDK, Proxy Server (AI Gateway) to call 100+ LLM APIs in OpenAI (or native) format, with cost tracking, guardrails, loadbalancing and logging. [Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthropic, Sagemaker, HuggingFace, VLLM, NVIDIA NIM]",
+      "stars": 32057,
+      "language": "Python",
+      "topics": [
+        "ai-gateway",
+        "anthropic",
+        "azure-openai",
+        "bedrock",
+        "gateway"
+      ]
+    },
+    {
+      "name": "CopilotKit/CopilotKit",
+      "url": "https://github.com/CopilotKit/CopilotKit",
+      "description": "React UI + elegant infrastructure for AI Copilots, AI chatbots, and in-app AI agents. The Agentic last-mile \ud83e\ude81",
+      "stars": 25263,
+      "language": "TypeScript",
+      "topics": [
+        "agent",
+        "agents",
+        "ai",
+        "ai-agent",
+        "ai-assistant"
+      ]
+    },
+    {
+      "name": "huggingface/agents-course",
+      "url": "https://github.com/huggingface/agents-course",
+      "description": "This repository contains the Hugging Face Agents Course. ",
+      "stars": 23809,
+      "language": "MDX",
+      "topics": [
+        "agentic-ai",
+        "agents",
+        "course",
+        "huggingface",
+        "langchain"
+      ]
+    },
+    {
+      "name": "NirDiamant/RAG_Techniques",
+      "url": "https://github.com/NirDiamant/RAG_Techniques",
+      "description": "This repository showcases various advanced techniques for Retrieval-Augmented Generation (RAG) systems. RAG systems combine information retrieval with generative models to provide accurate and contextually rich responses.",
+      "stars": 23324,
+      "language": "Jupyter Notebook",
+      "topics": [
+        "ai",
+        "langchain",
+        "llama-index",
+        "llm",
+        "llms"
+      ]
+    }
+  ],
+  "web_resources": [
+    {
+      "title": "LangChain RAG Tutorial - Building RAG Applications",
+      "url": "https://python.langchain.com/docs/tutorials/rag/",
+      "snippet": "Official LangChain tutorial for building RAG applications",
+      "source": "Curated"
+    },
+    {
+      "title": "LlamaIndex RAG Guide - Getting Started",
+      "url": "https://docs.llamaindex.ai/en/stable/",
+      "snippet": "Comprehensive guide to RAG with LlamaIndex",
+      "source": "Curated"
+    },
+    {
+      "title": "Pinecone RAG Guide",
+      "url": "https://www.pinecone.io/learn/retrieval-augmented-generation/",
+      "snippet": "Understanding Retrieval-Augmented Generation",
+      "source": "Curated"
+    },
+    {
+      "title": "HuggingFace NLP Course",
+      "url": "https://huggingface.co/learn/nlp-course/",
+      "snippet": "Free course on transformers and NLP",
+      "source": "Curated"
+    },
+    {
+      "title": "The Illustrated Transformer",
+      "url": "https://jalammar.github.io/illustrated-transformer/",
+      "snippet": "Visual guide to understanding transformers",
+      "source": "Curated"
+    },
+    {
+      "title": "Attention Is All You Need (Paper)",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "snippet": "Original transformer architecture paper",
+      "source": "Curated"
+    },
+    {
+      "title": "Sentence Transformers Documentation",
+      "url": "https://www.sbert.net/",
+      "snippet": "Sentence embeddings using transformers",
+      "source": "Curated"
+    },
+    {
+      "title": "Weaviate Vector Search Guide",
+      "url": "https://weaviate.io/developers/weaviate",
+      "snippet": "Building vector search applications",
+      "source": "Curated"
+    }
+  ],
+  "papers_with_code": [],
+  "summary": {
+    "total_papers": 0,
+    "total_hf_models": 10,
+    "total_hf_datasets": 10,
+    "total_github_repos": 10,
+    "total_web_resources": 8,
+    "total_pwc_papers": 0
+  }
+}

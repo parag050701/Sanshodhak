@@ -1,0 +1,1 @@
+"""Sanshodhak FastAPI application package."""

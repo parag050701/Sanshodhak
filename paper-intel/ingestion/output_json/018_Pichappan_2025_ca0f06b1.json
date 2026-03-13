@@ -1,0 +1,310 @@
+{
+  "paper_id": "018_Pichappan_2025_ca0f06b1",
+  "source_pdf": "018_Pichappan_2025.pdf",
+  "title": "Adaptive and Enhanced Retrieval Augmented Generation (RAG) Systems: A Summarised Survey",
+  "authors": [
+    "Pit Pichappan"
+  ],
+  "abstract": "This brief review examines adaptive and enhanced Retrieval-Augmented Generation (RAG) systems, focusing on overcoming the limitations of standard RAG models, such as inefficiency, excessive resource utilisation, and rigid retrieve-then-generate workflows. It highlights advancements like Dynamic RAG and Parametric RAG, which enable context-aware retrieval and parameter-level knowledge integration. The paper emphasises adaptive mechanisms that intelligently decide when and how much to retrieve, improving efficiency and relevance. It also discusses query rewriting, verification, and multimodal extensions to enhance precision. Furthermore, the integration of forecasting latent retrieval methods is introduced, where deep latent dynamics models extract predictable, interpretable components from limited time series data, improving forecasting accuracy. Applications in education, edge computing, and domain-specific contexts are explored, showing reduced hallucinations and better scalability. The review outlines the evolution of RAG toward intelligent, responsive systems using reinforcement learning and hybrid architectures. We identified several potential future research directions, including agentic workflows, multi-modal adaptation, and domainspecific RAG models, which promise more reliable, scalable, and context-aware generative AI applications across various fields.",
+  "sections": {
+    "introduction": "IntroductionUsers often face challenges in formulating effective queries for retrieval tasks, and this issue persists despite several studies addressing it. To aid in query writing and rewriting, the system automatically refines user queries, thereby enhancing retrieval effectiveness. One is interactive retrieval, where users engage with the system to refine their queries, ensuring proper representation. Furthermore, embeddings-based retrieval becomes possible with the aid of learned representations.Generative AI retrieval is an innovative disruption in information retrieval, leveraging large language models (LLMs) to create a ranked list of document identifiers for a given query. It enhances the retrieval process efficiency by replacing the large external index with complex parameters. These frameworks detect the relationship between queries and document identifiers, which have many inherent issues in finding the relevance between queries and documents. Several improved models have been proposed to address this issue and ensure high precision in results. [1,2,3] In resource-limited edge environments, the RAG model is known to reduce LLM hallucinations and integrate external knowledge into LLMs without requiring fine-tuning; however, its retrieval process can introduce significant latency. [4,5,6] Among the many inclusive features and characteristics, the decisive component in RAGs remains unexplored.Enhanced large language models utilise a modular hybrid retrieval and fine-tuned generation approach for adaptive and personalised applications across a wide range of domains. Enhanced with real-time, engaging, context-based learning content, it increases engagement and scalability, thereby reducing the workload of educators. It accounts for issues of accuracy, multimodality, and ethics, which is a significant change in AI education [7,8,9]. Standard RAGsRAGs use external knowledge for query reformulation and enhancement. Typically, RAG systems follow a fixed retrieve-then-generate workflow and rely on in-context knowledge integration. This approach, however, is inefficient for complex tasks that require the integration of multiple chains of reasoning for flexible information retrieval and deeper integration of external knowledge. The two rapidly expanding areas of research include the models of Dynamic RAG and Parametric RAG. Dynamic RAG investigates how LLMs can determine during generation what and when to fetch, allowing them to adjust in real-time to changing information needs. Gao, et al. [23] identified three paradigms of RAG, namely, the Naive RAG, Advanced RAG, and Modular RAG. On the other hand, Parametric RAG aims to refine how retrieved knowledge is integrated, shifting from input-level to parameter-level knowledge injection for enhanced efficiency and effectiveness. [8] The objective of RAG is to enhance the understanding and generative capabilities of vision models by combining internal model knowledge with reliable external knowledge sources, rather than relying solely on internal model knowledge. [14] In the early stages of RAG production, standard models emerged, which were later found to possess inherent limitations, including the excessive use of computing resources and time, as well as unwarranted reliance on external knowledge for common queries. When queries are effective, the standard models unnecessarily modify them, which may lead to improper concept representation in queries. Moreover, these standard models fail to reflect the domain-specific query requirements.While studies indicate an improvement in LLM reasoning through RAG augmented with Knowledge Graphs, the deployment of said solution faces challenges due to ever-changing user demands and environments. To address the stated issues, Tang et al proposed a RAG framework modified through the use of Multi-objective Multi-Armed Bandit techniques that integrate various retrieval methods. Such a framework can evolve and maintain balance between performance, and responsiveness in non-stationary contexts. [9] Adaptive and Enhanced RAG modelsThe Adaptive RAG (Retrieval-augmented generation) is an advanced version of all types of RAG systems, wherein the system disruptively decides when and how much information needs to be retrieved based on the query from the context or the confidence level of the internal model, rather than resorting to the usual static retrieval approach for every single query.In essence, the underlying philosophy is to make retrieval intelligent and aware of context so that it can be more efficient in providing the information, precise in delivering relevant information, and tuned to precisely what is needed for each generation task or shortage.To understand the adaptive and enhanced RAG models, we generate a workflow with proper descriptions. Illustration of how Enhanced and Adaptive RAG Models WorkIneffective queries in Information Retrieval are characterised by too broad expressions, ambiguity, lack of context, vagueness, lack of specificity, poor precision, and unclear intent.",
+    "related_work": "",
+    "methods": "",
+    "experiments": "",
+    "results": "",
+    "discussion": "",
+    "conclusion": "Conclusions and Future DirectionsThe enhanced and adaptive RAG models offer promising approaches to learn retrieval as a strategy with the assistance of reinforcement learning. In the adaptive models, the additional/bespoke modifications follow the feedback from user interactions. The Multi-modal adaptation, including the option to pull images or tables, is being investigated, which may yield an interesting outcome. For the agentic workflows, RAG serves as one of the several tools. Once these models attain maturity, the research on RAG has the potential to evolve into domain-specific models, where specific fields, such as medicine and business, have unique requirements.Rather than focusing on what is to be retrieved, when, and how much, retrieval-augmented generation serves a greater purpose and leveraging adaptable retrieval mechanisms to function effectively in specific contexts. Such an approach is pivotal to intelligent and responsive knowledge-augmented generation, marking the shift away from strict input-output pipelines. It is a critical piece in constructing dependable, scalable, and userfriendly applications built on LLM.Figure 1 .1Figure 1. Illustration of the workflow of the Adaptive RAG model Journal of Digital Information Management Volume 23 Number 3 September 2025"
+  },
+  "references": [
+    {
+      "id": "b0",
+      "title": "DOGR: Leveraging Document-Oriented Contra/stive Learning in Generative Retrieval",
+      "authors": [
+        "Lu",
+        "Dong",
+        "Zhou",
+        "Cheng",
+        "Yuan",
+        "Mo"
+      ],
+      "year": "2025",
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence"
+    },
+    {
+      "id": "b1",
+      "title": "tRAG: Termlevel retrieval-augmented generation for domain-adaptive retrieval",
+      "authors": [
+        "Lee",
+        "Kim",
+        "Kim",
+        "Jihyuk",
+        "Hwang"
+      ],
+      "year": "2025",
+      "venue": "Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+    },
+    {
+      "id": "b2",
+      "title": "",
+      "authors": [
+        "Zheng",
+        "Weng",
+        "Lyu",
+        "Jiang",
+        "Xue",
+        "Ren",
+        "Paudel",
+        "Sebe",
+        "Van Gool",
+        "Hu"
+      ],
+      "year": "2025",
+      "venue": "Retrieval-augmented generation and understanding in vision: A survey and new outlook"
+    },
+    {
+      "id": "b3",
+      "title": "",
+      "authors": [
+        "Qin",
+        "Luo",
+        "Lu",
+        "Chu",
+        "Liu",
+        "Meng",
+        "Xianwei"
+      ],
+      "year": "2025",
+      "venue": "Towards adaptive memory-based optimization for enhanced retrieval-augmented generation"
+    },
+    {
+      "id": "b4",
+      "title": "AdaRAG: Adaptive optimization for retrieval augmented generation with multilevel retrievers at the edge",
+      "authors": [
+        "Ouyang"
+      ],
+      "year": "2025",
+      "venue": "IEEE INFOCOM 2025 -IEEE Conference on Computer Communications"
+    },
+    {
+      "id": "b5",
+      "title": "",
+      "authors": [
+        "Li",
+        "Stenzel",
+        "Eickhoff",
+        "Bahrainian",
+        "Ali"
+      ],
+      "year": "2025",
+      "venue": "Enhancing retrieval-augmented generation: A study of best practices"
+    },
+    {
+      "id": "b6",
+      "title": "LearnRAG: Implementing retrieval-augmented generation for adaptive learning systems",
+      "authors": [
+        "Shan"
+      ],
+      "year": "2025",
+      "venue": "2025 International Conference on Artificial Intelligence in Information and Communication (ICAIIC)"
+    },
+    {
+      "id": "b7",
+      "title": "Dynamic and parametric retrieval-augmented generation",
+      "authors": [
+        "Su",
+        "Ai",
+        "Zhan",
+        "Dong",
+        "Liu"
+      ],
+      "year": "2025",
+      "venue": "Proceedings of SIGIR '25"
+    },
+    {
+      "id": "b8",
+      "title": "Adapting to non-stationary environments: Multiarmed bandit enhanced retrieval-augmented generation on knowledge graphs",
+      "authors": [
+        "Tang",
+        "Li",
+        "Jian",
+        "Du",
+        "Xie"
+      ],
+      "year": "2025",
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence"
+    },
+    {
+      "id": "b9",
+      "title": "Data-driven surrogate model with latent data assimilation: Application to wildfire forecasting",
+      "authors": [
+        "Cheng",
+        "Prentice",
+        "Colin",
+        "Huang",
+        "Yuhan",
+        "Huang",
+        "Jin",
+        "Yufang",
+        "Guo",
+        "Yi-Ke",
+        "Arcucci"
+      ],
+      "year": "2022",
+      "venue": "Journal of Computational Physics"
+    },
+    {
+      "id": "b10",
+      "title": "",
+      "authors": [
+        "Charotia",
+        "Garg",
+        "Dhama",
+        "Maheshwari"
+      ],
+      "year": "2021",
+      "venue": "Optimal latent space forecasting for large collections of short time series using temporal matrix factorization: A preprint"
+    },
+    {
+      "id": "b11",
+      "title": "",
+      "authors": [
+        "Liu",
+        "Lin",
+        "Hewitt",
+        "John",
+        "Paranjape",
+        "Ashwin",
+        "Bevilacqua",
+        "Michele",
+        "Petroni",
+        "Liang"
+      ],
+      "year": "2023",
+      "venue": "Lost in the middle: How language models use long contexts"
+    },
+    {
+      "id": "b12",
+      "title": "Improving language models by retrieving from trillions of tokens",
+      "authors": [
+        "Borgeaud",
+        "Mensch",
+        "Hoffmann",
+        "Cai",
+        "Rutherford",
+        "Millican",
+        "Van Den Driessche",
+        "Bm",
+        "Lespiau",
+        "Damoc",
+        "Clark"
+      ],
+      "year": "2022",
+      "venue": "International Conference on Machine Learning"
+    },
+    {
+      "id": "b13",
+      "title": "",
+      "authors": [
+        "Jiang",
+        "Xu",
+        "Gao",
+        "Sun",
+        "Liu",
+        "Dwivedi-Yu",
+        "Jane",
+        "Yiming",
+        "Callan",
+        "Neubig"
+      ],
+      "year": "2023",
+      "venue": "Active retrieval augmented generation"
+    },
+    {
+      "id": "b14",
+      "title": "",
+      "authors": [
+        "Zhong",
+        "Lei",
+        "Chen"
+      ],
+      "year": "2022",
+      "venue": "Training language models with memory augmentation"
+    },
+    {
+      "id": "b15",
+      "title": "Retrieval-augmented generation for knowledge-intensive NLP tasks",
+      "authors": [
+        "Lewis",
+        "Perez",
+        "Piktus",
+        "Petroni",
+        "Karpukhin",
+        "Goyal",
+        "Küttler",
+        "Lewis",
+        "Yih",
+        "Rocktäschel",
+        "Riedel",
+        "Kiela"
+      ],
+      "year": "2020",
+      "venue": "Proceedings of the 34th Conference on Neural Information Processing Systems"
+    },
+    {
+      "id": "b16",
+      "title": "Stock movement prediction from tweets and historical prices",
+      "authors": [
+        "Xu",
+        "Cohen"
+      ],
+      "year": "2018",
+      "venue": "Proceedings of the Association for Computational Linguistics"
+    },
+    {
+      "id": "b17",
+      "title": "DeepClue: Visual interpretation of text-based deep stock prediction",
+      "authors": [
+        "Shi",
+        "Teng",
+        "Wang",
+        "Zhang",
+        "Binder"
+      ],
+      "year": "2019",
+      "venue": "IEEE Transactions on Knowledge and Data Engineering"
+    },
+    {
+      "id": "b18",
+      "title": "Financial time series forecasting with multi-modality graph neural network",
+      "authors": [
+        "Cheng",
+        "Yang",
+        "Xiang",
+        "Liu"
+      ],
+      "year": "2022",
+      "venue": "Pattern Recognition"
+    },
+    {
+      "id": "b19",
+      "title": "",
+      "authors": [
+        "Xu",
+        "Liu",
+        "Wang",
+        "Xia",
+        "Bian",
+        "Yin",
+        "Liu"
+      ],
+      "year": "2021",
+      "venue": "HIST: A graph-based framework for stock trend forecasting via mining concept-oriented shared information"
+    }
+  ],
+  "metadata": {
+    "year": "2025",
+    "doi": "10.6025/jdim/2025/23/3/190-195",
+    "venue": "Journal of Digital Information Management",
+    "processed_at": "2025-12-06T01:02:16.582996"
+  }
+}

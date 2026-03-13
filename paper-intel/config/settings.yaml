@@ -1,0 +1,77 @@
+# Sanshodhak Configuration
+
+# API Keys and Credentials
+apis:
+  semantic_scholar:
+    api_key: "YVVAKNpeyS7URIYZKCcjkam4v7qKpZJo2m2K794w"  # Optional - increases rate limit from 100/5min to 1 req/s
+    
+  core:
+    api_key: "fU7PRKOIE5Nz3roXDSvCwVZ46Wd2TpYi"  # Optional - increases limit from 100/day to 1000/day
+    enabled: true  # Set to false if rate limited
+    
+  unpaywall:
+    email: "sarvadnya.bhatlawande2005@gmail.com"  # Required for Unpaywall
+    
+  crossref:
+    email: "sarvadnya.bhatlawande2005@gmail.com"  # For polite pool (higher rate limits)
+    
+  openalex:
+    email: "sarvadnya.bhatlawande2005@gmail.com"  # For polite pool
+
+# Download Settings
+download:
+  enable_scihub: true  # Use Sci-Hub as fallback (legal gray area)
+  enable_libgen: true  # Use LibGen/Anna's Archive
+  output_dir: "paper-intel/papers"
+  max_retries: 3
+  timeout_seconds: 60
+  parallel_downloads: 5
+
+# Search Settings
+search:
+  min_year: 2015  # Minimum publication year
+  max_year: null  # Maximum year (null = current year)
+  prefer_open_access: true
+  limit_per_source: 20
+  max_iterations: 3  # Max search expansion iterations
+  min_success_rate: 0.7  # Min download success before expanding
+
+# Preprocessing (GROBID)
+grobid:
+  enabled: false  # Enable GROBID preprocessing
+  server_url: "http://localhost:8070"
+  timeout: 300
+  consolidate_citations: true
+  output_formats:
+    - "json"
+    - "text"
+
+# Phase 2: Extraction (Graffiti + LLM)
+graffiti:
+  base_url: "http://localhost:8000"
+  api_key: "${GRAFFITI_API_KEY}"
+  max_chunk_size: 3000
+  timeout: 60
+  max_retries: 3
+
+llm:
+  provider: "openrouter"
+  model: "meta-llama/llama-3.2-3b-instruct"
+  base_url: "https://openrouter.ai/api/v1/chat/completions"
+  api_key: "${OPENROUTER_API_KEY}"
+  max_chunk_size: 4000
+  timeout: 120
+  temperature: 0.1
+
+extraction:
+  use_graffiti: false
+  use_llm_fallback: true
+  workers: 4
+  output_dir: "extraction"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
+  file: "ingestion.log"
+  console: true

@@ -1,0 +1,124 @@
+{
+  "paper_id": "040_Pichai_2023_cc391c15",
+  "triples": [
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Bahdanau, 2016"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Devlin, 2018"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Vaswani, 2017"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Radford, 2018"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Lewis, 2020"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Siriwardhana, 2023"
+    ],
+    [
+      "BERT",
+      "CITES",
+      "Yu, 2022"
+    ],
+    [
+      "Transformers",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Transformers",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "GPT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "GPT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "GPT-2",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "GPT-2",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "GPT-3",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "GPT-3",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Bard",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "Bard",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 20,
+    "relation_count": 21,
+    "triple_count": 21,
+    "extracted_at": "2025-12-06T02:45:52.225333"
+  },
+  "paper_metadata": {
+    "title": "A Retrieval-Augmented Generation Based Large Language Model Benchmarked on a Novel Dataset",
+    "authors": [
+      "Kieran Pichai",
+      "Menlo School"
+    ],
+    "year": ""
+  }
+}

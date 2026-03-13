@@ -1,0 +1,376 @@
+/usr/lib/python3.10/runpy.py:126: RuntimeWarning: 'extraction.extraction_engine' found in sys.modules after import of package 'extraction', but prior to execution of 'extraction.extraction_engine'; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+2025-12-06 02:00:33,175 - extraction.graffiti_client - INFO - Graffiti client initialized: https://api.graffiti.ai/extract
+2025-12-06 02:00:33,175 - __main__ - INFO - Graffiti client initialized
+2025-12-06 02:00:33,222 - extraction.llm_fallback - INFO - LLM fallback initialized: meta-llama/llama-3.2-3b-instruct
+2025-12-06 02:00:33,222 - __main__ - INFO - LLM fallback initialized
+2025-12-06 02:00:33,222 - __main__ - INFO - Extraction engine ready: workers=4
+2025-12-06 02:00:33,223 - __main__ - INFO - Found 36 papers
+2025-12-06 02:00:33,223 - __main__ - INFO - Extracting 36 papers with 4 workers
+2025-12-06 02:00:33,223 - __main__ - INFO - Extracting: 013_Patnaik_2025_6d024ae2
+2025-12-06 02:00:33,223 - extraction.graffiti_client - INFO - Split text into 7 chunks
+2025-12-06 02:00:33,223 - extraction.graffiti_client - INFO - Extracting from 7 chunks
+2025-12-06 02:00:33,223 - __main__ - INFO - Extracting: 017_Aggarwal_2024_45bce18a
+2025-12-06 02:00:33,225 - extraction.graffiti_client - INFO - Split text into 28 chunks
+2025-12-06 02:00:33,225 - extraction.graffiti_client - INFO - Extracting from 28 chunks
+2025-12-06 02:00:33,225 - __main__ - INFO - Extracting: 009_Ramaraj_2025_adba03b2
+2025-12-06 02:00:33,225 - extraction.graffiti_client - INFO - Split text into 14 chunks
+2025-12-06 02:00:33,225 - extraction.graffiti_client - INFO - Extracting from 14 chunks
+2025-12-06 02:00:33,226 - __main__ - INFO - Extracting: 029_Arya_2025_f65a964a
+2025-12-06 02:00:33,227 - extraction.graffiti_client - INFO - Split text into 37 chunks
+2025-12-06 02:00:33,227 - extraction.graffiti_client - INFO - Extracting from 37 chunks
+2025-12-06 02:00:33,362 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,363 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,364 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,366 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,368 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,369 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,370 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,371 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,372 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,373 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,373 - extraction.graffiti_client - ERROR - Chunk 0 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,373 - extraction.graffiti_client - ERROR - Chunk 1 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,374 - extraction.graffiti_client - ERROR - Chunk 2 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,374 - extraction.graffiti_client - ERROR - Chunk 3 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,374 - extraction.graffiti_client - ERROR - Chunk 4 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,374 - extraction.graffiti_client - ERROR - Chunk 5 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,374 - extraction.graffiti_client - ERROR - Chunk 6 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,374 - __main__ - WARNING - Graffiti failed for 013_Patnaik_2025_6d024ae2: All chunks failed extraction
+2025-12-06 02:00:33,374 - __main__ - INFO - Trying LLM fallback for 013_Patnaik_2025_6d024ae2
+2025-12-06 02:00:33,374 - extraction.llm_fallback - INFO - Split text into 6 chunks for LLM
+2025-12-06 02:00:33,374 - extraction.llm_fallback - INFO - LLM extracting from 6 chunks
+2025-12-06 02:00:33,374 - extraction.llm_fallback - INFO - Processing chunk 1/6
+2025-12-06 02:00:33,439 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,440 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,441 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,442 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,443 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,444 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,445 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,447 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,448 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,449 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,529 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,531 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,532 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,533 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,534 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,535 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,536 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,538 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,539 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,539 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,610 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,611 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,611 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,612 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,613 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,613 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,615 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,616 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,616 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,617 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 0 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 1 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 2 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 3 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 4 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 5 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 6 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 7 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 8 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 9 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 10 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 11 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 12 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 13 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,619 - extraction.graffiti_client - ERROR - Chunk 14 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 15 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 16 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 17 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 18 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 19 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 20 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 21 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 22 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 23 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 24 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 25 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 26 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - extraction.graffiti_client - ERROR - Chunk 27 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,620 - __main__ - WARNING - Graffiti failed for 017_Aggarwal_2024_45bce18a: All chunks failed extraction
+2025-12-06 02:00:33,620 - __main__ - INFO - Trying LLM fallback for 017_Aggarwal_2024_45bce18a
+2025-12-06 02:00:33,620 - extraction.llm_fallback - INFO - Split text into 15 chunks for LLM
+2025-12-06 02:00:33,620 - extraction.llm_fallback - INFO - LLM extracting from 15 chunks
+2025-12-06 02:00:33,620 - extraction.llm_fallback - INFO - Processing chunk 1/15
+2025-12-06 02:00:33,702 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,703 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,703 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,703 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,704 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,704 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,704 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,705 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,705 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,706 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 0 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 1 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 2 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 3 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 4 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 5 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 6 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 7 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 8 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 9 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 10 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 11 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 12 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - extraction.graffiti_client - ERROR - Chunk 13 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,707 - __main__ - WARNING - Graffiti failed for 009_Ramaraj_2025_adba03b2: All chunks failed extraction
+2025-12-06 02:00:33,707 - __main__ - INFO - Trying LLM fallback for 009_Ramaraj_2025_adba03b2
+2025-12-06 02:00:33,708 - extraction.llm_fallback - INFO - Split text into 1 chunks for LLM
+2025-12-06 02:00:33,708 - extraction.llm_fallback - INFO - LLM extracting from 1 chunks
+2025-12-06 02:00:33,708 - extraction.llm_fallback - INFO - Processing chunk 1/1
+2025-12-06 02:00:33,794 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,794 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,794 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,795 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,795 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,795 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,796 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,796 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,796 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,797 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,870 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,870 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,870 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,871 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,871 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,871 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,871 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,872 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,872 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,872 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,944 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,944 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,944 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,944 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,944 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,944 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,945 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,945 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,945 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:33,945 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Chunk 0 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,016 - extraction.graffiti_client - ERROR - Chunk 1 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 2 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 3 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 4 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 5 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 6 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 7 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 8 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 9 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 10 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 11 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 12 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 13 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 14 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 15 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 16 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 17 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 18 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 19 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 20 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 21 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 22 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 23 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 24 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 25 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 26 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 27 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 28 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 29 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 30 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 31 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 32 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 33 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 34 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 35 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - extraction.graffiti_client - ERROR - Chunk 36 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:34,017 - __main__ - WARNING - Graffiti failed for 029_Arya_2025_f65a964a: All chunks failed extraction
+2025-12-06 02:00:34,017 - __main__ - INFO - Trying LLM fallback for 029_Arya_2025_f65a964a
+2025-12-06 02:00:34,017 - extraction.llm_fallback - INFO - Split text into 1 chunks for LLM
+2025-12-06 02:00:34,017 - extraction.llm_fallback - INFO - LLM extracting from 1 chunks
+2025-12-06 02:00:34,017 - extraction.llm_fallback - INFO - Processing chunk 1/1
+2025-12-06 02:00:34,655 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:34,740 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:35,021 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:35,101 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:37,275 - extraction.llm_fallback - INFO - LLM merged: 6 entities, 4 relations, 1 claims
+2025-12-06 02:00:37,275 - __main__ - INFO - Extraction successful via llm
+2025-12-06 02:00:37,275 - extraction.schema - INFO - Validated: 6 entities, 4 relations
+2025-12-06 02:00:37,275 - extraction.triple_builder - INFO - Building triples for paper: 009_Ramaraj_2025_adba03b2
+2025-12-06 02:00:37,275 - extraction.triple_builder - INFO - Deduplicated 6 → 6 entities
+2025-12-06 02:00:37,276 - extraction.triple_builder - INFO - Created 1 result entities from claims
+2025-12-06 02:00:37,276 - extraction.triple_builder - INFO - Built 4 relations
+2025-12-06 02:00:37,276 - extraction.triple_builder - INFO - Generated 6 triples
+2025-12-06 02:00:37,276 - extraction.triple_builder - INFO - Built: 7 entities, 6 relations, 6 triples
+2025-12-06 02:00:37,276 - extraction.triple_builder - WARNING - Relation references unknown target: Dermatologists
+2025-12-06 02:00:37,276 - extraction.triple_builder - WARNING - Relation references unknown source: Esteva et al. (2017)
+2025-12-06 02:00:37,276 - extraction.triple_builder - WARNING - Relation references unknown source: Esteva et al. (2017)
+2025-12-06 02:00:37,277 - __main__ - INFO - Saved 009_Ramaraj_2025_adba03b2: 7 entities, 6 relations, 6 triples
+2025-12-06 02:00:37,277 - __main__ - INFO - ✅ Success: 009_Ramaraj_2025_adba03b2
+2025-12-06 02:00:37,277 - __main__ - INFO - Extracting: 028_Saleh_2025_6dbefc04
+2025-12-06 02:00:37,277 - extraction.graffiti_client - INFO - Split text into 25 chunks
+2025-12-06 02:00:37,277 - extraction.graffiti_client - INFO - Extracting from 25 chunks
+2025-12-06 02:00:37,363 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,363 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,364 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,364 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,364 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,364 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,364 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,365 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,365 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,365 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,455 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,455 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,456 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,537 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,537 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,537 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,537 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 0 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 1 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 2 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 3 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 4 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 5 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 6 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 7 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 8 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 9 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 10 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 11 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 12 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 13 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 14 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 15 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 16 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 17 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 18 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 19 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 20 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 21 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 22 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 23 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - extraction.graffiti_client - ERROR - Chunk 24 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:37,538 - __main__ - WARNING - Graffiti failed for 028_Saleh_2025_6dbefc04: All chunks failed extraction
+2025-12-06 02:00:37,538 - __main__ - INFO - Trying LLM fallback for 028_Saleh_2025_6dbefc04
+2025-12-06 02:00:37,538 - extraction.llm_fallback - INFO - Split text into 18 chunks for LLM
+2025-12-06 02:00:37,538 - extraction.llm_fallback - INFO - LLM extracting from 18 chunks
+2025-12-06 02:00:37,538 - extraction.llm_fallback - INFO - Processing chunk 1/18
+2025-12-06 02:00:38,448 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:42,340 - extraction.llm_fallback - INFO - Processing chunk 2/6
+2025-12-06 02:00:43,233 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:48,822 - extraction.llm_fallback - INFO - Processing chunk 3/6
+2025-12-06 02:00:49,736 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:52,125 - extraction.llm_fallback - ERROR - Could not parse LLM response: ```
+{
+  "entities": [
+    {"type": "Model", "name": "BERT"},
+    {"type": "Dataset", "name": "ImageNet"},
+    {"type": "Metric", "name": "Accuracy"},
+    {"type": "Model", "name": "ResNet"},
+    {"typ
+2025-12-06 02:00:52,125 - extraction.llm_fallback - ERROR - Failed to parse LLM response
+2025-12-06 02:00:53,125 - extraction.llm_fallback - INFO - Processing chunk 2/15
+2025-12-06 02:00:54,076 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:00:57,806 - extraction.llm_fallback - INFO - LLM merged: 11 entities, 13 relations, 1 claims
+2025-12-06 02:00:57,806 - __main__ - INFO - Extraction successful via llm
+2025-12-06 02:00:57,807 - extraction.schema - INFO - Validated: 11 entities, 13 relations
+2025-12-06 02:00:57,807 - extraction.triple_builder - INFO - Building triples for paper: 029_Arya_2025_f65a964a
+2025-12-06 02:00:57,807 - extraction.triple_builder - INFO - Deduplicated 11 → 11 entities
+2025-12-06 02:00:57,807 - extraction.triple_builder - INFO - Created 1 result entities from claims
+2025-12-06 02:00:57,807 - extraction.triple_builder - INFO - Built 13 relations
+2025-12-06 02:00:57,807 - extraction.triple_builder - INFO - Generated 15 triples
+2025-12-06 02:00:57,807 - extraction.triple_builder - INFO - Built: 12 entities, 15 relations, 15 triples
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Brown et al., 2020
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Chowdhery et al., 2022
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Ji et al., 2023
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Lewis et al., 2020
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Yang et al., 2018
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Shao et al., 2023
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Jeong et al., 2024
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: Asai et al., 2023
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: FAIR-RAG
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown target: Shao et al., 2023
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: FAIR-RAG
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown target: Jeong et al., 2024
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown source: FAIR-RAG
+2025-12-06 02:00:57,807 - extraction.triple_builder - WARNING - Relation references unknown target: Asai et al., 2023
+2025-12-06 02:00:57,808 - __main__ - INFO - Saved 029_Arya_2025_f65a964a: 12 entities, 15 relations, 15 triples
+2025-12-06 02:00:57,808 - __main__ - INFO - ✅ Success: 029_Arya_2025_f65a964a
+2025-12-06 02:00:57,808 - __main__ - INFO - Extracting: 026_Raghavan_2025_6dd89b7a
+2025-12-06 02:00:57,809 - extraction.graffiti_client - INFO - Split text into 17 chunks
+2025-12-06 02:00:57,809 - extraction.graffiti_client - INFO - Extracting from 17 chunks
+2025-12-06 02:00:57,895 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,895 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,896 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,897 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,974 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,974 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,974 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,974 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Extraction failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 0 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 1 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 2 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 3 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 4 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 5 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 6 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 7 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 8 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 9 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 10 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 11 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 12 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 13 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 14 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 15 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - extraction.graffiti_client - ERROR - Chunk 16 failed: [Errno -2] Name or service not known
+2025-12-06 02:00:57,975 - __main__ - WARNING - Graffiti failed for 026_Raghavan_2025_6dd89b7a: All chunks failed extraction
+2025-12-06 02:00:57,975 - __main__ - INFO - Trying LLM fallback for 026_Raghavan_2025_6dd89b7a
+2025-12-06 02:00:57,975 - extraction.llm_fallback - INFO - Split text into 1 chunks for LLM
+2025-12-06 02:00:57,975 - extraction.llm_fallback - INFO - LLM extracting from 1 chunks
+2025-12-06 02:00:57,975 - extraction.llm_fallback - INFO - Processing chunk 1/1
+2025-12-06 02:00:58,902 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:01:01,354 - extraction.llm_fallback - INFO - Processing chunk 2/18
+2025-12-06 02:01:01,744 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-06 02:01:14,663 - extraction.llm_fallback - INFO - Processing chunk 4/6

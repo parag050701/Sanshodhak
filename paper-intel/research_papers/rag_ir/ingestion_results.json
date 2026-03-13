@@ -1,0 +1,18 @@
+{
+  "query": "hybrid retrieval dense sparse BM25",
+  "total_found": 227,
+  "total_downloaded": 0,
+  "target": 20,
+  "success_rate": 0.0,
+  "iterations": 2,
+  "elapsed_time_seconds": 415.1311230659485,
+  "papers": [],
+  "pdf_paths": {},
+  "sources_used": {},
+  "metadata": {
+    "output_dir": "/home/admin-/Desktop/Sanshodhak/paper-intel/research_papers/rag_ir",
+    "min_year": null,
+    "max_year": null,
+    "prefer_open_access": true
+  }
+}

@@ -1,0 +1,728 @@
+[
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_2",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "REPORTS_METRIC",
+    "target": "K0 S and K∗0 meson production",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_4",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_6",
+    "type": "STUDIES_TASK",
+    "target": "E_017_Aggarwal_2024_45bce18a_15",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_7",
+    "type": "STUDIES_TASK",
+    "target": "E_017_Aggarwal_2024_45bce18a_15",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_8",
+    "type": "USES_METHOD",
+    "target": "E_017_Aggarwal_2024_45bce18a_6",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "asymmetric particle-identification (PID)",
+    "type": "USES_METHOD",
+    "target": "E_017_Aggarwal_2024_45bce18a_7",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_10",
+    "type": "USES_METHOD",
+    "target": "E_017_Aggarwal_2024_45bce18a_6",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_11",
+    "type": "USES_METHOD",
+    "target": "E_017_Aggarwal_2024_45bce18a_6",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_12",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_15",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_13",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_15",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_14",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_15",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [43]",
+    "type": "CITES",
+    "target": "PHENIX detector",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [44]",
+    "type": "CITES",
+    "target": "PHENIX detector",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [45]",
+    "type": "CITES",
+    "target": "beambeam counters",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [46]",
+    "type": "CITES",
+    "target": "beambeam counters",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [47]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_8",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [48]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_8",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [49]",
+    "type": "CITES",
+    "target": "PHENIX tracking",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [50]",
+    "type": "CITES",
+    "target": "TOF detector",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [51]",
+    "type": "CITES",
+    "target": "asymmetric particle-identification (PID)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "Ref [52]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_54",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_32",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Ref. [39]",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "AUTHORED_BY",
+    "target": "E_017_Aggarwal_2024_45bce18a_37",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "K∗0",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_51",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_50",
+    "type": "EVALUATES_ON",
+    "target": "K∗0",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_48",
+    "type": "ACHIEVES_RESULT",
+    "target": "K∗0 meson yield",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_53",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_50",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_55",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_56",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_57",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_58",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_59",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_60",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_61",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_62",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_63",
+    "type": "EVALUATES_ON",
+    "target": "p+p collisions at √s = 200 GeV",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_63",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_65",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_63",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_66",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_70",
+    "type": "CITES",
+    "target": "Tsallis function [39]",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_70",
+    "type": "AUTHORED_BY",
+    "target": "STAR collaboration [40]",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_71",
+    "type": "AUTHORED_BY",
+    "target": "Tsallis function [39]",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "[39]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_37",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "[53]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_37",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "[58]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_37",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "[59]",
+    "type": "CITES",
+    "target": "E_017_Aggarwal_2024_45bce18a_37",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_81",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_80",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_82",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_83",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_79",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_84",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_85",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_32",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "USES_METHOD",
+    "target": "E_017_Aggarwal_2024_45bce18a_86",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "USES_METHOD",
+    "target": "E_017_Aggarwal_2024_45bce18a_87",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "USES_DATASET",
+    "target": "E_017_Aggarwal_2024_45bce18a_85",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Phys. Repts. 61, 71 (1980)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Nucl. Phys. A 750, 30 (2005)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Lect. Notes Phys. 583, 209 (2002)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Phys. Rev. D 44, 2625 (1991)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Lect. Notes Phys. 785, 285 (2010)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "CITES",
+    "target": "Phys. Rev. Lett. 68, 1480 (1992)",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_1",
+    "type": "AUTHORED_BY",
+    "target": "E_017_Aggarwal_2024_45bce18a_96",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_97",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_2",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_98",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_15",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_98",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_99",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_16",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_100",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_17",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_101",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_18",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_101",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_102",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_19",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_103",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_20",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_104",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_21",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_105",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_32",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_105",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_106",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_33",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_106",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_107",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_34",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_107",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_108",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_35",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_108",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_109",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_39",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_110",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_39",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_111",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_42",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_111",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_39",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_112",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_51",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_112",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_50",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_113",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_50",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_114",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_55",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_114",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_115",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_56",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_115",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_116",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_57",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_116",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_117",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_58",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_117",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_118",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_59",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_118",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_119",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_60",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_119",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_120",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_61",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_120",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_121",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_62",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_121",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_122",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_65",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_123",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_66",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_124",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_67",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_125",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_126",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_73",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_126",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_127",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_74",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_127",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_12",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_128",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_81",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_128",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_13",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_129",
+    "type": "REPORTS_METRIC",
+    "target": "E_017_Aggarwal_2024_45bce18a_32",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  },
+  {
+    "source": "E_017_Aggarwal_2024_45bce18a_129",
+    "type": "EVALUATES_ON",
+    "target": "E_017_Aggarwal_2024_45bce18a_85",
+    "source_paper_id": "017_Aggarwal_2024_45bce18a"
+  }
+]

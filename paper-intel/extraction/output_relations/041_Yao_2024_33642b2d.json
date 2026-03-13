@@ -1,0 +1,80 @@
+[
+  {
+    "source": "E_041_Yao_2024_33642b2d_1",
+    "type": "EVALUATES_ON",
+    "target": "E_041_Yao_2024_33642b2d_3",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_041_Yao_2024_33642b2d_5",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_2",
+    "type": "EVALUATES_ON",
+    "target": "E_041_Yao_2024_33642b2d_4",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_2",
+    "type": "REPORTS_METRIC",
+    "target": "E_041_Yao_2024_33642b2d_5",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "Alnefie et al. (2023)",
+    "type": "CITES",
+    "target": "Pipitone and Alami (2024)",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "Pipitone and Alami (2024)",
+    "type": "CITES",
+    "target": "Alnefie et al. (2023)",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "Alnefie et al. (2023)",
+    "type": "AUTHORED_BY",
+    "target": "E_041_Yao_2024_33642b2d_9",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "Pipitone and Alami (2024)",
+    "type": "AUTHORED_BY",
+    "target": "E_041_Yao_2024_33642b2d_10",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "Pipitone and Alami (2024)",
+    "type": "AUTHORED_BY",
+    "target": "E_041_Yao_2024_33642b2d_11",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_12",
+    "type": "REPORTS_METRIC",
+    "target": "E_041_Yao_2024_33642b2d_5",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_12",
+    "type": "EVALUATES_ON",
+    "target": "E_041_Yao_2024_33642b2d_3",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_13",
+    "type": "REPORTS_METRIC",
+    "target": "E_041_Yao_2024_33642b2d_6",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  },
+  {
+    "source": "E_041_Yao_2024_33642b2d_13",
+    "type": "EVALUATES_ON",
+    "target": "E_041_Yao_2024_33642b2d_4",
+    "source_paper_id": "041_Yao_2024_33642b2d"
+  }
+]

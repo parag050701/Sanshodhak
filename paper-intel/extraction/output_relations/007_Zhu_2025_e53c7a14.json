@@ -1,0 +1,68 @@
+[
+  {
+    "source": "E_007_Zhu_2025_e53c7a14_1",
+    "type": "USES_MODEL",
+    "target": "Retrieval Augmented Generation (RAG)",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Retrieval Augmented Generation (RAG)",
+    "type": "USES_METHOD",
+    "target": "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_007_Zhu_2025_e53c7a14_6",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+    "type": "REPORTS_METRIC",
+    "target": "E_007_Zhu_2025_e53c7a14_7",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+    "type": "CITES",
+    "target": "E_007_Zhu_2025_e53c7a14_8",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG)",
+    "type": "AUTHORED_BY",
+    "target": "E_007_Zhu_2025_e53c7a14_9",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Retrieval Augmented Generation (RAG)",
+    "type": "EVALUATES_ON",
+    "target": "E_007_Zhu_2025_e53c7a14_4",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "Retrieval Augmented Generation (RAG)",
+    "type": "EVALUATES_ON",
+    "target": "E_007_Zhu_2025_e53c7a14_5",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "E_007_Zhu_2025_e53c7a14_10",
+    "type": "REPORTS_METRIC",
+    "target": "E_007_Zhu_2025_e53c7a14_6",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "E_007_Zhu_2025_e53c7a14_10",
+    "type": "EVALUATES_ON",
+    "target": "E_007_Zhu_2025_e53c7a14_4",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  },
+  {
+    "source": "E_007_Zhu_2025_e53c7a14_11",
+    "type": "REPORTS_METRIC",
+    "target": "E_007_Zhu_2025_e53c7a14_7",
+    "source_paper_id": "007_Zhu_2025_e53c7a14"
+  }
+]

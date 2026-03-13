@@ -1,0 +1,92 @@
+[
+  {
+    "source": "ISO/IEC 31010",
+    "type": "CITES",
+    "target": "E_030_Bahr_2025_01879ac7_7",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "ISO/IEC 31010",
+    "type": "CITES",
+    "target": "E_030_Bahr_2025_01879ac7_8",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "ISO/IEC 31010",
+    "type": "CITES",
+    "target": "E_030_Bahr_2025_01879ac7_9",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "ISO/IEC 31010",
+    "type": "CITES",
+    "target": "E_030_Bahr_2025_01879ac7_10",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "ISO/IEC 31010",
+    "type": "CITES",
+    "target": "E_030_Bahr_2025_01879ac7_11",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "FMEA",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_030_Bahr_2025_01879ac7_5",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "FMEA",
+    "type": "REPORTS_METRIC",
+    "target": "E_030_Bahr_2025_01879ac7_3",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "FMEA",
+    "type": "REPORTS_METRIC",
+    "target": "Context recall",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "FMEA",
+    "type": "REPORTS_METRIC",
+    "target": "Precision",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "KG-RAG",
+    "type": "ACHIEVES_RESULT",
+    "target": "KG-enhanced RAG framework",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "KG-RAG",
+    "type": "REPORTS_METRIC",
+    "target": "KG graph query",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "E_030_Bahr_2025_01879ac7_12",
+    "type": "REPORTS_METRIC",
+    "target": "E_030_Bahr_2025_01879ac7_3",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "E_030_Bahr_2025_01879ac7_12",
+    "type": "EVALUATES_ON",
+    "target": "E_030_Bahr_2025_01879ac7_2",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "E_030_Bahr_2025_01879ac7_13",
+    "type": "EVALUATES_ON",
+    "target": "E_030_Bahr_2025_01879ac7_2",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "source": "E_030_Bahr_2025_01879ac7_14",
+    "type": "EVALUATES_ON",
+    "target": "E_030_Bahr_2025_01879ac7_2",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  }
+]

@@ -1,0 +1,114 @@
+{
+  "topic": "transformers attention mechanism",
+  "timestamp": "2025-12-05T23:38:55.289575",
+  "min_year": 2018,
+  "semantic_filtering": true,
+  "crossref_papers": 60,
+  "after_semantic_filter": 11,
+  "downloaded": 7,
+  "failed": 4,
+  "success_rate": "63.6%",
+  "sources_used": {
+    "unpaywall": 3,
+    "core": 1,
+    "arxiv": 3
+  },
+  "legal_sources": 7,
+  "shadow_sources": 0,
+  "papers": [
+    {
+      "title": "Rethinking Attention: Exploring Shallow Feed-Forward Neural Networks as an Alternative to Attention Layers in Transformers (Student Abstract)",
+      "authors": [
+        "Danilo Dordevic",
+        "Vukasin Bozic",
+        "Joseph Thommes",
+        "Daniele Coppola",
+        "Sidak Pal Singh"
+      ],
+      "year": 2024,
+      "doi": "10.1609/aaai.v38i21.30436",
+      "citations": 15,
+      "file": "002_Dordevic_2024.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Multi-Manifold Attention for Vision Transformers",
+      "authors": [
+        "Dimitrios Konstantinidis",
+        "Ilias Papastratis",
+        "Kosmas Dimitropoulos",
+        "Petros Daras"
+      ],
+      "year": 2023,
+      "doi": "10.1109/access.2023.3329952",
+      "citations": 14,
+      "file": "003_Konstantinidis_2023.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Focused Attention in Transformers for interpretable classification of retinal images",
+      "authors": [
+        "Cl\u00e9ment Playout",
+        "Renaud Duval",
+        "Marie Carole Boucher",
+        "Farida Cheriet"
+      ],
+      "year": 2022,
+      "doi": "10.1016/j.media.2022.102608",
+      "citations": 67,
+      "file": "004_Playout_2022.pdf",
+      "source": "core"
+    },
+    {
+      "title": "ReViT: Enhancing vision transformers feature diversity with attention residual connections",
+      "authors": [
+        "Anxhelo Diko",
+        "Danilo Avola",
+        "Marco Cascio",
+        "Luigi Cinque"
+      ],
+      "year": 2024,
+      "doi": "10.1016/j.patcog.2024.110853",
+      "citations": 27,
+      "file": "005_Diko_2024.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Formal Language Recognition by Hard Attention Transformers: Perspectives from Circuit Complexity",
+      "authors": [
+        "Yiding Hao",
+        "Dana Angluin",
+        "Robert Frank"
+      ],
+      "year": 2022,
+      "doi": "10.1162/tacl_a_00490",
+      "citations": 13,
+      "file": "006_Hao_2022.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Temporal Fusion Transformers for streamflow Prediction: Value of combining attention with recurrence",
+      "authors": [
+        "Sinan Rasiya Koya",
+        "Tirthankar Roy"
+      ],
+      "year": 2024,
+      "doi": "10.1016/j.jhydrol.2024.131301",
+      "citations": 37,
+      "file": "007_Koya_2024.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "TCN-attention-HAR: human activity recognition based on attention mechanism time convolutional network",
+      "authors": [
+        "Xiong Wei",
+        "Zifan Wang"
+      ],
+      "year": 2024,
+      "doi": "10.1038/s41598-024-57912-3",
+      "citations": 54,
+      "file": "011_Wei_2024.pdf",
+      "source": "unpaywall"
+    }
+  ]
+}

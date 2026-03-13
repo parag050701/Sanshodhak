@@ -1,0 +1,195 @@
+[
+  {
+    "id": "E_016_Tian_2025_454dd912_1",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_2",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_3",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_4",
+    "type": "Method",
+    "name": "Graph Transformation",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_5",
+    "type": "Method",
+    "name": "Linearization",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_6",
+    "type": "Method",
+    "name": "Feature Analysis",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_7",
+    "type": "Method",
+    "name": "Few-shot Learning",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_8",
+    "type": "Method",
+    "name": "Fine-tuning",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_9",
+    "type": "Paper",
+    "name": "Zhao et al. 2023b",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_10",
+    "type": "Paper",
+    "name": "Bang et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_11",
+    "type": "Paper",
+    "name": "Ye et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_12",
+    "type": "Paper",
+    "name": "Bubeck et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_13",
+    "type": "Paper",
+    "name": "Xi et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_14",
+    "type": "Paper",
+    "name": "Schick et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_15",
+    "type": "Paper",
+    "name": "Peng et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_16",
+    "type": "Paper",
+    "name": "Rawte Sheth and Das 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_17",
+    "type": "Paper",
+    "name": "Gao et al. 2024",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_18",
+    "type": "Paper",
+    "name": "Ji et al. 2022",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_19",
+    "type": "Paper",
+    "name": "Zhao et al. 2022",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_20",
+    "type": "Paper",
+    "name": "Lin et al. 2024",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_21",
+    "type": "Paper",
+    "name": "Abu-Salih 2021",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_22",
+    "type": "Paper",
+    "name": "Pan et al. 2024",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_23",
+    "type": "Paper",
+    "name": "Zhang et al. 2024",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_24",
+    "type": "Paper",
+    "name": "Wu et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_25",
+    "type": "Paper",
+    "name": "Li et al. 2023b",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_26",
+    "type": "Paper",
+    "name": "LUO et al. 2024a",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_27",
+    "type": "Paper",
+    "name": "Jiang et al. 2023b",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_28",
+    "type": "Paper",
+    "name": "Wen Wang and Sun 2024",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_29",
+    "type": "Paper",
+    "name": "Longpre et al. 2021",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_30",
+    "type": "Paper",
+    "name": "Zhou et al. 2023",
+    "source_paper_id": "016_Tian_2025_454dd912"
+  },
+  {
+    "id": "E_016_Tian_2025_454dd912_31",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "016_Tian_2025_454dd912",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

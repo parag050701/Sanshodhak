@@ -1,0 +1,90 @@
+{
+  "paper_id": "041_Yao_2024_33642b2d",
+  "triples": [
+    [
+      "GPT-4",
+      "EVALUATES_ON",
+      "Quranic dataset"
+    ],
+    [
+      "GPT-4",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Alnefie et al. (2023)",
+      "CITES",
+      "Pipitone and Alami (2024)"
+    ],
+    [
+      "Pipitone and Alami (2024)",
+      "CITES",
+      "Alnefie et al. (2023)"
+    ],
+    [
+      "Alnefie et al. (2023)",
+      "AUTHORED_BY",
+      "Alnefie"
+    ],
+    [
+      "Pipitone and Alami (2024)",
+      "AUTHORED_BY",
+      "Pipitone"
+    ],
+    [
+      "Pipitone and Alami (2024)",
+      "AUTHORED_BY",
+      "Alami"
+    ],
+    [
+      "Accuracy=92.4% on Quranic dataset",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on Quranic dataset",
+      "EVALUATES_ON",
+      "Quranic dataset"
+    ],
+    [
+      "BLEU=0.85 on ImageNet",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "BLEU=0.85 on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 13,
+    "relation_count": 13,
+    "triple_count": 13,
+    "extracted_at": "2025-12-06T02:45:28.775080"
+  },
+  "paper_metadata": {
+    "title": "Investigating Retrieval-Augmented Generation in Quranic Studies: A Study of 13 Open-Source Large Language Models",
+    "authors": [
+      "Zahra Khalila",
+      "Arbi Nasution",
+      "Winda Monika",
+      "Aytug Onan",
+      "Yohei Murakami",
+      "Yasir Bin",
+      "Ismail Radi",
+      "Mohammad Osmani"
+    ],
+    "year": "2025"
+  }
+}

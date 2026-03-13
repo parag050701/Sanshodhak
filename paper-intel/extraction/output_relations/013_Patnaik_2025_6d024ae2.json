@@ -1,0 +1,458 @@
+[
+  {
+    "source": "Large Language Models (LLMs)",
+    "type": "USES_MODEL",
+    "target": "Retrieval-Augmented Generation (RAG)",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG)",
+    "type": "EVALUATES_ON",
+    "target": "Enterprise databases",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG)",
+    "type": "EVALUATES_ON",
+    "target": "Knowledge articles",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG)",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_3",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG)",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_6",
+    "type": "AUTHORED_BY",
+    "target": "International Journal of Science and Research (IJSR)",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_6",
+    "type": "AUTHORED_BY",
+    "target": "Retrieval-Augmented Generation (RAG)",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG)",
+    "type": "CITES",
+    "target": "Raja Patnaik, International Journal of Science and Research (IJSR)",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Retrieval-Augmented Generation (RAG)",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_6",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "ACHIEVES_RESULT",
+    "target": "Improved accuracy",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "ACHIEVES_RESULT",
+    "target": "Increased trustworthiness",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "ACHIEVES_RESULT",
+    "target": "Keeps AI relevant and adaptable",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "CITES",
+    "target": "Paper ID: SR251104092705",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "AUTHORED_BY",
+    "target": "E_013_Patnaik_2025_6d024ae2_13",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "STUDIES_TASK",
+    "target": "E_013_Patnaik_2025_6d024ae2_9",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_12",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "USES_MODEL",
+    "target": "E_013_Patnaik_2025_6d024ae2_14",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "USES_MODEL",
+    "target": "E_013_Patnaik_2025_6d024ae2_15",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "USES_DATASET",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_17",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_18",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "AUTHORED_BY",
+    "target": "International Journal of Science and Research (IJSR)",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "STUDIES_TASK",
+    "target": "E_013_Patnaik_2025_6d024ae2_20",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "STUDIES_TASK",
+    "target": "E_013_Patnaik_2025_6d024ae2_21",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "ACHIEVES_RESULT",
+    "target": "Improved accuracy",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "USES_DATASET",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_12",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_12",
+    "type": "AUTHORED_BY",
+    "target": "E_013_Patnaik_2025_6d024ae2_23",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "USES_MODEL",
+    "target": "E_013_Patnaik_2025_6d024ae2_8",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "USES_METHOD",
+    "target": "E_013_Patnaik_2025_6d024ae2_8",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "Customer Support",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "Healthcare",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "Finance and Compliance",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "Enterprise Knowledge Search",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_24",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_26",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_27",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_28",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_29",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_30",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "What Is Retrieval-Augmented Generation (RAG)",
+    "type": "CITES",
+    "target": "Agentforce and RAG: Best Practices for Better Agents",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "Agentforce and RAG: Best Practices for Better Agents",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_35",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_35",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_7",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_37",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_37",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_38",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_38",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_39",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_39",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_40",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_40",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_41",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_41",
+    "type": "CITES",
+    "target": "E_013_Patnaik_2025_6d024ae2_42",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_42",
+    "type": "CITES",
+    "target": "How does RAG Work?",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_44",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_45",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_46",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_46",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_3",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_47",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_47",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_10",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_48",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_11",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_48",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_10",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_49",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_10",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_50",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_50",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_51",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_17",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_51",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_52",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_18",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_52",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_53",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_53",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_16",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_54",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_54",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_32",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_55",
+    "type": "REPORTS_METRIC",
+    "target": "E_013_Patnaik_2025_6d024ae2_4",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "source": "E_013_Patnaik_2025_6d024ae2_55",
+    "type": "EVALUATES_ON",
+    "target": "E_013_Patnaik_2025_6d024ae2_32",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  }
+]

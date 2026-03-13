@@ -1,0 +1,173 @@
+{
+  "topic": "deep learning medical imaging",
+  "timestamp": "2025-12-06T00:02:00.211761",
+  "target": 15,
+  "downloaded": 15,
+  "success_rate": "100.0%",
+  "sources": {
+    "unpaywall": 13,
+    "arxiv": 2
+  },
+  "papers": [
+    {
+      "title": "Medical Imaging Analysis with Deep Learning",
+      "authors": [
+        "Brijesh Kannaujiya",
+        "Ayan Rajput"
+      ],
+      "year": 2025,
+      "doi": "10.21275/sr25617135803",
+      "file": "001_Kannaujiya_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Harnessing Deep Learning for Medical Imaging: Advances, Challenges, and Clinical Applications",
+      "authors": [
+        "Hugo Raposo"
+      ],
+      "year": 2025,
+      "doi": "10.2139/ssrn.5342642",
+      "file": "003_Raposo_2025.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Deep Learning in Medical Image Analysis",
+      "authors": [
+        "Yudong Zhang",
+        "Juan Manuel Gorriz",
+        "Zhengchao Dong"
+      ],
+      "year": 2021,
+      "doi": "10.3390/jimaging7040074",
+      "file": "004_Zhang_2021.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Deep learning on medical imaging images",
+      "authors": [
+        "Yiran Hu"
+      ],
+      "year": 2024,
+      "doi": "10.54254/2755-2721/54/20241686",
+      "file": "005_Hu_2024.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Applications of Deep Learning in Medical Imaging: A Systematic Review",
+      "authors": [
+        "Li Ruiqi"
+      ],
+      "year": 2025,
+      "doi": "10.47297/wspbdswsp2752-630528.20250503",
+      "file": "006_Ruiqi_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "DEEP LEARNING MODELS FOR AUTOMATED MEDICAL IMAGING: ACCURACY, ETHICS, AND DEPLOYMENT CHALLENGES",
+      "authors": [
+        "Prasanth Ramaraj",
+        "Mohit Mittal"
+      ],
+      "year": 2025,
+      "doi": "10.34218/ijaidl_02_01_002",
+      "file": "009_Ramaraj_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Deep Learning: A Breakthrough in Medical Imaging",
+      "authors": [
+        "Hafiz Mughees Ahmad",
+        "Muhammad Jaleed Khan",
+        "Adeel Yousaf"
+      ],
+      "year": 2020,
+      "doi": "10.2174/1573405615666191219100824",
+      "file": "010_Ahmad_2020.pdf",
+      "source": "arxiv"
+    },
+    {
+      "title": "Deep learning approaches for classification tasks in medical X-ray, MRI, and ultrasound images: a scoping review",
+      "authors": [
+        "Hafsa La\u00e7i",
+        "Kozeta Sevrani",
+        "Sarfraz Iqbal"
+      ],
+      "year": 2025,
+      "doi": "10.1186/s12880-025-01701-5",
+      "file": "011_La\u00e7i_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Deep Learning Research Directions in Medical Imaging",
+      "authors": [
+        "Cristian Simionescu",
+        "Adrian Iftene"
+      ],
+      "year": 2022,
+      "doi": "10.3390/math10234472",
+      "file": "012_Simionescu_2022.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Enhancing Medical Imaging Diagnostics Using Deep Learning Techniques",
+      "authors": [],
+      "year": 2024,
+      "doi": "10.32996/jmhs.2024.5.4.25",
+      "file": "013_Unknown_2024.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Deep Learning Based Applications in Medical Imaging",
+      "authors": [
+        "Jie Zhang"
+      ],
+      "year": 2025,
+      "doi": "10.54254/2755-2721/2025.ld27274",
+      "file": "014_Zhang_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Deep Learning Solution for Medical Imaging Challenges",
+      "authors": [],
+      "year": 2025,
+      "doi": "10.52783/tjjpt.v46.i04.9950",
+      "file": "016_Unknown_2025.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Guest Editorial Annotation-Efficient Deep Learning: The Holy Grail of Medical Imaging",
+      "authors": [
+        "Nima Tajbakhsh",
+        "Holger Roth",
+        "Demetri Terzopoulos"
+      ],
+      "year": 2021,
+      "doi": "10.1109/tmi.2021.3089292",
+      "file": "017_Tajbakhsh_2021.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Editorial: Recent Advances in Deep Learning and Medical Imaging for Cancer Treatment",
+      "authors": [
+        "Muhammad Ijaz",
+        "Marcin Wo\u017aniak"
+      ],
+      "year": 2024,
+      "doi": "10.3390/cancers16040700",
+      "file": "018_Ijaz_2024.pdf",
+      "source": "unpaywall"
+    },
+    {
+      "title": "Deep Learning Approaches for Data Augmentation in Medical Imaging: A Review",
+      "authors": [
+        "Aghiles Kebaili",
+        "J\u00e9r\u00f4me Lapuyade-Lahorgue",
+        "Su Ruan"
+      ],
+      "year": 2023,
+      "doi": "10.3390/jimaging9040081",
+      "file": "019_Kebaili_2023.pdf",
+      "source": "unpaywall"
+    }
+  ]
+}

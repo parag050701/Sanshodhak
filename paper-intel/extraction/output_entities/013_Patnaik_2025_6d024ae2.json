@@ -1,0 +1,416 @@
+[
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_1",
+    "type": "Model",
+    "name": "Large Language Models LLMs",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_2",
+    "type": "Method",
+    "name": "Retrieval-Augmented Generation RAG",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_3",
+    "type": "Dataset",
+    "name": "Documents",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_4",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_5",
+    "type": "Paper",
+    "name": "Raja Patnaik International Journal of Science and Research IJSR",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_6",
+    "type": "Author",
+    "name": "Raja Patnaik",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_7",
+    "type": "Model",
+    "name": "RAG",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_8",
+    "type": "Method",
+    "name": "Retrieval-Augmented Generation",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_9",
+    "type": "Task",
+    "name": "Customer engagement",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_10",
+    "type": "Dataset",
+    "name": "Knowledge sources",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_11",
+    "type": "Metric",
+    "name": "Trustworthiness",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_12",
+    "type": "Paper",
+    "name": "SR251104092705",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_13",
+    "type": "Author",
+    "name": "Unknown",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_14",
+    "type": "Method",
+    "name": "Semantic vector search",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_15",
+    "type": "Method",
+    "name": "Hybrid approach",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_16",
+    "type": "Dataset",
+    "name": "Knowledge base",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_17",
+    "type": "Metric",
+    "name": "F1-score",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_18",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_19",
+    "type": "Author",
+    "name": "International Journal of Science and Research IJSR",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_20",
+    "type": "Task",
+    "name": "Knowledge retrieval",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_21",
+    "type": "Task",
+    "name": "Text generation",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_22",
+    "type": "Task",
+    "name": "Natural Language Processing",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_23",
+    "type": "Author",
+    "name": "International Journal of Science and Research",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_24",
+    "type": "Task",
+    "name": "Education and Training",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_25",
+    "type": "Dataset",
+    "name": "Silos data sources emails reports wikis",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_26",
+    "type": "Metric",
+    "name": "Compliance Risks",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_27",
+    "type": "Metric",
+    "name": "Data Privacy",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_28",
+    "type": "Metric",
+    "name": "Knowledge Base Integrity",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_29",
+    "type": "Metric",
+    "name": "Injection Attacks",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_30",
+    "type": "Metric",
+    "name": "Over-Reliance on Retrieved Data",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_31",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_32",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_33",
+    "type": "Paper",
+    "name": "What Is Retrieval-Augmented Generation RAG",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_34",
+    "type": "Paper",
+    "name": "Agentforce and RAG Best Practices for Better Agents",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_35",
+    "type": "Paper",
+    "name": "Hybrid Search",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_36",
+    "type": "Paper",
+    "name": "RAG",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_37",
+    "type": "Paper",
+    "name": "Knowledge in Agentforce",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_38",
+    "type": "Paper",
+    "name": "Agent Instructions",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_39",
+    "type": "Paper",
+    "name": "Why AI Agents and RAG Pipeline Fail",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_40",
+    "type": "Paper",
+    "name": "Generative AI Hallucinations",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_41",
+    "type": "Paper",
+    "name": "Why Language Model Hallucinate",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_42",
+    "type": "Paper",
+    "name": "Security Best Practices with Agentforce",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_43",
+    "type": "Paper",
+    "name": "How does RAG Work",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2"
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_44",
+    "type": "Result",
+    "name": "Accuracy=non-negotiable on Enterprise databases",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "non-negotiable",
+      "dataset": "Enterprise databases",
+      "experiment_description": "ensures that responses are grounded in verified knowledge",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_45",
+    "type": "Result",
+    "name": "Accuracy=non-negotiable on Knowledge articles",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "non-negotiable",
+      "dataset": "Knowledge articles",
+      "experiment_description": "ensures that responses are grounded in verified knowledge",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_46",
+    "type": "Result",
+    "name": "Accuracy=non-negotiable on Documents",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "non-negotiable",
+      "dataset": "Documents",
+      "experiment_description": "ensures that responses are grounded in verified knowledge",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_47",
+    "type": "Result",
+    "name": "Accuracy=Improved on Knowledge sources",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "Improved",
+      "dataset": "Knowledge sources",
+      "experiment_description": "Reduces hallucinations and ensures outputs reflect the latest available information",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_48",
+    "type": "Result",
+    "name": "Trustworthiness=Increased on Knowledge sources",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Trustworthiness",
+      "metric_value": "Increased",
+      "dataset": "Knowledge sources",
+      "experiment_description": "Users are more confident in AI systems when responses can be traced back to documents, articles, or databases",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_49",
+    "type": "Result",
+    "name": "Relevance and adaptability=Keeps AI relevant and adaptable on Knowledge sources",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Relevance and adaptability",
+      "metric_value": "Keeps AI relevant and adaptable",
+      "dataset": "Knowledge sources",
+      "experiment_description": "Connects to external sources, allowing the model to adjust to new regulations, business updates, or product changes without requiring retraining",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_50",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Knowledge base",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Knowledge base",
+      "experiment_description": "Top-1 accuracy on knowledge base",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_51",
+    "type": "Result",
+    "name": "F1-score=N/A on Knowledge base",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "F1-score",
+      "metric_value": "N/A",
+      "dataset": "Knowledge base",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_52",
+    "type": "Result",
+    "name": "BLEU=N/A on Knowledge base",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "BLEU",
+      "metric_value": "N/A",
+      "dataset": "Knowledge base",
+      "experiment_description": "N/A",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_53",
+    "type": "Result",
+    "name": "Accuracy=92.4% on Knowledge Base",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "Knowledge Base",
+      "experiment_description": "Improved accuracy",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_54",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_013_Patnaik_2025_6d024ae2_55",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "013_Patnaik_2025_6d024ae2",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "paper_id": "046_Niederhaus_2025_c41834f5",
+  "triples": [
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 8,
+    "relation_count": 2,
+    "triple_count": 2,
+    "extracted_at": "2025-12-06T02:34:23.038395"
+  },
+  "paper_metadata": {
+    "title": "Integrating Graph Retrieval-Augmented Generation into Prescriptive Recommender Systems",
+    "authors": [
+      "Marvin Niederhaus",
+      "Nico Migenda",
+      "Julian Weller",
+      "Martin Kohlhase",
+      "Wolfram Schenck"
+    ],
+    "year": "2025"
+  }
+}

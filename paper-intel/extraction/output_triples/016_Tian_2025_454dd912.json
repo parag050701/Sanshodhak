@@ -1,0 +1,155 @@
+{
+  "paper_id": "016_Tian_2025_454dd912",
+  "triples": [
+    [
+      "BERT",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "BERT",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Zhao et al. 2023b",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Bang et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Ye et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Bubeck et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Xi et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Schick et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Peng et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Rawte, Sheth, and Das 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Gao et al. 2024",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Ji et al. 2022",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Zhao et al. 2022",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Lin et al. 2024",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Abu-Salih 2021",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Pan et al. 2024",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Zhang et al. 2024",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Wu et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Li et al. 2023b",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "LUO et al. 2024a",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Jiang et al. 2023b",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Wen, Wang, and Sun 2024",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Longpre et al. 2021",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Zhou et al. 2023",
+      "CITES",
+      "BERT"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=92.4% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 31,
+    "relation_count": 26,
+    "triple_count": 26,
+    "extracted_at": "2025-12-06T02:29:37.767617"
+  },
+  "paper_metadata": {
+    "title": "A Systematic Exploration of Knowledge Graph Alignment with Large Language Models in Retrieval Augmented Generation",
+    "authors": [
+      "Shiyu Tian",
+      "Shuyue Xing",
+      "Xingrui Li",
+      "Yangyang Luo",
+      "Caixia Yuan",
+      "Wei Chen",
+      "Huixing Jiang",
+      "Xiaojie Wang"
+    ],
+    "year": ""
+  }
+}

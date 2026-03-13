@@ -1,0 +1,367 @@
+[
+  {
+    "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+    "reference_answer": "RAG frameworks integrate a retriever model that sources relevant context from a knowledge base and a generator model that synthesizes the retrieved information into coherent responses. This approach offers a promising alternative to fine-tuning large language models.",
+    "generated_answer": [
+      "The main purpose of Retrieval-Augmented Generation (RAG) frameworks is to enhance the capabilities of generative models by integrating external knowledge during the response generation process. By combining information retrieval techniques with transformer-based models, RAG enables these models to access and utilize relevant external documents, supplementing their parametric knowledge. This integration allows RAG to generate more informed, factually accurate, and contextually appropriate responses, making it effective for a wide range of applications including natural language processing, knowledge-intensive tasks, and document fusion.",
+      [
+        {
+          "score": 0.7965844869613647,
+          "text": "SURVEY Retrieval-Augmented Generation ParadigmRetrieval-Augmented Generation (RAG) is a hybrid architecture that couples information retrieval-based approaches, such as dense passage retrieval, with generative transformer models to generate contextually informed, factually coherent products. [6][7][8][9] In contrast to generative models, which respond only using learned parameters, RAG can access an external knowledge base to generate up-to-date and domain-specific responses. By attending to passages",
+          "metadata": {
+            "file": "039_Unknown_2025_ce4a84f1.txt",
+            "chunk_id": 14,
+            "text": "SURVEY Retrieval-Augmented Generation ParadigmRetrieval-Augmented Generation (RAG) is a hybrid architecture that couples information retrieval-based approaches, such as dense passage retrieval, with generative transformer models to generate contextually informed, factually coherent products. [6][7][8][9] In contrast to generative models, which respond only using learned parameters, RAG can access an external knowledge base to generate up-to-date and domain-specific responses. By attending to passages"
+          }
+        },
+        {
+          "score": 0.7723226547241211,
+          "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion",
+          "metadata": {
+            "file": "045_Xiong_2025_456cccfe.txt",
+            "chunk_id": 63,
+            "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion"
+          }
+        },
+        {
+          "score": 0.7723226547241211,
+          "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion",
+          "metadata": {
+            "file": "032_Yang_2025_38ff6c3a.txt",
+            "chunk_id": 63,
+            "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion"
+          }
+        },
+        {
+          "score": 0.7723226547241211,
+          "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion",
+          "metadata": {
+            "file": "028_Saleh_2025_6dbefc04.txt",
+            "chunk_id": 63,
+            "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion"
+          }
+        },
+        {
+          "score": 0.7723226547241211,
+          "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion",
+          "metadata": {
+            "file": "012_Singh_2025_ddd8dbc0.txt",
+            "chunk_id": 63,
+            "text": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to retrieve relevant documents to supplement parametric knowledge during response generation [4], and has been widely adopted in many downstream tasks, such as knowledge-intensive tasks [23], document fusion"
+          }
+        }
+      ]
+    ],
+    "retrieved_docs": [
+      {
+        "file": "unknown",
+        "score": 0.7965844869613647,
+        "snippet": "SURVEY Retrieval-Augmented Generation ParadigmRetrieval-Augmented Generation (RAG) is a hybrid architecture that couples information retrieval-based approaches, such as dense passage retrieval, with generative transformer models to generate contextually informed, factually coherent products. [6][7]["
+      },
+      {
+        "file": "unknown",
+        "score": 0.7723226547241211,
+        "snippet": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to ret"
+      },
+      {
+        "file": "unknown",
+        "score": 0.7723226547241211,
+        "snippet": "applications. Related Work Retrieval-augmented generation (RAG) has emerged as a powerful paradigm that enhances generative models by incorporating external knowledge during decoding [23, 13, 16, 47, 46, 15, 24, 25, 42]. Originally developed for natural language processing, RAG enables models to ret"
+      }
+    ],
+    "difficulty": "easy",
+    "type": "factual"
+  },
+  {
+    "question": "According to the RAG research, what are the two main components of the RAG framework?",
+    "reference_answer": "The two main components are: (1) a retriever model that searches a knowledge base and retrieves relevant documents, and (2) a generator model that synthesizes the retrieved information into coherent responses.",
+    "generated_answer": [
+      "The two main components of the RAG (Retrieval-Augmented Generation) framework, according to the research, are:\n\n1. **Retriever**: This component is responsible for fetching the most relevant paragraphs from an external knowledge base based on a given query.\n\n2. **Generator**: This component uses the retrieved paragraph along with the question to generate a fluent and coherent response.",
+      [
+        {
+          "score": 0.6529301404953003,
+          "text": "in developing RAG-based systems and current research trends in this area will be assessed. A comprehensive discussion will be presented on the future role of the RAG approach in artificial intelligence and natural language processing, potential areas of development, and application scenarios. RAG Architecture and Components The RAG architecture consists of a two-stage structure, integrating a retrieval component with a text-generating language model. In the first stage, the information retrieval",
+          "metadata": {
+            "file": "003_Unknown_2025_463160c3.txt",
+            "chunk_id": 9,
+            "text": "in developing RAG-based systems and current research trends in this area will be assessed. A comprehensive discussion will be presented on the future role of the RAG approach in artificial intelligence and natural language processing, potential areas of development, and application scenarios. RAG Architecture and Components The RAG architecture consists of a two-stage structure, integrating a retrieval component with a text-generating language model. In the first stage, the information retrieval"
+          }
+        },
+        {
+          "score": 0.6477259993553162,
+          "text": "data classification and real-time processing of unstructured data streams [2]. The system has demonstrated particular effectiveness in handling the three most challenging aspects of modern data analytics: scalability across diverse data types, maintenance of processing efficiency at scale, and preservation of contextual relationships in complex datasets. Proposed FrameworkThe proposed framework architecture consists of three primary components, each engineered to handle specific aspects of the RAG-enhanced",
+          "metadata": {
+            "file": "027_Nagilla_2025_5f584f97.txt",
+            "chunk_id": 9,
+            "text": "data classification and real-time processing of unstructured data streams [2]. The system has demonstrated particular effectiveness in handling the three most challenging aspects of modern data analytics: scalability across diverse data types, maintenance of processing efficiency at scale, and preservation of contextual relationships in complex datasets. Proposed FrameworkThe proposed framework architecture consists of three primary components, each engineered to handle specific aspects of the RAG-enhanced"
+          }
+        },
+        {
+          "score": 0.6441663503646851,
+          "text": "the retriever and generator components, to provide insights into the framework's strengths and potential areas for improvement. In this paper, the RAG-Sequence as the RAG method. ModelsThe framework consists of two main components, a retriever that retrieves the most similar paragraph from an external knowledge base and a generator that combines the retrieved paragraph with the question query and generates a fluent response.For each question query, the model uses the corresponding paragraph to generate",
+          "metadata": {
+            "file": "011_Liu_2025_b9ebfa8e.txt",
+            "chunk_id": 12,
+            "text": "the retriever and generator components, to provide insights into the framework's strengths and potential areas for improvement. In this paper, the RAG-Sequence as the RAG method. ModelsThe framework consists of two main components, a retriever that retrieves the most similar paragraph from an external knowledge base and a generator that combines the retrieved paragraph with the question query and generates a fluent response.For each question query, the model uses the corresponding paragraph to generate"
+          }
+        },
+        {
+          "score": 0.6236904263496399,
+          "text": "attention has been devoted to dissecting the individual components of RAG and their respective impacts on overall performance. In response to this gap, our paper undertakes a comprehensive investigation of the RAG framework and embarks on the design of RAG models from the ground up, with a focus on the modularity and replaceability of its constituent modules. This research seeks to contribute to a deeper understanding of the mechanisms underlying RAG and its potential for enhancing natural language",
+          "metadata": {
+            "file": "040_Pichai_2023_cc391c15.txt",
+            "chunk_id": 2,
+            "text": "attention has been devoted to dissecting the individual components of RAG and their respective impacts on overall performance. In response to this gap, our paper undertakes a comprehensive investigation of the RAG framework and embarks on the design of RAG models from the ground up, with a focus on the modularity and replaceability of its constituent modules. This research seeks to contribute to a deeper understanding of the mechanisms underlying RAG and its potential for enhancing natural language"
+          }
+        },
+        {
+          "score": 0.6103450059890747,
+          "text": "Wikipediawhich condition the response. This approach improves factual accuracy, enables transparency, and supports domain adaptation without retraining.RAG consists of two main components: a retriever and a generator. The retriever uses DPR, a neural method that converts both queries and documents into high-dimensional vectors (dense embeddings) using transformer encoders based on the Bidirectional Encoder Representations from Transformers (BERT) architecture. BERT processes text bidirectionally-capturing",
+          "metadata": {
+            "file": "008_Dimitrova_2025_c23d445c.txt",
+            "chunk_id": 20,
+            "text": "Wikipediawhich condition the response. This approach improves factual accuracy, enables transparency, and supports domain adaptation without retraining.RAG consists of two main components: a retriever and a generator. The retriever uses DPR, a neural method that converts both queries and documents into high-dimensional vectors (dense embeddings) using transformer encoders based on the Bidirectional Encoder Representations from Transformers (BERT) architecture. BERT processes text bidirectionally-capturing"
+          }
+        }
+      ]
+    ],
+    "retrieved_docs": [
+      {
+        "file": "unknown",
+        "score": 0.6529301404953003,
+        "snippet": "in developing RAG-based systems and current research trends in this area will be assessed. A comprehensive discussion will be presented on the future role of the RAG approach in artificial intelligence and natural language processing, potential areas of development, and application scenarios. RAG Ar"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6477259993553162,
+        "snippet": "data classification and real-time processing of unstructured data streams [2]. The system has demonstrated particular effectiveness in handling the three most challenging aspects of modern data analytics: scalability across diverse data types, maintenance of processing efficiency at scale, and prese"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6441663503646851,
+        "snippet": "the retriever and generator components, to provide insights into the framework's strengths and potential areas for improvement. In this paper, the RAG-Sequence as the RAG method. ModelsThe framework consists of two main components, a retriever that retrieves the most similar paragraph from an extern"
+      }
+    ],
+    "difficulty": "easy",
+    "type": "factual"
+  },
+  {
+    "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+    "reference_answer": "Cosine similarity is commonly used, calculated as the dot product between two vectors divided by the product of their Euclidean norms. A value of 1 indicates maximal similarity.",
+    "generated_answer": [
+      "The common similarity metric used in RAG systems for comparing document embeddings is **cosine similarity**. This measure evaluates the angle between vectors rather than their magnitude, making it effective for capturing semantic relevance without considering vector length. \n\nAnswer: Cosine similarity.",
+      [
+        {
+          "score": 0.6115697622299194,
+          "text": "system that employs a similarity-based retrieval mechanism using off-the-shelf text embedding models, akin to the original RAG system [14]. In KG-RAG (exemplified by the KAPING system [20]), candidate triples are retrieved up to N hops from the question entity/entities, verbalized, and embedded alongside the question. Their similarity is computed via dot or cosine product, and the Top-K similar triples are passed to an answer generation LLM, which then outputs the answer. State-of-the-artRecent",
+          "metadata": {
+            "file": "047_Linders_2025_96b24cea.txt",
+            "chunk_id": 18,
+            "text": "system that employs a similarity-based retrieval mechanism using off-the-shelf text embedding models, akin to the original RAG system [14]. In KG-RAG (exemplified by the KAPING system [20]), candidate triples are retrieved up to N hops from the question entity/entities, verbalized, and embedded alongside the question. Their similarity is computed via dot or cosine product, and the Top-K similar triples are passed to an answer generation LLM, which then outputs the answer. State-of-the-artRecent"
+          }
+        },
+        {
+          "score": 0.6100829839706421,
+          "text": "between the query vector and document vectors. This approach excels at identifying semantically relevant content even in the absence of exact word matches. For example, in a RAG system, a BERTbased embedding model can be employed to generate vector representations for queries and all sentences in the database. The system then retrieves the most relevant texts by identifying vectors with the highest cosine similarity to the query vector. Consequently, the model can capture content that conveys the",
+          "metadata": {
+            "file": "003_Unknown_2025_463160c3.txt",
+            "chunk_id": 23,
+            "text": "between the query vector and document vectors. This approach excels at identifying semantically relevant content even in the absence of exact word matches. For example, in a RAG system, a BERTbased embedding model can be employed to generate vector representations for queries and all sentences in the database. The system then retrieves the most relevant texts by identifying vectors with the highest cosine similarity to the query vector. Consequently, the model can capture content that conveys the"
+          }
+        },
+        {
+          "score": 0.6075699329376221,
+          "text": "in average similarity score that adding or removing each component makes.Figure 1 .1Figure 1. Venn Diagram of Data Sources for RAG. This figure represents a venn diagram of 3 sources of information (google search results, OpenAI/Palm, proprietary data collected by the author) combined in order to create the \"outputted answer.\" Table 1 .1Experimental Results. This table represents the various different combinations of LLM components with respect to the average similarity score they each produced.ContextLLMEmbed",
+          "metadata": {
+            "file": "040_Pichai_2023_cc391c15.txt",
+            "chunk_id": 52,
+            "text": "in average similarity score that adding or removing each component makes.Figure 1 .1Figure 1. Venn Diagram of Data Sources for RAG. This figure represents a venn diagram of 3 sources of information (google search results, OpenAI/Palm, proprietary data collected by the author) combined in order to create the \"outputted answer.\" Table 1 .1Experimental Results. This table represents the various different combinations of LLM components with respect to the average similarity score they each produced.ContextLLMEmbed"
+          }
+        },
+        {
+          "score": 0.604976236820221,
+          "text": "received, the same embedding model is applied to the query to obtain the query vector. Then, the vector database is quickly searched for the vectors most similar to the query, and the top k most relevant text chunks (e.g., the first 5-10 most similar paragraphs) are retrieved. The similarity measure typically used in this step is cosine similarity, and the accuracy of the results largely depends on the quality of the embedding model used. For example, the similarity between a query vector and document",
+          "metadata": {
+            "file": "003_Unknown_2025_463160c3.txt",
+            "chunk_id": 12,
+            "text": "received, the same embedding model is applied to the query to obtain the query vector. Then, the vector database is quickly searched for the vectors most similar to the query, and the top k most relevant text chunks (e.g., the first 5-10 most similar paragraphs) are retrieved. The similarity measure typically used in this step is cosine similarity, and the accuracy of the results largely depends on the quality of the embedding model used. For example, the similarity between a query vector and document"
+          }
+        },
+        {
+          "score": 0.604473352432251,
+          "text": "models with their native embeddings (e.g., GPT with OpenAI Embed, Palm with Palm Embed), the semantic vector representations (\ud835\udc2f\ud835\udc2f \ud835\udc60\ud835\udc60 , \ud835\udc2f\ud835\udc2f \ud835\udc61\ud835\udc61) should align more closely, thus producing higher similarity scores. The modular nature of the RAG setup will reveal that certain combinations of base language models and similarity scoring mechanisms are more effective than others, depending on whether context is included or not.We denote the expected performance increase due to context as \u2206 context , and the",
+          "metadata": {
+            "file": "040_Pichai_2023_cc391c15.txt",
+            "chunk_id": 27,
+            "text": "models with their native embeddings (e.g., GPT with OpenAI Embed, Palm with Palm Embed), the semantic vector representations (\ud835\udc2f\ud835\udc2f \ud835\udc60\ud835\udc60 , \ud835\udc2f\ud835\udc2f \ud835\udc61\ud835\udc61) should align more closely, thus producing higher similarity scores. The modular nature of the RAG setup will reveal that certain combinations of base language models and similarity scoring mechanisms are more effective than others, depending on whether context is included or not.We denote the expected performance increase due to context as \u2206 context , and the"
+          }
+        }
+      ]
+    ],
+    "retrieved_docs": [
+      {
+        "file": "unknown",
+        "score": 0.6115697622299194,
+        "snippet": "system that employs a similarity-based retrieval mechanism using off-the-shelf text embedding models, akin to the original RAG system [14]. In KG-RAG (exemplified by the KAPING system [20]), candidate triples are retrieved up to N hops from the question entity/entities, verbalized, and embedded alon"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6100829839706421,
+        "snippet": "between the query vector and document vectors. This approach excels at identifying semantically relevant content even in the absence of exact word matches. For example, in a RAG system, a BERTbased embedding model can be employed to generate vector representations for queries and all sentences in th"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6075699329376221,
+        "snippet": "in average similarity score that adding or removing each component makes.Figure 1 .1Figure 1. Venn Diagram of Data Sources for RAG. This figure represents a venn diagram of 3 sources of information (google search results, OpenAI/Palm, proprietary data collected by the author) combined in order to cr"
+      }
+    ],
+    "difficulty": "medium",
+    "type": "factual"
+  },
+  {
+    "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+    "reference_answer": "RAG offers a modular approach where components can be interchanged and optimized independently, avoiding the challenging and resource-intensive process of fine-tuning entire large language models. It allows leveraging external knowledge without retraining the base model.",
+    "generated_answer": [
+      "RAG addresses the limitations of traditional language model fine-tuning by integrating retrieval methods with generative models. This approach allows the model to access external knowledge and generate more accurate, contextually informed responses grounded in real-world data or external sources. By supplementing fine-tuning with retrieval techniques, RAG mitigates issues like outdated information and hallucinations, ensuring that outputs remain relevant and up-to-date. Thus, while it doesn't replace traditional fine-tuning, RAG enhances the model's capabilities by providing an additional layer of contextual data.",
+      [
+        {
+          "score": 0.7087404727935791,
+          "text": "e-mail: sevket.polan@ege.edu.tr Received: 3 September 2024; Revised: 23 December 2024; Accepted: 12 January 2025; Published: 30 April 2025. Introduction RAG is an innovative approach that enables large language models to generate more accurate and up-to-date texts by integrating external information sources. Since contemporary language models are limited to their training data, they may provide outdated information over time or generate outputs known as \u201dhallucinations,\u201d which are not grounded in",
+          "metadata": {
+            "file": "003_Unknown_2025_463160c3.txt",
+            "chunk_id": 3,
+            "text": "e-mail: sevket.polan@ege.edu.tr Received: 3 September 2024; Revised: 23 December 2024; Accepted: 12 January 2025; Published: 30 April 2025. Introduction RAG is an innovative approach that enables large language models to generate more accurate and up-to-date texts by integrating external information sources. Since contemporary language models are limited to their training data, they may provide outdated information over time or generate outputs known as \u201dhallucinations,\u201d which are not grounded in"
+          }
+        },
+        {
+          "score": 0.6720868945121765,
+          "text": "a replacement for domain adaptation or continual learning. It does not allow a model to generalize new syntactic constructions, programming languages, or stylistic conventions. Instead, it offers an efficient amplification process for enhancing response accuracy within a predefined information domain. In this way, RAG facilitates retrieval, and not representation, which is more suitable for fine-grained applications rather than general domain training.Although hosted LLM interfaces like ChatGPT",
+          "metadata": {
+            "file": "034_Ghosh_2025_d28a3948.txt",
+            "chunk_id": 22,
+            "text": "a replacement for domain adaptation or continual learning. It does not allow a model to generalize new syntactic constructions, programming languages, or stylistic conventions. Instead, it offers an efficient amplification process for enhancing response accuracy within a predefined information domain. In this way, RAG facilitates retrieval, and not representation, which is more suitable for fine-grained applications rather than general domain training.Although hosted LLM interfaces like ChatGPT"
+          }
+        },
+        {
+          "score": 0.6720470190048218,
+          "text": "SURVEY Retrieval-Augmented Generation ParadigmRetrieval-Augmented Generation (RAG) is a hybrid architecture that couples information retrieval-based approaches, such as dense passage retrieval, with generative transformer models to generate contextually informed, factually coherent products. [6][7][8][9] In contrast to generative models, which respond only using learned parameters, RAG can access an external knowledge base to generate up-to-date and domain-specific responses. By attending to passages",
+          "metadata": {
+            "file": "039_Unknown_2025_ce4a84f1.txt",
+            "chunk_id": 14,
+            "text": "SURVEY Retrieval-Augmented Generation ParadigmRetrieval-Augmented Generation (RAG) is a hybrid architecture that couples information retrieval-based approaches, such as dense passage retrieval, with generative transformer models to generate contextually informed, factually coherent products. [6][7][8][9] In contrast to generative models, which respond only using learned parameters, RAG can access an external knowledge base to generate up-to-date and domain-specific responses. By attending to passages"
+          }
+        },
+        {
+          "score": 0.6628938913345337,
+          "text": "approach to mitigating these challenges is retrieval-augmented generation (RAG), which enhances the generation process by incorporating real-world images as additional references [8,3]. While RAG has been extensively explored in the language domain [23,13], its application to image and multimodal generation remains largely underdeveloped. A few existing studies [3,8,46,48,49] bridge this gap by performing a single-step retrieval based on the input prompt prior to generation, conditioning the entire",
+          "metadata": {
+            "file": "010_Kothapalli_2024_3b9952ed.txt",
+            "chunk_id": 1,
+            "text": "approach to mitigating these challenges is retrieval-augmented generation (RAG), which enhances the generation process by incorporating real-world images as additional references [8,3]. While RAG has been extensively explored in the language domain [23,13], its application to image and multimodal generation remains largely underdeveloped. A few existing studies [3,8,46,48,49] bridge this gap by performing a single-step retrieval based on the input prompt prior to generation, conditioning the entire"
+          }
+        },
+        {
+          "score": 0.6628938913345337,
+          "text": "approach to mitigating these challenges is retrieval-augmented generation (RAG), which enhances the generation process by incorporating real-world images as additional references [8,3]. While RAG has been extensively explored in the language domain [23,13], its application to image and multimodal generation remains largely underdeveloped. A few existing studies [3,8,46,48,49] bridge this gap by performing a single-step retrieval based on the input prompt prior to generation, conditioning the entire",
+          "metadata": {
+            "file": "026_Raghavan_2025_6dd89b7a.txt",
+            "chunk_id": 1,
+            "text": "approach to mitigating these challenges is retrieval-augmented generation (RAG), which enhances the generation process by incorporating real-world images as additional references [8,3]. While RAG has been extensively explored in the language domain [23,13], its application to image and multimodal generation remains largely underdeveloped. A few existing studies [3,8,46,48,49] bridge this gap by performing a single-step retrieval based on the input prompt prior to generation, conditioning the entire"
+          }
+        }
+      ]
+    ],
+    "retrieved_docs": [
+      {
+        "file": "unknown",
+        "score": 0.7087404727935791,
+        "snippet": "e-mail: sevket.polan@ege.edu.tr Received: 3 September 2024; Revised: 23 December 2024; Accepted: 12 January 2025; Published: 30 April 2025. Introduction RAG is an innovative approach that enables large language models to generate more accurate and up-to-date texts by integrating external information"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6720868945121765,
+        "snippet": "a replacement for domain adaptation or continual learning. It does not allow a model to generalize new syntactic constructions, programming languages, or stylistic conventions. Instead, it offers an efficient amplification process for enhancing response accuracy within a predefined information domai"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6720470190048218,
+        "snippet": "SURVEY Retrieval-Augmented Generation ParadigmRetrieval-Augmented Generation (RAG) is a hybrid architecture that couples information retrieval-based approaches, such as dense passage retrieval, with generative transformer models to generate contextually informed, factually coherent products. [6][7]["
+      }
+    ],
+    "difficulty": "medium",
+    "type": "conceptual"
+  },
+  {
+    "question": "What base language models were compared in the RAG modularity experiments?",
+    "reference_answer": "The experiments compared GPT and Palm as base language models to assess different configurations and determine which synergies most effectively capture the essence of the dataset.",
+    "generated_answer": [
+      "The base language model compared in the RAG modularity experiments was GPT-3.5-turbo.",
+      [
+        {
+          "score": 0.6486510038375854,
+          "text": "within the RAG setup-such as base language models and similarity scoring algorithms-can be optimized to reflect the nuances captured within our dataset. In doing so, we aim to bridge the gap between advanced language models and the profound human insights found within the Amazon.The central objective of our experiment is twofold: to analyze the performance implications of modular design within the RAG framework and to demonstrate the profound capability of such a system to preserve and communicate",
+          "metadata": {
+            "file": "040_Pichai_2023_cc391c15.txt",
+            "chunk_id": 10,
+            "text": "within the RAG setup-such as base language models and similarity scoring algorithms-can be optimized to reflect the nuances captured within our dataset. In doing so, we aim to bridge the gap between advanced language models and the profound human insights found within the Amazon.The central objective of our experiment is twofold: to analyze the performance implications of modular design within the RAG framework and to demonstrate the profound capability of such a system to preserve and communicate"
+          }
+        },
+        {
+          "score": 0.6148991584777832,
+          "text": "attention has been devoted to dissecting the individual components of RAG and their respective impacts on overall performance. In response to this gap, our paper undertakes a comprehensive investigation of the RAG framework and embarks on the design of RAG models from the ground up, with a focus on the modularity and replaceability of its constituent modules. This research seeks to contribute to a deeper understanding of the mechanisms underlying RAG and its potential for enhancing natural language",
+          "metadata": {
+            "file": "040_Pichai_2023_cc391c15.txt",
+            "chunk_id": 2,
+            "text": "attention has been devoted to dissecting the individual components of RAG and their respective impacts on overall performance. In response to this gap, our paper undertakes a comprehensive investigation of the RAG framework and embarks on the design of RAG models from the ground up, with a focus on the modularity and replaceability of its constituent modules. This research seeks to contribute to a deeper understanding of the mechanisms underlying RAG and its potential for enhancing natural language"
+          }
+        },
+        {
+          "score": 0.6006574630737305,
+          "text": "around the world can leverage technology to protect and share their unique cultural identities and knowledge systems. Advancements in RAG FrameworkFrom a methodological standpoint, our experiment is poised to contribute to the advancement of the RAG framework within the realm of AI language models. By dissecting the RAG components and examining their interplay, we will gain insights into the mechanics of modular design in language models, offering a blueprint for future research and development.The",
+          "metadata": {
+            "file": "040_Pichai_2023_cc391c15.txt",
+            "chunk_id": 33,
+            "text": "around the world can leverage technology to protect and share their unique cultural identities and knowledge systems. Advancements in RAG FrameworkFrom a methodological standpoint, our experiment is poised to contribute to the advancement of the RAG framework within the realm of AI language models. By dissecting the RAG components and examining their interplay, we will gain insights into the mechanics of modular design in language models, offering a blueprint for future research and development.The"
+          }
+        },
+        {
+          "score": 0.5980575084686279,
+          "text": "text, while maintaining the flexibility and fluency of state-of-the-art language models. Through extensive experiments on MS MARCO, this paper showed that RAG outperforms both purely generative models (GPT-3.5-turbo) by evaluating three metrics, including TF-IDF, BERT Score and Q-BLEU-1. The ablation studies further highlighted the importance of end-to-end training and the synergistic interaction between the retriever and generator components.Despite its promising results, RAG faces several challenges,",
+          "metadata": {
+            "file": "011_Liu_2025_b9ebfa8e.txt",
+            "chunk_id": 38,
+            "text": "text, while maintaining the flexibility and fluency of state-of-the-art language models. Through extensive experiments on MS MARCO, this paper showed that RAG outperforms both purely generative models (GPT-3.5-turbo) by evaluating three metrics, including TF-IDF, BERT Score and Q-BLEU-1. The ablation studies further highlighted the importance of end-to-end training and the synergistic interaction between the retriever and generator components.Despite its promising results, RAG faces several challenges,"
+          }
+        },
+        {
+          "score": 0.5969676375389099,
+          "text": "these metrics address the key aspects of RAG's performance, including retrieval relevance, semantic accuracy, and lexical alignment, while mitigating the limitations of individual metrics. ResultsIn this section, this paper presents the results of the experiments comparing the performance of the plain (non-RAG) model and the RAG model across three similarity metrics: BERT-based semantic similarity, BLEU score, and TF-IDF-based lexical importance matching. The analysis focuses on the ability of both",
+          "metadata": {
+            "file": "011_Liu_2025_b9ebfa8e.txt",
+            "chunk_id": 25,
+            "text": "these metrics address the key aspects of RAG's performance, including retrieval relevance, semantic accuracy, and lexical alignment, while mitigating the limitations of individual metrics. ResultsIn this section, this paper presents the results of the experiments comparing the performance of the plain (non-RAG) model and the RAG model across three similarity metrics: BERT-based semantic similarity, BLEU score, and TF-IDF-based lexical importance matching. The analysis focuses on the ability of both"
+          }
+        }
+      ]
+    ],
+    "retrieved_docs": [
+      {
+        "file": "unknown",
+        "score": 0.6486510038375854,
+        "snippet": "within the RAG setup-such as base language models and similarity scoring algorithms-can be optimized to reflect the nuances captured within our dataset. In doing so, we aim to bridge the gap between advanced language models and the profound human insights found within the Amazon.The central objectiv"
+      },
+      {
+        "file": "unknown",
+        "score": 0.6148991584777832,
+        "snippet": "attention has been devoted to dissecting the individual components of RAG and their respective impacts on overall performance. In response to this gap, our paper undertakes a comprehensive investigation of the RAG framework and embarks on the design of RAG models from the ground up, with a focus on "
+      },
+      {
+        "file": "unknown",
+        "score": 0.6006574630737305,
+        "snippet": "around the world can leverage technology to protect and share their unique cultural identities and knowledge systems. Advancements in RAG FrameworkFrom a methodological standpoint, our experiment is poised to contribute to the advancement of the RAG framework within the realm of AI language models. "
+      }
+    ],
+    "difficulty": "easy",
+    "type": "factual"
+  }
+]

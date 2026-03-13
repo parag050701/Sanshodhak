@@ -1,0 +1,86 @@
+[
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_1",
+    "type": "STUDIES_TASK",
+    "target": "Particle physics",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_002_Peng_2025_7ce3b7d4_3",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_1",
+    "type": "ACHIEVES_RESULT",
+    "target": "Critical tests from experiment",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_1",
+    "type": "CITES",
+    "target": "E_002_Peng_2025_7ce3b7d4_2",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_1",
+    "type": "AUTHORED_BY",
+    "target": "E_002_Peng_2025_7ce3b7d4_2",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "EVALUATES_ON",
+    "target": "Proton-proton collisions",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "REPORTS_METRIC",
+    "target": "E_002_Peng_2025_7ce3b7d4_3",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "ACHIEVES_RESULT",
+    "target": "Critical tests from experiment",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "CITES",
+    "target": "E_002_Peng_2025_7ce3b7d4_2",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "AUTHORED_BY",
+    "target": "E_002_Peng_2025_7ce3b7d4_2",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_6",
+    "type": "REPORTS_METRIC",
+    "target": "E_002_Peng_2025_7ce3b7d4_3",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_6",
+    "type": "EVALUATES_ON",
+    "target": "E_002_Peng_2025_7ce3b7d4_2",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_002_Peng_2025_7ce3b7d4_3",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  },
+  {
+    "source": "E_002_Peng_2025_7ce3b7d4_7",
+    "type": "EVALUATES_ON",
+    "target": "E_002_Peng_2025_7ce3b7d4_2",
+    "source_paper_id": "002_Peng_2025_7ce3b7d4"
+  }
+]

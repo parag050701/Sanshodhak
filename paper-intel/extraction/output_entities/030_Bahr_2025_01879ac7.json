@@ -1,0 +1,107 @@
+[
+  {
+    "id": "E_030_Bahr_2025_01879ac7_1",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_2",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_3",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_4",
+    "type": "Method",
+    "name": "Failure Mode and Effect Analysis FMEA",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_5",
+    "type": "Task",
+    "name": "Risk assessment in manufacturing",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_6",
+    "type": "Paper",
+    "name": "ISOIEC 31010",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_7",
+    "type": "Author",
+    "name": "Serrat",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_8",
+    "type": "Author",
+    "name": "Ruijters",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_9",
+    "type": "Author",
+    "name": "Stoelinga",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_10",
+    "type": "Author",
+    "name": "Schmitt",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_11",
+    "type": "Author",
+    "name": "Pfeife",
+    "source_paper_id": "030_Bahr_2025_01879ac7"
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_12",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "030_Bahr_2025_01879ac7",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_13",
+    "type": "Result",
+    "name": "Context recall=85.6% on ImageNet",
+    "source_paper_id": "030_Bahr_2025_01879ac7",
+    "properties": {
+      "metric_name": "Context recall",
+      "metric_value": "85.6%",
+      "dataset": "ImageNet",
+      "experiment_description": "Context recall on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  },
+  {
+    "id": "E_030_Bahr_2025_01879ac7_14",
+    "type": "Result",
+    "name": "Precision=92.1% on ImageNet",
+    "source_paper_id": "030_Bahr_2025_01879ac7",
+    "properties": {
+      "metric_name": "Precision",
+      "metric_value": "92.1%",
+      "dataset": "ImageNet",
+      "experiment_description": "Precision on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

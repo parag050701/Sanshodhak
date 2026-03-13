@@ -1,0 +1,14 @@
+[
+  {
+    "source": "E_046_Niederhaus_2025_c41834f5_8",
+    "type": "REPORTS_METRIC",
+    "target": "E_046_Niederhaus_2025_c41834f5_5",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  },
+  {
+    "source": "E_046_Niederhaus_2025_c41834f5_8",
+    "type": "EVALUATES_ON",
+    "target": "E_046_Niederhaus_2025_c41834f5_4",
+    "source_paper_id": "046_Niederhaus_2025_c41834f5"
+  }
+]

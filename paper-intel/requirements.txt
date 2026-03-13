@@ -1,0 +1,63 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Sanshodhak — Full Requirements
+# Tested on Python 3.10/3.11, CPU-only (CUDA optional)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Core ML / NLP ─────────────────────────────────────────────────────────────
+sentence-transformers>=2.7.0          # dense embeddings + cross-encoder reranker
+faiss-cpu>=1.8.0                      # FAISS vector index (CPU build)
+transformers>=4.40.0                  # HuggingFace models (sentence-transformers dep)
+torch>=2.2.0                          # PyTorch CPU (sentence-transformers dep)
+numpy>=1.26.0
+
+# ── Knowledge Graph ────────────────────────────────────────────────────────────
+networkx>=3.3
+
+# ── Evaluation & Statistics ───────────────────────────────────────────────────
+beir>=2.0.0                           # BEIR benchmark datasets + evaluation
+scipy>=1.13.0                         # Wilcoxon signed-rank test, t-test
+scikit-learn>=1.5.0                   # utilities
+
+# ── Generation Metrics ────────────────────────────────────────────────────────
+rouge-score>=0.1.2
+nltk>=3.8.0
+
+# ── API ───────────────────────────────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
+
+# ── HTTP ──────────────────────────────────────────────────────────────────────
+requests>=2.31.0
+aiohttp>=3.9.0
+urllib3>=2.0.0
+
+# ── Data / Plotting ───────────────────────────────────────────────────────────
+pandas>=2.2.0
+matplotlib>=3.9.0
+tqdm>=4.66.0
+
+# ── Config & Utilities ────────────────────────────────────────────────────────
+pyyaml>=6.0.1
+python-dotenv>=1.0.1
+colorlog>=6.7.0
+aiofiles>=23.2.0
+
+# ── Text Processing ───────────────────────────────────────────────────────────
+fuzzywuzzy>=0.18.0
+python-Levenshtein>=0.25.0
+lxml>=4.9.0
+
+# ── PDF Processing ────────────────────────────────────────────────────────────
+PyMuPDF>=1.24.0                       # fast PDF text extraction
+pdfplumber>=0.11.0                    # table-aware PDF extraction
+PyPDF2>=3.0.0
+
+# ── Data Models ───────────────────────────────────────────────────────────────
+dataclasses-json>=0.6.0
+
+# ── System Monitoring (scalability analysis) ──────────────────────────────────
+psutil>=6.0.0
+
+# ── XML ───────────────────────────────────────────────────────────────────────
+# lxml already listed above

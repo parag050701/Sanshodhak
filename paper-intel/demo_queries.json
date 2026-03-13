@@ -1,0 +1,22 @@
+[
+  {
+    "query": "Retrieval-Augmented Generation with knowledge graphs",
+    "description": "Research on combining RAG with structured knowledge"
+  },
+  {
+    "query": "Hybrid search combining dense and sparse retrieval",
+    "description": "BM25 + dense embeddings for better retrieval"
+  },
+  {
+    "query": "Query optimization using machine learning",
+    "description": "Database query optimization with neural networks"
+  },
+  {
+    "query": "Transformer models for semantic search",
+    "description": "BERT, sentence transformers for embedding generation"
+  },
+  {
+    "query": "Multi-modal retrieval systems",
+    "description": "Text, image, and cross-modal search"
+  }
+]

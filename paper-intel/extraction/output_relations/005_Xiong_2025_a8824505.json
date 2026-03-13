@@ -1,0 +1,86 @@
+[
+  {
+    "source": "E_005_Xiong_2025_a8824505_1",
+    "type": "STUDIES_TASK",
+    "target": "Particle physics",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_005_Xiong_2025_a8824505_3",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_1",
+    "type": "ACHIEVES_RESULT",
+    "target": "Critical tests from experiment",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_1",
+    "type": "CITES",
+    "target": "E_005_Xiong_2025_a8824505_2",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_1",
+    "type": "AUTHORED_BY",
+    "target": "E_005_Xiong_2025_a8824505_2",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "EVALUATES_ON",
+    "target": "Proton-proton collisions",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "REPORTS_METRIC",
+    "target": "E_005_Xiong_2025_a8824505_3",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "ACHIEVES_RESULT",
+    "target": "Critical tests from experiment",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "CITES",
+    "target": "E_005_Xiong_2025_a8824505_2",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "Large Hadron Collider",
+    "type": "AUTHORED_BY",
+    "target": "E_005_Xiong_2025_a8824505_2",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_6",
+    "type": "REPORTS_METRIC",
+    "target": "E_005_Xiong_2025_a8824505_3",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_6",
+    "type": "EVALUATES_ON",
+    "target": "E_005_Xiong_2025_a8824505_2",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_7",
+    "type": "REPORTS_METRIC",
+    "target": "E_005_Xiong_2025_a8824505_3",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  },
+  {
+    "source": "E_005_Xiong_2025_a8824505_7",
+    "type": "EVALUATES_ON",
+    "target": "E_005_Xiong_2025_a8824505_2",
+    "source_paper_id": "005_Xiong_2025_a8824505"
+  }
+]

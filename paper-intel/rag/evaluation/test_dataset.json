@@ -1,0 +1,272 @@
+[
+  {
+    "question": "What is the primary limitation of existing sequence-to-sequence translation methods for retrosynthesis prediction?",
+    "answer": "Existing sequence-to-sequence translation methods can lose important structural information from the molecular graph, leading to less accurate predictions. This is because representing molecules as sequences can lose the spatial relationships and bonding information that are crucial for accurate retrosynthesis prediction.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "044_Qiao_2025_be8f4989",
+    "relevant_docs": [
+      "044_Qiao_2025_be8f4989"
+    ]
+  },
+  {
+    "question": "How do diffusion models address the high-dimensional nature of graph data in molecular graph generation?",
+    "answer": "Diffusion models address the high-dimensional nature of graph data by decomposing the original one-shot generation into a series of small graph edits. This approach effectively reduces the intrinsic dimension of the graph data, making it more manageable for graph generation.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "044_Qiao_2025_be8f4989",
+    "relevant_docs": [
+      "044_Qiao_2025_be8f4989"
+    ]
+  },
+  {
+    "question": "What insight does the authors gain from observing that the product's scaffold largely remains unchanged during chemical reactions?",
+    "answer": "The authors gain the insight that what needs to be conditionally generated are the small subgraphs that change in the chemical reaction, given both the product itself and the unchanged part of it. This observation motivates the authors to introduce a new approach that focuses on generating these small subgraphs rather than the entire molecular graph.",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "paper_id": "044_Qiao_2025_be8f4989",
+    "relevant_docs": [
+      "044_Qiao_2025_be8f4989"
+    ]
+  },
+  {
+    "question": "What are the two phases of the Knowledge Graph Alignment (KGA) process proposed in the paper?",
+    "answer": "The two phases are the graph transformation phase and the linearization phase, which involve modifying the retrieved sub-KG at the graph level and converting the sub-KG to text, respectively.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "016_Tian_2025_454dd912",
+    "relevant_docs": [
+      "016_Tian_2025_454dd912"
+    ]
+  },
+  {
+    "question": "How do the authors of the paper address the issue of knowledge conflict in KG+RAG systems using KGA?",
+    "answer": "The authors propose a systematic approach to KGA that can improve the efficiency of utilizing retrieved knowledge and the quality of final generation, thereby reducing knowledge conflict and improving the overall performance of KG+RAG systems.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "016_Tian_2025_454dd912",
+    "relevant_docs": [
+      "016_Tian_2025_454dd912"
+    ]
+  },
+  {
+    "question": "To what extent does the paper's proposed KGA approach address the issue of knowledge conflict in KG+RAG systems, compared to previous approaches?",
+    "answer": "The paper's approach is designed to address knowledge conflict in KG+RAG systems by improving the efficiency and quality of knowledge utilization, which is a critical step in resolving knowledge conflicts. However, the extent to which it effectively resolves knowledge conflicts is not explicitly evaluated in the paper.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "016_Tian_2025_454dd912",
+    "relevant_docs": [
+      "016_Tian_2025_454dd912"
+    ]
+  },
+  {
+    "question": "What is the predicted probability of the B0s \u2192 \u03bc+\u03bc- decay in the standard model of particle physics?",
+    "answer": "The standard model predicts that the B0s \u2192 \u03bc+\u03bc- decay is very rare, with about four of the former occurring for every billion B0s mesons produced.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "002_Peng_2025_7ce3b7d4",
+    "relevant_docs": [
+      "002_Peng_2025_7ce3b7d4"
+    ]
+  },
+  {
+    "question": "How does the observation of the B0s \u2192 \u03bc+\u03bc- decay affect our understanding of theories that extend the standard model?",
+    "answer": "The observation of the B0s \u2192 \u03bc+\u03bc- decay provides a direction in which the standard model should be extended, as it is statistically significant and compatible with standard model predictions.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "002_Peng_2025_7ce3b7d4",
+    "relevant_docs": [
+      "002_Peng_2025_7ce3b7d4"
+    ]
+  },
+  {
+    "question": "How do the experimental results from the LHC experiments compare to the predictions of the standard model in terms of the branching fractions of the B0s and B0 decays?",
+    "answer": "The experimental results from the LHC experiments show that the branching fractions of the B0s and B0 decays are statistically compatible with standard model predictions, with the observation of the B0s \u2192 \u03bc+\u03bc- decay exceeding six standard deviations and the evidence for the B0 \u2192 \u03bc+\u03bc- decay exceeding three standard deviations.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "002_Peng_2025_7ce3b7d4",
+    "relevant_docs": [
+      "002_Peng_2025_7ce3b7d4"
+    ]
+  },
+  {
+    "question": "What is the main limitation of existing retrieval-augmented generation (RAG) methods for image generation?",
+    "answer": "Existing RAG methods typically perform a single-step retrieval based on the input prompt prior to generation, conditioning the entire image generation process on fixed visual cues, which can lead to over-copying of irrelevant details, stylistic bias, and the hallucination of unrelated visual elements. These methods cannot respond to the evolving generation needs, resulting in suboptimal results. This limitation is addressed by the proposed Autoregressive Retrieval Augmentation (AR-RAG) method.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "026_Raghavan_2025_6dd89b7a",
+    "relevant_docs": [
+      "026_Raghavan_2025_6dd89b7a"
+    ]
+  },
+  {
+    "question": "How does the proposed AR-RAG method differ from existing RAG methods in terms of the retrieval process?",
+    "answer": "The proposed AR-RAG method differs from existing RAG methods in that it performs fine-grained, step-wise retrieval at the image patch level, rather than relying on static, coarse-grained retrievals of entire reference images. This approach leverages the already-generated surrounding patches as localized queries to retrieve contextually similar patches from a pre-constructed patch-level database.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "026_Raghavan_2025_6dd89b7a",
+    "relevant_docs": [
+      "026_Raghavan_2025_6dd89b7a"
+    ]
+  },
+  {
+    "question": "What are the potential benefits of using AR-RAG for image generation, particularly in comparison to existing methods?",
+    "answer": "The proposed AR-RAG method has the potential to improve image generation by dynamically and autoregressively incorporating patch-level k-nearest-neighbor (k-NN) retrievals throughout the generation process. This approach can lead to more realistic and diverse images, as it allows the model to respond to the evolving generation needs and incorporate contextually relevant visual elements. In comparison to existing methods, AR-RAG can potentially reduce over-copying of irrelevant details and hallucinations, resulting in more coherent and realistic images.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "026_Raghavan_2025_6dd89b7a",
+    "relevant_docs": [
+      "026_Raghavan_2025_6dd89b7a"
+    ]
+  },
+  {
+    "question": "What is the primary challenge faced by traditional chatbots in providing accurate and contextually relevant responses?",
+    "answer": "Traditional chatbots struggle with maintaining factual accuracy and accessing up-to-date information, particularly when dealing with complex queries requiring multi-turn conversations. This results in accuracy rates dropping by 45% when context spans multiple exchanges. This challenge is a significant limitation in the deployment of chatbots in multiple enterprise environments.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "042_Chandra_2025_fa92c458",
+    "relevant_docs": [
+      "042_Chandra_2025_fa92c458"
+    ]
+  },
+  {
+    "question": "How does the Retrieval-Augmented Generation (RAG) paradigm shift in Knowledge Integration and Retrieval Mechanisms improve the accuracy of information retrieval in AI applications?",
+    "answer": "The RAG paradigm combines dense and sparse representations to achieve an impressive 91.7% retrieval accuracy on benchmark datasets. Hybrid retrieval mechanisms can reduce latency by 42% while maintaining high precision, and implementing adaptive retrieval strategies can improve relevant document selection by 31.4%. This results in significant improvements in retrieval accuracy and efficiency.",
+    "type": "factual",
+    "difficulty": "hard",
+    "paper_id": "042_Chandra_2025_fa92c458",
+    "relevant_docs": [
+      "042_Chandra_2025_fa92c458"
+    ]
+  },
+  {
+    "question": "How do advanced query processing techniques and hierarchical context windows impact the coherence and accuracy of responses in multi-turn conversations?",
+    "answer": "Advanced query processing techniques can improve retrieval relevance by up to 36.7%, while maintaining conversation history through hierarchical context windows improves response coherence by 43.2% in multi-turn conversations. This is achieved through a multi-stage query refinement process and the use of attention mechanisms for response generation.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "042_Chandra_2025_fa92c458",
+    "relevant_docs": [
+      "042_Chandra_2025_fa92c458"
+    ]
+  },
+  {
+    "question": "What is the predicted branching fractioon f the B0s \u2192- decay i \u00b5+\u00b5n the ndard modstael of pale rticphysics?",
+    "answer": "The modelstandard  predicts that the B0s \u2192 \u00b5+\u00b5- decay is very rare, with about four of the former occurring forv eery billion B0s mesons produced.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "005_Xiong_2025_a8824505",
+    "relevant_docs": [
+      "005_Xiong_2025_a8824505"
+    ]
+  },
+  {
+    "question": "What is the significance of the observation of the B0s \u2192- deca \u00b5+\u00b5y at the Large Hadron Collider?",
+    "answer": "The observation of the B0s \u2192 \u00b5+\u00b5- decay has a statistical significance exceeding six standard deviations, indicating that it is a significant deviation from the standard model prediction.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "005_Xiong_2025_a8824505",
+    "relevant_docs": [
+      "005_Xiong_2025_a8824505"
+    ]
+  },
+  {
+    "question": "How does the upcoming resumption of data taking at the Large Hadron Collider in 2015 affect the precision of the tests of the standard model?",
+    "answer": "The resumption of data taking at the LHC in 2015 will approximately double the production rates for B0s and B0 mesons, leading to further improvements in the precision of these crucial tests of the standard model.",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "paper_id": "005_Xiong_2025_a8824505",
+    "relevant_docs": [
+      "005_Xiong_2025_a8824505"
+    ]
+  },
+  {
+    "question": "What are the four levels of data analytics that are utilized by AI systems to support decision making?",
+    "answer": "The four levels of data analytics used by AI systems are descriptive, diagnostic, predictive, and prescriptive analytics. Descriptive analytics provide information, diagnostic analytics identify problems, predictive analytics forecast future outcomes, and prescriptive analytics provide the best course of action. These levels work in tandem to enable informed and optimized decision making.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "046_Niederhaus_2025_c41834f5",
+    "relevant_docs": [
+      "046_Niederhaus_2025_c41834f5"
+    ]
+  },
+  {
+    "question": "How do prescriptive algorithms differ from traditional decision-making models, and what benefits do they offer?",
+    "answer": "Prescriptive algorithms automatically determine the best course of action, eliminating the need for the user to evaluate all options themselves. This approach provides faster decision making, reduces biases, and maximizes positive outcomes. By presenting the best action or sequence of actions, prescriptive algorithms enable users to make more informed decisions.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "046_Niederhaus_2025_c41834f5",
+    "relevant_docs": [
+      "046_Niederhaus_2025_c41834f5"
+    ]
+  },
+  {
+    "question": "How can the use of prescriptive algorithms in decision-making systems help mitigate the loss of knowledge due to demographic changes, such as workforce retirement?",
+    "answer": "The use of prescriptive algorithms can help preserve knowledge by providing actionable insights and eliminating the need for human intervention in decision-making processes. By automating the decision-making process, these algorithms can ensure that valuable insights are not lost when workers retire, maintaining operational continuity and efficiency.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "046_Niederhaus_2025_c41834f5",
+    "relevant_docs": [
+      "046_Niederhaus_2025_c41834f5"
+    ]
+  },
+  {
+    "question": "What are some of the ethical and regulatory considerations that dominate the discourse around AI in medical imaging?",
+    "answer": "Ethical considerations include concerns about privacy, informed consent, and data governance, while regulatory considerations include compliance with data protection regulations like HIPAA and GDPR. Algorithmic bias is also a concern, as models trained on skewed datasets can exacerbate healthcare disparities. This calls for the integration of fairness metrics and secure model development frameworks in AI development.",
+    "type": "factual",
+    "difficulty": "medium",
+    "paper_id": "009_Ramaraj_2025_adba03b2",
+    "relevant_docs": [
+      "009_Ramaraj_2025_adba03b2"
+    ]
+  },
+  {
+    "question": "How does the study of Esteva et al. (2017) demonstrate the limitations of AI in medical imaging?",
+    "answer": "The study demonstrated that while AI models can achieve human-level diagnostic performance in certain tasks, they are limited by a lack of external validation and model interpretability. The use of a single-source dataset also raised concerns about the generalizability of the results to other clinical environments.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "009_Ramaraj_2025_adba03b2",
+    "relevant_docs": [
+      "009_Ramaraj_2025_adba03b2"
+    ]
+  },
+  {
+    "question": "What are some of the challenges associated with deploying AI models in clinical settings in medicine?",
+    "answer": "Clinical settings vary widely in terms of imaging hardware, electronic medical record (EMR) systems, and staff training levels, making it challenging to deploy AI models that are adaptable, interoperable, and robust against noise and variability. Regulatory bodies are also in the process of defining frameworks that balance innovation with patient safety.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "009_Ramaraj_2025_adba03b2",
+    "relevant_docs": [
+      "009_Ramaraj_2025_adba03b2"
+    ]
+  },
+  {
+    "question": "What was the collision energy in the experiment?",
+    "answer": "The collision energy was \u221asNN = 200 GeV.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "017_Aggarwal_2024_45bce18a",
+    "relevant_docs": [
+      "017_Aggarwal_2024_45bce18a"
+    ]
+  },
+  {
+    "question": "How did the authors measure the \u03a9b meson and K*0 meson in proton-proton collisions?",
+    "answer": "The authors measured the \u03a9b and K*0 mesons using a combination of particle identification detectors and kinematic reconstruction techniques.",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "paper_id": "017_Aggarwal_2024_45bce18a",
+    "relevant_docs": [
+      "017_Aggarwal_2024_45bce18a"
+    ]
+  },
+  {
+    "question": "What is the implication of the study's findings on our understanding of quark-gluon plasma in heavy-ion collisions?",
+    "answer": "The study's findings suggest that the quark-gluon plasma is not as crispy and well-defined as previously thought, and may be more complex and dispersed than previously believed.",
+    "type": "analytical",
+    "difficulty": "hard",
+    "paper_id": "017_Aggarwal_2024_45bce18a",
+    "relevant_docs": [
+      "017_Aggarwal_2024_45bce18a"
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "paper_id": "027_Nagilla_2025_5f584f97",
+  "triples": [
+    [
+      "RAG",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "RAG",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "GeeksforGeeks",
+      "CITES",
+      "Medida"
+    ],
+    [
+      "GeeksforGeeks",
+      "CITES",
+      "editor@iaeme.com"
+    ],
+    [
+      "Medida",
+      "AUTHORED_BY",
+      "editor@iaeme.com"
+    ],
+    [
+      "Accuracy=85-95% on ImageNet",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ],
+    [
+      "Accuracy=85-95% on ImageNet",
+      "EVALUATES_ON",
+      "ImageNet"
+    ],
+    [
+      "F1-score=73% on Mixed data types",
+      "REPORTS_METRIC",
+      "F1-score"
+    ],
+    [
+      "BLEU=89% on Domain-specific applications",
+      "REPORTS_METRIC",
+      "BLEU"
+    ],
+    [
+      "Accuracy=45-55% on Mixed data types",
+      "REPORTS_METRIC",
+      "Accuracy"
+    ]
+  ],
+  "metadata": {
+    "entity_count": 18,
+    "relation_count": 12,
+    "triple_count": 12,
+    "extracted_at": "2025-12-06T02:44:29.177323"
+  },
+  "paper_metadata": {
+    "title": "ENHANCING DATA ANALYTICS WITH RETRIEVAL-AUGMENTED GENERATION WORKLOADS",
+    "authors": [
+      "Abhilash Nagilla",
+      "Maria Solano",
+      "Juan Cruz"
+    ],
+    "year": "2025"
+  }
+}

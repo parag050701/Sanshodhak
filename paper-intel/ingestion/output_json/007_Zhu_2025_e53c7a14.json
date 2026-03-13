@@ -1,0 +1,544 @@
+{
+  "paper_id": "007_Zhu_2025_e53c7a14",
+  "source_pdf": "007_Zhu_2025.pdf",
+  "title": "A Benchmark Dataset with Larger Context for Non-Factoid Question-Answering over Islamic Text",
+  "authors": [
+    "Faiza Qamar",
+    "Seemab Latif",
+    "Nor Jamail",
+    "Rabia Latif"
+  ],
+  "abstract": "One of the inherent limitations of large language models (LLMs) is their propensity to generate hallucinated content, as the accuracy of generated texts cannot be solely guaranteed by the parametric knowledge they encapsulate. While retrieval-augmented generation (RAG) offers a practical complement to LLMs, its reliance on the relevance of retrieved documents raises concerns about how the model behaves when retrieval fails. In this paper, we propose a novel approach called Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG) for enhancing the robustness of text generation. Our proposed approach comprises two key components: (1) a multi-dimensional evaluator designed to assess the overall quality of retrieved documents, and (2) an iteratively prompt refinement method that optimizes the generator's prompts. In contrast to existing approaches, our IPRAG framework can be seamlessly integrated with various RAG-based methods, enabling a more comprehensive evaluation of their performance. The experiments conducted on public datasets covering short-and long-form generation tasks demonstrate that IPRAG can significantly enhance the performance of RAG-based approaches, thereby improving the quality and reliability of generated texts. INTRODUCTIONLarge language models (LLMs) have garnered substantial attention and demonstrated impressive capabilities in comprehending instructions and generating fluent language texts [1-2]. However, LLMs",
+  "sections": {
+    "introduction": "IPRAG: Iterative Prompt Refining for Retrieval Augmented GenerationData Intelligence 2 inevitably exhibit hallucination [3], due to their struggles with factual errors [4][5] and inability to ensure the accuracy of generated texts solely relying on their encapsulated parametric knowledge [6][7].Retrieval augmented generation (RAG) [8] is a technique that incorporates relevant knowledge by prepending retrieved documents from an external knowledge corpus [9]. The RAG framework consists of two primary components: a retriever that identifies and retrieves the most relevant documents from a predefined knowledge corpus based on the input query, and a generator that synthesizes the final output by combining the retrieved knowledge with the query. Although RAG provides a practical complement to LLMs, its performance largely depends on the accuracy and relevance of the documents it retrieves [10].The heavy reliance of generation on retrieved knowledge raises significant worries about the model's behavior and performance in situations where retrieval fails or provides inaccurate information [11].As depicted in Figure 1, low-quality retrievers are susceptible to introducing a lot of irrelevant information, which obstructs models from obtaining precise knowledge and increases the risk of generating hallucinations [6]. However, conventional RAG approaches often fail to discriminate between relevant and irrelevant retrieved documents, indiscriminately incorporating them into the process [12].Moreover, current methods tend to regard entire documents as reference knowledge during the processes of retrieval and utilization. Unfortunately, this approach disregards the fact that a substantial portion of the text within these retrieved documents are non-essential for generation purposes, rendering it unnecessary to refer to or be involved in the RAG process. To address the limitations of retrieval-based augmented generation, we focus on investigating scenarios where the retriever returns inaccurate results. To mitigate this issue, we propose Iterative Prompt Refining for Retrieval Augmented Generation (IPRAG), an innovative approach that enables self-correction of evaluator outputs and optimizes document utilization for enhanced generation. Specifically, we begin by designing a multi-dimensional evaluator that comprehensively assesses the quality of retrieved documents. This critical component plays a pivotal role in the retrieval-augmented generation framework by meticulously reviewing and evaluating the relevance and reliability of the retrieved documents, thereby fostering informative generation.The evaluator generates a confidence score for each document, which serves as input to the refinement module. The refinement module iteratively produces optimal prompts for the generator, maximizing its performance. A detailed description of this process can be found in Section 4.Our empirical evaluation on two public datasets demonstrates that IPRAG significantly enhances the performance of both standard RAG and state-of-the-art Self-RAG. This improvement is evident across shortand long-form generation tasks, highlighting the versatility of our approach. These findings underscore the potential applicability of IPRAG in a wide range of natural language processing applications.In summary, our contributions to this paper are three-fold: 1) To the best of our knowledge, we are the first to evaluate retrieved",
+    "related_work": "RELATED WORKAlthough Large Language Models (LLMs) have shown remarkable capabilities in interpreting instructions and generating fluent texts [13], one of the most severe challenges they continue to struggle with is hallucinations. As numerous studies have found [6,[14][15], the activation of outdated information or incorrect knowledge can lead to serious hallucinations.Consequently, the lack of precise and reliable knowledge often leads to misleading or even erroneous outputs, seriously affecting the user experience in various practical scenarios. To address these issues, Retrieval-Augmented Generation (RAG) [8][9] is considered an effective approach that enriches the input queries of generative language models with retrieved documents.However, these methods often overlook a crucial point: what happens if the retrieval goes wrong? The primary aim of using retrieval is to guarantee that LLMs get accurate and relevant information. In recent years, numerous advanced approaches have been derived and improved upon from the original RAG framework. Asai et al. [16] introduced Self-RAG, a critic model designed to selectively retrieve knowledge and determine whether retrieval is necessary. Yoran et al. [17] developed an NLI model aimed at filtering out irrelevant context to enhance robustness. Luo et al. [18] proposed SAIL, which is fine-tuned to integrate retrieved documents into the input before processing instructions. Additionally, Toolformer [19] was pre-trained to interact with external APIs, including Wikipedia.Moreover, some long-text generation tasks require accessing external knowledge multiple times, making it important to determine the appropriate retrieval timing. Jiang et al. [20] propose a method that proactively predicts future content and determines both the timing and content of retrieval for long-form text generation. Compared with recent studies [16,[18][19] that are are closely related to our work, these methods focus on using retrieval to enhance generation or determining the necessity of retrieval. In contrast, we specifically study scenarios where the retriever produces inaccurate outputs, similar to the work of Yan et al. [21]. To the best of our knowledge, we are the first to employ iterative prompt refining for RAG to improve the robustness of generation. PROBLEM DEFINITIONFollowing previous work [8,16], we address the challenge of generating an output Y given an input X and an accessible corpus of knowledge documents C = {d 1 , …, d N }. Our approach assumes the existence of a retriever R and a generator G. The retriever R is tasked with retrieving the top-K documents D from the corpus C that are most relevant to the input X. Based on the input X and the retrieved documents D, the generator G then generates the output Y. This generation process can be formally expressed as:(|) =(|) (|, ) P PP    However, any unsuccessful retrieval by R can result in an unsatisfactory response from G, regardless of the generator's capabilities. Thus, the problem we aim to solve in this paper is enhancing the robustness of generation. Specifically, we focus on improving the retrieval component R to ensure it provides more relevant and reliable documents D to the generator G. PROPOSED APPROACHFigure 2 provides an overview of our approach, which includes several modules designed to enhance the robustness of generation. Given an input query and the documents retrieved by any retrieval system, such as ChatGPT, a multi-dimensional evaluator is constructed to measure the relevance of the retrieved documents to the query.The relevance scores from each dimension are converted into confidence levels, which then trigger the iterative prompt refinement module. This module determines when and what information should be passed to the generator. The technical details of this process are described in the following sections. Multi-dimensional EvaluatorThe accuracy of retrieved documents is a crucial consideration prior to utilization, as irrelevant or misleading information can severely impact the overall performance of the RAG system. Consequently, an evaluator plays a pivotal role in shaping the outcome of subsequent processes.To address this challenge, we propose a multi-dimensional evaluator that incorporates an evaluation",
+    "methods": "methodology consistent with conventional practices. We introduce a novel Evaluation Prompt, which prompts the Language Model (LM) to generate scores for various metrics in response to a given question and a list of retrieved documents. The prompt structure, as outlined in [22], is as follows, with more details provided in Appendix A.1: \"You are an evaluator. I will provide you with a question and an answer. I will also provide a question for each of those metrics, and you will return 100 if the answer is positive, and 0 if negative, as a score for that metric. Respond only with the name of the metric and the score, nothing else. Question:[question]Answer:[answer] Metrics: [metrics]Figure 3 illustrates the responses obtained from the Evaluation Prompt, showcasing a systematic approach for evaluating answers across different questions. To effectively evaluate the performance of our Language Model (LM), we employed a comprehensive methodology that involves calculating the simple mean for each metric. This approach allows us to gain a thorough understanding of the average performance of the prompt template, thereby ensuring a meticulous evaluation of the LM's responses and providing valuable insights into its effectiveness and performance.In this work, we leverage the Flan-T5-Large [23] as the backbone LM model to initialize the retrieval and evaluation of documents. Notably, Flan-T5-Large exhibits superior performance compared to other LM models on various popular indicators, including MMLU, BBH, and MGSM. Furthermore, it boasts a significantly smaller parameter size relative to other LLMs with similar performance (e.g., GPT-3 175B vs. Flan-T5-Large 0.8B).In addition to the primary metrics, we have integrated supplementary evaluation metrics, including ROUGE [24] and BLEU [25], to further enrich the evaluation process. While these metrics may not comprehensively address all prompt-related issues, they provide valuable insights into answer informativeness and similarity to existing knowledge. For instance, as depicted in Figure 3, the Creativity score is only 10, indicating suboptimal performance of the prompt. This underscores the importance of developing a corrective mechanism for the prompt and highlights the iterative refinement process necessary for its enhancement. Iteratively Prompt RefinementIn our proposed methodology, several key concepts are outlined. Knowledge statement is defined as a succinct piece of information within a document d. Teacher-forcing refers to a technique used in training sequence-to-sequence models, where the model uses the ground truth output from the previous time step as input for the current time step. Stopper module is a component of the model that determines when to halt the knowledge recall process. Knowledge text sequence refers to the sequence of knowledge statements used as input to the language model. Formally, given a question as query q, we assume that q is associated with a sequence… 1 =[ , , ] q qn Dd dof documents, where each document is a set of knowledge statements that enables us to generate highquality responses to q.Assuming we have an evaluation function φ(M(T)) that measures the quality of a prompt T, this function quantifies the probability of obtaining the sequence D q when we augment the LLM M with the question q. Therefore, we can formulate the problem of constructing the optimal prompt T ★ as a learning problem: Motivated by the inherent complexity and sequential dependencies characteristic of multi-step inference tasks, we propose an iterative refinement strategy for prompts. This approach acknowledges the nuanced relationships between individual steps in the inference process, thereby enabling the prompt to be progressively refined and adapted to facilitate more effective and coherent reasoning:Let T = {T 1 , T 2 , …, T r }… - ∏ 11 = 1 ( | ; ( )) = ( | , , , ;( ))q n q jj j PD q T Pd q d d MT M At each step j, the model M(T) meticulously recalls the next knowledge statement d j , conditioned on the question q and the previously accumulated knowledge.Compared to methods that utilize single-relation inputs, our iterative approach presents challenges due to the complex input context (q, d 1 , …, d j-1 ). Task-level prompting methods such as Prompt-Tuning [26] and Prefix-Tuning [27] treat T as a static parameter, which might not applicable in this setting. We model T as the output of a learnable function, denoted as f W , a dynamic prompter that synthesizes T based on the input context of the current step:… - ∀ 11 = ( , , ,), Wj T f qd d jThe Prompter, instantiated with a transformer-based language model as illustrated in Figure 4, designs prompts as contextualizations of special tokens that convey information about the current step's input context. These tokens serve as a catalyst, steering it towards relevant knowledge retrieval and facilitating the generation of informative responses. In our implementation, we utilize a pre-trained Language Model (PLM), such as DeBERTa [28], which is smaller and incorporates prefix prompts within an encoder-decoder architecture, enhancing both encoder and decoder inputs.During the tuning process, we employ the strategy outlined in Prompt-Tuning [26], wherein T is treated as a context-agnostic parameter. The embedding dimension of our Prompter is denoted by e, subject to the constraint e ≤ E, where E represents the embedding dimension of the Pre-trained Language Model (PLM). Furthermore, the length of prompt tokens is denoted by l. Notably, the number of trainable parameters in our method can be expressed as Θ(e • (E + l)), ensuring that our approach remains computationally manageable even as the PLM scales up.While discrete tokens in the PLM's vocabulary could enhance prompt readability, they present limitations in terms of expressiveness and optimization efficiency. Drawing from prior work [26][27]29], we opt to model prompts using continuous virtual tokens rather than discrete tokens. This design choice enables our prompter to capture subtle nuances in the input context, fostering enhanced flexibility and optimization capabilities. By leveraging continuous representations, we can effectively navigate the complex landscape of knowledge retrieval, adapting to diverse contextual cues and generating more accurate responses.In terms of the learning and inference processes, we employ teacher-forcing for model training [30] to guide the PLM towards optimal knowledge retrieval pathways. We maximize the objective function using standard sequence-to-sequence objectives, ensuring that our prompter is optimized for effective contextualization.During inference, we utilize an autoregressive approach, feeding the recalled knowledge from step t-1 as additional context at step t. This operation is repeated for a predefined number of steps. Additionally, we explore the joint training of the Prompter with a Stopper module, which aids in determining when to halt the knowledge recall process.To effectively model the sequential dependencies inherent in the decision-making process, we have chosen to implement the Stopper module using a Recurrent Neural Network (RNN) architecture, as opposed to a straightforward feed-forward Deep Neural Network. Our RNN is designed with two hidden layers, with dimensions of 500 and 100 neurons respectively, which are tasked with outputting a probability value indicating whether the knowledge recall process should be halted.The Stopper module is meticulously trained utilizing a binary cross-entropy loss function, which is strategically combined with the loss function of the Prompter module. A weight factor of 0.2 is judiciously applied to harmonize the contributions from both components. This integrated training approach enables the model to discern the most opportune moments to terminate the recall process, ensuring that it halts only when the amassed evidence is substantial enough to confidently address the query.In our quest for operational efficiency, we have set a stringent maximum limit of 10 recall iterations for our system. If the system fails to extract relevant information within this pre-established limit, the retrieval process is deliberately terminated. This threshold is pivotal in sustaining the system's performance, averting excessive computational costs, and ensuring that the model remains agile and efficient in its knowledge retrieval endeavors. In scenarios where the system reaches this limit without success, the integrity of the RAG system is preserved by activating the web search module. This activation allows the system to seek additional external knowledge, thereby guaranteeing that it can continue to deliver accurate and comprehensive responses. The subsequent operations are designed similarly to [21], with additional details provided in Appendix A.2.In summary, our iterative prompting refinement method is designed to dynamically guide a pre-trained language model (PLM) through a sequence of knowledge recall steps. By leveraging a dynamic Prompter and introducing a more sophisticated Stopper, our approach enhances the adaptability and effectiveness of language models in complex inference tasks, facilitating more accurate and informative responses.",
+    "experiments": "EXPERIMENTSWe undertake an exhaustive series of experiments to comprehensively evaluate the adaptability of IPRAG to RAG-based approaches and its generalizability across both short-form and long-form generation tasks a . Additional experimental details can be found in Appendix A.4.Our experimental design primarily involves comparing IPRAG with various approaches that do not leverage retrieval, including LLaMA2-7B and 13B [31], Alpaca-7B and 13B [32], which employs iterative engineering to enhance the factuality of large language model (LLM) generations. Additionally, we include ChatGPT as a complementary comparison.In the realm of approaches that utilize retrieval, we evaluate the standard RAG framework [8], wherein an LM generates output given the query prepended with the top retrieved documents and utilizing the same retriever as CRAG [21]. Furthermore, we adopt LLaMA2-7B and 13B, Alpaca-7B and 13B. We also incorporate recent works, including Self-RAG [16] that fine-tuned the LLaMA2 on instruction tuning data containing several sets of reflection tokens labeled by GPT-4 [33]. Moreover, we evaluate the most recent work CRAG [21], which constitutes an improved version of Self-RAG. Notably, Self-RAG, CRAG, and our IPRAG all leverage LLaMA2-7B as their backbone model. Datasets and MetricsWe conduct an exhaustive evaluation of IPRAG on two publicly available datasets, specifically PopQA [34] for short-form generation tasks and Biography [35] for long-form generation tasks.Consistent with previous research endeavors, we adopt accuracy as the primary evaluation metric for assessing performance on the PopQA dataset. Meanwhile, we utilize FactScore [35] as the evaluation metric for quantifying the efficacy of IPRAG on the Biography dataset. Main ResultsFigures 5 and6 present the empirical results on the PopQA and Biography datasets, respectively. For a comprehensive understanding of our proposed methodology, readers are referred to Appendix A.3 for additional implementation details. a Code will be available at https://github.com/LittleMonster104/papers/tree/main/IPRAG.A meticulous examination of these results reveals a stark performance disparity between methods that do not leverage RAG and those that do. Specifically, the incorporation of RAG into LLaMA2-7B yields an accuracy of 38.3% on the PopQA dataset, which constitutes a substantial improvement over its non-RAG counterpart (14.9%). Similarly, the integration of RAG into Alpaca-7B leads to a notable increase in performance compared to the non-RAG variant.The inclusion of Self-RAG and CRAG, both of which are based on LLaMA2-7B, further underscores the paramount importance of RAG in enhancing model performance. Notably, IPRAG, as an inferencebased approach, demonstrates its adaptability to different RAG-based methods, achieving a competitive accuracy of 57.9% on the PopQA dataset. These results not only demonstrate the effectiveness of IPRAG in enhancing performance metrics such as accuracy and FactScore, but also validate the role of the prompt score as a key determinant of output quality. By incorporating prompt scoring into the iterative refinement process, the model consistently aligns retrieved knowledge with the query, ensuring coherent and highquality generation.The empirical results for the Biography dataset, as measured by FactScore, also exhibit intriguing trends. Notably, LLaMA2-13B with RAG surpasses its non-RAG counterpart, suggesting that the combination of increased model size and RAG can lead to improved performance on long-form generation tasks. Similarly, Alpaca-13B with RAG demonstrates a significant increase in performance compared to its non-RAG variant.The performance of IPRAG on the Biography dataset is particularly remarkable, achieving a FactScore of 88.9%, which is among the highest scores across all methodologies. This suggests that IPRAG's inferencebased approach can effectively generate coherent and factual responses for long-form generation tasks, thereby underscoring its efficacy in this domain.In conclusion, these experimental results provide compelling evidence for the effectiveness of IPRAG in enhancing model performance on both short-and long-form generation tasks, thereby demonstrating its versatility and adaptability across diverse generative scenarios. Ablation StudyIn our comprehensive ablation study, we conduct an in-depth examination of the performance of two crucial components: the multi-dimensional evaluator and the iteratively prompt refinement method. To evaluate the efficacy of the former, we substitute it with the evaluator employed in [21], which entails utilizing retrieved documents as input to the iteratively prompt refinement module when the \"Correct\" action is triggered, thereby enabling a direct comparison with our proposed methodology, namely IPRAG Correct (Table 1 and2).The empirical results unequivocally demonstrate that IPRAG surpasses IPRAG Correct in terms of both accuracy and factual correctness scores. Notably, IPRAG exhibits a significantly stronger capacity To thoroughly assess the importance of the iteratively prompt refine method, we undertook an exhaustive ablation study by initially excluding this module and subsequently establishing a threshold for the mean score from the evaluator. To facilitate a more streamlined process, we set this threshold at 50, thereby only considering documents with scores exceeding 50 as viable candidates for generation purposes. We denote this simplified setting as IPRAG Simple.The empirical findings are presented in Table 3 and4. The results unequivocally reveal a substantial disparity between the performance of IPRAG and IPRAG Simple. Specifically, IPRAG demonstrates an impressive PopQA accuracy of 57.9% and a Biography fact score of 88.9%, thereby showcasing its remarkable ability to generate accurate information and verify factual correctness with ease. In stark contrast, IPRAG Simple falls significantly short in both regards, underscoring the pivotal role of the iteratively prompt refine method in enhancing the fidelity and reliability of generated content.These results unequivocally underscore the paramount importance of the refinement module in IPRAG, unequivocally demonstrating its pivotal role in facilitating the generation of high-caliber outputs that not only exhibit accuracy but also adhere to factual correctness. Notably, the iterative refinement of prompts, guided by prompt scoring, emerges as a key factor in ensuring output quality. This is further substantiated by the performance gap observed in the ablation study: IPRAG achieves a FactScore of 88.9, significantly surpassing the 68.2 achieved by IPRAG Simple. This clear disparity illustrates how higher prompt scores, in conjunction with the stopper's criteria, effectively align retrieved knowledge with query requirements, ensuring superior generation quality. This finding underscores the imperative need for refining and iteratively enhancing the prompts utilized for generation, as it can precipitate a profound impact on the overall efficacy of the language model, thereby enabling the production of high-fidelity content.",
+    "results": "results from multiple dimensions, emphasizing the importance of developing robust retrieval-augmented generation methods for scenarios where retrieved documents are irrelevant to the query.2) We propose a flexible approach called IPRAG, which leverages iterative prompt refinement to improve automatic self-correction and efficient utilization of retrieved documents, thereby enhancing the overall performance of RAG-based systems.3) Extensive experimental results validate the adaptability and generalizability of IPRAG across various RAG-based approaches, including both short-and long-form generation tasks, providing strong evidence for its practical utility in real-world applications.",
+    "discussion": "",
+    "conclusion": "CONCLUSIONThis paper tackles the pivotal issue wherein RAG-based approaches are susceptible to inaccuracies when retrieval fails, thereby perpetuating misleading knowledge to Large Language Models (LLMs). To mitigate this limitation, we propose IPRAG, a novel approach that enhances the robustness of generation by leveraging a multi-dimensional evaluator to estimate the confidence score of retrieved documents, and an iterative prompt refinement method for adaptive knowledge recall, leveraging contextualized prompting, continuous virtual tokens, and a sophisticated stopper module. IPRAG has demonstrated a significant improvement in automatic self-correction and efficient utilization of retrieved documents. To validate its efficacy, we conducted extensive experiments that showcased its adaptability to RAG-based approaches as well as its generalizability across short-and long-form generation tasks. AUTHOR CONTRIBUTIONSJia Zhu: Methodology; investigation; data curation; validation; writing review and editing; formal analysis; software. Zhangze Chen: writing review and editing; investigation; visualization. Changqin Huang: writing review and editing; project administration; supervision. Pasquale De Meo: writing review and editing; supervision. It can be observed that the performance improves as the prompter scale increases; additionally, BERTsmall achieves an impressive performance, whereas BERT-tiny essentially fails to deliver satisfactory results. This suggests that the prompter requires a minimum scale threshold for our methodology to function effectively.Figure 1 .1Figure 1. Example of a low-quality retriever may lead to irrelevant information. Figure 2 .2Figure 2. Overview of Prompt Refining for Retrieval Augmented Generation (IPRAG). Figure 3 .3Figure 3. Sample Response from the Evaluation Prompt. be a set of prompts and let M be an LLM. Let M(T) be the LLM augmented with the prompt T ∈ T. of pairs (training set) where q i is a question (query) and i q D is the sequence of knowledge statements associated with q i . We define the evaluation function φ(M(T)) associated with the prompt T as the log-likelihood of retrieving the sequence i q D given the question q i for any pair( , ) and the optimal prompt T ★ is defined as: training objective is to learn how to find T which could maximize the log-likelihood. Figure 4 .4Figure 4. Overview of Iteratively Prompt Refinement Module. Figure 5 .5Figure 5. Evaluation Results on the PopQA dataset. Figure 6 .6Figure 6. Evaluation Results on the Biography dataset. Table 1 .1Performance of IPRAG and IPRAG Correct on PopQA (Accuracy).PopQA (Accuracy) Table 2 .2Performance of IPRAG and IPRAG Correct on Biography (FactScore). information, whereas IPRAG Correct appears to struggle with maintaining factual fidelity, thereby suggesting that the evaluation mechanism embedded in IPRAG is more effective in enhancing the robustness of generated content.Biography (FactScore) Table 3 .3Performance of IPRAG and IPRAG Simple on PopQA (Accuracy).PopQA (Accuracy) Table 4 .4Performance of IPRAG and IPRAG Simple on Biography (FactScore).Biography (FactScore) Table A . 5 .A5Performance of BERT-small and BERT-tiny on PopQA.BERT-smallBERT-tiny53.637.7"
+  },
+  "references": [
+    {
+      "id": "b0",
+      "title": "Training language models to follow instructions with human feedback",
+      "authors": [
+        "Ouyang",
+        "Wu",
+        "Jiang",
+        "Almeida",
+        "Wainwright",
+        "Mishkin",
+        "Zhang",
+        "Agarwal",
+        "Slama",
+        "Ray",
+        "Schulman",
+        "Hilton",
+        "Kelton",
+        "Miller",
+        "Simens",
+        "Askell",
+        "Welinder",
+        "Christiano",
+        "Leike",
+        "Lowe"
+      ],
+      "year": "2022",
+      "venue": "NeurIPS"
+    },
+    {
+      "id": "b1",
+      "title": "Llama-lora neural prompt engineering: A deep tuning framework for automatically generating chinese text logical reasoning thinking chains",
+      "authors": [
+        "Chen",
+        "Wang",
+        "Chen",
+        "Lu",
+        "Yang",
+        "Du"
+      ],
+      "year": "2024",
+      "venue": "Data Intelligence"
+    },
+    {
+      "id": "b2",
+      "title": "Survey of hallucination in natural language generation",
+      "authors": [
+        "Ji",
+        "Lee",
+        "Frieske",
+        "Yu",
+        "Su",
+        "Xu",
+        "Ishii",
+        "Bang",
+        "Madotto",
+        "Fung"
+      ],
+      "year": "2023",
+      "venue": "ACM Comput. Surv"
+    },
+    {
+      "id": "b3",
+      "title": "When not to trust language models: Investigating effectiveness of parametric and nonparametric memories",
+      "authors": [
+        "Mallen",
+        "Asai",
+        "Zhong",
+        "Das",
+        "Khashabi",
+        "Hajishirzi"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the 61 st Annual Meeting of the Association for Computational Linguistics"
+    },
+    {
+      "id": "b4",
+      "title": "Factscore: Fine-grained atomic evaluation of factual precision in long form text generation",
+      "authors": [
+        "Min",
+        "Krishna",
+        "Lyu",
+        "Lewis",
+        "Tau Yih",
+        "Wei Koh",
+        "Iyyer",
+        "Zettlemoyer",
+        "Hajishirzi"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b5",
+      "title": "Siren's song in the AI ocean: A survey on hallucination in large language models",
+      "authors": [
+        "Zhang",
+        "Li",
+        "Cui",
+        "Cai",
+        "Liu",
+        "Fu",
+        "Huang",
+        "Zhao",
+        "Zhang",
+        "Chen",
+        "Wang",
+        "Luu",
+        "Bi",
+        "Shi",
+        "Shi"
+      ],
+      "year": "2023",
+      "venue": "CoRR"
+    },
+    {
+      "id": "b6",
+      "title": "Generating benchmarks for factuality evaluation of language models",
+      "authors": [
+        "Muhlgay",
+        "Ram",
+        "Magar",
+        "Levine",
+        "Ratner",
+        "Belinkov",
+        "Abend",
+        "Leyton-Brown",
+        "Shashua",
+        "Shoham"
+      ],
+      "year": "2023",
+      "venue": "CoRR"
+    },
+    {
+      "id": "b7",
+      "title": "Retrievalaugmented generation for knowledge-intensive NLP tasks",
+      "authors": [
+        "Patrick",
+        "Lewis",
+        "Perez",
+        "Piktus",
+        "Petroni",
+        "Karpukhin",
+        "Goyal",
+        "Küttler",
+        "Lewis",
+        "Tau Yih",
+        "Rocktäschel",
+        "Riedel",
+        "Kiela"
+      ],
+      "year": "2020",
+      "venue": "Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems"
+    },
+    {
+      "id": "b8",
+      "title": "Retrieval augmented language model pre-training",
+      "authors": [
+        "Guu",
+        "Lee",
+        "Tung",
+        "Pasupat",
+        "Chang"
+      ],
+      "year": "2020",
+      "venue": "Proceedings of the 37 th International Conference on Machine Learning"
+    },
+    {
+      "id": "b9",
+      "title": "A survey on retrieval-augmented text generation",
+      "authors": [
+        "Li",
+        "Su",
+        "Cai",
+        "Wang",
+        "Liu"
+      ],
+      "year": "2022",
+      "venue": "CoRR"
+    },
+    {
+      "id": "b10",
+      "title": "Large language models can be easily distracted by irrelevant context",
+      "authors": [
+        "Shi",
+        "Chen",
+        "Misra",
+        "Scales",
+        "Dohan",
+        "Chi",
+        "Schärli",
+        "Zhou"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the 40 th International Conference on Machine Learning"
+    },
+    {
+      "id": "b11",
+      "title": "Dialokg: Knowledge-structure aware task-oriented dialogue generation",
+      "authors": [
+        "Md",
+        "Al Hasan Rony",
+        "Usbeck",
+        "Lehmann"
+      ],
+      "year": "2022",
+      "venue": "Findings of the Association for Computational Linguistics: NAACL 2022"
+    },
+    {
+      "id": "b12",
+      "title": "Chatgpt is a remarkable tool-for experts",
+      "authors": [
+        "Azaria",
+        "Azoulay",
+        "Reches"
+      ],
+      "year": "2024",
+      "venue": "Data Intelligence"
+    },
+    {
+      "id": "b13",
+      "title": "The limitations and ethical considerations of chatgpt",
+      "authors": [
+        "Hua",
+        "Shuangci",
+        "Jiang"
+      ],
+      "year": "2024",
+      "venue": "Data intelligence"
+    },
+    {
+      "id": "b14",
+      "title": "Evaluation on chatgpt for chinese language understanding",
+      "authors": [
+        "Li",
+        "Zhang",
+        "Li",
+        "You",
+        "Cui"
+      ],
+      "year": "2023",
+      "venue": "Data Intelligence"
+    },
+    {
+      "id": "b15",
+      "title": "",
+      "authors": [
+        "Asai",
+        "Wu",
+        "Wang",
+        "Sil",
+        "Hajishirzi"
+      ],
+      "year": "2023",
+      "venue": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
+    },
+    {
+      "id": "b16",
+      "title": "",
+      "authors": [
+        "Ori Yoran",
+        "Wolfson",
+        "Ram",
+        "Berant"
+      ],
+      "year": "2023",
+      "venue": "Making Retrieval-Augmented Language Models Robust to Irrelevant Context. CoRR"
+    },
+    {
+      "id": "b17",
+      "title": "Search Augmented Instruction Learning",
+      "authors": [
+        "Luo",
+        "Zhang",
+        "Chuang",
+        "Gong",
+        "Kim",
+        "Wu",
+        "Meng",
+        "Glass"
+      ],
+      "year": "2023",
+      "venue": "Findings of the Association for Computational Linguistics: EMNLP"
+    },
+    {
+      "id": "b18",
+      "title": "",
+      "authors": [
+        "Schick",
+        "Dwivedi-Yu",
+        "Dessì",
+        "Raileanu",
+        "Lomeli",
+        "Zettlemoyer",
+        "Cancedda",
+        "Scialom",
+        "Toolformer"
+      ],
+      "year": "2023",
+      "venue": "Language Models Can Teach Themselves to Use Tools. CoRR"
+    },
+    {
+      "id": "b19",
+      "title": "Active retrieval augmented generation",
+      "authors": [
+        "Jiang",
+        "Xu",
+        "Gao",
+        "Sun",
+        "Liu",
+        "Dwivedi-Yu",
+        "Yang",
+        "Callan",
+        "Neubig"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b20",
+      "title": "",
+      "authors": [
+        "Shi-Qi Yan",
+        "Gu",
+        "Zhu",
+        "Ling"
+      ],
+      "year": "2024",
+      "venue": "Corrective Retrieval Augmented Generation. CoRR"
+    },
+    {
+      "id": "b21",
+      "title": "",
+      "authors": [
+        "Liu",
+        "Liu",
+        "Lu",
+        "Welleck",
+        "West",
+        "Ronan",
+        "Bras",
+        "Choi",
+        "Hajishirzi"
+      ],
+      "year": "2021",
+      "venue": "Generated knowledge prompting for commonsense reasoning"
+    },
+    {
+      "id": "b22",
+      "title": "Scaling Instruction-Finetuned Language Models",
+      "authors": [
+        "Hyung Won",
+        "Hou"
+      ],
+      "year": "2022",
+      "venue": "CoRR"
+    },
+    {
+      "id": "b23",
+      "title": "Rouge: a package for automatic evaluation of summaries",
+      "authors": [
+        "Lin"
+      ],
+      "year": "2004",
+      "venue": "Proceedings of the Workshop on Text Summarization Branches Out (WAS 2004)"
+    },
+    {
+      "id": "b24",
+      "title": "A misunderstood metric from another age",
+      "authors": [
+        "Bleu"
+      ],
+      "year": "2022",
+      "venue": "Online"
+    },
+    {
+      "id": "b25",
+      "title": "The power of scale for parameter-efficient prompt tuning",
+      "authors": [
+        "Lester",
+        "Al-Rfou",
+        "Constant"
+      ],
+      "year": "2021",
+      "venue": "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b26",
+      "title": "Prefix-tuning: Optimizing continuous prompts for generation",
+      "authors": [
+        "Xiang",
+        "Li",
+        "Liang"
+      ],
+      "year": "2021",
+      "venue": "Proceedings of the 59 th Annual Meeting of the Association for Computational Linguistics and the 11 th International Joint Conference on Natural Language Processing"
+    },
+    {
+      "id": "b27",
+      "title": "Deberta: Decoding-enhanced bert with disentangled attention",
+      "authors": [
+        "He",
+        "Liu",
+        "Gao",
+        "Chen"
+      ],
+      "year": "2021",
+      "venue": "International Conference on Learning Representations"
+    },
+    {
+      "id": "b28",
+      "title": "Factual probing is [mask]: Learning vs. learning to recall",
+      "authors": [
+        "Zhong",
+        "Friedman",
+        "Chen"
+      ],
+      "year": "2021",
+      "venue": "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+    },
+    {
+      "id": "b29",
+      "title": "Sequence-to-Sequence Learning with Neural Networks",
+      "authors": [
+        "Sutskever",
+        "Vinyals",
+        "Le"
+      ],
+      "year": "2014",
+      "venue": "Advances in Neural Information Processing Systems"
+    },
+    {
+      "id": "b30",
+      "title": "Llama 2: Open foundation and fine-tuned chat models",
+      "authors": [
+        "Touvron",
+        "Martin",
+        "Stone",
+        "Albert",
+        "Almahairi",
+        "Babaei",
+        "Bashlykov",
+        "Batra",
+        "Bhargava",
+        "Bhosale",
+        "Bikel",
+        "Blecher"
+      ],
+      "year": "2023",
+      "venue": "CoRR"
+    },
+    {
+      "id": "b31",
+      "title": "Alpacafarm: A simulation framework for methods that learn from human feedback",
+      "authors": [
+        "Dubois",
+        "Li",
+        "Taori",
+        "Zhang",
+        "Gulrajani",
+        "Ba",
+        "Guestrin",
+        "Liang",
+        "Hashimoto"
+      ],
+      "year": "2023",
+      "venue": "CoRR"
+    },
+    {
+      "id": "b32",
+      "title": "",
+      "authors": [],
+      "year": "2023",
+      "venue": "GPT-4 technical report"
+    },
+    {
+      "id": "b33",
+      "title": "When not to trust language models: Investigating effectiveness of parametric and nonparametric memories",
+      "authors": [
+        "Mallen",
+        "Asai",
+        "Zhong",
+        "Das",
+        "Khashabi",
+        "Hajishirzi"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the 61 st Annual Meeting of the Association for Computational Linguistics"
+    },
+    {
+      "id": "b34",
+      "title": "Factscore: Fine-grained atomic evaluation of factual precision in long form text generation",
+      "authors": [
+        "Min",
+        "Krishna",
+        "Lyu",
+        "Lewis",
+        "Tau Yih",
+        "Wei Koh",
+        "Iyyer",
+        "Zettlemoyer",
+        "Hajishirzi"
+      ],
+      "year": "2023",
+      "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing"
+    },
+    {
+      "id": "b35",
+      "title": "Decoupled Weight Decay Regularization",
+      "authors": [
+        "Loshchilov",
+        "Hutter"
+      ],
+      "year": "2019",
+      "venue": "International Conference on Learning Representations"
+    }
+  ],
+  "metadata": {
+    "year": "2025",
+    "doi": "10.3724/2096-7004.di.2025.0065",
+    "venue": "Data Intelligence",
+    "processed_at": "2025-12-06T01:02:27.779942"
+  }
+}

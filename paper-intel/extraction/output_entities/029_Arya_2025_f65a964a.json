@@ -1,0 +1,81 @@
+[
+  {
+    "id": "E_029_Arya_2025_f65a964a_1",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_2",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_3",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_4",
+    "type": "Paper",
+    "name": "Brown et al. 2020",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_5",
+    "type": "Paper",
+    "name": "Chowdhery et al. 2022",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_6",
+    "type": "Paper",
+    "name": "Ji et al. 2023",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_7",
+    "type": "Paper",
+    "name": "Lewis et al. 2020",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_8",
+    "type": "Paper",
+    "name": "Yang et al. 2018",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_9",
+    "type": "Paper",
+    "name": "Shao et al. 2023",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_10",
+    "type": "Paper",
+    "name": "Jeong et al. 2024",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_11",
+    "type": "Paper",
+    "name": "Asai et al. 2023",
+    "source_paper_id": "029_Arya_2025_f65a964a"
+  },
+  {
+    "id": "E_029_Arya_2025_f65a964a_12",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "029_Arya_2025_f65a964a",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

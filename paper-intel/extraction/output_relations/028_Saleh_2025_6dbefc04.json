@@ -1,0 +1,1220 @@
+[
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "Vanilla Image Generation Prompt",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_92",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_15",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_16",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_16",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "STUDIES_TASK",
+    "target": "E_028_Saleh_2025_6dbefc04_56",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_15",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_18",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_13",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "USES_MODEL",
+    "target": "E_028_Saleh_2025_6dbefc04_29",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "USES_MODEL",
+    "target": "E_028_Saleh_2025_6dbefc04_30",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "CITES",
+    "target": "Quantized autoencoder [37]",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "Quantized autoencoder [37]",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "ACHIEVES_RESULT",
+    "target": "6.67 FID on Midjourney-30K",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "ACHIEVES_RESULT",
+    "target": "0.78 overall score on GenEval",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_20",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "USES_MODEL",
+    "target": "E_028_Saleh_2025_6dbefc04_17",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_26",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_27",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_28",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_26",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_27",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_28",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_29",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_30",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_29",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_26",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_27",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_28",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_36",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_37",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_38",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_39",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_40",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "Feature-Augmentation in Decoding (FAiD)",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_42",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_13",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_100",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_13",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_100",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_44",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_45",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_46",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_47",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_48",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_49",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "CITES",
+    "target": "https://huggingface.co/da",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_57",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_53",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_54",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "ImageRAG",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "ImageRAG",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "ImageRAG",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "STUDIES_TASK",
+    "target": "E_028_Saleh_2025_6dbefc04_56",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "STUDIES_TASK",
+    "target": "E_028_Saleh_2025_6dbefc04_56",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "ImageRAG",
+    "type": "CITES",
+    "target": "ImageRAG",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_67",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_68",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_69",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_70",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_71",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_1",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_72",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_66",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_66",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_67",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_66",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_67",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_17",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_29",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_79",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Deepseek llm: Scaling open-source language models with longtermism",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_81",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_82",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Conceptual 12m: Pushing web-scale image-text pre-training to recognize long-tail visual concepts",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Blip3-o: A family of fully open unified multimodal models-architecture, training and dataset",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Pixart-α: Fast training of diffusion transformer for photorealistic text-to-image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Re-imagen: Retrievalaugmented text-to-image generator",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Janus-pro: Unified multimodal understanding and generation with data and model scaling",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_88",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "CITES",
+    "target": "Frido: Feature pyramid diffusion for complex scene image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_79",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Deepseek llm: Scaling open-source language models with longtermism",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_81",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_82",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Conceptual 12m: Pushing web-scale image-text pre-training to recognize long-tail visual concepts",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Blip3-o: A family of fully open unified multimodal models-architecture, training and dataset",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Pixart-α: Fast training of diffusion transformer for photorealistic text-to-image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Re-imagen: Retrievalaugmented text-to-image generator",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Janus-pro: Unified multimodal understanding and generation with data and model scaling",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_88",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_74",
+    "type": "AUTHORED_BY",
+    "target": "Frido: Feature pyramid diffusion for complex scene image synthesis",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_61",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_50",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_61",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_51",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "USES_MODEL",
+    "target": "E_028_Saleh_2025_6dbefc04_61",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_91",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_43",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_17",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_17",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_92",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "USES_METHOD",
+    "target": "E_028_Saleh_2025_6dbefc04_93",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "USES_DATASET",
+    "target": "E_028_Saleh_2025_6dbefc04_43",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "ACHIEVES_RESULT",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_96",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_50",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_96",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_97",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_50",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_97",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_96",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_104",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_105",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_96",
+    "type": "AUTHORED_BY",
+    "target": "N/A",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_43",
+    "type": "AUTHORED_BY",
+    "target": "N/A",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_109",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_110",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_109",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_110",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_111",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_111",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_109",
+    "type": "EVALUATES_ON",
+    "target": "Fréchet Inception Distance (FID)",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_109",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "Fréchet Inception Distance (FID)",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_29",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "Fréchet Inception Distance (FID)",
+    "type": "CITES",
+    "target": "E_028_Saleh_2025_6dbefc04_30",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "ACHIEVES_RESULT",
+    "target": "14.12",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "ACHIEVES_RESULT",
+    "target": "13.13",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_29",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_30",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_17",
+    "type": "AUTHORED_BY",
+    "target": "E_028_Saleh_2025_6dbefc04_1",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_114",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_114",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_115",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_115",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_116",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_15",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_116",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_117",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_118",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_20",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_118",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_119",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_119",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_120",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_120",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_121",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_122",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_53",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_123",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_54",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_124",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_53",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_124",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_57",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_125",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_54",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_125",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_14",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_126",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_126",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_127",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_67",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_127",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_66",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_128",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_67",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_128",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_66",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_129",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_67",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_129",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_66",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_130",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_130",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_131",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_131",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_132",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_91",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_132",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_50",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_133",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_133",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_51",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_134",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_134",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_94",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_135",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_98",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_135",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_50",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_136",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_99",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_137",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_139",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_54",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_140",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_110",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_140",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_109",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_141",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_5",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_141",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_4",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_142",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_142",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_109",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_143",
+    "type": "REPORTS_METRIC",
+    "target": "E_028_Saleh_2025_6dbefc04_19",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  },
+  {
+    "source": "E_028_Saleh_2025_6dbefc04_143",
+    "type": "EVALUATES_ON",
+    "target": "E_028_Saleh_2025_6dbefc04_109",
+    "source_paper_id": "028_Saleh_2025_6dbefc04"
+  }
+]

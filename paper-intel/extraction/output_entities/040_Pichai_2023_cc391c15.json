@@ -1,0 +1,129 @@
+[
+  {
+    "id": "E_040_Pichai_2023_cc391c15_1",
+    "type": "Model",
+    "name": "BERT",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_2",
+    "type": "Model",
+    "name": "Transformers",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_3",
+    "type": "Model",
+    "name": "GPT",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_4",
+    "type": "Model",
+    "name": "GPT-2",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_5",
+    "type": "Model",
+    "name": "GPT-3",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_6",
+    "type": "Model",
+    "name": "Bard",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_7",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_8",
+    "type": "Dataset",
+    "name": "GLUE",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_9",
+    "type": "Dataset",
+    "name": "Amazon Rainforest",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_10",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_11",
+    "type": "Metric",
+    "name": "F1-score",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_12",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_13",
+    "type": "Paper",
+    "name": "Bahdanau 2016",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_14",
+    "type": "Paper",
+    "name": "Devlin 2018",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_15",
+    "type": "Paper",
+    "name": "Vaswani 2017",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_16",
+    "type": "Paper",
+    "name": "Radford 2018",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_17",
+    "type": "Paper",
+    "name": "Lewis 2020",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_18",
+    "type": "Paper",
+    "name": "Siriwardhana 2023",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_19",
+    "type": "Paper",
+    "name": "Yu 2022",
+    "source_paper_id": "040_Pichai_2023_cc391c15"
+  },
+  {
+    "id": "E_040_Pichai_2023_cc391c15_20",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "040_Pichai_2023_cc391c15",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

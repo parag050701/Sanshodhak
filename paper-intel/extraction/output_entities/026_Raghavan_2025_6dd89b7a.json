@@ -1,0 +1,69 @@
+[
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_1",
+    "type": "Model",
+    "name": "AR-RAG",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_2",
+    "type": "Method",
+    "name": "Autoregressive Retrieval Augmentation",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_3",
+    "type": "Method",
+    "name": "Distribution-Augmentation in Decoding",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_4",
+    "type": "Dataset",
+    "name": "ImageNet",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_5",
+    "type": "Dataset",
+    "name": "Real-world images",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_6",
+    "type": "Metric",
+    "name": "Accuracy",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_7",
+    "type": "Metric",
+    "name": "BLEU",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_8",
+    "type": "Paper",
+    "name": "None",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_9",
+    "type": "Author",
+    "name": "None",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a"
+  },
+  {
+    "id": "E_026_Raghavan_2025_6dd89b7a_10",
+    "type": "Result",
+    "name": "Accuracy=92.4% on ImageNet",
+    "source_paper_id": "026_Raghavan_2025_6dd89b7a",
+    "properties": {
+      "metric_name": "Accuracy",
+      "metric_value": "92.4%",
+      "dataset": "ImageNet",
+      "experiment_description": "Top-1 accuracy on ImageNet validation set",
+      "improvement_over_baseline": ""
+    }
+  }
+]

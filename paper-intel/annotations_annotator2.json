@@ -1,0 +1,502 @@
+[
+  {
+    "doc_id": "doc_001",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_002",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_003",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_004",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_005",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_006",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_007",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_008",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_009",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_010",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_011",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_012",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_013",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_014",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_015",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_016",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_017",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_018",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_019",
+    "topic": "BM25 tuning",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_020",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_021",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_022",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_023",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_024",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_025",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_026",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_027",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_028",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_029",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_030",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_031",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_032",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_033",
+    "topic": "BM25 tuning",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_034",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_035",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_036",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_037",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_038",
+    "topic": "BM25 tuning",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_039",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_040",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_041",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_042",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_043",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_044",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_045",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_046",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_047",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_048",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_049",
+    "topic": "BM25 tuning",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_050",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_051",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_052",
+    "topic": "BM25 tuning",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_053",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_054",
+    "topic": "BM25 tuning",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_055",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_056",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_057",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_058",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_059",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_060",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_061",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_062",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_063",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_064",
+    "topic": "BM25 tuning",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_065",
+    "topic": "BM25 tuning",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_066",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_067",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_068",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_069",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_070",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_071",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_072",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_073",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_074",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_075",
+    "topic": "BM25 tuning",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_076",
+    "topic": "BM25 tuning",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_077",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_078",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_079",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_080",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_081",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_082",
+    "topic": "Graph Expansion",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_083",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_084",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_085",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_086",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_087",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_088",
+    "topic": "Graph Expansion",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_089",
+    "topic": "BM25 tuning",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_090",
+    "topic": "RAG architecture",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_091",
+    "topic": "RAG architecture",
+    "relevance": "Relevant"
+  },
+  {
+    "doc_id": "doc_092",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_093",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_094",
+    "topic": "BM25 tuning",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_095",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_096",
+    "topic": "Information Retrieval",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_097",
+    "topic": "Graph Expansion",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_098",
+    "topic": "RAG architecture",
+    "relevance": "Partially Relevant"
+  },
+  {
+    "doc_id": "doc_099",
+    "topic": "Information Retrieval",
+    "relevance": "Not Relevant"
+  },
+  {
+    "doc_id": "doc_100",
+    "topic": "Information Retrieval",
+    "relevance": "Relevant"
+  }
+]
