@@ -252,6 +252,8 @@ class GraphRAG:
         # ── Edge type 1: Vocabulary-Jaccard ────────────────────────────
         jaccard_edges = 0
         edge_weights: Dict[Tuple[str, str], float] = {}
+        edge_citation_weight: Dict[Tuple[str, str], float] = defaultdict(float)
+        edge_citation_overlap: Dict[Tuple[str, str], int] = defaultdict(int)
         for i in range(len(papers)):
             for j in range(i + 1, len(papers)):
                 p1, p2 = papers[i], papers[j]
@@ -267,11 +269,25 @@ class GraphRAG:
         # ── Edge type 2: Citation co-occurrence ─────────────────────────
         citation_edges = 0
         if self._raw_text_dir and self._raw_text_dir.is_dir():
-            citation_edges = self._extract_citation_edges(papers, edge_weights)
+            citation_edges = self._extract_citation_edges(
+                papers,
+                edge_weights,
+                edge_citation_weight,
+                edge_citation_overlap,
+            )
 
         # Write final edges to graph
         for (p1, p2), weight in edge_weights.items():
-            self.graph.add_edge(p1, p2, weight=round(weight, 4))
+            citation_weight = float(edge_citation_weight.get((p1, p2), 0.0))
+            citation_overlap = int(edge_citation_overlap.get((p1, p2), 0))
+            self.graph.add_edge(
+                p1,
+                p2,
+                weight=round(weight, 4),
+                citation_weight=round(citation_weight, 4),
+                citation_overlap=citation_overlap,
+                has_citation_edge=citation_weight > 0.0,
+            )
 
         stats = self.get_graph_stats()
         logger.info(
@@ -284,83 +300,97 @@ class GraphRAG:
         )
         return self
 
+    def _extract_reference_signatures(self, text: str) -> Set[str]:
+        """Extract compact citation signatures from a paper's references/body text.
+
+        Supported signatures:
+          - DOI signatures: doi:10.xxxx/...
+          - Author-year signatures: ay:surname:2023
+        """
+        signatures: Set[str] = set()
+
+        # Focus on likely reference-rich segment first, fallback to full text.
+        lower = text.lower()
+        ref_idx = lower.find("references")
+        segment = text[ref_idx:] if ref_idx >= 0 else text[-len(text) // 3 :]
+
+        # DOI pattern is highly precise and can be shared across papers.
+        for doi in re.findall(r"10\.\d{4,9}/[-._;()/:A-Za-z0-9]+", segment):
+            signatures.add(f"doi:{doi.lower().rstrip('.,;)')}")
+
+        # Author-year patterns (APA-like and narrative variants)
+        ay_patterns = [
+            re.compile(r"\b([A-Z][a-zA-Z\-]{2,})\s+et\s+al\.?\s*\(?((?:19|20)\d{2})[a-z]?\)?"),
+            re.compile(r"\b([A-Z][a-zA-Z\-]{2,})\s*[,\(]\s*((?:19|20)\d{2})[a-z]?\)?"),
+        ]
+        for pattern in ay_patterns:
+            for match in pattern.finditer(segment):
+                surname = match.group(1).lower()
+                year = match.group(2)
+                signatures.add(f"ay:{surname}:{year}")
+
+        return signatures
+
     def _extract_citation_edges(
         self,
         papers: List[str],
         edge_weights: Dict,
+        edge_citation_weight: Dict,
+        edge_citation_overlap: Dict,
         citation_boost: float = 0.15,
+        min_shared_refs: int = 1,
     ) -> int:
+        """Add citation-derived edges via shared reference signatures.
+
+        This activates bibliographic coupling even when direct title-to-title
+        matching is sparse in extracted raw text.
+
+        Returns number of paper-pairs with non-zero citation overlap.
         """
-        Scan reference sections in raw .txt files for cross-citations.
+        if not self._raw_text_dir:
+            return 0
 
-        Strategy:
-          1. Find 'References' section in each text file.
-          2. Extract candidate titles (capitalised phrases after a year).
-          3. Match against known paper title-token fingerprints.
-          4. Add/boost edge weight by citation_boost per match.
-
-        Returns: number of citation edges added or boosted.
-        """
-        import re as _re
-
-        # Build title lookup: significant tokens → paper_id
-        # (minimum 3 tokens required for a match to avoid false positives)
-        token_to_papers: Dict[str, Set[str]] = defaultdict(set)
-        for paper_id, tokens in self.paper_title_tokens.items():
-            for t in tokens:
-                if len(t) > 4:  # only meaningful tokens
-                    token_to_papers[t].add(paper_id)
-
-        citation_count = 0
-        ref_pattern = _re.compile(
-            r'(?:References|REFERENCES|Bibliography|BIBLIOGRAPHY)',
-            _re.MULTILINE,
-        )
-        year_title_pattern = _re.compile(
-            r'\b(19|20)\d{2}\b[.,]?\s+([A-Z][^\n]{10,80})',
-        )
+        paper_refs: Dict[str, Set[str]] = {}
 
         for paper_id in papers:
-            # Find corresponding raw text file
             txt_path = self._raw_text_dir / paper_id
             if not txt_path.exists():
-                # Try without extension
                 stem = paper_id.replace('.txt', '')
                 txt_path = self._raw_text_dir / (stem + '.txt')
             if not txt_path.exists():
+                paper_refs[paper_id] = set()
                 continue
 
             try:
                 text = txt_path.read_text(encoding='utf-8', errors='ignore')
             except Exception:
+                paper_refs[paper_id] = set()
                 continue
 
-            # Isolate references section (last 30% of doc is a good heuristic)
-            ref_match = ref_pattern.search(text)
-            ref_section = text[ref_match.start():] if ref_match else text[-len(text)//3:]
+            paper_refs[paper_id] = self._extract_reference_signatures(text)
 
-            # Extract candidate titles from reference lines
-            for year_match in year_title_pattern.finditer(ref_section):
-                candidate = year_match.group(2).strip()
-                candidate_tokens = set(self._tokenize(candidate))
-
-                if len(candidate_tokens) < 3:
+        citation_pairs = 0
+        for i in range(len(papers)):
+            for j in range(i + 1, len(papers)):
+                p1, p2 = papers[i], papers[j]
+                refs1 = paper_refs.get(p1, set())
+                refs2 = paper_refs.get(p2, set())
+                if not refs1 or not refs2:
                     continue
 
-                # Find papers sharing ≥3 title tokens with this reference
-                candidate_papers: Counter = Counter()
-                for tok in candidate_tokens:
-                    for pid in token_to_papers.get(tok, set()):
-                        if pid != paper_id:
-                            candidate_papers[pid] += 1
+                overlap = len(refs1 & refs2)
+                if overlap < min_shared_refs:
+                    continue
 
-                for cited_pid, match_count in candidate_papers.items():
-                    if match_count >= 3:  # strong enough signal
-                        key = (min(paper_id, cited_pid), max(paper_id, cited_pid))
-                        edge_weights[key] = edge_weights.get(key, 0.0) + citation_boost
-                        citation_count += 1
+                key = (min(p1, p2), max(p1, p2))
+                # Cap overlap contribution to avoid swamping semantic component.
+                citation_weight = citation_boost * float(min(overlap, 3))
+                edge_weights[key] = edge_weights.get(key, 0.0) + citation_weight
+                edge_citation_weight[key] = edge_citation_weight.get(key, 0.0) + citation_weight
+                edge_citation_overlap[key] = max(edge_citation_overlap.get(key, 0), overlap)
+                citation_pairs += 1
 
-        return citation_count
+        return citation_pairs
 
     def _get_graph_neighbours(
         self, paper_ids: Set[str], query_emb: Optional[np.ndarray] = None
@@ -696,14 +726,29 @@ class GraphRAG:
         """Return graph statistics suitable for a paper table."""
         if self.graph.number_of_nodes() == 0:
             return {
-                "nodes": 0, "edges": 0,
-                "avg_degree": 0.0, "density": 0.0,
+                "nodes": 0,
+                "edges": 0,
+                "citation_edges": 0,
+                "citation_edge_ratio": 0.0,
+                "avg_degree": 0.0,
+                "density": 0.0,
                 "connected_components": 0,
             }
+
         degrees = [d for _, d in self.graph.degree()]
+        total_edges = self.graph.number_of_edges()
+        citation_edges = sum(
+            1
+            for _, _, attrs in self.graph.edges(data=True)
+            if attrs.get("has_citation_edge", False)
+        )
+        citation_ratio = (citation_edges / total_edges) if total_edges > 0 else 0.0
+
         return {
             "nodes": self.graph.number_of_nodes(),
-            "edges": self.graph.number_of_edges(),
+            "edges": total_edges,
+            "citation_edges": citation_edges,
+            "citation_edge_ratio": citation_ratio,
             "avg_degree": float(np.mean(degrees)),
             "max_degree": int(np.max(degrees)),
             "density": nx.density(self.graph),

@@ -1,0 +1,638 @@
+{
+  "generated_utc": "2026-03-17T08:03:44.714045+00:00",
+  "methodology": "Two annotation criteria applied to live HGR top-5 retrieval results. Criterion A (Strict): relevant iff doc matches primary paper_id. Criterion B (Lenient): relevant iff doc matches any entry in relevant_docs. Cohen's kappa computed over all (question, rank) pairs.",
+  "n_questions": 20,
+  "k": 5,
+  "n_pairs": 100,
+  "observed_agreement": 0.98,
+  "cohens_kappa": 0.9467,
+  "kappa_status": "pass",
+  "threshold": 0.7,
+  "strict_p_at_k": 0.7,
+  "lenient_p_at_k": 0.8,
+  "per_query_detail": [
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What is the main purpose of Retrieval-Augmented Generation (RAG) frameworks?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "003_Unknown_2025_463160c3",
+        "018_Pichappan_2025_ca0f06b1",
+        "039_Unknown_2025_ce4a84f1",
+        "008_Dimitrova_2025_c23d445c",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 0,
+      "lenient_hit": 0
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "According to the RAG research, what are the two main components of the RAG framework?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "003_Unknown_2025_463160c3",
+        "011_Liu_2025_b9ebfa8e",
+        "040_Pichai_2023_cc391c15",
+        "008_Dimitrova_2025_c23d445c",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What similarity metric is commonly used in RAG systems for comparing document embeddings?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "044_Qiao_2025_be8f4989",
+        "011_Liu_2025_b9ebfa8e",
+        "047_Linders_2025_96b24cea",
+        "003_Unknown_2025_463160c3",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 0,
+      "lenient_hit": 0
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "How does RAG address the limitations of traditional language model fine-tuning?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "029_Arya_2025_f65a964a",
+        "003_Unknown_2025_463160c3",
+        "003_Unknown_2025_463160c3",
+        "034_Ghosh_2025_d28a3948",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 0,
+      "lenient_hit": 0
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What base language models were compared in the RAG modularity experiments?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "040_Pichai_2023_cc391c15",
+        "040_Pichai_2023_cc391c15",
+        "011_Liu_2025_b9ebfa8e",
+        "040_Pichai_2023_cc391c15",
+        "003_Unknown_2025_463160c3"
+      ],
+      "labels_strict": [
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "016_Tian_2025_454dd912",
+      "question": "What are the two phases of Knowledge Graph Alignment (KGA) in KG+RAG systems?",
+      "strict_target": "016_Tian_2025_454dd912",
+      "lenient_targets": [
+        "016_Tian_2025_454dd912"
+      ],
+      "retrieved_top5": [
+        "016_Tian_2025_454dd912",
+        "016_Tian_2025_454dd912",
+        "016_Tian_2025_454dd912",
+        "016_Tian_2025_454dd912",
+        "047_Linders_2025_96b24cea"
+      ],
+      "labels_strict": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "016_Tian_2025_454dd912",
+      "question": "How does KGA address knowledge conflict in RAG systems?",
+      "strict_target": "016_Tian_2025_454dd912",
+      "lenient_targets": [
+        "016_Tian_2025_454dd912"
+      ],
+      "retrieved_top5": [
+        "016_Tian_2025_454dd912",
+        "037_Knollmeyer_2025_d92c5d07",
+        "016_Tian_2025_454dd912",
+        "013_Patnaik_2025_6d024ae2",
+        "003_Unknown_2025_463160c3"
+      ],
+      "labels_strict": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "014_Li_2026_f59e3685",
+      "question": "What performance improvements can query optimization techniques achieve in database systems?",
+      "strict_target": "014_Li_2026_f59e3685",
+      "lenient_targets": [
+        "014_Li_2026_f59e3685"
+      ],
+      "retrieved_top5": [
+        "003_Unknown_2025_463160c3",
+        "014_Li_2026_f59e3685",
+        "042_Chandra_2025_fa92c458",
+        "042_Chandra_2025_fa92c458",
+        "008_Dimitrova_2025_c23d445c"
+      ],
+      "labels_strict": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "014_Li_2026_f59e3685",
+      "question": "What machine learning techniques are commonly used for performance prediction in large-scale systems?",
+      "strict_target": "014_Li_2026_f59e3685",
+      "lenient_targets": [
+        "014_Li_2026_f59e3685"
+      ],
+      "retrieved_top5": [
+        "046_Niederhaus_2025_c41834f5",
+        "011_Liu_2025_b9ebfa8e",
+        "014_Li_2026_f59e3685",
+        "030_Bahr_2025_01879ac7",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "042_Chandra_2025_fa92c458",
+      "question": "How do hybrid retrieval mechanisms improve RAG system performance?",
+      "strict_target": "042_Chandra_2025_fa92c458",
+      "lenient_targets": [
+        "042_Chandra_2025_fa92c458"
+      ],
+      "retrieved_top5": [
+        "042_Chandra_2025_fa92c458",
+        "048_Agnihotram_2025_80af63d0",
+        "008_Dimitrova_2025_c23d445c",
+        "039_Unknown_2025_ce4a84f1",
+        "003_Unknown_2025_463160c3"
+      ],
+      "labels_strict": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "035_Vangalapat_2025_4df032dd",
+      "question": "What improvements did query-aware chunking demonstrate in RAG systems?",
+      "strict_target": "035_Vangalapat_2025_4df032dd",
+      "lenient_targets": [
+        "035_Vangalapat_2025_4df032dd"
+      ],
+      "retrieved_top5": [
+        "035_Vangalapat_2025_4df032dd",
+        "035_Vangalapat_2025_4df032dd",
+        "035_Vangalapat_2025_4df032dd",
+        "035_Vangalapat_2025_4df032dd",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What is the significance of the transformer architecture in modern NLP models?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "retrieved_top5": [
+        "041_Yao_2024_33642b2d",
+        "041_Yao_2024_33642b2d",
+        "008_Dimitrova_2025_c23d445c",
+        "037_Knollmeyer_2025_d92c5d07",
+        "003_Unknown_2025_463160c3"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "strict_hit": 0,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "037_Knollmeyer_2025_d92c5d07",
+      "question": "How does GPT-4 represent advances in artificial general intelligence according to recent research?",
+      "strict_target": "037_Knollmeyer_2025_d92c5d07",
+      "lenient_targets": [
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "retrieved_top5": [
+        "037_Knollmeyer_2025_d92c5d07",
+        "016_Tian_2025_454dd912",
+        "016_Tian_2025_454dd912",
+        "041_Yao_2024_33642b2d",
+        "003_Unknown_2025_463160c3"
+      ],
+      "labels_strict": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What role does context play in RAG model performance?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "003_Unknown_2025_463160c3",
+        "016_Tian_2025_454dd912",
+        "040_Pichai_2023_cc391c15",
+        "037_Knollmeyer_2025_d92c5d07",
+        "008_Dimitrova_2025_c23d445c"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What evaluation metrics are used to benchmark RAG system performance?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15",
+        "042_Chandra_2025_fa92c458"
+      ],
+      "retrieved_top5": [
+        "037_Knollmeyer_2025_d92c5d07",
+        "003_Unknown_2025_463160c3",
+        "037_Knollmeyer_2025_d92c5d07",
+        "042_Chandra_2025_fa92c458",
+        "008_Dimitrova_2025_c23d445c"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "strict_hit": 0,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "How do embedding layers transform text data for computational processing in RAG systems?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "003_Unknown_2025_463160c3",
+        "037_Knollmeyer_2025_d92c5d07",
+        "003_Unknown_2025_463160c3",
+        "040_Pichai_2023_cc391c15",
+        "008_Dimitrova_2025_c23d445c"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What is the advantage of modular RAG design over monolithic systems?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "042_Chandra_2025_fa92c458",
+        "008_Dimitrova_2025_c23d445c",
+        "040_Pichai_2023_cc391c15",
+        "040_Pichai_2023_cc391c15",
+        "003_Unknown_2025_463160c3"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "How does neural machine translation (NMT) represent a turning point in language comprehension?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "040_Pichai_2023_cc391c15",
+        "008_Dimitrova_2025_c23d445c",
+        "030_Bahr_2025_01879ac7",
+        "044_Qiao_2025_be8f4989",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "040_Pichai_2023_cc391c15",
+      "question": "What is the cross-entropy loss used for in language model training?",
+      "strict_target": "040_Pichai_2023_cc391c15",
+      "lenient_targets": [
+        "040_Pichai_2023_cc391c15"
+      ],
+      "retrieved_top5": [
+        "040_Pichai_2023_cc391c15",
+        "044_Qiao_2025_be8f4989",
+        "007_Zhu_2025_e53c7a14",
+        "010_Kothapalli_2024_3b9952ed",
+        "026_Raghavan_2025_6dd89b7a"
+      ],
+      "labels_strict": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 1,
+      "lenient_hit": 1
+    },
+    {
+      "qid": "042_Chandra_2025_fa92c458",
+      "question": "Why is reciprocal rank fusion (RRF) effective for combining retrieval results?",
+      "strict_target": "042_Chandra_2025_fa92c458",
+      "lenient_targets": [
+        "035_Vangalapat_2025_4df032dd",
+        "042_Chandra_2025_fa92c458"
+      ],
+      "retrieved_top5": [
+        "029_Arya_2025_f65a964a",
+        "048_Agnihotram_2025_80af63d0",
+        "048_Agnihotram_2025_80af63d0",
+        "034_Ghosh_2025_d28a3948",
+        "037_Knollmeyer_2025_d92c5d07"
+      ],
+      "labels_strict": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "labels_lenient": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_hit": 0,
+      "lenient_hit": 0
+    }
+  ]
+}

@@ -1,0 +1,3208 @@
+{
+  "source_corpus": "data/priority1_build/corpus_smoke_after_patch.json",
+  "num_papers": 20,
+  "num_papers_used": 20,
+  "questions": [
+    {
+      "question": "How does Multimedia Graph Codes for Fast compare to baseline?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "What are the limitations of Multimedia Graph Codes for Fast?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "Can Multimedia Graph Codes for Fast be combined with related methods?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does Multimedia Graph Codes for Fast scale to large-scale retrieval?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "What novel applications could Multimedia Graph Codes for Fast enable?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does domain knowledge improve Multimedia Graph Codes for Fast?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Multimedia Graph Codes for Fast?",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does Multimedia Graph Codes for Fast compare to baseline? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "What are the limitations of Multimedia Graph Codes for Fast? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "Can Multimedia Graph Codes for Fast be combined with related methods? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does Multimedia Graph Codes for Fast scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "What novel applications could Multimedia Graph Codes for Fast enable? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does domain knowledge improve Multimedia Graph Codes for Fast? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Multimedia Graph Codes for Fast? (variant 1)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does Multimedia Graph Codes for Fast compare to baseline? (variant 2)",
+      "paper_title": "Multimedia Graph Codes for Fast and Semantic Retrieval-Augmented Generation",
+      "paper_doi": "10.3390/electronics14122472",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 3.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation: Enhancing AI with compare to baseline?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation: Enhancing AI with?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation: Enhancing AI with be combined with related methods?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation: Enhancing AI with scale to large-scale retrieval?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation: Enhancing AI with enable?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation: Enhancing AI with?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation: Enhancing AI with?",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Evaluation of Retrieval Methods in compare to baseline?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Evaluation of Retrieval Methods in?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Evaluation of Retrieval Methods in be combined with related methods?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Evaluation of Retrieval Methods in scale to large-scale retrieval?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Evaluation of Retrieval Methods in enable?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Evaluation of Retrieval Methods in?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Evaluation of Retrieval Methods in?",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Comparative Performance of Retrieval Augmented compare to baseline?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Comparative Performance of Retrieval Augmented?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Comparative Performance of Retrieval Augmented be combined with related methods?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Comparative Performance of Retrieval Augmented scale to large-scale retrieval?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Comparative Performance of Retrieval Augmented enable?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Comparative Performance of Retrieval Augmented?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Comparative Performance of Retrieval Augmented?",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Protótipo de Pesquisa Documental para compare to baseline?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Protótipo de Pesquisa Documental para?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Protótipo de Pesquisa Documental para be combined with related methods?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Protótipo de Pesquisa Documental para scale to large-scale retrieval?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Protótipo de Pesquisa Documental para enable?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Protótipo de Pesquisa Documental para?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Protótipo de Pesquisa Documental para?",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a compare to baseline?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a be combined with related methods?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a scale to large-scale retrieval?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a enable?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a?",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Vector Databases and Retrieval-Augmented Generation compare to baseline?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Vector Databases and Retrieval-Augmented Generation?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Vector Databases and Retrieval-Augmented Generation be combined with related methods?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Vector Databases and Retrieval-Augmented Generation scale to large-scale retrieval?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Vector Databases and Retrieval-Augmented Generation enable?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Vector Databases and Retrieval-Augmented Generation?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Vector Databases and Retrieval-Augmented Generation?",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does AQACO: Adaptive Query-Aware Chunking Optimization compare to baseline?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of AQACO: Adaptive Query-Aware Chunking Optimization?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can AQACO: Adaptive Query-Aware Chunking Optimization be combined with related methods?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does AQACO: Adaptive Query-Aware Chunking Optimization scale to large-scale retrieval?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could AQACO: Adaptive Query-Aware Chunking Optimization enable?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve AQACO: Adaptive Query-Aware Chunking Optimization?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for AQACO: Adaptive Query-Aware Chunking Optimization?",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Automating Threat Intelligence Analysis with compare to baseline?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Automating Threat Intelligence Analysis with?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Automating Threat Intelligence Analysis with be combined with related methods?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Automating Threat Intelligence Analysis with scale to large-scale retrieval?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Automating Threat Intelligence Analysis with enable?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Automating Threat Intelligence Analysis with?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Automating Threat Intelligence Analysis with?",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА compare to baseline?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА be combined with related methods?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА scale to large-scale retrieval?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА enable?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА?",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does SISTEM CHATBOT KESEHATAN MENTAL BERBASIS compare to baseline?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of SISTEM CHATBOT KESEHATAN MENTAL BERBASIS?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can SISTEM CHATBOT KESEHATAN MENTAL BERBASIS be combined with related methods?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does SISTEM CHATBOT KESEHATAN MENTAL BERBASIS scale to large-scale retrieval?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could SISTEM CHATBOT KESEHATAN MENTAL BERBASIS enable?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve SISTEM CHATBOT KESEHATAN MENTAL BERBASIS?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for SISTEM CHATBOT KESEHATAN MENTAL BERBASIS?",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG) for Real-Time compare to baseline?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation (RAG) for Real-Time?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation (RAG) for Real-Time be combined with related methods?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG) for Real-Time scale to large-scale retrieval?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation (RAG) for Real-Time enable?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation (RAG) for Real-Time?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation (RAG) for Real-Time?",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Nursing Retrieval-Augmented Generation: Retrieval augmented compare to baseline?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Nursing Retrieval-Augmented Generation: Retrieval augmented?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Nursing Retrieval-Augmented Generation: Retrieval augmented be combined with related methods?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Nursing Retrieval-Augmented Generation: Retrieval augmented scale to large-scale retrieval?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Nursing Retrieval-Augmented Generation: Retrieval augmented enable?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Nursing Retrieval-Augmented Generation: Retrieval augmented?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Nursing Retrieval-Augmented Generation: Retrieval augmented?",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT compare to baseline?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT be combined with related methods?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT scale to large-scale retrieval?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT enable?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT?",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Remote Sensing Retrieval-Augmented Generation: Bridging compare to baseline?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Remote Sensing Retrieval-Augmented Generation: Bridging?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Remote Sensing Retrieval-Augmented Generation: Bridging be combined with related methods?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Remote Sensing Retrieval-Augmented Generation: Bridging scale to large-scale retrieval?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Remote Sensing Retrieval-Augmented Generation: Bridging enable?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Remote Sensing Retrieval-Augmented Generation: Bridging?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Remote Sensing Retrieval-Augmented Generation: Bridging?",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Securing Retrieval-Augmented Generation - Privacy compare to baseline?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Securing Retrieval-Augmented Generation - Privacy?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Securing Retrieval-Augmented Generation - Privacy be combined with related methods?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Securing Retrieval-Augmented Generation - Privacy scale to large-scale retrieval?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Securing Retrieval-Augmented Generation - Privacy enable?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Securing Retrieval-Augmented Generation - Privacy?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Securing Retrieval-Augmented Generation - Privacy?",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval augmented generation using engineering compare to baseline?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval augmented generation using engineering?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval augmented generation using engineering be combined with related methods?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval augmented generation using engineering scale to large-scale retrieval?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval augmented generation using engineering enable?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval augmented generation using engineering?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval augmented generation using engineering?",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Optimierte Interaktion mit Large Language compare to baseline?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Optimierte Interaktion mit Large Language?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Optimierte Interaktion mit Large Language be combined with related methods?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Optimierte Interaktion mit Large Language scale to large-scale retrieval?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Optimierte Interaktion mit Large Language enable?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Optimierte Interaktion mit Large Language?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Optimierte Interaktion mit Large Language?",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG)-Based Chatbot System compare to baseline?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation (RAG)-Based Chatbot System?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation (RAG)-Based Chatbot System be combined with related methods?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG)-Based Chatbot System scale to large-scale retrieval?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation (RAG)-Based Chatbot System enable?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation (RAG)-Based Chatbot System?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation (RAG)-Based Chatbot System?",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Agentic Retrieval-Augmented Generation: Advancing AI-Driven compare to baseline?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Agentic Retrieval-Augmented Generation: Advancing AI-Driven?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Agentic Retrieval-Augmented Generation: Advancing AI-Driven be combined with related methods?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Agentic Retrieval-Augmented Generation: Advancing AI-Driven scale to large-scale retrieval?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Agentic Retrieval-Augmented Generation: Advancing AI-Driven enable?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Agentic Retrieval-Augmented Generation: Advancing AI-Driven?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Agentic Retrieval-Augmented Generation: Advancing AI-Driven?",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation: Enhancing AI with compare to baseline? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation: Enhancing AI with? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation: Enhancing AI with be combined with related methods? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation: Enhancing AI with scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation: Enhancing AI with enable? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation: Enhancing AI with? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation: Enhancing AI with? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Evaluation of Retrieval Methods in compare to baseline? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Evaluation of Retrieval Methods in? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Evaluation of Retrieval Methods in be combined with related methods? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Evaluation of Retrieval Methods in scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Evaluation of Retrieval Methods in enable? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Evaluation of Retrieval Methods in? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Evaluation of Retrieval Methods in? (variant 1)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Comparative Performance of Retrieval Augmented compare to baseline? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Comparative Performance of Retrieval Augmented? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Comparative Performance of Retrieval Augmented be combined with related methods? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Comparative Performance of Retrieval Augmented scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Comparative Performance of Retrieval Augmented enable? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Comparative Performance of Retrieval Augmented? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Comparative Performance of Retrieval Augmented? (variant 1)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Protótipo de Pesquisa Documental para compare to baseline? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Protótipo de Pesquisa Documental para? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Protótipo de Pesquisa Documental para be combined with related methods? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Protótipo de Pesquisa Documental para scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Protótipo de Pesquisa Documental para enable? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Protótipo de Pesquisa Documental para? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Protótipo de Pesquisa Documental para? (variant 1)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a compare to baseline? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a be combined with related methods? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a enable? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a? (variant 1)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Vector Databases and Retrieval-Augmented Generation compare to baseline? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Vector Databases and Retrieval-Augmented Generation? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Vector Databases and Retrieval-Augmented Generation be combined with related methods? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Vector Databases and Retrieval-Augmented Generation scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Vector Databases and Retrieval-Augmented Generation enable? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Vector Databases and Retrieval-Augmented Generation? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Vector Databases and Retrieval-Augmented Generation? (variant 1)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does AQACO: Adaptive Query-Aware Chunking Optimization compare to baseline? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of AQACO: Adaptive Query-Aware Chunking Optimization? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can AQACO: Adaptive Query-Aware Chunking Optimization be combined with related methods? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does AQACO: Adaptive Query-Aware Chunking Optimization scale to large-scale retrieval? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could AQACO: Adaptive Query-Aware Chunking Optimization enable? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve AQACO: Adaptive Query-Aware Chunking Optimization? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for AQACO: Adaptive Query-Aware Chunking Optimization? (variant 1)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Automating Threat Intelligence Analysis with compare to baseline? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Automating Threat Intelligence Analysis with? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Automating Threat Intelligence Analysis with be combined with related methods? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Automating Threat Intelligence Analysis with scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Automating Threat Intelligence Analysis with enable? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Automating Threat Intelligence Analysis with? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Automating Threat Intelligence Analysis with? (variant 1)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА compare to baseline? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА be combined with related methods? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА scale to large-scale retrieval? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА enable? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА? (variant 1)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does SISTEM CHATBOT KESEHATAN MENTAL BERBASIS compare to baseline? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of SISTEM CHATBOT KESEHATAN MENTAL BERBASIS? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can SISTEM CHATBOT KESEHATAN MENTAL BERBASIS be combined with related methods? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does SISTEM CHATBOT KESEHATAN MENTAL BERBASIS scale to large-scale retrieval? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could SISTEM CHATBOT KESEHATAN MENTAL BERBASIS enable? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve SISTEM CHATBOT KESEHATAN MENTAL BERBASIS? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for SISTEM CHATBOT KESEHATAN MENTAL BERBASIS? (variant 1)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG) for Real-Time compare to baseline? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation (RAG) for Real-Time? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation (RAG) for Real-Time be combined with related methods? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG) for Real-Time scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation (RAG) for Real-Time enable? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation (RAG) for Real-Time? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation (RAG) for Real-Time? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Nursing Retrieval-Augmented Generation: Retrieval augmented compare to baseline? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Nursing Retrieval-Augmented Generation: Retrieval augmented? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Nursing Retrieval-Augmented Generation: Retrieval augmented be combined with related methods? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Nursing Retrieval-Augmented Generation: Retrieval augmented scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Nursing Retrieval-Augmented Generation: Retrieval augmented enable? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Nursing Retrieval-Augmented Generation: Retrieval augmented? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Nursing Retrieval-Augmented Generation: Retrieval augmented? (variant 1)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT compare to baseline? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT be combined with related methods? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT scale to large-scale retrieval? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT enable? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT? (variant 1)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Remote Sensing Retrieval-Augmented Generation: Bridging compare to baseline? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Remote Sensing Retrieval-Augmented Generation: Bridging? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Remote Sensing Retrieval-Augmented Generation: Bridging be combined with related methods? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Remote Sensing Retrieval-Augmented Generation: Bridging scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Remote Sensing Retrieval-Augmented Generation: Bridging enable? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Remote Sensing Retrieval-Augmented Generation: Bridging? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Remote Sensing Retrieval-Augmented Generation: Bridging? (variant 1)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Securing Retrieval-Augmented Generation - Privacy compare to baseline? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Securing Retrieval-Augmented Generation - Privacy? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Securing Retrieval-Augmented Generation - Privacy be combined with related methods? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Securing Retrieval-Augmented Generation - Privacy scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Securing Retrieval-Augmented Generation - Privacy enable? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Securing Retrieval-Augmented Generation - Privacy? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Securing Retrieval-Augmented Generation - Privacy? (variant 1)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval augmented generation using engineering compare to baseline? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval augmented generation using engineering? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval augmented generation using engineering be combined with related methods? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval augmented generation using engineering scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval augmented generation using engineering enable? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval augmented generation using engineering? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval augmented generation using engineering? (variant 1)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Optimierte Interaktion mit Large Language compare to baseline? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Optimierte Interaktion mit Large Language? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Optimierte Interaktion mit Large Language be combined with related methods? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Optimierte Interaktion mit Large Language scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Optimierte Interaktion mit Large Language enable? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Optimierte Interaktion mit Large Language? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Optimierte Interaktion mit Large Language? (variant 1)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG)-Based Chatbot System compare to baseline? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation (RAG)-Based Chatbot System? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation (RAG)-Based Chatbot System be combined with related methods? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG)-Based Chatbot System scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation (RAG)-Based Chatbot System enable? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation (RAG)-Based Chatbot System? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation (RAG)-Based Chatbot System? (variant 1)",
+      "paper_title": "Retrieval-Augmented Generation (RAG)-Based Chatbot System",
+      "paper_doi": "10.64388/irev9i5-1712249",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Agentic Retrieval-Augmented Generation: Advancing AI-Driven compare to baseline? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Agentic Retrieval-Augmented Generation: Advancing AI-Driven? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Agentic Retrieval-Augmented Generation: Advancing AI-Driven be combined with related methods? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Agentic Retrieval-Augmented Generation: Advancing AI-Driven scale to large-scale retrieval? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Agentic Retrieval-Augmented Generation: Advancing AI-Driven enable? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Agentic Retrieval-Augmented Generation: Advancing AI-Driven? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Agentic Retrieval-Augmented Generation: Advancing AI-Driven? (variant 1)",
+      "paper_title": "Agentic Retrieval-Augmented Generation: Advancing AI-Driven Information Retrieval and Processing",
+      "paper_doi": "10.14445/22312803/ijctt-v73i1p111",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation: Enhancing AI with compare to baseline? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation: Enhancing AI with? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation: Enhancing AI with be combined with related methods? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation: Enhancing AI with scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation: Enhancing AI with enable? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation: Enhancing AI with? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation: Enhancing AI with? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation: Enhancing AI with Reliable Knowledge.",
+      "paper_doi": "10.21275/sr251104092705",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Evaluation of Retrieval Methods in compare to baseline? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Evaluation of Retrieval Methods in? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Evaluation of Retrieval Methods in be combined with related methods? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Evaluation of Retrieval Methods in scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Evaluation of Retrieval Methods in enable? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Evaluation of Retrieval Methods in? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Evaluation of Retrieval Methods in? (variant 2)",
+      "paper_title": "Evaluation of Retrieval Methods in Domain-Specific Chatbots Based on Retrieval-Augmented Generation",
+      "paper_doi": "10.36085/jsai.v9i1.9897",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Comparative Performance of Retrieval Augmented compare to baseline? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Comparative Performance of Retrieval Augmented? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Comparative Performance of Retrieval Augmented be combined with related methods? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Comparative Performance of Retrieval Augmented scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Comparative Performance of Retrieval Augmented enable? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Comparative Performance of Retrieval Augmented? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Comparative Performance of Retrieval Augmented? (variant 2)",
+      "paper_title": "Comparative Performance of Retrieval Augmented Generation Tourism Chatbots",
+      "paper_doi": "10.21070/ijins.v27i1.1836",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Protótipo de Pesquisa Documental para compare to baseline? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Protótipo de Pesquisa Documental para? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Protótipo de Pesquisa Documental para be combined with related methods? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Protótipo de Pesquisa Documental para scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Protótipo de Pesquisa Documental para enable? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Protótipo de Pesquisa Documental para? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Protótipo de Pesquisa Documental para? (variant 2)",
+      "paper_title": "Protótipo de Pesquisa Documental para a Polícia Militar do Paraná com Retrieval Augmented Generation e Gemini AI em Ambiente Dockerizado",
+      "paper_doi": "10.51473/rcmos.v1i2.2024.736",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a compare to baseline? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a be combined with related methods? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a enable? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a? (variant 2)",
+      "paper_title": "Aufbau eines Retrieval-Augmented-Generation-Systems/Design of a Retrieval-Augmented Generation (RAG) system for knowledge retention in SMEs",
+      "paper_doi": "10.37544/1436-4980-2025-06-23",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Vector Databases and Retrieval-Augmented Generation compare to baseline? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Vector Databases and Retrieval-Augmented Generation? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Vector Databases and Retrieval-Augmented Generation be combined with related methods? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Vector Databases and Retrieval-Augmented Generation scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Vector Databases and Retrieval-Augmented Generation enable? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Vector Databases and Retrieval-Augmented Generation? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Vector Databases and Retrieval-Augmented Generation? (variant 2)",
+      "paper_title": "Vector Databases and Retrieval-Augmented Generation for Accurate AI-Driven Project Estimation",
+      "paper_doi": "10.21275/sr251231215738",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does AQACO: Adaptive Query-Aware Chunking Optimization compare to baseline? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of AQACO: Adaptive Query-Aware Chunking Optimization? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can AQACO: Adaptive Query-Aware Chunking Optimization be combined with related methods? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does AQACO: Adaptive Query-Aware Chunking Optimization scale to large-scale retrieval? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could AQACO: Adaptive Query-Aware Chunking Optimization enable? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve AQACO: Adaptive Query-Aware Chunking Optimization? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for AQACO: Adaptive Query-Aware Chunking Optimization? (variant 2)",
+      "paper_title": "AQACO: Adaptive Query-Aware Chunking Optimization for Retrieval-Augmented Generation Systems",
+      "paper_doi": "10.21275/sr25329182150",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Automating Threat Intelligence Analysis with compare to baseline? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Automating Threat Intelligence Analysis with? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Automating Threat Intelligence Analysis with be combined with related methods? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Automating Threat Intelligence Analysis with scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Automating Threat Intelligence Analysis with enable? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Automating Threat Intelligence Analysis with? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Automating Threat Intelligence Analysis with? (variant 2)",
+      "paper_title": "Automating Threat Intelligence Analysis with Retrieval Augmented Generation (RAG) for Enhanced Cybersecurity Posture",
+      "paper_doi": "10.21275/sr24502103758",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА compare to baseline? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА be combined with related methods? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА scale to large-scale retrieval? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА enable? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА? (variant 2)",
+      "paper_title": "RAG (RETRIEVAL-AUGMENTED GENERATION) ЯК НОВА ПАРАДИГМА КОРПОРАТИВНОЇ АВТОМАТИЗАЦІЇ",
+      "paper_doi": "10.31891/2307-5732-2026-361-53",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does SISTEM CHATBOT KESEHATAN MENTAL BERBASIS compare to baseline? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of SISTEM CHATBOT KESEHATAN MENTAL BERBASIS? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can SISTEM CHATBOT KESEHATAN MENTAL BERBASIS be combined with related methods? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does SISTEM CHATBOT KESEHATAN MENTAL BERBASIS scale to large-scale retrieval? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could SISTEM CHATBOT KESEHATAN MENTAL BERBASIS enable? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve SISTEM CHATBOT KESEHATAN MENTAL BERBASIS? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for SISTEM CHATBOT KESEHATAN MENTAL BERBASIS? (variant 2)",
+      "paper_title": "SISTEM CHATBOT KESEHATAN MENTAL BERBASIS LLM  DENGAN DETEKSI EMOSI DAN RETRIEVAL AUGMENTED GENERATION",
+      "paper_doi": "10.36341/rabit.v11i1.7347",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG) for Real-Time compare to baseline? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval-Augmented Generation (RAG) for Real-Time? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval-Augmented Generation (RAG) for Real-Time be combined with related methods? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval-Augmented Generation (RAG) for Real-Time scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval-Augmented Generation (RAG) for Real-Time enable? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval-Augmented Generation (RAG) for Real-Time? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval-Augmented Generation (RAG) for Real-Time? (variant 2)",
+      "paper_title": "Retrieval-Augmented Generation (RAG) for Real-Time Financial Market Analysis",
+      "paper_doi": "10.37547/tajiir/volume07issue07-12",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Nursing Retrieval-Augmented Generation: Retrieval augmented compare to baseline? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Nursing Retrieval-Augmented Generation: Retrieval augmented? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Nursing Retrieval-Augmented Generation: Retrieval augmented be combined with related methods? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Nursing Retrieval-Augmented Generation: Retrieval augmented scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Nursing Retrieval-Augmented Generation: Retrieval augmented enable? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Nursing Retrieval-Augmented Generation: Retrieval augmented? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Nursing Retrieval-Augmented Generation: Retrieval augmented? (variant 2)",
+      "paper_title": "Nursing Retrieval-Augmented Generation: Retrieval augmented generation for nursing question answering with large language models",
+      "paper_doi": "10.1016/j.ijnss.2025.10.005",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT compare to baseline? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT be combined with related methods? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT scale to large-scale retrieval? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT enable? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT? (variant 2)",
+      "paper_title": "PENGEMBANGAN RETRIEVAL-AUGMENTED GENERATION (RAG) CHATBOT MENGGUNAKAN METODE DESIGN THINKING UNTUK MENDUKUNG PERSONALIZED LEARNING",
+      "paper_doi": "10.21009/pinter.9.2.1",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Remote Sensing Retrieval-Augmented Generation: Bridging compare to baseline? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Remote Sensing Retrieval-Augmented Generation: Bridging? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Remote Sensing Retrieval-Augmented Generation: Bridging be combined with related methods? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Remote Sensing Retrieval-Augmented Generation: Bridging scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Remote Sensing Retrieval-Augmented Generation: Bridging enable? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Remote Sensing Retrieval-Augmented Generation: Bridging? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Remote Sensing Retrieval-Augmented Generation: Bridging? (variant 2)",
+      "paper_title": "Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model",
+      "paper_doi": "10.1109/mgrs.2025.3645852",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Securing Retrieval-Augmented Generation - Privacy compare to baseline? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Securing Retrieval-Augmented Generation - Privacy? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Securing Retrieval-Augmented Generation - Privacy be combined with related methods? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Securing Retrieval-Augmented Generation - Privacy scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Securing Retrieval-Augmented Generation - Privacy enable? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Securing Retrieval-Augmented Generation - Privacy? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Securing Retrieval-Augmented Generation - Privacy? (variant 2)",
+      "paper_title": "Securing Retrieval-Augmented Generation - Privacy Risks and Mitigation Strategies",
+      "paper_doi": "10.2139/ssrn.5191687",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval augmented generation using engineering compare to baseline? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Retrieval augmented generation using engineering? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Retrieval augmented generation using engineering be combined with related methods? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Retrieval augmented generation using engineering scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Retrieval augmented generation using engineering enable? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Retrieval augmented generation using engineering? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Retrieval augmented generation using engineering? (variant 2)",
+      "paper_title": "Retrieval augmented generation using engineering design knowledge",
+      "paper_doi": "10.1016/j.knosys.2024.112410",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Optimierte Interaktion mit Large Language compare to baseline? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What are the limitations of Optimierte Interaktion mit Large Language? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "Can Optimierte Interaktion mit Large Language be combined with related methods? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does Optimierte Interaktion mit Large Language scale to large-scale retrieval? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What novel applications could Optimierte Interaktion mit Large Language enable? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "How does domain knowledge improve Optimierte Interaktion mit Large Language? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    },
+    {
+      "question": "What evaluation metrics are most suitable for Optimierte Interaktion mit Large Language? (variant 2)",
+      "paper_title": "Optimierte Interaktion mit Large Language Models",
+      "paper_doi": "10.1007/s00117-025-01416-2",
+      "source": "template_generated",
+      "quality": "candidate",
+      "resolvability_score": 2.0
+    }
+  ],
+  "generated_at": 1774284143.2373726
+}

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Ablation study: contribution of each retrieval component.
+$\Delta$ columns show improvement over the Dense-only baseline (VR-D).}
+\label{tab:ablation}
+\begin{tabular}{llccccccc}
+\toprule
+System & Description & P@1 & R@5 & NDCG@5 & MRR & $\Delta$P@1 & $\Delta$NDCG@5 & $\Delta$MRR \\
+\midrule
+VR-D & Dense only (FAISS) & 0.350 & 0.825 & 0.605 & 0.546 & — & — & — \\
+VR-H & +BM25 (Hybrid) & 0.300 & 0.725 & 0.533 & 0.479 & -0.050 & -0.072 & -0.067 \\
+GR & +Graph expansion (no BM25) & 0.350 & 0.800 & 0.595 & 0.533 & — & -0.010 & -0.013 \\
+\textbf{HGR} & +BM25 +Graph (full system) & \textbf{0.450} & \textbf{0.850} & \textbf{0.665} & \textbf{0.627} & \textbf{+0.100} & \textbf{+0.060} & \textbf{+0.081} \\
+\bottomrule
+\end{tabular}
+\end{table}

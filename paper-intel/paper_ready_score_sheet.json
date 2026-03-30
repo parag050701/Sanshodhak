@@ -1,0 +1,201 @@
+{
+  "generated_utc": "2026-03-23T10:40:46.647931+00:00",
+  "source_files": {
+    "eval_summary": "eval_summary.json",
+    "ablation": "journal_claim_sync/ablation_report.json",
+    "claim_sync": "journal_claim_sync/claim_sync_report.json",
+    "citation_activation": "journal_claim_sync/citation_activation_report.json",
+    "latency_split": "journal_claim_sync/latency_split_report.json",
+    "iaa": "journal_claim_sync/iaa_report.json",
+    "beir": "beir_results.json",
+    "stat_test": "stat_test_results.json",
+    "scalability_no_graph": "scalability_results/scalability_results.json",
+    "scalability_graph_small": "scalability_results_graph_small/scalability_results.json"
+  },
+  "headline_hgr": {
+    "P@1": 0.45,
+    "R@5": 0.85,
+    "NDCG@5": 0.665281540814747,
+    "MRR": 0.6266666666666667,
+    "MAP": 0.6091666666666666,
+    "ROUGE-1": 0.3457333747108784,
+    "ROUGE-L": 0.23295971496568293,
+    "BERTScore-F1": 0.875389575958252,
+    "Latency-mean-s": 14.797827219963073,
+    "Latency-p95-s": 21.410876405239115
+  },
+  "ablation_delta_vs_dense": {
+    "P@1": 0.1,
+    "NDCG@5": 0.0603,
+    "MRR": 0.0808,
+    "R@5": 0.025
+  },
+  "quality_gates": {
+    "claim_sync_status": "pass",
+    "citation_activation_pass": true,
+    "citation_edges": 6,
+    "iaa_kappa": 0.9467,
+    "iaa_status": "pass",
+    "iaa_observed_agreement": 0.98
+  },
+  "beir_external": {
+    "SciFact": {
+      "NDCG@10": 0.682,
+      "MRR": 0.61
+    },
+    "NFCorpus": {
+      "NDCG@10": 0.59,
+      "MRR": 0.545
+    }
+  },
+  "stat_significance": {
+    "p_value": 0.034,
+    "significant": true
+  },
+  "latency_split_hgr": {
+    "retrieval_only": {
+      "mean_s": 0.1808144450187683,
+      "median_s": 0.1769108772277832,
+      "p95_s": 0.21265954971313478
+    },
+    "end_to_end": {
+      "mean_s": 0.1812928318977356,
+      "median_s": 0.18035471439361572,
+      "p95_s": 0.2087420701980591
+    },
+    "generation_estimate": {
+      "mean_s": 0.00964106321334839,
+      "median_s": 0.005491733551025391,
+      "p95_s": 0.03212124109268189
+    },
+    "n_questions": 20
+  },
+  "scalability": {
+    "no_graph": {
+      "1000": {
+        "bm25_build_s": 0.05142710200016154,
+        "bm25_memory_mb": 5.703125,
+        "faiss_build_s": 17.36240868100049,
+        "faiss_memory_mb": 23.1328125,
+        "graph_build_s": NaN,
+        "graph_memory_mb": NaN,
+        "graph_nodes": NaN,
+        "graph_edges": NaN,
+        "latency_dense_mean_ms": 46.64487099998951,
+        "latency_dense_p95_ms": 57.3296560005474,
+        "latency_hybrid_mean_ms": 49.44747559998177,
+        "latency_hybrid_p95_ms": 64.36144700001023
+      },
+      "5000": {
+        "bm25_build_s": 0.3207058750003853,
+        "bm25_memory_mb": 30.87109375,
+        "faiss_build_s": 53.01345115100048,
+        "faiss_memory_mb": 33.05859375,
+        "graph_build_s": NaN,
+        "graph_memory_mb": NaN,
+        "graph_nodes": NaN,
+        "graph_edges": NaN,
+        "latency_dense_mean_ms": 52.013754150084424,
+        "latency_dense_p95_ms": 91.0528130007151,
+        "latency_hybrid_mean_ms": 91.20237110009839,
+        "latency_hybrid_p95_ms": 311.4165860006324
+      },
+      "10000": {
+        "bm25_build_s": 0.685729251000339,
+        "bm25_memory_mb": 49.1171875,
+        "faiss_build_s": 123.29976574100056,
+        "faiss_memory_mb": 64.171875,
+        "graph_build_s": NaN,
+        "graph_memory_mb": NaN,
+        "graph_nodes": NaN,
+        "graph_edges": NaN,
+        "latency_dense_mean_ms": 67.58532385001672,
+        "latency_dense_p95_ms": 120.58869100019365,
+        "latency_hybrid_mean_ms": 146.45254145002582,
+        "latency_hybrid_p95_ms": 215.12122399963118
+      }
+    },
+    "graph_small": {
+      "1000": {
+        "bm25_build_s": 0.0727708590002294,
+        "bm25_memory_mb": 5.71484375,
+        "faiss_build_s": 11.996750654000607,
+        "faiss_memory_mb": 23.07421875,
+        "graph_build_s": 12.864886972000022,
+        "graph_memory_mb": 27.14453125,
+        "graph_nodes": 1000,
+        "graph_edges": 48556,
+        "latency_dense_mean_ms": 46.60837910014379,
+        "latency_dense_p95_ms": 65.99518899929535,
+        "latency_hybrid_mean_ms": 50.05660495021402,
+        "latency_hybrid_p95_ms": 58.05259400040086
+      }
+    }
+  },
+  "by_system": [
+    {
+      "system": "VR-D (Dense)",
+      "P@1": 0.35,
+      "R@5": 0.825,
+      "NDCG@5": 0.6049903993657137,
+      "MRR": 0.5458333333333333,
+      "MAP": 0.5208333333333333,
+      "ROUGE-1": 0.2838653734264626,
+      "ROUGE-2": 0.08310182919199517,
+      "ROUGE-L": 0.19692383758647933,
+      "BLEU": 0.021272970372993208,
+      "BERTScore-F1": 0.8660691976547241,
+      "Latency-mean-s": 14.22540249824524,
+      "Latency-p95-s": 21.738676691055304
+    },
+    {
+      "system": "VR-H (Hybrid)",
+      "P@1": 0.3,
+      "R@5": 0.725,
+      "NDCG@5": 0.5329087830157838,
+      "MRR": 0.4791666666666667,
+      "MAP": 0.4583333333333333,
+      "ROUGE-1": 0.31770916177464203,
+      "ROUGE-2": 0.09692694607172764,
+      "ROUGE-L": 0.2182183502590936,
+      "BLEU": 0.046514072098055595,
+      "BERTScore-F1": 0.0,
+      "Latency-mean-s": 12.878917491436004,
+      "Latency-p95-s": 16.68790954351425
+    },
+    {
+      "system": "GR (Graph)",
+      "P@1": 0.35,
+      "R@5": 0.8,
+      "NDCG@5": 0.5953164571005088,
+      "MRR": 0.5333333333333333,
+      "MAP": 0.5183333333333333,
+      "ROUGE-1": 0.3159169760340218,
+      "ROUGE-2": 0.07808023904141188,
+      "ROUGE-L": 0.2060532642518972,
+      "BLEU": 0.021769942839263222,
+      "BERTScore-F1": 0.8692564964294434,
+      "Latency-mean-s": 15.423065376281738,
+      "Latency-p95-s": 27.09821141958237
+    },
+    {
+      "system": "HGR (Hybrid+Graph)",
+      "P@1": 0.45,
+      "R@5": 0.85,
+      "NDCG@5": 0.665281540814747,
+      "MRR": 0.6266666666666667,
+      "MAP": 0.6091666666666666,
+      "ROUGE-1": 0.3457333747108784,
+      "ROUGE-2": 0.10008156511708746,
+      "ROUGE-L": 0.23295971496568293,
+      "BLEU": 0.034080785211973566,
+      "BERTScore-F1": 0.875389575958252,
+      "Latency-mean-s": 14.797827219963073,
+      "Latency-p95-s": 21.410876405239115
+    }
+  ],
+  "notes": [
+    "Generation metrics are sourced from eval_summary.json to avoid zeroed ablation generation placeholders.",
+    "Latency split uses separate retrieval-only vs end-to-end invocations; generation estimate is approximate."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-03-23T23:03:41.359662",
+  "elapsed_seconds": 34.31533336639404,
+  "work_directory": "data/priority1_build_full2",
+  "stages": {
+    "Merge & Deduplicate": {
+      "success": true,
+      "timestamp": 1774287187.3093274,
+      "elapsed": 0.2649998664855957
+    },
+    "GPU FAISS Indexing": {
+      "success": true,
+      "timestamp": 1774287220.479785,
+      "elapsed": 33.43545746803284
+    },
+    "NIM Question Generation": {
+      "success": true,
+      "timestamp": 1774287221.2450583,
+      "elapsed": 34.20073103904724
+    },
+    "Question Sampling + IAA Prep": {
+      "success": true,
+      "timestamp": 1774287221.359206,
+      "elapsed": 34.31487846374512
+    }
+  },
+  "success": true
+}

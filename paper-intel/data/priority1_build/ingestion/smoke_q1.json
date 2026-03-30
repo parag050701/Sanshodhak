@@ -1,0 +1,18 @@
+{
+  "query": "retrieval augmented generation",
+  "total_found": 205,
+  "total_downloaded": 0,
+  "target": 20,
+  "success_rate": 0.0,
+  "iterations": 3,
+  "elapsed_time_seconds": 51.765544414520264,
+  "papers": [],
+  "pdf_paths": {},
+  "sources_used": {},
+  "metadata": {
+    "output_dir": "paper-intel/papers",
+    "min_year": 2022,
+    "max_year": null,
+    "prefer_open_access": false
+  }
+}

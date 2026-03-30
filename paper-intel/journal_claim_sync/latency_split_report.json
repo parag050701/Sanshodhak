@@ -1,0 +1,89 @@
+{
+  "generated_utc": "2026-03-17T07:55:37.707561+00:00",
+  "status": "pass",
+  "notes": [
+    "end_to_end is measured from full query() runtime",
+    "generation_estimate = max(0, end_to_end - retrieval_only)",
+    "generation_estimate is approximate because retrieval and query runs are separate invocations"
+  ],
+  "meta": {
+    "index_dir": "paper-intel/rag_index",
+    "questions_file": "paper-intel/rag_test_questions.json",
+    "sample": 20,
+    "graph_similarity_threshold": 0.1
+  },
+  "systems": {
+    "VR-D (Dense)": {
+      "retrieval_only": {
+        "mean_s": 0.2852597236633301,
+        "median_s": 0.13926494121551514,
+        "p95_s": 0.32170420885086265
+      },
+      "end_to_end": {
+        "mean_s": 0.13406537771224974,
+        "median_s": 0.1336888074874878,
+        "p95_s": 0.1566079616546631
+      },
+      "generation_estimate": {
+        "mean_s": 0.0045545101165771484,
+        "median_s": 0.0,
+        "p95_s": 0.015234625339508078
+      },
+      "n_questions": 20
+    },
+    "VR-H (Hybrid)": {
+      "retrieval_only": {
+        "mean_s": 0.13781019449234008,
+        "median_s": 0.1355682611465454,
+        "p95_s": 0.15231884717941285
+      },
+      "end_to_end": {
+        "mean_s": 0.14267237186431886,
+        "median_s": 0.14176416397094727,
+        "p95_s": 0.16781824827194214
+      },
+      "generation_estimate": {
+        "mean_s": 0.009375,
+        "median_s": 0.0055048465728759766,
+        "p95_s": 0.02816973924636841
+      },
+      "n_questions": 20
+    },
+    "GR (Graph)": {
+      "retrieval_only": {
+        "mean_s": 0.13534462451934814,
+        "median_s": 0.13225722312927246,
+        "p95_s": 0.16114704608917238
+      },
+      "end_to_end": {
+        "mean_s": 0.1396305203437805,
+        "median_s": 0.1346508264541626,
+        "p95_s": 0.1608618974685669
+      },
+      "generation_estimate": {
+        "mean_s": 0.010645270347595215,
+        "median_s": 0.0045163631439208984,
+        "p95_s": 0.032074987888336196
+      },
+      "n_questions": 20
+    },
+    "HGR (Hybrid+Graph)": {
+      "retrieval_only": {
+        "mean_s": 0.1808144450187683,
+        "median_s": 0.1769108772277832,
+        "p95_s": 0.21265954971313478
+      },
+      "end_to_end": {
+        "mean_s": 0.1812928318977356,
+        "median_s": 0.18035471439361572,
+        "p95_s": 0.2087420701980591
+      },
+      "generation_estimate": {
+        "mean_s": 0.00964106321334839,
+        "median_s": 0.005491733551025391,
+        "p95_s": 0.03212124109268189
+      },
+      "n_questions": 20
+    }
+  }
+}

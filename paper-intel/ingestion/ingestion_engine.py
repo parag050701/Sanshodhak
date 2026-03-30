@@ -6,6 +6,7 @@ This is the top-level API for the Sanshodhak ingestion system.
 import logging
 import json
 import time
+import os
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 from collections import Counter
@@ -81,6 +82,7 @@ class IngestionEngine:
         self.prefer_open_access = prefer_open_access
         self.max_iterations = max_iterations
         self.min_success_rate = min_success_rate
+        self.skip_pdf_downloads = os.getenv("SKIP_PDF_DOWNLOADS", "false").lower() == "true"
         
         # Initialize search engine
         self.search_engine = SearchEngine(
@@ -351,15 +353,21 @@ class IngestionEngine:
             
             # Rank and filter
             papers = await self.rank_and_filter(papers)
+            self.all_papers = papers
             
             # Take top N
             papers_to_download = papers[:self.required_count * 2]  # Get extra for buffer
-            
-            # Download PDFs
-            pdf_paths = await self.download_pdfs(papers_to_download)
-            
+
+            # Download PDFs (or skip in metadata-first mode)
+            if self.skip_pdf_downloads:
+                logger.info("[SKIP] PDF downloading disabled (SKIP_PDF_DOWNLOADS=true); proceeding with metadata corpus")
+                pdf_paths = {}
+                success_count = len(papers_to_download)
+            else:
+                pdf_paths = await self.download_pdfs(papers_to_download)
+                success_count = len(pdf_paths)
+
             # Check success rate
-            success_count = len(pdf_paths)
             total_attempted = len(papers_to_download)
             success_rate = success_count / total_attempted if total_attempted > 0 else 0
             
@@ -382,9 +390,10 @@ class IngestionEngine:
         elapsed = time.time() - start_time
         
         successful_papers = [p for p in self.all_papers if p.pdf_path][:self.required_count]
-        
-        # Count sources
-        source_counts = Counter(p.source for p in successful_papers)
+        selected_papers = self.all_papers[:self.required_count]
+
+        # Count sources from selected corpus papers (not only downloaded)
+        source_counts = Counter(p.source for p in selected_papers)
         
         results = {
             'query': self.query,
@@ -394,7 +403,10 @@ class IngestionEngine:
             'success_rate': len(successful_papers) / len(self.all_papers) if self.all_papers else 0,
             'iterations': self.iteration,
             'elapsed_time_seconds': elapsed,
-            'papers': [p.to_dict() for p in successful_papers],
+            # Corpus papers for downstream indexing/evaluation (metadata-first)
+            'papers': [p.to_dict() for p in selected_papers],
+            # Downloaded subset (pdf_path available)
+            'downloaded_papers': [p.to_dict() for p in successful_papers],
             'pdf_paths': {p.get_primary_id(): p.pdf_path for p in successful_papers if p.pdf_path},
             'sources_used': dict(source_counts),
             'metadata': {

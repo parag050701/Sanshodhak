@@ -1,0 +1,55 @@
+{
+  "runs": [
+    {
+      "run_name": "query_01_retrieval_augmented_generation.json",
+      "query": "retrieval augmented generation",
+      "raw_total_found": 3019,
+      "post_rank_selected": 300,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 465.0806164741516,
+      "source_counts": {
+        "crossref": 300
+      }
+    },
+    {
+      "run_name": "query_02_dense_passage_retrieval.json",
+      "query": "dense passage retrieval",
+      "raw_total_found": 3061,
+      "post_rank_selected": 300,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 425.96996331214905,
+      "source_counts": {
+        "crossref": 300
+      }
+    },
+    {
+      "run_name": "query_03_semantic_search.json",
+      "query": "semantic search",
+      "raw_total_found": 3459,
+      "post_rank_selected": 300,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 588.2852885723114,
+      "source_counts": {
+        "crossref": 300
+      }
+    },
+    {
+      "run_name": "query_04_neural_information_retrieval.json",
+      "query": "neural information retrieval",
+      "raw_total_found": 2815,
+      "post_rank_selected": 300,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 397.59059977531433,
+      "source_counts": {
+        "crossref": 300
+      }
+    }
+  ],
+  "source_summary_post_selection": {
+    "crossref": 1200
+  },
+  "raw_records": 1200,
+  "unique_records": 1169,
+  "duplicates_removed": 31,
+  "overlap_fraction": 0.025833333333333333
+}

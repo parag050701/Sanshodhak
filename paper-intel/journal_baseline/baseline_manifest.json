@@ -1,0 +1,111 @@
+{
+  "snapshot_time_utc": "2026-03-17T07:31:23.063196+00:00",
+  "workspace_root": "/home/admin-/Desktop/Sanshodhak",
+  "platform": {
+    "system": "Linux",
+    "release": "6.8.0-101-generic",
+    "python": "3.10.12"
+  },
+  "status": {
+    "required_files_present": true,
+    "missing_files": []
+  },
+  "paper_baseline": {
+    "tex": "sanshodhak_fixed.tex",
+    "pdf": "Sanshodhak (2).pdf",
+    "audit": "JOURNAL_CLAIM_AUDIT.md"
+  },
+  "evaluation_baseline": {
+    "summary_file": "paper-intel/eval_summary.json",
+    "report_file": "paper-intel/eval_report.txt",
+    "score_sheet": "paper-intel/PAPER_SCORE_SHEET.md",
+    "hgr_metrics": {
+      "retrieval": {
+        "P@1": 0.45,
+        "R@5": 0.85,
+        "R@10": 0.925,
+        "NDCG@5": 0.665281540814747,
+        "NDCG@10": 0.6940122720110564,
+        "MRR": 0.6266666666666667,
+        "MAP": 0.6091666666666666
+      },
+      "generation": {
+        "rouge1": 0.3457333747108784,
+        "rouge2": 0.10008156511708746,
+        "rougeL": 0.23295971496568293,
+        "bleu": 0.034080785211973566,
+        "bertscore_f1": 0.875389575958252
+      },
+      "latency_seconds": {
+        "mean_s": 14.797827219963073,
+        "median_s": 13.382909536361694,
+        "p95_s": 21.410876405239115
+      },
+      "graph_stats": {
+        "nodes": 36,
+        "edges": 443,
+        "avg_degree": 24.61111111111111,
+        "max_degree": 30,
+        "density": 0.7031746031746032,
+        "connected_components": 1
+      }
+    }
+  },
+  "runtime_baseline": {
+    "index": "paper-intel/rag_index",
+    "evaluation_script": "paper-intel/eval_compare.py",
+    "graph_runtime": "paper-intel/graph_rag.py",
+    "adaptive_budget": "paper-intel/core/adaptive_budget.py",
+    "ingestion_search": "paper-intel/ingestion/discovery/search_engine.py"
+  },
+  "artifact_hashes": {
+    "sanshodhak_fixed.tex": {
+      "size_bytes": 55223,
+      "sha256": "24ae4126601f21a8064b4d1107dc159aa61951b56cfda9621c690c9a24010064"
+    },
+    "Sanshodhak (2).pdf": {
+      "size_bytes": 272039,
+      "sha256": "d85a76a5f30460bfc309df7c24a36748563c980470569f3334efe8aa4393875b"
+    },
+    "JOURNAL_CLAIM_AUDIT.md": {
+      "size_bytes": 11488,
+      "sha256": "ff33e04edaae92a6a9c8a5562b6b982ba69dd60f0ec40037a43476a7061e9e5a"
+    },
+    "paper-intel/eval_summary.json": {
+      "size_bytes": 3843,
+      "sha256": "7f3f2836766c1ac45ff3fb796685b671213570b170e2abeb7a0adecce6f93106"
+    },
+    "paper-intel/eval_report.txt": {
+      "size_bytes": 3324,
+      "sha256": "6936153cbb3596303d3d208ea419af51d71abfcaaef11516f289cbeae29bf743"
+    },
+    "paper-intel/PAPER_SCORE_SHEET.md": {
+      "size_bytes": 4997,
+      "sha256": "058fca24da04dd57a3fc969bd3b106225fae3cf76caedcaa4241f34b4e611af1"
+    },
+    "paper-intel/eval_compare.py": {
+      "size_bytes": 25743,
+      "sha256": "91e2e81a06ea6192c867ce27376e0d3c9a4ad0d69659bd82ee893f9f6d9cf8fd"
+    },
+    "paper-intel/graph_rag.py": {
+      "size_bytes": 30463,
+      "sha256": "5c4d4bcd4282388874b2b34104bc4e36de71619ac9183ab4f90d089a7be8b4bb"
+    },
+    "paper-intel/core/adaptive_budget.py": {
+      "size_bytes": 5956,
+      "sha256": "d14d15acb46d9fce735a02542b63820616cc8bd660b317e58d6038c31c5f04ed"
+    },
+    "paper-intel/ingestion/discovery/search_engine.py": {
+      "size_bytes": 14068,
+      "sha256": "ba79fa0e97d86e4db36c6de8625ee663cecf772f0eeb9baaacaf012142ea2d02"
+    },
+    "paper-intel/rag_index/faiss.index": {
+      "size_bytes": 13856813,
+      "sha256": "9812b6c280d5f3099f30e5ed563df6c6e8b633bb35177d10664de4604735d44b"
+    },
+    "paper-intel/rag_index/metadata.pkl": {
+      "size_bytes": 1826170,
+      "sha256": "ade7ead8d417e34c9c7be24ebe858f47ba779c21bc97a837eeca04c9fbdfe9a4"
+    }
+  }
+}

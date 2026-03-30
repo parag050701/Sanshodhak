@@ -1,0 +1,44 @@
+{
+  "1000": {
+    "bm25_build_s": 0.05142710200016154,
+    "bm25_memory_mb": 5.703125,
+    "faiss_build_s": 17.36240868100049,
+    "faiss_memory_mb": 23.1328125,
+    "graph_build_s": NaN,
+    "graph_memory_mb": NaN,
+    "graph_nodes": NaN,
+    "graph_edges": NaN,
+    "latency_dense_mean_ms": 46.64487099998951,
+    "latency_dense_p95_ms": 57.3296560005474,
+    "latency_hybrid_mean_ms": 49.44747559998177,
+    "latency_hybrid_p95_ms": 64.36144700001023
+  },
+  "5000": {
+    "bm25_build_s": 0.3207058750003853,
+    "bm25_memory_mb": 30.87109375,
+    "faiss_build_s": 53.01345115100048,
+    "faiss_memory_mb": 33.05859375,
+    "graph_build_s": NaN,
+    "graph_memory_mb": NaN,
+    "graph_nodes": NaN,
+    "graph_edges": NaN,
+    "latency_dense_mean_ms": 52.013754150084424,
+    "latency_dense_p95_ms": 91.0528130007151,
+    "latency_hybrid_mean_ms": 91.20237110009839,
+    "latency_hybrid_p95_ms": 311.4165860006324
+  },
+  "10000": {
+    "bm25_build_s": 0.685729251000339,
+    "bm25_memory_mb": 49.1171875,
+    "faiss_build_s": 123.29976574100056,
+    "faiss_memory_mb": 64.171875,
+    "graph_build_s": NaN,
+    "graph_memory_mb": NaN,
+    "graph_nodes": NaN,
+    "graph_edges": NaN,
+    "latency_dense_mean_ms": 67.58532385001672,
+    "latency_dense_p95_ms": 120.58869100019365,
+    "latency_hybrid_mean_ms": 146.45254145002582,
+    "latency_hybrid_p95_ms": 215.12122399963118
+  }
+}

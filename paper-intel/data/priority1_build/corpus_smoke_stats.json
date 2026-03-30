@@ -1,0 +1,27 @@
+{
+  "runs": [
+    {
+      "run_name": "smoke_q1.json",
+      "query": "retrieval augmented generation",
+      "raw_total_found": 205,
+      "post_rank_selected": 0,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 51.765544414520264,
+      "source_counts": {}
+    },
+    {
+      "run_name": "smoke_q2.json",
+      "query": "dense passage retrieval",
+      "raw_total_found": 244,
+      "post_rank_selected": 0,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 51.756296157836914,
+      "source_counts": {}
+    }
+  ],
+  "source_summary_post_selection": {},
+  "raw_records": 0,
+  "unique_records": 0,
+  "duplicates_removed": 0,
+  "overlap_fraction": 0.0
+}

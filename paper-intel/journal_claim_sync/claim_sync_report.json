@@ -1,0 +1,33 @@
+{
+  "generated_utc": "2026-03-17T08:18:25.252318+00:00",
+  "overall_status": "pass",
+  "manuscript": "sanshodhak_fixed.tex",
+  "eval_baseline": "paper-intel/eval_summary.json",
+  "checks": [
+    {
+      "claim": "Avoid absolute novelty phrase 'first published'",
+      "status": "pass",
+      "evidence": "Manuscript phrase scan"
+    },
+    {
+      "claim": "If dual-edge is mentioned, citation-edge limitation must be explicit",
+      "status": "pass",
+      "evidence": "Manuscript graph claim scan"
+    },
+    {
+      "claim": "No unsupported 152ms headline latency in manuscript",
+      "status": "pass",
+      "evidence": "Manuscript latency phrase scan"
+    },
+    {
+      "claim": "Runtime graph-slot strategy mentions adaptive budget",
+      "status": "pass",
+      "evidence": "Manuscript method scan"
+    },
+    {
+      "claim": "Core HGR metrics align with eval_summary baseline",
+      "status": "pass",
+      "evidence": "5/5 expected metric strings found"
+    }
+  ]
+}

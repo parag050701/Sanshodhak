@@ -1,0 +1,22 @@
+{
+  "runs": [
+    {
+      "run_name": "smoke_q1_after_patch.json",
+      "query": "retrieval augmented generation",
+      "raw_total_found": 220,
+      "post_rank_selected": 20,
+      "oa_fraction": 0.0,
+      "elapsed_time_seconds": 45.16405940055847,
+      "source_counts": {
+        "crossref": 20
+      }
+    }
+  ],
+  "source_summary_post_selection": {
+    "crossref": 20
+  },
+  "raw_records": 20,
+  "unique_records": 20,
+  "duplicates_removed": 0,
+  "overlap_fraction": 0.0
+}

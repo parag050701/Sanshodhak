@@ -1,0 +1,21 @@
+{
+  "generated_utc": "2026-03-17T07:41:29.682665+00:00",
+  "status": "pass",
+  "index_dir": "paper-intel/rag_index",
+  "graph_stats": {
+    "nodes": 36,
+    "edges": 443,
+    "citation_edges": 6,
+    "citation_edge_ratio": 0.013544018058690745,
+    "avg_degree": 24.61111111111111,
+    "max_degree": 30,
+    "density": 0.7031746031746032,
+    "connected_components": 1
+  },
+  "check": {
+    "criterion": "citation_edges > 0",
+    "citation_edges": 6,
+    "citation_edge_ratio": 0.013544018058690745,
+    "passed": true
+  }
+}

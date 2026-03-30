@@ -29,17 +29,27 @@ class OllamaRAG:
         self.metadata = []
         
     def get_embedding(self, text: str) -> np.ndarray:
-        """Get embedding from Ollama."""
-        response = requests.post(
-            f"{self.ollama_url}/api/embeddings",
-            json={"model": self.embed_model, "prompt": text}
-        )
-        if response.status_code != 200:
-            raise Exception(f"Ollama API error: {response.text}")
-        embedding = np.array(response.json()["embedding"], dtype=np.float32)
-        # Normalize for cosine similarity
-        embedding = embedding / np.linalg.norm(embedding)
-        return embedding
+        """Get embedding using sentence-transformers (bge-m3) or fallback to Ollama."""
+        try:
+            from sentence_transformers import SentenceTransformer
+            import torch
+            if not hasattr(self, '_bge_model'):
+                print("[INFO] Loading bge-m3 embedding model (sentence-transformers)...")
+                self._bge_model = SentenceTransformer("BAAI/bge-m3")
+            emb = self._bge_model.encode(text, normalize_embeddings=True)
+            return np.array(emb, dtype=np.float32)
+        except Exception as e:
+            print(f"[WARN] sentence-transformers embedding failed: {e}. Falling back to Ollama API.")
+            response = requests.post(
+                f"{self.ollama_url}/api/embeddings",
+                json={"model": self.embed_model, "prompt": text}
+            )
+            if response.status_code != 200:
+                raise Exception(f"Ollama API error: {response.text}")
+            embedding = np.array(response.json()["embedding"], dtype=np.float32)
+            # Normalize for cosine similarity
+            embedding = embedding / np.linalg.norm(embedding)
+            return embedding
     
     def chunk_text(self, text: str, chunk_size: int = 500) -> List[str]:
         """Simple chunking by characters."""
@@ -87,22 +97,60 @@ class OllamaRAG:
         print("Generating embeddings...")
         
         embeddings = []
+        valid_chunks = []
+        valid_metadata = []
         for i, chunk in enumerate(all_chunks):
             if i % 10 == 0:
                 print(f"  {i}/{len(all_chunks)}...", end='\r')
-            emb = self.get_embedding(chunk)
+            # Skip empty, very short, or very long chunks
+            # Skip empty, too short, or all-whitespace
+            if not chunk or len(chunk.strip()) < 20:
+                print(f"\n[WARN] Skipping chunk {i} (empty or too short)")
+                continue
+            # Skip all-whitespace
+            if chunk.strip() == '':
+                print(f"\n[WARN] Skipping chunk {i} (all whitespace)")
+                continue
+            # Skip highly repetitive chunks (e.g., >80% one char)
+            from collections import Counter
+            chars = [c for c in chunk if not c.isspace()]
+            if chars:
+                most_common = Counter(chars).most_common(1)[0][1]
+                if most_common / len(chars) > 0.8:
+                    print(f"\n[WARN] Skipping chunk {i} (highly repetitive content)")
+                    continue
+            if len(chunk) > 4000:
+                print(f"\n[WARN] Skipping chunk {i} (too long: {len(chunk)} chars)")
+                continue
+            try:
+                emb = self.get_embedding(chunk)
+            except Exception as e:
+                print(f"\n[WARN] Embedding error for chunk {i}: {e} (retrying once)")
+                # Retry once after short delay
+                import time
+                time.sleep(1)
+                try:
+                    emb = self.get_embedding(chunk)
+                except Exception as e2:
+                    print(f"\n[WARN] Skipping chunk {i} after retry: {e2}")
+                    continue
+            # Check for NaN or inf in embedding
+            if np.any(np.isnan(emb)) or np.any(np.isinf(emb)):
+                print(f"\n[WARN] Skipping chunk {i} (NaN/Inf in embedding)")
+                continue
             embeddings.append(emb)
-        
+            valid_chunks.append(chunk)
+            valid_metadata.append(all_metadata[i])
+        if not embeddings:
+            raise RuntimeError("No valid embeddings generated! Check input data.")
         embeddings = np.array(embeddings, dtype=np.float32)
         print(f"\nEmbeddings shape: {embeddings.shape}")
-        
         print("Building FAISS index...")
         dim = embeddings.shape[1]
         self.index = faiss.IndexFlatIP(dim)  # Inner product = cosine after normalization
         self.index.add(embeddings)
-        self.chunks = all_chunks
-        self.metadata = all_metadata
-        
+        self.chunks = valid_chunks
+        self.metadata = valid_metadata
         print(f"Index built with {self.index.ntotal} vectors")
         return self
     
@@ -186,21 +234,30 @@ Answer:"""
             except Exception as e:
                 print(f"❌ Error: {str(e)[:100]}")
         
-        # Fallback to Ollama
-        print(f"🔄 Falling back to Ollama ({self.llm_model})...")
-        response = requests.post(
-            f"{self.ollama_url}/api/generate",
-            json={
-                "model": self.llm_model,
-                "prompt": prompt,
-                "stream": False
-            }
+        # Fallback to NVIDIA OpenAI-compatible API
+        print(f"🔄 Falling back to NVIDIA OpenAI-compatible API (meta/llama3-8b-instruct)...")
+        try:
+            from openai import OpenAI
+        except ImportError:
+            return "Error: openai package not installed. Please install with 'pip install openai'"
+        nv_api_key = os.getenv("NVIDIA_API_KEY", "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")
+        client = OpenAI(
+            base_url = "https://integrate.api.nvidia.com/v1",
+            api_key = nv_api_key
         )
-        
-        if response.status_code != 200:
-            return f"Error: {response.text}"
-        
-        return response.json()["response"]
+        try:
+            completion = client.chat.completions.create(
+                model="meta/llama3-8b-instruct",
+                messages=[{"role":"user","content":prompt}],
+                temperature=0.5,
+                top_p=1,
+                max_tokens=1024,
+                stream=False
+            )
+            # Non-streaming: get the full answer
+            return completion.choices[0].message.content
+        except Exception as e:
+            return f"Error: NVIDIA API call failed: {e}"
     
     def query(self, question: str, top_k: int = 5, verbose: bool = True) -> Tuple[str, List[Dict]]:
         """Search and generate answer."""

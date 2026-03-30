@@ -1,0 +1,16 @@
+{
+  "1000": {
+    "bm25_build_s": 0.0727708590002294,
+    "bm25_memory_mb": 5.71484375,
+    "faiss_build_s": 11.996750654000607,
+    "faiss_memory_mb": 23.07421875,
+    "graph_build_s": 12.864886972000022,
+    "graph_memory_mb": 27.14453125,
+    "graph_nodes": 1000,
+    "graph_edges": 48556,
+    "latency_dense_mean_ms": 46.60837910014379,
+    "latency_dense_p95_ms": 65.99518899929535,
+    "latency_hybrid_mean_ms": 50.05660495021402,
+    "latency_hybrid_p95_ms": 58.05259400040086
+  }
+}
