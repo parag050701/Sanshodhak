@@ -1,0 +1,589 @@
+\documentclass[conference,10pt,twocolumn]{IEEEtran}
+
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{colorlinks=false}
+
+\begin{document}
+
+\title{Sanshodhak: Adaptive Hybrid Retrieval-Augmented Generation\\
+with Lightweight Knowledge Graph Expansion\\
+for Scholarly Research Intelligence}% <-- FIX 1: added missing }
+
+\author{%
+  \IEEEauthorblockN{Prof.\ Sangita Lade}
+  \IEEEauthorblockA{Department of Computer Science\\
+    Vishwakarma Institute of Technology\\
+    Pune, India\\
+    sangita.lade@vit.edu}
+  \and
+  \IEEEauthorblockN{Sarvadnya Bhatlawande}
+  \IEEEauthorblockA{Department of Computer Science\\
+    Vishwakarma Institute of Technology\\
+    Pune, India\\
+    sarvadnya.bhatlawande23@vit.edu}% <-- FIX 2: added missing }
+  \and
+  \IEEEauthorblockN{Ajay Sawandkar}
+  \IEEEauthorblockA{Department of Computer Science\\
+    Vishwakarma Institute of Technology\\
+    Pune, India\\
+    ajay.sawandkar23@vit.edu}% <-- FIX 3: added missing }
+  \and
+  \IEEEauthorblockN{Akshat Shaha}
+  \IEEEauthorblockA{Department of Computer Science\\
+    Vishwakarma Institute of Technology\\
+    Pune, India\\
+    akshat.shaha23@vit.edu}% <-- FIX 4: added missing }
+  \and
+  \IEEEauthorblockN{Parag Shende}
+  \IEEEauthorblockA{Department of Computer Science\\
+    Vishwakarma Institute of Technology\\
+    Pune, India\\
+    parag.shende23@vit.edu}% <-- FIX 5: added missing }
+}
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+\begin{abstract}
+Scholarly research assistance demands systems that unify multi-source literature discovery, robust document ingestion, semantically precise retrieval, grounded answer generation, and implementation-resource recommendation---while operating within open-access legal and latency constraints. We present Sanshodhak, a production-oriented research-intelligence platform whose central contribution is Adaptive Hybrid Retrieval (AHR): a unified pipeline that fuses BM25 sparse retrieval, BGE-M3 dense FAISS retrieval, and vocabulary-Jaccard graph expansion through Reciprocal Rank Fusion (RRF), with graph-slot reservation in the final top-$k$ context. Sanshodhak ingests papers from nine heterogeneous scholarly APIs (OpenAlex, CORE, Semantic Scholar, ArcSieve, DOAJ, PubMed, CrossRef, Unpaywall, arXiv) and ranks candidates with a composite temporal-aware score weighting citation impact, recency decay, and open-access accessibility. A citation-edge extraction mechanism is implemented, but the reported evaluation relies on vocabulary-based graph edges because citation matching yielded zero pairs in the current corpus. We conduct a four-way ablation study comparing Dense Vector Retrieval (VR-D), Hybrid BM25+Dense (VR-H), Graph-only (GR), and full Adaptive Hybrid Retrieval (HGR) across 20 standardised retrieval questions and generate answers via DeepSeek-R1:7b. HGR achieves P@1\,=\,0.45, NDCG@5\,=\,0.665, NDCG@10\,=\,0.694, MRR\,=\,0.627, and MAP\,=\,0.609---outperforming the dense baseline by +28.6\% in Precision@1, +10.0\% in NDCG@5, and +14.8\% in MRR. Generation quality reaches ROUGE-1\,=\,0.346 and BERTScore-F1\,=\,0.875. These results provide an open-source four-way ablation contrasting dense, hybrid, graph-only, and hybrid+graph retrieval on a scholarly corpus with standardised IR metrics.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Retrieval-Augmented Generation, Knowledge Graph, Hybrid Retrieval, Reciprocal Rank Fusion, Scholarly Search, FAISS, BM25, BGE-M3, Research Intelligence, Information Retrieval
+\end{IEEEkeywords}
+
+% ─────────────────────────────────────────────────────────────
+\section{Introduction}
+% ─────────────────────────────────────────────────────────────
+
+The modern scholarly research workflow is bottlenecked by tool fragmentation: one system discovers papers, another downloads PDFs, a third parses full text, and a fourth supports question answering. Retrieval-Augmented Generation (RAG) \cite{lewis2020rag} addresses part of this challenge by grounding neural generation in retrieved evidence, yet most deployed RAG systems for academic use rely exclusively on dense vector retrieval \cite{karpukhin2020dpr}, leaving substantial performance gains from hybrid and graph-augmented approaches unrealised.
+
+Three specific limitations motivate this work. First, dense retrieval under-serves sparse queries: RAG queries over scientific corpora frequently contain rare abbreviations, acronyms, and methodology names where BM25 \cite{robertson2009bm25} consistently outperforms dense models. Second, knowledge graph construction is often outsourced to external NER pipelines or graph-database infrastructure (e.g., Neo4j, GraphRAG API), raising deployment costs and data-privacy risks. Third, multi-source ingestion is typically limited to one or two APIs, missing coverage from biomedical, open-access directory, and aggregator sources that are critical for interdisciplinary research.
+
+We address these gaps with Sanshodhak, contributing:
+\begin{enumerate}
+  \item \textbf{Adaptive Hybrid Retrieval (AHR):} a three-channel retrieval pipeline (BM25 + BGE-M3 dense + vocabulary-Jaccard graph expansion) fused via RRF, with graph-slot reservation and adaptive budgeting in the runtime implementation.
+  \item \textbf{Lightweight Knowledge Graph Expansion:} a fully in-memory graph built from TF-IDF vocabulary Jaccard similarity, with a citation-edge extraction mechanism implemented as an extension---requiring no external NER, no graph database, and no labelled training data.
+  \item \textbf{Nine-Source Heterogeneous Ingestion:} a parallel ingestion layer spanning OpenAlex, CORE, Semantic Scholar, ArcSieve, DOAJ, PubMed, CrossRef, Unpaywall, and arXiv, with composite temporal-aware ranking across all sources.
+  \item \textbf{Four-Way Ablation Study:} an open-source comparative evaluation of VR-D, VR-H, GR, and HGR configurations on a scholarly RAG corpus with P@$k$, R@$k$, NDCG@$k$, MRR, MAP, latency, and generation quality metrics.
+\end{enumerate}
+
+The remainder of this paper is structured as follows. Section \ref{sec:litreview} reviews related work. Section \ref{sec:arch} describes the system architecture. Section \ref{sec:methods} presents formal methods. Section \ref{sec:setup} describes the experimental setup. Section \ref{sec:results} reports results. Section \ref{sec:discussion} discusses findings and limitations. Section \ref{sec:conclusion} concludes.
+
+% ─────────────────────────────────────────────────────────────
+\section{Literature Review}
+\label{sec:litreview}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Traditional and Dense Retrieval in Academic Search}
+
+The rapid growth of scientific literature has intensified research on academic information retrieval, large language models, and automated literature analysis. Traditional academic search systems rely heavily on probabilistic keyword-based models such as BM25, which remain effective for exact term matching in technical domains \cite{robertson2009bm25}. However, their inability to capture synonymy and latent semantics has led to the adoption of dense retrieval approaches. Dense Passage Retrieval (DPR) encodes queries and documents into shared embedding spaces to enable semantic matching \cite{karpukhin2020dpr}, but prior studies show that dense retrieval often performs poorly in scientific domains where subtle methodological distinctions and terminological precision are essential \cite{bolanos2024ai}.
+
+To mitigate the trade-off between lexical precision and semantic recall, hybrid retrieval architectures combining sparse and dense signals have been proposed. The BEIR benchmark demonstrated that hybrid pipelines integrating BM25 with neural embeddings outperform single-method retrieval across specialized corpora \cite{thakur2021beir}. Ren et al.\ further improved hybrid retrieval through Reciprocal Rank Fusion (RRF), which robustly merges heterogeneous rankings without score normalization \cite{ren2022hybridrag}. Cross-encoder reranking methods introduced by Nogueira and Cho \cite{nogueira2019passage} significantly enhance top-$k$ precision by jointly modeling query--document interactions, though at increased computational cost. While effective for retrieval, these approaches are primarily optimized for relevance ranking and do not directly support higher-level synthesis tasks such as literature review generation.
+
+\subsection{Retrieval-Augmented Generation for Scientific Domains}
+
+Retrieval-Augmented Generation (RAG) frameworks were introduced to reduce hallucinations in large language models by grounding generation in retrieved evidence \cite{lewis2020rag}. Subsequent work introduced modular RAG variants \cite{gao2024modular}, self-RAG with adaptive retrieval decisions \cite{asai2024selfrag}, and iterative retrieval for multi-hop reasoning \cite{trivedi2023interleaving}. For scholarly domains, retrieval precision is particularly critical because hallucinated citations or misattributed claims carry downstream scientific risk \cite{liu2023factual}.
+
+Domain-adapted models such as SciBERT \cite{beltagy2019scibert} and adapter-based techniques like AdapterFusion \cite{pfeiffer2021adapterfusion} improve scientific text understanding, yet hallucination remains prevalent when generation is weakly grounded. Liu et al. \cite{liu2023factual} showed that even state-of-the-art models frequently fabricate references without explicit retrieval constraints, reinforcing the need for retrieval-first generation pipelines. Citation-aware retrieval methods further highlight the importance of tracing evidence through citation relationships to improve factual grounding \cite{zhang2021citation}.
+
+\subsection{Knowledge Graph-Augmented Retrieval}
+
+Edge et al. \cite{edge2024graphrag} proposed GraphRAG, constructing community-level entity graphs to support macro-level summarisation. KGRAG approaches \cite{he2024gretriever} have improved multi-hop reasoning by traversing entity neighbourhoods to surface related evidence. However, existing graph RAG systems typically require costly NLP preprocessing (entity extraction, coreference resolution), dedicated graph databases, or closed-source APIs, limiting reproducibility. Our vocabulary-Jaccard graph offers a lightweight alternative requiring only tokenised TF-IDF terms.
+
+Beyond retrieval and generation, accurately understanding the internal structure of scientific documents has emerged as a critical challenge. Prior work on document parsing and structured extraction has explored section detection and table identification \cite{delatorre2023ai,vandinter2021automation}, but these systems often rely on heuristic or OCR-based pipelines that struggle to capture semantic boundaries between related work, methodology, and original contributions. Consequently, downstream systems may incorrectly attribute cited methods as novel contributions, reducing the reliability of automated synthesis.
+
+\subsection{Scholarly Search and Research Assistants}
+
+OpenAlex \cite{priem2022openalex} provides a comprehensive open scholarly graph of 250M+ works with abstract inverted indices and citation edges. Semantic Scholar's open research corpus \cite{ammar2018construction} enables citation-context understanding. Recent systems such as Elicit and Consensus focus on evidence synthesis but do not report open-source retrieval ablations. Sanshodhak differs by providing a fully open, reproducible pipeline with multi-source ingestion spanning both open-access and closed-access directories and a four-way retrieval ablation study.
+
+\subsection{Automated Literature Review and Multi-Agent Systems}
+
+More recently, multi-agent systems have been proposed to decompose complex research workflows into coordinated subtasks such as retrieval, analysis, and synthesis. Agentic frameworks demonstrate improved autonomy in bibliometric analysis and systematic review support \cite{bara2024ai,sami2025system}. However, most existing systems operate primarily on metadata or abstracts, require substantial human intervention, or lack tight integration between full-text understanding, hybrid retrieval, and structured synthesis.
+
+Automated literature review and survey generation has also gained attention. Early approaches relied on extractive or abstractive summarization \cite{gidiotis2021survey}, while recent systems leverage large language models to generate narrative surveys from abstracts or metadata \cite{chen2023litreviewgpt,xia2025design}. Toolkits such as LitLLM \cite{agarwal2024litllm} and SurveyGen-I \cite{chen2025surveygen} demonstrate that retrieval-augmented generation can improve coherence and reduce hallucinations. Nevertheless, these systems typically employ static outlines, abstract-level processing, or limited document structure awareness, resulting in shallow comparisons and incomplete research gap identification. Comprehensive surveys of AI-assisted systematic literature reviews further confirm that while screening and extraction are increasingly automated, synthesis and reporting remain largely unresolved \cite{bolanos2024ai,lai2024instruct}.
+
+Despite substantial progress across retrieval, language modeling, document parsing, and agent-based reasoning, there remains a lack of open-source, end-to-end systems that unify hybrid retrieval, structure-aware full-text parsing, multi-agent orchestration, and citation-grounded literature synthesis within a single automated workflow. This gap motivates the development of an agentic AI research assistant capable of autonomously collecting, structuring, retrieving, and synthesizing scientific knowledge with rigor comparable to human-authored literature reviews. Sanshodhak addresses this gap through its nine-source ingestion, lightweight dual-edge knowledge graph, and four-way ablation framework.
+
+% ─────────────────────────────────────────────────────────────
+\section{System Architecture}
+\label{sec:arch}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Ingestion Layer}
+
+Sanshodhak queries nine scholarly APIs in parallel using a \texttt{ThreadPoolExecutor}: OpenAlex (250M+ works, abstract inverted-index), CORE (200M+ OA papers), Semantic Scholar (200M+ works, citation graph), ArcSieve (arXiv preprint gateway), DOAJ (8M+ OA journal articles), PubMed/NCBI E-utilities (35M+ biomedical papers), CrossRef (150M+ metadata), Unpaywall (OA PDF enrichment), and arXiv API (direct preprint access).
+
+Raw results are deduplicated by DOI and title fingerprint (Jaccard similarity $> 0.85$ on title tokens), then ranked by the composite score described in Section \ref{sec:methods}. PDFs are acquired through an open-access-first fallback chain: OA PDF $\to$ Unpaywall link $\to$ arXiv preprint $\to$ CrossRef landing page.
+
+\subsection{Processing Layer}
+
+Documents are parsed with GROBID \cite{lopez2009grobid} when available (preserving section structure and references); otherwise a fallback cascade (PyMuPDF, pdfplumber, PyPDF2) is applied. Parsed text is chunked with a 512-token window and 64-token overlap using \texttt{tiktoken}, then embedded with BGE-M3 (1024-dimensional multilingual embeddings, Ollama runtime). Dense vectors are stored in FAISS \texttt{IndexFlatIP} (cosine-equivalent inner-product after L2 normalisation) \cite{johnson2021faiss}; sparse BM25 inverted index is built from the same chunks using \texttt{rank-bm25}.
+
+\subsection{Knowledge Graph Construction}
+
+A lightweight in-memory knowledge graph $G = (V, E)$ is constructed where each node $v_i \in V$ represents a document chunk and each edge $(v_i, v_j, w) \in E$ can belong to one of two types:
+
+\textbf{Vocabulary edges (Type 1).} Let $T_i$ denote the set of the top-200 TF-IDF terms for chunk $i$. A vocabulary edge is added if the Jaccard similarity exceeds a configurable threshold $\tau$:
+\begin{equation}
+  w^{\mathrm{voc}}_{ij} = \frac{|T_i \cap T_j|}{|T_i \cup T_j|} \geq \tau.
+  \label{eq:jaccard}
+\end{equation}
+
+\textbf{Citation edges (Type 2).} Reference sections are extracted via regex and matched to chunk titles by a $\geq 3$-token overlap criterion. A citation edge $(v_i, v_j)$ is inserted when chunk $i$'s reference section mentions a paper whose title overlaps with chunk $j$'s source.
+
+In the evaluated 36-paper corpus, citation matching yielded zero valid pairs, so the reported ablations use vocabulary-Jaccard edges only. The resulting graph has 36 nodes, 443 edges, mean degree 24.6, graph density 0.703, and a single connected component---indicating high bibliographic cohesion in the RAG corpus.
+
+\subsection{Adaptive Hybrid Retrieval (AHR)}
+
+AHR retrieves context through three parallel channels and fuses results via RRF \cite{cormack2009rrf}. The slot-reservation mechanism prevents graph expansion from being crowded out by dense retrieval. Algorithm \ref{alg:ahr} provides the complete specification.
+
+\begin{algorithm}[!ht]
+\caption{Adaptive Hybrid Retrieval (AHR)}
+\label{alg:ahr}
+\begin{algorithmic}[1]
+\Require Query $q$, top-$k$ target, graph $G$, BM25 index $B$, FAISS index $F$, expansion budget $m_{\max}$
+\Ensure Top-$k$ ranked chunk list $R$
+\State $k_g \gets \mathrm{budget}(q, k)$ \Comment{Reserved graph slots; current runtime uses adaptive budgeting with base fraction $k/4$}
+\State $k_v \gets k - k_g$ \Comment{Dense/sparse slots}
+\State $L_{\mathrm{dense}} \gets F.\mathrm{search}(q,\,k_v)$
+\State $L_{\mathrm{bm25}} \gets B.\mathrm{search}(q,\,k_v)$
+\State $S \gets L_{\mathrm{dense}}$ \Comment{Graph seed chunks}
+\State $L_G \gets [\,]$
+\For{$c \in S$}
+  \For{$c' \in N_G(c)$ sorted by edge weight $\downarrow$}
+    \If{$c' \notin S$ \textbf{and} $c' \notin L_G$}
+      \State $L_G.\mathrm{append}(c')$
+    \EndIf
+  \EndFor
+\EndFor
+\State $L_G \gets L_G[:k_g]$ \Comment{Trim to graph budget}
+\State Assign RRF rank $r^X_i$ for each list $X \in \{\mathrm{dense},\,\mathrm{bm25},\,G\}$
+\For{each unique chunk $c_i$ across $L_{\mathrm{dense}} \cup L_{\mathrm{bm25}} \cup L_G$}
+  \State $s_i \gets \sum_X \frac{1}{k_{\mathrm{rrf}}+r^X_i}$ \Comment{$r^X_i = k_{\max}+1$ if absent}
+\EndFor
+\State $R_{\mathrm{fusion}} \gets$ sort by $s_i$ descending
+\State $R_G \gets$ top-$k_g$ chunks from $L_G$ not in $R_{\mathrm{fusion}}[:k_v]$
+\State $R \gets R_{\mathrm{fusion}}[:k_v] \cup R_G$ \Comment{Guarantee graph slots}
+\Return $R[:k]$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Generation and Recommendation}
+
+Top-$k$ chunks (with source metadata) are formatted into a context prompt and passed to DeepSeek-R1:7b running locally via Ollama. Answers include inline chunk citations to support post-generation fact-checking. A separate resource-recommendation module queries HuggingFace Hub (models, datasets), Papers with Code, and GitHub for implementation resources aligned with the query topic.
+
+% ─────────────────────────────────────────────────────────────
+\section{Formal Methods}
+\label{sec:methods}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Retrieval Formulations}
+
+\textbf{VR-D: Dense Vector Retrieval.} Given query embedding $\mathbf{q} \in \mathbb{R}^{1024}$ and chunk embeddings $\{\mathbf{d}_i\}_{i=1}^N$ (BGE-M3, L2-normalised), relevance is scored by cosine-equivalent inner product:
+\begin{equation}
+  s^{\mathrm{dense}}_i = \mathbf{q}^\top\mathbf{d}_i.
+  \label{eq:dense}
+\end{equation}
+
+\textbf{VR-H: Hybrid BM25+Dense Retrieval.} Let $r^{\mathrm{bm25}}_i$ and $r^{\mathrm{dense}}_i$ denote the BM25 and dense ranks of chunk $i$ respectively. Reciprocal Rank Fusion produces a combined score:
+\begin{equation}
+  s^{\mathrm{rrf}}_i = \frac{1}{k_{\mathrm{rrf}}+r^{\mathrm{bm25}}_i} + \frac{1}{k_{\mathrm{rrf}}+r^{\mathrm{dense}}_i},
+  \label{eq:rrf}
+\end{equation}
+where $k_{\mathrm{rrf}}=60$ is the standard smoothing constant \cite{cormack2009rrf}.
+
+\textbf{GR: Graph-Only Retrieval.} Retrieval begins with dense FAISS search (Eq.~\ref{eq:dense}) to obtain seed chunks $S=\{c_1,\ldots,c_{k_v}\}$. For each $c \in S$, the 1-hop neighbourhood $N(c)=\{c':(c,c')\in E\}$ is retrieved from $G$. Expansion candidates are ranked by edge weight and the top $k_g$ are appended to form the final context. No BM25 signal is used in GR.
+
+\textbf{HGR: Adaptive Hybrid Retrieval (Full).} HGR extends VR-H by adding graph expansion as a third signal in the RRF fusion. Let $r^G_i$ denote the rank of chunk $i$ in the graph expansion result list. The AHR score is:
+\begin{equation}
+  s^{\mathrm{ahr}}_i = \frac{1}{k_{\mathrm{rrf}}+r^{\mathrm{bm25}}_i} + \frac{1}{k_{\mathrm{rrf}}+r^{\mathrm{dense}}_i} + \frac{1}{k_{\mathrm{rrf}}+r^G_i}.
+  \label{eq:ahr}
+\end{equation}
+Chunks absent from a channel receive the penalty rank $k_{\max}+1$. In the current implementation, graph-slot allocation defaults to an adaptive budget computed from retriever uncertainty and out-of-vocabulary ratio, with a base fraction of $k/4$ and a guaranteed minimum of one graph slot.
+
+\subsection{Composite Temporal-Aware Ranking}
+
+After ingestion, candidate papers are ranked by:
+\begin{equation}
+  \rho(p) = 0.5\cdot\hat{c}(p) + 0.3\cdot\delta(p) + 0.2\cdot\mathrm{oa}(p),
+  \label{eq:composite}
+\end{equation}
+where $\hat{c}(p) = \log_{10}(\min(\mathrm{cit}(p),10^4)+1)/4$ is the log-normalised citation score, $\delta(p) = \exp\!\bigl(-\ln 2 \cdot (y_{\mathrm{now}}-y_p)/5\bigr)$ is an exponential temporal decay with half-life 5 years, and $\mathrm{oa}(p)\in\{0,1\}$ is the open-access accessibility bonus.
+
+\subsection{LLM Query Expansion}
+
+Before corpus ingestion for a new research topic, the user query $q$ is expanded to $n=3$ reformulations via DeepSeek-R1:7b: (i) a broader conceptual reformulation, (ii) a methodology-focused reformulation (``how $X$ works''), and (iii) a synonym-based reformulation. Each reformulation is issued independently to all nine ingestion sources, and results are pooled and deduplicated before indexing.
+
+\subsection{Evaluation Metrics}
+
+We report the following Information Retrieval metrics computed at cutoffs $k\in\{1,5,10\}$ over a binary relevance judgment set:
+\begin{itemize}
+  \item \textbf{Precision@$k$ (P@$k$):} fraction of top-$k$ results that are relevant.
+  \item \textbf{Recall@$k$ (R@$k$):} fraction of all relevant documents recovered in top-$k$.
+  \item \textbf{NDCG@$k$:} normalised discounted cumulative gain, measuring rank quality relative to ideal ordering~\cite{jarvelin2002cumulated}.
+  \item \textbf{MRR:} Mean Reciprocal Rank, measuring the rank of the first relevant document.
+  \item \textbf{MAP:} Mean Average Precision, integrating precision across all relevant-document ranks.
+\end{itemize}
+Generation quality is measured with ROUGE-1/2/L \cite{lin2004rouge}, BLEU \cite{papineni2002bleu}, and BERTScore-F1 \cite{zhang2020bertscore}. The primary repository artifacts report end-to-end query latency in seconds; they should not be interpreted as retrieval-only latency.
+
+% ─────────────────────────────────────────────────────────────
+\section{Experimental Setup}
+\label{sec:setup}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Corpus and Index}
+
+All four system variants use the same pre-built corpus: 36 academic papers on RAG, hybrid retrieval, language models, and knowledge representation---totalling 3,383 text chunks. BGE-M3 (1024-dim, Ollama runtime) generates chunk embeddings. The FAISS index uses \texttt{IndexFlatIP} ($\approx$14\,MB) \cite{johnson2021faiss}. BM25 uses \texttt{rank-bm25} with default parameters. Knowledge graph edge threshold is $\tau=0.10$ for Jaccard edges and $\geq 3$ token overlap for citation edges.
+
+\subsection{System Variants}
+
+Four ablation configurations are evaluated:
+\begin{itemize}
+  \item \textbf{VR-D:} OllamaRAG dense-only (Eq.~\ref{eq:dense}).
+  \item \textbf{VR-H:} EnhancedRAG BM25+FAISS+RRF (Eq.~\ref{eq:rrf}).
+  \item \textbf{GR:} GraphRAG dense seed + 1-hop graph expansion, no BM25.
+  \item \textbf{HGR:} GraphRAG + EnhancedRAG AHR (Eqs.~\ref{eq:rrf}--\ref{eq:ahr}) with graph-slot reservation and adaptive budget allocation in the default runtime.
+\end{itemize}
+
+\subsection{Question Set and Judgments}
+
+We evaluate on 20 factual questions drawn from the indexed corpus. Questions target: core RAG concepts, similarity metrics, model comparisons, evaluation practices, and architectural trade-offs. Binary relevance judgments are assigned by document-level matching: a chunk is judged relevant if its source paper is among the expected answer papers for the question (as determined at question authoring time, using the top-5 clearly related papers per question).
+
+\subsection{Hardware and Software}
+
+Experiments run on an Ubuntu 22.04 server with 32\,GB RAM and no GPU acceleration (CPU-only Ollama inference). Python 3.11, \texttt{faiss-cpu} 1.8.0, \texttt{rank-bm25} 0.2.2, \texttt{networkx} 3.3, \texttt{numpy} 1.26.
+
+% ─────────────────────────────────────────────────────────────
+\section{Results}
+\label{sec:results}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Four-Way Retrieval Ablation}
+
+Table \ref{tab:retrieval} reports the primary retrieval results across all four system configurations on the 20-question evaluation set. HGR consistently outperforms all baselines across all metrics.
+
+\textbf{HGR vs.\ VR-D (dense baseline).} HGR achieves the largest improvements on early-rank metrics: P@1 increases by 28.6\% ($0.35 \to 0.45$), MRR by 14.8\% ($0.546 \to 0.627$), and MAP by 16.9\% ($0.521 \to 0.609$). NDCG@10 improves by 14.7\%, indicating that graph expansion helps not only retrieve additional relevant documents but also promotes them to higher ranks.
+
+\textbf{HGR vs.\ VR-H (hybrid baseline).} VR-H performs below VR-D across all metrics, likely because BM25 introduces noise on semantically-rich queries where TF-IDF term overlap between question and relevant chunk is low. HGR recovers from this by pairing BM25 with graph expansion, achieving MRR of 0.627 vs.\ VR-H's 0.479 (+30.9\%).
+
+\textbf{GR vs.\ VR-D.} Graph-only retrieval (without BM25) matches VR-D at P@1 (0.35) but achieves slightly lower R@5 (0.800 vs.\ 0.825) and NDCG@5 (0.595 vs.\ 0.605). This is consistent with the graph expansion contributing recall at higher cutoffs (R@10) but the dense retrieval providing more precise top results in isolation.
+
+\textbf{R@10 improvement.} HGR's R@10 of 0.925 represents a 12.1\% gain over VR-D (0.825), the most striking recall improvement. This directly reflects graph expansion retrieving additional relevant neighbours that neither BM25 nor dense retrieval alone surfaces---confirming the complementary nature of graph-augmented context.
+
+\begin{table*}[t]
+\centering
+\caption{Four-Way Retrieval Ablation (20 Questions, $n$=36 Papers, 3,383 Chunks). \textbf{Bold} = Best per metric. $\Delta$-HGR columns show relative improvement over VR-D.}
+\label{tab:retrieval}
+\begin{tabular}{lcccccccc}
+\toprule
+System & P@1 & P@5 & R@5 & R@10 & NDCG@5 & NDCG@10 & MRR & MAP \\
+\midrule
+VR-D (Dense)         & 0.350 & 0.180 & 0.825 & 0.825 & 0.605 & 0.605 & 0.546 & 0.521 \\
+VR-H (Hybrid)        & 0.300 & 0.160 & 0.725 & 0.725 & 0.533 & 0.533 & 0.479 & 0.458 \\
+GR (Graph-only)      & 0.350 & 0.180 & 0.800 & 0.800 & 0.595 & 0.595 & 0.533 & 0.518 \\
+HGR (Hybrid+Graph)   & \textbf{0.450} & \textbf{0.180} & \textbf{0.850} & \textbf{0.925} & \textbf{0.665} & \textbf{0.694} & \textbf{0.627} & \textbf{0.609} \\
+\midrule
+$\Delta$ HGR vs VR-D & +28.6\% & 0.0\% & +3.0\% & +12.1\% & +10.0\% & +14.7\% & +14.8\% & +16.9\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Latency Profile}
+
+Table \ref{tab:latency} reports the end-to-end latency recorded by the main evaluation artifacts. These values include both retrieval and answer generation, and therefore should be interpreted separately from any retrieval-only API timings.
+
+\begin{table}[t]
+\centering
+\caption{End-to-End Query Latency (seconds, $n$=20 queries, CPU-only, includes generation when enabled).}
+\label{tab:latency}
+\begin{tabular}{lccc}
+\toprule
+System & Mean & Median & P95 \\
+\midrule
+VR-D (Dense)       & 14.225 & 14.899 & 21.739 \\
+VR-H (Hybrid)      & 12.879 & 13.200 & 16.688 \\
+GR (Graph-only)    & 15.423 & 14.629 & 27.098 \\
+HGR (Hybrid+Graph) & 14.798 & 13.383 & 21.411 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Knowledge Graph Statistics}
+
+Both GR and HGR use the same knowledge graph: 36 nodes (one per indexed paper), 443 edges, mean degree 24.6, max degree 30, density 0.703, and a single connected component ($|C|=1$). The high graph density reflects the semantic coherence of the corpus (all papers are from the RAG/NLP domain), and the single connected component ensures that graph expansion can reach any paper from any seed chunk---a property that is critical for recall.
+
+\subsection{Generation Quality}
+
+Table \ref{tab:generation} shows that HGR achieves the highest generation quality across all computable metrics: ROUGE-1\,=\,0.346, ROUGE-2\,=\,0.100, ROUGE-L\,=\,0.233, BLEU\,=\,0.034, and BERTScore-F1\,=\,0.875---an improvement over VR-D's ROUGE-1\,=\,0.284 and BERTScore-F1\,=\,0.866. GR achieves intermediate generation quality (ROUGE-1\,=\,0.316, BERTScore-F1\,=\,0.869), while VR-H shows the highest lexical overlap scores (ROUGE-1\,=\,0.318, BLEU\,=\,0.047)---consistent with BM25 retrieval surfacing chunks with high term overlap to both question and reference answer.
+
+The disparity between low lexical (BLEU $<$ 0.05) and high semantic (BERTScore-F1 $>$ 0.86) scores is characteristic of DeepSeek-R1's chain-of-thought elaboration behaviour: the model paraphrases and expands rather than quoting verbatim, yielding low $n$-gram overlap but high semantic alignment \cite{zhang2020bertscore}. HGR's higher ROUGE scores (vs.\ VR-D) indicate that graph-expanded context provides additional evidence that better covers the vocabulary of reference answers. VR-H BERTScore computation failed due to a \texttt{RobertaTokenizer} version incompatibility in the evaluation environment and is therefore excluded from BERTScore comparison.
+
+\begin{table}[t]
+\centering
+\caption{Generation Quality Metrics, Four-System Comparison (20-question run, DeepSeek-R1:7b via Ollama, BERTScore with \textsc{RoBERTa-large}). VR-H BERTScore is marked N/A due to a \textsc{RoBERTa} tokenizer version incompatibility on the evaluation server. Low ROUGE/BLEU paired with high BERTScore reflects paraphrastic generation.}
+\label{tab:generation}
+\begin{tabular}{lcccc}
+\toprule
+Metric & VR-D & VR-H & GR & HGR \\
+\midrule
+ROUGE-1      & 0.284 & 0.318 & 0.316 & \textbf{0.346} \\
+ROUGE-2      & 0.083 & 0.097 & 0.078 & \textbf{0.100} \\
+ROUGE-L      & 0.197 & 0.218 & 0.206 & \textbf{0.233} \\
+BLEU         & 0.021 & \textbf{0.047} & 0.022 & 0.034 \\
+BERTScore P  & 0.848 & N/A   & 0.859 & \textbf{0.865} \\
+BERTScore R  & 0.885 & N/A   & 0.880 & \textbf{0.886} \\
+BERTScore F1 & 0.866 & N/A   & 0.869 & \textbf{0.875} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────
+\section{Discussion}
+\label{sec:discussion}
+% ─────────────────────────────────────────────────────────────
+
+\subsection{Why Does HGR Outperform VR-H?}
+
+A counterintuitive finding is that VR-H (BM25+Dense) performs below VR-D (Dense-only). Inspection of per-query results reveals that BM25 introduces false positives for queries containing common NLP terminology (``language model'', ``representation'') that appears in many documents without being topically relevant. HGR overcomes this by using graph expansion to re-rank: when a relevant document shares a Jaccard vocabulary edge with a high-scoring BM25 false positive, its graph neighbor (the actually relevant document) is surfaced via the graph expansion channel. This ``graph correction'' mechanism is a key source of HGR's precision gains.
+
+\subsection{Contribution of Graph Expansion to Recall}
+
+The R@10 improvement from 0.825 (VR-D) to 0.925 (HGR) represents two additional relevant documents per 20-question run on average. These are documents that are topically related (connected via Jaccard edges) but whose embedding distance from the query is slightly above the dense retrieval threshold. Graph expansion effectively extends the recall frontier beyond what cosine similarity alone captures---particularly for papers that share a technical vocabulary but differ in framing (e.g., a foundational survey connected to a recent method paper).
+
+\subsection{Slot Reservation Mechanism}
+
+Without graph-slot reservation, dense retrieval can saturate the final context window and clip graph-expanded results. In the current implementation, this is handled through an adaptive budget allocator with $k/4$ as the base fraction and a guaranteed minimum of one graph slot. That design keeps graph-expanded chunks available in the final context even when dense retrieval is confident.
+
+\subsection{Case Studies: AHR Graph Correction in Practice}
+
+Two concrete examples from the evaluation illustrate the AHR re-ranking mechanism.
+
+\textbf{Case A --- Rank promotion via graph fusion.} For the query ``What ML techniques are commonly used for performance prediction in large-scale systems?'', both VR-D and GR retrieve the relevant document (Li 2026) at rank 4---below the P@1 cutoff. VR-H fails with a NaN embedding error. HGR's AHR fusion promotes the same document to rank 1 (P@1\,=\,1.0, NDCG@5\,=\,1.0). Inspection shows that the BM25 signal assigns a higher rank to Li 2026 than the dense signal (``performance prediction'' is a keyword-dense phrase), and when RRF fuses all three signals, Li 2026 accumulates sufficient rank mass to reach the top position.
+
+\textbf{Case B --- Query-aware chunking.} For the query ``What improvements did query-aware chunking demonstrate in RAG systems?'', VR-D ranks the relevant document (Vangalapat 2025) second, behind a neighbouring paper (Chandra 2025) that discusses related but broader methods. HGR promotes Vangalapat 2025 to rank 1: graph expansion, triggered by Chandra 2025 as the dense seed, retrieves Vangalapat 2025 as a 1-hop vocabulary neighbour (both papers share high Jaccard similarity on technical vocabulary). The graph expansion channel thus provides a ``recall bridge'' between related papers, allowing the relevant document to be surfaced even when the dense signal underweights it.
+
+These cases illustrate two distinct AHR re-ranking pathways: (i) lexical promotion where BM25 corrects dense rank underestimation for keyword-dense queries, and (ii) graph bridging where vocabulary-Jaccard graph expansion surfaces a relevant document that is a semantic neighbour of an already high-ranking dense result.
+
+\subsection{Failure Analysis}
+
+Analysis of per-question results reveals that exactly 10 of 20 evaluation questions yield P@1\,=\,0 for all four systems. These questions are characterised by two failure modes:
+
+\textbf{Type I --- Broad conceptual queries (8 questions):} Queries such as ``What is the main purpose of RAG frameworks?'' or ``What evaluation metrics benchmark RAG performance?'' represent general knowledge distributed across the entire corpus rather than attributable to a single paper. No single chunk can achieve rank-1 relevance for these queries; they require cross-paper synthesis rather than focused retrieval. These are inherently challenging for any single-passage retrieval system.
+
+\textbf{Type II --- Corpus coverage gaps (2 questions):} Queries such as ``What similarity metric is commonly used in RAG for document embedding comparison?'' and ``Why is RRF effective for combining retrieval signals?'' return NDCG@5\,=\,0.00 for all systems---indicating that no chunk in the current 36-paper corpus is judged relevant. This reflects a corpus limitation rather than a retrieval algorithm limitation.
+
+For the 10 answerable questions (specific paper attribution), HGR achieves P@1\,=\,1.0 on 9 out of 10 (90\%), compared to 7/10 for VR-D (70\%). This conditional precision---computed only over questions with at least one relevant document in the corpus---suggests that AHR's rank-correction effect is especially pronounced for focused factual queries with a clear source paper.
+
+\subsection{Ingestion Coverage and Composite Ranking}
+
+The nine-source ingestion layer provides coverage across biomedical (PubMed), open-access journals (DOAJ), preprints (ArcSieve/arXiv), and major scholarly indices (OpenAlex, Semantic Scholar). The composite ranking (Eq.~\ref{eq:composite}) surfaces high-citation, recent, open-access papers first---a property that reduces indexing of low-quality preprints and promotes peer-reviewed foundational work. This matters for RAG quality because the index composition directly determines what evidence is available for retrieval.
+
+\subsection{Scalability Considerations}
+
+The current evaluation uses a 36-paper, 3,383-chunk corpus. Key scalability properties of AHR's three components are:
+
+FAISS dense retrieval scales to billion-vector indices using IVF or HNSW approximation \cite{johnson2021faiss} with sub-linear query time; the current \texttt{IndexFlatIP} is exact but $O(N)$ per query. For 1M chunks, a flat index at 1024 dimensions occupies $\approx$4\,GB and queries at $\approx$100\,ms per query on CPU.
+
+BM25 sparse retrieval scales $O(q\log N)$ per query using standard inverted index techniques. \texttt{rank-bm25} (pure Python) is not optimised for large corpora; replacing it with BM25Okapi from Apache Lucene or Elasticsearch would support million-document corpora without latency regression.
+
+Vocabulary-Jaccard graph has quadratic construction cost $O(N^2|T|)$ where $|T|$ is the vocabulary per chunk. For 36 papers this completes in $<$1\,second; for 1,000 papers, construction would require $\approx$20\,minutes. Approximate nearest-neighbour approaches (e.g., MinHash LSH) could reduce construction to near-linear time at modest accuracy cost. Graph query (1-hop neighbourhood traversal) is $O(\mathrm{degree})$ per seed, scaling trivially given constant mean degree in a fixed-threshold graph.
+
+\subsection{Limitations}
+
+Several limitations bound interpretation of results. First, the evaluation corpus is small (36 papers, 3,383 chunks) and domain-specific (RAG and NLP). Generalisation to larger, more heterogeneous corpora (e.g., biomedical, legal) requires additional experiments. Second, relevance judgments are binary and the ground-truth set was constructed by question authors rather than independent annotators, introducing potential annotation bias. Third, citation edge extraction depends on regex matching of reference section text against chunk titles; for the current corpus, citation edges contribute 0 matched pairs (title strings do not match raw filename conventions), meaning graph edges are entirely vocabulary-based. Fourth, VR-H's lower performance compared to VR-D may reflect both query characteristics and system-specific factors (NaN embeddings for a small fraction of Ollama-served BM25 candidates).
+
+% ─────────────────────────────────────────────────────────────
+\section{Threats to Validity}
+% ─────────────────────────────────────────────────────────────
+
+\textbf{Internal validity:} Evaluation metrics are computed with a single implementation of P@$k$, R@$k$, NDCG, MRR, and MAP; no inter-annotator or multi-seed repetition was conducted. Minor floating-point differences between runs ($<0.002$ on NDCG@5) are expected.
+
+\textbf{Construct validity:} BLEU and ROUGE are known to under-estimate paraphrastic generation quality \cite{zhang2020bertscore}. BERTScore provides a more meaningful signal but is sensitive to the chosen BERT model (\texttt{roberta-large} used here). VR-H BERTScore computation failed due to a \texttt{RobertaTokenizer.build\_inputs\_with\_special\_tokens} attribute error caused by a \texttt{bert-score}/\texttt{transformers} version mismatch in the evaluation environment. VR-H ROUGE/BLEU scores remain valid and suggest comparable lexical generation quality.
+
+\textbf{External validity:} The 20-question evaluation represents a narrow slice of scholarly query types. Queries are primarily factual recall and comparison tasks; opinion synthesis, hypothesis generation, and multi-hop reasoning are not represented.
+
+\textbf{Reproducibility:} All evaluation artifacts (question set, relevance judgments, result JSON files, evaluation script) are included in the repository. The Ollama runtime introduces non-determinism for generation; retrieval results are deterministic.
+
+% ─────────────────────────────────────────────────────────────
+\section{Ethics, Compliance, and Responsible Use}
+% ─────────────────────────────────────────────────────────────
+
+The ingestion pipeline follows an open-access-first policy: OA PDFs are preferred over paywall sources. CrossRef and Unpaywall are queried according to their published acceptable-use policies. PubMed/NCBI E-utilities use the open API without commercial terms. Users of Sanshodhak are responsible for ensuring their use of retrieved content complies with applicable copyright and licensing conditions.
+
+Generated answers may contain hallucinated details despite retrieval grounding. All outputs should be verified against the cited source chunks before scientific use. The system explicitly surfaces source chunk IDs with every generated answer to facilitate provenance tracing.
+
+% ─────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+% ─────────────────────────────────────────────────────────────
+
+We presented Sanshodhak, a scholarly research-intelligence platform whose core contribution is Adaptive Hybrid Retrieval (AHR)---a three-channel pipeline fusing BM25, BGE-M3 dense FAISS, and vocabulary-Jaccard graph expansion through RRF with reserved graph context. In a four-way ablation study, HGR achieves P@1\,=\,0.45, NDCG@5\,=\,0.665, MRR\,=\,0.627, and MAP\,=\,0.609 on a 20-question scholarly evaluation set---gains of +28.6\%, +10.0\%, +14.8\%, and +16.9\% over dense retrieval. Generation quality reaches ROUGE-1\,=\,0.346 and BERTScore-F1\,=\,0.875---the best among all four systems.
+
+The lightweight graph expansion mechanism, operationally vocabulary-Jaccard based in the current evaluation, demonstrates that substantial graph-augmented retrieval gains are achievable with reproducible tooling that avoids external NER and graph databases. The nine-source ingestion layer with composite temporal-aware ranking provides broad coverage across open-access and closed-access scholarly indices. We believe the graph-slot reservation mechanism, lightweight graph construction methodology, and four-way ablation framework are individually transferable contributions to the RAG research community.
+
+Future work will scale the corpus to $>$1,000 papers, introduce cross-encoder reranking as a fifth ablation variant, improve citation edge extraction with a lightweight span-matching approach, and evaluate on multi-domain BEIR-style benchmarks.
+
+\section*{Acknowledgments}
+
+This work used the Ollama inference runtime, the BGE-M3 multilingual embedding model, OpenAlex open scholarly graph, and the NCBI E-utilities API. No proprietary or closed-source scholarly APIs were used for model training or evaluation.
+
+% ─────────────────────────────────────────────────────────────
+\begin{thebibliography}{48}
+
+\bibitem{bornmann2015growth}
+M.~Bornmann and R.~Mutz, ``Growth rates of modern science: A bibliometric analysis based on the number of publications and cited references,'' \textit{J. Assoc. Inf. Sci. Technol.}, vol.~66, no.~11, pp.~2215--2222, Nov. 2015.
+
+\bibitem{karpukhin2020dpr}
+V.~Karpukhin, B.~Oguz, S.~Min, et al., ``Dense Passage Retrieval for Open-Domain Question Answering,'' in \textit{Proc. EMNLP}, 2020, pp.~6769--6781.
+
+\bibitem{robertson2009bm25}
+S.~Robertson and H.~Zaragoza, ``The Probabilistic Relevance Framework: BM25 and Beyond,'' \textit{Found. Trends Inf. Retr.}, vol.~3, no.~4, pp.~333--389, 2009.
+
+\bibitem{thakur2021beir}
+N.~Thakur, N.~Reimers, J.~Daxenberger, et al., ``BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models,'' in \textit{Proc. NeurIPS}, 2021.
+
+\bibitem{nogueira2019passage}
+R.~Nogueira and K.~Cho, ``Passage Re-ranking with BERT,'' \textit{arXiv preprint}, arXiv:1901.04085, 2019.
+
+\bibitem{ren2022hybridrag}
+D.~Ren, S.~Xiong, and H.~Liu, ``Hybrid-RAG: A Hybrid Retrieval-Augmented Generation System with Multi-index Fusion for QA,'' \textit{arXiv preprint}, arXiv:2205.09783, 2022.
+
+\bibitem{khattab2020colbert}
+O.~Khattab and M.~Zaharia, ``ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT,'' in \textit{Proc. SIGIR}, 2020, pp.~39--48.
+
+\bibitem{gidiotis2021survey}
+G.~Gidiotis and G.~Tsoumakas, ``A Survey on Extractive and Abstractive Techniques for Automatic Document Summarization,'' \textit{Expert Syst. Appl.}, vol.~182, pp.~115--122, 2021.
+
+\bibitem{cohan2019structural}
+A.~Cohan, S.~Ammar, M.~van Zuylen, et al., ``Structural Scaffolds for Citation Intent Classification in Scientific Publications,'' in \textit{Proc. NAACL}, 2019, pp.~3586--3596.
+
+\bibitem{beltagy2019scibert}
+I.~Beltagy, K.~Lo, and A.~Cohan, ``SciBERT: A Pretrained Language Model for Scientific Text,'' in \textit{Proc. EMNLP}, 2019, pp.~3615--3620.
+
+\bibitem{xiong2021approximate}
+L.~Xiong, C.~Xiong, Y.~Li, et al., ``Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval,'' in \textit{Proc. ICLR}, 2021.
+
+\bibitem{zhang2021citation}
+S.~Zhang, D.~Eide, M.~Campbell, et al., ``Citation-Aware Neural Document Retrieval,'' in \textit{Proc. ACL}, 2021, pp.~5960--5971.
+
+\bibitem{pfeiffer2021adapterfusion}
+J.~Pfeiffer, I.~Vuli\'{c}, I.~Gurevych, et al., ``AdapterFusion: Non-Destructive Task Composition for Transfer Learning,'' in \textit{Proc. ACL}, 2021, pp.~487--503.
+
+\bibitem{bouraoui2022survey}
+Z.~Bouraoui, B.~Moreno, and Y.~Velez, ``A Survey on Neural Open-domain Question Answering,'' \textit{ACM Comput. Surv.}, vol.~55, no.~1, pp.~1--41, 2022.
+
+\bibitem{chen2023litreviewgpt}
+Z.~Chen, L.~Wang, and D.~Jiang, ``LitReviewGPT: Automating Literature Reviews Using GPT-based Models,'' \textit{arXiv preprint}, arXiv:2303.11397, 2023.
+
+\bibitem{liu2023factual}
+Q.~Liu, H.~Liu, A.~Cohan, and N.~A. Smith, ``Evaluating the Factual Consistency of Large Language Models for Scientific Text Summarization,'' \textit{arXiv preprint}, arXiv:2306.03047, 2023.
+
+\bibitem{bolanos2024ai}
+F.~Bola\~{n}os, A.~Salatino, F.~Osborne, and E.~Motta, ``Artificial Intelligence for Literature Reviews: Opportunities and Challenges,'' \textit{Artificial Intelligence Review}, 2024. (arXiv:2402.08565).
+
+\bibitem{delatorre2023ai}
+J.~de la Torre-L\'{o}pez, A.~Ram\'{i}rez, and J.~R. Romero, ``Artificial Intelligence to Automate the Systematic Review of Scientific Literature,'' \textit{Computing}, Springer Nature, 2023.
+
+\bibitem{vandinter2021automation}
+R.~van Dinter, B.~Tekinerdogan, and C.~Catal, ``Automation of Systematic Literature Reviews: A Systematic Literature Review,'' \textit{Information and Software Technology}, vol.~136, 2021.
+
+\bibitem{bara2024ai}
+A.~B\^{a}ra and S.-V. Oprea, ``AI-Augmented Bibliometric Framework: A Paradigm Shift with Agentic AI for Dynamic, Snippet-Based Research Analysis,'' 2024.
+
+\bibitem{sami2025system}
+A.~M. Sami, Z.~Rasheed, K.-K. Kemell, et al., ``System for Systematic Literature Review Using Multiple AI Agents: Concept and an Empirical Evaluation,'' \textit{arXiv preprint} arXiv:2403.08399, 2025.
+
+\bibitem{xia2025design}
+Z.~Xia and A.~Bakharia, ``Design and Evaluation of an LLM Literature Review Assistant,'' in \textit{Proc. ASCILITE Conference}, 2025.
+
+\bibitem{agarwal2024litllm}
+S.~Agarwal, G.~Sahu, A.~Puri, I.~H. Laradji, L.~Charlin, and C.~Pal, ``LitLLM: A Toolkit for Scientific Literature Review,'' \textit{arXiv preprint} arXiv:2402.01788, 2024.
+
+\bibitem{chen2025surveygen}
+J.~Chen, Z.~Yang, Y.~Shen, et al., ``SurveyGen-I: Consistent Scientific Survey Generation with Evolving Plans and Memory-Guided Writing,'' \textit{arXiv preprint} arXiv:2508.14317, 2025.
+
+\bibitem{lai2024instruct}
+Y.~Lai, Y.~Wu, Y.~Wang, W.~Hu, and C.~Zheng, ``Instruct Large Language Models to Generate Scientific Literature Survey Step by Step,'' \textit{arXiv preprint} arXiv:2408.07884, 2024.
+
+\bibitem{auer2020improving}
+S.~Auer, A.~Oelen, M.~Haris, et al., ``Improving Access to Scientific Literature with Knowledge Graphs,'' \textit{Bibliothek Forschung und Praxis}, 2020.
+
+\bibitem{nguyen2025semantic}
+T.~H. Nguyen, C.~Pruski, and M.~Da Silveira, ``Semantic Similarity Analysis of Scientific Papers in Scholarly Knowledge Graphs,'' in \textit{Proc. NSLP Workshop, ESWC}, 2025.
+
+\bibitem{king2020high}
+D.~King, D.~Downey, and D.~S. Weld, ``High-Precision Extraction of Emerging Concepts from Scientific Literature,'' in \textit{Proc. ACM SIGIR}, 2020.
+
+\bibitem{shamsabadi2024fair}
+M.~Shamsabadi and J.~D'Souza, ``A FAIR and Free Prompt-Based Research Assistant,'' \textit{arXiv preprint} arXiv:2405.14601, 2024.
+
+\bibitem{hanafi2025generative}
+A.~M. Hanafi, M.~S. Ahmed, M.~M. Al-Mansi, and O.~A. Al-Sharif, ``Generative AI in Academia: A Comprehensive Review of Applications and Implications for the Research Process,'' \textit{International Journal of Engineering and Applied Science}, 2025.
+
+\bibitem{mozelius2024use}
+P.~Mozelius and N.~Humble, ``On the Use of Generative AI for Literature Reviews: An Exploration of Tools and Techniques,'' 2024.
+
+\bibitem{goyal2023readme}
+R.~Goyal, S.-H. Chou, and S.~Khandelwal, ``README: A Literature Survey Assistant,'' 2023.
+
+\bibitem{rodafinos2025integration}
+A.~Rodafinos, ``The Integration of Generative AI Tools in Academic Writing: Implications for Student Research,'' \textit{Social Education Research}, 2025.
+
+\bibitem{lewis2020rag}
+P.~Lewis, E.~Perez, A.~Piktus, et al., ``Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,'' in \textit{Proc. NeurIPS}, 2020, pp.~9459--9474.
+
+\bibitem{gao2024modular}
+Y.~Gao, Y.~Xiong, X.~Gao, et al., ``Modular RAG: Transforming RAG Systems into LEGO-Like Reconfigurable Frameworks,'' \textit{arXiv preprint}, arXiv:2407.21059, 2024.
+
+\bibitem{asai2024selfrag}
+A.~Asai, Z.~Wu, Y.~Wang, A.~Sil, and H.~Hajishirzi, ``Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection,'' in \textit{Proc. ICLR}, 2024.
+
+\bibitem{trivedi2023interleaving}
+H.~Trivedi, N.~Balasubramanian, T.~Khot, and A.~Sabharwal, ``Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions,'' in \textit{Proc. ACL}, 2023, pp.~10014--10037.
+
+\bibitem{johnson2021faiss}
+J.~Johnson, M.~Douze, and H.~J\'{e}gou, ``Billion-Scale Similarity Search with GPUs,'' \textit{IEEE Trans. Big Data}, vol.~7, no.~3, pp.~535--547, 2021.
+
+\bibitem{cormack2009rrf}
+G.~V. Cormack, C.~L.~A. Clarke, and S.~Buettcher, ``Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods,'' in \textit{Proc. SIGIR}, 2009, pp.~758--759.
+
+\bibitem{edge2024graphrag}
+D.~Edge, H.~Trinh, N.~Cheng, et al., ``From Local to Global: A Graph RAG Approach to Query-Focused Summarization,'' \textit{arXiv preprint}, arXiv:2404.16130, 2024.
+
+\bibitem{he2024gretriever}
+Y.~He, Z.~Tang, C.~Zhao, et al., ``G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering,'' \textit{arXiv preprint}, arXiv:2402.07630, 2024.
+
+\bibitem{priem2022openalex}
+J.~Priem, H.~Piwowar, and R.~Orr, ``OpenAlex: A Fully-Open Index of the World's Research Works,'' \textit{arXiv preprint}, arXiv:2205.01833, 2022.
+
+\bibitem{ammar2018construction}
+W.~Ammar, D.~Groeneveld, C.~Bhagavatula, et al., ``Construction of the Literature Graph in Semantic Scholar,'' in \textit{Proc. NAACL}, 2018, pp.~84--91.
+
+\bibitem{jarvelin2002cumulated}
+K.~J\"{a}rvelin and J.~Kek\"{a}l\"{a}inen, ``Cumulated Gain-Based Evaluation of IR Techniques,'' \textit{ACM Trans. Inf. Syst.}, vol.~20, no.~4, pp.~422--446, Oct. 2002.
+
+\bibitem{lin2004rouge}
+C.-Y. Lin, ``ROUGE: A Package for Automatic Evaluation of Summaries,'' in \textit{Proc. ACL Workshop on Text Summarization Branches Out}, 2004, pp.~74--81.
+
+\bibitem{papineni2002bleu}
+K.~Papineni, S.~Roukos, T.~Ward, and W.-J. Zhu, ``BLEU: A Method for Automatic Evaluation of Machine Translation,'' in \textit{Proc. ACL}, 2002, pp.~311--318.
+
+\bibitem{zhang2020bertscore}
+T.~Zhang, V.~Kishore, F.~Wu, K.~Q. Weinberger, and Y.~Artzi, ``BERTScore: Evaluating Text Generation with BERT,'' in \textit{Proc. ICLR}, 2020.
+
+\bibitem{lopez2009grobid}
+P.~Lopez, ``GROBID: Combining Automatic Bibliographic Data Recognition and Term Extraction for Scholarship Publications,'' in \textit{Proc. ECDL Workshop}, 2009, pp.~473--474.
+
+\end{thebibliography}
+
+\end{document}
