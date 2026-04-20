@@ -4,19 +4,19 @@ Retrieval evaluation metrics (Part 1 / Part 4).
 Implements
 ----------
 Per-query metrics (binary and graded relevance):
-    ndcg_at_k           — binary NDCG@k
-    ndcg_at_k_graded    — graded NDCG@k  (uses 2^rel − 1 gain)
-    precision_at_k      — P@k
-    recall_at_k         — R@k
-    average_precision   — AP over the full ranked list
-    reciprocal_rank     — MRR component per query
+    ndcg_at_k           - binary NDCG@k
+    ndcg_at_k_graded    - graded NDCG@k  (uses 2^rel − 1 gain)
+    precision_at_k      - P@k
+    recall_at_k         - R@k
+    average_precision   - AP over the full ranked list
+    reciprocal_rank     - MRR component per query
 
 Corpus-level aggregation:
     evaluate_run(run, qrels, k_values)
 
 Statistical significance:
-    wilcoxon_test(a_scores, b_scores)   — Wilcoxon signed-rank test
-    paired_ttest(a_scores, b_scores)    — Paired t-test
+    wilcoxon_test(a_scores, b_scores)   - Wilcoxon signed-rank test
+    paired_ttest(a_scores, b_scores)    - Paired t-test
 
 All per-query functions take a ranked list of doc_id strings and a relevance
 judgment.  Corpus-level functions take BEIR-style dicts.
@@ -27,9 +27,9 @@ from collections import defaultdict
 from typing import Dict, List, Optional, Set, Tuple
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Per-query metrics — binary relevance
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+# Per-query metrics - binary relevance
+# -----------------------------------------------------------------------------
 
 def ndcg_at_k(ranked: List[str], relevant: Set[str], k: int) -> float:
     """
@@ -61,7 +61,7 @@ def ndcg_at_k_graded(
     Parameters
     ----------
     ranked : ranked list of doc_ids.
-    qrels  : {doc_id: relevance_score} (int ≥ 0).
+    qrels  : {doc_id: relevance_score} (int >= 0).
     k      : cutoff.
     """
     def _gain(rel: int) -> float:
@@ -95,7 +95,7 @@ def average_precision(ranked: List[str], relevant: Set[str]) -> float:
     """
     AP (Average Precision) over the full ranked list.
 
-    AP = (1/|R|) × Σ P@k × rel(k)
+    AP = (1/|R|) x Σ P@k x rel(k)
     """
     if not relevant:
         return 0.0
@@ -116,9 +116,9 @@ def reciprocal_rank(ranked: List[str], relevant: Set[str]) -> float:
     return 0.0
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # Corpus-level evaluation
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 def evaluate_run(
     run: Dict[str, List[str]],
@@ -131,7 +131,7 @@ def evaluate_run(
 
     Parameters
     ----------
-    run                 : {query_id: [doc_id, ...]} — ranked lists.
+    run                 : {query_id: [doc_id, ...]} - ranked lists.
     qrels               : {query_id: {doc_id: relevance_score}}.
     k_values            : cutoffs to evaluate (default [10]).
     relevance_threshold : minimum relevance score to treat a doc as relevant
@@ -170,9 +170,9 @@ def evaluate_run(
     return mean_metrics, per_query
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # Statistical significance tests
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 def wilcoxon_test(
     system_a: List[float],

@@ -128,7 +128,7 @@ class IngestionEngine:
     
     async def search_closed_access(self) -> List[PaperMetadata]:
         """
-        Search closed-access layer (CrossRef → Unpaywall → arXiv).
+        Search closed-access layer (CrossRef -> Unpaywall -> arXiv).
         ALWAYS searches minimum 100 papers in CrossRef regardless of user input.
         
         Returns:
@@ -173,7 +173,7 @@ class IngestionEngine:
         all_papers = open_src + closed_src
         unique_papers = deduplicate_papers(all_papers)
         
-        logger.info(f"Merged: {len(all_papers)} → {len(unique_papers)} unique")
+        logger.info(f"Merged: {len(all_papers)} -> {len(unique_papers)} unique")
         
         return unique_papers
     
@@ -226,7 +226,7 @@ class IngestionEngine:
         # Strategy 1: Broaden year range
         if self.min_year and self.min_year > 2010:
             broader_min_year = self.min_year - 5
-            logger.info(f"Expanding year range: {self.min_year} → {broader_min_year}")
+            logger.info(f"Expanding year range: {self.min_year} -> {broader_min_year}")
             
             expanded = self.search_engine.search_unified(
                 query=self.query,
@@ -271,7 +271,7 @@ class IngestionEngine:
         all_papers = current_papers + new_papers
         unique_papers = deduplicate_papers(all_papers)
         
-        logger.info(f"After expansion: {len(current_papers)} → {len(unique_papers)} papers")
+        logger.info(f"After expansion: {len(current_papers)} -> {len(unique_papers)} papers")
         
         return unique_papers
     
@@ -378,7 +378,7 @@ class IngestionEngine:
             
             # Check if we should continue
             if success_count >= self.required_count and success_rate >= self.min_success_rate:
-                logger.info(f"✓ Target achieved! ({success_count} papers, {success_rate:.1%} success rate)")
+                logger.info(f"[ok] Target achieved! ({success_count} papers, {success_rate:.1%} success rate)")
                 break
             
             # Expand search if needed and not last iteration
@@ -432,7 +432,7 @@ class IngestionEngine:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        logger.info(f"\n✓ Results saved to: {output_file}")
+        logger.info(f"\n[ok] Results saved to: {output_file}")
     
     def _print_summary(self, results: Dict[str, Any]):
         """Print pipeline summary."""

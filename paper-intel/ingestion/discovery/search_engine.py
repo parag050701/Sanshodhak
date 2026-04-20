@@ -3,7 +3,7 @@ Search engine orchestrator - coordinates all discovery clients.
 
 Implements two-layer search strategy:
 1. Open-source layer (OpenAlex, CORE, SemanticScholar, DOAJ, ArcSieve)
-2. Closed-access layer (CrossRef → Unpaywall → arXiv → fallbacks)
+2. Closed-access layer (CrossRef -> Unpaywall -> arXiv -> fallbacks)
 """
 import logging
 import os
@@ -297,7 +297,7 @@ class SearchEngine:
 
         # Deduplicate
         unique_papers = deduplicate_papers(all_papers)
-        logger.info(f"Open-source search: {len(all_papers)} → {len(unique_papers)} after dedup")
+        logger.info(f"Open-source search: {len(all_papers)} -> {len(unique_papers)} after dedup")
 
         return unique_papers
     
@@ -455,7 +455,7 @@ class SearchEngine:
         all_papers = open_papers + closed_papers
         unique_papers = deduplicate_papers(all_papers)
         
-        logger.info(f"Unified search: {len(all_papers)} → {len(unique_papers)} unique papers")
+        logger.info(f"Unified search: {len(all_papers)} -> {len(unique_papers)} unique papers")
         
         # Rank papers
         ranked_papers = self._rank_papers(unique_papers, prefer_open_access)
@@ -475,7 +475,7 @@ class SearchEngine:
 
         Uses the composite_rank_score() function from query_expander which
         combines log-normalised citations, exponential temporal decay
-        (half-life ≈ 5 years), and an open-access accessibility bonus.
+        (half-life ~= 5 years), and an open-access accessibility bonus.
 
         Score = 0.5 * norm_citations + 0.3 * temporal_decay + 0.2 * oa_bonus
         """

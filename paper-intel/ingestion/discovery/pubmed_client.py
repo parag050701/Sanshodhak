@@ -3,15 +3,15 @@ PubMed / NCBI E-utilities Client
 =================================
 
 Provides access to 35M+ biomedical and life-science papers via the
-NCBI E-utilities REST API (free, no API key required for ≤3 req/s;
+NCBI E-utilities REST API (free, no API key required for <=3 req/s;
 register an API key for 10 req/s).
 
 API docs: https://www.ncbi.nlm.nih.gov/books/NBK25501/
 
 Endpoints used:
-  esearch  → paper ID list for a query
-  esummary → title, authors, year, DOI, journal per ID
-  elink    → related/cited papers (optional)
+  esearch  -> paper ID list for a query
+  esummary -> title, authors, year, DOI, journal per ID
+  elink    -> related/cited papers (optional)
 """
 
 import logging
@@ -31,15 +31,18 @@ _NCBI_BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 
 class PubMedClient(BaseAPIClient):
     """
-    NCBI PubMed client — 35M+ biomedical papers.
+    NCBI PubMed client - 35M+ biomedical papers.
 
     Free tier: 3 requests/second without API key.
     With NCBI_API_KEY env var: 10 requests/second.
     """
 
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, fetch_abstracts: bool = False):
         self.api_key = api_key or os.getenv("NCBI_API_KEY")
         rate_delay = 0.1 if self.api_key else 0.34  # 10 or 3 req/s
+        # When True, calls efetch per paper to populate abstracts.
+        # Doubles API call volume - off by default; set NCBI_API_KEY for best throughput.
+        self.fetch_abstracts = fetch_abstracts
 
         super().__init__(
             base_url=_NCBI_BASE,
@@ -83,6 +86,14 @@ class PubMedClient(BaseAPIClient):
                 )
 
             papers = self._esummary(pmids)
+
+            # Optionally enrich abstracts via efetch (esummary never returns them).
+            # Set fetch_abstracts=True on the client, or register NCBI_API_KEY for speed.
+            if self.fetch_abstracts:
+                for paper in papers:
+                    if paper.pmid and not paper.abstract:
+                        paper.abstract = self.fetch_abstract(paper.pmid)
+                        time.sleep(self.rate_limit_delay)
 
             return SearchResult(
                 source="pubmed", query=query, papers=papers,
@@ -189,7 +200,7 @@ class PubMedClient(BaseAPIClient):
             if not title:
                 return None
 
-            # Authors — list of dicts with 'name' key
+            # Authors - list of dicts with 'name' key
             raw_authors = item.get("authors", [])
             authors = [a.get("name", "") for a in raw_authors if a.get("name")]
 
@@ -276,6 +287,6 @@ if __name__ == "__main__":
     result = client.search(
         "retrieval augmented generation biomedical", limit=5, min_year=2022
     )
-    print(f"\n✅ PubMed: {result.fetched_count} papers (total={result.total_found})")
+    print(f"\n[OK] PubMed: {result.fetched_count} papers (total={result.total_found})")
     for p in result.papers:
         print(f"  {p.year} | {p.title[:70]} | OA={p.is_open_access}")

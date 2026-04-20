@@ -2,7 +2,7 @@
 Result fusion strategies for hybrid retrieval.
 
 Currently implements:
-  reciprocal_rank_fusion  — Cormack, Clarke, Buettcher, SIGIR 2009.
+  reciprocal_rank_fusion  - Cormack, Clarke, Buettcher, SIGIR 2009.
 
 RRF formula
 -----------
@@ -29,7 +29,7 @@ def reciprocal_rank_fusion(
     ----------
     ranked_lists : list of ranked result lists; each element is a list of
                    (doc_id, score) pairs sorted descending by score.
-                   The original scores are ignored — only rank positions matter.
+                   The original scores are ignored - only rank positions matter.
     weights      : per-list importance weights (default: all 1.0).
     k            : RRF smoothing constant. Higher values reduce sensitivity to
                    top ranks (default 60, as in the original paper).
@@ -66,8 +66,8 @@ def _normalised_entropy(scores: List[float]) -> float:
     Compute normalised Shannon entropy of a score distribution.
 
     Returns a value in [0, 1]:
-      0  → all mass on one item (perfectly confident)
-      1  → uniform distribution (maximum uncertainty)
+      0  -> all mass on one item (perfectly confident)
+      1  -> uniform distribution (maximum uncertainty)
     """
     if not scores or len(scores) < 2:
         return 1.0
@@ -94,12 +94,12 @@ def confidence_weighted_rrf(
 
     Extends standard RRF by adjusting per-list weights based on each
     retriever's score distribution entropy.  When a retriever is "confident"
-    (low normalised entropy — strong score separation between top results
+    (low normalised entropy - strong score separation between top results
     and the rest), its ranked list receives proportionally higher weight.
 
     Weight formula
     --------------
-        w_i = 1 + λ × (1 − H_norm(scores_i))
+        w_i = 1 + λ x (1 − H_norm(scores_i))
 
     where H_norm ∈ [0, 1] is the normalised Shannon entropy of the
     retriever's score distribution and λ (default 0.5) controls the

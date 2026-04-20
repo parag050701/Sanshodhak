@@ -20,7 +20,7 @@ class FallbackExtractor:
     """
     Multi-method PDF text extraction with intelligent fallback.
     
-    Chain: PyMuPDF → pdfplumber → PyPDF2
+    Chain: PyMuPDF -> pdfplumber -> PyPDF2
     """
     
     def __init__(self):
@@ -218,7 +218,7 @@ if __name__ == "__main__":
     success, text, metadata = extractor.extract(pdf_path)
     
     if success:
-        print(f"✅ Success!")
+        print(f"[OK] Success!")
         print(f"Extractor: {metadata.get('extractor')}")
         print(f"Pages: {metadata.get('pages')}")
         print(f"Text length: {len(text)} chars")

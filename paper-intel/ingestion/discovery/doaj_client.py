@@ -11,9 +11,14 @@ logger = logging.getLogger(__name__)
 class DOAJClient(BaseAPIClient):
     """
     Client for DOAJ API (https://doaj.org/api/v3/docs).
-    
+
     Directory of Open Access Journals - fully OA papers from verified journals.
-    No API key required. Rate limit: ~100 req/min.
+    No API key required. Rate limit: ~100 req/min (global, not per-IP).
+
+    Known behaviour: During peak hours DOAJ enforces 429 rate limits globally.
+    The circuit breaker in BaseAPIClient handles this gracefully - the client
+    returns empty results rather than raising. This is an external service
+    constraint, not a code bug. No fix required.
     """
     
     def __init__(self):

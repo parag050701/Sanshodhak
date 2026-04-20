@@ -11,9 +11,13 @@ logger = logging.getLogger(__name__)
 class SemanticScholarClient(BaseAPIClient):
     """
     Client for Semantic Scholar API (https://api.semanticscholar.org/).
-    
+
     AI-powered paper search with 200M+ papers.
-    Free tier: 100 requests/5min. Registered key: 1 req/sec.
+    Free tier: 100 requests/5min (enforced server-side) - timeouts are expected
+    under heavy load. Registered key gives 1 req/sec with no 5-min window.
+
+    To enable the registered-key path: set S2_API_KEY environment variable or
+    pass api_key= to the constructor. With a key, the 30s timeout rarely fires.
     """
     
     def __init__(self, api_key: Optional[str] = None):

@@ -3,6 +3,22 @@ Flask Web Application for Research Assistant
 Integrates: Paper Search → RAG → Resource Recommendations
 """
 
+# Must be set before numpy/torch/OpenBLAS are imported to prevent
+# threading deadlocks on Windows when multiple models are loaded.
+import os as _os
+import sys as _sys
+import io as _io
+_os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+_os.environ.setdefault("PYTHONIOENCODING", "utf-8")
+# Disable Hugging Face fast-tokenizer parallelism — avoids deadlocks
+# when encode() is called from the main thread of a multi-process server.
+_os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+# Force UTF-8 stdout/stderr on Windows so emoji in print() don't crash.
+if hasattr(_sys.stdout, "reconfigure"):
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(_sys.stderr, "reconfigure"):
+    _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 import json
@@ -11,15 +27,19 @@ import os
 import sys
 import secrets
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, List
 
 # Set working directory to script location
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 os.chdir(SCRIPT_DIR)
 sys.path.insert(0, SCRIPT_DIR)
 
+# Load environment variables from .env
+from dotenv import load_dotenv
+load_dotenv(os.path.join(SCRIPT_DIR, '.env'))
+
 # Import our components
-from ollama_rag import OllamaRAG
+from graph_rag import GraphRAG
 from resource_recommender_v2 import EnhancedResourceRecommender
 
 app = Flask(__name__)
@@ -30,55 +50,21 @@ CORS(app)
 rag_system = None
 recommender = None
 
-# Test evaluation parameters that change slightly with each query
-def generate_test_metrics(query: str) -> Dict[str, Any]:
-    """Generate realistic test evaluation metrics based on query."""
-    
-    # Base metrics with some randomness
-    query_hash = sum(ord(c) for c in query) % 100
-    
-    # Retrieval metrics (vary slightly based on query)
-    precision_base = 0.30 + (query_hash % 20) / 100
-    recall_base = 0.70 + (query_hash % 25) / 100
-    
-    retrieval_metrics = {
-        'precision_at_1': round(precision_base + 0.05, 3),
-        'precision_at_3': round(precision_base, 3),
-        'precision_at_5': round(precision_base - 0.05, 3),
-        'recall_at_5': round(recall_base, 3),
-        'recall_at_10': round(min(recall_base + 0.10, 0.95), 3),
-        'mrr': round(0.45 + (query_hash % 15) / 100, 3),
-        'ndcg_at_5': round(0.60 + (query_hash % 12) / 100, 3),
-        'ndcg_at_10': round(0.68 + (query_hash % 10) / 100, 3)
-    }
-    
-    # Generation metrics (vary based on query complexity)
-    complexity_factor = len(query.split()) / 10
-    
-    generation_metrics = {
-        'rouge_1': round(0.25 + complexity_factor * 0.1 + (query_hash % 8) / 100, 3),
-        'rouge_2': round(0.15 + complexity_factor * 0.05 + (query_hash % 6) / 100, 3),
-        'rouge_l': round(0.20 + complexity_factor * 0.08 + (query_hash % 7) / 100, 3),
-        'bleu': round(0.18 + complexity_factor * 0.06 + (query_hash % 5) / 100, 3),
-        'answer_length': 150 + (query_hash % 100),
-        'response_time_ms': 2500 + (query_hash % 1500)
-    }
-    
-    # Overall quality score
-    overall_score = round(
-        (retrieval_metrics['precision_at_5'] * 0.3 +
-         retrieval_metrics['recall_at_5'] * 0.3 +
-         retrieval_metrics['ndcg_at_5'] * 0.2 +
-         generation_metrics['rouge_l'] * 0.2) * 100,
-        1
-    )
-    
-    return {
-        'retrieval': retrieval_metrics,
-        'generation': generation_metrics,
-        'overall_quality_score': overall_score,
-        'timestamp': datetime.now().isoformat()
-    }
+
+def _normalize_scores(results: list) -> list:
+    """
+    Normalize raw retrieval/rerank scores to a 0–100 relevance scale.
+
+    Cross-encoder logits are unbounded (e.g. -10 to +10).  RRF scores are
+    tiny positives (~0.016).  Both are unreadable as-is.  Min-max normalize
+    the batch so the best result = 100 and the worst = 0.
+    """
+    raw = [r.get('rerank_score', r.get('score', 0.0)) for r in results]
+    lo, hi = min(raw, default=0.0), max(raw, default=1.0)
+    span = hi - lo if hi != lo else 1.0
+    for r, s in zip(results, raw):
+        r['_display_score'] = round((s - lo) / span * 100, 1)
+    return results
 
 
 @app.route('/')
@@ -101,18 +87,15 @@ def search_papers():
         start_time = time.time()
         
         # Search papers
-        results = rag_system.search(query, top_k=top_k)
-        
-        # Generate test metrics
-        test_metrics = generate_test_metrics(query)
-        
+        results = _normalize_scores(rag_system.search(query, top_k=top_k))
+
         response = {
             'query': query,
             'results': [
                 {
                     'rank': i + 1,
-                    'file': r['file'],
-                    'score': round(r['score'], 3),
+                    'file': r['metadata']['file'],
+                    'score': r['_display_score'],
                     'snippet': r['text'][:300] + '...',
                     'full_text': r['text']
                 }
@@ -120,7 +103,7 @@ def search_papers():
             ],
             'count': len(results),
             'processing_time': round(time.time() - start_time, 3),
-            'test_metrics': test_metrics
+            'graph_stats': rag_system.get_graph_stats(),
         }
         
         return jsonify(response)
@@ -142,33 +125,31 @@ def query_rag():
         start_time = time.time()
         
         # Get search results
-        search_results = rag_system.search(query, top_k=5)
-        
+        search_results = _normalize_scores(rag_system.search(query, top_k=5))
+
         # Generate answer
-        answer = rag_system.query(query)
-        
-        # Generate test metrics
-        test_metrics = generate_test_metrics(query)
-        
+        answer, _ = rag_system.query(query)
+
         response = {
             'query': query,
             'answer': answer,
             'sources': [
                 {
-                    'file': r['file'],
-                    'score': round(r['score'], 3),
+                    'file': r['metadata']['file'],
+                    'score': r['_display_score'],
                     'snippet': r['text'][:200]
                 }
                 for r in search_results[:3]
             ],
             'processing_time': round(time.time() - start_time, 3),
-            'test_metrics': test_metrics
+            'graph_stats': rag_system.get_graph_stats(),
         }
         
         return jsonify(response)
     
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        import traceback
+        return jsonify({'error': str(e), 'trace': traceback.format_exc()}), 500
 
 
 @app.route('/api/recommend', methods=['POST'])
@@ -185,10 +166,7 @@ def get_recommendations():
         
         # Get recommendations
         recs = recommender.recommend_resources(query, top_k_papers=3)
-        
-        # Generate test metrics
-        test_metrics = generate_test_metrics(query)
-        
+
         response = {
             'query': query,
             'recommendations': {
@@ -201,13 +179,13 @@ def get_recommendations():
             },
             'summary': recs['summary'],
             'processing_time': round(time.time() - start_time, 3),
-            'test_metrics': test_metrics
         }
         
         return jsonify(response)
-    
+
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        import traceback
+        return jsonify({'error': str(e), 'trace': traceback.format_exc()}), 500
 
 
 @app.route('/api/full_pipeline', methods=['POST'])
@@ -223,17 +201,14 @@ def full_pipeline():
         start_time = time.time()
         
         # Step 1: Search papers
-        search_results = rag_system.search(query, top_k=5)
-        
+        search_results = _normalize_scores(rag_system.search(query, top_k=5))
+
         # Step 2: Generate answer
-        answer = rag_system.query(query)
-        
+        answer, _ = rag_system.query(query)
+
         # Step 3: Get recommendations
         recs = recommender.recommend_resources(query, top_k_papers=3)
-        
-        # Generate test metrics
-        test_metrics = generate_test_metrics(query)
-        
+
         response = {
             'query': query,
             'pipeline': {
@@ -241,8 +216,8 @@ def full_pipeline():
                     'results': [
                         {
                             'rank': i + 1,
-                            'file': r['file'],
-                            'score': round(r['score'], 3),
+                            'file': r['metadata']['file'],
+                            'score': r['_display_score'],
                             'snippet': r['text'][:200]
                         }
                         for i, r in enumerate(search_results[:5])
@@ -251,7 +226,7 @@ def full_pipeline():
                 },
                 'answer': {
                     'text': answer,
-                    'sources': [r['file'] for r in search_results[:3]]
+                    'sources': [r['metadata']['file'] for r in search_results[:3]]
                 },
                 'recommendations': {
                     'huggingface_models': recs['huggingface']['models'][:3],
@@ -260,7 +235,7 @@ def full_pipeline():
                 }
             },
             'total_processing_time': round(time.time() - start_time, 3),
-            'test_metrics': test_metrics
+            'graph_stats': rag_system.get_graph_stats(),
         }
         
         return jsonify(response)
@@ -290,25 +265,50 @@ def health_check():
 def initialize_systems():
     """Initialize RAG and recommender systems."""
     global rag_system, recommender
-    
-    print("🚀 Initializing Research Assistant...")
-    
-    # Load RAG system
-    print("📚 Loading RAG system...")
-    rag_system = OllamaRAG()
+
+    print("Initializing Research Assistant...")
+
+    # Load GraphRAG system (HGR: BM25 + FAISS + KG via RRF with slot reservation)
+    print("Loading GraphRAG system...")
+    rag_system = GraphRAG(
+        similarity_threshold=0.30,
+        use_bm25=True,
+        use_adaptive_budget=True,
+        expansion_mode="qbpr",
+        max_graph_hops=2,
+    )
     rag_system.load('rag_index')
-    print("✅ RAG system loaded")
-    
+    print("GraphRAG loaded")
+
+    # Warm up cross-encoder reranker at startup (avoids cold-start on first request)
+    print("Warming up cross-encoder reranker...")
+    reranker = rag_system._get_reranker()
+    if reranker.available:
+        print("Cross-encoder reranker ready")
+    else:
+        print("Cross-encoder reranker unavailable (sentence-transformers not installed) — skipping")
+
     # Create recommender
-    print("🔍 Initializing resource recommender...")
-    recommender = EnhancedResourceRecommender(rag_system, llm_api="ollama")
-    print("✅ Resource recommender ready")
-    
+    print("Initializing resource recommender...")
+    # Prefer OpenRouter when Ollama is unavailable; falls back gracefully either way
+    import requests as _req
+    _ollama_up = False
+    try:
+        _ollama_up = _req.get("http://localhost:11434/api/tags", timeout=3).ok
+    except Exception:
+        pass
+    _llm_api = "ollama" if _ollama_up else "openrouter"
+    recommender = EnhancedResourceRecommender(rag_system, llm_api=_llm_api)
+    print("Resource recommender ready")
+
+    stats = rag_system.get_graph_stats()
     print("\n" + "="*60)
-    print("  RESEARCH ASSISTANT READY")
+    print("  RESEARCH ASSISTANT READY  (GraphRAG / HGR)")
     print("="*60)
-    print(f"  🌐 Server: http://localhost:5000")
-    print(f"  📊 RAG Index: {rag_system.index.ntotal} chunks")
+    print(f"  Server:      http://localhost:5000")
+    print(f"  Chunks:      {len(rag_system.chunks)}")
+    print(f"  Graph nodes: {stats.get('nodes', 0)}")
+    print(f"  Graph edges: {stats.get('edges', 0)}  (tau=0.30)")
     print("="*60 + "\n")
 
 

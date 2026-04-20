@@ -245,7 +245,7 @@ class SourceHealthTracker:
         logger.info("=" * 80)
 
         for name, health in sorted(report["sources"].items()):
-            enabled = "✓" if self.is_source_enabled(name) else "✗"
+            enabled = "[ok]" if self.is_source_enabled(name) else "[err]"
             circuit = health["circuit_state"].upper()
             if health["circuit_state"] == "open":
                 circuit_icon = "🔴"

@@ -18,18 +18,18 @@ component must exceed its threshold for an edge to be created.
 
 Scalability
 -----------
-Naive O(n²) pairwise comparison is too slow for large corpora (>5k docs).
+Naive O(n^2) pairwise comparison is too slow for large corpora (>5k docs).
 Instead, we build an inverted index over top-200 TF tokens and only compute
-full edge weights for document pairs that share ≥ min_shared_tokens tokens.
-This reduces candidate pairs from O(n²) to O(n·s) where s is the average
+full edge weights for document pairs that share >= min_shared_tokens tokens.
+This reduces candidate pairs from O(n^2) to O(n.s) where s is the average
 number of token-sharing neighbours.
 
 Traversal modes
 ---------------
 - expand_1hop()             : direct graph neighbours of seed set
-- expand_2hop()             : 1-hop then 1-hop again (second-hop discounted 0.5×)
+- expand_2hop()             : 1-hop then 1-hop again (second-hop discounted 0.5x)
 - personalized_pagerank()   : PPR with uniform teleportation to seed set
-- query_biased_pagerank()   : PPR personalised by query–document cosine similarity
+- query_biased_pagerank()   : PPR personalised by query-document cosine similarity
 """
 
 import logging
@@ -44,9 +44,9 @@ import networkx as nx
 logger = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # Token utilities
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 _STOPWORDS = frozenset(
     "the a an of in on for and or to with is are was were be been have has do does "
@@ -85,9 +85,9 @@ def _cosine(a: np.ndarray, b: np.ndarray) -> float:
     return float(np.dot(a, b) / denom) if denom > 0 else 0.0
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # GraphIndex
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 class GraphIndex:
     """
@@ -111,7 +111,7 @@ class GraphIndex:
         self,
         alpha: float = 0.5,
         beta: float = 0.5,
-        jaccard_threshold: float = 0.10,
+        jaccard_threshold: float = 0.30,
         embed_threshold: float = 0.75,
         fuzzy_title_threshold: float = 0.30,
         citation_boost: float = 0.20,
@@ -128,12 +128,12 @@ class GraphIndex:
         self.max_candidates = max_candidates
 
         self.graph: nx.Graph = nx.Graph()
-        # doc_id → {doi, title, title_tokens, tf_tokens, embedding}
+        # doc_id -> {doi, title, title_tokens, tf_tokens, embedding}
         self._meta: Dict[str, Dict] = {}
 
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
     # Build
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
 
     def build(
         self,
@@ -172,7 +172,7 @@ class GraphIndex:
 
         logger.info("GraphIndex: building edges for %d documents...", n)
 
-        # Build inverted index: token → [doc_ids containing that token in tf_tokens]
+        # Build inverted index: token -> [doc_ids containing that token in tf_tokens]
         inverted: Dict[str, List[str]] = defaultdict(list)
         for doc_id in doc_ids:
             for token in self._meta[doc_id]["tf_tokens"]:
@@ -213,7 +213,7 @@ class GraphIndex:
                     edge_count += 1
 
         logger.info(
-            "GraphIndex: built — %d nodes, %d edges (%.1f avg degree)",
+            "GraphIndex: built - %d nodes, %d edges (%.1f avg degree)",
             self.graph.number_of_nodes(),
             edge_count,
             (2 * edge_count / n) if n > 0 else 0,
@@ -250,7 +250,7 @@ class GraphIndex:
             reasons.append("doi_cite")
             doi_edge = True
 
-        # 4. Fuzzy title match — only if no DOI edge found
+        # 4. Fuzzy title match - only if no DOI edge found
         if not doi_edge and meta_i["title_tokens"] and meta_j["title_tokens"]:
             title_jac = _jaccard(meta_i["title_tokens"], meta_j["title_tokens"])
             if title_jac >= self.fuzzy_title_threshold and cos >= 0.50:
@@ -259,9 +259,9 @@ class GraphIndex:
 
         return weight, reasons
 
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
     # Traversal
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
 
     def expand_1hop(self, seed_ids: Set[str]) -> List[Tuple[str, float]]:
         """
@@ -286,7 +286,7 @@ class GraphIndex:
     def expand_2hop(self, seed_ids: Set[str]) -> List[Tuple[str, float]]:
         """
         2-hop expansion.  1-hop neighbours are found first; then their neighbours
-        are added at a 0.5× discount.  1-hop scores take precedence over 2-hop.
+        are added at a 0.5x discount.  1-hop scores take precedence over 2-hop.
 
         Returns
         -------
@@ -317,7 +317,7 @@ class GraphIndex:
         Parameters
         ----------
         seed_ids : documents to personalise towards (teleportation targets).
-        alpha    : damping factor — probability of following an edge (default 0.85).
+        alpha    : damping factor - probability of following an edge (default 0.85).
         top_k    : number of results to return.
         """
         if self.graph.number_of_nodes() == 0 or not seed_ids:
@@ -356,7 +356,7 @@ class GraphIndex:
         """
         Query-biased PageRank (QBPR).
 
-        Teleportation distribution is proportional to query–document cosine
+        Teleportation distribution is proportional to query-document cosine
         similarity rather than uniform over seeds.  This is equivalent to the
         Andersen et al. (2006) formulation applied to dense embeddings.
 
@@ -424,9 +424,9 @@ class GraphIndex:
         else:
             raise ValueError(f"Unknown expansion mode: {mode!r}")
 
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
     # Statistics & persistence
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
 
     def get_stats(self) -> Dict:
         """Return summary statistics about the graph."""
@@ -486,7 +486,7 @@ class GraphIndex:
         self.fuzzy_title_threshold = cfg.get("fuzzy_title_threshold", self.fuzzy_title_threshold)
         self.citation_boost = cfg.get("citation_boost", self.citation_boost)
         logger.info(
-            "GraphIndex: loaded — %d nodes, %d edges",
+            "GraphIndex: loaded - %d nodes, %d edges",
             self.graph.number_of_nodes(),
             self.graph.number_of_edges(),
         )

@@ -57,7 +57,7 @@ class AnnasArchiveClient(BaseAPIClient):
                     if response.status_code == 200:
                         content_type = response.headers.get('content-type', '').lower()
                         if 'application/pdf' in content_type and len(response.content) > 10000:
-                            logger.info(f"✓ PDF from LibGen: {mirror}")
+                            logger.info(f"[ok] PDF from LibGen: {mirror}")
                             return response.content, f"libgen_{mirror}"
                 
                 except Exception as e:

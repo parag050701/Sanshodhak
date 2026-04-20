@@ -166,7 +166,7 @@ class AutoProcessor:
         
         if success:
             self.processed_files.add(pdf_path)
-            logger.info(f"Auto-processed: {pdf_path.name} → {paper_id}")
+            logger.info(f"Auto-processed: {pdf_path.name} -> {paper_id}")
         else:
             logger.error(f"Auto-processing failed: {pdf_path.name}: {error}")
         

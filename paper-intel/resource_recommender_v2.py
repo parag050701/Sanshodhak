@@ -66,32 +66,39 @@ Respond ONLY with valid JSON (no markdown, no explanation):
         try:
             # Try OpenRouter first
             if self.llm_api == "openrouter" and self.openrouter_key:
-                print("  🤖 Using OpenRouter for keyword generation...")
-                response = requests.post(
-                    "https://openrouter.ai/api/v1/chat/completions",
-                    headers={
-                        "Authorization": f"Bearer {self.openrouter_key}",
-                        "Content-Type": "application/json"
-                    },
-                    json={
-                        "model": "meta-llama/llama-3.1-8b-instruct:free",
-                        "messages": [{"role": "user", "content": prompt}],
-                        "temperature": 0.3
-                    },
-                    timeout=30
-                )
-                
-                if response.status_code == 200:
-                    content = response.json()['choices'][0]['message']['content']
-                    content = self._extract_json(content)
-                    keywords = json.loads(content)
-                    print(f"  ✅ Generated keywords via OpenRouter")
-                    return keywords
-                else:
-                    print(f"  ⚠️ OpenRouter failed: {response.status_code}")
+                _or_models = [
+                    "mistralai/mistral-7b-instruct:free",
+                    "qwen/qwen-2-7b-instruct:free",
+                    "google/gemma-3-4b-it:free",
+                ]
+                for _model in _or_models:
+                    print(f"  [LLM] Using OpenRouter ({_model}) for keyword generation...")
+                    response = requests.post(
+                        "https://openrouter.ai/api/v1/chat/completions",
+                        headers={
+                            "Authorization": f"Bearer {self.openrouter_key}",
+                            "Content-Type": "application/json"
+                        },
+                        json={
+                            "model": _model,
+                            "messages": [{"role": "user", "content": prompt}],
+                            "temperature": 0.3
+                        },
+                        timeout=30
+                    )
+                    if response.status_code == 200:
+                        content = response.json()['choices'][0]['message']['content']
+                        content = self._extract_json(content)
+                        keywords = json.loads(content)
+                        print(f"  [OK] Generated keywords via OpenRouter")
+                        return keywords
+                    if response.status_code not in (429, 404):
+                        print(f"  [WARN] OpenRouter failed: {response.status_code}")
+                        break
+                    # 429/404 -> try next model
             
             # Fallback to Ollama
-            print("  🤖 Using Ollama for keyword generation...")
+            print("  [LLM] Using Ollama for keyword generation...")
             response = requests.post(
                 "http://localhost:11434/api/generate",
                 json={
@@ -108,18 +115,23 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                 content = response.json()['response']
                 content = self._extract_json(content)
                 keywords = json.loads(content)
-                print(f"  ✅ Generated keywords via Ollama")
+                print(f"  [OK] Generated keywords via Ollama")
                 return keywords
                 
         except Exception as e:
-            print(f"  ⚠️ LLM keyword generation failed: {e}")
+            print(f"  [WARN] LLM keyword generation failed: {e}")
         
-        # Ultimate fallback: basic keyword extraction
-        print("  ⚠️ Using fallback keyword extraction")
-        words = [w.strip() for w in query.lower().split() if len(w.strip()) > 3]
+        # Ultimate fallback: domain-aware keyword extraction
+        print("  [WARN] Using fallback keyword extraction")
+        _stop = {'what', 'when', 'where', 'which', 'that', 'this', 'with',
+                 'from', 'into', 'have', 'been', 'does', 'about', 'used',
+                 'using', 'based', 'their', 'there', 'these', 'those', 'them'}
+        words = [w.strip('?.,!') for w in query.lower().split()
+                 if len(w.strip('?.,!')) > 4 and w.strip('?.,!') not in _stop]
+        # Use the full query as a phrase for GitHub (most relevant signal)
         return {
-            'huggingface': words[:3],
-            'github': words[:3],
+            'huggingface': words[:3] if words else [query],
+            'github': [query],
             'web': [query]
         }
     
@@ -158,7 +170,7 @@ Respond ONLY with valid JSON (no markdown, no explanation):
     
     @staticmethod
     def _hf_safe_terms(keywords: List[str], query: str) -> List[str]:
-        """Return short HuggingFace-compatible search terms (≤3 words each)."""
+        """Return short HuggingFace-compatible search terms (<=3 words each)."""
         # HuggingFace API works best with single or hyphenated terms
         terms = []
         for kw in (keywords or []):
@@ -186,7 +198,7 @@ Respond ONLY with valid JSON (no markdown, no explanation):
         results = {'models': [], 'datasets': []}
         search_terms = self._hf_safe_terms(keywords or [], query)
         
-        print(f"  🔍 Searching HuggingFace with {len(search_terms)} keywords...")
+        print(f"  [SEARCH] Searching HuggingFace with {len(search_terms)} keywords...")
         
         for term in search_terms[:3]:  # Limit to 3 keywords
             try:
@@ -206,10 +218,12 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                             if not model_id:
                                 continue
                             
-                            # Skip if already added
+                            # Skip if already added or no meaningful downloads
                             if any(m['name'] == model_id for m in results['models']):
                                 continue
-                            
+                            if model.get('downloads', 0) < 10 and model.get('likes', 0) < 1:
+                                continue
+
                             results['models'].append({
                                 'name': model_id,
                                 'task': model.get('pipeline_tag') or model.get('task') or 'unknown',
@@ -220,7 +234,7 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                                 'url': f"https://huggingface.co/{model_id}"
                             })
                         
-                        print(f"    ✓ Found {len(results['models'])} models for '{term}'")
+                        print(f"    [ok] Found {len(results['models'])} models for '{term}'")
                 
                 time.sleep(0.5)  # Rate limiting
                 
@@ -250,12 +264,12 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                                 'url': f"https://huggingface.co/datasets/{dataset_id}"
                             })
                         
-                        print(f"    ✓ Found {len(results['datasets'])} datasets for '{term}'")
+                        print(f"    [ok] Found {len(results['datasets'])} datasets for '{term}'")
                 
                 time.sleep(0.5)
                 
             except Exception as e:
-                print(f"    ✗ Error for '{term}': {e}")
+                print(f"    [err] Error for '{term}': {e}")
                 continue
         
         # Sort by popularity
@@ -268,25 +282,36 @@ Respond ONLY with valid JSON (no markdown, no explanation):
         """Search GitHub repositories."""
         
         repos = []
-        search_terms = keywords if keywords else [query]
+        if keywords:
+            search_terms = keywords
+        else:
+            # Extract meaningful terms from raw query for GitHub search
+            _stop = {'what', 'when', 'where', 'which', 'that', 'this', 'with',
+                     'from', 'into', 'have', 'been', 'does', 'about', 'used',
+                     'using', 'based', 'their', 'there', 'these', 'those'}
+            _words = [w.strip('?.,!') for w in query.lower().split()
+                      if len(w.strip('?.,!')) > 4 and w.strip('?.,!') not in _stop]
+            search_terms = [' '.join(_words[:3])] if _words else [query]
         
-        print(f"  🔍 Searching GitHub with {len(search_terms)} keywords...")
+        print(f"  [SEARCH] Searching GitHub with {len(search_terms)} keywords...")
         
         for term in search_terms[:2]:  # Limit to 2 keywords
             try:
-                url = f"https://api.github.com/search/repositories?q={quote(term)}&sort=stars&order=desc&per_page={limit}"
+                # Use quoted phrase for precision; require at least 10 stars
+                q = f'"{term}" stars:>10' if len(term.split()) > 1 else f'{term} stars:>10'
+                url = f"https://api.github.com/search/repositories?q={quote(q)}&sort=stars&order=desc&per_page={limit}"
                 response = self.session.get(url, timeout=10)
-                
+
                 if response.status_code == 200:
                     data = response.json()
                     for repo in data.get('items', []):
                         if len(repos) >= limit:
                             break
-                        
+
                         repo_url = repo['html_url']
                         if any(r['url'] == repo_url for r in repos):
                             continue
-                        
+
                         repos.append({
                             'name': repo['full_name'],
                             'url': repo_url,
@@ -295,13 +320,13 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                             'language': repo.get('language', 'Unknown'),
                             'topics': repo.get('topics', [])[:5]
                         })
-                    
-                    print(f"    ✓ Found {len(repos)} repos for '{term}'")
+
+                    print(f"    [ok] Found {len(repos)} repos for '{term}'")
                 
                 time.sleep(1)  # GitHub rate limiting
                 
             except Exception as e:
-                print(f"    ✗ Error for '{term}': {e}")
+                print(f"    [err] Error for '{term}': {e}")
                 continue
         
         repos.sort(key=lambda x: x['stars'], reverse=True)
@@ -313,7 +338,7 @@ Respond ONLY with valid JSON (no markdown, no explanation):
         results = []
         search_terms = keywords if keywords else [query]
         
-        print(f"  🔍 Searching web with {len(search_terms)} keywords...")
+        print(f"  [SEARCH] Searching web with {len(search_terms)} keywords...")
         
         # Add curated resources first
         curated = self._get_curated_resources(query)
@@ -340,7 +365,7 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                 time.sleep(0.5)
                 
             except Exception as e:
-                print(f"    ✗ Error for '{term}': {e}")
+                print(f"    [err] Error for '{term}': {e}")
         
         return results[:limit]
     
@@ -453,12 +478,12 @@ Respond ONLY with valid JSON (no markdown, no explanation):
         """Main recommendation pipeline with LLM-powered search."""
         
         print("\n" + "="*80)
-        print("🔍 RESOURCE RECOMMENDATION")
+        print("[SEARCH] RESOURCE RECOMMENDATION")
         print("="*80)
-        print(f"\n📝 Query: {query}")
+        print(f"\n[Query] Query: {query}")
         
         # Step 1: Search papers
-        print("\n📚 Step 1: Searching research papers...")
+        print("\n[Step] Step 1: Searching research papers...")
         relevant_papers = []
         if self.rag:
             try:
@@ -472,17 +497,17 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                     })
                     print(f"  [{i}] {result['file']} (score: {result['score']:.3f})")
             except Exception as e:
-                print(f"  ⚠️ Error: {e}")
+                print(f"  [WARN] Error: {e}")
         
         # Step 2: Generate keywords with LLM
-        print("\n🤖 Step 2: Generating optimized search keywords...")
+        print("\n[LLM] Step 2: Generating optimized search keywords...")
         search_keywords = self.generate_search_keywords(query)
         print(f"  HuggingFace: {', '.join(search_keywords.get('huggingface', [])[:3])}")
         print(f"  GitHub: {', '.join(search_keywords.get('github', [])[:3])}")
         print(f"  Web: {', '.join(search_keywords.get('web', [])[:2])}")
         
         # Step 3: Extract technical terms
-        print("\n🔧 Step 3: Extracting technical terms...")
+        print("\n[Step] Step 3: Extracting technical terms...")
         all_text = query + " " + " ".join([p['snippet'] for p in relevant_papers])
         technical_terms = self.extract_technical_terms(all_text)
         for category, terms in technical_terms.items():
@@ -490,36 +515,36 @@ Respond ONLY with valid JSON (no markdown, no explanation):
                 print(f"  {category.capitalize()}: {', '.join(terms[:5])}")
         
         # Step 4: Search HuggingFace
-        print("\n🤗 Step 4: Searching HuggingFace...")
+        print("\n[HF] Step 4: Searching HuggingFace...")
         hf_results = self.search_huggingface(
             query, 
             keywords=search_keywords.get('huggingface'),
             limit=10
         )
-        print(f"  ✅ Total: {len(hf_results['models'])} models, {len(hf_results['datasets'])} datasets")
+        print(f"  [OK] Total: {len(hf_results['models'])} models, {len(hf_results['datasets'])} datasets")
         
         # Step 5: Search GitHub
-        print("\n💻 Step 5: Searching GitHub...")
+        print("\n[Step] Step 5: Searching GitHub...")
         github_repos = self.search_github(
             query,
             keywords=search_keywords.get('github'),
             limit=10
         )
-        print(f"  ✅ Total: {len(github_repos)} repositories")
+        print(f"  [OK] Total: {len(github_repos)} repositories")
         
         # Step 6: Search web
-        print("\n🌐 Step 6: Searching web resources...")
+        print("\n[Step] Step 6: Searching web resources...")
         web_results = self.search_web(
             query,
             keywords=search_keywords.get('web'),
             limit=10
         )
-        print(f"  ✅ Total: {len(web_results)} web resources")
+        print(f"  [OK] Total: {len(web_results)} web resources")
         
         # Step 7: Papers with Code
-        print("\n📄 Step 7: Searching Papers with Code...")
+        print("\n[Step] Step 7: Searching Papers with Code...")
         pwc_results = self.search_papers_with_code(query)
-        print(f"  ✅ Total: {len(pwc_results)} papers")
+        print(f"  [OK] Total: {len(pwc_results)} papers")
         
         return {
             'query': query,
@@ -545,46 +570,46 @@ Respond ONLY with valid JSON (no markdown, no explanation):
         """Print recommendations in formatted output."""
         
         print("\n" + "="*80)
-        print("📋 RECOMMENDATIONS SUMMARY")
+        print("[Summary] RECOMMENDATIONS SUMMARY")
         print("="*80)
         
         s = recs['summary']
-        print(f"\n📊 Statistics:")
-        print(f"  • Research Papers: {s['total_papers']}")
-        print(f"  • HuggingFace Models: {s['total_hf_models']}")
-        print(f"  • HuggingFace Datasets: {s['total_hf_datasets']}")
-        print(f"  • GitHub Repos: {s['total_github_repos']}")
-        print(f"  • Web Resources: {s['total_web_resources']}")
-        print(f"  • Papers with Code: {s['total_pwc_papers']}")
+        print(f"\n[Stats] Statistics:")
+        print(f"  - Research Papers: {s['total_papers']}")
+        print(f"  - HuggingFace Models: {s['total_hf_models']}")
+        print(f"  - HuggingFace Datasets: {s['total_hf_datasets']}")
+        print(f"  - GitHub Repos: {s['total_github_repos']}")
+        print(f"  - Web Resources: {s['total_web_resources']}")
+        print(f"  - Papers with Code: {s['total_pwc_papers']}")
         
         # Top HuggingFace models
         if recs['huggingface']['models']:
-            print(f"\n🤗 Top HuggingFace Models:")
+            print(f"\n[HF] Top HuggingFace Models:")
             for model in recs['huggingface']['models'][:5]:
-                print(f"  • {model['name']}")
-                print(f"    Task: {model['task']} | 💙 {model['likes']} | ⬇️ {model['downloads']:,}")
+                print(f"  - {model['name']}")
+                print(f"    Task: {model['task']} | likes: {model['likes']} | downloads: {model['downloads']:,}")
                 print(f"    {model['url']}")
         
         # Top GitHub repos
         if recs['github_repositories']:
-            print(f"\n⭐ Top GitHub Repositories:")
+            print(f"\n* Top GitHub Repositories:")
             for repo in recs['github_repositories'][:5]:
-                print(f"  • {repo['name']} ({repo['stars']:,}⭐)")
+                print(f"  - {repo['name']} ({repo['stars']:,}*)")
                 print(f"    {repo['description'][:100]}")
                 print(f"    {repo['url']}")
         
         # Web resources
         if recs['web_resources']:
-            print(f"\n🌐 Top Web Resources:")
+            print(f"\n[Step] Top Web Resources:")
             for resource in recs['web_resources'][:5]:
-                print(f"  • {resource['title']}")
+                print(f"  - {resource['title']}")
                 print(f"    {resource['url']}")
     
     def save_recommendations(self, recs: Dict[str, Any], filename: str):
         """Save recommendations to JSON file."""
         with open(filename, 'w') as f:
             json.dump(recs, f, indent=2)
-        print(f"\n💾 Saved to {filename}")
+        print(f"\n[Save] Saved to {filename}")
 
 
 if __name__ == "__main__":

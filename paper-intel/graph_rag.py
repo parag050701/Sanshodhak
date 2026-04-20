@@ -6,7 +6,7 @@ edge types for richer structural connectivity:
 
   1. Vocabulary-Jaccard edges  (semantic similarity)
      Computed from Jaccard similarity of top-200 TF terms per paper.
-     Threshold: Jaccard ≥ similarity_threshold (default 0.10).
+     Threshold: Jaccard >= similarity_threshold (default 0.10).
      Captures TOPICAL proximity between papers.
 
   2. Citation co-occurrence edges  (bibliographic coupling)
@@ -26,8 +26,8 @@ Architecture:
        - Edges  : weighted Jaccard similarity of top-200 vocabulary terms
                   (approximates semantic relatedness / co-citation proxy)
   2. Graph-augmented retrieval pipeline:
-       a. Hybrid dense (FAISS) + sparse (BM25) retrieval  →  initial candidates
-       b. Map retrieved chunks → paper nodes in graph
+       a. Hybrid dense (FAISS) + sparse (BM25) retrieval  ->  initial candidates
+       b. Map retrieved chunks -> paper nodes in graph
        c. 1-hop graph expansion: fetch neighbour papers by edge weight
        d. Retrieve best BM25 chunk from each neighbour paper
        e. RRF re-ranking of full candidate set (dense + BM25 + graph)
@@ -78,11 +78,11 @@ class GraphRAG:
 
     Drop-in replacement for EnhancedRAG in evaluations:
       - same .load(index_dir)
-      - same .search(query, top_k)  →  List[Dict]
-      - same .query(question, top_k, verbose) → (answer, sources)
+      - same .search(query, top_k)  ->  List[Dict]
+      - same .query(question, top_k, verbose) -> (answer, sources)
 
     Extra capability:
-      - .get_graph_stats()  → dict  (for paper tables)
+      - .get_graph_stats()  -> dict  (for paper tables)
     """
 
     def __init__(
@@ -91,11 +91,11 @@ class GraphRAG:
         ollama_llm: str = "deepseek-r1:7b",
         ollama_url: str = "http://localhost:11434",
         use_bm25: bool = True,
-        similarity_threshold: float = 0.10,
-        max_graph_hops: int = 1,
+        similarity_threshold: float = 0.30,
+        max_graph_hops: int = 2,
         max_expansion_papers: int = 3,
         use_adaptive_budget: bool = True,
-        expansion_mode: str = "1hop",
+        expansion_mode: str = "qbpr",
     ):
         """
         Args:
@@ -108,7 +108,7 @@ class GraphRAG:
             max_expansion_papers  : Max neighbour papers to expand per query
             use_adaptive_budget   : Use data-driven graph slot allocation instead
                                     of fixed k//4 (default True)
-            expansion_mode        : Graph traversal mode — '1hop', 'ppr', or
+            expansion_mode        : Graph traversal mode - '1hop', 'ppr', or
                                     'qbpr' (query-biased personalized pagerank)
         """
         self.ollama_embed = ollama_embed
@@ -135,31 +135,77 @@ class GraphRAG:
         self.graph: nx.Graph = nx.Graph()
         self.paper_chunks: Dict[str, List[int]] = defaultdict(list)
         self.paper_vocab: Dict[str, Set[str]] = {}
-        # Maps paper_id → short title fingerprint (for citation matching)
+        # Maps paper_id -> short title fingerprint (for citation matching)
         self.paper_title_tokens: Dict[str, Set[str]] = {}
         # Path to raw text directory for citation extraction
         self._raw_text_dir: Optional[Path] = None
 
+        # Cross-encoder reranker (lazy-loaded on first search)
+        self._reranker = None
+
+        # sentence-transformers embedding model (lazy-loaded, CPU fallback for Ollama)
+        self._st_model = None
+
     # ------------------------------------------------------------------
     # Helpers
     # ------------------------------------------------------------------
+
+    def _get_reranker(self):
+        """Lazy-load the cross-encoder reranker (cached after first call)."""
+        if self._reranker is None:
+            import os
+            # Prevent OpenBLAS multi-thread conflicts on Windows when loading
+            # a second model into the same process that already uses numpy.
+            os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+            from core.reranker import CrossEncoderReranker
+            self._reranker = CrossEncoderReranker(
+                model_name="cross-encoder/ms-marco-MiniLM-L-6-v2",
+                device="cpu",
+            )
+        return self._reranker
 
     def _tokenize(self, text: str) -> List[str]:
         """Tokenize text, strip stop-words, keep meaningful alpha-numeric tokens."""
         tokens = re.findall(r'\b[a-zA-Z][a-zA-Z0-9]{2,}\b', text.lower())
         return [t for t in tokens if t not in _STOP_WORDS]
 
+    def _get_st_model(self):
+        """Lazy-load sentence-transformers BGE-M3 (CPU). Cached after first call."""
+        if self._st_model is None:
+            from sentence_transformers import SentenceTransformer
+            logger.info("Loading BAAI/bge-m3 via sentence-transformers (CPU)...")
+            self._st_model = SentenceTransformer("BAAI/bge-m3", device="cpu")
+            logger.info("BAAI/bge-m3 loaded.")
+        return self._st_model
+
     def get_embedding(self, text: str) -> np.ndarray:
-        """Get normalised BGE-M3 embedding from Ollama."""
-        resp = requests.post(
-            f"{self.ollama_url}/api/embeddings",
-            json={"model": self.ollama_embed, "prompt": text},
-            timeout=60,
-        )
-        resp.raise_for_status()
-        emb = np.array(resp.json()["embedding"], dtype=np.float32)
-        norm = np.linalg.norm(emb)
-        return emb / norm if norm > 0 else emb
+        """
+        Get normalised BGE-M3 embedding.
+        Tries sentence-transformers (CPU) first; falls back to Ollama if unavailable.
+        """
+        st_err = None
+        try:
+            model = self._get_st_model()
+            emb = model.encode(text, normalize_embeddings=True, show_progress_bar=False)
+            return emb.astype(np.float32)
+        except Exception as e:
+            st_err = e
+            logger.debug("sentence-transformers failed (%s), trying Ollama...", st_err)
+
+        try:
+            resp = requests.post(
+                f"{self.ollama_url}/api/embeddings",
+                json={"model": self.ollama_embed, "prompt": text},
+                timeout=60,
+            )
+            resp.raise_for_status()
+            emb = np.array(resp.json()["embedding"], dtype=np.float32)
+            norm = np.linalg.norm(emb)
+            return emb / norm if norm > 0 else emb
+        except Exception as ollama_err:
+            raise RuntimeError(
+                f"Embedding failed - sentence-transformers: {st_err}; Ollama: {ollama_err}"
+            )
 
     # ------------------------------------------------------------------
     # BM25
@@ -167,7 +213,7 @@ class GraphRAG:
 
     def _build_bm25(self):
         """Build BM25 inverted index from loaded chunks."""
-        logger.info("Building BM25 index …")
+        logger.info("Building BM25 index ...")
         self.bm25_docs = [self._tokenize(c) for c in self.chunks]
         df: Counter = Counter()
         for doc in self.bm25_docs:
@@ -209,24 +255,24 @@ class GraphRAG:
         """
         Build dual-edge paper-level knowledge graph.
 
-        Edge type 1 — Vocabulary-Jaccard (semantic similarity):
-          Node pairs with Jaccard similarity ≥ threshold on their
+        Edge type 1 - Vocabulary-Jaccard (semantic similarity):
+          Node pairs with Jaccard similarity >= threshold on their
           top-200 TF vocabulary terms receive a weighted edge.
 
-        Edge type 2 — Citation co-occurrence (bibliographic coupling):
+        Edge type 2 - Citation co-occurrence (bibliographic coupling):
           Reference sections of raw .txt files are scanned for paper
           titles already in the corpus. Each cross-citation adds a
-          citation-weighted edge (weight = 1.5 × Jaccard normalisation).
+          citation-weighted edge (weight = 1.5 x Jaccard normalisation).
 
         Combined edge weight:
           w = jaccard_weight + citation_matches * 0.15
         """
-        logger.info("Building dual-edge knowledge graph …")
+        logger.info("Building dual-edge knowledge graph ...")
 
         if raw_text_dir:
             self._raw_text_dir = Path(raw_text_dir)
 
-        # Map chunks → papers and build vocabulary
+        # Map chunks -> papers and build vocabulary
         self.paper_chunks.clear()
         self.paper_vocab.clear()
         self.paper_title_tokens.clear()
@@ -249,7 +295,7 @@ class GraphRAG:
 
         papers = list(self.paper_chunks.keys())
 
-        # ── Edge type 1: Vocabulary-Jaccard ────────────────────────────
+        # -- Edge type 1: Vocabulary-Jaccard ----------------------------
         jaccard_edges = 0
         edge_weights: Dict[Tuple[str, str], float] = {}
         edge_citation_weight: Dict[Tuple[str, str], float] = defaultdict(float)
@@ -266,7 +312,7 @@ class GraphRAG:
                     edge_weights[key] = jaccard
                     jaccard_edges += 1
 
-        # ── Edge type 2: Citation co-occurrence ─────────────────────────
+        # -- Edge type 2: Citation co-occurrence -------------------------
         citation_edges = 0
         if self._raw_text_dir and self._raw_text_dir.is_dir():
             citation_edges = self._extract_citation_edges(
@@ -295,7 +341,7 @@ class GraphRAG:
             f"(Jaccard={jaccard_edges}, Citation={citation_edges})"
         )
         print(
-            f"🕸️  Dual-edge graph: {stats['nodes']} papers, {stats['edges']} edges "
+            f"[Graph] Dual-edge: {stats['nodes']} papers, {stats['edges']} edges "
             f"[Jaccard={jaccard_edges} + Citation={citation_edges}]"
         )
         return self
@@ -474,19 +520,24 @@ class GraphRAG:
             best_idx = max(
                 indices, key=lambda i: self._bm25_score(query_tokens, i)
             )
-            score = self._bm25_score(query_tokens, best_idx)
+            bm25_score = self._bm25_score(query_tokens, best_idx)
         else:
             best_idx = indices[0]
-            score = 0.10  # nominal graph-expansion score
+            bm25_score = 0.0
+
+        # Use RRF-equivalent display score (1/(60+1)) so graph-expanded
+        # chunks appear on the same scale as RRF-fused results (~0.016),
+        # rather than showing the raw BM25 score which is a different scale.
+        display_score = 1.0 / (60 + 1)
 
         return {
-            "score": float(score),
+            "score": display_score,
             "text": self.chunks[best_idx],
             "metadata": self.metadata[best_idx],
             "scores": {
                 "dense_score": 0.0,
-                "bm25_score": float(score),
-                "rrf_score": 0.0,
+                "bm25_score": bm25_score,
+                "rrf_score": display_score,
                 "graph_expanded": True,
             },
         }
@@ -503,7 +554,7 @@ class GraphRAG:
           1. Dense FAISS retrieval   (always)
           2. BM25 retrieval          (if use_bm25=True)
           3. RRF fusion of 1+2
-          4. Map top-K chunks → paper nodes
+          4. Map top-K chunks -> paper nodes
           5. 1-hop graph expansion
           6. Append best BM25 chunk from each expanded paper
           7. Return top-K results (vector results first, graph expansions appended)
@@ -512,111 +563,131 @@ class GraphRAG:
             raise RuntimeError("GraphRAG index not loaded. Call .load() first.")
 
         query_tokens = self._tokenize(query)
+        from core.fusion import confidence_weighted_rrf
 
-        # ── 1. Dense retrieval ──────────────────────────────────────────
-        query_emb = self.get_embedding(query).reshape(1, -1)
-        dense_scores, dense_indices = self.index.search(query_emb, top_k * 2)
-
-        results: Dict[int, Dict] = {}
-        dense_rank_map: Dict[int, int] = {}
-        for rank, (score, idx) in enumerate(
-            zip(dense_scores[0], dense_indices[0])
-        ):
-            idx = int(idx)
-            results[idx] = {
-                "dense_score": float(score),
-                "bm25_score": 0.0,
-                "graph_expanded": False,
-            }
-            dense_rank_map[idx] = rank
-
-        # ── 2. BM25 retrieval ───────────────────────────────────────────
-        bm25_rank_map: Dict[int, int] = {}
-        if self.use_bm25 and self.bm25_docs:
-            bm25_pairs = [
-                (i, self._bm25_score(query_tokens, i))
-                for i in range(len(self.chunks))
-            ]
-            bm25_pairs.sort(key=lambda x: x[1], reverse=True)
-            for rank, (idx, score) in enumerate(bm25_pairs[: top_k * 2]):
-                bm25_rank_map[idx] = rank
-                if idx in results:
-                    results[idx]["bm25_score"] = score
-                else:
-                    results[idx] = {
-                        "dense_score": 0.0,
-                        "bm25_score": score,
-                        "graph_expanded": False,
-                    }
-
-        # ── 3. RRF fusion ───────────────────────────────────────────────
-        for idx in results:
-            dr = dense_rank_map.get(idx, 9999)
-            br = bm25_rank_map.get(idx, 9999)
-            results[idx]["rrf_score"] = 1.0 / (60 + dr) + (
-                1.0 / (60 + br) if br < 9999 else 0.0
-            )
-
-        sorted_results = sorted(
-            results.items(), key=lambda x: x[1]["rrf_score"], reverse=True
-        )
-        # Reserve graph_slots slots for graph-expanded results so they
-        # are never clipped out of the final top-K context window.
+        # -- Compute graph slot budget -----------------------------------
         if self.use_adaptive_budget:
             try:
                 from core.adaptive_budget import compute_graph_budget
-                dense_score_list = [
-                    results[idx]["dense_score"]
-                    for idx, _ in sorted_results[:20]
-                ]
-                bm25_score_list = [
-                    results[idx]["bm25_score"]
-                    for idx, _ in sorted_results[:20]
-                ]
-                # Build vocabulary set from BM25 docs for OOV calculation
                 vocab_set = set()
                 if self.bm25_docs:
                     for doc_tokens in self.bm25_docs:
                         vocab_set.update(doc_tokens)
+                # Use placeholder lists; refined after retrieval below
                 graph_slots = compute_graph_budget(
-                    query, dense_score_list, bm25_score_list,
-                    top_k, vocabulary=vocab_set or None,
+                    query, [], [], top_k, vocabulary=vocab_set or None,
                 )
-                graph_slots = min(graph_slots, self.max_expansion_papers)
+                graph_slots = max(1, min(graph_slots, self.max_expansion_papers))
             except ImportError:
-                graph_slots = min(self.max_expansion_papers, max(1, top_k // 4))
+                graph_slots = max(1, min(self.max_expansion_papers, top_k // 4))
         else:
-            graph_slots = min(self.max_expansion_papers, max(1, top_k // 4))
+            graph_slots = max(1, min(self.max_expansion_papers, top_k // 4))
         vector_slots = top_k - graph_slots
-        initial = sorted_results[:vector_slots]
 
-        # ── 4-5. Graph expansion ────────────────────────────────────────
-        retrieved_papers: Set[str] = {
-            self.metadata[idx]["file"] for idx, _ in initial
+        # -- 1. Dense retrieval ------------------------------------------
+        query_emb = self.get_embedding(query).reshape(1, -1)
+        dense_scores, dense_indices = self.index.search(query_emb, vector_slots * 2)
+
+        dense_ranked: List[Tuple[str, float]] = []
+        for score, idx in zip(dense_scores[0], dense_indices[0]):
+            dense_ranked.append((str(int(idx)), float(score)))
+
+        # -- 2. BM25 retrieval -------------------------------------------
+        bm25_ranked: List[Tuple[str, float]] = []
+        if self.use_bm25 and self.bm25_docs:
+            bm25_pairs = sorted(
+                [(i, self._bm25_score(query_tokens, i))
+                 for i in range(len(self.chunks))],
+                key=lambda x: x[1], reverse=True,
+            )
+            bm25_ranked = [
+                (str(idx), score) for idx, score in bm25_pairs[: vector_slots * 2]
+            ]
+
+        # -- 3. Graph expansion (seeded from dense top results) ----------
+        seed_papers: Set[str] = {
+            self.metadata[int(idx)]["file"]
+            for idx, _ in dense_ranked[:vector_slots]
         }
-        neighbours = self._get_graph_neighbours(retrieved_papers, query_emb=query_emb)
+        neighbours = self._get_graph_neighbours(seed_papers, query_emb=query_emb)
 
-        # ── 6. Best chunk from each neighbour ───────────────────────────
-        expansion_results: List[Dict] = []
-        for paper_id, _edge_weight in neighbours:
+        graph_ranked: List[Tuple[str, float]] = []
+        graph_chunk_map: Dict[str, Dict] = {}   # str(idx) -> chunk dict
+        for paper_id, edge_weight in neighbours[:graph_slots * 2]:
             chunk = self._best_chunk_from_paper(paper_id, query_tokens)
             if chunk:
-                expansion_results.append(chunk)
+                # Use a synthetic index key for graph chunks (negative to avoid
+                # collision with real FAISS indices)
+                key = f"g_{paper_id}"
+                graph_ranked.append((key, edge_weight))
+                graph_chunk_map[key] = chunk
 
-        # ── 7. Format and return ────────────────────────────────────────
+        # -- 4. 3-channel CW-RRF fusion ---------------------------------
+        ranked_lists = [dense_ranked]
+        if bm25_ranked:
+            ranked_lists.append(bm25_ranked)
+        if graph_ranked:
+            ranked_lists.append(graph_ranked)
+
+        fused = confidence_weighted_rrf(ranked_lists)
+
+        # -- 5. Slot reservation (AHR): guarantee graph slots in top-k --
+        # Rfusion = top vector_slots from fused (may include graph results
+        #           that ranked highly enough on their own)
+        # RG      = top graph_slots from graph results NOT already in Rfusion
+        rfusion_keys = [k for k, _ in fused[:vector_slots]]
+        rfusion_set = set(rfusion_keys)
+
+        rg_keys = [
+            k for k, _ in fused
+            if k in graph_chunk_map and k not in rfusion_set
+        ][:graph_slots]
+
+        final_keys = rfusion_keys + rg_keys
+
+        # -- 6. Format results -------------------------------------------
         final: List[Dict] = []
-        for idx, scores in initial:
-            final.append(
-                {
-                    "score": scores["rrf_score"],
+        for key in final_keys:
+            if key in graph_chunk_map:
+                # Graph-expanded chunk - score from RRF position
+                rrf_score = next((s for k, s in fused if k == key), 1.0 / 61)
+                chunk = dict(graph_chunk_map[key])
+                chunk["score"] = rrf_score
+                chunk["scores"]["rrf_score"] = rrf_score
+                final.append(chunk)
+            else:
+                idx = int(key)
+                rrf_score = next((s for k, s in fused if k == key), 0.0)
+                bm25_score = next(
+                    (s for k, s in bm25_ranked if k == key), 0.0
+                )
+                dense_score = next(
+                    (s for k, s in dense_ranked if k == key), 0.0
+                )
+                final.append({
+                    "score": rrf_score,
                     "text": self.chunks[idx],
                     "metadata": self.metadata[idx],
-                    "scores": scores,
-                }
-            )
+                    "scores": {
+                        "dense_score": dense_score,
+                        "bm25_score": bm25_score,
+                        "rrf_score": rrf_score,
+                        "graph_expanded": False,
+                    },
+                })
 
-        # Append graph-expanded chunks (guaranteed slots)
-        final.extend(expansion_results[:graph_slots])
+        # -- 7. Cross-encoder reranking (optional) ----------------------
+        reranker = self._get_reranker()
+        print(f"[DEBUG] reranker.available={reranker.available}, len(final)={len(final)}")
+        if reranker.available and len(final) > 1:
+            final = reranker.rerank(query, final, top_k=top_k, text_key="text")
+            print(f"[DEBUG] reranked, first score={final[0].get('rerank_score', 'n/a')}")
+            # Reassign scores based on new rank so the display reflects the
+            # reranker's ordering (1/(60+rank)), not the original RRF scores.
+            for rank, item in enumerate(final):
+                item["score"] = 1.0 / (60 + rank + 1)
+                item["scores"]["rrf_score"] = item["score"]
+
         return final[:top_k]
 
     # ------------------------------------------------------------------
@@ -624,21 +695,66 @@ class GraphRAG:
     # ------------------------------------------------------------------
 
     def _generate(self, question: str, context: str) -> str:
-        """Generate answer via Ollama (non-streaming)."""
+        """
+        Generate answer. Tries Ollama first; falls back to OpenRouter.
+        Set OPENROUTER_API_KEY environment variable to enable the fallback.
+        """
         prompt = (
             "Based on the following research paper excerpts, "
             "answer the question concisely and accurately.\n\n"
             f"Context from papers:\n{context}\n\n"
             f"Question: {question}\n\nAnswer:"
         )
-        resp = requests.post(
-            f"{self.ollama_url}/api/generate",
-            json={"model": self.ollama_llm, "prompt": prompt, "stream": False},
-            timeout=120,
+
+        # Try Ollama first
+        try:
+            resp = requests.post(
+                f"{self.ollama_url}/api/generate",
+                json={"model": self.ollama_llm, "prompt": prompt, "stream": False},
+                timeout=120,
+            )
+            if resp.status_code == 200:
+                return resp.json()["response"]
+        except Exception:
+            pass
+
+        # Fallback: OpenRouter — try models in order, skip on 429
+        import os
+        api_key = os.getenv("OPENROUTER_API_KEY")
+        if api_key:
+            _or_models = [
+                "mistralai/mistral-7b-instruct:free",
+                "qwen/qwen-2-7b-instruct:free",
+                "google/gemma-3-4b-it:free",
+            ]
+            _last_err = ""
+            for _model in _or_models:
+                try:
+                    resp = requests.post(
+                        "https://openrouter.ai/api/v1/chat/completions",
+                        headers={"Authorization": f"Bearer {api_key}",
+                                 "Content-Type": "application/json"},
+                        json={
+                            "model": _model,
+                            "messages": [{"role": "user", "content": prompt}],
+                        },
+                        timeout=60,
+                    )
+                    if resp.status_code == 200:
+                        return resp.json()["choices"][0]["message"]["content"]
+                    _last_err = f"{resp.status_code}: {resp.text[:120]}"
+                    if resp.status_code in (429, 404):
+                        continue  # try next model
+                    return f"[OpenRouter error {_last_err}]"
+                except Exception as e:
+                    return f"[OpenRouter failed: {e}]"
+            return f"[OpenRouter: all free models unavailable ({_last_err}). Retry shortly.]"
+
+        return (
+            "[Generation unavailable: Ollama is not running and OPENROUTER_API_KEY "
+            "is not set. Set OPENROUTER_API_KEY in your .env file to enable "
+            "cloud-based generation via OpenRouter.]"
         )
-        if resp.status_code != 200:
-            return f"[Generation error {resp.status_code}]"
-        return resp.json()["response"]
 
     def query(
         self,
@@ -647,7 +763,7 @@ class GraphRAG:
         verbose: bool = False,
     ) -> Tuple[str, List[Dict]]:
         """
-        Search and generate — drop-in replacement for EnhancedRAG.query().
+        Search and generate - drop-in replacement for EnhancedRAG.query().
         """
         sources = self.search(question, top_k=top_k)
 
@@ -702,7 +818,7 @@ class GraphRAG:
             self._build_bm25()
 
         print(
-            f"✅ GraphRAG loaded: {self.index.ntotal} vectors, "
+            f"[OK] GraphRAG loaded: {self.index.ntotal} vectors, "
             f"{len(self.chunks)} chunks from {len(set(m['file'] for m in self.metadata))} papers"
         )
 
@@ -781,7 +897,7 @@ if __name__ == "__main__":
         top_k=5,
         verbose=True,
     )
-    print(f"\nAnswer ({len(answer.split())} words):\n{answer[:400]}…")
+    print(f"\nAnswer ({len(answer.split())} words):\n{answer[:400]}...")
     print(
         f"\nSources: {[s['metadata']['file'] for s in sources]}"
     )

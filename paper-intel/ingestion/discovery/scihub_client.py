@@ -64,7 +64,7 @@ class SciHubClient(BaseAPIClient):
                 content_type = response.headers.get('content-type', '').lower()
                 
                 if 'application/pdf' in content_type and len(response.content) > 10000:
-                    logger.info(f"✓ PDF obtained from Sci-Hub: {mirror}")
+                    logger.info(f"[ok] PDF obtained from Sci-Hub: {mirror}")
                     return response.content, mirror
                 
                 # Parse HTML page for PDF link
@@ -74,7 +74,7 @@ class SciHubClient(BaseAPIClient):
                         pdf_response = self.session.get(pdf_link, timeout=self.timeout)
                         if 'application/pdf' in pdf_response.headers.get('content-type', '').lower():
                             if len(pdf_response.content) > 10000:
-                                logger.info(f"✓ PDF from embedded link: {mirror}")
+                                logger.info(f"[ok] PDF from embedded link: {mirror}")
                                 return pdf_response.content, mirror
                 
             except Exception as e:

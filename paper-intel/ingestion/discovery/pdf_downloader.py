@@ -93,7 +93,7 @@ class PDFDownloader:
         
         # Check if already downloaded
         if output_path.exists() and self._validate_pdf(output_path):
-            logger.info(f"✓ Already have: {filename}")
+            logger.info(f"[ok] Already have: {filename}")
             return DownloadResult(
                 paper_id=paper_id,
                 success=True,
@@ -148,7 +148,7 @@ class PDFDownloader:
                         f.write(pdf_content)
                     
                     if self._validate_pdf(output_path):
-                        logger.info(f"✓ Downloaded via Sci-Hub: {filename}")
+                        logger.info(f"[ok] Downloaded via Sci-Hub: {filename}")
                         attempts.append({'source': f'scihub_{mirror}', 'success': True})
                         return DownloadResult(
                             paper_id=paper_id,
@@ -178,7 +178,7 @@ class PDFDownloader:
                 attempts.append({'source': 'libgen', 'success': False, 'error': str(e)})
         
         # All sources failed
-        logger.warning(f"✗ Failed to download: {paper.title[:60]}")
+        logger.warning(f"[err] Failed to download: {paper.title[:60]}")
         return DownloadResult(
             paper_id=paper_id,
             success=False,
@@ -224,7 +224,7 @@ class PDFDownloader:
                 # Validate
                 if self._validate_pdf(output_path):
                     file_size = output_path.stat().st_size
-                    logger.info(f"✓ Downloaded via {source_name}: {output_path.name}")
+                    logger.info(f"[ok] Downloaded via {source_name}: {output_path.name}")
                     return True, file_size
                 else:
                     output_path.unlink()  # Remove invalid file

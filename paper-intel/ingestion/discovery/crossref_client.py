@@ -35,6 +35,7 @@ class CrossRefClient(BaseAPIClient):
         limit: int = 10,
         min_year: Optional[int] = None,
         max_year: Optional[int] = None,
+        enrich_abstracts: bool = False,
         **kwargs
     ) -> SearchResult:
         """
@@ -94,12 +95,25 @@ class CrossRefClient(BaseAPIClient):
                 if len(all_papers) >= limit:
                     break
             
+            final_papers = all_papers[:limit]
+
+            # Optional abstract enrichment via DOI lookup.
+            # CrossRef's search endpoint rarely returns abstracts; the /works/{doi}
+            # endpoint is more reliable. Off by default to keep search latency low.
+            if enrich_abstracts:
+                for paper in final_papers:
+                    if paper.doi and not paper.abstract:
+                        enriched = self.lookup_doi(paper.doi)
+                        if enriched and enriched.abstract:
+                            paper.abstract = enriched.abstract
+                        time.sleep(self.rate_limit_delay)
+
             return SearchResult(
                 source='crossref',
                 query=query,
-                papers=all_papers[:limit],
+                papers=final_papers,
                 total_found=data.get('message', {}).get('total-results', 0),
-                fetched_count=len(all_papers),
+                fetched_count=len(final_papers),
                 success=True,
                 search_time_ms=(time.time() - start_time) * 1000
             )

@@ -1,5 +1,5 @@
 """
-GROBID Client for PDF → TEI XML conversion.
+GROBID Client for PDF -> TEI XML conversion.
 
 Provides async and sync interfaces to GROBID REST API.
 Handles retries, timeouts, and connection pooling.
@@ -315,7 +315,7 @@ async def test_grobid_connection(base_url: str = "http://localhost:8070") -> boo
     try:
         is_healthy = await client.health_check()
         if is_healthy:
-            logger.info(f"✅ GROBID server is healthy at {base_url}")
+            logger.info(f"[OK] GROBID server is healthy at {base_url}")
         else:
             logger.error(f"❌ GROBID server not responding at {base_url}")
         return is_healthy
@@ -330,7 +330,7 @@ if __name__ == "__main__":
     async def main():
         result = await test_grobid_connection()
         if result:
-            print("✅ GROBID is ready")
+            print("[OK] GROBID is ready")
         else:
             print("❌ GROBID is not available")
             print("Start GROBID with: docker run -p 8070:8070 lfoppiano/grobid:0.8.0")

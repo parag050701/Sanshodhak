@@ -1,5 +1,5 @@
 """
-Main PDF → TEXT → JSON pipeline for Phase 1.
+Main PDF -> TEXT -> JSON pipeline for Phase 1.
 
 Process PDFs through GROBID, extract structured data,
 and save to JSON format ready for knowledge graph construction.
@@ -36,11 +36,11 @@ logger = logging.getLogger(__name__)
 
 class PDFToTextPipeline:
     """
-    Complete PDF → TEXT → JSON pipeline.
+    Complete PDF -> TEXT -> JSON pipeline.
     
     Steps:
-        1. Send PDF to GROBID → get TEI XML
-        2. Parse TEI → extract metadata + body text
+        1. Send PDF to GROBID -> get TEI XML
+        2. Parse TEI -> extract metadata + body text
         3. Clean text
         4. Split into sections
         5. Create structured JSON
@@ -129,7 +129,7 @@ class PDFToTextPipeline:
         """
         paper_id = self.generate_paper_id(pdf_path)
         
-        logger.info(f"Processing: {pdf_path.name} → {paper_id}")
+        logger.info(f"Processing: {pdf_path.name} -> {paper_id}")
         
         try:
             # Step 1: GROBID processing (primary method)
@@ -200,7 +200,7 @@ class PDFToTextPipeline:
             self._save_json(paper_id, output_json)
             self._save_raw_text(paper_id, clean_text)
             
-            logger.info(f"✅ Success: {paper_id}")
+            logger.info(f"[OK] Success: {paper_id}")
             return True, paper_id, None
             
         except Exception as e:
@@ -277,7 +277,7 @@ class PDFToTextPipeline:
             self._save_json(paper_id, output_json)
             self._save_raw_text(paper_id, clean_text)
             
-            logger.info(f"✅ Success (fallback): {paper_id}")
+            logger.info(f"[OK] Success (fallback): {paper_id}")
             return True, paper_id, None
             
         except Exception as e:
@@ -402,7 +402,7 @@ async def main():
     import argparse
     
     parser = argparse.ArgumentParser(
-        description="PDF → TEXT → JSON pipeline for Phase 1"
+        description="PDF -> TEXT -> JSON pipeline for Phase 1"
     )
     parser.add_argument(
         'input_dir',
@@ -470,7 +470,7 @@ async def main():
         logger.error("Start GROBID with: docker run -p 8070:8070 lfoppiano/grobid:0.8.0")
         return
     
-    logger.info(f"✅ GROBID server is healthy")
+    logger.info(f"[OK] GROBID server is healthy")
     
     # Process all PDFs
     start_time = datetime.now()
@@ -485,7 +485,7 @@ async def main():
     print("PHASE 1 COMPLETE")
     print("="*80)
     print(f"Total PDFs:    {stats['total']}")
-    print(f"✅ Success:    {stats['success']}")
+    print(f"[OK] Success:    {stats['success']}")
     print(f"❌ Failed:     {stats['failed']}")
     print(f"Duration:      {duration:.1f}s")
     print(f"Rate:          {stats['total']/duration:.1f} PDFs/sec")
@@ -495,7 +495,7 @@ async def main():
     print(f"  Errors:      {pipeline.error_dir}")
     
     if stats['errors']:
-        print(f"\n⚠️  {len(stats['errors'])} errors occurred:")
+        print(f"\n[WARN]  {len(stats['errors'])} errors occurred:")
         for error in stats['errors'][:5]:  # Show first 5
             print(f"  - {error['pdf']}: {error['error']}")
         if len(stats['errors']) > 5:

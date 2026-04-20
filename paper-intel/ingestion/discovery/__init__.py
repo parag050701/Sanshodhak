@@ -1,4 +1,5 @@
 """Discovery module for paper search and PDF downloading."""
+from .doaj_client import DOAJClient
 from .openalex_client import OpenAlexClient
 from .core_client import COREClient
 from .semanticscholar_client import SemanticScholarClient
@@ -30,6 +31,7 @@ from .doi_utils import (
 )
 
 __all__ = [
+    'DOAJClient',
     'OpenAlexClient',
     'COREClient',
     'SemanticScholarClient',

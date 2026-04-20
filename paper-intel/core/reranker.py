@@ -2,7 +2,7 @@
 Cross-encoder reranker module (Part 4).
 
 Reranks the top-N retrieved candidates using a cross-encoder model from
-sentence-transformers.  Fully optional — the module loads gracefully when
+sentence-transformers.  Fully optional - the module loads gracefully when
 sentence-transformers is unavailable, and the reranker returns candidates
 unchanged in that case.
 
@@ -35,7 +35,7 @@ class CrossEncoderReranker:
     ----------
     model_name  : HuggingFace model ID or local path.
     max_length  : maximum token length for the cross-encoder input pair.
-    top_rerank  : rerank window size — only the top-N candidates are scored.
+    top_rerank  : rerank window size - only the top-N candidates are scored.
                   Results beyond this window are dropped.
     device      : 'cpu' or 'cuda'.
     """
@@ -55,9 +55,9 @@ class CrossEncoderReranker:
         self._available = False
         self._load()
 
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
     # Initialisation
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
 
     def _load(self) -> None:
         try:
@@ -70,19 +70,19 @@ class CrossEncoderReranker:
             logger.info("CrossEncoderReranker: loaded %s on %s", self.model_name, self.device)
         except ImportError:
             logger.warning(
-                "CrossEncoderReranker: sentence-transformers not installed — reranker disabled"
+                "CrossEncoderReranker: sentence-transformers not installed - reranker disabled"
             )
         except Exception as exc:
-            logger.warning("CrossEncoderReranker: model load failed — %s", exc)
+            logger.warning("CrossEncoderReranker: model load failed - %s", exc)
 
     @property
     def available(self) -> bool:
         """True when the cross-encoder loaded successfully."""
         return self._available
 
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
     # Public API
-    # ──────────────────────────────────────────────────────────────────────
+    # ----------------------------------------------------------------------
 
     def rerank(
         self,
@@ -115,7 +115,7 @@ class CrossEncoderReranker:
         top_k = top_k or len(candidates)
         window = candidates[: self.top_rerank]
 
-        # Build (query, passage) pairs — truncate passages for speed
+        # Build (query, passage) pairs - truncate passages for speed
         pairs = [(query, c.get(text_key, "")[:1024]) for c in window]
         scores = self._model.predict(pairs, show_progress_bar=False)
 

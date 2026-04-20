@@ -28,9 +28,9 @@ import numpy as np
 logger = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # Embedding Backend
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 class EmbeddingBackend:
     """
@@ -145,13 +145,13 @@ class EmbeddingBackend:
                 except Exception as exc:
                     wait = 2 ** attempt
                     logger.warning(
-                        "EmbeddingBackend: batch [%d:%d] attempt %d failed — %s; retry in %ds",
+                        "EmbeddingBackend: batch [%d:%d] attempt %d failed - %s; retry in %ds",
                         start, start + len(batch), attempt + 1, exc, wait,
                     )
                     time.sleep(wait)
 
             if vecs_for_batch is None:
-                logger.error("EmbeddingBackend: batch [%d:%d] failed all retries — using zeros", start, start + len(batch))
+                logger.error("EmbeddingBackend: batch [%d:%d] failed all retries - using zeros", start, start + len(batch))
                 for _ in batch:
                     all_vecs.append(np.zeros(self.dim, dtype=np.float32))
             else:
@@ -164,9 +164,9 @@ class EmbeddingBackend:
         return np.vstack(all_vecs)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # BM25 Retriever
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 class BM25Retriever:
     """
@@ -300,9 +300,9 @@ class BM25Retriever:
         return self
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # Dense Retriever (FAISS)
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 class DenseRetriever:
     """
@@ -344,7 +344,7 @@ class DenseRetriever:
         self._index = faiss.IndexFlatIP(vecs.shape[1])
         self._index.add(vecs)
         logger.info(
-            "DenseRetriever: FAISS index built — dim=%d, n=%d",
+            "DenseRetriever: FAISS index built - dim=%d, n=%d",
             vecs.shape[1],
             self._index.ntotal,
         )
@@ -382,9 +382,9 @@ class DenseRetriever:
         return self
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # Hybrid Retriever
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 class HybridRetriever:
     """
