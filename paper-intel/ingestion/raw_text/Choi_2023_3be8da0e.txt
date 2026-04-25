@@ -1,0 +1,776 @@
+Is Cross-modal Information Retrieval
+Possible without Training?
+Hyunjin Choi
+Hyunjae Lee
+Seongho Joe
+Youngjune L. Gwon
+Samsung SDS
+Abstract
+Encoded representations from a pretrained
+deep learning model (e.g., BERT text embed-
+dings, penultimate CNN layer activations of
+an image) convey a rich set of features ben-
+eﬁcial for information retrieval. Embeddings
+for a particular modality of data occupy a
+high-dimensional space of its own, but it can
+be semantically aligned to another by a sim-
+ple mapping without training a deep neural
+net. In this paper, we take a simple mapping
+computed from the least squares and singu-
+lar value decomposition (SVD) for a solution
+to the Procrustes problem to serve a means
+to cross-modal information retrieval. That is,
+given information in one modality such as text,
+the mapping helps us locate a semantically
+equivalent data item in another modality such
+as image. Using off-the-shelf pretrained deep
+learning models, we have experimented the
+aforementioned simple cross-modal mappings
+in tasks of text-to-image and image-to-text re-
+trieval. Despite simplicity, our mappings per-
+form reasonably well reaching the highest ac-
+curacy of 77% on recall@10, which is compa-
+rable to those requiring costly neural net train-
+ing and ﬁne-tuning. We have improved the sim-
+ple mappings by contrastive learning on the
+pretrained models. Contrastive learning can be
+thought as properly biasing the pretrained en-
+coders to enhance the cross-modal mapping
+quality. We have further improved the perfor-
+mance by multilayer perceptron with gating
+(gMLP), a simple neural architecture.
+1
+Introduction
+Cross-modal information retrieval takes in one
+modality (or type) of data as a query to retrieve
+semantically related data of another type. There
+is a fundamental challenge in measuring the simi-
+larity between the query and the outcome having
+different modalities. Research in cross-modal re-
+trieval has naturally focused on learning or training
+a joint subspace where different modalities of data
+can be compared directly.
+Recently, pretraining deep learning models with
+large-scale data has proved effective for creating ap-
+plications in computer vision and natural language
+processing (NLP). Available publicly, pretrained
+models are a powerful encoder of characteristic
+features for data onto an embedding space. Pre-
+trained models are valid in a unimodal scenario,
+and it is difﬁcult to purpose them for cross-modal
+(or multimodal) usage. Joint training of different
+data modalities in a large scale would be extremely
+difﬁcult and costly (or it may not be feasible).
+In this paper, we compute a simple mapping
+instead for cross-modal translation via the least
+squares and singular value decomposition (SVD).
+Embedding representations from a pretrained uni-
+modal encoder are aligned semantically to embed-
+dings from another encoder for different modality
+by the mapping. We have carried out an experimen-
+tal validation of our approach for cross-modal tasks
+of text-to-image and image-to-text retrieval. Given
+a text query, the text-to-image mapping translates
+a text embedding onto the subspace for image em-
+beddings where the translated text embedding can
+be directly compared to those of images, and vice
+versa for the image-to-text mapping.
+We can improve the performance of our simple
+mappings by the choice of pretrained unimodal en-
+coders used. There are off-the-shelf pretrained lan-
+guage models properly biased by contrastive learn-
+ing with the Natural Language Inference (NLI)
+dataset. Usually, pretrained image models are al-
+ready biased properly from training for object clas-
+siﬁcation. An external component such as outer
+neural layers can further enhance the cross-modal
+performance. We demonstrate the improved perfor-
+mance by adding an outer multilayer perceptron
+with gating (gMLP) (Liu et al., 2021), a simple
+neural architecture.
+Our contributions are as follows: i) encoded uni-
+modal representations from off-the-shelf pretrained
+models can be aligned by a simple, training-free
+arXiv:2304.11095v1  [cs.LG]  20 Apr 2023
+
+mapping for cross-modal information retrieval; ii)
+despite simplicity, our cross-modal mappings per-
+form reasonably well reaching the highest accuracy
+of 77% on recall@10 comparable to deep neural
+nets with costly training and ﬁne-tuning; iii) op-
+tionally, proper biases introduced by contrastive
+learning and outer neural architecture such as gated
+MLP can improve the cross-modal retrieval perfor-
+mance of the proposed mappings.
+2
+Related Work
+Pretraining of deep learning models on large-scale
+data has ﬂourished under unimodal assumptions.
+Recently, a self-supervised method makes auto-
+mated training with unlimited data available on
+the Internet possible. In computer vision, the suc-
+cess of VGG (Simonyan and Zisserman, 2015) and
+ResNet (He et al., 2016) is immensely followed
+while BERT (Devlin et al., 2019) and GPT (Brown
+et al., 2020) have achieved a similar success in
+NLP. Information retrieval can tremendously bene-
+ﬁt from pretrained models although they are valid
+in a unimodal scenario only.
+For the case of cross-modal retrieval, pairing
+up semantically equivalent data modalities can be
+considered. To learn a shared embedding subspace,
+one can explore the idea of jointly training seman-
+tically related data with different modalities (Qi
+et al., 2020; Huang et al., 2020; Su et al., 2020; Li
+et al., 2020; Sariyildiz et al., 2020; Zhang et al.,
+2020; Lu et al., 2019; Tan and Bansal, 2019). Not
+necessarily for cross-modal information retrieval,
+these approaches have set language-vision bench-
+mark tasks and achieved good downstream perfor-
+mances.
+Attention mechanism used in masked language
+modeling can also be applied to a joint image-text
+encoder as in VL-BERT (Su et al., 2020). The re-
+cent explorations of learning image representations
+directly from semantic counterparts in natural lan-
+guage have partly inspired us. CLIP (Radford et al.,
+2021) and ALIGN (Jia et al., 2021) train images
+with relevant natural language captions to obtain
+rich vision-language representations for improving
+performance on diverse downstream tasks such as
+text-to-image matching and retrieval. They have
+demonstrated a simple contrastive learning setup
+capture better representations without heavily rely-
+ing on labeled data or a sophisticated neural archi-
+tecture. To achieve a good performance, however,
+substantive training effort is inevitable (in a scale of
+hundreds of high-spec GPUs and billions of train-
+ing examples).
+Instead of laborious and expensive training spent
+by recent related approaches, we have decided to
+experiment with simple mappings computable from
+the least squares and linear projections. The map-
+pings translate a representation from pretrained
+models in one modality to another such that rep-
+resentations of different modalities can be directly
+compared for cross-modal retrieval. We take off-
+the-shelf BERT, RoBERTa, and ViT (Dosovitskiy
+et al., 2021) for encoding text and images. The
+Transformer encoder (Vaswani et al., 2017) has
+originated for NLP, but attention mechanisms have
+grown their beneﬁts in vision. Transformers are
+computationally more efﬁcient than convolutional
+neural nets while providing an on-par or better
+results for vision tasks. ViT uses the pretrained
+weights with the JFT-300M dataset (Sun et al.,
+2017). Because there is no inductive bias inher-
+ent in CNNs such as translation equivariance and
+locality, the CNN pretraining requires an enormous
+amount of data if trained from scratch.
+3
+Approach
+Pretrained unimodal encoders take in text and im-
+age modalities of data as depicted in Figure 1. Our
+goal is to embed one input modality and translate it
+onto an embedding subspace of the other through a
+cross-modal mapping. After the translation, embed-
+dings are in the same semantic space and directly
+compared. That is, the similarity between data ex-
+amples in different modalities can be examined by
+computing the inner product of their embedding
+vectors. In this section, we describe our approach
+and explain how to compute simple cross-modal
+mappings.
+Text Encoder
+𝑣𝑇
+𝑣𝑀
+text
+image
+Image Encoder
+Figure 1: Encoders for extracting vectors from text and
+image.
+2
+
+3.1
+System of Least Squares via Normal
+Equations
+Our ﬁrst method is to learn the text-to-image map-
+ping directly from paired image-text data (and
+vice versa for image-to-text mapping) via the least
+squares. Suppose text T and image M that are the
+source and the target of the mapping (or a linear
+projection) Φ. We seek the solution to the problem
+VT Φ = VM with
+VT =
+
+
+v(1)
+T
+v(2)
+T
+...
+v(n)
+T
+
+
+, VM =
+
+
+v(1)
+M
+v(2)
+M
+...
+v(n)
+M
+
+
+,
+v(i)
+T =
+
+
+t(i)
+1
+t(i)
+2
+...
+t(i)
+d
+
+
+⊤
+, v(i)
+M =
+
+
+m(i)
+1
+m(i)
+2
+...
+m(i)
+d
+
+
+⊤
+(1)
+where VT
+and VM
+are datasets that con-
+tain n embeddings for text T
+and image
+M
+with
+each
+v
+∈
+Rd.
+With
+Φ
+=
+
+φ(1)
+φ(2)
+. . .
+φ(j)
+. . .
+φ(d)
+whose ele-
+ment φ(j)
+∈
+Rd is a column vector, each
+VT φ(j) = [m(1)
+j m(2)
+j
+. . . m(n)
+j
+] gives a problem
+of the least squares. Since k = 1, . . . , d, we have
+a system of d least-square problems that can be
+solved linear algebraically via the normal equation:
+Φ∗=
+ V⊤
+T VT
+−1 V⊤
+T VM.
+3.2
+Solution to the Procrustes Problem
+Given two data matrices, a source VT and a target
+VM, the orthogonal Procrustes problem (Schöne-
+mann, 1966) describes approximation of a matrix
+searching for an orthogonal projection that most
+closely maps VT to VM. Formally, we write
+Ψ∗= arg min
+Ψ ∥VT Ψ −VM∥F
+s.t. Ψ⊤Ψ = I
+(2)
+The solution to Equation (2) has the closed-form
+Ψ∗= XY⊤with XΣY⊤=
+SVD(VMV⊤
+T ), where SVD is the singular value
+decomposition. The Procrustes solution Ψ gives
+our second choice for the cross-modal mapping.
+Similarly, the Procrustes problem for image-to-text
+mapping can be set up and solved by SVD.
+3.3
+Optional Considerations
+In this section, we describe optional considerations,
+perhaps with little training, that can improve the
+baseline cross-modal retrieval performance. Con-
+trastive learning can be set up to minimize the dis-
+tance between a pair of image and text examples
+of semantic equivalence (i.e., the text description
+matches the image) (Zhang et al., 2020; Radford
+et al., 2021; Jia et al., 2021; Li et al., 2020). Con-
+versely, contrastive learning maximizes the dis-
+tance of a non-matching pair. Because forming
+non-matching pairs (negatives) can be automated,
+contrastive learning is convenient to learn the joint
+representation. Also, it has demonstrated promis-
+ing results on downstream vision-language tasks.
+Our approach is differentiated from others over the
+nonlinear architecture that follows the front-end
+bimodal (image-text) encoders. We explain our ar-
+chitectural components as follows.
+gMLP blocks. We train multi-layer perceptron
+(MLP) with gating (gMLP) (Liu et al., 2021), a non-
+linear projection layer following the bimodal en-
+coders. Stacked MLP layers without self-attention
+are used to capture semantic relationship of im-
+age and text data despite having a much lightened
+network. More importantly, gMLP has exactly the
+same input and output shape as BERT’s and ViT’s.
+This makes sense for using the feature vectors ex-
+tracted by the bimodal encoders without modiﬁca-
+tion. Our contrastive learning approach emphasizes
+the training on top of the bimodal encoder output.
+Contrastive learning objective. From a pair of
+image and text examples, the bimodal encoders
+compute v(i)
+T
+and v(i)
+M as output to form D =
+{(v(i)
+T , v(i)
+M )}m
+i=1 that are applied to the gMLP non-
+linear projection layers. We take the cross-entropy
+loss for contrastive learning with N in-batch nega-
+tives:
+ℓi = −log
+esim(hi,h+
+i )/τ
+PN
+j=1 esim(hi,h+
+j )/τ ,
+(3)
+where
+τ
+is
+a
+temperature
+hyperparameter,
+sim(h1, h2) is the cosine similarity
+h⊤
+1 h2
+∥h1∥·∥h2∥, and
+hi and h+
+i denote output vector of v(i)
+T
+and v(i)
+M .
+Optionally, negative pairs can be automatically
+generated, and the loss function can trivially be
+modiﬁed.
+3
+
+Table 1: Cross-modal retrieval results on Flickr30K. For comparison, we add the results from CLIP (Radford et al.,
+2021). (‘+’ means an enhanced encoder by biasing.)
+Training
+Encoder
+Image to Text
+Text to Image
+R@1
+R@5
+R@10
+R@20
+R@100
+R@1
+R@5
+R@10
+R@20
+R@100
+No
+Training
+/GPU
+BERT
+11.5
+37.6
+50.5
+63.3
+86.8
+15.5
+39.4
+53.4
+67.0
+89.4
+RoBERTa
+18.1
+44.4
+58.6
+70.1
+90.1
+17.1
+42.5
+56.3
+70.3
+91.5
+BERT+
+29.4
+65.2
+75.9
+85.5
+95.7
+20.5
+47.5
+62.0
+74.1
+93.4
+RoBERTa+
+31.9
+65.2
+77.2
+85.8
+95.0
+22.6
+51.5
+64.4
+75.5
+92.9
+Outer Layer
+Training
+(1 1080ti
+* 0.3h)
+BERT
+20.4
+51.5
+67.0
+79.7
+95.4
+24.9
+53.2
+68.2
+79.1
+94.5
+RoBERTa
+16.3
+43.1
+56.5
+71.4
+93.4
+16.4
+41.4
+55.6
+66.7
+90.4
+BERT+
+37.5
+71.6
+81.5
+87.8
+97.0
+33.4
+65.4
+77.6
+84.9
+96.4
+RoBERTa+
+14.9
+44.7
+58.0
+72.4
+93.2
+16.2
+42.0
+54.6
+66.5
+91.3
+Full Encoder
+Retraining
+(256 V100
+* 12 days)
+CLIP
+88.0
+98.7
+99.4
+-
+-
+68.7
+90.6
+95.2
+-
+-
+4
+Experiments
+4.1
+Setup
+Dataset. To set up cross-modal information re-
+trieval tasks (in both text-to-image and image-to-
+text directions), we use Flickr30k (Young et al.,
+2014) that contains 31,000 images collected from
+Flickr, each of which is provided with ﬁve descrip-
+tive sentences by human annotators. A training set
+of 29,783 pairs and a test set of 1,000 pairs are
+used.
+Evaluation. For evaluating the performance of
+cross-modal retrieval, we use the test partition from
+Flickr30k. We use the standard evaluation criteria
+used in most prior work on image-text retrieval
+task. We adopt recall@x = 1, 5, 10, 20, 100 as our
+evaluation metric.
+Pretrained encoders. We use the large BERT (De-
+vlin et al., 2019) and RoBERTa (Liu et al., 2019)
+models as our text encoders. Both are representa-
+tive Transformer-based pretrained language models.
+We also use a large ViT pretrained on the ImageNet-
+21k dataset as our image encoder. ViT produces the
+image embeddings (a hidden dimension of 1,024
+and a 32x32 patch size that produces 50 hidden
+vectors) that can be taken in as input to the gMLP
+layers without any modiﬁcation.
+4.2
+Results
+Simple cross-modal mappings. Our baseline (ı.e.,
+no training) results are presented in Table 1. We
+choose higher number of two different linear map-
+ping methods (least squares and SVD). This simple
+method reaches 58.6/56.3% recall@10. We ﬁnd
+one of two linear mapping methods fail in some
+cases. We hypothesize this is caused by poor sen-
+tence embeddings of text encoders.
+Using enhanced text encoders via biasing. The
+image encoder is originally pretrained to classify
+1,000 object classes. On the contrary, the text en-
+coder has not been trained to capture ﬁne-grained
+sentence representations. Choi et al. (2021) show
+sentence embeddings of BERT without additional
+learning give poor performance. We hypothesize
+that this will adversely affect the performance of
+cross-modal representation. To alleviate the lack
+of properly contextualized sentence embeddings,
+we adopt enhanced text encoder (noted BERT+
+and RoBERTa+ in Table 1) from SimCSE (Gao
+et al., 2021) which uses self-supervised contrastive
+learning for text encoders. Using enhanced text en-
+coder results in 77.2/64.4% recall@10 as reported
+in Table 1. Our qualitative results (as shown in
+Figure 2) show cross-modal retrieval is possible
+without training.
+Optional gMLP outer layer. Contrastive learning
+for the gMLP projection yields the best score of
+81.5/77.6% recall@10. The training takes less than
+20 minutes on a single NVIDIA 1080Ti graphics
+card.
+5
+Conclusion
+With a plethora of large-scale pretrained deep learn-
+ing models, we have posed an intriguing hypoth-
+esis for a light-weight, earth-saving approach to
+cross-modal information retrieval. Unimodal repre-
+sentations computed by a pretrained model form a
+high-dimensional embedding subspace of its own.
+Despite the mess, encoded representations from
+off-the-shelf pretrained models for different modal-
+ities of data can be semantically aligned without
+4
+
+Query text: A crowd of people stand in the background of a set of tables draped in white with various used toys set upon it. 
+Top 1
+Top 2
+Top 3
+Top 4
+Top 5
+Top 1: A crowd of people stand in the background of a set of tables draped in white with various 
+used toys set upon it. 
+Top 2: A group of people at a festival are blowing bubbles and enjoying the attractions. 
+Top 3: A large group of men , women , and children gather on a lawn for a concert. 
+Top 4: A musical group performs in front of a live audience, adorning colorful neon clothing and in 
+front of a screen backdrop. 
+Top 5: A large display of artifacts are in a large room and around a very large display are six people 
+with two people near wooden benches.
+Query image
+Figure 2: Qualitative results of no training model. The dashed line shows the correct retrieval results.
+additional training. We have formulated classical
+problems to solve for a simple mapping, which
+is computable without training but by the least
+squares and SVD. We have experimented with pub-
+licly available pretrained models for text-to-image
+and image-to-text retrieval tasks. Our simple ap-
+proach seems to have a good potential for improve-
+ment, particularly from the future enhancement of
+pretrained models. Optionally, if we allow little
+training to properly bias unimodal encoders and
+add outer gMLP layers, we can signiﬁcantly im-
+prove the performance of cross-modal information
+retrieval.
+References
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie
+Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind
+Neelakantan, Pranav Shyam, Girish Sastry, Amanda
+Askell, et al. 2020. Language models are few-shot
+learners. Advances in neural information processing
+systems, 33:1877–1901.
+Hyunjin
+Choi,
+Judong
+Kim,
+Seongho
+Joe,
+and
+Youngjune Gwon. 2021.
+Evaluation of bert and
+albert sentence embedding performance on down-
+stream nlp tasks. In 2020 25th International Con-
+ference on Pattern Recognition (ICPR), pages 5482–
+5487.
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and
+Kristina Toutanova. 2019.
+BERT: pre-training of
+deep bidirectional transformers for language under-
+standing. In NAACL-HLT (1), pages 4171–4186. As-
+sociation for Computational Linguistics.
+Alexey
+Dosovitskiy,
+Lucas
+Beyer,
+Alexander
+Kolesnikov,
+Dirk
+Weissenborn,
+Xiaohua
+Zhai,
+Thomas Unterthiner, Mostafa Dehghani, Matthias
+Minderer, Georg Heigold, Sylvain Gelly, Jakob
+Uszkoreit, and Neil Houlsby. 2021.
+An image
+is worth 16x16 words: Transformers for image
+recognition at scale. In International Conference on
+Learning Representations.
+Tianyu Gao, Xingcheng Yao, and Danqi Chen. 2021.
+Simcse: Simple contrastive learning of sentence em-
+beddings. In Proceedings of the 2021 Conference on
+Empirical Methods in Natural Language Processing,
+pages 6894–6910.
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian
+Sun. 2016. Deep residual learning for image recog-
+nition. In CVPR, pages 770–778. IEEE Computer
+Society.
+Zhicheng Huang, Zhaoyang Zeng, Bei Liu, Dongmei
+Fu, and Jianlong Fu. 2020. Pixel-bert: Aligning im-
+age pixels with text by deep multi-modal transform-
+ers. CoRR, abs/2004.00849.
+Chao Jia, Yinfei Yang, Ye Xia, Yi-Ting Chen, Zarana
+Parekh, Hieu Pham, Quoc V. Le, Yun-Hsuan Sung,
+Zhen Li, and Tom Duerig. 2021. Scaling up visual
+and vision-language representation learning with
+noisy text supervision. In Proceedings of the 38th In-
+ternational Conference on Machine Learning, ICML
+2021, 18-24 July 2021, Virtual Event, volume 139 of
+Proceedings of Machine Learning Research, pages
+4904–4916. PMLR.
+Xiujun Li, Xi Yin, Chunyuan Li, Pengchuan Zhang, Xi-
+aowei Hu, Lei Zhang, Lijuan Wang, Houdong Hu,
+Li Dong, Furu Wei, Yejin Choi, and Jianfeng Gao.
+2020. Oscar: Object-semantics aligned pre-training
+for vision-language tasks.
+In Computer Vision -
+ECCV 2020 - 16th European Conference, Glasgow,
+UK, August 23-28, 2020, Proceedings, Part XXX,
+volume 12375 of Lecture Notes in Computer Sci-
+ence, pages 121–137. Springer.
+5
+
+Hanxiao Liu, Zihang Dai, David So, and Quoc V Le.
+2021. Pay attention to MLPs. In Thirty-Fifth Con-
+ference on Neural Information Processing Systems.
+Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Man-
+dar Joshi, Danqi Chen, Omer Levy, Mike Lewis,
+Luke Zettlemoyer, and Veselin Stoyanov. 2019.
+Roberta: A robustly optimized BERT pretraining ap-
+proach. CoRR, abs/1907.11692.
+Jiasen Lu, Dhruv Batra, Devi Parikh, and Stefan Lee.
+2019.
+ViLBERT: Pretraining task-agnostic visi-
+olinguistic representations for vision-and-language
+tasks. In Advances in Neural Information Process-
+ing Systems, volume 32. Curran Associates, Inc.
+Di Qi, Lin Su, Jia Song, Edward Cui, Taroon
+Bharti, and Arun Sacheti. 2020. Imagebert: Cross-
+modal pre-training with large-scale weak-supervised
+image-text data. CoRR, abs/2001.07966.
+Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya
+Ramesh, Gabriel Goh, Sandhini Agarwal, Girish
+Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+Gretchen Krueger, and Ilya Sutskever. 2021. Learn-
+ing transferable visual models from natural lan-
+guage supervision. In Proceedings of the 38th In-
+ternational Conference on Machine Learning, ICML
+2021, 18-24 July 2021, Virtual Event, volume 139 of
+Proceedings of Machine Learning Research, pages
+8748–8763. PMLR.
+Mert Bülent Sariyildiz, Julien Perez, and Diane Lar-
+lus. 2020. Learning visual representations with cap-
+tion annotations. In Computer Vision - ECCV 2020
+- 16th European Conference, Glasgow, UK, August
+23-28, 2020, Proceedings, Part VIII, volume 12353
+of Lecture Notes in Computer Science, pages 153–
+170. Springer.
+Peter Schönemann. 1966. A Generalized Solution of
+the Orthogonal Procrustes Problem. Psychometrika,
+31(1):1–10.
+Karen Simonyan and Andrew Zisserman. 2015. Very
+deep convolutional networks for large-scale image
+recognition.
+In 3rd International Conference on
+Learning Representations, ICLR 2015, San Diego,
+CA, USA, May 7-9, 2015, Conference Track Proceed-
+ings.
+Weijie Su, Xizhou Zhu, Yue Cao, Bin Li, Lewei Lu,
+Furu Wei, and Jifeng Dai. 2020.
+VL-BERT: pre-
+training of generic visual-linguistic representations.
+In 8th International Conference on Learning Repre-
+sentations, ICLR 2020, Addis Ababa, Ethiopia, April
+26-30, 2020. OpenReview.net.
+Chen Sun, Abhinav Shrivastava, Saurabh Singh, and
+Abhinav Gupta. 2017. Revisiting unreasonable ef-
+fectiveness of data in deep learning era.
+CoRR,
+abs/1707.02968.
+Hao Tan and Mohit Bansal. 2019. LXMERT: learning
+cross-modality encoder representations from trans-
+formers. In Proceedings of the 2019 Conference on
+Empirical Methods in Natural Language Processing
+and the 9th International Joint Conference on Nat-
+ural Language Processing, EMNLP-IJCNLP 2019,
+Hong Kong, China, November 3-7, 2019, pages
+5099–5110. Association for Computational Linguis-
+tics.
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob
+Uszkoreit, Llion Jones, Aidan N Gomez, Ł ukasz
+Kaiser, and Illia Polosukhin. 2017. Attention is All
+you Need. In Advances in Neural Information Pro-
+cessing Systems 30.
+Peter Young, Alice Lai, Micah Hodosh, and Julia Hock-
+enmaier. 2014. From image descriptions to visual
+denotations: New similarity metrics for semantic in-
+ference over event descriptions. Trans. Assoc. Com-
+put. Linguistics, 2:67–78.
+Yuhao Zhang, Hang Jiang, Yasuhide Miura, Christo-
+pher D. Manning, and Curtis P. Langlotz. 2020.
+Contrastive learning of medical visual represen-
+tations from paired images and text.
+CoRR,
+abs/2010.00747.
+6

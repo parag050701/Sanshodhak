@@ -1,0 +1,1908 @@
+arXiv:2308.12420v4  [cs.IR]  17 Jun 2025
+Evolution of ESG-focused DLT Research: An NLP Analysis of
+the Literature
+Walter Hernandez Cruz
+a,b,c,∗, Kamil Tylinski
+a,b,c, Alastair Moore
+a, Niall Roche
+a, Nikhil
+Vadgama
+a,b,c, Horst Treiblmaier
+a,d, Jiangbo Shangguan
+a,e, Paolo Tasca
+b,c, Jiahua Xu
+a,b,c
+aCentre for Blockchain Technologies, University College London,
+bUK Centre for Blockchain Technologies,
+cExponential Science,
+dModul University Vienna,
+eHSBC Business School, Peking University,
+Abstract
+Distributed Ledger Technology (DLT) faces increasing environmental scrutiny, particularly
+concerning the energy consumption of the Proof of Work (PoW) consensus mechanism and
+broader Environmental, Social, and Governance (ESG) issues. However, existing systematic
+literature reviews of DLT rely on limited analyses of citations, abstracts, and keywords, failing to
+fully capture the field’s complexity and ESG concerns. We address these challenges by analyzing
+the full text of 24,539 publications using Natural Language Processing (NLP) with our manually
+labeled Named Entity Recognition (NER) dataset of 39,427 entities for DLT. This methodology
+identified 505 key publications at the DLT/ESG intersection, enabling comprehensive domain
+analysis.
+Our combined NLP and temporal graph analysis reveals critical trends in DLT evolution
+and ESG impacts, including cryptography and peer-to-peer networks research’s foundational
+influence, Bitcoin’s persistent impact on research and environmental concerns (a “Lindy effect”),
+Ethereum’s catalytic role on Proof of Stake (PoS) and smart contract adoption, and the industry’s
+progressive shift toward energy-efficient consensus mechanisms.
+Our contributions include the first DLT-specific NER dataset addressing the scarcity of high-
+quality labeled NLP data in blockchain research, a methodology integrating NLP and temporal
+graph analysis for large-scale interdisciplinary literature reviews, and the first NLP-driven litera-
+ture review focusing on DLT’s ESG aspects.
+Keywords: Distributed Ledger Technology, ESG, Natural Language Processing, Systematic
+Literature Review, Named Entity Recognition, Temporal Graph Analysis
+∗Corresponding author
+Email addresses: walter.hernandez.18@ucl.ac.uk (Walter Hernandez Cruz ),
+kamil.tylinski.16@ucl.ac.uk (Kamil Tylinski ), a.p.moore@ucl.ac.uk (Alastair Moore ),
+n.roche@ucl.ac.uk (Niall Roche ), nikhil.vadgama@ucl.ac.uk (Nikhil Vadgama ),
+horst.treiblmaier@modul.ac.at (Horst Treiblmaier ), jiangbo.shangguan@pku.org.uk (Jiangbo
+Shangguan ), p.tasca@exp.science (Paolo Tasca ), jiahua.xu@ucl.ac.uk (Jiahua Xu )
+
+1. Introduction
+Emerging technologies are facing increased scrutiny regarding their energy consumption and
+broader ecological impacts, including the use of vital resources such as water, precious met-
+als, and synthetic compounds (Platt et al., 2021; Simone et al., 2022; Sun et al., 2024). This
+growing environmental awareness necessitates evaluating technological advancements through
+their ecological footprint, with DLT being no exception. While DLT offers promising features
+like record immutability and decentralization, it also presents challenges, particularly the high
+energy consumption of specific consensus algorithms. For instance, Bitcoin’s PoW (Nakamoto,
+2008), designed to prevent Sybil attacks, in which malicious actors pretend to be multiple users,
+has significant energy requirements (Ibañez & Freier, 2023).
+The rapid evolution and interest in DLT have led to a growing number of publications and
+intensified scrutiny of its ecological footprint. Yet, persistent misconceptions about its energy
+consumption patterns have complicated objective assessment. Additionally, the complexity of
+DLT extends well beyond environmental considerations. DLT spans breakthroughs in security,
+cryptography, network design, and diverse applications, leading to a rapidly expanding body of
+research. Therefore, traditional systematic literature review methodologies and manual literature
+analysis techniques that primarily rely on citation metrics, abstract analyses, and database term
+searches demonstrate increasing insufficiency in capturing the multidimensional nature and full
+scope of the rapidly evolving DLT domain.
+We address this complexity by turning to NLP, a subfield of Artificial Intelligence (AI) and
+linguistics. NLP offers powerful tools to examine the growing body of DLT literature, from
+academic articles to industry whitepapers. Among its various applications, we focus on NER
+to identify specific DLT technologies (e.g., PoW and PoS) and their ESG implications (e.g.,
+“energy consumption” and “computational power”) within our dataset. This approach allows us
+to understand the shifts in research across different DLT technologies and their environmental
+impacts.
+Building on precedents from the biomedical field, where ontologies or hierarchical tax-
+onomies are used to create NER datasets for NLP-driven literature mining and review (Alsheikh
+et al., 2022; Chang et al., 2016; Huang et al., 2020; Mcentire et al., 2016; Nabi et al., 2022;
+Spasic et al., 2005), we have successfully transferred these methods to the DLT domain. Unlike
+previous systematic literature reviews that rely on citation measures, abstract analyses, keywords,
+or database term searches, our approach examines the entire body of each publication. This al-
+lows us to capture all relevant entities under top-level categories representing the whole DLT
+field, removing the need for exhaustive database term searches to generate a dataset representing
+the DLT field and enabling us to work at scale. By mapping each publication’s tokens to the
+hierarchical DLT taxonomy from Tasca and Tessone (2017), which we extended to include ESG
+considerations and other categories, we detected thematic shifts in both academic research and
+industry publications (e.g., whitepapers). As a result, we compiled a more inclusive dataset that
+reflects the DLT field’s overall evolution while preserving the methodological rigor demonstrated
+in biomedical literature studies.
+Our research makes the following contributions:
+• Creating a manually labeled NER dataset of 39,427 named entities for twelve top-level
+DLT’s taxonomy categories. To the best of our knowledge, this is the first NER dataset
+explicitly designed for DLT. Our dataset aims to address the NLP data scarcity issue in
+blockchain research. By making it openly available, we help overcome common limita-
+2
+
+tions like high labeling costs and complex access to high-quality labeled NLP data in the
+DLT field.1
+• Presenting a methodological framework for executing an NLP-driven systematic literature
+review at the intersection of domains, in this case, DLT and ESG research. Our methodol-
+ogy combines approaches from different publications and fields for domain-specific liter-
+ature text mining and systematic literature reviews.
+• Conducting the first NLP-driven systematic literature review for the DLT field that places
+a special emphasis on ESG aspects, deriving empirical insights into the evolution of the
+literature.
+Our work, particularly our NER dataset, can potentially support future NLP data-driven stud-
+ies in the DLT field. Additionally, it represents a foundation for future research to improve
+automated systematic literature review processes at scale, capable of capturing the intrinsic de-
+pendencies and evolution of concepts related to the intersection of fields.
+2. Related work
+Systematic Reviews in DLT. Previous literature reviews have extensively explored blockchain
+applications in various sectors (Casino et al., 2019; Zheng et al., 2018). These reviews, how-
+ever, differ in scope and depth compared to our systematic review, particularly in terms of the
+number of analyzed articles. Previous studies have mainly focused on blockchain’s role in de-
+centralization and privacy and analyzed trends of centralization in decentralized systems such as
+Bitcoin and Ethereum (Sai et al., 2021). Spychiger et al. (2021) deconstructed 107 blockchain
+technologies using a specific taxonomy, emphasizing consensus mechanisms and cryptographic
+primitives. Our work, in contrast, provides a broader perspective on the evolution of DLT, in-
+cluding its ESG implications, and uses a bigger corpus.
+ESG Implications. Bilal et al. (2014), Jiang et al. (2022), Mengelkamp et al. (2018), Poberezhna
+(2018), Richardson and Xu (2020), Schulz and Feist (2021), and Wu et al. (2022) have explored
+blockchain’s potential in energy management, environmental sustainability, carbon trading, and
+transparent reporting. Our study extends these approaches by examining the intersection of ESG
+and DLT through a literature analysis.
+NLP Applications. Studies have demonstrated NLP’s effectiveness in automated ESG scoring
+(Alik Sokolov et al., 2021) and opinion summarization (Dubey et al., 2023). Outside DLT,
+systematic reviews using NLP-driven methodologies, particularly in medical genomics (Alsheikh
+et al., 2022), have employed database term searches and abstract-based filtering, contrasting with
+our approach that uses a taxonomy, labeled NER dataset, and language model to compile and
+filter a more inclusive corpus representing the DLT field and from which we derive insights.
+2.1. Literature reviews of DLT application in industry sectors
+Supply Chain Applications. Blockchain applications in supply chain management have been ex-
+tensively studied (Casella et al., 2023; Ibañez et al., 2025; Wannenwetsch et al., 2023), focusing
+on traceability, transparency, and process automation. These reviews highlight blockchain’s role
+in enhancing supply chain visibility and reducing intermediary dependencies.
+1The dataset is available at: https://huggingface.co/datasets/ExponentialScience/ESG-DLT-NER
+3
+
+Internet of Things (IoT) Integration. Research examining blockchain-IoT integration (Alladi et
+al., 2019; H. N. Dai et al., 2019; Lo et al., 2019; Sallam et al., 2021) has emphasized secu-
+rity enhancement, data integrity, and decentralized device management. Studies have particu-
+larly focused on scalability challenges (Liu et al., 2025) and consensus mechanisms suitable for
+resource-constrained IoT devices.
+Healthcare Systems. Literature reviews in healthcare applications (Ghosh & Das, 2020; Hussien
+et al., 2019; Khatoon, 2020) have explored blockchain’s potential for secure health records man-
+agement, clinical trial data integrity, and pharmaceutical supply chain tracking.
+Financial Sector. Blockchain-based shared ledgers have long been studied for their potential to
+impact accounting, auditing, and finance. In particular, the evolution of Decentralized Finance
+(DeFi) has generated systematic reviews (Y. Chen & Bellavitis, 2020; Cousaert et al., 2022;
+Gramlich et al., 2023; Shah et al., 2023) examining blockchain’s potential to reduce financial
+intermediation. This potential is exemplified through lending protocols (Xu & Vadgama, 2022),
+stablecoins (Ante et al., 2023), and Decentralized Exchanges (DEXs) (Xu et al., 2023), which
+operate via smart contracts (Adams et al., 2021) or at the protocol level of a blockchain (Her-
+nandez Cruz et al., 2025; Peduzzi et al., 2021). In particular, stablecoins (Ante et al., 2023)
+serve as the critical infrastructure bridging Traditional Finance (TradFi) and DeFi, though this
+interconnection can propagate market shocks between both (Hernandez Cruz et al., 2024).
+3. Methodology
+2
+Step 1: 
+DATA COLLECTION
+Step 2: 
+DATA LABELING
+107 
+seed 
+papers
+ 
+ 
+ 
+ 
+63,083 
+directed 
+citation 
+network of 
+references 
+Download 
+publicly 
+available 
+PDFs
+Train data
+Step 5: 
+TEMPORAL GRAPH AND 
+NAMED ENTITIES ANALYSIS
+Time
+t
+t + 1
+t + 2
+t + n
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Time 
+t
+t + 1
+t + 2
+t + n
+                            
+                
+               
+         
+80 
+papers
+NER labeling based on 
+DLT Taxonomy
+24,539 
+PDFs 
+available
+Inter-labeler agreement 
+for consistency of labels 
+- BERT
+- Albert
+- DistilBERT
+- SciBERT
+-----------------
+SELECTION 
+CRITERIA:
+- Performance
+- Efficiency at 
+inference
+Disagreement 
+about label
+Correct 
+label
+Label next 
+paper
+Step 3: 
+FINE-TUNING:
+18,581 
+papers
+24,539 
+PDFs 
+available
+Step 4: 
+DATASET FILTERING
+PDF to 
+text
+DistilBERT 
+inference
+505 key 
+papers
+ESG/DLT 
+Content density 
+filtering
+Figure 1: Methodology for the systematic literature review of ESG/DLT publications evolution using NER for content
+filtering, for which temporal graph and named entities (representing specific DLT technologies, e.g., PoW and PoS)
+analysis is carried.
+Dataset construction and analysis approach. Ontologies, specifically hierarchical taxonomies,
+are pivotal in developing NER datasets for text mining (Alsheikh et al., 2022; Chang et al.,
+2016; Huang et al., 2020; Mcentire et al., 2016; Nabi et al., 2022; Spasic et al., 2005). For
+example, the GENIA corpus (Kim et al., 2003), a NER dataset from 2,000 biological abstracts,
+employs the GENIA ontology’s hierarchical tree structure of 47 biological entities, including top-
+level categories such as biological source and substance to facilitate text mining in biomedical
+literature. Similarly, the Human Phenotype Ontology is used to create and expand NER datasets
+in biomedicine (Huang et al., 2020; Lobo et al., 2017). Alsheikh et al. (2022), Chang et al.
+4
+
+Total papers at each stage
+
+,
+,
+	,
+
+,
+
+,
+
+
+
+Seed papers 
+First layer ,
+DLT ﬁltered ,
+SOURCES
+CRAWL
+MANUAL SELECTION
+COLLECTION
+METADATA
+PROCESSING
+FILTERING
+SELECTION
+Semantic Scholar
+	
+,	
+Papers not found 
+or not publicly accessible
+
+,
+Parsed texts
+,
+Parsing errors ,
+Non-relevant 	,
+Discarded ,
+
+Downloaded PDFs
+,
+
+Second layer
+	,
+
+
+ESG/DLT
+FILTERED
+Figure 2: Processing pipeline for collecting and filtering papers in the review. The total number of papers present at each
+stage of processing is shown. See Table 1 for the description of the labels in the corpus.
+(2016), and Mcentire et al. (2016) further demonstrate the use of ontology-based NER datasets
+for domain-specific literature text mining.
+Learning from these biomedical field precedents, our methodology (Fig. 1) for NLP-based
+text mining and filtering (Fig. 2) in the DLT field employs a hierarchical taxonomy (Tasca &
+Tessone, 2017) to manually annotate a NER dataset of 80 full-text papers: 46 systematically
+reviewed publications of DLT’s sustainability (Eigelshoven et al., 2020) and 34 manually selected
+for their relevance to the ESG/DLT theme.
+Two-tier analysis strategy. Our analysis followed a two-tier approach to maximize the use of
+available data:
+1. Broad analysis using metadata: Keyword extraction (Rose et al., 2021) and topic model-
+ing (Asmussen & Møller, 2019) provide a broad view of the main themes for a literature review.
+We analyzed the complete corpus of over 60,000 papers using their metadata (e.g., titles and key-
+words), regardless of full-text availability. This approach allows us to construct a comprehensive
+keywords graph that captures the broad evolution of the DLT field. While many papers (38,413)
+were behind paywalls or otherwise not easily accessible, their metadata still contributes to our
+understanding of the field’s development.
+2.
+Deep analysis using full text.
+We conducted a more detailed analysis of the subset
+of 24,539 papers where full text was available through open-access journals, conferences, or
+public repositories. We narrowed the number of publications for our analysis by fine-tuning a
+transformer-based language model for a NER task for ESG/DLT content density corpus filtering.
+This method allows us to categorize technologies in DLT, such as different Consensus mecha-
+nisms (e.g., Proof of Work, Proof of Stake) and their ESG implications, like “energy consump-
+tion” and “computational power”, that would not usually emerge as single topics or keywords
+for a literature review. This deeper analysis reveals nuanced connections that may not arise from
+metadata alone.
+Temporal graph and named entities analysis. The final stage involves a temporal graph and
+named entities analysis to track the evolution of DLT technologies and their ESG implications
+over time. This combines insights from the broad metadata analysis and the detailed full-text
+examination, providing a comprehensive view of the field’s development.
+5
+
+3.1. Data collection
+We constructed a directed citation network using a two-level expansion method: beginning
+with seed papers, collecting their references, and then gathering the references of those refer-
+ences. This two-level restriction helps maintain a thematic focus on ESG/DLT. The resulting
+network comprises 63,083 publications. Through Semantic Scholar’s metadata for each publi-
+cation (see Fig. 1), we retrieved 24,539 full-text PDFs that are openly accessible through open-
+access journals, institutional repositories, preprint servers (e.g., arxiv), or publisher websites (see
+Fig. 1 and Fig. 2).
+The key benefit of using seed papers to build a citation network for a systematic literature
+review is the ease of expanding and updating the literature review by selecting seminal publi-
+cations from the academic literature. The seed papers for our directed citation network were
+selected from two sources:
+1. 89 papers from (Eigelshoven et al., 2020), reviewing sustainability in popular DLT con-
+sensus algorithms.
+2. 17 publications (2018-2022) with at least three citations each, chosen to update the corpus
+with more current research relevant to the ESG/DLT intersection (Alofi et al., 2022; Ante
+& Fiedler, 2021; Bada et al., 2021; Cole & Cheng, 2018; Denisova et al., 2019; Eshani
+et al., 2021; Fernando & Saravannan, 2021; Ghosh & Das, 2020; Kohli et al., 2022; Lucey
+et al., 2021; Masood & Faridi, 2018; Platt et al., 2021; Powell et al., 2021; Sapkota &
+Grobys, 2020; Schinckus et al., 2020; Sedlmeir et al., 2020, 2021).
+3.2. NER task for literature mining
+We considered using Large Language Models (LLMs) for our NER task. An unsupervised
+approach like zero-shot NER with LLMs would have been more cost-effective in not requiring
+manually labeled data. However, at the time of this writing, domain-specific NER tasks often
+perform better with supervised learning models than with current LLMs (Hu et al., 2024; Li
+et al., 2023). This performance difference arises from fundamental architectural distinctions:
+Bidirectional Encoder Representations from Transformers (BERT)-based models generally out-
+perform decoder-only LLMs, such as OpenAI’s ChatGPT and Google Deepmind’s Gemini, on
+token-level tasks like NER, due to their bidirectional encoder architecture (Devlin et al., 2019).
+Specifically, BERT processes text by simultaneously considering both left and right context (De-
+vlin et al., 2019), enabling it to capture fine-grained contextual information around each token.
+This is a crucial capability for NER, where entity recognition often depends on the complete
+contextual surrounding of a word.
+In contrast, decoder-only architectures, like Generative Pre-trained Transformer (GPT), pro-
+cess text unidirectionally (left to right) (Radford & Narasimhan, 2018; Radford et al., 2019),
+limiting their ability to capture the complete contextual information necessary for accurate en-
+tity recognition. While decoder-only architectures excel at open-ended question answering, they
+struggle to match BERT-based models’ NER performance (Hu et al., 2024; Li et al., 2023),
+which currently represents the state of the art for NER tasks2. Therefore, we adopted a super-
+vised learning approach, fine-tuning and benchmarking several BERT-base models, selecting the
+final model based on its performance and efficiency at inference. This approach provides more
+2https://paperswithcode.com/task/named-entity-recognition-ner
+6
+
+granularity for literature mining an entire publication body without the hallucination issues of
+LLMs (i.e., creation of irrelevant or inconsistent content). However, the trade-off is the require-
+ment for the costly manual labeling of the NER dataset.
+3.2.1. Labeling
+Network
+Topology
+Decentralized
+Hierarchical
+Distributed
+Immutability & 
+Failure Tolerance
+PoW
+PoS
+PoA
+PoC & PoStor
+Hybrid
+Gossiping
+Local
+Global
+Consensus
+Agreement
+Latency
+Syncronous
+Asyncronous
+Finality
+Deterministic
+Non Deterministic
+Transaction
+Capabilities
+Data Structure
+Binary Merkel Tree
+Patricia Merkel Tree
+Transaction Model
+UTXO
+Traditional Ledger
+Server Storage
+Full Nodes
+Thin Nodes Capabilities
+Block Storage
+Transactions
+User Balance
+Limits to
+Scalability
+No. Of
+Transactions
+Indifferent
+At Most O(N)
+At Least O(N)
+At Most Ο(N2)
+Worse Than (N2)
+No. Of
+Nodes
+Indifferent
+At Most O(N)
+At Least O(N)
+At Most O(N2)
+Worse Than O(N2)
+No. Of
+Users
+Indifferent
+At Most O(N)
+At Least O(N)
+At Most O(N2)
+Worse Than O(N2)
+Block Conf. Time
+Stochastic
+Deterministic
+Native Currency
+Tokeniz ation
+Native Asset
+None
+Own Convertible Currency
+Convertible Multiple Asset
+Asset Supply Mgmt
+Limited Deterministic
+Unlimited Deterministic
+Pre Mined
+Tokenization
+No Tokenisation Present
+Tokenisation & 3rd Party Add Ons
+Tokenisation
+Extensibility
+Interoperability
+Implicit
+Explicit
+Intraoperability
+Implicit
+Explicit
+None
+Governance
+Open Sourced
+Technical Mode
+Allience Mode
+Script Language
+Turing Complete
+Generic Non Turing Complete
+Application Specific Non Turing Complete
+Non Turing Complete &Externa lData
+Security Privacy
+SHA-2
+ZK-SNARKS
+Data Privacy
+Built In
+Add On
+Codebase
+Coding Language
+Single Language
+Multiple Language
+Code License
+Open Source
+Close Source
+Software Architec.
+Monolithic Design
+Polylithic Design
+Identity Mgmt
+Access & Control
+Public Blockchain
+Permissioned Public
+Permissioned Private
+Identity Layer
+KYC/AML
+Anonymous
+Charging & 
+Rewarding
+Reward System
+Lumpsum
+Block And Security
+Fee System
+Fee Reward
+Mandatory
+No Reward
+Optional
+Fee Structure
+Variable Fees
+Fixed Fees
+Identifiers
+Other Name
+Token Name
+Language
+Purpose
+ESG
+Environment
+Energy Consumption
+Carbon Emission
+Other
+Social
+Community
+User Rights
+Social Responsibility
+Other
+Governance
+Transparency
+Risk Management
+Other
+Miscellaneous ESG
+Miscellaneous
+None
+Blockchain Name
+(a)
+(b)
+Consensus
+Data Structure in Blockheader
+Decentralized
+Distributed
+Data Encryption
+Creator
+Date Created
+Figure 3: (a) The taxonomy of Tasca and Tessone (2017) extended with Blockchain Name, ESG, and Miscellaneous
+(see §3.2.1) for the purpose of this research. (b) Example of parsed text with the taxonomy label associated with a span
+of text labeled. The labels used in the paragraph are highlighted in the taxonomy tree.
+We manually annotated 80 publicly available publications using the brat tool (Stenetorp
+et al., 2012) and argilla3, following the extended taxonomy framework of Tasca and Tessone
+(2017) (Fig. 3). This taxonomy provides a hierarchical structure of DLT technology compo-
+nents, with each principal component (e.g., Consensus) divided into sub-components (e.g.,
+Gossiping) and further into sub-sub-components if needed (e.g., Local). We introduced cat-
+egories like Blockchain Name to identify specific blockchains. We expanded the initial defi-
+nition of Security Privacy to label security threats (e.g., Sybil attack and 51% attack).
+Also, we added the Miscellaneous category for ambiguous contexts (see Fig. 3 and Table 1),
+following the example of the CoNLL-2003 dataset for a similar category (Tjong et al., 2003). We
+further extended Tasca and Tessone (2017)’s taxonomy to identify sustainability-related concepts
+referred to in the ESG criterion (see Fig. 3).
+3.2.2. Text analysis/language processing
+We pruned the label hierarchy within the taxonomy for class balance, where specific labels
+such as PoW are replaced by broader categories such as Consensus to maintain focus on primary
+3https://github.com/argilla-io/argilla
+7
+
+Table 1: List of groups of entity types based on the extended taxonomy from Tasca and Tessone (2017) (see Fig. 3).
+Group entities
+Description
+Blockchain Name
+The name of a blockchain system (e.g., Bitcoin, Ethereum, XRP Ledger), but also
+including other types of DLTs, such as Hedera, IOTA, and Nano.
+Consensus
+Rules and mechanisms to ensure the immutability of transaction records (e.g., PoW,
+PoS, Blockchain, Hashgraph, Gossiping, Decentralized, Centralized, Distributed,
+Hierarchical, Latency, and Finality).
+Transaction Capabilities
+Information related to the details of transactions, such as Data Structure in the Block-
+header, Transaction Model, Server Storage, Block Storage, and Limits to Scalability.
+Native Currency
+Tokenization
+Asset classes to pay for transactions within a blockchain system (e.g., BTC, ETH,
+XRP, HBAR).
+Extensibility
+Capabilities of Interoperability, Intraoperability, Governance (e.g., Decentralized
+Autonomous Organization (DAO), Alliance Mode, Open-source community mode),
+and Script Language of a blockchain ecosystem (e.g., Turing complete, non-Turing
+complete).
+Security Privacy
+Cryptographic methods to ensure data privacy, encryption, and security in a
+blockchain ecosystem (e.g., private key, public key, hashing, Sybil attack, 51% at-
+tack).
+Codebase
+Coding Language (e.g., Solidity, Vyper, Rust, JavaScript), Code License (e.g., GNU
+General Public License (GPL), MIT License, Apache License), and Software Archi-
+tecture of a blockchain ecosystem (e.g., Monolithic, Polylithic).
+Identity Management
+Attributes to identify participants and their system access level.
+Charging & Rewarding
+System
+Cost and reward models for the operation and maintenance of blockchain systems
+(e.g., transaction fees, mining rewards, fee rewards, fee system, fee structure).
+Identifiers
+Information related to the token names (e.g., USDC, USDT), creators (e.g., Satoshi
+Nakamoto, Ripple, Leemon Baird, Circle, Coinbase), and purpose (e.g., stablecoins,
+utility token, security token).
+ESG
+Entities relevant to ESG issues regarding Blockchain (e.g., energy consumption,
+computing power).
+Miscellaneous
+Miscellaneous entities that are ambiguous in a given context and are relevant for the
+DLT topic but are not captured by any of the above categories.
+8
+
+taxonomy components (Fig. 3). To improve the NER model performance, which is sensitive to
+label consistency (Jeong & Kang, 2023; Zeng et al., 2021), we employed a systematic process
+for enhancing inter-labeler consistency. This process involved correcting inconsistent labeling of
+entities. For example, “Sybil attack” was sometimes labeled as Consensus and, at other times,
+as Security Privacy. We resolved this inconsistency following each labeler’s approval and
+using programmatic cleaning to ensure consistency for non-context-dependent labels. For “Sybil
+attack” specifically, we decided to label it as Security Privacy.
+We applied text resampling for overlapping named entities that could fit into multiple cate-
+gories, such as belonging to Blockchain Name and Native Currency Tokenization. This
+process involves duplicating text and assigning distinct entities to each copy, enhancing the cap-
+ture of rare entities. This resampling strategy is beneficial, especially for datasets of modest
+size (Wang & Wang, 2022), improving model performance by accommodating diverse entity
+categories. Additionally, the duplication of training data enhances a language model’s ability to
+learn from limited examples (Charton & Kempe, 2024; Muennighoff et al., 2023).
+3.2.3. Dataset filtering
+We applied a percentile-based filtering process to the corpus of publications based on the
+ESG and DLT classified named entities within the corpus. This method selects publications with
+substantial DLT and ESG content, using a threshold percentile to exclude marginally relevant pa-
+pers. Seed papers were included to maintain foundational references. The filtering is represented
+as:
+F = {Pi : N(Pi) ≥perc10(N(P))} ∩{Pi : DDLT(Pi) ≥perc90} ∩{Pi : DESG(Pi) ≥perc70} ∪S
+(1)
+where F is the final set of papers, Pi is an individual paper, N(Pi) represents the total to-
+ken count for paper i (with a minimum threshold at the 10th percentile to exclude potentially
+corrupted or incomplete documents), DDLT(Pi) and DESG(Pi) are the DLT and ESG content den-
+sities respectively, and S is the set of seed papers. We define the percentile cut-offs for the DLT
+and ESG content densities by manually reviewing the ratio of NER labeled tokens to all tokens
+in the dataset.
+Our processing, filtering, and selection methodology involved (see Fig. 2):
+1. Processing: Excluding papers below the 10th percentile (N(Pi) ≥perc10(N(P))) in the total
+token count as a quality control mechanism, eliminating documents that may have been
+improperly processed during PDF-to-text conversion or are too brief to contain meaningful
+analysis (e.g., below 100 tokens). We named these discarded papers as “parsing errors” in
+Fig. 2.
+2. DLT content filter (DDLT(Pi) ≥perc90): Computing DLT content density and retaining
+papers above the 90th percentile, ensuring a strong focus on DLT topics.
+3. Filtering for at least the 70th percentile in ESG content density to confirm relevance to ESG
+(DESG(Pi) ≥perc70).
+Finally, we manually reviewed the selected filtered publications to validate the accuracy of
+their ESG/DLT content density and relevance.
+9
+
+3.3. Network graphs and entities evolution
+Keywords network. We constructed a graph Gkeywords(Vkeywords, Ekeywords) based on the full cor-
+pus of over 60,000 metadata records, with vertices Vkeywords as individual keywords and edges
+Ekeywords representing keywords co-occurrence within the same paper. We analyzed degree cen-
+trality with one-year rolling windows to observe the evolution and significance of specific key-
+words over time, providing insights into how research from these keywords representing topics
+was foundational for the DLT field and facilitated the emergence of innovations.
+ESG/DLT network. We analyzed the ESG/DLT content density filtered citation network as G(V, E),
+with papers as vertices V and citations as edges E. We performed temporal graph analysis using
+one-year time windows W1, W2, . . . , Wn, following the rolling window approach from Hoadley
+et al. (2021), Steer et al. (2024), and Steer et al. (2020). For each window Wi, we created a
+subgraph Gi(Vi, Ei) and analyzed nodes, edges, average degree, and authority scores (using the
+HITS algorithm (Kleinberg, 2011)) to determine temporal shifts and how publications rely on
+pivotal or existing work.
+Entity analysis. We tracked the evolution of named entities in the ESG/DLT content density
+filtered citation network, consolidating variations of similar entities (e.g., unifying all forms of
+“Proof of Work” under “PoW”) using lemmatization and programmatic grouping to accurately
+capture changes in entity prevalence.
+4. Evaluation
+4.1. Taxonomy labeling result
+Our NER dataset organizes 39,427 named entities4 from 80 manually labeled publications
+into a tree structure with 136 labels under 12 top-level categories (Fig. 3a and Table 2). This
+structure facilitated a targeted analysis in our study. Table 3 provides examples from the dataset.
+Table 2: Labeled named entities for each category in the dataset.
+Entity Category
+Number of Entities
+Blockchain Name
+4,030
+Consensus
+14,530
+Transaction Capabilities
+5,120
+Native Currency Tokenization
+1,382
+Extensibility
+1,130
+Security Privacy
+5,892
+Codebase
+1,251
+Identity Management
+1,032
+Charging & Rewarding System
+794
+Identifiers
+1,058
+ESG
+2,068
+Miscellaneous
+1,140
+10
+
+Table 3: Training examples showing text spans with their labels (“Output”) and corresponding IOB2 format (Tjong et al.,
+1999), where “B-” marks the beginning of an entity, “I-” its continuation, and “O” denotes non-entity tokens, used for
+fine-tuning BERT-based models for our NER task.
+Text: In this paper, the PoW consensus algorithm used in blockchains are analyzed in terms of difficulty, hash
+count, and probability of successful mining.
+Output:
+In this paper, the ⟨Consensus⟩consensus algorithm used in ⟨Identifiers⟩is analyzed in terms of
+⟨Consensus⟩, ⟨Transaction Capabilities⟩, and ⟨Transaction Capabilities⟩.
+IOB2: O O O O ⟨B-Consensus⟩O O O O ⟨B-Identifiers⟩O O O O O ⟨B-Consensus⟩O ⟨B-Transaction_-
+Capabilities⟩O ⟨B-Transaction_Capabilities⟩
+Text: Given the fundamental challenges in uniting Bitcoin mining with renewable energy, along with the fact that
+energy use is not the only way in which Bitcoin impacts the environment
+Output: Given the fundamental challenges in uniting ⟨Consensus⟩with ⟨ESG⟩, along with the fact that ⟨ESG⟩is
+not the only way in which ⟨Blockchain Name⟩⟨ESG⟩
+IOB2: O O O O O O ⟨B-Consensus⟩O ⟨B-ESG I-ESG⟩O O O O O ⟨B-ESG⟩O O O O O O O ⟨B-Blockchain_-
+Name⟩⟨B-ESG⟩
+Text: the Hedera Treasury will “proxy-stake” over two-thirds of the total number of hbars to nodes hosted by
+Council Members.
+Output: the ⟨Extensibility⟩will “⟨Consensus⟩” over ⟨Consensus⟩of the total number of ⟨Native Currency
+Tokenization⟩to nodes hosted by ⟨Extensibility⟩.
+IOB2: O ⟨B-Extensibility I-Extensibility⟩O ⟨B-Consensus I-Consensus⟩O ⟨B-Consensus⟩O O O O O ⟨B-Native_-
+Currency_Tokenization⟩O O O O ⟨B-Extensibility I-Extensibility⟩
+Text: Using a variant of Shor’s algorithm [162], a quantum computer can easily forge an elliptic curve signature
+that underpins the security of each transaction in blockchain and so breaking of ECC will affect blockchain in
+terms of broken keys, hence, digital signatures.
+Output: Using a variant of ⟨Security Privacy⟩[162], a ⟨Miscellaneous⟩can easily forge an ⟨Security Privacy⟩
+that underpins the security of each transaction in ⟨Consensus⟩and so breaking of ⟨Security Privacy⟩will affect
+⟨Consensus⟩in terms of ⟨Security Privacy⟩, hence, ⟨Security Privacy⟩.
+IOB2: O O O O ⟨B-Security_Privacy I-Security_Privacy⟩O O ⟨B-Miscellaneous I-Miscellaneous⟩O O O O ⟨B-
+Security_Privacy I-Security_Privacy⟩O O O O O O O O ⟨B-Consensus⟩O O O O ⟨B-Security_Privacy⟩O O
+⟨B-Consensus⟩O O O ⟨B-Security_Privacy⟩O ⟨B-Security_Privacy⟩
+4.2. NER task result
+We fine-tuned four pre-trained transformer models: the BERT base model (cased)5, which
+uses a bidirectional encoder architecture (Devlin et al., 2019) (see §3.2 for more details); AL-
+BERT base model v26, a lighter version of BERT with a cross-layer parameter sharing technique
+(Lan et al., 2019); DistilBERT base model (cased)7, a distilled version of BERT (Sanh et al.,
+2019); and SciBERT base model (cased)8, a BERT-based model pre-tained on a corpus of scien-
+tific publications (Beltagy et al., 2019). To ensure robust evaluation and prevent data leakage, we
+employed 5-fold cross-validation based on publication titles, ensuring that data from any single
+publication appeared exclusively in the training or test set for each fold. The training process
+consisted of 200 total epochs, distributed as 40 epochs per fold, with a learning rate of 5 × 10−5,
+a training batch size of 32, and a validation batch size of 64. The maximum sequence length was
+512 tokens.
+4An entity is counted from its beginning (“B-”) to its end (“I-”) using the IOB2 format (Tjong et al., 1999). See
+Table 3 for some examples.
+5https://huggingface.co/bert-base-cased
+6https://huggingface.co/albert-base-v2
+7https://huggingface.co/distilbert-base-cased
+8https://huggingface.co/allenai/scibert_scivocab_cased
+11
+
+Table 4: Detailed performance results (using seqeval (Massias et al., 1999; Nakayama, 2018)) after 5-fold cross-
+validation fine-tuning for BERT, Albert, DistilBERT, and SciBERT with the ESG/DLT NER dataset, with relaxed and
+strict (exact) matched entities-level metrics.
+Model & Fold
+Relaxed Entity-Level Metrics
+Strict Entity-Level Metrics
+Model
+Fold
+Precision
+Recall
+F1
+Accuracy
+Precision
+Recall
+F1
+Accuracy
+BERT
+1
+0.23
+0.41
+0.30
+0.94
+0.27
+0.40
+0.33
+0.94
+2
+0.63
+0.63
+0.63
+0.97
+0.74
+0.62
+0.67
+0.97
+3
+0.45
+0.48
+0.47
+0.96
+0.59
+0.46
+0.52
+0.96
+4
+0.54
+0.50
+0.52
+0.96
+0.60
+0.49
+0.54
+0.96
+5
+0.64
+0.79
+0.70
+0.97
+0.70
+0.78
+0.74
+0.97
+Mean
+0.50
+0.56
+0.52
+0.96
+0.58
+0.55
+0.56
+0.96
+Albert
+1
+0.30
+0.31
+0.30
+0.94
+0.34
+0.31
+0.32
+0.95
+2
+0.49
+0.50
+0.50
+0.96
+0.57
+0.49
+0.53
+0.96
+3
+0.40
+0.43
+0.41
+0.96
+0.50
+0.42
+0.46
+0.96
+4
+0.76
+0.80
+0.78
+0.98
+0.81
+0.79
+0.80
+0.98
+5
+0.80
+0.83
+0.81
+0.98
+0.85
+0.83
+0.84
+0.98
+Mean
+0.55
+0.57
+0.56
+0.97
+0.61
+0.57
+0.59
+0.97
+DistilBERT
+1
+0.26
+0.38
+0.31
+0.93
+0.31
+0.37
+0.34
+0.93
+2
+0.57
+0.62
+0.59
+0.97
+0.65
+0.62
+0.63
+0.97
+3
+0.52
+0.66
+0.58
+0.96
+0.65
+0.65
+0.65
+0.96
+4
+0.83
+0.89
+0.86
+0.99
+0.89
+0.89
+0.89
+0.99
+5
+0.62
+0.80
+0.70
+0.97
+0.72
+0.80
+0.76
+0.97
+Mean
+0.56
+0.67
+0.61
+0.97
+0.64
+0.67
+0.65
+0.97
+SciBERT
+1
+0.29
+0.42
+0.34
+0.95
+0.31
+0.41
+0.36
+0.95
+2
+0.63
+0.66
+0.65
+0.98
+0.71
+0.66
+0.68
+0.98
+3
+0.50
+0.63
+0.55
+0.96
+0.62
+0.62
+0.62
+0.96
+4
+0.76
+0.86
+0.80
+0.98
+0.84
+0.86
+0.85
+0.98
+5
+0.82
+0.90
+0.86
+0.99
+0.88
+0.90
+0.89
+0.99
+Mean
+0.60
+0.69
+0.64
+0.97
+0.67
+0.69
+0.68
+0.97
+The performance evaluation (Table 4) revealed that SciBERT (Beltagy et al., 2019) achieved
+the highest F1 score for our domain-specific NER task in DLT. This aligns with expectations,
+given SciBERT’s pre-training on a large multi-domain corpus of scientific literature, which im-
+proves its performance in downstream scientific NLP tasks (Beltagy et al., 2019) like ours. De-
+spite SciBERT’s results, we ultimately chose DistilBERT, the second-best-performing model
+(Table 4), for processing our large dataset of 24,539 publications. DistilBERT offers a reasonable
+balance of effectiveness and efficiency, operating 60% faster than BERT, and likewise SciBERT,
+during inference while retaining 97% of BERT’s performance (Sanh et al., 2019). This speed
+and F1 score combination made DistilBERT the most suitable choice for our large-scale analysis
+of DLT literature.
+12
+
+5. Discussion
+5.1. Transferability and adaptability of the methodology
+5.1.1. Methodology framework transferability
+Our methodology shows versatility in analyzing emerging technologies and their interdisci-
+plinary implications. While we applied it to DLT9 and ESG, the framework’s structure makes it
+adaptable to various technological domains and their intersections, such as AI in healthcare or
+renewable energy applications in urban development, to name a few.
+Methodological framework. The methodology comprises five phases (Fig. 1). Initially, we es-
+tablished a comprehensive corpus through data collection by selecting seed papers that represent
+seminal publications at domain intersections of interest via citation analysis and expert con-
+sultation, then systematically expanding this by traversal up to two levels of the seed paper’s
+references (§3.1). The second phase focused on data labeling by first developing taxonomies that
+capture the domain intersections terminology, which serves as a guideline for labeling a NER
+dataset (§3.2.1 and §3.2.2). This labeled dataset then supported the third phase in which it is
+used to fine-tune BERT-based models for a NER task (§3.2), benchmarking and selecting the
+best-performing model (§4.2). The fourth phase applied the selected fine-tuned model to filter
+the corpus based on the named entities identified (§3.2.3). Finally, we conducted a manual liter-
+ature review and temporal graph analysis to derive insights that track the evolution of concepts,
+technologies, and their interconnections.
+Framework application example. To demonstrate the framework’s transferability, consider its
+application to AI in healthcare research. The process would begin by identifying influential
+papers at the AI-healthcare intersection, followed by traversal of the references from these papers
+to build a comprehensive corpus. A specialized taxonomy would integrate medical terminology
+with AI concepts, enabling dataset labeling for model fine-tuning. This fine-tuned model with
+the labeled dataset would then facilitate the identification of specific medical AI technologies
+and their clinical applications. Finally, a manual literature review using temporal graph analysis,
+named entities, and citation network analysis would reveal the evolution of medical AI research
+and its healthcare impact.
+5.1.2. Methodological advantages over other approaches
+Our methodology (§3) of using NER for field-specific literature filtering is similar to recent
+LLM developments, such as Google DeepMind Gemini’s demonstration of a systematic literature
+review. In Gemini’s approach, terms like “Chip” and “CRISPR-Cas9” are searched in publica-
+tion titles and abstracts to filter results10. This parallel highlights the significance of our work.
+However, Gemini faces limitations like potential hallucinations that could undermine it for NER
+tasks and filtering of publications. Although supervised learning approaches outperform current
+LLMs for NER tasks (Hu et al., 2024; Li et al., 2023), Gemini shows the potential of LLMs in
+few-shot learning for NER tasks.
+In contrast to current LLM approaches, our methodology (§3) uses a domain-specific labeled
+NER dataset and a fine-tuned pre-trained language model to analyze full-text publications. This
+9§6 explains DLT and some its key terms in more detail
+10See https://youtu.be/sPiOP_CB54A?feature=shared&t=64 for the prompt used in the demonstration
+13
+
+supervised learning approach provides a more structured and verifiable framework for literature
+analysis, making it particularly valuable for systematically examining emerging technical fields
+and their intersections with other domains. The methodology’s emphasis on supervised learning
+and domain-specific training ensures greater accuracy and reliability (see §3.2 for more details)
+in literature review tasks while maintaining adaptability to various fields of study.
+5.2. Findings
+5.2.1. Keywords network
+1992 1996 2000 2004 2008 2012 2016 2020
+Year
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Degree Centrality
+Distributed computing
+Cryptography
+Smart contract
+Proof-of-work system
+Peer-to-peer
+Bitcoin
+Proof-of-stake
+Ethereum
+Figure 4: Evolution of research topics in the keywords graph from the full corpus of 63,096 publications.
+The keywords graph comprises 25,048 topics as nodes with 3,042,397 edges and 4,847,870
+temporal edges connecting the topics across time. Fig. 4 visually and quantitatively shows the
+evolution of the key areas like Cryptography, Peer-to-Peer, PoW, PoS, and smart contracts that
+laid the foundation for advancements in DLT at different points in time. The research in Cryptog-
+raphy provided the foundations for using public and private key pairs for identity management
+(D. L. Chaum, 1981), elliptic curves (Miller, 1986), hashing, and Merkle trees (Merkle, 1980).
+Similarly, Peer-to-Peer research focused on network communication (Cohen, 2003; Dingledine
+et al., 2004), timestamping (Bayer et al., 1993; Haber & Stornetta, 1991; Massias et al., 1999),
+and the need for solving the Byzantine Generals Problem (Lamport et al., 1982), vital for de-
+centralized network functionality. The research related to Proof of Work delineated the first
+consensus system used in Blockchain building in the works from the early 1990s of Dwork and
+Naor (1993) and the early 2000s of Back (2002) and Finney (2004).
+The emergence of Bitcoin (Nakamoto, 2008) marked a significant convergence of these tech-
+nologies. Its degree centrality as a research topic rapidly soared from 0.056 in the late 2010s to
+1 in the 2020s, a growth of ∼1,692.42%. This surge in interest, possibly fueled by the socio-
+economic and political climate following the 2008 financial crisis (David Yaffe-Bellany, 2023;
+Gautam Mukunda, 2018; Schepisi et al., 2021; Zamani & Babatsikos, 2017; Zewde & Crystal,
+2022) and Bitcoin’s technological innovation, contrasted with digital money projects (D. Chaum,
+1996; W. Dai, 1998; Szabo, 2005) in the 1990s and early 2000s that did not become as popular
+as Bitcoin in the same amount of time.
+Parallel to Bitcoin’s rise, or inspired by it (Cornish, 2018), Ethereum emerged around 2014-
+2015, introducing two key technological innovations: the Solidity programming language and
+the Ethereum Virtual Machine (EVM) for smart contract development and execution, respec-
+tively (Buterin, 2014a). Ethereum’s significance in the field grew substantially, with its degree
+14
+
+centrality increasing from 0.088 in 2014 to 0.419 in 2020s (a ∼376.64% growth). While smart
+contracts were conceptualized in the mid-1990s (Szabo, 1997), their adoption remained limited
+until Ethereum’s implementation (Buterin, 2014a), which provided a comprehensive develop-
+ment and execution environment through Solidity and the EVM. This technological foundation
+catalyzed extraordinary growth in smart contract research interest, evidenced by a degree cen-
+trality increase from 0.011 in the mid-1990s to 0.472 in the 2020s (a ∼4,299.04% growth). This
+research interest in smart contracts is reflected in efforts to extend its applicability, including le-
+gal aspects through Smart Legal Contracts (Roche et al., 2021) and their generation using NLP
+(E. Chen et al., 2023).
+Amid these developments, Proof of Stake was introduced as an energy-efficient alternative
+to Proof of Work by King and Nadal (2012) in 2012, which grew from 0.017-degree centrality
+since its introduction to 0.152 in the 2020s, a ∼768.68% growth, reflecting the growing interest
+in more sustainable consensus mechanisms.
+Seed papers
+First layer
+Second layer
+             Bitcoin: A Peer-to-Peer Electr...        
+             An Overview of Blockchain Tech...        
+             Hashcash - A Denial of Service...        
+             The Quest for Scalable Blockch...        
+             PPCoin: Peer-to-Peer Crypto-Cu...        
+             Majority Is Not Enough: Bitcoi...        
+A NEXT GENERATION SMART CONTRA...
+             The Sybil Attack        
+             SoK: Research Perspectives and...        
+             Bitcoin: A Peer-to-Peer Electr...        
+             An Overview of Blockchain Tech...        
+             Hashcash - A Denial of Service...        
+             The Quest for Scalable Blockch...        
+             PPCoin: Peer-to-Peer Crypto-Cu...        
+             Majority Is Not Enough: Bitcoi...        
+A NEXT GENERATION SMART CONTRA...
+             The Sybil Attack        
+             SoK: Research Perspectives and...        
+(a) ESG/DLT network filtered by layers and authority
+scores.
+ESG Density
+  The Energy Consumption of Blockcha...        
+           Bitcoin’s Energy Consumption and S...        
+             Tackling climate change with block...        
+             Blockchain Technology: Energy Eﬃ...        
+             Blockchain in Energy Eﬃciency: P...        
+           Banking on Blockchain: Costs Savin...        
+             Energy Consumption Analysis of XRP...        
+             Designing microgrid energy markets        
+             Blockchain Enabled Distributed Dem...        
+             Boosting the Renewable Energy Econ...       
+  The Energy Consumption of Blockcha...        
+           Bitcoin’s Energy Consumption and S...        
+             Tackling climate change with block...        
+             Blockchain Technology: Energy Eﬃ...        
+             Blockchain in Energy Eﬃciency: P...        
+           Banking on Blockchain: Costs Savin...        
+             Energy Consumption Analysis of XRP...        
+             Designing microgrid energy markets        
+             Blockchain Enabled Distributed Dem...        
+             Boosting the Renewable Energy Econ...       
+(b) ESG/DLT network filtered by the density of ESG-
+named entities.
+Figure 5: ESG/DLT network derived from 505 papers filtered by their content density of the ESG/DLT thematic (§3.2.3).
+The network comprises 10,172 nodes (citations), 15,898 edges, and 20,111 temporal edges. Colors represent different
+layers (Fig. 5a) or content density for ESG entities (Fig. 5b), node sizes indicate authority scores and only top nodes are
+displayed.
+5.2.2. ESG/DLT network
+The ESG/DLT content density citation graph, derived from 505 papers, comprises 10,172
+nodes (each node representing a citation), 15,898 edges, and 20,111 temporal edges connecting
+the publications over time. This graph facilitates narrowing down the publications specific to the
+ESG/DLT intersection (see Fig. 2 and §3.2.3). The ESG/DLT network (Fig. 5a) reveals a distinc-
+tive pattern in research evolution, particularly evident in the second layer of references, where
+multidisciplinary research demonstrates increased prevalence (Fig. 5a and Fig. 5b). This layer
+exhibits a notable concentration of ESG-focused investigations, especially regarding energy con-
+sumption and efficiency optimization of blockchain systems (Fig. 5b). The peripheral references
+display an even broader interdisciplinary scope, which extends beyond traditional computer sci-
+ence boundaries into domains such as finance and environmental studies. This is likely because,
+as the DLT field develops, interdisciplinary research emerges.
+15
+
+1992
+1996
+2000
+2004
+2008
+2012
+2016
+Year
+10
+1
+10
+2
+10
+3
+Counts
+Publications
+Citations
+Average citations per publication
+(a) Evolution of ESG/DLT network
+Pre-2000
+2000-2005
+Post-2020
+2005-2010
+2010-2015
+2015-2020
+(b) ESG/DLT network filtered by time windows and
+authority score distribution.
+Figure 6: ESG/DLT network’s evolution in terms of publications (Fig. 6a) and time windows (Fig. 6b).
+1987
+1989
+1994
+1995
+1996
+1999
+2000
+2001
+2002
+2003
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+Year
+0%
+20%
+40%
+60%
+80%
+100%
+Normalized Density
+Blockchain Name
+Charging & Rewarding System
+Codebase
+Consensus
+ESG
+Extensibility
+Identifiers
+Identity Management
+Miscellaneous
+Native Currency Tokenization
+Security Privacy
+Transaction Capabilities
+(a) Publications showing the normalized ratio of
+labels for each part of a branch of the taxonomy.
+1990
+1995
+2000
+2005
+2010
+2015
+Year
+10
+0
+10
+1
+10
+2
+10
+3
+Occurrences
+Hashcash
+Bitcoin
+PPCoin
+Ethereum
+protocol
+distributed
+consensus
+pow
+decentralized
+p2p
+blockchain
+pos
+(b) Top Consensus’ named enti-
+ties evolution.
+1990
+1995
+2000
+2005
+2010
+2015
+Year
+10
+0
+10
+1
+10
+2
+Occurrences
+computational power
+cost
+efficiency
+bandwidth
+energy consumption
+sustainability
+(c) Top ESG’s named entities evo-
+lution.
+Figure 7: Named entities evolution in the citation network.
+The network (Fig. 6a and Fig. 6b) shows a publication surge between 2008 and 2011 of
+∼191.03%, aligning with Bitcoin’s release and its subsequent influence on diverse DLT research
+areas, particularly in consensus mechanisms (Fig. 7a11). Notably, Bitcoin’s persistent and in-
+creasing significance in research attention (see also §5.2.1), despite the emergence of alternative
+solutions, demonstrates a “Lindy effect” (Goldman, 1964; Mandelbrot, 1983), where the proto-
+col’s longevity correlates with its continued academic interest. As Bitcoin gained more public
+attention after its appearance in 2008, often driven by price action, the research community eval-
+uated this new technology, particularly Bitcoin’s PoW (Biryukov & Pustogarov, 2015; Vukoli´c,
+2016), for potential unaccounted environmental costs (de Vries, 2018; Mora et al., 2018) or
+negative externalities (Jones et al., 2022; Papp et al., 2023).
+Despite Bitcoin’s prominent media coverage regarding energy consumption, our analysis of
+the ESG/DLT citation network (Fig. 5 and Fig. 7a) reveals two significant patterns in research
+11The Blockchain Name entities identified before 2007, such as HashCash (Back, 2002), reflect the standard industry
+practice of using “Blockchain” as a generic term for any consensus-based DLT system, a convention we maintain in our
+taxonomic classification.
+16
+
+focus. First, ESG-related research has maintained a consistent proportional representation within
+the broader DLT literature rather than showing increased relative dominance (Fig. 7a), with its
+primary focus remaining on energy consumption and efficiency optimization of blockchain sys-
+tems (Fig. 5b). Second, the research emphasis has evolved from an early focus on fundamental
+security and privacy considerations (§5.2.1) toward a growing focus on efficient (King & Nadal,
+2012) and secure consensus algorithms (Douceur, 2002), and blockchain architectures (Bonneau
+et al., 2015; Vukoli´c, 2016). Curiously, we observe an increase in these studies investigating
+energy-efficient consensus mechanisms and scaling solutions during periods of rapid price ap-
+preciation, such as Bitcoin’s bull runs (Canellis, 2023; Kucoin, 2024; Lang, 2024).
+Post-2012, the network saw a marked increase in publications, especially after 2014, re-
+flecting the impact of seminal works like PPCoin and Ethereum’s whitepapers (Buterin, 2014a;
+King & Nadal, 2012). The growth in citations and publications from 2012 until the 2020s was
+∼901.75%. The increased interest in PoS as an energy-efficient alternative to PoW (Perez et al.,
+2020) is exemplified by Vitalik Buterin’s early exploration of PoS before Ethereum’s launch us-
+ing PoW in 2015, which is evident in his 2014 Slasher algorithm post (Buterin, 2014d) and later
+posts that discuss PoS benefits (Buterin, 2014b), and the “nothing at stake” challenge (Buterin,
+2014c).
+Vitalik’s early public discussions of PoS may have been one of the catalysts that encouraged
+further research into PoS (Fig. 4 and Fig. 7b) before Ethereum’s transition from PoW to PoS
+in 2022 (Ethereum Foundation, 2022). This is consistent with how Ethereum popularized smart
+contracts despite the research around smart contracts existing since the mid-1990s (Szabo, 1997),
+but remaining seemingly static as a topic of interest for the research community (Fig. 4) until after
+Ethereum introduced the Solidity programming language and EVM (§5.2.1 and Fig. 4).
+DLT’s thematic shift, coupled with the increasing prominence of terms like “decentraliza-
+tion”, “blockchain”, and “sustainability”, underscores a multidisciplinary approach in the field
+(Fig. 7c). The sustained interest in PoW, along with explorations into PoS and other consen-
+sus mechanisms, highlights the field’s adaptability to environmental and scalability challenges
+(Fig. 7b).
+5.3. Limitations
+Our literature review faces limitations, including potential biases in seed paper selection
+and a time lag in capturing recent publications, which may affect the comprehensiveness of
+our analysis. For instance, the choice of XRP’s 2018 whitepaper (Chase & MacBrough, 2018)
+over the more cited 2014 edition (Schwartz et al., 2014) could underestimate its influence on
+the citation network. Similarly, recent works such as the 2018 Hedera whitepaper (Baird et al.,
+2018) are omitted due to unavailable citation data.
+Building the citation network predominantly from pre-2020 seed papers introduces a bias
+toward older publications, potentially overlooking newer research yet to achieve recognition
+(Fig. 6a). While our methodology could theoretically filter citations to seed papers based on
+content density, our review focused solely on references within the seed papers, possibly limit-
+ing the thematic breadth.
+Regarding our NER dataset performance, there is an expected noise level (Alfina et al., 2017;
+Fetahu et al., 2023; Rucker & Akbik, 2023) that we tried to reduce by enforcing interlabeler
+consistency (see §3.2.2). Our dataset, with 80 full-text manually labeled papers, is smaller than
+many general-purpose NER datasets (Loukas et al., 2022; Tedeschi et al., 2021; Tjong et al.,
+2003; Weischedel et al., 2017) but is comparable to those in specialized domains like materials
+science (Cheung et al., 2024; Dagdelen et al., 2024).
+17
+
+Our analysis contains 24,539 openly accessible publications from an initial corpus of 63,083
+references (Fig. 2). While this reliance on publicly available research introduces potential sam-
+pling limitations, several factors mitigate concerns about representativeness and comprehensive-
+ness. First, empirical evidence demonstrates that open-access publications achieve broader aca-
+demic engagement (Archambault et al., 2014; McCabe & Snyder, 2014; Piwowar et al., 2018)
+and higher media attention (Schultz, 2021), suggesting they effectively capture significant re-
+search developments and may influence more research trends. Second, although only approxi-
+mately 18% of journal articles are currently openly available (Piwowar et al., 2018), high-quality
+research authors increasingly seem to favor hybrid open-access journals (Gaulé & Maystre,
+2011). Third, the DLT field’s rapid evolution has elevated non-traditional literature, particularly
+whitepapers and industry publications, as crucial sources of technological developments. Sem-
+inal works such as the whitepapers for Bitcoin (Nakamoto, 2008), Ethereum (Buterin, 2014a),
+and PPCoin (King & Nadal, 2012) exemplify this trend. Our methodology addresses these con-
+siderations through two complementary approaches: (1) incorporating non-traditional academic
+literature to capture contemporary technological developments, and (2) leveraging metadata from
+paywalled publications in our broader analysis of the DLT field evolution (§5.2.1). This two-tier
+analytical approach (§3) ensures comprehensive coverage of DLT research developments while
+maintaining methodological rigor.
+5.4. Future work
+Future work, as outlined in §5.3, should focus on integrating metadata from different whitepa-
+per versions, like XRP’s 2014 and 2018 editions (Chase & MacBrough, 2018; Schwartz et al.,
+2014), and sourcing metadata from alternative databases for publications with missing informa-
+tion, such as Hedera’s whitepaper (Baird et al., 2018). Additional research should also include
+regular updates to the taxonomy (refer to Table 1), expanding training data by annotating more
+seed papers and exploring various language model architectures.
+Additionally, beyond the systematic literature review presented in this paper, our NER dataset
+could also support other cross-domain literature review research, such as DLT applications across
+software development, cybersecurity, and governance frameworks. Also, it could enable relation-
+ship mapping between DLT concepts, supporting the construction of knowledge graphs. Finally,
+the dataset could contribute to developing automated systematic literature review systems, partic-
+ularly valuable given the rapid evolution of the DLT field. These potential applications emphasize
+our NER dataset’s versatility and value beyond this paper.
+6. Conclusion
+This paper addresses the scarcity of high-quality labeled NLP data for blockchain research
+by developing an NER dataset for the ESG/DLT domains intersection from public sources. We
+conducted a systematic literature review analysis to demonstrate its utility and provide future
+research possibilities. Our analysis reveals the critical intersections of topics like Cryptography,
+Peer-to-Peer, Proof of Work, Proof of Stake, and smart contracts in the evolution of DLT. We
+observed Bitcoin’s persistent dominance in research (a “Lindy effect”). Ethereum’s significant
+impact on the adoption of smart contracts and PoS as an energy-efficient alternative to PoW.
+These insights, and the growing focus on energy-efficient consensus mechanisms, highlight the
+field’s rapid adaptation to technological and environmental challenges.
+18
+
+We believe our work represents a step towards leveraging and facilitating the use of NLP
+to research rapidly evolving fields like DLT, enabling researchers, policymakers, and industry
+stakeholders to stay informed and make data-driven decisions.
+Acknowledgment
+We thank Ali Irzam Kathia for labeling a subset of the NER dataset. We also thank Editha
+Nemsic for her contribution to the early stage of the study.
+Author contributions
+Walter Hernandez Cruz: Conceptualization, Data curation, Formal analysis, Investigation,
+Methodology, Project administration, Software, Validation, Visualization, Writing—original draft,
+Writing—review & editing. Kamil Tylinski: Conceptualization, Data curation, Methodology,
+Visualization, Writing—original draft, Writing—review & editing. Alastair Moore: Conceptu-
+alization, Data curation, Methodology, Visualization, Writing—original draft, Writing—review
+& editing. Niall Roche: Data curation, Methodology, Software, Writing—review & editing.
+Nikhil Vadgama: Conceptualization, Data curation, Methodology, Resources, Writing—review
+& editing. Horst Treiblmaier: Conceptualization, Data curation, Methodology, Writing—review
+& editing. Jiangbo Shangguan: Data curation, Software. Paolo Tasca: Conceptualization, Val-
+idation, Supervision, Resources, Writing—review & editing. Jiahua Xu: Conceptualization,
+Validation, Supervision, Resources, Writing—review & editing.
+Competing interests
+The authors have no competing interests.
+Funding information
+This research received no external funding.
+Data availability
+The NER dataset generated during this study is available at https://huggingface.co/datasets/
+ExponentialScience/ESG-DLT-NER
+19
+
+20
+
+References
+Adams, H., Zinsmeister, N., Salem moody, M., River Keefer, u., & Robinson, D. (2021). Uniswap
+v3 Core. https://app.uniswap.org/whitepaper-v3.pdf
+Alfina, I., Savitri, S., & Fanany, M. I. (2017). Modified DBpedia entities expansion for tagging
+automatically NER dataset. International Conference on Advanced Computer Science
+and Information System, 2018-January, 216–221. https://doi.org/10.1109/ICACSIS.
+2017.8355036
+Alik Sokolov, Jonathan Mostovoy, Jack Ding, & Luis Seco. (2021). Building Machine Learning
+Systems for Automated ESG Scoring. The Journal of Impact and ESG Investing, 1(3),
+39–50.
+Alladi, T., Chamola, V., Parizi, R. M., & Choo, K. K. R. (2019). Blockchain Applications for
+Industry 4.0 and Industrial IoT: A Review. IEEE Access, 7, 176935–176951. https :
+//doi.org/10.1109/ACCESS.2019.2956748
+Alofi, A., Bokhari, M. A., Bahsoon, R., & Hendley, R. (2022). Optimizing the Energy Con-
+sumption of Blockchain-Based Systems Using Evolutionary Algorithms: A New Prob-
+lem Formulation. IEEE Transactions on Sustainable Computing, 7(4), 910–922. https:
+//doi.org/10.1109/TSUSC.2022.3160491
+Alsheikh, A. J., Wollenhaupt, S., King, E. A., Reeb, J., Ghosh, S., Stolzenburg, L. R., Tamim,
+S., Lazar, J., Davis, J. W., & Jacob, H. J. (2022). The landscape of GWAS validation;
+systematic review identifying 309 validated non-coding variants across 130 human dis-
+eases. BMC Medical Genomics 2022 15:1, 15(1), 1–21. https : / / doi . org / 10 . 1186 /
+S12920-022-01216-W
+Ante, L., & Fiedler, I. (2021). Bitcoin’s Energy Consumption and Social Costs in Relation to
+its Capacity as a Settlement Layer. SSRN Electronic Journal. https://doi.org/10.2139/
+SSRN.3910778
+Ante, L., Fiedler, I., Willruth, J. M., & Steinmetz, F. (2023). A Systematic Literature Review
+of Empirical Research on Stablecoins. FinTech, 2(1), 34–47. https://doi.org/10.3390/
+FINTECH2010003
+Archambault, E., Amyot, D., Deschamps, P., Nicol, A., Provencher, F., Rebout, L., & Roberge,
+G. (2014). Proportion of Open Access Papers Published in Peer-Reviewed Journals at
+the European and World Levels-1996-2013 RTD-B6-PP-2011-2: Study to develop a set
+of indicators to measure open access. https://www.science-metrix.com/sites/default/
+files / science - metrix / publications / d _ 1 . 8 _ sm _ ec _ dg - rtd _ proportion _ oa _ 1996 -
+2013_v11p.pdf
+Asmussen, C. B., & Møller, C. (2019). Smart literature review: a practical topic modelling ap-
+proach to exploratory literature review. Journal of Big Data, 6(1). https://doi.org/10.
+1186/S40537-019-0255-7
+Back, A. (2002). Hashcash - A Denial of Service Counter-Measure. Http://Www.Hashcash.Org/Papers/Hashcash.Pdf,
+(August), 1–10.
+Bada, A. O., Damianou, A., Angelopoulos, C. M., & Katos, V. (2021). Towards a Green Blockchain:
+A Review of Consensus Mechanisms and their Energy Consumption. 2021 17th Inter-
+national Conference on Distributed Computing in Sensor Systems (DCOSS), 503–511.
+https://doi.org/10.1109/DCOSS52077.2021.00083
+Baird, L., Harmon, M., & Madsen, P. (2018). Hedera: A Public Hashgraph Network & Governing
+Council. https://hedera.com/hh_whitepaper_v2.1-20200815.pdf
+21
+
+Bayer, D., Haber, S., & Stornetta, W. S. (1993). Improving the Efficiency and Reliability of
+Digital Time-Stamping. Sequences II, 329–334.
+Beltagy, I., Lo, K., & Cohan, A. (2019). SciBERT: A Pretrained Language Model for Scien-
+tific Text. EMNLP-IJCNLP 2019 - 2019 Conference on Empirical Methods in Natural
+Language Processing and 9th International Joint Conference on Natural Language Pro-
+cessing, Proceedings of the Conference, 3615–3620. https://doi.org/10.18653/V1/D19-
+1371
+Bilal, K., Malik, S. U. R., Khalid, O., Hameed, A., Alvarez, E., Wijaysekara, V., Irfan, R.,
+Shrestha, S., Dwivedy, D., Ali, M., Shahid Khan, U., Abbas, A., Jalil, N., & Khan,
+S. U. (2014). A taxonomy and survey on Green Data Center Networks. Future Genera-
+tion Computer Systems, 36, 189–208. https://doi.org/10.1016/j.future.2013.07.006
+Biryukov, A., & Pustogarov, I. (2015). Proof-of-work as anonymous micropayment: Rewarding
+a Tor relay. Lecture Notes in Computer Science (including subseries Lecture Notes in
+Artificial Intelligence and Lecture Notes in Bioinformatics), 8975, 445–455.
+Bonneau, J., Miller, A., Clark, J., Narayanan, A., Kroll, J. A., & Felten, E. W. (2015). SoK:
+Research perspectives and challenges for bitcoin and cryptocurrencies. Proceedings -
+IEEE Symposium on Security and Privacy, 2015-July. https://doi.org/10.1109/SP.2015.
+14
+Buterin, V. (2014a). Ethereum: A Next-Generation Smart Contract and Decentralized Applica-
+tion Platform. https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_
+Whitepaper_-_Buterin_2014.pdf
+Buterin, V. (2014b, July). On Stake. https://blog.ethereum.org/2014/07/05/stake
+Buterin, V. (2014c, November). Proof of Stake: How I Learned to Love Weak Subjectivity. https:
+//blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity
+Buterin, V. (2014d, January). Slasher: A Punitive Proof-of-Stake Algorithm. https://blog.ethereum.
+org/2014/01/15/slasher-a-punitive-proof-of-stake-algorithm
+Canellis, D. (2023). Bitcoin Halvings Are Bull Market Things — Will This Time Be Different?
+- Blockworks. https://blockworks.co/news/bitcoin-halvings-bull-market
+Casella, G., Bigliardi, B., Filippelli, S., & Bottani, E. (2023). Cases of application of blockchain
+on the supply chain: a literature review. Procedia Computer Science, 217, 1416–1426.
+https://doi.org/10.1016/J.PROCS.2022.12.340
+Casino, F., Dasaklis, T. K., & Patsakis, C. (2019, October). A systematic literature review of
+blockchain-based applications: Current status, classification and open issues. https://
+doi.org/10.1016/j.tele.2018.11.006
+Chang, M., Chang, M., Reed, J. Z., Milward, D., Xu, J. J., & Cornell, W. D. (2016). Develop-
+ing timely insights into comparative effectiveness research with a text-mining pipeline.
+Drug Discovery Today, 21(3), 473–480. https://doi.org/10.1016/J.DRUDIS.2016.01.
+012
+Charton, F., & Kempe, J. (2024). Emergent properties with repeated examples. https://arxiv.org/
+abs/2410.07041v1
+Chase, B., & MacBrough, E. (2018). Analysis of the XRP Ledger Consensus Protocol. https:
+//arxiv.org/abs/1802.07242%20http://arxiv.org/abs/1802.07242
+Chaum, D. (1996). David Chaum: DigiCash CEO. Forbes.
+Chaum, D. L. (1981). Untraceable Electronic Mail, Return Addresses, and Digital Pseudonyms.
+Communications of the ACM, 24(2), 84–90. https://doi.org/10.1145/358549.358563/
+ASSET/E3D53C45-B419-4A00-A8A3-86644140C9A5/ASSETS/358549.358563.FP.
+PNG
+22
+
+Chen, E., Roche, N., Tseng, Y. H., Hernandez, W., Shangguan, J., & Moore, A. (2023). Conver-
+sion of Legal Agreements into Smart Legal Contracts using NLP. ACM Web Conference
+2023 - Companion of the World Wide Web Conference, WWW 2023, 1112–1118. https:
+//doi.org/10.1145/3543873.3587554
+Chen, Y., & Bellavitis, C. (2020). Blockchain disruption and decentralized finance: The rise
+of decentralized business models. Journal of Business Venturing Insights, 13, e00151.
+https://doi.org/10.1016/J.JBVI.2019.E00151
+Cheung, J. J., Zhuang, Y., Li, Y., Shetty, P., Zhao, W., Grampurohit, S., Ramprasad, R., & Zhang,
+C. (2024). POLYIE: A Dataset of Information Extraction from Polymer Material Scien-
+tific Literature. Proceedings of the 2024 Conference of the North American Chapter of
+the Association for Computational Linguistics: Human Language Technologies (Volume
+1: Long Papers), 1, 2370–2385. https://doi.org/10.18653/V1/2024.NAACL-LONG.131
+Cohen, B. (2003). Incentives Build Robustness in BitTorrent.
+Cole, R., & Cheng, L. (2018). Modeling the Energy Consumption of Blockchain Consensus
+Algorithms. 2018 IEEE International Conference on Internet of Things (iThings) and
+IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical
+and Social Computing (CPSCom) and IEEE Smart Data (SmartData), 1691–1696.
+Cornish, C. (2018, April). Ethereum’s Vitalik Buterin on the bitcoin bubble and running a $125bn
+blockchain. https://www.ft.com/content/b09d004e-4197-11e8-803a-295c97e6fd0b
+Cousaert, S., Xu, J., & Matsui, T. (2022). SoK: Yield Aggregators in DeFi. International Con-
+ference on Blockchain and Cryptocurrency (ICBC), 1–14. https://doi.org/10.1109/
+ICBC54727.2022.9805523
+Dagdelen, J., Dunn, A., Lee, S., Walker, N., Rosen, A. S., Ceder, G., Persson, K. A., & Jain,
+A. (2024). Structured information extraction from scientific text with large language
+models. Nature Communications 2024 15:1, 15(1), 1–14. https://doi.org/10.1038/
+s41467-024-45563-x
+Dai, H. N., Zheng, Z., & Zhang, Y. (2019). Blockchain for Internet of Things: A Survey. IEEE
+Internet of Things Journal, 6(5), 8076–8094. https://doi.org/10.1109/JIOT.2019.
+2920987
+Dai, W. (1998). B-money. Consulted.
+David Yaffe-Bellany. (2023, March). Has Bitcoin Benefited From the Banking Crisis? Not in the
+Way Its Fans Hoped. - The New York Times. https://www.nytimes.com/2023/03/31/
+technology/bitcoin-banks-crisis.html
+Denisova, V., Mikhaylov, A., & Lopatin, E. (2019). BLOCKCHAIN INFRASTRUCTURE AND
+GROWTH OF GLOBAL POWER CONSUMPTION. International Journal of Energy
+Economics and Policy, 9(4), 22–29. https://doi.org/10.32479/IJEEP.7685
+Devlin, J., Chang, M.-W., Lee, K., Google, K. T., & Language, A. I. (2019). BERT: Pre-training
+of Deep Bidirectional Transformers for Language Understanding. Proceedings of the
+2019 Conference of the North, 4171–4186. https://doi.org/10.18653/V1/N19-1423
+de Vries, A. (2018). Bitcoin’s Growing Energy Problem. Joule, 2(5), 801–805. https://doi.org/
+10.1016/J.JOULE.2018.04.016
+Dingledine, R., Mathewson, N., & Syverson, P. (2004). Tor: The {Second-Generation} Onion
+Router.
+Douceur, J. R. (2002). The sybil attack. Lecture Notes in Computer Science (including subseries
+Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), 2429.
+23
+
+Dubey, A., Jain, K., & Kalaiselvi, K. (2023). Smart Patient Records using NLP and Blockchain.
+Proceedings - 5th International Conference on Smart Systems and Inventive Technology,
+ICSSIT 2023, 663–667. https://doi.org/10.1109/ICSSIT55814.2023.10061111
+Dwork, C., & Naor, M. (1993). Pricing via processing or combatting junk mail. Lecture Notes
+in Computer Science (including subseries Lecture Notes in Artificial Intelligence and
+Lecture Notes in Bioinformatics), 740 LNCS, 139–147. https : / / link . springer. com /
+chapter/10.1007/3-540-48071-4_10
+Eigelshoven, F., Ullrich, A., & Bender, B. (2020). Public Blockchain – a Systematic Literature
+Review on the Sustainability of Consensus Algorithms. Twenty-Eigth European Con-
+ference on Information Systems (ECIS2020), Marrakesh, Morocco., (June), 1–17. https:
+//aisel.aisnet.org/ecis2020_rp/202
+Eshani, G., Rajdeep, D., Shubhankar, R., & Baisakhi, D. (2021). An Analysis of Energy Con-
+sumption of Blockchain Mining and Techniques to Overcome It. Lecture Notes on Data
+Engineering and Communications Technologies, 62, 783–792. https://link.springer.
+com/chapter/10.1007/978-981-33-4968-1_60
+Ethereum Foundation. (2022, September). The Merge. https://ethereum.org/roadmap/merge
+Fernando, Y., & Saravannan, R. (2021). Blockchain Technology: Energy Efficiency and Ethical
+Compliance. Journal of Governance and Integrity, 4(2), 88–95. https://doi.org/10.
+15282/JGI.4.2.2021.5872
+Fetahu, B., Chen, Z., Kar, S., Rokhlenko, O., & Malmasi, S. (2023). MultiCoNER v2: a Large
+Multilingual dataset for Fine-grained and Noisy Named Entity Recognition. Findings
+of the Association for Computational Linguistics: EMNLP 2023, 2027–2051. https :
+//doi.org/10.18653/V1/2023.FINDINGS-EMNLP.134
+Finney, H. (2004). Reusable Proofs of Work (RPOW).
+Gaulé, P., & Maystre, N. (2011). Getting cited: Does open access help? Research Policy, 40(10),
+1332–1338. https://doi.org/10.1016/J.RESPOL.2011.05.025
+Gautam Mukunda. (2018, September). The Social and Political Costs of the Financial Crisis, 10
+Years Later. https://hbr.org/2018/09/the-social-and-political-costs-of-the-financial-
+crisis-10-years-later
+Ghosh, E., & Das, B. (2020). A Study on the Issue of Blockchain’s Energy Consumption. Ad-
+vances in Intelligent Systems and Computing, 1065, 63–75. https://link.springer.com/
+chapter/10.1007/978-981-15-0361-0_5
+Goldman, A. (1964). Lindy’s Law. The New Republic, 34–35.
+Gramlich, V., Guggenberger, T., Principato, M., Schellinger, B., & Urbach, N. (2023). A multi-
+vocal literature review of decentralized finance: Current knowledge and future research
+avenues. Electronic Markets, 33(1), 1–37. https://doi.org/10.1007/S12525-023-00637-
+4
+Haber, S., & Stornetta, W. S. (1991). How to time-stamp a digital document. Journal of Cryptol-
+ogy, 3(2), 99–111. https://doi.org/10.1007/BF00196791
+Hernandez Cruz, W., Dahi, F., Feng, Y., Xu, J., Malhotra, A., & Tasca, P. (2025). AMM-based
+DEX on the XRP Ledger. 2025 IEEE International Conference on Blockchain and
+Cryptocurrency, ICBC 2025. https://arxiv.org/abs/2312.13749
+Hernandez Cruz, W., Xu, J., Tasca, P., & Campajola, C. (2024). No Questions Asked: Effects
+of Transparency on Stablecoin Liquidity During the Collapse of Silicon Valley Bank.
+https://arxiv.org/abs/2407.11716
+Hoadley, D., Bartolo, M., Chesterman, R., Faus, A., Hernandez, W., Kultys, B., Moore, A. P.,
+Nemsic, E., Roche, N., Shangguan, J., Steer, B., Tylinski, K., & West, N. (2021). A
+24
+
+Global Community of Courts? Modelling the Use of Persuasive Authority as a Complex
+Network. Frontiers in Physics, 9, 665719. https://doi.org/10.3389/FPHY.2021.665719
+Hu, Y., Chen, Q., Du, J., Peng, X., Keloth, V. K., Zuo, X., Zhou, Y., Li, Z., Jiang, X., Lu, Z.,
+Roberts, K., & Xu, H. (2024). Improving large language models for clinical named
+entity recognition via prompt engineering. Journal of the American Medical Informatics
+Association, 31(9), 1812–1820. https://doi.org/10.1093/JAMIA/OCAD259
+Huang, M. S., Lai, P. T., Lin, P. Y., You, Y. T., Tsai, R. T. H., & Hsu, W. L. (2020). Biomedi-
+cal named entity recognition and linking datasets: Survey and our recent development.
+Briefings in Bioinformatics, 21(6), 2219–2238. https://doi.org/10.1093/BIB/BBAA054
+Hussien, H. M., Yasin, S. M., Udzir, S. N., Zaidan, A. A., & Zaidan, B. B. (2019). A Systematic
+Review for Enabling of Develop a Blockchain Technology in Healthcare Application:
+Taxonomy, Substantially Analysis, Motivations, Challenges, Recommendations and Fu-
+ture Direction. Journal of medical systems, 43(10). https://doi.org/10.1007/S10916-
+019-1445-8
+Ibañez, J. I., Bayer, C. N., Tasca, P., & Xu, J. (2025, February). Triple-Entry Accounting, Blockchain,
+and Next of Kin. In Digital assets: Pricing, allocation and regulation (pp. 198–226).
+Cambridge University Press. https://doi.org/10.1017/9781009362290.012
+Ibañez, J. I., & Freier, A. (2023). Bitcoin’s Carbon Footprint Revisited: Proof of Work Mining
+for Renewable Energy Expansion. Challenges 2023, Vol. 14, Page 35, 14(3), 35. https:
+//doi.org/10.3390/CHALLE14030035
+Jeong, M., & Kang, J. (2023). Consistency enhancement of model prediction on document-level
+named entity recognition. Bioinformatics, 39(6). https://doi.org/10.1093/BIOINFORMATICS/
+BTAD361
+Jiang, L., Gu, Y., Yu, W., & Dai, J. (2022). Blockchain-based Life Cycle Assessment System for
+ESG Reporting. SSRN Electronic Journal. https://doi.org/10.2139/ssrn.4121907
+Jones, B. A., Goodkind, A. L., & Berrens, R. P. (2022). Economic estimation of Bitcoin mining’s
+climate damages demonstrates closer resemblance to digital crude than digital gold.
+Scientific Reports 2022 12:1, 12(1), 1–10. https://doi.org/10.1038/s41598-022-18686-
+8
+Khatoon, A. (2020). A Blockchain-Based Smart Contract System for Healthcare Management.
+Electronics, 9(1). https://doi.org/10.3390/ELECTRONICS9010094
+Kim, J. D., Ohta, T., Tateisi, Y., & Tsujii, J. (2003). GENIA corpus - A semantically annotated
+corpus for bio-textmining. Bioinformatics, 19(SUPPL. 1). https://doi.org/10.1093/
+BIOINFORMATICS/BTG1023
+King, S., & Nadal, S. (2012). PPCoin: Peer-to-Peer Crypto-Currency with Proof-of-Stake. https:
+//www.semanticscholar.org/paper/PPCoin%3A-Peer-to-Peer-Crypto-Currency-with-
+King-Nadal/0db38d32069f3341d34c35085dc009a85ba13c13
+Kleinberg, J. M. (2011). Authoritative sources in a hyperlinked environment. In The structure
+and dynamics of networks (pp. 514–542, Vol. 9781400841). https://doi.org/10.1515/
+9781400841356.514
+Kohli, V., Chakravarty, S., Chamola, V., Sangwan, K. S., & Zeadally, S. (2022). An Analysis
+of Energy Consumption and Carbon Footprints of Cryptocurrencies and Possible Solu-
+tions. Digital Communications and Networks, 9(1), 79–89. https://doi.org/10.1016/j.
+dcan.2022.06.017
+Kucoin. (2024). Top Trading Strategies in a Crypto Bull Market | KuCoin Learn. https://www.
+kucoin.com/learn/trading/top-trading-strategies-in-crypto-bull-market
+25
+
+Lamport, L., Shostak, R., & Pease, M. (1982). The Byzantine Generals Problem. ACM Trans.
+Program. Lang. Syst., 4(3), 382–401. https://doi.org/10.1145/357172.357176
+Lan, Z., Chen, M., Goodman, S., Gimpel, K., Sharma, P., & Soricut, R. (2019). ALBERT: A
+Lite BERT for Self-supervised Learning of Language Representations. International
+Conference on Learning Representations.
+Lang, H. (2024). Cryptoverse: Hold for the halving | Reuters. https://www.reuters.com/markets/
+currencies/cryptoverse-hold-halving-2024-04-16/
+Li, X., Chan, S., Zhu, X., Pei, Y., Ma, Z., Liu, X., & Shah, S. (2023). Are ChatGPT and GPT-
+4 General-Purpose Solvers for Financial Text Analytics? A Study on Several Typical
+Tasks. EMNLP 2023 - 2023 Conference on Empirical Methods in Natural Language
+Processing, Proceedings of the Industry Track, 408–422. https://doi.org/10.18653/V1/
+2023.EMNLP-INDUSTRY.39
+Liu, A., Chen, J., He, K., Du, R., Xu, J., Wu, C., Feng, Y., Li, T., & Ma, J. (2025). DynaShard:
+Secure and Adaptive Blockchain Sharding Protocol With Hybrid Consensus and Dy-
+namic Shard Management. IEEE Internet of Things Journal, 12(5), 5462–5475. https:
+//doi.org/10.1109/JIOT.2024.3490036
+Lo, S. K., Liu, Y., Chia, S. Y., Xu, X., Lu, Q., Zhu, L., & Ning, H. (2019). Analysis of Blockchain
+Solutions for IoT: A Systematic Literature Review. IEEE Access, 7, 58822–58835.
+https://doi.org/10.1109/ACCESS.2019.2914675
+Lobo, M., Lamurias, A., & Couto, F. M. (2017). Identifying Human Phenotype Terms by Com-
+bining Machine Learning and Validation Rules. BioMed Research International, 2017.
+https://doi.org/10.1155/2017/8565739
+Loukas, L., Fergadiotis, M., Chalkidis, I., Spyropoulou, E., Malakasiotis, P., Androutsopoulos,
+I., & Paliouras, G. (2022). FiNER: Financial Numeric Entity Recognition for XBRL
+Tagging. Proceedings of the Annual Meeting of the Association for Computational Lin-
+guistics, 1, 4419–4431. https://doi.org/10.18653/V1/2022.ACL-LONG.303
+Lucey, B. M., Vigne, S., Wang, Y., & Yarovaya, L. (2021). An Index of Cryptocurrency En-
+vironmental Attention (ICEA). Monetary Economics: International Financial Flows.
+https://doi.org/10.2139/SSRN.3866535
+Mandelbrot, B. B. (1983). The Fractal Geometry of Nature. Henry Holt; Company. https://books.
+google.co.uk/books?id=0R2LkE3N7-oC
+Masood, F., & Faridi, A. R. (2018). Consensus Algorithms in distributed ledger technology for
+open environment. https://doi.org/10.1109/CCAA.2018.8777695
+Massias, H., Serret, A. X., & Quisquater, J. J. (1999). Design of a secure timestamping service
+with minimal trust requirement. 20th Symposium on Information Theory in the Benelux,
+(July 2002).
+McCabe, M. J., & Snyder, C. M. (2014). IDENTIFYING THE EFFECT OF OPEN ACCESS ON
+CITATIONS USING A PANEL OF SCIENCE JOURNALS. Economic Inquiry, 52(4),
+1284–1300. https://doi.org/10.1111/ECIN.12064
+Mcentire, R., Szalkowski, D., Butler, J., Kuo, M. S., Chang, M., Chang, M., Freeman, D., Mc-
+Quay, S., Patel, J., McGlashen, M., Cornell, W. D., & Xu, J. J. (2016). Application of an
+automated natural language processing (NLP) workflow to enable federated search of
+external biomedical content in drug discovery and development. Drug Discovery Today,
+21(5), 826–835. https://doi.org/10.1016/J.DRUDIS.2016.03.006
+Mengelkamp, E., Notheisen, B., Beer, C., Dauer, D., & Weinhardt, C. (2018). A blockchain-
+based smart grid: towards sustainable local energy markets. Computer Science - Re-
+26
+
+search and Development, 33(1-2), 207–214. https://doi.org/10.1007/s00450-017-0360-
+9
+Merkle, R. C. (1980). Protocols for Public Key Cryptosystems. IEEE Symposium on Security
+and Privacy, (1980), 122–134. https://doi.org/10.1109/SP.1980.10006
+Miller, V. S. (1986). Use of Elliptic Curves in Cryptography. Lecture Notes in Computer Sci-
+ence (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in
+Bioinformatics), 218 LNCS, 417–426. https://doi.org/10.1007/3-540-39799-X{\_}31
+Mora, C., Rollins, R. L., Taladay, K., Kantar, M. B., Chock, M. K., Shimada, M., & Franklin,
+E. C. (2018). Bitcoin emissions alone could push global warming above 2◦C. Nature
+Climate Change 2018 8:11, 8(11), 931–933. https://doi.org/10.1038/s41558- 018-
+0321-8
+Muennighoff, N., Rush, A. M., Barak, B., Scao, T. L., Piktus, A., Tazi, N., Pyysalo, S., Wolf, T.,
+& Raffel, C. (2023). Scaling Data-Constrained Language Models. Neural Information
+Processing Systems. https://doi.org/10.48550/ARXIV.2305.16264
+Nabi, Z., Talib, R., Hanif, M. K., & Awais, M. (2022). Contextual Text Mining Framework for
+Unstructured Textual Judicial Corpora through Ontologies. Computer systems science
+and engineering, 43(3), 1357–1374. https://doi.org/10.32604/CSSE.2022.025712
+Nakamoto, S. (2008). Bitcoin: A peer-to-Peer Electronic Cash System. https : / / bitcoin . org /
+bitcoin.pdf
+Nakayama, H. (2018). seqeval: A Python framework for sequence labeling evaluation. https:
+//github.com/chakki-works/seqeval
+Papp, A., Almond, D., & Zhang, S. (2023). Bitcoin and carbon dioxide emissions: Evidence from
+daily production decisions. Journal of Public Economics, 227, 105003. https://doi.org/
+10.1016/J.JPUBECO.2023.105003
+Peduzzi, G., James, J., & Xu, J. (2021). Jack the Rippler: Arbitrage on the Decentralized Ex-
+change of the XRP Ledger. 3rd IEEE Conference on Blockchain Research & Applica-
+tions for Innovative Networks and Services (BRAINS), 1–2. https://doi.org/10.1109/
+BRAINS52497.2021.9569833
+Perez, D., Xu, J., & Livshits, B. (2020). Revisiting Transactional Statistics of High-scalability
+Blockchains. Internet Measurement Conference (IMC), 16(20), 535–550. https://doi.
+org/10.1145/3419394.3423628
+Piwowar, H., Priem, J., Larivière, V., Alperin, J. P., Matthias, L., Norlander, B., Farley, A., West,
+J., & Haustein, S. (2018). The state of OA: A large-scale analysis of the prevalence and
+impact of Open Access articles. PeerJ, 2018(2), e4375. https://doi.org/10.7717/PEERJ.
+4375/SUPP-1
+Platt, M., Sedlmeir, J., Platt, D., Xu, J., Tasca, P., Vadgama, N., & Ibanez, J. I. (2021). The Energy
+Footprint of Blockchain Consensus Mechanisms Beyond Proof-of-Work. 21st Interna-
+tional Conference on Software Quality, Reliability and Security Companion, QRS-C
+2021, 1135–1144. https://doi.org/10.1109/QRS-C55045.2021.00168
+Poberezhna, A. (2018, October). Addressing Water Sustainability With Blockchain Technol-
+ogy and Green Finance. In Transforming climate finance and green investment with
+blockchains (pp. 189–196). Elsevier. https://doi.org/10.1016/B978- 0- 12- 814447-
+3.00014-8
+Powell, L. M., Hendon, M., Mangle, A., & Wimmer, H. (2021). Awareness of Blockchain Us-
+age, Structure, & Generation of Platform’s Energy Consumption: Working Towards a
+Greener Blockchain. Issues in Information Systems, 22(1), 114–123.
+27
+
+Radford, A., & Narasimhan, K. (2018). Improving Language Understanding by Generative Pre-
+Training.
+Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language Models
+are Unsupervised Multitask Learners.
+Richardson, A., & Xu, J. (2020, May). Carbon Trading with Blockchain. In P. Pardalos, I. Kot-
+sireas, Y. Guo, & W. Knottenbelt (Eds.), 2nd international conference of mathematical
+research for blockchain economy (marble) (pp. 105–124). Springer Science; Business
+Media B.V. http://link.springer.com/10.1007/978-3-030-53356-4_7
+Roche, N., Hernandez, W., Chen, E., Siméon, J., Selman, D., & Project, A. (2021). Ergo - a
+programming language for Smart Legal Contracts. http://arxiv.org/abs/2112.07064
+Rose, S., Engel, D., Cramer, N., & Cowley, W. (2021). A SYSTEMATIC LITERATURE RE-
+VIEW OF AUTOMATIC KEYWORD EXTRACTION ALGORITHMS: TEXTRANK
+AND RAKE. Text Mining: Applications and Theory, 1–20. https://doi.org/10.1002/
+9780470689646.CH1
+Rucker, S., & Akbik, A. (2023). CleanCoNLL: A Nearly Noise-Free Named Entity Recognition
+Dataset. Conference on Empirical Methods in Natural Language Processing. https://
+doi.org/10.48550/ARXIV.2310.16225
+Sai, A. R., Buckley, J., Fitzgerald, B., & Gear, A. L. (2021). Taxonomy of centralization in
+public blockchain systems: A systematic literature review. Information Processing and
+Management, 58(4). https://doi.org/10.1016/j.ipm.2021.102584
+Sallam, A., Qahtani, F. A., & Gaid, A. S. (2021). Blockchain in Internet of Things: a Systematic
+Literature Review. 2021 International Conference of Technology, Science and Adminis-
+tration (ICTSA). https://doi.org/10.1109/ICTSA52017.2021.9406545
+Sanh, V., Debut, L., Chaumond, J., & Wolf, T. (2019). DistilBERT, a distilled version of BERT:
+smaller, faster, cheaper and lighter. ArXiv. http://arxiv.org/abs/1910.01108
+Sapkota, N., & Grobys, K. (2020). Blockchain consensus protocols, energy consumption and
+cryptocurrency prices. Journal of Energy Markets, 13(4), 117–139. https://doi.org/10.
+21314/JEM.2020.221
+Schepisi, M. S., Di Napoli, A., Asciutto, R., Vecchi, S., Mirisola, C., & Petrelli, A. (2021). The
+2008 financial crisis and changes in lifestyle-related behaviors in Italy, Greece, Spain,
+and Portugal: A systematic review. International Journal of Environmental Research
+and Public Health, 18(16), 8734. https://doi.org/10.3390/IJERPH18168734
+Schinckus, C., Nguyen, C. P., & Ling, F. C. H. (2020). CRYPTO-CURRENCIES TRADING
+AND ENERGY CONSUMPTION. International Journal of Energy Economics and
+Policy, 10(3), 355–364. https://doi.org/10.32479/IJEEP.9258
+Schultz, T. (2021). All the research that’s fit to print: Open access and the news media. Quanti-
+tative Science Studies, 2(3), 828–844. https://dx.doi.org/10.1162/qss_a_00139
+Schulz, K., & Feist, M. (2021). Leveraging blockchain technology for innovative climate finance
+under the Green Climate Fund. Earth System Governance, 7. https://doi.org/10.1016/j.
+esg.2020.100084
+Schwartz, D., Youngs, N., & Britto, A. (2014). The Ripple Protocol Consensus Algorithm.
+Sedlmeir, J., Buhl, H. U., Fridgen, G., & Keller, R. (2020). The Energy Consumption of Blockchain
+Technology: Beyond Myth. Business and Information Systems Engineering, 62(6), 599–
+608. https://doi.org/10.1007/S12599-020-00656-X
+Sedlmeir, J., Buhl, H. U., Fridgen, G., & Keller, R. (2021). Recent Developments in Blockchain
+Technology and their Impact on Energy Consumption. Informatik-Spektrum, 43(6), 391–
+404. https://doi.org/10.1007/s00287-020-01321-z
+28
+
+Shah, K., Lathiya, D., Lukhi, N., Parmar, K., & Sanghvi, H. (2023). A systematic review of
+decentralized finance protocols. International Journal of Intelligent Networks, 4, 171–
+181. https://doi.org/10.1016/J.IJIN.2023.07.002
+Simone, L. D., Petracci, B., & Piva, M. (2022). Economic Sustainability, Innovation, and the
+ESG Factors: An Empirical Investigation. Sustainability, 14(4). https://doi.org/10.
+3390/su14042270
+Spasic, I., Ananiadou, S., McNaught, J., & Kumar, A. (2005). Text mining and ontologies in
+biomedicine: Making sense of raw text. Briefings in Bioinformatics, 6(3), 239–251.
+https://doi.org/10.1093/BIB/6.3.239
+Spychiger, F., Tasca, P., & Tessone, C. J. (2021). Unveiling the Importance and Evolution of
+Design Components Through the “Tree of Blockchain”. Frontiers in Blockchain, 3,
+613476. https://doi.org/10.3389/FBLOC.2020.613476
+Steer, B., Arnold, N. A., Ba, C. T., Lambiotte, R., Yousaf, H., Jeub, L., Murariu, F., Kapoor,
+S., Rico, P., Chan, R., Chan, L., Alford, J., Clegg, R. G., Cuadrado, F., Barnes, M. R.,
+Zhong, P., Pougué-Biyong, J., & Alnaimi, A. (2024). Raphtory: The temporal graph
+engine for Rust and Python. Journal of Open Source Software, 9(95), 5940. https://doi.
+org/10.21105/JOSS.05940
+Steer, B., Cuadrado, F., & Clegg, R. (2020). Raphtory: Streaming analysis of distributed temporal
+graphs. Future Generation Computer Systems, 102, 453–464. https://doi.org/10.1016/J.
+FUTURE.2019.08.022
+Stenetorp, P., Pyysalo, S., Topíc, G., Ohta, T., Ananiadou, S., & Tsujii, J. (2012). BRAT: AWeb-
+based tool for NLP-Assisted text annotation. EACL 2012 - Proceedings of the Demon-
+strations at the 13th Conference of the European Chapter of the Association for Com-
+putational Linguistics, 102–107. https://aclanthology.org/E12-2021
+Sun, W., Luo, Y., Yiu, S. M., Yu, L., & Ding, W. (2024). ESG scores, scandal probability, and
+event returns. Financial Innovation, 10(1), 1–21. https://doi.org/10.1186/S40854-024-
+00635-1
+Szabo, N. (1997). Formalizing and Securing Relationships on Public Networks. First Monday,
+2(9). https://doi.org/10.5210/FM.V2I9.548
+Szabo, N. (2005). Bit gold.
+Tasca, P., & Tessone, C. J. (2017). Taxonomy of Blockchain Technologies. Principles of Identifi-
+cation and Classification. Ledger, 4, 1–39. https://doi.org/10.5195/LEDGER.2019.140
+Tedeschi, S., Maiorca, V., Campolungo, N., Cecconi, F., & Navigli, R. (2021). WikiNEuRal:
+Combined Neural and Knowledge-based Silver Data Creation for Multilingual NER.
+Findings of the Association for Computational Linguistics, Findings of ACL: EMNLP
+2021, 2521–2533. https://doi.org/10.18653/V1/2021.FINDINGS-EMNLP.215
+Tjong, E. F., Sang, K., & De Meulder, F. (2003). Introduction to the CoNLL-2003 Shared Task:
+Language-Independent Named Entity Recognition. https://aclanthology.org/W03-0419
+Tjong, E. F., Sang, K., & Veenstra, J. (1999). Representing text chunks. 9th Conference of the
+European Chapter of the Association for Computational Linguistics, EACL 1999, 173–
+179. https://doi.org/10.3115/977035.977059
+Vukoli´c, M. (2016). The quest for scalable blockchain fabric: Proof-of-work vs. BFT replication.
+Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial In-
+telligence and Lecture Notes in Bioinformatics), 9591.
+Wang, X., & Wang, Y. (2022). Sentence-Level Resampling for Named Entity Recognition. NAACL
+2022 - 2022 Conference of the North American Chapter of the Association for Compu-
+29
+
+tational Linguistics: Human Language Technologies, Proceedings of the Conference,
+2151–2165. https://doi.org/10.18653/V1/2022.NAACL-MAIN.156
+Wannenwetsch, K., Ostermann, I., Priel, R., Gerschner, F., & Theissler, A. (2023). Blockchain
+for Supply Chain Management: A Literature Review and Open Challenges. Procedia
+Computer Science, 225, 1312–1321. https://doi.org/10.1016/J.PROCS.2023.10.119
+Weischedel, R., Hovy, E., Marcus, M. P., & Palmer, M. (2017). OntoNotes : A Large Training
+Corpus for Enhanced Processing.
+Wu, W., Fu, Y., Wang, Z., Liu, X., Niu, Y., Li, B., & Huang, G. Q. (2022). Consortium blockchain-
+enabled smart ESG reporting platform with token-based incentives for corporate crowd-
+sensing. Computers and Industrial Engineering, 172. https://doi.org/10.1016/j.cie.
+2022.108456
+Xu, J., Paruch, K., Cousaert, S., & Feng, Y. (2023). SoK: Decentralized Exchanges (DEX) with
+Automated Market Maker (AMM) Protocols. ACM Computing Surveys, 55(11), 1–50.
+https://doi.org/10.1145/3570639
+Xu, J., & Vadgama, N. (2022, January). From Banks to DeFi: the Evolution of the Lending
+Market. In N. Vadgama, J. Xu, & P. Tasca (Eds.), Enabling the internet of value (pp. 53–
+66). Springer. https://link.springer.com/10.1007/978-3-030-78184-2_6
+Zamani, E. D., & Babatsikos, I. (2017). The Use Of Bitcoins In Light Of The Financial Crisis:
+The Case Of Greece. http://aisel.aisnet.org/mcis2017
+Zeng, Q., Yu, M., Yu, W., Jiang, T., & Jiang, M. (2021). Validating Label Consistency in NER
+Data Annotation, 11–15. https://doi.org/10.18653/V1/2021.EVAL4NLP-1.2
+Zewde, N., & Crystal, S. (2022). Impact of the 2008 Recession on Wealth-Adjusted Income
+and Inequality for U.S. Cohorts. The Journals of Gerontology Series B: Psychological
+Sciences and Social Sciences, 77(4), 780. https://doi.org/10.1093/GERONB/GBAB141
+Zheng, Z., Xie, S., Dai, H. N., Chen, X., & Wang, H. (2018). Blockchain challenges and op-
+portunities: A survey. International Journal of Web and Grid Services, 14(4), 352–375.
+https://doi.org/10.1504/IJWGS.2018.095647
+30

@@ -526,7 +526,7 @@ def main():
 
     # ── Load test questions ────────────────────────────────────────────────
     print(f"\n📄 Loading questions from {questions_path} …")
-    with open(questions_path) as f:
+    with open(questions_path, encoding="utf-8") as f:
         test_questions = json.load(f)
     print(f"   {len(test_questions)} questions loaded")
 

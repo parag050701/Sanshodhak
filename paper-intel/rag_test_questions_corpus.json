@@ -1,0 +1,1302 @@
+[
+  {
+    "id": 1,
+    "question": "What precision did the iitpBM25 model achieve in the legal case retrieval task, according to the experimental results?",
+    "answer": "0.6256",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Gain_2021_8608c128",
+    "relevant_docs": [
+      "Gain_2021_8608c128.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 2,
+    "question": "What is the range of the decay value for a random walker in the multi-relational scholarly network, as described in the passage?",
+    "answer": "The decay value for a random walker ranges between ]1,0 [.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Rodriguez_2006_92bf6964",
+    "relevant_docs": [
+      "Rodriguez_2006_92bf6964.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 13
+  },
+  {
+    "id": 3,
+    "question": "What is the HIT@1 score for the Multimodal Embeddings (Cross-modal Text to Vision Match) using BLIP-2 Video Frames as reported in the embedding database?",
+    "answer": "0.482, as shown in the embedding database table.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Rosa_2024_80dc36ca",
+    "relevant_docs": [
+      "Rosa_2024_80dc36ca.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 5
+  },
+  {
+    "id": 4,
+    "question": "In the 2023 preprint by Nelson F Liu et al., what specific arXiv identifier is associated with the work on evaluating verifiability in generative search engines?",
+    "answer": "arXiv:2304.09848. The work evaluates verifiability in generative search engines, as noted in the preprint.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Asai_2023_bf18854f",
+    "relevant_docs": [
+      "Asai_2023_bf18854f.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 29
+  },
+  {
+    "id": 5,
+    "question": "What is the AUC score for the HAN model in the 'machine learning' sub-domain as reported in Table 6?",
+    "answer": "0.743 ± 0.019",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wenniger_2020_e6d98bf7",
+    "relevant_docs": [
+      "Wenniger_2020_e6d98bf7.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 12
+  },
+  {
+    "id": 6,
+    "question": "What distance metric is used in the similarity search against the HNSW index in ChromaDB for text embeddings, and why is it chosen?",
+    "answer": "Cosine similarity is used because it captures semantic relatedness by focusing on the orientation of the vectors rather than their magnitude.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "USA_2025_785b981e",
+    "relevant_docs": [
+      "USA_2025_785b981e.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 7,
+    "question": "What is the highest RFR score reported in Table 2 for the subset of the NFCorpus dataset?",
+    "answer": "The highest RFR score is 0.297, achieved by the SCC method.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Merola_2025_b6700849",
+    "relevant_docs": [
+      "Merola_2025_b6700849.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 13
+  },
+  {
+    "id": 8,
+    "question": "Which two sentence embedding models are used in the semantic similarity-based order methods, and how many rank strategies are combined with them?",
+    "answer": "The two sentence embedding models used are all-mpnet-base-v2 and BGE-M3, combined with four rank strategies (ascending/descending order based on similarity to the question or answer), totaling eight combinations.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "016_Tian_2025_454dd912",
+    "relevant_docs": [
+      "016_Tian_2025_454dd912.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 6
+  },
+  {
+    "id": 9,
+    "question": "In the SQuAD1.1 dataset's development split, what is the average number of noun chunks proposed among the top-10 candidates by the model, as shown in the analysis?",
+    "answer": "6.40 noun chunks.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Vachev_2021_9ed0b09d",
+    "relevant_docs": [
+      "Vachev_2021_9ed0b09d.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 10,
+    "question": "In the 2024 arXiv preprint by Qian et al., what is the name of the next-gen RAG model proposed for memory-inspired knowledge discovery?",
+    "answer": "Memorag. The model is described as moving towards next-gen RAG via memory-inspired knowledge discovery in the arXiv preprint arXiv:2409.05591.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Hou_2026_0712d594",
+    "relevant_docs": [
+      "Hou_2026_0712d594.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 27
+  },
+  {
+    "id": 11,
+    "question": "What optimization approaches are compared in RARB for diffusion models, as discussed in the context of retrosynthesis prediction tasks and differing from Di-Gress' method?",
+    "answer": "RARB compares maximizing the Variational Lower Bound (VLB) with directly minimizing the Cross-Entropy (CE) loss, contrasting with Di-Gress' sole use of CE loss.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "044_Qiao_2025_be8f4989",
+    "relevant_docs": [
+      "044_Qiao_2025_be8f4989.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 12,
+    "question": "What cutoff score on the Beck Depression Inventory (BDI) is associated with 'mild mood disturbance' according to the passage?",
+    "answer": "Between 11 and 16. (Note: The passage does not specify a single cutoff but a range; however, following the strict format as requested, the answer is provided in the range format as per the passage's implication.)",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Technolgy_2024_7c4c562d",
+    "relevant_docs": [
+      "Technolgy_2024_7c4c562d.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 13,
+    "question": "Which specific privacy protection strategy, mentioned in the passage, is referenced through multiple works (Feyisetan et al., 2020; Utpala et al., 2023; Carvalho et al., 2023) for safeguarding in RAG systems?",
+    "answer": "Differential privacy, as cited through Feyisetan et al. (2020), Utpala et al. (2023), and Carvalho et al. (2023), is the strategy for protecting retrieval data in RAG systems.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Zeng_2024_29e0420f",
+    "relevant_docs": [
+      "Zeng_2024_29e0420f.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 20
+  },
+  {
+    "id": 14,
+    "question": "By what percentage did the RAG-enhanced retrieval system improve semantic matching capabilities compared to traditional search methods, as shown in the statistical analysis?",
+    "answer": "27.8% improvement, with true positive rates reaching 94.7% compared to 74.2% for traditional methods.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "027_Nagilla_2025_5f584f97",
+    "relevant_docs": [
+      "027_Nagilla_2025_5f584f97.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 15,
+    "question": "What specific k value was used for MAP in the evaluation of the embedding model, and which two multilingual models' performance directly depended on this evaluation?",
+    "answer": "k=100 for MAP; MT5 and LLAMA3 models.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Turkey_2024_a8d36cb0",
+    "relevant_docs": [
+      "Turkey_2024_a8d36cb0.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 16,
+    "question": "In the paper 'Scaling laws for dense retrieval' (arXiv:2403.18684), how many authors collaborated on the research led by James Ferguson?",
+    "answer": "The paper lists 5 authors: James Ferguson, Matt Gardner, Hannaneh Hajishirzi, Tushar Khot, and Pradeep Dasigi.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Su_2024_8dce38c8",
+    "relevant_docs": [
+      "Su_2024_8dce38c8.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 24
+  },
+  {
+    "id": 17,
+    "question": "What is the approximate invariant-mass resolution for B 0 (s) mesons decaying to two muons, as achieved in this experiment, and what is the characteristic of its dependence on the angle with respect to the beam?",
+    "answer": "The invariant-mass resolution is 25 MeV/c^2, and it is nearly independent of the angle with respect to the beam.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "002_Peng_2025_7ce3b7d4",
+    "relevant_docs": [
+      "002_Peng_2025_7ce3b7d4.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 15
+  },
+  {
+    "id": 18,
+    "question": "On which dataset did the authors fine-tune Janus-Pro-1B and Show-o for their retriever implementation using FAISS?",
+    "answer": "A dataset of 50,000 image-caption pairs sampled from CC12M and Midjourney-v6.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "026_Raghavan_2025_6dd89b7a",
+    "relevant_docs": [
+      "026_Raghavan_2025_6dd89b7a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 19,
+    "question": "According to Proposition 1, what is the relationship between Φ(γ(t)) and γ(t) when γ∗ is a fixed point of Φ and γ(0) = γ∗?",
+    "answer": "Φ(γ(t)) = γ(−t), meaning the time-reversed trajectory of γ(t) under Φ equals γ at negative time t.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Colombo_2020_a00cb354",
+    "relevant_docs": [
+      "Colombo_2020_a00cb354.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 22
+  },
+  {
+    "id": 20,
+    "question": "What percentage of 'Corrupted Metadata' (CM) errors did the Web baseline exhibit, according to the results in Table 2?",
+    "answer": "6.7%",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Szeider_2026_bc5a579a",
+    "relevant_docs": [
+      "Szeider_2026_bc5a579a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 21,
+    "question": "In Table 2, which model achieved the highest NDCG at 30, and what was its corresponding Precision at 10?",
+    "answer": "The DCU and Ent_Wiki_rel models achieved the highest NDCG at 30 (0.51), with Ent_Wiki_rel having a Precision at 10 of 0.36.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Ahmed_2022_582619fb",
+    "relevant_docs": [
+      "Ahmed_2022_582619fb.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 10
+  },
+  {
+    "id": 22,
+    "question": "In the comparison with Pangu, what specific scenario highlighted FlexKBQA's advantage in Question I of Table 5?",
+    "answer": "A non-i.i.d scenario where the relation in the question wasn't present in in-context examples, which FlexKBQA handled by including the relevant relation in its synthetic data.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Li_2023_d318838a",
+    "relevant_docs": [
+      "Li_2023_d318838a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 18
+  },
+  {
+    "id": 23,
+    "question": "According to the Open Research Knowledge Graph (ORKG) benchmarks, what was the average accuracy improvement of hybrid RAG systems over base LLMs without retrieval components on standard question-answering benchmarks?",
+    "answer": "17-24%",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Unknown_2025_bb051fcc",
+    "relevant_docs": [
+      "Unknown_2025_bb051fcc.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 24,
+    "question": "In the bracelet method described, what specific statistical basis was used for choosing each subsequent word, as applied to the Italian words è, mio, giardino, nel?",
+    "answer": "Bigram co-occurrences, with probabilities computed based solely on the previously chosen word, as demonstrated with the word 'cane' (en. dog) in Figure 6.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Pannitto_2021_e9299079",
+    "relevant_docs": [
+      "Pannitto_2021_e9299079.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 10
+  },
+  {
+    "id": 25,
+    "question": "What is the approximate invariant-mass resolution for B 0 (s) mesons decaying to two muons, as achieved in the described experiment, and what type of particles are distinguished using two ring-imaging Cherenkov detectors?",
+    "answer": "The invariant-mass resolution is approximately 25 MeV/c², and different types of charged hadrons are distinguished using the two ring-imaging Cherenkov detectors.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "005_Xiong_2025_a8824505",
+    "relevant_docs": [
+      "005_Xiong_2025_a8824505.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 15
+  },
+  {
+    "id": 26,
+    "question": "According to the passage, which 2024 conference proceedings include a paper by Trevor Ashby et al. on long conversation generation with dynamic topic tracking and recommendation?",
+    "answer": "The 17th International Natural Language Generation Conference (Reference [1]).",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "028_Saleh_2025_6dbefc04",
+    "relevant_docs": [
+      "028_Saleh_2025_6dbefc04.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 18
+  },
+  {
+    "id": 27,
+    "question": "What are the ROUGE-L scores for HGNN with and without summary-based augmentation, according to the experimental results?",
+    "answer": "With summary-based augmentation: 30.59, Without augmentation: 27.17",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Liu_2020_f9d5197a",
+    "relevant_docs": [
+      "Liu_2020_f9d5197a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 17
+  },
+  {
+    "id": 28,
+    "question": "In the WikiEval dataset experiments, how does the 'GPT Score' baseline method handle ties in scores assigned to answer candidates by ChatGPT?",
+    "answer": "Ties were broken randomly when the same score was assigned by ChatGPT to both answer candidates in the GPT Score baseline method.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Shahul_2023_cad2ea79",
+    "relevant_docs": [
+      "Shahul_2023_cad2ea79.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 29,
+    "question": "In the experiment with 1,000 dog and cat images, what was the percentage of Precision for the Cat class as reported in the Summary of Metrics?",
+    "answer": "96%",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Jaitly_2024_3c6d0c42",
+    "relevant_docs": [
+      "Jaitly_2024_3c6d0c42.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 15
+  },
+  {
+    "id": 30,
+    "question": "By what percentage does Gemma-3-27B-QAT improve over the baseline in dense retrieval, as measured by RR?",
+    "answer": "Gemma-3-27B-QAT achieves a 120% improvement over the baseline (0.1545) in dense retrieval, with an RR of 0.3393.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Zhou_2026_b2057657",
+    "relevant_docs": [
+      "Zhou_2026_b2057657.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 10
+  },
+  {
+    "id": 31,
+    "question": "In which year and city was the paper 'quis custodiet ipsos custodes?' by Sandeep Kumar et al. presented?",
+    "answer": "2024, Miami, Florida, USA.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Zhou_2025_4ea3b9a4",
+    "relevant_docs": [
+      "Zhou_2025_4ea3b9a4.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 27
+  },
+  {
+    "id": 32,
+    "question": "What is the category predicted by RS-RAG for the image with ground truth 'Museum' in Fig. 5?",
+    "answer": "Museum",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wen_2026_cf454e57",
+    "relevant_docs": [
+      "Wen_2026_cf454e57.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 32
+  },
+  {
+    "id": 33,
+    "question": "What BLEU score does the Lucene method achieve on the Java dataset according to the experimental results?",
+    "answer": "Lucene achieves a BLEU score of 15.61 on the Java dataset.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Shi_2022_833f3121",
+    "relevant_docs": [
+      "Shi_2022_833f3121.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 14
+  },
+  {
+    "id": 34,
+    "question": "What is the constraint on the embedding dimension (e) of the Prompter in relation to the embedding dimension (E) of the Pre-trained Language Model (PLM) used in the implementation, such as DeBERTa?",
+    "answer": "The embedding dimension of the Prompter (e) is subject to the constraint e ≤ E, where E is the embedding dimension of the PLM.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "007_Zhu_2025_e53c7a14",
+    "relevant_docs": [
+      "007_Zhu_2025_e53c7a14.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 5
+  },
+  {
+    "id": 35,
+    "question": "What C parameter value was used in the Support Vector Machine (SVM) for text classification in this research, and what was the reported accuracy on the training data?",
+    "answer": "C parameter = 1; Accuracy = 100% on the training data.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Ramelan_2024_72bcc0ca",
+    "relevant_docs": [
+      "Ramelan_2024_72bcc0ca.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 36,
+    "question": "What F1 score did the INNOVATORS system achieve in Evaluation Phase 1 as per Table 5?",
+    "answer": "The INNOVATORS system achieved an F1 score of 39.87 in Evaluation Phase 1.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "D_Souza_2021_08dcc730",
+    "relevant_docs": [
+      "D_Souza_2021_08dcc730.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 17
+  },
+  {
+    "id": 37,
+    "question": "In the IoT-Factory experiment, what specific visualization technique was used to demonstrate distinct content differences among document segments, labeled by their file paths?",
+    "answer": "t-SNE in a 2D embedding space, as shown in Figure 5. This method effectively grouped similar content together, highlighting the clusters of document segments from different IoT-Factory stations.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "046_Niederhaus_2025_c41834f5",
+    "relevant_docs": [
+      "046_Niederhaus_2025_c41834f5.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 21
+  },
+  {
+    "id": 38,
+    "question": "What is the maximum standard deviation observed across samples when N = 3 for the 3-hop dataset in the MetaQA benchmark?",
+    "answer": "The standard deviation remains low, at or below 0.063, across samples for N = 3 in the 3-hop dataset.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Linders_2025_fa2b8dc9",
+    "relevant_docs": [
+      "Linders_2025_fa2b8dc9.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 23
+  },
+  {
+    "id": 39,
+    "question": "What specific fields are mentioned as having unique requirements for potential domain-specific RAG models?",
+    "answer": "Medicine and business are identified as fields with unique requirements for domain-specific RAG models.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "018_Pichappan_2025_ca0f06b1",
+    "relevant_docs": [
+      "018_Pichappan_2025_ca0f06b1.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 2
+  },
+  {
+    "id": 40,
+    "question": "According to the passage, what is a key responsibility of optimized algorithms in the development of NLP technologies for virtual assistants?",
+    "answer": "Developing optimized algorithms is solely responsible for reducing computational overheads, thereby making NLP technologies more accessible and 'green'.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Turkey_2025_09b15461",
+    "relevant_docs": [
+      "Turkey_2025_09b15461.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 41,
+    "question": "What specific year's whitepaper of XRP was chosen for the literature review, potentially underestimating its influence on the citation network?",
+    "answer": "2018 (chosen over the more cited 2014 edition), as noted in the limitations section (§5.3) of the paper.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Cruz_2023_7428dd05",
+    "relevant_docs": [
+      "Cruz_2023_7428dd05.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 30
+  },
+  {
+    "id": 42,
+    "question": "What specific metric, alongside Recall@1, Recall@3, and Recall@5, is particularly relevant for systems like RAG due to its focus on top-1 ranking?",
+    "answer": "MRR (Mean Reciprocal Rank), as it evaluates how quickly the correct document appears in the top rankings, crucial for systems where top-1 ranking is the primary context.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Asmaidin_2026_e09aa15c",
+    "relevant_docs": [
+      "Asmaidin_2026_e09aa15c.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 43,
+    "question": "According to Table 4, how many studies utilized the Stanford parser among the 67 papers analyzed?",
+    "answer": "10 studies (P7, P9, P11, P14, P17, P23, P39, P55, P56, P58, P63) used the Stanford parser, though note the list includes P63 which might be an oversight given the total count provided.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Garousi_2018_ccd6f82e",
+    "relevant_docs": [
+      "Garousi_2018_ccd6f82e.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 29
+  },
+  {
+    "id": 44,
+    "question": "In the evaluation campaign described, what percentage of the authors' retrieved articles were judged across all topics due to not being included in the pooling process?",
+    "answer": "19.73%",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Pires_2025_65eda92f",
+    "relevant_docs": [
+      "Pires_2025_65eda92f.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 24
+  },
+  {
+    "id": 45,
+    "question": "In the ChatGPT-Based Generation Model described, what specific post-processing method is used to address the issue of 'Entities matched are mis-classified as tags'?",
+    "answer": "Reclassify the mis-classified tags as entities and position them correctly.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Chen_2023_1db6fbe8",
+    "relevant_docs": [
+      "Chen_2023_1db6fbe8.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 16
+  },
+  {
+    "id": 46,
+    "question": "In Scenario 2, what specific type of manipulated media does Factually identify as the basis for the false claim about Taylor Swift speaking Mandarin?",
+    "answer": "A highly realistic deepfake.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Gupta_2025_99a0a5ae",
+    "relevant_docs": [
+      "Gupta_2025_99a0a5ae.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 5
+  },
+  {
+    "id": 47,
+    "question": "What is the gap in E-TFR performance between EEL 8-MASK and the gold standard for the XSUM dataset, as reported in the passage?",
+    "answer": "The gap is .019 for XSUM. This value indicates how close EEL's performance is to the ideal (gold) TFR reranking selections on this specific dataset.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Singhal_2023_d304f01d",
+    "relevant_docs": [
+      "Singhal_2023_d304f01d.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 19
+  },
+  {
+    "id": 48,
+    "question": "What specific improvement in robustness against typos is observed when applying multi-positive contrastive learning on DR+DL compared to its original version, as shown in Table 1?",
+    "answer": "The application of multi-positive contrastive learning on DR+DL yields dramatic improvements in robustness against typos, as the original DR+DL only considers the typo-free query as positive for contrastive loss computation.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Sidiropoulos_2024_eb13b8b5",
+    "relevant_docs": [
+      "Sidiropoulos_2024_eb13b8b5.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 49,
+    "question": "In the legal dataset experiment, how many API calls does LightRAG require for its entire retrieval process, contrasting with the hundreds made by GraphRAG?",
+    "answer": "LightRAG requires only 1 API call for the entire retrieval process, in stark contrast to GraphRAG's hundreds of API calls.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Guo_2025_fea0c044",
+    "relevant_docs": [
+      "Guo_2025_fea0c044.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 17
+  },
+  {
+    "id": 50,
+    "question": "What specific hydrocarbons are mentioned as examples of dry diluents in the milling process described in the passage?",
+    "answer": "Hexane, heptane, and cyclohexane are listed as examples of dry hydrocarbon diluents.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "024_Siddharth_2024_54d631c5",
+    "relevant_docs": [
+      "024_Siddharth_2024_54d631c5.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 51,
+    "question": "What is the maximum Exact Match (EM) gain achieved by RIDER as reported in Table 4 of the passage?",
+    "answer": "RIDER results in up to 4.2 EM gains, as stated in the passage's discussion of Table 4.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Mao_2021_cb2d5a3a",
+    "relevant_docs": [
+      "Mao_2021_cb2d5a3a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 52,
+    "question": "What is the specific operation performed on the feature vectors (vi and vj) for a pair of comments in the Same-vs-Different Classifier, as described in Section 4.2?",
+    "answer": "The feature vectors representing the two comments are subtracted, taking the absolute value (|vi − vj|), to emphasize comment differences.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Joty_2019_5bbba88b",
+    "relevant_docs": [
+      "Joty_2019_5bbba88b.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 53,
+    "question": "In the context of evaluating RAG systems without reference answers, what specific year was the RAGAS framework proposed?",
+    "answer": "2023, as stated in the passage.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Unknown_2025_2a9255ad",
+    "relevant_docs": [
+      "Unknown_2025_2a9255ad.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 15
+  },
+  {
+    "id": 54,
+    "question": "In the 2023 paper by Knollmeyer et al., what specific conference hosted the proceedings where their ontology-based knowledge graph for factory planning was presented?",
+    "answer": "The 2023 IEEE 28th International Conference on Emerging Technologies and Factory Automation (ETFA) in Sinaia, Romania.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "037_Knollmeyer_2025_d92c5d07",
+    "relevant_docs": [
+      "037_Knollmeyer_2025_d92c5d07.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 50
+  },
+  {
+    "id": 55,
+    "question": "What metric, providing a continuous value and robustness to incorrect span selection, was used to quantify example difficulty in the active learning approach?",
+    "answer": "1 − F1 score, chosen for its continuous nature and robustness to span errors while retaining correct answer text.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Longpre_2019_12d46582",
+    "relevant_docs": [
+      "Longpre_2019_12d46582.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 56,
+    "question": "Which 2021 paper by Long Ouyang et al. introduced a browser-assisted question-answering model with human feedback?",
+    "answer": "WebGPT, as described in 'WebGPT: Browser-assisted question-answering with human feedback' (abs/2112.09332).",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Shao_2023_dbd3ed4d",
+    "relevant_docs": [
+      "Shao_2023_dbd3ed4d.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 26
+  },
+  {
+    "id": 57,
+    "question": "What maximum accuracy did the AOADL-HBCC technique achieve in breast cancer classification, as reported in [13]?",
+    "answer": "96.77% accuracy in breast cancer classification, surpassing recent methodologies.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "018_Ijaz_2024_75bdb3e7",
+    "relevant_docs": [
+      "018_Ijaz_2024_75bdb3e7.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 2
+  },
+  {
+    "id": 58,
+    "question": "What is the average input token count for GPT-4o in the yes/no question generation stage, as estimated using the NFCorpus dataset?",
+    "answer": "902 ± 108 tokens.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Naseh_2025_7b221c06",
+    "relevant_docs": [
+      "Naseh_2025_7b221c06.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 33
+  },
+  {
+    "id": 59,
+    "question": "What specific tension did the chunking strategy in the RAG-based system create, according to the passage?",
+    "answer": "A tension between context persistence and retrieval precision, requiring careful tuning.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Unknown_2025_c2d11be8",
+    "relevant_docs": [
+      "Unknown_2025_c2d11be8.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 60,
+    "question": "What specific classifier is utilized in the Problem Intent Understanding Module, as described in section 3.3.4?",
+    "answer": "Naive Bayes classifiers are used to predict user input problems in this module.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wang_2023_993b98ce",
+    "relevant_docs": [
+      "Wang_2023_993b98ce.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 6
+  },
+  {
+    "id": 61,
+    "question": "In the KG + Text setup on FB15K, which model configuration achieved the highest Hits@10 score, and what was its score?",
+    "answer": "DRKA + RotatE (k=5) achieved the highest Hits@10 score of 63.8.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Abaho_2023_fd2054da",
+    "relevant_docs": [
+      "Abaho_2023_fd2054da.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 14
+  },
+  {
+    "id": 62,
+    "question": "What specific LLM model, downloaded from Hugging Face, was used without additional fine-tuning for predicting responses to personal author questions in this challenge?",
+    "answer": "BERT-base-cased-SQuAD2, chosen for its capability to answer scholarly-related questions from phrases.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Fondi_2024_96f2b789",
+    "relevant_docs": [
+      "Fondi_2024_96f2b789.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 63,
+    "question": "In the DeBEIR pipeline, what is the specific checkpoint save interval (in steps) used when calling `trainer.fit()` with `save_best_model=True`?",
+    "answer": "The checkpoint save interval is set to 179 steps. This is specified in the `trainer.fit()` call with the argument `checkpoint_save_steps=179`.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Nguyen_2023_21f8a04f",
+    "relevant_docs": [
+      "Nguyen_2023_21f8a04f.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 5
+  },
+  {
+    "id": 64,
+    "question": "What was the average similarity score when combining GPT with STS OpenAI Score, and how did it compare to GPT paired with Palm STS Score?",
+    "answer": "The average similarity score was 0.997 for GPT with STS OpenAI Score, which was a 0.077 increase over the 0.92 score when paired with Palm STS Score.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "040_Pichai_2023_cc391c15",
+    "relevant_docs": [
+      "040_Pichai_2023_cc391c15.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 65,
+    "question": "In the 2022 ICML paper 'Improving language models by retrieving from trillions of tokens', how many pages does the publication span in the Proceedings of Machine Learning Research, volume 162?",
+    "answer": "The publication spans 35 pages (2206–2240).",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Su_2024_5f77b716",
+    "relevant_docs": [
+      "Su_2024_5f77b716.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 21
+  },
+  {
+    "id": 66,
+    "question": "In the optimal setting (𝑵𝒄𝒂𝒏𝒅=25, 𝑲=5), how does the performance of the Proposal (Multi-Hop + Reranking) compare to the Multi-Hop baseline according to Figure 1?",
+    "answer": "The Proposal significantly outperforms the Multi-Hop baseline in this setting, as shown in Figure 1.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Lim_2026_3b0f626e",
+    "relevant_docs": [
+      "Lim_2026_3b0f626e.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 10
+  },
+  {
+    "id": 67,
+    "question": "What R@1 score is achieved by the RoBERTa+ model with an enhanced encoder on the Text to Image task in the Flickr30K dataset?",
+    "answer": "22.6, as reported in Table 1 for the Flickr30K dataset.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Choi_2023_3be8da0e",
+    "relevant_docs": [
+      "Choi_2023_3be8da0e.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 68,
+    "question": "In the example provided in Fig 4 of the IJARSCT paper (Vol 5, Issue 1, 2025), how many tables are specified in the Natural Language Query (NLQ) for designing a relational database for an e-commerce system?",
+    "answer": "Three tables are specified: Products, Customers, and Orders.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Unknown_2025_fdde2925",
+    "relevant_docs": [
+      "Unknown_2025_fdde2925.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 69,
+    "question": "According to Fig. 10, which three LLMs are compared for their Composite Performance Score (CPS) across different similarity thresholds in RAG systems?",
+    "answer": "Mistral, Orca, and Llama. The comparison illustrates the impact of threshold tuning on retrieval precision, recall, and overall response quality in RAG systems.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "008_Dimitrova_2025_c23d445c",
+    "relevant_docs": [
+      "008_Dimitrova_2025_c23d445c.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 19
+  },
+  {
+    "id": 70,
+    "question": "Which 2018 paper by Javid Ebrahimi et al. introduced the method 'Hotflip' for generating white-box adversarial examples in text classification?",
+    "answer": "Hotflip: White-box adversarial examples for text classification (https://arxiv.org/abs/1712.06751).",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Pathmanathan_2025_60a4169f",
+    "relevant_docs": [
+      "Pathmanathan_2025_60a4169f.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 30
+  },
+  {
+    "id": 71,
+    "question": "In the context of the proposed retrieval-augmented generation framework, what specific intent set (I) is extracted from the query about reproducing a LinkedIn login issue?",
+    "answer": "The intent set I extracted is {\"fix solution\"}.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Xu_2024_209799b0",
+    "relevant_docs": [
+      "Xu_2024_209799b0.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 72,
+    "question": "What was the ROUGE-1 score achieved by the spaCy-based model as reported in Table I?",
+    "answer": "0.257",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Ali_2024_c07334f1",
+    "relevant_docs": [
+      "Ali_2024_c07334f1.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 73,
+    "question": "In the CLIR approach described, how many language pairs were experimented with for Edinburgh’s neural machine translation systems in WMT16, and what were they?",
+    "answer": "Four language pairs: English-Russian, English-Romanian, English-German, and English-Czech, all in both directions.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "al_2021_f98b1ca4",
+    "relevant_docs": [
+      "al_2021_f98b1ca4.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 12
+  },
+  {
+    "id": 74,
+    "question": "What was the average rating for the usefulness of output-data explanations in the Question Answering system evaluation, according to the passage?",
+    "answer": "The average rating for the usefulness of output-data explanations was 3.704, with the majority rated as 4.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Unknown_2025_bf5eee7f",
+    "relevant_docs": [
+      "Unknown_2025_bf5eee7f.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 13
+  },
+  {
+    "id": 75,
+    "question": "According to the 10 back-to-back runs comparison, how many times slower is RAG-Fusion than RAG on average, based on query to output time?",
+    "answer": "RAG-Fusion is nearly 1.77 times slower than RAG, with average times of 34.62 seconds vs. 19.52 seconds.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Rackauckas_2024_6a2e4ea0",
+    "relevant_docs": [
+      "Rackauckas_2024_6a2e4ea0.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 10
+  },
+  {
+    "id": 76,
+    "question": "What is the approximate size of the binary metadata cache file (in MB) used to store preprocessed catalog data keyed by item ID (ASIN) in the described system?",
+    "answer": "The binary metadata cache file is approximately 953 MB. This allows for quick loading into RAM and constant time metadata retrieval during inference.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Pandey_2026_e1024f44",
+    "relevant_docs": [
+      "Pandey_2026_e1024f44.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 12
+  },
+  {
+    "id": 77,
+    "question": "What is the total number of questions used for human evaluation across MultiMedQA and Diverse-Health in this study?",
+    "answer": "The total is 170 questions (120 on MultiMedQA and 50 on Diverse-Health).",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wu_2025_38111476",
+    "relevant_docs": [
+      "Wu_2025_38111476.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 20
+  },
+  {
+    "id": 78,
+    "question": "In the first activity, what method did participants use to physically thread tokens into sentences, as described in slides 52-61?",
+    "answer": "The bracelet method. This method involved using a button loop on each card to create new valid sentences based on the corpus' bigrams distribution.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Messina_2021_ac720e13",
+    "relevant_docs": [
+      "Messina_2021_ac720e13.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 3
+  },
+  {
+    "id": 79,
+    "question": "In the referenced work, what specific conference proceedings publication by Trevor Ashby et al. (2024) is cited as [1]?",
+    "answer": "The 17th International Natural Language Generation Conference, pages 540-556, titled 'Towards effective long conversation generation with dynamic topic tracking and recommendation'.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "045_Xiong_2025_456cccfe",
+    "relevant_docs": [
+      "045_Xiong_2025_456cccfe.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 18
+  },
+  {
+    "id": 80,
+    "question": "In Figure 4, what is the baseline F-score for ReMatch [23] when the question contains one relation with an explicit label?",
+    "answer": "0.47. This score is reported for ReMatch [23] in the context of explicit single-relation questions.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Singh_2018_38c0f1f5",
+    "relevant_docs": [
+      "Singh_2018_38c0f1f5.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 21
+  },
+  {
+    "id": 81,
+    "question": "What specific component of the proposed KG-enhanced RAG framework is designed for retrieving information when the object is known or for basic analytics?",
+    "answer": "The graph query language of the FMEA-KG (denoted as ), as introduced in the framework's components for information retrieval.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "030_Bahr_2025_01879ac7",
+    "relevant_docs": [
+      "030_Bahr_2025_01879ac7.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 82,
+    "question": "In the evaluated question answering system from this paper, what specific scenario highlights its inability to handle multi-hop questions effectively, as described in Section 3.4?",
+    "answer": "When the question object in the latest question is hidden in the sentence before the last one or earlier, the system fails to handle it, as noted in Section 3.4 of the paper.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Sun_2022_120e2917",
+    "relevant_docs": [
+      "Sun_2022_120e2917.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 5
+  },
+  {
+    "id": 83,
+    "question": "According to the passage, in which specific industries does grounding AI responses (via RAG) particularly impact safety, compliance, and decision-making?",
+    "answer": "Healthcare, law, and finance, as stated in the passage highlighting the importance of accuracy in these fields.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "013_Patnaik_2025_6d024ae2",
+    "relevant_docs": [
+      "013_Patnaik_2025_6d024ae2.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 84,
+    "question": "In the TREC 2019 query set comparison, how many queries resulted in ColBERT outperforming ANCE by a ΔNDCG@10 of 0.15 or more?",
+    "answer": "ColBERT outperformed ANCE for 24 queries, with the opposite occurring for 17 queries, though specifics on the exact ΔNDCG@10 values for these are not detailed beyond the omission threshold.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Macdonald_2021_0b9c65d2",
+    "relevant_docs": [
+      "Macdonald_2021_0b9c65d2.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 10
+  },
+  {
+    "id": 85,
+    "question": "In which year and conference did Asai et al. publish their work on 'Self-RAG: Learning to retrieve, generate, and critique through self-reflection'?",
+    "answer": "2024, The Twelfth International Conference on Learning Representations.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "048_Agnihotram_2025_80af63d0",
+    "relevant_docs": [
+      "048_Agnihotram_2025_80af63d0.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 8
+  },
+  {
+    "id": 86,
+    "question": "Which workshop, located at ECIR, received a diverse set of papers combining bibliometrics and IR, with only a small subset accepted?",
+    "answer": "The BIR workshop; it aimed to bridge the two disciplines through a core-IR oriented dissemination strategy.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Mayr_2014_bbf0ee1d",
+    "relevant_docs": [
+      "Mayr_2014_bbf0ee1d.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 87,
+    "question": "What batch size and number of epochs were used for training T5-ColBERT, as specified in the passage?",
+    "answer": "Batch size was set to 256 and the model was trained for 5 epochs.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wu_2024_37a13a24",
+    "relevant_docs": [
+      "Wu_2024_37a13a24.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 23
+  },
+  {
+    "id": 88,
+    "question": "What was the Accuracy score for DRAGON + gh using gpt-4, as shown in Table 7?",
+    "answer": "4.241, as per the results in Table 7 comparing scores with GitHub issues included.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Toro_2024_ca71c2d1",
+    "relevant_docs": [
+      "Toro_2024_ca71c2d1.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 21
+  },
+  {
+    "id": 89,
+    "question": "According to the study using RAGBench, what percentage improvement in overall knowledge base quality was achieved through the novel content scoring approach?",
+    "answer": "67% improvement in overall knowledge base quality.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Chandra_2025_02585670",
+    "relevant_docs": [
+      "Chandra_2025_02585670.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 5
+  },
+  {
+    "id": 90,
+    "question": "What is the name of the film directed by Larry David, the creator of 'Seinfeld', that has a mentioned release platform but lacks reported box office gross in the provided evidence?",
+    "answer": "The film is 'Clear History', released on HBO, and its box office gross is not mentioned in the given evidence.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "029_Arya_2025_f65a964a",
+    "relevant_docs": [
+      "029_Arya_2025_f65a964a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 38
+  },
+  {
+    "id": 91,
+    "question": "In the 2021 paper by Jimmy Lin et al. introducing Pyserini, what were the two types of representations the toolkit was designed to support for reproducible information retrieval research?",
+    "answer": "Sparse and dense representations.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wang_2024_29f6f284",
+    "relevant_docs": [
+      "Wang_2024_29f6f284.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 27
+  },
+  {
+    "id": 92,
+    "question": "What entity extractor is explored as an alternative to Wikipedia links for finding entity mentions in paragraphs, due to Wikipedia's linking guidelines?",
+    "answer": "DBPedia Spotlight [5], as Wikipedia only links an entity on its first occurrence in an article.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "MacAvaney_2018_03b30259",
+    "relevant_docs": [
+      "MacAvaney_2018_03b30259.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 16
+  },
+  {
+    "id": 93,
+    "question": "Which three attention modules were identified as the most promising based on validation set performance using Equation 5?",
+    "answer": "AP, A2, and A3. They were selected from six primary modules evaluated (including A0, A1, APD) based on their performance on the validation set using the accuracy equation (Equation 5).",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Singh_2018_e30f884c",
+    "relevant_docs": [
+      "Singh_2018_e30f884c.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 4
+  },
+  {
+    "id": 94,
+    "question": "According to the guidelines, what is the recommended range for the number of continuous tissue slices per glass slide for gastric endoscopic biopsy specimens?",
+    "answer": "6-8 slices, to facilitate continuous observation.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Zhou_2024_a41bd4c8",
+    "relevant_docs": [
+      "Zhou_2024_a41bd4c8.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 17
+  },
+  {
+    "id": 95,
+    "question": "By what amount did the average understandability score for GPT-4 improve after RISE integration, according to the reported means and standard deviations?",
+    "answer": "The average score improved from 4.32 (SD 0.61) to 4.64 (SD 0.51), a 0.32 point increase.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Wang_2024_d8c4547d",
+    "relevant_docs": [
+      "Wang_2024_d8c4547d.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 17
+  },
+  {
+    "id": 96,
+    "question": "What is the number of validation samples in the KG20C-QA dataset, as reported in Table V?",
+    "answer": "7,340",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Tran_2025_5c22d0e7",
+    "relevant_docs": [
+      "Tran_2025_5c22d0e7.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 9
+  },
+  {
+    "id": 97,
+    "question": "According to the passage, which specific datasets (at least one mentioned) demonstrate that AR-RAG outperforms conventional and retrieval-augmented baselines, especially in handling complex prompts?",
+    "answer": "GenEval, DPG-Bench, and Midjourney-30K. These datasets show AR-RAG's superiority in handling complex prompts with multiple objects and spatial relationships.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Qi_2025_34611d7a",
+    "relevant_docs": [
+      "Qi_2025_34611d7a.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 19
+  },
+  {
+    "id": 98,
+    "question": "According to the passage, what specific global data protection regulation must RAG technology ensure compliance with, as highlighted in Section A?",
+    "answer": "GDPR (in Europe), as mentioned in Section A of the passage.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Shobhit_2024_87f1a94e",
+    "relevant_docs": [
+      "Shobhit_2024_87f1a94e.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 7
+  },
+  {
+    "id": 99,
+    "question": "In the preliminary study [51], how many categories were evaluated on slices of Wikidata and DBpedia?",
+    "answer": "4 categories: politicians, Movies, Restaurants, and Soccer players.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Shekarpour_2016_6fa04dce",
+    "relevant_docs": [
+      "Shekarpour_2016_6fa04dce.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 12
+  },
+  {
+    "id": 100,
+    "question": "What format does the LLM-based agent use to organize extracted ontology elements during the Ontology Creation stage, as described in the methodology?",
+    "answer": "RDF/Turtle format with rdfs:domain, rdfs:range, and rdfs:comment annotations.",
+    "type": "factual",
+    "difficulty": "easy",
+    "paper_id": "Peshevski_2025_633469b2",
+    "relevant_docs": [
+      "Peshevski_2025_633469b2.txt"
+    ],
+    "stratum": "corpus-grounded",
+    "_source_chunk_index": 3
+  }
+]

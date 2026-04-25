@@ -65,3 +65,18 @@ htmlcov/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# Local tool state and scratch artefacts
+.claude/
+paper_pages/
+check_tex.py
+check_refs.py
+
+# Regenerable backups (FAISS / metadata)
+*.bak
+
+# Generated PDF previews (keep source PDFs only if explicitly added)
+paper__*.pdf
+
+# Pandoc media extraction (generated from docx -> tex conversion)
+edi5_session4_media/

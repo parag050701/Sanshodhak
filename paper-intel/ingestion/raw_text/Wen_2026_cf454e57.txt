@@ -1,0 +1,2607 @@
+1
+Remote Sensing Retrieval-Augmented Generation:
+Bridging Remote Sensing Imagery and
+Comprehensive Knowledge with a Multi-Modal
+Dataset and Retrieval-Augmented Generation Model
+Congcong Wen Member, IEEE, Yiting Lin, Xiaokang Qu, Nan Li, Yong Liao, Xiang Li and Hui Lin
+Abstract—Recent progress in Vision-Language Models (VLMs)
+has demonstrated impressive capabilities across a variety of tasks
+in the natural image domain. Motivated by these advancements,
+the remote sensing community has begun to adopt VLMs for
+remote sensing vision-language tasks, including image captioning,
+scene understanding, and visual question answering (VQA). How-
+ever, existing remote sensing VLMs typically rely on closed-set
+scene understanding and focus on generic scene descriptions, yet
+lack the ability to incorporate external knowledge. This limitation
+hinders their capacity for semantic reasoning over complex or
+context-dependent queries that involve domain-specific or world
+knowledge. To address these challenges, we first introduced a
+multimodal Remote Sensing World Knowledge (RSWK) dataset,
+which comprises high-resolution satellite imagery and detailed
+textual descriptions for 14,820 well-known landmarks across 16
+categories from 184 countries, integrating both remote sensing
+domain knowledge and broader world knowledge. Building upon
+this dataset, we proposed a novel Remote Sensing Retrieval-
+Augmented Generation (RS-RAG) framework, which consists
+of two key components. The Multi-Modal Knowledge Vector
+Database Construction module encodes remote sensing imagery
+and associated textual knowledge into a unified vector space. The
+Knowledge Retrieval and Response Generation module retrieves
+and re-ranks relevant knowledge based on image and/or text
+queries, and incorporates the retrieved content into a knowledge-
+augmented prompt to guide the VLM in producing contextually
+grounded responses. We validate the effectiveness of RS-RAG on
+our designed benchmark covering three vision-language tasks:
+image captioning, image classification, and VQA, where RS-RAG
+significantly outperformed state-of-the-art baselines. By bridging
+remote sensing imagery and comprehensive knowledge, RS-
+RAG empowers remote sensing VLMs with enhanced contextual
+reasoning, enabling them to generate more accurate, informative,
+and semantically grounded outputs across a wide range of tasks.
+Index Terms—Remote Sensing(RS), Vision Language Models
+(VLMs), Retrieval-Augmented Generation (RAG), World Knowl-
+edge
+This work was partially supported by the Beijing Nova Program (Grant
+No. 2024124) and the National Natural Science Foundation of China (Grant
+Nos. U24B20177, U25B2075, and U2541212). (Congcong Wen and Yiting
+Lin contributed equally to this work). (Corresponding author: Hui Lin).
+Congcong Wen, Yiting Lin, Xiaokang Qu and Yong Liao are with School
+of Cyber Science and Technology, University of Science and Technology of
+China, Anhui, 230026, China. Congcong Wen is also with China Academy
+of Electronics and Information Technology, Beijing 100846, China. (e-mail:
+wencc1208@gmail.com, linyiting@mail.ustc.edu.cn, xkqu@mail.ustc.edu.cn
+and yliao@ustc.edu.cn)
+Nan Li and Hui Lin are with China Academy of Electronics and Infor-
+mation Technology, Beijing 100846, China. (e-mail: linhui@whu.edu.cn and
+nli2014@lzu.edu.cn)
+Xiang Li is with the School of Computer Science at the University of
+Bristol, UK. (e-mail: xiangli92@ieee.org)
+I. INTRODUCTION
+Remote sensing imagery, as a critical source of informa-
+tion for Earth observation and monitoring, plays an essential
+role in urban planning [1], agricultural assessment [2], and
+environmental protection [3]. However, as remote sensing
+technology advances, the scale and complexity of imagery
+data have rapidly increased, making it increasingly difficult
+for traditional manual analysis or image processing methods to
+meet practical demands. Deep learning methods [4], [5] have
+significantly improved the accuracy and efficiency of tasks like
+classification, segmentation, and object detection by automati-
+cally extracting features from vast amounts of remote sensing
+data. While these methods have made notable progress, most
+deep learning models rely predominantly on single-modal
+visual information, lacking deep semantic understanding of
+image content. This limitation results in reduced generalization
+and adaptability, particularly for tasks that require in-depth
+semantic analysis and comprehensive scene understanding.
+The emergence of Vision-Language Models (VLMs) [6],
+[7], [8], [9], [10], [11] offers a novel solution for the semantic
+analysis of remote sensing data. By leveraging multimodal fu-
+sion techniques, VLMs combine visual features with language
+information to automatically generate descriptive insights for
+remote sensing imagery. This semantic enhancement improves
+image classification and object detection performance while
+enabling the transformation of recognition results into nat-
+ural language descriptions, making them more interpretable
+and accessible for various applications. Additionally, VLMs
+perform well even in weakly supervised or zero-shot learning
+scenarios, providing reliable analysis with limited labeled data
+and thus reducing dependency on extensive data annotations.
+This cross-modal integration not only enhances the model’s
+cognitive ability to interpret remote sensing imagery but also
+facilitates detailed semantic descriptions of complex scenes,
+paving the way for broader intelligent applications in remote
+sensing. However, existing remote sensing VLMs primarily
+focus on identifying image features and providing basic scene
+descriptions, lacking a deeper background understanding of
+the objects within the images. Particularly when it comes to
+rich semantic information requiring remote sensing domain
+expertise or other general world knowledge, such as historical,
+cultural, and social contexts, these VLMs often struggle to
+provide comprehensive contextual support.
+arXiv:2504.04988v2  [cs.CV]  12 Feb 2026
+
+2
+To address this issue, we first introduce the Remote Sensing
+World Knowledge (RSWK) dataset, a multimodal benchmark
+that includes high-resolution imagery and natural language
+descriptions for over 14,000 well-known locations across 16
+categories in 184 countries worldwide. Unlike most existing
+remote sensing vision-language datasets that only provide ba-
+sic descriptions of current scenes, our RSWK dataset includes
+richer remote sensing domain expertise and world knowledge
+about the objects within these scenes. For instance, from a
+remote sensing perspective, it provides information on surface
+reflectance, spectral indices, and atmospheric conditions. From
+a world knowledge perspective, it includes historical back-
+ground, cultural significance, construction period, and major
+events. This combination of remote sensing expertise and
+world knowledge not only enhances the RSWK dataset’s utility
+for visual analysis of remote sensing images, but also provides
+the model with deeper semantic context, overcoming the
+limitations of traditional datasets and enabling remote sensing
+VLMs to perform more complex cognitive tasks. Further-
+more, our dataset incorporates historical, cultural, and social
+backgrounds from various countries and regions, allowing
+VLMs to be trained across diverse geographical and cultural
+contexts, thereby improving their generalization ability and
+understanding of different cultural settings.
+Furthermore, to effectively leverage the comprehensive in-
+formation provided by the RSWK dataset, we propose the
+Remote Sensing Retrieval-Augmented Generation (RS-RAG)
+model. RS-RAG is designed to enhance the capacity of VLMs
+to generate contextually enriched and knowledge-grounded
+responses for remote sensing imagery. It operates by inte-
+grating external knowledge, both domain-specific and general
+world knowledge, retrieved from a multimodal knowledge
+base constructed using the RSWK dataset. The model consists
+of two main components: (1) the Multi-Modal Knowledge
+Vector Database Construction module, which encodes satellite
+imagery and textual descriptions into a shared embedding
+space using unified image and text encoders to enable effi-
+cient cross-modal retrieval; and (2) the Knowledge Retrieval
+and Response Generation module, which retrieves top-ranked
+knowledge entries based on image and text queries, re-ranks
+them via a fused similarity score, and incorporates the selected
+content into a knowledge-augmented prompt. This prompt
+is then passed to the vision-language model, enabling it to
+generate responses that go beyond semantic understanding
+and reflect deeper background knowledge. By coupling visual
+input with relevant contextual information, RS-RAG signifi-
+cantly improves the interpretability and accuracy of vision-
+language outputs, particularly for complex queries involving
+geospatial, historical, or environmental reasoning.
+To assess the effectiveness of the proposed model, we con-
+struct a comprehensive benchmark and evaluate performance
+across three representative tasks: image captioning, image
+classification, and visual question answering (VQA). To better
+leverage the rich semantics of the dataset, we further refine
+the VQA task into three distinct subtypes that target: (1)
+comprehensive reasoning, (2) domain-specific remote sensing
+understanding, and (3) general world knowledge interpretation.
+Results on these tasks demonstrate the model’s ability to pro-
+duce accurate, context-rich descriptions, deliver semantically
+informed scene classifications, and provide precise answers
+to knowledge-intensive queries by leveraging both visual and
+textual modalities. Through these findings, RS-RAG demon-
+strates its potential to substantially advance the capabilities of
+VLMs in remote sensing, effectively bridging the gap between
+imagery and comprehensive contextual knowledge. Our main
+contributions are summarized as follows:
+• We construct the Remote Sensing World Knowledge
+(RSWK) dataset, a large-scale multimodal dataset con-
+taining 14,820 high-resolution remote sensing images and
+rich textual descriptions of globally recognized landmarks
+across 16 categories from 184 countries. The descriptions
+incorporate both domain-specific remote sensing knowl-
+edge and general world knowledge.
+• We propose RS-RAG, a novel Retrieval-Augmented Gen-
+eration framework tailored for remote sensing vision-
+language tasks. RS-RAG retrieves semantically relevant
+knowledge from a multimodal vector database and in-
+tegrates it with the input via knowledge-conditioned
+prompt construction, significantly enhancing contextual
+reasoning capabilities.
+• We design a benchmark spanning image captioning,
+classification, and VQA, with VQA further divided into
+three subtypes to assess comprehensive reasoning, remote
+sensing expertise, and world knowledge. This setup facil-
+itates systematic evaluation of both semantic perception
+and knowledge-intensive reasoning.
+• Extensive experiments demonstrate that RS-RAG consis-
+tently outperforms state-of-the-art VLMs across all tasks,
+particularly on queries requiring external world knowl-
+edge. These results highlight the effectiveness of RS-
+RAG in bridging remote sensing imagery with structured
+knowledge, and point to promising future directions for
+research on remote sensing vision-language models.
+II. RELATED WORK
+A. Remote Sensing Multimodal Datasets
+Several multimodal datasets [12], [13], [14], [15], [16] have
+been developed to bridge the gap between vision and language
+in the remote sensing domain. UCM Captions [17], Sydney
+Captions [17], and RSICD [18] are among the earliest datasets
+that provide textual descriptions for remote sensing images.
+Each image in these datasets is paired with five relatively
+simple human-written sentences, offering only a basic level of
+semantic information. To enhance the quality and richness of
+textual annotations, RSGPT [6] recently introduced RSICap,
+a high-quality image captioning dataset with detailed human-
+annotated descriptions of aerial scenes. RSICap serves as
+a valuable resource for fine-tuning and developing domain-
+specific vision-language models in remote sensing. Beyond
+manual annotation, researchers have explored the construction
+of large-scale datasets using automatic or hybrid approaches
+applied to existing data sources. For instance, RS5M [19]
+was created by aggregating 11 publicly available image–text
+paired datasets along with three large-scale class-level labeled
+datasets. Captions were generated using BLIP-2, resulting in
+
+3
+Worldwide Landmark Data Collection
+Geographic Information 
+Extraction
+Remote Sensing Imagery 
+Acquisition
+Location
+Address 
+Architectural 
+Characteristics
+Area
+Notable Visitors
+Details
+Major Events
+Historical 
+Background
+Name
+Cultural significance
+Construction Period
+Primary Function
+World Knowledge Retrieval
+…
+Name: Eiffel Tower
+Location: 7th arrondissement, Paris, France
+Historical Background:
+Designed by engineers
+Maurice Koechlin and Émile Nouguier, was constructed
+from 1887 to 1889 for the 1889 World‘s …
+Major Events: Gaining UNESCO World Heritage 
+status in 1991……
+… …
+RESIZE
+CROP
+PRUNE
+NORMALIZE
+… …
+Knowledge Attribute Structuring
+Image Processing
+Remote Sensing World Knowledge Dataset
+Remote Sensing Knowledge Gathering and Structuring
+Fig. 1. The construction process of the Remote Sensing World Knowledge (RSWK) dataset begins with collecting landmark data from around the world,
+followed by extracting geographic information to pinpoint precise location coordinates. Using these coordinates, remote sensing images are acquired, which are
+further standardized through image processing techniques. Corresponding remote sensing expert knowledge, such as surface temperature, climate, atmospheric
+conditions, and spectral indices, is also included. Additionally, world knowledge is retrieved from online resources, providing detailed background information
+about the landmarks, including historical context, cultural significance, and major events. This combined information is structured into organized attributes to
+align image and text data, forming a final multimodal dataset. The resulting RSWK dataset integrates high-resolution images with extensive remote sensing
+and world knowledge, enabling advanced semantic understanding in remote sensing applications.
+a diverse and large-scale dataset suitable for training founda-
+tional multimodal models. Similarly, RemoteCLIP [20] com-
+piled a large-scale dataset by integrating 10 object detection
+datasets, 4 semantic segmentation datasets, and 3 remote sens-
+ing image–text datasets, enabling contrastive pretraining for
+cross-modal alignment. In addition, GeoChat [21] introduced
+the RS Multimodal Instruction Dataset, which incorporates
+heterogeneous data sources, including three object detection
+datasets, one scene classification dataset, and a visual question
+answering dataset focused on flood detection. Recent datasets
+such as SkyScript [22], LhrsAlign [23], and ChatEarthNet [24]
+leverage external geospatial sources, such as OpenStreetMap,
+along with geo-coordinates to construct large-scale, glob-
+ally distributed multimodal benchmarks. More recently, Fe-
+dRSCLIP [25] proposed a new multimodal remote sensing
+dataset specifically designed for federated learning scenarios,
+further expanding the applicability of vision-language research
+in distributed settings. These efforts collectively advance the
+development of remote sensing VLMs by providing diverse,
+rich, and large-scale multimodal data resources tailored to
+various downstream tasks.
+B. Remote Sensing Multimodal Model
+With the growing availability of remote sensing multi-
+modal datasets, a number of vision-language models [6],
+[7], [8], [9], [10], [11] have been proposed to enhance the
+understanding and interpretation of aerial imagery through
+natural language. [26] provides the first comprehensive review
+of vision-language models in remote sensing, systematically
+summarizing tasks, datasets, and methods, and identifying key
+challenges and future directions. RSCLIP [27] is a pioneering
+vision-language model designed for remote sensing scene clas-
+sification, which leverages contrastive vision-language super-
+vision and incorporates a pseudo-labeling technique along with
+a curriculum learning strategy to improve zero-shot classifica-
+tion performance through multi-stage fine-tuning. RSGPT [6]
+represents one of the earliest attempts to build a generative
+pretrained model for remote sensing. It fine-tunes only the
+Q-Former and a linear projection layer on the proposed RSI-
+Cap dataset, achieving notable improvements in both image
+captioning and visual question answering tasks. Similarly,
+GeoChat [21] adapts the LLaVA-1.5 architecture and fine-
+tunes it on its proposed remote sensing multimodal instruction-
+following dataset, offering multi-task conversational capabili-
+ties grounded in high-resolution satellite imagery. In addition,
+to address the common issue of hallucination in remote sensing
+vision-language models, a Helpful and Honest Remote Sensing
+Vision-Language Model [8], named H2RSVLM, is proposed
+and fine-tuned on the RSSA dataset, the first dataset specif-
+ically designed to enhance self-awareness in remote sensing
+VLMs. More recently, RS-MoE [28] was proposed as the first
+Mixture-of-Experts-based VLM tailored for remote sensing. It
+features a novel instruction router that dynamically dispatches
+tasks to multiple lightweight expert LLMs, allowing each
+expert to specialize in a specific subset of tasks.
+
+4
+Name
+Sydney Opera House
+Category
+Theater
+Area
+Bennelong Point, Sydney
+Location
+33°51′25″S 151°12′55″E
+Address
+Bennelong Point, Sydney, New South Wales, 
+Australia
+Physical Area 1.8 hectares (4.4 acres)
+Construction 
+Period
+1959–1973
+Historical 
+Background
+The Sydney Opera House is a multi-venue 
+performing arts centre in Sydney, New South 
+Wales, Australia. Designed by Danish architect Jørn
+Utzon and completed by an Australian architectural 
+team headed by Peter Hall, the building was 
+formally opened by Queen Elizabeth II on 20 
+October 1973. It is widely regarded as one of the 
+world's most famous and distinctive buildings and 
+a masterpiece of 20th-century architecture.
+Major Events
+• Formal Opening (1973): The Sydney Opera House 
+was formally opened by Queen Elizabeth II on 20 
+October 1973, featuring a performance of 
+Beethoven's Symphony No. 9 and fireworks.
+• UNESCO Designation (2007): The Sydney Opera 
+House was designated a UNESCO World Heritage 
+Site in 2007, recognizing its cultural and 
+architectural significance.
+Architectural 
+Characteristi
+cs
+The Sydney Opera House features a modern 
+expressionist design with large precast concrete 
+"shells" forming the roofs. It rests on 588 concrete 
+piers and uses over 2,000 pre-cast sections. 
+Exterior cladding includes pink granite; interiors 
+use white birch plywood and glulam.
+Cultural 
+Significance
+The Sydney Opera House is a UNESCO World 
+Heritage Site and national icon of Australia. It 
+appears on multiple heritage registers and was a 
+finalist in the New 7 Wonders campaign.
+Primary 
+Function
+Performing arts centre
+Notable 
+Visitors
+Queen Elizabeth II
+Details
+The Opera House hosts over 1,800 performances 
+yearly with 1.4 million+ attendees. It is managed by 
+the Sydney Opera House Trust and offers guided 
+and backstage tours. Facilities include multiple 
+venues, studios, shops, restaurants, and bars.
+Albedo
+0.08470577
+Albnirdf
+0.154914677
+Albnirdr
+0.125447109
+Albvisdf
+0.046561256
+Albvisdr
+0.032145903
+Emis
+0.993293047
+Evland
+6.77e-05
+Gwetprof
+0.47887823
+Lc_type1
+17
+Lc_type2
+0
+Lc_type3
+0
+Lc_type4
+0
+Lc_type5
+0
+LST_Day_1km
+Nan
+LST_Night_1km
+Nan
+Prectotland
+7.51e-08
+Saa
+Nan
+Slp
+100563.0
+Smland
+0.0
+Speed
+3.065944433
+Sr_b1
+16116.0
+Sr_b2
+16175.0
+Sr_b3
+16490.0
+Sr_b4
+16883.0
+Sr_b5
+19245.0
+Sr_b6
+17615.0
+Sr_b7
+16327.0
+Ts
+298.9092712
+Ulml
+2.087645292
+Vaa
+Nan
+Vlml
+-0.902604997
+Vza
+Nan
+Mean_2m_air_temperature
+298.4058533
+Mean_sea_level_pressure
+100645.2734
+Surface_pressure
+99936.96875
+Total_precipitation
+0.014615823
+Ndvi
+0.02
+Ndwi
+-0.04
+Ndbi
+-0.09
+a) Global distribution of landmarks used in the RSWK dataset.
+b) Statistics of landmark distribution across countries and categories in the RSWK dataset.
+c) An example from the RSWK dataset showing the Sydney Opera House.
+Domain Knowledge
+World Knowledge
+Imagery
+Fig. 2. Overview of the RSWK dataset. (a) Global distribution of landmarks used in the dataset, with color indicating the number of landmarks per country.
+(b) Statistical summaries of landmark counts across the top 50 countries (left) and all 16 categories (right). (c) A specific example from the RSWK dataset,
+showcasing the Sydney Opera House, including its satellite imagery, remote sensing domain knowledge, and structured world knowledge.
+C. Retrieval-Augmented Generationl
+To address the limitations of VLMs in handling knowledge-
+intensive or domain-specific tasks, Retrieval-Augmented Gen-
+eration (RAG) [29] has emerged as a promising solution for
+enhancing the accuracy and reliability of generative models by
+incorporating information from external, relevant knowledge
+sources. By retrieving and integrating contextual knowledge
+during inference, RAG significantly improves the reasoning
+ability and factual consistency of large models. In recent years,
+researchers have explored the integration of RAG into a variety
+of domains, including natural language processing[30], natural
+image understanding[31], and video analysis [32]. However,
+the application of RAG in the remote sensing domain remains
+limited. More recently, RAGCap [33] proposes a fine-tuning-
+free method for remote sensing image captioning, where
+relevant image-caption pairs are retrieved from a training set
+to guide generation. Similarly, ImageRAG [34] introduces an
+image-contextual retrieval mechanism based on RAG princi-
+ples, which transforms ultra-high-resolution remote sensing
+image analysis into a long-context selection task, enabling
+efficient understanding with minimal training data.
+III. DATASET CONSTRUCTION
+Most existing remote sensing multimodal datasets focus
+primarily on basic descriptions of objects in a scene, typically
+providing only information about the objects present. While
+these datasets serve a purpose in supporting fundamental tasks
+such as scene classification and image captioning, they fall
+short in applications requiring complex semantic understand-
+ing or contextual awareness. To address this limitation, in
+our paper, we propose the Remote Sensing World Knowl-
+edge (RSWK) dataset, which encompasses high-resolution
+remote sensing imagery of well-known locations worldwide,
+along with domain knowledge and world knowledge described
+in natural language. This dataset not only fills the gap in
+knowledge depth and breadth found in current remote sensing
+datasets but also provides a new foundation for advancing
+remote sensing technology toward intelligent applications.
+The core value of remote sensing data lies in its ability to
+deliver rich geographic and spatial distribution information.
+By integrating high-resolution imagery from across the globe
+with detailed domain knowledge and world knowledge, the
+RSWK dataset extends this value, expanding the application
+of remote sensing data from traditional foundational tasks to
+complex scenarios that require deeper semantic understanding.
+A. Data Collection and Processing
+Fig. 1 illustrates the end-to-end pipeline for constructing the
+RSWK dataset, which aims to bridge the gap between remote
+sensing domain knowledge and encyclopedic world knowledge
+of globally distributed landmarks. The pipeline comprises four
+key stages that systematically curate and align multimodal
+information from global sources, integrating high-resolution
+remote sensing imagery, remote sensing expert knowledge, and
+contextual world knowledge.
+1) Worldwide Landmark Data Collection: The first stage
+involves generating a comprehensive list of globally recog-
+
+5
+nized landmarks using GPT-4o [35]. To ensure broad coverage
+across geographic regions and cultural contexts, we prompt
+the model to identify representative landmarks spanning a
+wide range of categories, including transportation hubs (e.g.,
+airports), recreational areas (e.g., amusement parks, beaches),
+cultural institutions (e.g., museums, theaters, universities),
+historical sites, and natural environments (e.g., forests).
+2) Remote Sensing Imagery Acquisition: The second stage
+focuses on acquiring high-resolution satellite imagery for
+each landmark. We first utilize the Google Geocoding Maps
+API to obtain precise geographic coordinates and region-level
+viewpoint information for each target location. To resolve
+potential ambiguities in place names, we implement a cross-
+source validation mechanism that references multiple geospa-
+tial data providers and applies regional constraints to enhance
+geolocation accuracy. For image acquisition, we access the
+ArcGIS World Imagery Tile Map Service provided by Esri,
+which delivers high-resolution satellite imagery in standard
+XYZ tile format using the Web Mercator projection. Based
+on the retrieved geo-coordinates, we collect imagery tiles at
+appropriate zoom levels ranging from 16 to 18, depending on
+the spatial extent of each landmark. This adaptive zoom-level
+strategy ensures that landmarks of varying scales (e.g., airport,
+forest) are fully captured within the resulting imagery. To
+enable efficient downloading, we implement a multithreaded
+queue-based retrieval system that parallelizes tile requests
+across locations. The downloaded tiles are then mosaicked
+into seamless, high-resolution scene-level images. Finally,
+we apply standardized normalization, cropping, and resizing
+operations to ensure consistent image quality, resolution, and
+format across the dataset.
+3) Remote Sensing Knowledge Gathering and Structuring:
+The third stage focuses on acquiring structured remote sensing
+expert knowledge using Google Earth Engine (GEE)[36]. This
+knowledge spans a broad set of satellite-derived physical
+and environmental variables. These include surface reflectance
+bands, vegetation and land surface indices, as well as biophys-
+ical parameters like surface albedo, emissivity, and land cover
+classifications. In addition, the dataset incorporates a range
+of meteorological and geophysical variables obtained from
+authoritative products such as MERRA-2, HLS, and ERA5.
+These include land surface temperature, snowmelt flux, total
+precipitation, surface wind speed and direction, solar angles,
+and pressure-related measurements. To ensure temporal con-
+sistency between imagery and knowledge fields, all dynamic
+variables are aggregated either annually or monthly within the
+same year as the image acquisition.
+4) World Knowledge Retrieval: The final stage involves
+curating structured world knowledge to provide rich semantic
+context for each landmark. We leverage the Wikipedia API
+to extract descriptive entries for each site, encompassing
+diverse dimensions such as historical background, architectural
+characteristics, cultural significance, and major events. To
+ensure the relevance and quality of the extracted content,
+we apply a multi-step post-processing pipeline. Specifically,
+keyword-based filtering and entity recognition are used to
+discard generic or off-topic segments, while DeepSeek [37]
+is employed to refine textual content by correcting formatting
+inconsistencies, improving coherence, and removing noisy or
+redundant information. The resulting knowledge is clean, se-
+mantically rich, and structured into predefined fields, enabling
+effective integration with downstream vision-language tasks
+that require contextual understanding and factual grounding.
+TABLE I
+REMOTE SENSING DOMAIN KNOWLEDGE FIELDS, DESCRIPTIONS,
+TEMPORAL RESOLUTION, AND SOURCE FOR LANDMARK IN THE RSWK
+DATASET.
+Field Name
+Description
+Temporal Resolution
+Source
+Albedo
+Surface albedo, representing the reflectivity
+of the Earth’s surface
+Annual, Monthly
+MERRA-2 (M2T1NXRAD)
+Albnirdf
+Near-infrared diffuse surface albedo
+Annual, Monthly
+MERRA-2 (M2T1NXRAD)
+Albnirdr
+Near-infrared direct surface albedo
+Annual, Monthly
+MERRA-2 (M2T1NXRAD)
+Albvisdf
+Visible light diffuse albedo
+Annual, Monthly
+MERRA-2 (M2T1NXRAD)
+Albvisdr
+Visible light direct albedo
+Annual, Monthly
+MERRA-2 (M2T1NXRAD)
+Emis
+Surface emissivity, related to thermal radia-
+tion
+Annual, Monthly
+MERRA-2 (M2T1NXRAD)
+Evland
+Evaporation land (mm)
+Annual, Monthly
+MERRA-2 (M2T1NXLND)
+Gwetprof
+Profile soil moisture averaged over depth
+Annual, Monthly
+MERRA-2 (M2T1NXLND)
+LC_type1
+Land cover type (IGBP classification)
+Annual
+MODIS (MCD12Q1.061)
+LC_type2
+Land cover type (UMD classification)
+Annual
+MODIS (MCD12Q1.061)
+LC_type3
+Land cover type (LAI classification)
+Annual
+MODIS (MCD12Q1.061)
+LC_type4
+Land cover type (BGC classification)
+Annual
+MODIS (MCD12Q1.061)
+LC_type5
+Land cover type (Plant Functional Types
+classification)
+Annual
+MODIS (MCD12Q1.061)
+LST_Day_1km
+Daytime land surface temperature (°C)
+Annual, Monthly
+MODIS (MOD11A1.061)
+LST_Night_1km
+Nighttime land surface temperature (°C)
+Annual, Monthly
+MODIS (MOD11A1.061)
+Prectotland
+Total land precipitation (mm)
+Annual, Monthly
+MERRA-2 (M2T1NXLND)
+Saa
+Sun Azimuth Angle (°)
+Annual
+HLSL30 (HLS-2)
+Slp
+Sea level pressure (Pa)
+Annual, Monthly
+MERRA-2 (M2T1NXSLV)
+Smland
+Snowmelt flux land (mm)
+Annual, Monthly
+MERRA-2 (M2T1NXLND)
+Speed
+Surface wind speed (m/s)
+Annual, Monthly
+MERRA-2 (M2T1NXFLX)
+Sr_b1
+Band 1 (ultra blue, coastal aerosol) surface
+reflectance
+Annual, Monthly
+Landsat 9
+Sr_b2
+Band 2 (blue) surface reflectance
+Annual, Monthly
+Landsat 9
+Sr_b3
+Band 3 (green) surface reflectance
+Annual, Monthly
+Landsat 9
+Sr_b4
+Band 4 (red) surface reflectance
+Annual, Monthly
+Landsat 9
+Sr_b5
+Band 5 (near infrared) surface reflectance
+Annual, Monthly
+Landsat 9
+Sr_b6
+Band 6 (shortwave infrared 1) surface re-
+flectance
+Annual, Monthly
+Landsat 9
+Sr_b7
+Band 7 (shortwave infrared 2) surface re-
+flectance
+Annual, Monthly
+Landsat 9
+Ts
+Surface skin temperature (°C)
+Annual, Monthly
+MERRA-2 (M2T1NXSLV)
+Ulml
+Surface eastward wind (m/s)
+Annual, Monthly
+MERRA-2 (M2T1NXFLX)
+Vaa
+View Azimuth Angle (°)
+Annual
+HLSL30 (HLS-2)
+Vlml
+Surface northward wind speed (m/s)
+Annual, Monthly
+MERRA-2 (M2T1NXFLX)
+Vza
+View Zenith Angle (°)
+Annual
+HLSL30 (HLS-2)
+Mean_2m_air_temperature
+Average air temperature at 2m height (°C)
+Annual, Monthly
+ERA5 (Daily Aggregates)
+Mean_sea_level_pressure
+Mean sea level pressure (Pa)
+Annual, Monthly
+ERA5 Daily Aggregates
+Surface_pressure
+Surface pressure (Pa)
+Annual, Monthly
+ERA5 (Daily Aggregates)
+Total_precipitation
+Total precipitation (mm)
+Annual, Monthly
+ERA5 (Daily Aggregates)
+NDVI
+Normalized Difference Vegetation Index
+Annual, Monthly
+Landsat 9
+NDWI
+Normalized Difference Water Index
+Annual, Monthly
+Landsat 9
+NDBI
+Normalized Difference Building Index
+Annual, Monthly
+Landsat 9
+TABLE II
+WORLD KNOWLEDGE FIELDS AND DESCRIPTIONS FOR LANDMARK IN
+THE RSWK DATASET.
+Field Name
+Description
+Name
+The official or commonly known name of the landmark.
+Category
+The type of the landmark.
+Area
+The general geographical region or country where the land-
+mark is located.
+Location
+Latitude and longitude coordinates of the landmark.
+Address
+Full postal or descriptive address of the landmark.
+Physical_Area
+The spatial footprint or size of the landmark.
+Construction_Period
+The years or range of years during which the landmark was
+constructed.
+Historical_Background
+Historical context, including origin, founding date, and devel-
+opment over time.
+Major_Events
+Key historical or cultural events that occurred at the landmark.
+Architectural_Characteristics
+Notable features such as design style, construction materials,
+and structure.
+Cultural_Significance
+The cultural, symbolic, or religious importance of the land-
+mark.
+Primary_Function
+The main use or role of the landmark (e.g., tourist attraction,
+government building).
+Notable_Visitors
+Famous individuals or groups who have visited the site.
+Details
+Additional facts or interesting information not captured by
+other fields.
+B. Data Statistics
+Through the above data construction pipeline, the RSWK
+dataset successfully collected a total of 14,820 landmark
+instances from 184 countries, each accompanied by high-
+resolution satellite imagery, structured remote sensing knowl-
+edge, and comprehensive world knowledge descriptions. The
+imagery is categorized into 16 representative scene classes,
+including Airport, Amusement Park, Beach, Bridge, Casino,
+
+6
+Church, Government Building, Historic Site, Mansion, Mu-
+seum, Park, Stadium, Theater, Tower, University, and Forest.
+This categorization captures both urban and natural scenes,
+enabling the dataset to support a wide range of geospatial
+vision-language tasks. The remote sensing knowledge module
+comprises 39 expert-derived variables, as detailed in Table I,
+including surface reflectance, land surface temperature, albedo,
+precipitation, and soil moisture. In parallel, each landmark is
+enriched with 14 structured world knowledge fields, as shown
+in Table II, capturing descriptive and contextual information
+such as Historical Background, Cultural Significance, Archi-
+tectural Characteristics, and Primary Function.
+The global spatial distribution of the landmarks is visualized
+in Fig.2(a), demonstrating wide coverage across all major con-
+tinents. Notably, the dataset includes landmarks from a diverse
+range of regions, effectively covering most major countries
+worldwide. To provide a more detailed view of the dataset
+composition, we present the distribution of landmarks across
+the top 50 countries sorted by landmark count in Fig.2(b, left).
+It can be observed that countries such as the United States,
+the United Kingdom, China, and Japan contribute the largest
+number of landmarks. This reflects both the cultural richness
+and the degree of documentation available for landmarks in
+these regions. In addition, Fig.2(b, right) shows the frequency
+distribution of the top 16 landmark categories. The category
+distribution is relatively balanced, highlighting the diverse
+types of landmarks captured in the dataset and ensuring a rich
+set of semantic concepts for downstream tasks. To provide an
+intuitive example of how the data is structured, we present the
+Sydney Opera House in Fig.2(c) as a representative landmark.
+The figure illustrates the three core components of each RSWK
+entry: the satellite imagery, the domain knowledge, and the
+structured world knowledge. This tri-modal representation
+demonstrates the depth and richness of the dataset, supporting
+a wide range of geospatial understanding and vision-language
+reasoning tasks.
+TABLE III
+OVERVIEW OF DATASET STATISTICS ACROSS TASK CATEGORIES IN BOTH
+FULL AND MINI BENCHMARK SETTINGS.
+Task Category
+Total (Full)
+Train (Full)
+Test (Full)
+Total (Mini)
+Train (Mini)
+Test (Mini)
+Image Captioning
+14820
+11827
+2993
+7408
+5912
+1496
+Image Classification
+14820
+11827
+2993
+4800
+3200
+1600
+VQA
+VQA C
+22604
+18103
+4501
+11301
+9051
+2250
+VQA RSK
+14820
+11827
+2993
+7408
+5912
+1496
+VQA WK
+14820
+11827
+2993
+7409
+5913
+1496
+C. Benchmark Setting
+To facilitate systematic evaluation of VLMs in the context
+of remote sensing and world knowledge understanding, we
+establish a comprehensive benchmark suite based on the
+RSWK dataset. This benchmark encompasses three core tasks:
+image captioning, image classification, and VQA. Specifically,
+the dataset includes 14,820 image captioning samples, each
+paired with a descriptive sentence that summarizes the visual
+content of the satellite imagery along with relevant remote
+sensing expert knowledge and contextual world knowledge.
+It also includes 14,820 image classification question-answer
+pairs, where each question queries the semantic category of
+the depicted scene, and the answer corresponds to a predefined
+class label. For the VQA task, we construct a total of 52,244
+question-answer pairs aimed at evaluating the model’s mul-
+timodal reasoning abilities. These VQA instances are further
+divided into three types: (1) VQA C: 22,604 comprehensive
+questions that require holistic understanding of both visual
+content and combined remote sensing and world knowledge;
+(2) VQA RSW: 14,820 remote sensing knowledge questions
+that involve interpreting scientific and geophysical attributes;
+and (3) VQA WK: 14,820 world knowledge questions that
+focus on encyclopedic or factual information. To support
+model development and reproducible evaluation, we further
+split the dataset into 11,827 training samples and 2,993 testing
+samples. The exact sample counts for each task type are
+summarized in Table III. Additionally, considering the com-
+putational constraints faced by some researchers, we construct
+a mini-benchmark version comprising approximately 50% of
+the full data for each task category, with detailed statistics also
+reported in Table III.
+IV. METHODOLOGY
+To bridge the semantic gap between remote sensing imagery
+and comprehensive external knowledge, we propose RS-RAG,
+a Retrieval-Augmented Generation framework designed to in-
+tegrate both domain-specific and world knowledge into vision-
+language reasoning. As illustrated in Fig. 3, RS-RAG consists
+of two main components: the Multi-Modal Knowledge Vector
+Database Construction module, which encodes remote sensing
+imagery and textual knowledge into a unified embedding
+space; and the Knowledge Retrieval and Response Gener-
+ation module, which retrieves and fuses the most relevant
+knowledge to support downstream tasks. By conditioning the
+vision-language model on retrieved context, RS-RAG enables
+knowledge-grounded understanding for diverse applications
+such as image captioning, scene classification, and visual
+question answering.
+A. Problem Formulation
+VLMs are designed to generate natural language outputs
+conditioned on multimodal inputs, typically a visual obser-
+vation and a textual prompt. Let qI denote the input image
+(e.g., a remote sensing image), and qT the associated textual
+prompt (e.g., a question or instruction). A conventional VLM
+seeks to generate a natural language response ˆy by modeling
+the conditional probability distribution over output space and
+selecting the most probable response. Formally, this can be
+expressed as:
+ˆy = arg max
+y
+P(y | qT , qI; θVLM),
+(1)
+where θVLM represents the parameters of the VLM, ˆy can
+represent an image caption, a classification label, or an answer
+to a visual question. This closed-form generation framework
+assumes that all necessary information for reasoning is either
+visually grounded in the input image qI or implicitly encoded
+within the model parameters θVLM. While this assumption
+often holds for natural image datasets, it becomes problematic
+in the domain of remote sensing. Remote sensing images
+
+7
+Text
+Encoder
+Text Embedding
+Chunking
+Domain and World Knowledge
+Encoding
+Image
+Encoder
+Image
+Embedding
+Remote Sensing Image
+Encoding
+Image Captioning
+Image Classification
+Visual Question Answering
+Knowledge-Conditioned 
+Context Fusion
+Knowledge-Augmented Prompt 
+Construction
+Vision-Language 
+Model
+Knowledge-Grounded Response 
+Generation 
+a) Multi-Modal Knowledge Vector Database Construction
+b) Knowledge Retrieval and Response Generation
+Vector Database
+Response:
+Top-τ Images
+Retrieval Re-ranking
+Top-K Texts
+Text
+Encoder
+Which famous landmark 
+or city is shown in this 
+satellite image?
+Image
+Encoder
+Image
+Embedding
+Text Embedding
+The Sydney Opera House is a 
+multi-venue
+performing arts 
+centre in Sydney, New South 
+Wales, Australia. Located on 
+the 
+foreshore 
+of
+Sydney 
+Harbour, it is widely regarded 
+as one of the world's most 
+famous 
+and 
+distinctive 
+buildings, and a masterpiece of 
+20th-century architecture.
+The satellite image shows the Sydney 
+Opera House, a world-famous landmark 
+located in Sydney, Australia.
+Query:
+Top-τ Texts
+User:
+What is the primary land cover type in this remote sensing image
+based on spectral coefficients?
+RS-RAG:
+Based on the analysis of NDVI, NDWI, and NDBI, we can 
+identify multiple land cover types in this area. NDWI reveals 
+the presence of water bodies, particularly in the region 
+corresponding to harbour. NDBI highlights built-up areas, 
+capturing the bridge structure and surrounding urban 
+infrastructure. Meanwhile, NDVI indicates patches of 
+vegetation, primarily in green spaces near the base of the 
+bridge and surrounding parks. 
+User:
+What is the name and location of the building in this image?
+RS-RAG:
+The building in this remote sensing image is the Sydney 
+Harbour Bridge, located in Sydney, Australia.
+User:
+What is the category of this remote sensing image? Answer the 
+question using a single word or phrase. 
+RS-RAG:
+Stadium.
+User:
+What is the category of this remote sensing image? Answer the 
+question using a single word or phrase. 
+RS-RAG:
+Airport.
+xxxx
+x
+User:
+Please provide detailed descriptions for this remote sensing 
+image.
+RS-RAG:
+This is a remote sensing image of the Eiffel Tower and its 
+surrounding area, located in the 7th arrondissement in western 
+Paris, at the northwest end of the Champ de Mars, with an 
+elevation of 33 meters. The image displays a region 
+characterized by urban land cover, with nearby grasslands, 
+roads, and water. The Seine River is visible in the upper left 
+corner of the image. Standing at 324 meters, the Eiffel Tower 
+is one of the tallest structures in Paris. Built between 1887 and 
+1889 for the 1889 Exposition Universelle (World’s Fair) held 
+to celebrate the 100th anniversary of the French Revolution, 
+the tower was designed by engineer Gustave Eiffel. Its unique 
+iron lattice structure has since become an iconic symbol of 
+France. The surrounding architecture reflects Paris‘s historical 
+and cultural heritage, blending classical and modern structures. 
+The open spaces around the Eiffel Tower, including the 
+Champ de Mars, serve as popular spots for tourists, offering 
+scenic green areas amidst the dense cityscape.
+Fig. 3. Overview of the proposed Remote Sensing Retrieval-Augmented Generation (RS-RAG) model. It consists of two main processes: (a) The Multi-Modal
+Knowledge Vector Database Construction module encodes remote sensing imagery and domain/world knowledge into a unified vector space via image and text
+encoders, enabling efficient cross-modal retrieval. (b) The Knowledge Retrieval and Response Generation module retrieves top-k relevant knowledge based
+on image and/or textual queries, and re-ranks the results for better relevance. Retrieved knowledge is fused into the prompt through Knowledge-Conditioned
+Context Fusion, guiding the Vision-Language Model (VLM) to generate Knowledge-Grounded Responses. The RS-RAG model supports multiple downstream
+tasks such as Image Captioning, Image Classification, and Visual Question Answering, as demonstrated in the bottom section.
+typically capture large-scale scenes, such as entire cities or
+extensive geographic regions, where accurate interpretation of-
+ten relies on understanding cultural, historical, or geographical
+significance. Such knowledge is rarely discernible from visual
+features and is not explicitly modeled in conventional VLMs.
+To address this limitation, we extend the standard VLM
+formulation by incorporating external, query-relevant knowl-
+edge. Specifically, we adopt a RAG framework, wherein a set
+of top-k relevant knowledge snippets R is retrieved from an
+external corpus based on the multimodal similarity between
+the input image–text pair (qI, qT ) and the knowledge index.
+The retrieved context R is then integrated with the original
+inputs to guide the response generation process. Formally, the
+objective becomes:
+ˆy = arg max
+y
+P(y | qT , qI, R; θVLM),
+(2)
+where the additional context R allows the model to produce
+more informative and contextually grounded outputs. This
+open-book generation paradigm is particularly well-suited
+for remote sensing applications, where high-level semantic
+understanding often depends on both domain-specific knowl-
+edge (e.g., land use categories) and broader world knowledge
+(e.g., cultural or geopolitical significance)—information that
+is typically absent from raw pixel data alone.
+B. Multi-Modal Knowledge Vector Database Construction
+To enable retrieval-augmented generation, we construct a
+Multi-Modal Knowledge Vector Database (MKVD) by encod-
+ing the RSWK dataset, which contains high-resolution remote
+sensing images Ii and their paired textual descriptions Ti.
+These data are transformed into dense embeddings using CLIP
+and stored in a shared semantic space to support efficient and
+flexible cross-modal retrieval. We adopt CLIP as a unified
+encoder consisting of a image encoder fI(·) and a text encoder
+fT(·), each mapping input into a shared embedding space Rd.
+Each image Ii is encoded into a visual embedding:
+vi = fI(Ii) ∈Rd.
+(3)
+In
+parallel,
+the
+corresponding
+textual
+document
+Ti
+is
+segmented
+into
+mi
+semantically
+coherent
+chunks
+
+8
+{Ti,1, Ti,2, . . . , Ti,mi}, and each chunk is encoded using
+the text encoder:
+ti,j = fT(Ti,j) ∈Rd.
+(4)
+The resulting image embeddings {vi} and text embeddings
+{ti,j} are indexed in Qdrant, a high-performance vector
+database optimized for approximate nearest neighbor (ANN)
+search. To organize the data, embeddings are stored in two
+separate collections: Dimage for image embeddings and Dtext for
+text embeddings. Each image-text pair is linked via a unique
+identifier IDi. Specifically, each vi ∈Dimage is associated with
+a set {ti,j}mi
+j=1 ⊂Dtext, which encodes domain-specific and
+general world knowledge about the same location or object.
+Metadata such as raw textual descriptions, image paths, and
+geospatial attributes are stored alongside each entry as pay-
+loads. This database structure supports modality-specific and
+cross-modal retrieval, serving as the foundation for external
+knowledge integration in the RS-RAG framework.
+C. Knowledge Retrieval and Response Generation
+After constructing the Multi-Modal Knowledge Vector
+Database, we implement a retrieval-augmented generation
+pipeline that enhances vision-language understanding by in-
+corporating external knowledge retrieved via cross-modal sim-
+ilarity. Given a user query q, composed of an image component
+qI and a textual component qT, we first encode each input into
+dense embeddings:
+vT = fT(qT),
+vI = fI(qI),
+(5)
+where fT(·) and fI(·) denote the CLIP-based text and im-
+age encoders, respectively. To retrieve semantically relevant
+knowledge, we perform similarity search in both the text and
+image embedding spaces, retrieving the top-τ candidates from
+each modality:
+Rτ
+T = Topτ(vT, Dtext),
+Rτ
+I = Topτ(vI, Dimage),
+(6)
+where Dtext and Dimage represent the text and image embedding
+collections in the vector database. While the initial retrieval
+from each modality yields candidates based on unimodal
+similarity, these results may contain semantically redundant,
+irrelevant, or inconsistent entries due to the disjoint nature of
+visual and textual embedding spaces. To address this issue,
+we introduce a retrieval re-ranking step that jointly considers
+both modalities. Specifically, we first merge the retrieved sets
+from each modality, Rfused = Rτ
+T ∪Rτ
+I . Each candidate is then
+assigned a fused similarity score via weighted combination:
+score(ri) = (1 −α) · sT(ri) + α · sI(ri),
+(7)
+where stext(ri) and simage(ri) are the cosine similarities be-
+tween the query and the candidate in the respective embedding
+spaces. The weighting parameter α ∈[0, 1] controls the rela-
+tive influence of each modality.Based on these fused scores,
+we select the top-K most relevant candidates:
+{k1, . . . , kK} = TopK ({score(ri) | ri ∈Rfused}) .
+(8)
+To enhance semantic coherence and eliminate redundancy
+among the retrieved segments, we apply a Knowledge-
+Conditioned Context Fusion module that consolidates them
+into a single, contextually grounded representation. Specif-
+ically, a frozen large language model Lfuse is employed to
+synthesize the knowledge-conditioned context R from the top-
+ranked knowledge snippets:
+R = Lfuse({k1, . . . , kK}).
+(9)
+This fusion step consolidates salient content from the re-
+trieved segments into a compact, context-aware representation,
+thereby facilitating structured prompt construction. Given the
+original user query qT and the fused knowledge context R,
+we construct a retrieval-augmented prompt Pq via Knowledge-
+Augmented Prompt Construction as follows:
+Pq = Concat [ϕ, qT , ψ, R]
+(10)
+where ϕ is a task-specific instruction token (e.g., “Answer the
+following question based on the retrieved knowledge:”), ψ is
+a knowledge header (e.g., “Retrieved context:”), and R is the
+fused knowledge used to support reasoning. Finally, the com-
+posed prompt Pq, along with the visual input qI, is provided
+to the VLM, which performs Knowledge-Grounded Response
+Generation via joint multimodal reasoning and generates the
+final output:
+ˆy = GenerateθVLM(y | Image = qI, Prompt = Pq).
+(11)
+By leveraging retrieval from a multi-modal knowledge base,
+this framework empowers the RSVLMs to go beyond purely
+visual grounding by integrating both domain-specific knowl-
+edge and broader world knowledge, including cultural, his-
+torical, and geopolitical context. This enriched understanding
+enables the model to generate more accurate, context-aware,
+and semantically comprehensive outputs. In doing so, our RS-
+RAG framework effectively bridges the gap between remote
+sensing imagery and external knowledge sources, establishing
+a retrieval-augmented generation paradigm tailored to the
+unique demands of the remote sensing domain.
+V. EXPERIMENTS
+A. Experimental Setup
+All input images are resized to 512 by 512 pixels be-
+fore being fed into the models. We evaluate several state-
+of-the-art vision-language models as baselines, including
+InternVL2.5-Instruct-8B [38], Janus-Pro-7B [39], Qwen-2.5-
+VL-7B-Instruct [40], LLaMA-3.2-Vision-11B-Instruct [41],
+RSGPT [6], and Geochat [21]. Our proposed RS-RAG model
+is built upon Qwen-2.5-VL-7B. To better adapt these models to
+the remote sensing domain, we perform instruction tuning on
+the RSWK dataset using Low-Rank Adaptation (LoRA) [43].
+Fine-tuning is conducted for 3 epochs with a batch size of
+1, using the Adamw optimizer and an initial learning rate of
+1 × 10−4. All experiments are performed using 3 NVIDIA
+RTX A6000 GPUs, each with 48 GB of memory.
+To comprehensively evaluate model performance, we adopt
+a set of standard metrics tailored to each task. For image
+captioning and visual question answering, we report BLEU-
+1, BLEU-2, BLEU-3, BLEU-4, METEOR, ROUGE-L, and
+CIDEr to measure the fluency, relevance, and informativeness
+of generated text. For the classification task, we evaluate
+
+9
+Question: 
+Please provide detailed 
+descriptions 
+for 
+this 
+remote sensing image.
+InternVL2.5: This is a remote sensing image of Boston University.  The image shows a dense urban area with numerous buildings of varying 
+sizes, shapes, and roof colors, interspersed with roads and parking lots…University located in Boston, Massachusetts, United States, at Location: 
+42°21′52″N 71°4′33″W with the Address: 404 Bay State Road, Boston, Massachusetts 02215, U.S., having a Physical Area of 107 acres (0.43 
+km²) and a Construction Period from 1867… Remote sensing expert knowledge includes an ALBEDO of 0.1, ALBNIRDF of 0.11, ALBNIRDR of 0.15, 
+ALBVISDF of 0.05, ALBVISDR of 0.08, EMIS of 0.99, EVLAND of 845.53, GWETPROF of 0.6, LC_Type1 of 13, which represents Urban and Built-up 
+Lands…
+Janus-Pro: This is a remote sensing image of University of Bucharest.  Numerous buildings with gray, brown, and white rooftops are arranged 
+around a central plaza, with roads and green spaces interspersed…categorized as a University, is located in Bucharest, Romania, at coordinates 
+44°25′41″N 26°09′20″E, with the specific address being Str. Spiru Haret no. 6, Bucharest, Romania.…Remote sensing expert knowledge for the 
+university includes: ALBEDO (0.17), ALBNIRDF (0.23), ALBNIRDR (0.27), ALBVISDF (0.07), ALBVISDR (0.08), EMIS (0.98), EVLAND (512.47), 
+GWETPROF (0.61), LC_Type1 (13, representing barren or sparsely vegetated areas, indicating minimal vegetation cover…
+Qwen2.5-VL: This is a remote sensing image of University of Illinois at Urbana–Champaign.  The image shows a dense collection of buildings 
+with varying roof colors and shapes, interspersed with roads and patches of green vegetation...categorized as a University, is located in 
+Champaign-Urbana, Illinois, United States at 40.28306°N 87.72472. Mathews Ave. Champaign, IL 61820.  The campus spans 1,900 acres (770 
+ha) and was constructed between 1867 and 1907... Remote sensing expert knowledge reveals an albedo of 0.19, near-infrared albedo of diffuse 
+radiation at 0.26, near-infrared albedo of direct radiation at 0.31, visible albedo of diffuse radiation at 0.09…
+Llama-3.2: This is a remote sensing image of University of Maryland, College Park.A large, rectangular, dark-roofed building with a central 
+courtyard is prominent in the center, surrounded by smaller, light-roofed structures, roads, and green spaces… located in Prince George's County, 
+Maryland, at coordinates 39°01′18″N 76°56′16″W, is a prominent university with a physical area of 1,382 acres (5.59 km²)… Remote sensing 
+expert knowledge for the site includes an albedo of 0.14, NIR diffuse albedo (ALBNIRDF) of 0.2, NIR direct albedo (ALBNIRDR) of 0.24, visible 
+diffuse albedo (ALBVISDF) of 0.06, visible direct albedo (ALBVISDR) of 0.07, emissivity (EMIS) of 0.98, evapotranspiration (EVLAND) of 1009.56 
+mm, and groundwater profile (GWETPROF) of 0.62…
+RS-RAG:  This is a remote sensing image of Massachusetts Institute of Technology. The image displays a dense urban environment characterized by numerous buildings with varied roof 
+shapes and colors, interspersed with roads, parking areas, and patches of green vegetation… categorized as a University located in Cambridge, Massachusetts, United States, specifically at 
+coordinates 42°21′35″N 71°5′31″W or 42.3600006104 latitude and -71.09000092 longitude, with an address of 77 Massachusetts Avenue, Cambridge, MA 02139, USA, covering a 
+physical area of 166 acres (67.2 ha); its construction period includes being established in 1861 and relocating to its current campus in 1916… ALBEDO: 0.1, ALBNIRDF: 0.11, ALBNIRDR: 0.15, 
+ALBVISDF: 0.06, ALBVISDR: 0.1, EMIS: 0.99, EVLAND: 845.53mm, GWETPROF: 0.6, LC_Type1: 13, LC_Type2: 13.0, LC_Type3: 10.0, LC_Type4: 8.0, LC_Type5: 9.0, LST_Day_1km: 20.51°C, 
+LST_Night_1km: 7.24°C, PRECTOTLAND: 1025.91mm, SAA: 158.14°, SLP: 101616.54Pa, SMLAND: 131.75mm, SPEED: 5.15m/s...
+Geochat: This is a remote sensing image of Cathedral Church of the Holy Trinity, Guildford. The cathedral, with its distinctive cruciform shape and grey roof, is situated amidst a dense 
+urban area of predominantly red-roofed buildings...categorized as a Church, is located in Guildford, Surrey, England at 51.24794°N, 0.59944°W (51.2499984741, -0.600000012), with the 
+address High Street, Guildford, Surrey, England.  The cathedral, situated at the junction of High Street and Stag Lane, occupies a physical area of 2 acres (0.81 ha)... Remote sensing expert 
+knowledge collected shows an albedo of 0.18, ALBNIRDF of 0.25, ALBNIRDR of 0.32, ALBVISDF of 0.06, and ALBVISDR of 0.07.  The land cover classification reveals LC_Type1 as 13, indicating 
+barren or sparsely vegetated land, typical of deserts or rocky areas, suggesting limited vegetation cover in the immediate vicinity…
+Ground truth:
+Massachusetts Institute of Technology.
+RSGPT: This is a remote sensing image of University of Caldas.  The image shows a dense collection of buildings with varying roof colors, interspersed with green spaces, roads, and parking 
+areas…located in Manizales, Colombia, at coordinates 4°37′10″N 75°26′48″W, is a public university established in 1954, originally founded as the Escuela Normal Superior de Manizales in 
+1930. It was renamed Universidad de Caldas in 1954 and has since grown into a significant educational institution, playing a pivotal role in the region's cultural and academic 
+development…Remote sensing expert knowledge for the site reveals an albedo of 0.14, with diffuse and direct near-infrared albedo (ALBNIRDF and ALBNIRDR) values of 0.22 and 0.26, 
+respectively, and visible albedo (ALBVISDF and ALBVISDR) values of 0.06 and 0.07. The visible diffuse albedo (ALBVISDR) is 0.07, and the near-infrared diffuse albedo (ALBNIRDR) is 0.26…
+Fig. 4.
+Qualitative results of image captioning on remote sensing imagery of the Massachusetts Institute of Technology (MIT). Text in red indicates the
+identified landmark name, blue highlights visual content directly observable from the image, purple denotes retrieved world knowledge, such as historical,
+geographic, or cultural facts; and green denotes remote sensing knowledge, including spectral indices, land cover, and ALBEDO values.
+TABLE IV
+PERFORMANCE COMPARISON BETWEEN BASELINE MODELS AND OUR PROPOSED RS-RAG VARIANTS ON THE IMAGE CAPTIONING TASK USING THE
+RSWK-MINI DATASET.
+Model
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+InternVL2.5 [38]
+0.368
+0.221
+0.154
+0.113
+0.312
+0.325
+0.014
+Janus-Pro [39]
+0.370
+0.221
+0.154
+0.112
+0.312
+0.324
+0.013
+Qwen2.5-VL [40]
+0.385
+0.237
+0.169
+0.125
+0.331
+0.344
+0.018
+Llama3.2-Vision [41]
+0.379
+0.232
+0.164
+0.122
+0.321
+0.338
+0.016
+RSGPT [6]
+0.192
+0.097
+0.061
+0.041
+0.144
+0.154
+0.002
+Geochat [42]
+0.347
+0.201
+0.139
+0.101
+0.291
+0.297
+0.006
+RS-RAG
+0.490
+0.366
+0.300
+0.252
+0.447
+0.476
+0.145
+both overall accuracy and per-class accuracy to reflect model
+performance across diverse scene categories.
+B. Results on Image Captioning Task
+After instruction tuning all VLMs, we first evaluate their
+performance on the image captioning task. Table IV presents
+a comparative analysis of baseline VLMs and our proposed
+RS-RAG model on the RSWK-Mini dataset. Across all seven
+evaluation metrics, BLEU-1 to BLEU-4, METEOR, ROUGE-
+L, and CIDEr, RS-RAG consistently outperforms all baselines
+by a substantial margin. While Qwen2.5-VL surpasses other
+baseline models, RS-RAG achieves a BLEU-1 score of 0.490
+and a CIDEr score of 0.145, representing improvements of
+10.5 and 12.7 points respectively over Qwen2.5-VL. These
+results highlight the benefit of incorporating structured ex-
+ternal knowledge into VLMs, which significantly enhances
+their capacity to generate accurate, contextually rich, and
+semantically meaningful captions in the remote sensing do-
+main. The superior performance of RS-RAG underscores the
+effectiveness of our retrieval-augmented design for complex,
+knowledge-intensive multimodal reasoning tasks.
+To better understand the effectiveness of our RS-RAG
+framework, we conduct a qualitative comparison of image
+captioning outputs generated by baseline models and our RS-
+
+10
+TABLE V
+PERFORMANCE COMPARISON BETWEEN BASELINE MODELS AND OUR PROPOSED RS-RAG VARIANTS ON THE IMAGE CLASSIFICATION TASK USING THE
+RSWK-MINI DATASET.
+Model
+Overall
+Airport
+Amusement
+Beach
+Bridge
+Casino
+Church
+Gov. Bldg.
+Historic
+Mansion
+Museum
+Park
+Stadium
+Theater
+Tower
+University
+Forest
+Accuracy
+Park
+Site
+InternVL2.5 [38]
+0.57
+0.91
+0.59
+0.73
+0.76
+0.82
+0.35
+0.42
+0.27
+0.60
+0.16
+0.21
+0.90
+0.45
+0.41
+0.72
+0.86
+Janus-Pro [39]
+0.58
+0.95
+0.67
+0.62
+0.84
+0.76
+0.40
+0.37
+0.17
+0.64
+0.30
+0.20
+0.90
+0.46
+0.49
+0.64
+0.87
+Qwen2.5-VL [40]
+0.61
+0.90
+0.66
+0.69
+0.78
+0.77
+0.51
+0.39
+0.23
+0.70
+0.29
+0.32
+0.88
+0.52
+0.59
+0.69
+0.86
+Llama3.2-Vision [41]
+0.59
+0.93
+0.62
+0.66
+0.77
+0.72
+0.43
+0.39
+0.13
+0.75
+0.41
+0.28
+0.90
+0.48
+0.57
+0.55
+0.90
+Rsgpt [6]
+0.46
+0.91
+0.70
+0.79
+0.75
+0.37
+0.22
+0.18
+0.31
+0.50
+0.06
+0.49
+0.93
+0.06
+0.11
+0.66
+0.39
+Geochat [21]
+0.60
+0.94
+0.55
+0.75
+0.79
+0.79
+0.54
+0.34
+0.11
+0.65
+0.27
+0.39
+0.88
+0.6
+0.57
+0.64
+0.84
+RS-RAG
+0.79
+0.98
+0.76
+0.77
+0.92
+0.91
+0.81
+0.98
+0.75
+0.92
+0.72
+0.80
+0.99
+0.23
+0.52
+0.74
+0.89
+Question: What is the category of this remote sensing image? Answer the 
+question using a single word or phrase from the following 16 categories: Airport, 
+Amusement Park, Beach, Bridge, Casino, Church, Forest, Government Building, 
+Historic Site, Mansion, Museum, Park, Stadium, Theater, Tower, University.
+Ground truth： Government Building.
+InternVL2.5:  
+ 
+Museum 
+ 
+ 
+Janus-Pro: 
+ 
+ 
+Amusement Park 
+ 
+Qwen2.5-VL:  
+ 
+Casino  
+ 
+ 
+Llama3.2: 
+ 
+ 
+Amusement Park 
+ 
+RS-RAG: 
+ 
+ 
+Government Building  
+Hamburg Rathaus
+Brukenthal National Museum
+GeoChat: 
+ 
+ 
+Theater 
+ 
+ 
+RSGPT: 
+ 
+ 
+Amusement Park 
+ 
+Question: What is the category of this remote sensing image? Answer the 
+question using a single word or phrase from the following 16 categories: Airport, 
+Amusement Park, Beach, Bridge, Casino, Church, Forest, Government Building, 
+Historic Site, Mansion, Museum, Park, Stadium, Theater, Tower, University.
+Ground truth：Museum.
+InternVL2.5:  
+ 
+Government Building 
+Janus-Pro: 
+ 
+ 
+Church 
+ 
+ 
+Qwen2.5-VL:  
+ 
+Government Building  
+Llama3.2: 
+ 
+ 
+Church 
+ 
+ 
+RS-RAG: 
+ 
+ 
+Museum
+ 
+GeoChat: 
+ 
+ 
+Manion 
+ 
+ 
+RSGPT: 
+ 
+ 
+Historic Site  
+ 
+Fig. 5. Qualitative results of baseline models and our RS-RAG model on the
+image classification task using the RSWK dataset.
+RAG model, as shown in Fig.4. Specifically, Fig.4 presents
+a remote sensing image corresponding to the Massachusetts
+Institute of Technology (MIT). Among all evaluated mod-
+els, RS-RAG is the only one that correctly identifies the
+landmark and accurately integrates both factual and scientific
+domain knowledge into the caption. The output from RS-
+RAG includes detailed metadata such as the official address,
+spatial coverage, historical construction timeline, and multiple
+spectral and physical indicators. This demonstrates RS-RAG’s
+ability to effectively synthesize geographic information with
+remote sensing expertise. In contrast, the baseline models
+exhibit limitations in both semantic accuracy and factual
+grounding. For instance, InternVL2.5 misidentifies the site as
+Boston University, GeoChat assigns the location to Cathedral
+Church, and RSGPT attributes it to the University of Caldas in
+Colombia. Some baseline models do retrieve domain-relevant
+attributes, yet the outputs often lack factual coherence due to
+incorrect or inconsistent landmark recognition. These findings
+highlight the advantages of RS-RAG in connecting visual
+content with structured multimodal knowledge representa-
+tions. The model demonstrates strong capability in supporting
+knowledge-intensive remote sensing tasks, particularly those
+requiring both precise semantic understanding and accurate
+factual alignment.
+C. Results on Image Classification Task
+We further evaluate the capabilities of vision-language
+models on the image classification task using the RSWK-
+Mini dataset. As shown in Table V, RS-RAG significantly
+outperforms all baseline models in terms of overall accuracy
+as well as performance across most individual categories.
+Specifically, RS-RAG achieves an overall accuracy of 0.79,
+representing a substantial improvement over the strongest
+baseline, Qwen2.5-VL, which achieves 0.61. In terms of
+category-specific performance, RS-RAG consistently delivers
+top results in 13 out of 16 categories, with particularly high
+accuracies for Airport (0.98), Stadium (0.99), Mansion (0.92),
+and Park (0.80). For commonly encountered scenes in remote
+sensing, such as Forest, although RS-RAG does not achieve
+the highest score, its accuracy of 0.89 still demonstrates strong
+capability in handling typical geospatial scenarios. These
+results underscore the effectiveness of our retrieval-augmented
+design in enhancing the scene recognition capacity of VLMs,
+particularly in remote sensing contexts that demand fine-
+grained semantic understanding. To further evaluate RS-RAG’s
+capability in scene classification, we conduct a qualitative
+comparison on two challenging urban examples, as shown
+in Fig. 5. The task requires selecting the correct category
+from 16 visually and semantically similar classes. In the first
+case, RS-RAG correctly classifies the Hamburg Rathaus as a
+Government Building, while all baseline models fail, offering
+incorrect labels like “Museum” or “Amusement Park.” In the
+second case, only RS-RAG accurately identifies the Brukenthal
+National Museum, whereas other models misclassify it as a
+Church or Historic Site. These results demonstrate RS-RAG’s
+superior ability to align visual content with structured knowl-
+edge, enabling robust performance in semantically ambiguous
+remote sensing scenes.
+D. Results on Visual Question Answering Task
+To assess the models’ ability to handle knowledge-intensive
+multimodal reasoning, we conduct evaluations on the VQA
+task using the RSWK-Mini dataset. As shown in Table VI,
+RS-RAG delivers superior performance across all evaluation
+metrics. It achieves a BLEU-1 score of 0.254 and a CIDEr
+score of 0.685, significantly surpassing the strongest baseline,
+RSGPT, by 4.5 and 11.6 points, respectively. Although RSGPT
+exhibits relatively strong performance, RS-RAG consistently
+outperforms it across all metrics, especially in higher-order
+BLEU scores and METEOR, which reflect deeper semantic
+understanding and language fluency. These results underscore
+the effectiveness of our retrieval-augmented strategy in inte-
+grating both remote sensing knowledge and structured world
+knowledge into the vision-language reasoning process. The
+consistent improvements across BLEU, METEOR, ROUGE-
+
+11
+TABLE VI
+PERFORMANCE COMPARISON BETWEEN BASELINE MODELS AND OUR PROPOSED RS-RAG VARIANTS ON THE IMAGE VQA TASK USING THE
+RSWK-MINI DATASET
+Model
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+InternVL2.5 [38]
+0.095
+0.038
+0.024
+0.018
+0.078
+0.182
+0.134
+Janus-Pro [39]
+0.094
+0.038
+0.024
+0.017
+0.076
+0.180
+0.131
+Qwen2.5-VL [40]
+0.102
+0.041
+0.027
+0.019
+0.083
+0.187
+0.158
+Llama3.2-Vision [41]
+0.102
+0.042
+0.027
+0.019
+0.082
+0.187
+0.153
+RSGPT [6]
+0.209
+0.132
+0.097
+0.072
+0.201
+0.347
+0.569
+Geochat [42]
+0.207
+0.129
+0.093
+0.068
+0.193
+0.353
+0.531
+RS-RAG
+0.254
+0.149
+0.108
+0.080
+0.239
+0.375
+0.685
+Question: How does the 
+albedo value impact the 
+urban heat island effect in the 
+area?
+Ground truth： The albedo value of 0.15 is relatively low, which can contribute to the urban heat island 
+effect as less solar energy is reflected.
+InternVL2.5:
+The area has a moderate suitability for solar energy generation with surface reflectance values 
+in the visible range (SR_B1: 17009.86, SR_B2: 17174.31, SR_B3: 17661.69) and near-
+infrared range (SR_B4: 18658.95, SR_B5: 19084.11, SR_B6: 15972.42).
+Janus-Pro:
+The area is relatively suitable for solar energy generation with high surface reflectance values 
+in the visible and near-infrared bands, which are typically associated with solar panels.
+Qwen2.5-VL:
+The area has moderate suitability for solar energy generation, with an ALBEDO of 0.14 
+indicating some reflection but also absorption potential.
+Llama3.2:
+The area has a high potential for solar energy generation with a surface reflectance value of 
+0.13 in the visible spectrum.
+GeoChat:
+The area has a moderate suitability for solar energy generation, as indicated by the SR_B4 
+value of 15714.65, which suggests a decent level of solar reflectance.
+RSGPT:
+With an albedo of 0.14, the area absorbs more solar radiation, potentially exacerbating the 
+urban heat island effect.
+RS-RAG:
+The low albedo values (ALBEDO 0.15) suggest that the area absorbs more solar radiation, 
+contributing to higher temperatures and potentially exacerbating the urban heat island effect.
+Question: What does the 
+Normalized Difference Built-
+up Index (NDBI) suggest 
+about urbanization in area?
+Ground truth： The NDBI of -0.15 suggests low urbanization levels in this area.
+InternVL2.5:
+The land cover type classification is predominantly urban, as indicated by LC_Type1 and 
+LC_Type2 both being 13.
+Janus-Pro:
+The overall land cover type classification is 13 according to LC_Type1.
+Qwen2.5-VL:
+The land cover type classification is primarily urban and built-up areas, indicated by 
+LC_Type1 with a value of 13.
+Llama3.2:
+The land cover type classification is primarily 'Urban and Built-up Lands' according to 
+LC_Type1.
+GeoChat:
+The land cover type classification is predominantly urban, as indicated by LC_Type1 and 
+LC_Type2 both being 13.
+RSGPT:
+The NDBI value of -0.07 suggests minimal built-up areas, indicating low urbanization.
+RS-RAG
+The NDBI value of -0.15 suggests low levels of built-up surfaces, indicating minimal 
+urbanization or impervious surfaces within the observed area.
+VQA_C
+VQA_RSK
+Question: Can you list major 
+events related to the landmark in 
+this remote image?
+Ground truth： 1913 Inauguration: The Völkerschlachtdenkmal… 1945 World War II: The monument 
+was the last stronghold in the city to surrender….
+InternVL2.5:
+1810-1813 Russian invasion: The cathedral was damaged during the Russian invasion… 
+Janus-Pro:
+1987 Centenary of the Brandenburg Gate: The Brandenburg Gate was illuminated in…
+Qwen2.5-VL:
+The1936 Construction of the memorial: The memorial was built as part of the Nazi 
+regime‘s propaganda efforts...
+Llama3.2:
+1945 Destruction by Allied bombing: The original structure was destroyed by Allied 
+bombing in 1945…
+GeoChat:
+1818 Construction of the hall: The hall was built by John Boyd of Yarnton…
+RSGPT:
+1973 Establishment of the park: The park was established in 1973…
+RS-RAG
+1. Inauguration (1913): The Völkerschlachtdenkmal was inaugurated in…\n2. World War 
+II (1945): The monument was the last stronghold in the city…
+VQA_WK
+Fig. 6. Qualitative results of baseline models and our RS-RAG model on the
+VQA task using the RSWK dataset.
+L, and CIDEr indicate that RS-RAG not only retrieves relevant
+content but also generates contextually coherent and semanti-
+cally meaningful answers.
+To further illustrate the model’s effectiveness, we provide
+qualitative examples of the three types of VQA tasks in
+Fig. 6. RS-RAG consistently generates answers that are not
+only factually accurate but also grounded in structured remote
+sensing and world knowledge. In the first example, which
+corresponds to comprehensive reasoning, RS-RAG correctly
+interprets the impact of low albedo on the urban heat island
+effect by incorporating retrieved scientific knowledge, whereas
+other models either hallucinate surface reflectance values or
+fail to link them to urban climate phenomena. In the second
+example, which tests remote sensing knowledge, RS-RAG
+accurately interprets the meaning of a low NDBI value as
+an indicator of low urbanization, whereas most baselines
+confuse land cover classification with index interpretation. In
+the third example, which focuses on world knowledge, RS-
+RAG identifies both the historical event and its relevance to
+the landmark, while other models misattribute unrelated events
+or fail to provide temporally aligned responses. These results
+highlight the strength of RS-RAG in connecting visual content
+with precise, knowledge-grounded answers across different
+question types, demonstrating its robustness in addressing
+complex multimodal reasoning within the remote sensing
+domain.
+E. Discussion
+1) Effect of the number of retrieved candidates. To un-
+derstand the influence of retrieval granularity on downstream
+performance, we conduct an ablation study by varying the
+number of top-k retrieved candidates in RS-RAG across three
+tasks: image captioning, image classification, and VQA, as
+presented in Table VII. As shown in Table VII (a) for image
+captioning, setting k to 1 already yields the best performance
+across most evaluation metrics. Specifically, RS-RAG achieves
+a BLEU-1 score of 0.490, a METEOR score of 0.447, and a
+ROUGE-L score of 0.476. When k increases to 3 and 5, perfor-
+mance in BLEU and METEOR declines slightly, while CIDEr
+improves marginally, suggesting that incorporating additional
+retrieved knowledge may introduce noise while marginally
+enhancing informativeness. For image classification, shown
+in Table VII (b), a consistent degradation in performance
+is observed as k increases. The best overall accuracy and
+CIDEr score are obtained when k is 1, indicating that precise
+and highly relevant knowledge is essential for accurate scene
+categorization, whereas retrieving more candidates may intro-
+duce irrelevant or distracting context. In contrast, VQA results
+presented in Table VII (c) show a clear benefit from broader
+retrieval. Performance steadily improves as k increases, with
+the highest scores observed when k is 5. Under this setting,
+RS-RAG achieves a BLEU-1 score of 0.254, a METEOR
+score of 0.239, and a CIDEr score of 0.685. This suggests
+that answering complex and knowledge-intensive questions
+benefits from access to a wider and more diverse set of
+evidence. Overall, these results highlight the importance of
+task-specific retrieval strategies. While minimal retrieval is
+sufficient for captioning and classification, broader retrieval
+is critical for effective multimodal reasoning in VQA. The
+consistent performance of RS-RAG across varying retrieval
+settings underscores its robustness and adaptability in handling
+diverse remote sensing tasks with structured knowledge.
+2) Effect of fusion weight α. We further investigate
+the impact of the modality fusion weight α on downstream
+
+12
+TABLE VII
+ABLATION STUDY ON THE NUMBER OF TOP-k RETRIEVED CANDIDATES
+FOR RS-RAG ACROSS THREE TASKS: IMAGE CAPTIONING,
+CLASSIFICATION, AND VQA.
+(a) Image Captioning
+Top-k
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+k = 1
+0.490
+0.366
+0.300
+0.252
+0.447
+0.476
+0.145
+k = 3
+0.483
+0.358
+0.293
+0.245
+0.439
+0.472
+0.147
+k = 5
+0.485
+0.362
+0.297
+0.250
+0.441
+0.474
+0.173
+(b) Image Classification
+Top-k
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+k = 1
+0.794
+0.358
+0.213
+0.163
+0.466
+0.795
+2.376
+k = 3
+0.676
+0.289
+0.175
+0.136
+0.387
+0.676
+1.966
+k = 5
+0.654
+0.272
+0.167
+0.130
+0.369
+0.656
+1.875
+(c) Image VQA
+Top-k
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+k = 1
+0.242
+0.136
+0.097
+0.071
+0.220
+0.359
+0.594
+k = 3
+0.246
+0.140
+0.100
+0.074
+0.228
+0.365
+0.617
+k = 5
+0.254
+0.149
+0.108
+0.080
+0.239
+0.375
+0.685
+performance by varying its value across three tasks: image
+captioning, image classification, and VQA. As summarized in
+Table VIII, this coefficient controls the balance between visual
+and textual similarity scores in the re-ranking stage of retrieval.
+In the image captioning task, performance improves consis-
+tently as α increases. The highest scores are obtained when α
+is set to 0.9, yielding a BLEU-1 score of 0.490, a METEOR
+score of 0.447, and a CIDEr score of 0.145. These results
+suggest that visual similarity plays a dominant role in generat-
+ing accurate and contextually appropriate captions for remote
+sensing imagery. Interestingly, the image classification task
+exhibits a different pattern. The best performance is achieved
+at α set to 0.5, where RS-RAG obtains a BLEU-1 score of
+0.748, a METEOR score of 0.433, and a CIDEr score of 2.376.
+This indicates that a more balanced integration of visual and
+textual modalities is critical for effective scene categorization,
+possibly due to the complementary nature of semantic and
+spatial cues. In contrast, the VQA task again favors higher
+α values. When α is set to 0.9, the model achieves its best
+performance, with BLEU-1 of 0.246, METEOR of 0.228, and
+CIDEr of 0.617. These results highlight the importance of
+visual evidence in answering spatially grounded or visually
+intensive questions. Overall, these findings underscore the
+necessity of task-specific fusion strategies. While image cap-
+tioning and VQA benefit from emphasizing visual similarity,
+image classification requires a more nuanced balance between
+modalities. This flexibility further demonstrates the robustness
+and adaptability of the RS-RAG framework in knowledge-
+driven remote sensing scenarios.
+3) Extension of RS-RAG on ChatEarthNet Dataset. To
+further validate the generalization capability of RS-RAG be-
+yond the RSWK dataset, we conduct additional experiments on
+the ChatEarthNet dataset [24], a recently proposed large-scale
+image–text dataset designed for training large vision–language
+models. As shown in Table IX, RS-RAG consistently outper-
+forms all baseline models across all seven evaluation metrics,
+including BLEU-1 to BLEU-4, METEOR, ROUGE-L, and
+CIDEr. Specifically, RS-RAG achieves a BLEU-1 score of
+0.388 and a CIDEr score of 0.171, marking respective gains
+of 1.8 and 8.4 points over the strongest baseline, RSGPT.
+These improvements underscore the robustness of RS-RAG
+TABLE VIII
+ABLATION STUDY ON THE FUSION WEIGHT α IN RS-RAG ACROSS THREE
+TASKS: IMAGE CAPTIONING, CLASSIFICATION, AND VQA.
+(a) Image Captioning
+α
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+0.3
+0.364
+0.218
+0.153
+0.113
+0.311
+0.317
+0.024
+0.5
+0.399
+0.256
+0.190
+0.147
+0.347
+0.355
+0.066
+0.7
+0.477
+0.347
+0.280
+0.231
+0.430
+0.453
+0.166
+0.9
+0.490
+0.366
+0.300
+0.252
+0.447
+0.476
+0.145
+(b) Image Classification
+α
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+0.3
+0.669
+0.302
+0.179
+0.137
+0.393
+0.669
+2.004
+0.5
+0.748
+0.329
+0.197
+0.152
+0.433
+0.748
+2.208
+0.7
+0.711
+0.309
+0.186
+0.144
+0.410
+0.711
+2.087
+0.9
+0.676
+0.289
+0.175
+0.136
+0.387
+0.676
+1.966
+(c) Image VQA
+α
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+0.3
+0.213
+0.122
+0.088
+0.064
+0.209
+0.342
+0.507
+0.5
+0.212
+0.121
+0.087
+0.064
+0.208
+0.339
+0.506
+0.7
+0.211
+0.121
+0.087
+0.064
+0.208
+0.338
+0.503
+0.9
+0.246
+0.140
+0.100
+0.074
+0.228
+0.365
+0.617
+TABLE IX
+PERFORMANCE COMPARISON BETWEEN BASELINE MODELS AND OUR
+PROPOSED RS-RAG VARIANTS ON THE IMAGE CAPTIONING TASK USING
+THE CHATEARTHNET DATASET.
+Model
+BLEU-1
+BLEU-2
+BLEU-3
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+InternVL2.5 [38]
+0.369
+0.213
+0.134
+0.082
+0.302
+0.300
+0.076
+Janus-Pro [39]
+0.366
+0.210
+0.131
+0.080
+0.306
+0.295
+0.070
+Qwen2.5-VL [40]
+0.370
+0.209
+0.126
+0.074
+0.308
+0.284
+0.079
+Llama3.2-Vision [41]
+0.370
+0.214
+0.136
+0.085
+0.306
+0.304
+0.077
+RSGPT [6]
+0.370
+0.217
+0.136
+0.084
+0.295
+0.299
+0.087
+Geochat [42]
+0.335
+0.201
+0.128
+0.078
+0.301
+0.284
+0.016
+RS-RAG
+0.388
+0.243
+0.153
+0.098
+0.351
+0.356
+0.171
+in adapting to new remote sensing datasets and generating
+semantically rich, knowledge-grounded captions. The consis-
+tent performance advantage across metrics further confirms the
+effectiveness of our retrieval-augmented design in enhancing
+vision–language understanding, even in domains beyond the
+original dataset.
+4) Generalization in Visually Similar Scenes. To further
+evaluate the generalization capability of RS-RAG beyond
+landmark recognition, we conducted additional experiments on
+common scenes that exhibit high visual similarity. Specifically,
+we collected 1,000 samples each for grassland and farmland
+from diverse global regions and compared RS-RAG with the
+state-of-the-art VLM Qwen2.5-VL. These two categories share
+highly similar visual patterns in satellite imagery, making
+them challenging to distinguish based solely on visual cues.
+As shown in Table X, RS-RAG consistently outperforms the
+baseline across both categories, demonstrating its superior
+reasoning capability when visual information is insufficient.
+TABLE X
+COMPARISON OF CLASSIFICATION ACCURACY ON VISUALLY SIMILAR
+CATEGORIES: GRASSLAND AND FARMLAND.
+Category
+Qwen2.5-VL
+RS-RAG
+Improvement
+Grassland
+0.834
+0.904
++7.0%
+Farmland
+0.955
+0.990
++3.5%
+In addition to the quantitative comparison on grassland
+and farmland, we further collected 1,000 urban-block samples
+and prompted the models to identify their corresponding
+geographic regions. As shown in Fig. 7, RS-RAG effectively
+
+13
+recognizes subtle urban contexts by integrating retrieved geo-
+graphic and environmental knowledge, whereas the Qwen2.5-
+VL often confuses visually similar structures. For instance,
+the baseline misclassifies Xicheng District, Beijing as Old
+Delhi, India due to architectural resemblance, while RS-RAG
+correctly infers the location using contextual cues such as
+coordinates and population density. A similar improvement
+is observed when distinguishing Lehigh Valley region, Penn-
+sylvania from Baltimore metropolitan area, where RS-RAG
+exhibits more precise spatial reasoning grounded in external
+knowledge. These results demonstrate that RS-RAG offers
+clear advantages in fine-grained, visually ambiguous, and
+common-scene reasoning tasks, underscoring the necessity of
+retrieval augmentation beyond traditional visual recognition.
+Question: Please specify the area indicated 
+by this remote sensing image.
+Ground truth： Xicheng District, Beijing, China
+Qwen2.5-VL: Old Delhi, Delhi, India 
+RS-RAG:
+Xicheng District, Beijing, China
+Question: What is the area shown in this 
+remote sensing image?
+Ground truth： Lehigh Valley region, Eastern 
+ 
+ 
+Pennsylvania, United States
+Qwen2.5-VL:
+Baltimore metropolitan area, 
+Maryland, United States
+RS-RAG:
+Lehigh Valley region, Eastern 
+Pennsylvania, United States
+Fig. 7. Qualitative results of baseline models and our RS-RAG model on the
+VQA task using the RSWK dataset.
+VI. CONCLUSION
+In this work, we presented RS-RAG, a retrieval-augmented
+vision-language framework designed to bridge remote sens-
+ing imagery with structured domain and world knowledge,
+thereby addressing the challenges of knowledge-intensive mul-
+timodal reasoning. To support this framework, we constructed
+the RSWK dataset, a large-scale, high-resolution multimodal
+benchmark that includes imagery-text pairs from over 14,000
+geographically and semantically diverse landmarks, spanning
+16 categories across 184 countries. Building upon RSWK, we
+established a comprehensive benchmark covering three repre-
+sentative tasks, including image captioning, image classifica-
+tion, and VQA. To better exploit the dataset’s rich semantics,
+we further designed the VQA task into three distinct subtypes,
+targeting comprehensive reasoning, remote sensing knowledge
+understanding, and world knowledge understanding. Extensive
+experiments conducted on the RSWK benchmark and the
+external multimodal dataset demonstrate that RS-RAG consis-
+tently outperforms strong baselines across multiple tasks, with
+notable advantages in handling knowledge-intensive queries
+that require both factual accuracy and sequential reasoning. We
+believe that both the RSWK dataset and the RS-RAG frame-
+work establish a new foundation for advancing knowledge-
+grounded vision-language understanding in remote sensing
+and geospatial AI. Our work paves the way toward more
+capable, explainable, and generalizable multimodal systems
+for Earth observation and related applications.
+REFERENCES
+[1] W. Han, C. Wen, L. Chok, Y. L. Tan, S. L. Chan, H. Zhao, and C. Feng,
+“Autoencoding tree for city generation and applications,” ISPRS Journal
+of Photogrammetry and Remote Sensing, vol. 208, pp. 176–189, 2024.
+[2] S. Liu, S. Wang, T. Chi, C. Wen, T. Wu, and D. Wang, “An improved
+combined vegetation difference index and burn scar index approach
+for mapping cropland burned areas using combined data from landsat
+8 multispectral and thermal infrared bands,” International Journal of
+Wildland Fire, vol. 29, no. 6, pp. 499–512, 2020.
+[3] C. Wen, S. Liu, X. Yao, L. Peng, X. Li, Y. Hu, and T. Chi, “A novel
+spatiotemporal convolutional long short-term neural network for air
+pollution prediction,” Science of the total environment, vol. 654, pp.
+1091–1099, 2019.
+[4] X. X. Zhu, D. Tuia, L. Mou, G.-S. Xia, L. Zhang, F. Xu, and
+F. Fraundorfer, “Deep learning in remote sensing: A comprehensive
+review and list of resources,” IEEE Geoscience and Remote Sensing
+Magazine, vol. 5, no. 4, pp. 8–36, 2017.
+[5] H. Lin, N. Li, P. Yao, K. Dong, Y. Guo, D. Hong, Y. Zhang, and C. Wen,
+“Generalization-enhanced few-shot object detection in remote sensing,”
+IEEE Transactions on Circuits and Systems for Video Technology, 2025.
+[6] Y. Hu, J. Yuan, C. Wen, X. Lu, Y. Liu, and X. Li, “Rsgpt: A remote
+sensing vision language model and benchmark,” ISPRS Journal of
+Photogrammetry and Remote Sensing, vol. 224, pp. 272–286, 2025.
+[7] Y. Bazi, L. Bashmal, M. M. Al Rahhal, R. Ricci, and F. Melgani, “Rs-
+llava: A large vision-language model for joint captioning and question
+answering in remote sensing imagery,” Remote Sensing, vol. 16, no. 9,
+p. 1477, 2024.
+[8] C. Pang, J. Wu, J. Li, Y. Liu, J. Sun, W. Li, X. Weng, S. Wang, L. Feng,
+G.-S. Xia, and C. He, “H2rsvlm: Towards helpful and honest remote
+sensing large vision language model,” 2024.
+[9] W. Zhang, M. Cai, T. Zhang, Y. Zhuang, and X. Mao, “Earthgpt:
+A universal multi-modal large language model for multi-sensor image
+comprehension in remote sensing domain,” IEEE Transactions on Geo-
+science and Remote Sensing, 2024.
+[10] K. Kuckreja, M. S. Danish, M. Naseer, A. Das, S. Khan, and F. S. Khan,
+“Geochat: Grounded large vision-language model for remote sensing,”
+in Proceedings of the IEEE/CVF Conference on Computer Vision and
+Pattern Recognition, 2024, pp. 27 831–27 840.
+[11] Y. Zhan, Z. Xiong, and Y. Yuan, “Skyeyegpt: Unifying remote sensing
+vision-language tasks via instruction tuning with large language model,”
+ISPRS Journal of Photogrammetry and Remote Sensing, vol. 221, pp.
+64–77, 2025.
+[12] S. Lobry, D. Marcos, J. Murray, and D. Tuia, “Rsvqa: Visual question
+answering for remote sensing data,” IEEE Transactions on Geoscience
+and Remote Sensing, vol. 58, no. 12, pp. 8555–8566, 2020.
+[13] X. Zheng, B. Wang, X. Du, and X. Lu, “Mutual attention inception net-
+work for remote sensing visual question answering,” IEEE Transactions
+on Geoscience and Remote Sensing, vol. 60, pp. 1–14, 2021.
+[14] Y. Sun, S. Feng, X. Li, Y. Ye, J. Kang, and X. Huang, “Visual grounding
+in remote sensing images,” in Proceedings of the 30th ACM International
+conference on Multimedia, 2022, pp. 404–412.
+[15] M. M. Al Rahhal, Y. Bazi, S. O. Alsaleh, M. Al-Razgan, M. L.
+Mekhalfi, M. Al Zuair, and N. Alajlan, “Open-ended remote sensing
+visual question answering with transformers,” International Journal of
+Remote Sensing, vol. 43, no. 18, pp. 6809–6823, 2022.
+[16] Y. Zhan, Z. Xiong, and Y. Yuan, “Rsvg: Exploring data and models
+for visual grounding on remote sensing data,” IEEE Transactions on
+Geoscience and Remote Sensing, vol. 61, pp. 1–13, 2023.
+[17] B. Qu, X. Li, D. Tao, and X. Lu, “Deep semantic understanding of high
+resolution remote sensing image,” in 2016 International conference on
+computer, information and telecommunication systems (Cits).
+IEEE,
+2016, pp. 1–5.
+[18] X. Lu, B. Wang, X. Zheng, and X. Li, “Exploring models and data
+for remote sensing image caption generation,” IEEE Transactions on
+Geoscience and Remote Sensing, vol. 56, no. 4, pp. 2183–2195, 2017.
+[19] Z. Zhang, T. Zhao, Y. Guo, and J. Yin, “Rs5m and georsclip: A large
+scale vision-language dataset and a large vision-language model for
+remote sensing,” IEEE Transactions on Geoscience and Remote Sensing,
+2024.
+[20] F. Liu, D. Chen, Z. Guan, X. Zhou, J. Zhu, Q. Ye, L. Fu, and J. Zhou,
+“Remoteclip: A vision language foundation model for remote sensing,”
+IEEE Transactions on Geoscience and Remote Sensing, 2024.
+[21] K. Kuckreja, M. S. Danish, M. Naseer, A. Das, S. Khan, and F. S. Khan,
+“Geochat: Grounded large vision-language model for remote sensing,”
+in Proceedings of the IEEE/CVF Conference on Computer Vision and
+Pattern Recognition, 2024, pp. 27 831–27 840.
+
+14
+[22] Z. Wang, R. Prabha, T. Huang, J. Wu, and R. Rajagopal, “Skyscript: A
+large and semantically diverse vision-language dataset for remote sens-
+ing,” in Proceedings of the AAAI Conference on Artificial Intelligence,
+vol. 38, no. 6, 2024, pp. 5805–5813.
+[23] D. Muhtar, Z. Li, F. Gu, X. Zhang, and P. Xiao, “Lhrs-bot: Empowering
+remote sensing with vgi-enhanced large multimodal language model,”
+in European Conference on Computer Vision. Springer, 2024, pp. 440–
+457.
+[24] Z. Yuan, Z. Xiong, L. Mou, and X. X. Zhu, “Chatearthnet: A global-scale
+image-text dataset empowering vision-language geo-foundation models,”
+Earth System Science Data Discussions, vol. 2024, pp. 1–24, 2024.
+[25] H. Lin, C. Zhang, D. Hong, K. Dong, and C. Wen, “Fedrsclip: Federated
+learning for remote sensing scene classification using vision-language
+models,” IEEE Geoscience and Remote Sensing Magazine, 2025.
+[26] X. Li, C. Wen, Y. Hu, Z. Yuan, and X. X. Zhu, “Vision-language models
+in remote sensing: Current progress and future trends,” IEEE Geoscience
+and Remote Sensing Magazine, 2024.
+[27] X. Li, C. Wen, Y. Hu, and N. Zhou, “Rs-clip: Zero shot remote sensing
+scene classification via contrastive vision-language supervision,” Inter-
+national Journal of Applied Earth Observation and Geoinformation,
+2023.
+[28] H. Lin, D. Hong, S. Ge, C. Luo, K. Jiang, H. Jin, and C. Wen, “Rs-moe:
+A vision-language model with mixture of experts for remote sensing
+image captioning and visual question answering,” IEEE Transactions
+on Geoscience and Remote Sensing, 2025.
+[29] X. Zheng, Z. Weng, Y. Lyu, L. Jiang, H. Xue, B. Ren, D. Paudel,
+N. Sebe, L. Van Gool, and X. Hu, “Retrieval augmented generation
+and understanding in vision: A survey and new outlook,” arXiv preprint
+arXiv:2503.18016, 2025.
+[30] W. Fan, Y. Ding, L. Ning, S. Wang, H. Li, D. Yin, T.-S. Chua, and
+Q. Li, “A survey on rag meeting llms: Towards retrieval-augmented large
+language models,” in Proceedings of the 30th ACM SIGKDD conference
+on knowledge discovery and data mining, 2024, pp. 6491–6501.
+[31] A. Long, W. Yin, T. Ajanthan, V. Nguyen, P. Purkait, R. Garg, A. Blair,
+C. Shen, and A. Van den Hengel, “Retrieval augmented classification
+for long-tail visual recognition,” in Proceedings of the IEEE/CVF
+conference on computer vision and pattern recognition, 2022, pp. 6959–
+6969.
+[32] S.
+Jeong,
+K.
+Kim,
+J.
+Baek,
+and
+S.
+J.
+Hwang,
+“Videorag:
+Retrieval-augmented generation over video corpus,” arXiv preprint
+arXiv:2501.05874, 2025.
+[33] Y. Bazi, M. M. Al Rahhal, and M. Zuair, “Ragcap: Retrieval-augmented
+generation for style-aware remote sensing image captioning without fine-
+tuning,” Authorea Preprints, 2025.
+[34] Z. Zhang, H. Shen, T. Zhao, Z. Guan, B. Chen, Y. Wang, X. Jia,
+Y. Cai, Y. Shang, and J. Yin, “Imagerag: Enhancing ultra high reso-
+lution remote sensing imagery analysis with imagerag,” arXiv preprint
+arXiv:2411.07688, 2024.
+[35] A. Hurst, A. Lerer, A. P. Goucher, A. Perelman, A. Ramesh, A. Clark,
+A. Ostrow, A. Welihinda, A. Hayes, A. Radford et al., “Gpt-4o system
+card,” arXiv preprint arXiv:2410.21276, 2024.
+[36] Q. Zhao, L. Yu, X. Li, D. Peng, Y. Zhang, and P. Gong, “Progress
+and trends in the application of google earth and google earth engine,”
+Remote Sensing, vol. 13, no. 18, p. 3778, 2021.
+[37] A. Liu, B. Feng, B. Xue, B. Wang, B. Wu, C. Lu, C. Zhao, C. Deng,
+C. Zhang, C. Ruan et al., “Deepseek-v3 technical report,” arXiv preprint
+arXiv:2412.19437, 2024.
+[38] Z. Chen, J. Wu, W. Wang, W. Su, G. Chen, S. Xing, M. Zhong, Q. Zhang,
+X. Zhu, L. Lu et al., “Internvl: Scaling up vision foundation models
+and aligning for generic visual-linguistic tasks,” in Proceedings of the
+IEEE/CVF Conference on Computer Vision and Pattern Recognition,
+2024, pp. 24 185–24 198.
+[39] X. Chen, Z. Wu, X. Liu, Z. Pan, W. Liu, Z. Xie, X. Yu, and C. Ruan,
+“Janus-pro: Unified multimodal understanding and generation with data
+and model scaling,” arXiv preprint arXiv:2501.17811, 2025.
+[40] Q.
+Team,
+“Qwen2.5-vl,”
+January
+2025.
+[Online].
+Available:
+https://qwenlm.github.io/blog/qwen2.5-vl/
+[41] M. AI, “Llama 3.2: Revolutionizing edge ai and vision with open-source
+models,” 2024. [Online]. Available: https://ai.meta.com/blog/llama-3-2-
+connect-2024-vision-edge-mobile-devices/
+[42] K. Kuckreja, M. S. Danish, M. Naseer, A. Das, S. Khan, and F. S.
+Khan, “Geochat: Grounded large vision-language model for remote
+sensing,” The IEEE/CVF Conference on Computer Vision and Pattern
+Recognition, 2024.
+[43] E. J. Hu, Y. Shen, P. Wallis, Z. Allen-Zhu, Y. Li, S. Wang, L. Wang,
+W. Chen et al., “Lora: Low-rank adaptation of large language models.”
+ICLR, vol. 1, no. 2, p. 3, 2022.
+Congcong Wen (Member, IEEE) will join the China
+Academy of Electronics and Information Technol-
+ogy, Beijing, China, as a Professorate Senior Engi-
+neer (professor-equivalent) and Senior Research Sci-
+entist. He was previously a Postdoctoral Associate at
+New York University and New York University Abu
+Dhabi, and a Visiting Research Fellow at Harvard
+University. He received the Ph.D. degree from the
+Aerospace Information Research Institute, Chinese
+Academy of Sciences, China, in 2021. His research
+interests include multimodal artificial intelligence,
+3D computer vision, foundation models, and remote sensing.
+Dr. Wen has served in academic service roles for several well-known
+venues, including as a Track Chair for ICPR 2026, an Area Chair for WACV
+2026, an Associate Editor of GIScience, and a Guest Editor of the Journal of
+Environmental & Earth Sciences.
+Yiting Lin is a Master’s student at the School
+of Cyber Science and Technology, University of
+Science and Technology of China, No. 100 Fuxing
+Road, Shushan District, Hefei, Anhui, China. Major
+in Network and Information Security, Her research
+interests include Vision Large Model, Deep learning,
+and Retrieval-Augmented Generation applications.
+Xiaokang Qu is a Master’s student at the School
+of Cyber Science and Technology, University of
+Science and Technology of China, No. 100 Fuxing
+Road, Shushan District, Hefei, Anhui, China. Major
+in Network and Information Security, His research
+interests include Complex Network, Network Ro-
+bustness Evaluation, and Deep learning.
+Nan Li received the Bachelor’s degree in Electronic
+Information Science and Technology from Lanzhou
+University, Lanzhou, China, in 2018, and the Master
+degree in Data Science, City University of Hong
+Kong, in 2020. He is currently a Senior Engineer
+in China Academy of Electronics and Information
+Technology, Beijing, China. His research interests
+include multimodal large language models, rein-
+forcement learning, The application of knowledge
+graphs in the field of remote sensing.
+Yong Liao received the Master’s degree in Computer
+Application Technology from the Institute of Soft-
+ware, Chinese Academy of Sciences, Beijing, China,
+in 2004, and the Ph.D. degree in Computer and
+Systems Engineering from the Department of Elec-
+trical and Computer Engineering, University of Mas-
+sachusetts Amherst, Amherst, MA, USA, in 2010.
+His current research interests include cyberspace
+security and big data.
+
+15
+Xiang Li is a Lecturer (Assistant Professor) in the
+School of Computer Science at the University of
+Bristol. Prior to joining the University of Bristol,
+he was a Lecturer at the University of Reading. He
+previously held postdoctoral research positions at
+King Abdullah University of Science and Technol-
+ogy (KAUST) and at New York University (NYU).
+His research interests include multimodal large lan-
+guage models, computer vision, and AI for Earth
+Observation. He has published over 50 papers in
+leading conferences and journals, including CVPR,
+ICCV, NeurIPS, IEEE TVCG, and IEEE TGRS. Dr. Li has served as a Guest
+Editor for several well-known journals, including IEEE GRSM and IEEE
+JSTARS. He is the recipient of the IEEE GRSS Early Career Award 2025
+for his high-impact research on computer vision methods for remote sensing
+applications.
+Hui Lin received the Bachelor’s degree in Space
+Information and Digital Technology from Wuhan
+University, Wuhan, China, in 2012, and the Ph.D.
+degree in Cartography and Geographic Information
+Systems from the Institute of Remote Sensing and
+Digital Earth, Chinese Academy of Sciences, in
+2017. He is currently a Senior Engineer in China
+Academy of Electronics and Information Technol-
+ogy, Beijing, China. His research interests include
+multimodal data fusion, deep learning, and remote
+sensing applications.

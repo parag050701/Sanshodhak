@@ -1,0 +1,955 @@
+10.58429/pgjsrt
+      https://pgjsrt.com/  
+  editorinchiefpgjsrt@gmail.com     1 
+Clarifying the Scope of NLP: Language Processing vs. 
+Neuro-Linguistic Programming
+https://doi.org/10.22219/pgjsrt.v4n1a217
+Awaz Ahmed Shaban 1 , Ibrahim Mahmood Ibrahim2
+1Information Technology Department, Technical College of Informatics-Akre, Akre University 
+for Applied Sciences, Duhok, Iraq
+2Department of Computer Networks and Information Security, Akre University for applied 
+Sciences, Duhok, Iraq 
+*Corresponding author E-mail: Awaz.Amedy1@gmail.com
+INTRODUCTION 
+The acronym “NLP” has garnered extensive attention in both academic research and popular 
+discourse, but its meaning is not always consistent. In many instances, “NLP” refers to Natural 
+Language Processing—the computational field in artificial intelligence that focuses on the interaction 
+between computers and human language. In other contexts, however, “NLP” denotes Neuro-
+Linguistic Programming, an approach utilized for therapeutic intervention and personal 
+development. This article aims to clarify the scope and boundaries between these two distinct 
+domains by analyzing their definitions, methodologies, applications, and challenges. Our objective is 
+to provide researchers, practitioners, and interested readers with a comprehensive understanding 
+that prevents ambiguity in subsequent investigations and implementations. 
+ARTICLEINFO 
+ABSTRACT
+E-ISSN: 2961-3809
+The acronym “NLP” has come to represent two fundamentally 
+distinct 
+disciplines: 
+Natural 
+Language 
+Processing 
+(a 
+computational subfield of Artificial Intelligence) and Neuro-
+Linguistic Programming (a psychological and therapeutic 
+methodology). This paper presents a comprehensive comparative 
+analysis aimed at resolving ambiguities surrounding the use of 
+the term “NLP” in academic, clinical, and technological contexts. 
+By examining definitions, methodologies, applications, and 
+challenges, we delineate the separate paradigms these fields 
+represent. We explore cutting-edge computational models such 
+as BERT, GPT-3, and CASEml within NLP, juxtaposed with 
+therapeutic tools like the Meta Model and anchoring techniques 
+within NLP therapy. Case studies spanning medical informatics 
+and clinical psychology underscore the efficacy of each domain, 
+while highlighting the potential for confusion due to shared 
+linguistic foundations. This study not only clarifies domain 
+boundaries but also proposes research directions to mitigate 
+terminological 
+ambiguity 
+and 
+foster 
+interdisciplinary 
+collaboration. 
+Copyright © 2025,  Awaz Ahmed Shaban, et al. 
+This is an open-access article distributed and licensed under the 
+Creative Commons Attribution NonCommercial NoDerivs. 
+KEYWORDS 
+Natural Language 
+Processing , 
+Language 
+Processing,   Neuro-
+Linguistic 
+Programming 
+How to cite: 
+A. A. Shaban , I. M. Ibrahim (2025).   Clarifying the Scope of NLP: Language Processing vs. Neuro-
+Linguistic Programming. Polaris Global Journal of Scholarly Research and Trends, 4(1), 1-22. 
+https://doi.org/10.22219/pgjsrt.v4n1a217 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+2  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+In this work, we integrate supporting materials from multiple research studies. For instance, the 
+survey on hallucination in Natural Language Generation emphasizes the rapid technological 
+advances in models like BERT, GPT-2, and GPT-3 used within computational NLP [1]. In contrast, 
+case studies exploring the Meta Model in Neuro-Linguistic Programming reveal insights into 
+therapeutic settings for moderate depression and speech therapy interventions [2]. Furthermore, 
+studies on acronym disambiguation and sentiment analysis (e.g., CASEml and VADER) provide 
+examples of how computational NLP is applied in real-world medical and social media contexts [1, 2]. 
+By juxtaposing these two areas, our analysis serves as both a clarifying overview and a springboard 
+for further research. 
+This article aims to clarify the scope and boundaries between these two distinct domains by 
+analyzing their: 
+• 
+Definitions 
+• 
+Methodologies 
+• 
+Applications 
+• 
+Challenges 
+Our objective is to provide researchers, practitioners, and interested readers with a comprehensive 
+understanding that prevents ambiguity in subsequent investigations and implementations. 
+ 
+Fig 1: NLP Domain Distribution 
+Literature Review 
+The acronym “NLP” simultaneously represents two fundamentally different disciplines: Natural 
+Language Processing, a subfield of artificial intelligence and computational linguistics, and Neuro-
+Linguistic Programming, a psychological framework rooted in modeling communication and 
+behavior. The dual use of this acronym has led to notable academic and practical confusion, 
+especially in interdisciplinary research and applications. This literature review aims to examine each 
+usage of NLP and highlight the importance of clear demarcation. 
+In the domain of Neuro-Linguistic Programming (NLP), a large body of literature critically 
+evaluates its scientific legitimacy. Witkowski [3] presents a comprehensive review of empirical 
+studies on NLP and concludes that the approach lacks sufficient scientific support, branding it as 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+3  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+pseudoscientific. This view is echoed by Passmore and Rowson [4], who critically appraise NLP's use 
+in coaching psychology, pointing out methodological inconsistencies and the lack of robust evidence. 
+Kotera and Sheffield [5] systematically reviewed NLP applications in organizational settings and 
+found limited psychological benefits that were often anecdotal or poorly controlled. 
+Further skepticism is documented by Biswal and Prusty [6], who question the theoretical 
+foundation of NLP and highlight the confusion stemming from its interdisciplinary terminology. 
+Similarly, Tosey and Mathison [7] explore NLP’s application in education but warn that its 
+acceptance often outpaces empirical verification. Dowlen [8] also criticizes the uncritical adoption of 
+NLP in management learning, stressing the need for precise and evidence-based applications. 
+Despite these criticisms, some studies explore practical uses of psychological NLP, particularly in 
+educational contexts. Purnama et al. [9] report improvements in language teaching through NLP-
+based instructional strategies. Seitova et al. [10] discuss increased student engagement due to NLP 
+techniques, albeit without rigorous controls. Hejase et al. [11] investigate NLP in Lebanese leadership 
+development programs, finding improvements in interpersonal communication. Nompo et al. [12] 
+conduct a systematic review and suggest NLP may alleviate anxiety in certain populations, though the 
+evidence remains inconclusive. 
+Maisenbacher [13] focuses on the metaphorical frameworks underpinning NLP and how these 
+may complicate scientific interpretation. Grimley [14] and Sidhu [15] analyze NLP in coaching and 
+project management, respectively, noting that the psychological NLP label is often conflated with AI-
+driven language technologies. Ismail and Al-Ajmi [16] propose a structural framework to clarify 
+NLP's relationship with psychological flexibility and emotional intelligence, stressing the need for 
+clearer conceptual boundaries. 
+On the other hand, in the context of Natural Language Processing, the field is methodologically 
+robust and widely used in artificial intelligence tasks such as text analysis, machine translation, and 
+human-computer interaction. Amirhosseini and Kazemian [17] develop a hybrid model that employs 
+computational NLP to classify user preferences in communication, indirectly referencing 
+psychological NLP constructs. Gran [18] highlights how confusion between the two types of NLP in 
+educational technologies can lead to misaligned instructional designs. Hassan et al. [19] emphasize 
+the same point in leadership training, where NLP terminology misleads participants about the nature 
+of the tools being used. 
+Passmore and Rowson [4] and Anelo [20] further explore how metaphors and language used 
+within NLP theory often complicate its empirical evaluation. Witkowski [3] revisits this issue in a 
+meta-analytical context, emphasizing that this ambiguity undermines the credibility of psychological 
+NLP. 
+As a novel intersection, some researchers are beginning to blend both paradigms. For instance, 
+Amirhosseini and Kazemian [17] use computational NLP techniques to assess users' psychological 
+representational systems—bridging technical and psychological domains. However, such hybrid 
+approaches still require further theoretical clarity to avoid epistemological confusion. 
+In sum, the literature highlights a pressing need to distinguish between the two meanings of NLP. 
+While Natural Language Processing continues to gain legitimacy and expand across AI domains, 
+Neuro-Linguistic Programming remains controversial, warranting clearer definitions and more 
+rigorous scientific validation. 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+4  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+ 
+Fig 2: Distribution of NLP Applications 
+ 
+Natural Language Processing: Definition, Models, and Applications 
+A. Overview of Computational NLP 
+Natural Language Processing (NLP) is a sub-field of artificial intelligence focused on enabling 
+computers to understand, interpret, and generate human language. The evolution of NLP has been 
+significantly influenced by advancements in deep learning and Transformer-based models, which 
+have transformed traditional computational methods. Early research utilized statistical methods and 
+classical machine learning; however, with the advent of models such as BERT, BART, GPT-2, and 
+GPT-3, NLP has undergone a dramatic transformation that now emphasizes contextual 
+understanding and the ability to generate fluent text [23]. 
+Modern NLP systems exploit large-scale datasets and complex network architectures to perform 
+tasks including machine translation, sentiment analysis, text summarization, and acronym 
+disambiguation. For example, the development of CASEml, an unsupervised ensemble algorithm, 
+addresses the crucial task of acronym disambiguation in clinical notes. CASEml leverages semantic 
+embeddings and visit-level text to distinguish meanings in electronic health records, achieving 
+accuracies of 94.7% for rheumatoid arthritis and 91.1% for multiple sclerosis [1]. Similarly, sentiment 
+analysis tools like VADER employ a rule-based lexicon and grammatical heuristics to evaluate social 
+media texts effectively [2]. 
+B. Key Models and Techniques 
+The progress in computational NLP is largely attributed to Transformer architectures that allow 
+language models to capture long-range dependencies and contextual nuances. As documented in the 
+literature, models such as BERT and GPT-3 have become hallmarks of this advancement. To 
+illustrate, consider the following table comparing several representative models: 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+5  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+Table 1: Comparative Overview of Representative NLP Models and Tools 
+Model 
+Primary Function 
+Notable Strengths 
+Reference 
+Citation 
+BERT 
+Language understanding 
+Deep 
+bidirectional 
+context 
+modeling 
+[23] 
+GPT-2 
+Text generation 
+Coherent and contextually flexible 
+output 
+[23] 
+GPT-3 
+Advanced text generation 
+Large scale with few-shot learning 
+[23] 
+CASEml 
+Acronym 
+disambiguation 
+in EHR 
+Ensemble learning and semantic 
+embeddings 
+[1] 
+VADER 
+Sentiment 
+analysis 
+on 
+social media 
+Rule-based, 
+lexicon-driven 
+approach 
+[2] 
+Each model is suited to different applications, and understanding these strengths allows 
+researchers to select the appropriate tools for specific tasks in various domains—from clinical 
+applications to large-scale text generation. 
+C. Challenges in Computational NLP 
+Despite significant advances, NLP methods face persistent challenges. One of the more critical 
+issues is the phenomenon of hallucination in Natural Language Generation (NLG). Hallucination 
+refers to the generation of misleading or nonsensical content that does not correspond with the 
+input data, thereby reducing the reliability of automated text generation systems [23]. This issue is 
+of particular concern in domains such as summarization, dialogue systems, and translation, where 
+fidelity and accuracy are paramount. 
+The reliance on standard likelihood maximization objectives and subsequent model decoding 
+mechanisms can inadvertently oversimplify the complexity of human language, leading to the 
+generation of errors [23]. Researchers are actively exploring metrics and mitigation strategies to 
+address these pitfalls—strategies that are vital for maintaining both system performance and safety 
+in real-world applications. 
+ 
+Fig 3: NLP Challenges rate 
+D. Visualization: Flowchart of Computational NLP Workflow 
+Below is a Mermaid flowchart that illustrates the typical workflow of a computational NLP 
+system from data collection to model deployment: 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+6  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+ 
+Fig 4: Flowchart of a Typical Computational NLP System Workflow 
+This flowchart summarizes the major stages involved in computational NLP, from preprocessing 
+raw data to iterative model improvements, thus highlighting the iterative nature of modern AI 
+developments. 
+Neuro-Linguistic Programming: Therapeutic Approaches and Techniques 
+A. Overview of Neuro-Linguistic Programming (NLP) 
+Unlike computational NLP, Neuro-Linguistic Programming is rooted in psychological and 
+therapeutic practices. It emerged in the 1970s from the work of Richard Bandler and John Grinder, 
+who developed a systematic approach to understanding human communication and behavior [4]. 
+NLP as a therapeutic tool focuses on the interplay between neurological processes, language, and 
+behavioral patterns. It proposes that language, both verbal and non-verbal, plays a critical role in 
+shaping one’s cognitive framework and, by extension, behavior. 
+The primary goal of NLP in this context is to facilitate personal change, improve communication, 
+and address psychological challenges. By employing specific patterns such as the Meta Model—a set 
+of questions designed to extract the deeper meaning behind a person’s language—practitioners can 
+help individuals reframe negative experiences and promote behavioral change [4]. 
+ 
+Fig 5: NLP Therapy process 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+7  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+B. Therapeutic Techniques and Their Efficacy 
+A significant body of research has demonstrated the effectiveness of NLP techniques in the 
+therapeutic realm. For example, a case study investigating the Meta Model for treating moderate 
+depression in an 18-year-old female subject showed a significant reduction in Beck’s Depression 
+Inventory-II (BDI-II) scores—from 29 to 10—after 18 sessions of NLP therapy [24]. This reduction 
+not only signifies improved mental health but also underscores the potential of NLP to catalyze 
+positive psychological changes. 
+In a similar vein, speech therapy models based on NLP have been shown to improve speech 
+abilities in deaf individuals. These interventions integrate structured therapeutic procedures with 
+NLP techniques to enhance pronunciation, vocabulary comprehension, and overall communication 
+skills. The feasibility of such models has been thoroughly evaluated, with expert validations yielding 
+high scores that confirm their potential for effective intervention [25]. 
+• 
+The Meta Model: Helps practitioners identify patterns of deletion, distortion, and 
+generalization in a client's language. 
+• 
+Anchoring and Reframing: Techniques designed to alter emotional states and 
+cognitive associations. 
+• 
+Sensory Acuity and Rapport Building: Methods that enhance the therapist's 
+ability to understand and connect with the client. 
+ 
+Fig 6: Therapeutic Outcome with NLP techniques 
+C. Methodologies in NLP Therapy 
+The techniques applied in NLP therapy involve several key components: 
+• 
+The Meta Model: A framework that helps practitioners identify patterns of 
+deletion, distortion, and generalization in a client’s language, enabling the extraction of 
+meaningful insights from communication [24]. 
+• 
+Anchoring and Reframing: Techniques designed to alter the emotional states and 
+cognitive associations connected to traumatic or negative experiences. 
+• 
+Sensory Acuity and Rapport Building: Methods that enhance the therapist’s 
+ability to understand and connect with the client, enabling effective interventions. 
+The therapeutic value of NLP is partly derived from its capacity to address both conscious and 
+unconscious patterns of thought. This dual approach allows NLP techniques to produce meaningful 
+behavioral changes by facilitating a more accurate representation of a person’s internal experiences, 
+thereby leading to more robust and lasting outcomes [24]. 
+ 
+ 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+8  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+D. Visualization: Diagram of the NLP Therapeutic Process 
+the therapeutic application process of Neuro-Linguistic Programming (NLP), focusing on 
+structured intervention stages to achieve behavioral change. It begins with Initial Assessment and 
+Rapport Building, where trust and communication are established between the practitioner and 
+client. This is followed by the Identification of Language Patterns, helping the practitioner recognize 
+limiting beliefs or thought distortions conveyed through language. 
+Next, Meta Model Techniques are applied to challenge and reshape these patterns. This leads 
+into Anchoring and Reframing, core NLP methods used to alter emotional responses and cognitive 
+interpretations. Afterward, Feedback and Reinforcement are employed to solidify new behaviors 
+and ensure alignment with the client's goals. 
+The process continues with Follow-Up Sessions and Evaluation, allowing iterative adjustment 
+based on observed progress. Ultimately, the approach aims for a Therapeutic Outcome, defined by 
+improved emotional or behavioral states. 
+Overall, the model emphasizes iterative refinement and personalization, combining linguistic 
+awareness with cognitive-behavioral strategies to drive transformation. It showcases how NLP 
+frameworks are structured like therapeutic roadmaps, blending assessment, intervention, and 
+evaluation in a cyclic flow to support lasting change. 
+ 
+ 
+Fig 7: Stages of a Typical NLP Therapy Session 
+Figure 7 visually represents the sequential steps involved in an NLP therapy session, highlighting 
+the techniques used to facilitate personal change and cognitive restructuring. 
+Comparative Analysis of NLP Interpretations 
+A. Distinct Paradigms and Historical Contexts 
+At first glance, the term “NLP” might appear ambiguous, given its usage within two distinct 
+paradigms: Natural Language Processing and Neuro-Linguistic Programming. Although they share 
+an acronym, their historical trajectories, methodologies, and applications differ significantly. 
+• 
+Natural Language Processing is an established sub-field of computer science and 
+artificial intelligence. Its development is linked to the computational analysis of human 
+language, statistical inference, and machine learning, with a strong focus on data-driven 
+approaches [1, 23]. 
+• 
+Neuro-Linguistic Programming, on the other hand, originated within the 
+domain of humanistic psychology and psychotherapy. It emphasizes qualitative techniques, 
+communication patterns, and cognitive restructuring rather than statistical or algorithmic 
+processes [24]. 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+9  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+ 
+Fig 8: NLP Domain Comparison 
+B. Key Differences in Terminology and Implementation 
+A detailed comparison between these two interpretations of NLP is presented in the table below: 
+Table 2:Comparative Analysis of Natural Language Processing vs. Neuro-Linguistic 
+Programming 
+Aspect 
+Natural 
+Language 
+Processing 
+Neuro-Linguistic 
+Programming 
+Citation 
+References 
+Primary 
+Domain 
+Artificial Intelligence, Data 
+Science 
+Psychotherapy, 
+Personal 
+Development 
+[1, 23] vs. [24] 
+Methodology 
+Statistical models and deep 
+learning 
+Qualitative 
+analysis, 
+linguistic 
+pattern 
+extraction 
+[23] vs. [24] 
+Purpose 
+Understanding 
+and 
+generation 
+of 
+human 
+language 
+Improving 
+communication 
+and 
+behavioral outcomes 
+[23] vs. [24] 
+Tools 
+& 
+Techniques 
+Transformer models (e.g., 
+GPT, 
+BERT), 
+CASEml, 
+VADER 
+Meta Model, Anchoring, 
+Reframing, sensory acuity 
+[1, 
+2, 
+23] 
+ vs. [24] 
+Applications 
+Text generation, sentiment 
+analysis, 
+acronym 
+disambiguation 
+Depression 
+therapy, 
+speech therapy, personal 
+coaching 
+[1, 
+2] vs. [24, 
+25] 
+Evaluation 
+Metrics 
+Accuracy, F1 scores, AUC 
+measures 
+Therapeutic 
+outcomes, 
+behavioral change, self-
+reports 
+[1, 2] vs. [24] 
+ 
+This table clearly distinguishes the operational, methodological, and applicative aspects of the 
+two fields, emphasizing that while both domains share the common acronym “NLP”, they serve 
+fundamentally different purposes. 
+C. Overlapping Areas and Misinterpretations 
+Despite the clear distinctions, certain overlapping areas can lead to confusion. For instance, both 
+domains rely heavily on language and communication, albeit in different contexts. Computational 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+10  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+NLP analyzes language as data to derive insights or generate content, while Neuro-Linguistic 
+Programming uses language as a tool for altering internal cognitive structures and behavior. This 
+overlap in focusing on language is likely a primary source of misinterpretation when the acronym 
+“NLP” is used without adequate context. 
+A common misinterpretation is the assumption that improvements in computational language 
+models (e.g., in sentiment analysis with VADER [2]) have implications for human-behavioral 
+therapies. However, while computational advancements can inform user interface designs and 
+improve interactive dialogue systems, they do not translate directly into therapeutic strategies used 
+in Neuro-Linguistic Programming. 
+D. Visualization: Comparative Flowchart of NLP Domains 
+Below is a Mermaid flowchart that illustrates the divergence and occasional convergence between 
+the two NLP domains: 
+ 
+Fig 9: Divergence Between Computational NLP and Neuro-Linguistic Programming 
+This visualization clearly delineates the separate paths taken by each interpretation of NLP, while 
+also showing how a common terminology can create potential confusion in discussions and 
+academic discourse. 
+Domain-Specific Applications and Research Challenges 
+A. Applications of Computational NLP 
+The scope of computational NLP extends across many research and practical applications, 
+including: 
+• 
+Text Generation and Summarization: Leveraging advanced models such as 
+GPT-3 to generate coherent and contextually relevant content while mitigating issues like 
+hallucination [23]. 
+• 
+Sentiment Analysis: Utilizing lexicon-based approaches such as VADER to 
+analyze the sentiment of social media texts. The success of methods like VADER is evidenced 
+by their high F1 classification accuracy, which, in some cases, even outperforms human 
+raters [2]. 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+11  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+• 
+Medical Informatics: The development of CASEml addresses the demand for 
+accurate acronym disambiguation in clinical notes, contributing to improved diagnostic 
+algorithms and patient care [1]. 
+These applications have transformed industries such as healthcare, customer service, and digital 
+media, providing insights that were once difficult to extract from unstructured text data. 
+B. Applications of Neuro-Linguistic Programming in Therapy 
+In the therapeutic arena, NLP has demonstrated substantial benefits: 
+• 
+Treatment of Depression: As shown in clinical case studies, the application of the 
+NLP Meta Model significantly improves depressive symptoms, evidenced by reduced scores 
+in the Beck Depression Inventory-II [26]. 
+• 
+Speech Therapy for the Deaf: NLP-based speech therapy models have enhanced 
+the pronunciation, vocabulary comprehension, and overall communication abilities among 
+deaf subjects. Expert evaluations indicate that these models are both feasible and 
+effective [27]. 
+• 
+Personal and Professional Development: NLP is also employed in coaching 
+and personality development sessions, where practitioners utilize techniques such as 
+reframing and anchoring to foster positive change [28]. 
+C. Research Challenges in Both Domains 
+While applications are vast, both domains face unique and overlapping research challenges: 
+• 
+For Computational NLP: 
+o 
+Hallucination in Text Generation: As identified in recent surveys, 
+hallucinations in NLG pose risks in terms of reliability and safety, especially in 
+critical applications like medical report generation [29]. 
+o 
+Contextual Ambiguity: Despite high model accuracies, issues like 
+ambiguous acronym usage persist, necessitating more robust disambiguation 
+frameworks like CASEml [30]. 
+o 
+Ethical and Privacy Considerations: The ability of models to 
+inadvertently generate sensitive or inaccurate content demands strict oversight and 
+continuous model refinement. 
+• 
+For Neuro-Linguistic Programming: 
+o 
+Subjectivity in Therapeutic Outcomes: The qualitative nature of 
+therapeutic improvement is often measured through self-report and observational 
+techniques, making it challenging to establish standardized evaluation metrics [31, 
+32]. 
+o 
+Integration with Conventional Therapies: Although NLP techniques 
+have shown promise, integrating these methods with established psychotherapeutic 
+approaches remains a challenge for practitioners and researchers alike. 
+o 
+Replicability of Results: Given the individualized nature of therapeutic 
+interventions, replicating results across diverse populations can be difficult and calls 
+for further systematic studies. 
+ 
+Table 3: Visualization: Table of Research Challenges 
+Research Domain 
+Key Challenges 
+Supporting 
+Evidence 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+12  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+Research Domain 
+Key Challenges 
+Supporting 
+Evidence 
+Computational NLP 
+Hallucination in text generation; Contextual 
+ambiguity 
+[1] [23] 
+Neuro-Linguistic 
+Programming 
+Subjectivity in outcomes; Integration with 
+standard therapies; Replicability 
+[24] [25] 
+Table 3: Summary of Key Challenges in Computational NLP vs. Neuro-Linguistic 
+Programming 
+This table clearly encapsulates the primary difficulties each domain faces, underscoring the need 
+for further in-depth studies and methodological improvements. 
+ 
+Case Studies and Real-World Implementations 
+A. Case Study in Computational NLP: Acronym Disambiguation and Sentiment 
+Analysis 
+Recent studies demonstrate the practical implications of advanced NLP algorithms. For example, 
+the CASEml model addresses the challenge of acronym disambiguation in clinical texts, a task that is 
+critical for accurate information extraction in medical applications. CASEml achieved outstanding 
+accuracies—94.7% for rheumatoid arthritis, 91.1% for multiple sclerosis, and 70.6% for myocardial 
+infarction—thereby proving its efficacy compared to both frequency-based baselines and other 
+unsupervised methods [33]. 
+In parallel, sentiment analysis using the VADER approach has found wide application in 
+monitoring social media sentiment. The use of rule-based heuristics in VADER enables it to handle 
+the informal language prevalent on platforms such as Twitter, with performance metrics showing an 
+F1 score as high as 0.96 in certain instances [34]. These case studies illustrate how specialized 
+computational NLP tools can directly impact fields ranging from healthcare to digital 
+communications. 
+B. Case Study in Neuro-Linguistic Programming: Therapeutic Interventions 
+Neuro-Linguistic Programming has also been validated through rigorous case studies: 
+• 
+Treatment of Moderate Depression: A case study involving an 18-year-old 
+female subject with moderate depression demonstrated the efficacy of NLP-based therapy. 
+Over 18 sessions, the patient's BDI-II score dropped significantly from 29 to 10, signifying 
+notable improvements in mental health and functional outcomes [24]. This reduction in 
+depression scores highlights the potential of NLP as a non-invasive therapeutic option. 
+• 
+Application in Speech Therapy: Another study focusing on deaf individuals 
+established that a speech therapy model based on NLP techniques is both feasible and highly 
+effective. The intervention not only improved the ability to articulate but also enhanced 
+vocabulary comprehension and reduced speaking anxiety among participants aged 2–7 
+years [35]. Expert validations and inferential statistical tests further confirmed that the 
+therapy produced statistically significant improvements in deaf speech ability. 
+C. Visualization: Comparative Bar Chart of Case Study Outcomes 
+Below is an SVG diagram representing a simplified comparative overview of key outcome metrics 
+from both computational and therapeutic case studies: 
+Comparative Case Study Outcome MetricsCASEml (RA: 94.7%)VADER (F1: 0.96)Depression 
+Therapy (Score: 29→10)Speech Therapy (Significant Improvement) 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+13  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+ 
+Fig 10: Comparative Bar Chart of Key Outcome Metrics from Selected NLP and NLP-Therapy 
+Case Studies 
+This SVG diagram visually contrasts the outcomes achieved through computational approaches 
+(CASEml and VADER) with those obtained through therapeutic interventions (depression and 
+speech therapy), emphasizing the breadth of NLP applications. 
+D. Real-World Implementations and Impact 
+Both interpretations of NLP have profound real-world implications. In healthcare, for example, 
+applying CASEml to electronic health records not only improves clinical note disambiguation but 
+also enhances the overall accuracy of phenotyping algorithms, thereby contributing to better patient 
+care [36]. Similarly, in educational and clinical settings, NLP-based therapies have empowered 
+practitioners to offer alternative, non-pharmacological treatments for conditions such as depression 
+and speech impairments [24, 25]. 
+The convergence of computational and therapeutic strategies around the common theme of 
+language underscores the versatility of linguistic approaches. Nonetheless, the technical tools, 
+methodologies, and intended outcomes within each domain are distinct and must be carefully 
+delineated for effective application. 
+Discussion on Ambiguities and Future Directions 
+A. Addressing Ambiguities in Terminology 
+The dual use of the acronym “NLP” has led to significant ambiguity in both academic 
+publications and public discourse. Without proper contextual cues, it is challenging for non-
+specialists—and occasionally even experts—to discern whether a discussion pertains to 
+computational methods or psychological approaches. It is therefore essential that future research 
+and professional communications explicitly define the domain in which the term is being used. This 
+practice will minimize misinterpretation and ensure that discussions remain focused on the relevant 
+methodologies and outcomes. 
+B. Future Research Directions in Computational NLP 
+For computational NLP, future research areas include: 
+• 
+Mitigation Strategies for Hallucination: Continued investigation into the 
+causes of hallucination in Natural Language Generation is essential. Researchers are 
+exploring advanced metrics and corrective algorithms that could further stabilize the outputs 
+of transformer-based models [23]. 
+• 
+Enhanced Contextual Disambiguation: As clinical and social media texts 
+continue to evolve in complexity, there is a significant need for more robust disambiguation 
+frameworks. Future models may incorporate multi-modal data (e.g., textual, visual, and 
+auditory information) to enrich the context for improved accuracy [1]. 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+14  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+• 
+Ethical Considerations and Privacy: With increasing reliance on computational 
+models in sensitive applications such as healthcare, establishing stringent ethical guidelines 
+and privacy safeguards will be paramount. 
+C. Future Research Directions in Neuro-Linguistic Programming 
+For Neuro-Linguistic Programming as a therapeutic method, promising research avenues 
+include: 
+• 
+Integration with Conventional Psychotherapy: Investigating how NLP 
+techniques can be harmonized with traditional therapeutic methods may yield a more 
+comprehensive treatment model that caters to a broader patient base [24]. 
+• 
+Standardization of Therapeutic Metrics: Developing universally accepted 
+evaluation metrics for NLP-based therapies could facilitate comparative studies and ensure 
+consistent outcomes across diverse populations. 
+• 
+Expansion to New Demographics: Exploring the applicability of NLP techniques 
+in non-traditional populations, such as in education for children with special needs or in 
+corporate coaching settings, may further extend the reach of NLP therapy [25]. 
+Below is a Mermaid diagram that outlines a potential roadmap for future research directions in 
+both computational NLP and Neuro-Linguistic Programming: 
+ 
+Fig 11:Future Research Roadmap for Clarifying and Advancing NLP Domains 
+This roadmap highlights the steps necessary to address current ambiguities and outlines strategic 
+objectives for future investigations across both paradigms of NLP. 
+D. Interdisciplinary Collaboration 
+Given the complex interplay between language as a computational construct and as a medium of 
+human expression, interdisciplinary collaboration is essential. Researchers from computer science, 
+psychology, linguistics, and healthcare can contribute unique insights that foster the development of 
+methodologies tailored to each domain. Such collaborations could also facilitate the design of hybrid 
+systems that benefit from both quantitative computational techniques and qualitative therapeutic 
+approaches. This synthesis of perspectives may ultimately bridge the gap between technological 
+advancements and human-centric applications, leading to more comprehensive solutions that 
+address the needs of diverse stakeholder groups. 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+15  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+ 
+Fig 12: Future Research Priorities 
+Conclusion 
+In summary, the term “NLP” encompasses two distinct domains: Natural Language Processing 
+(computational linguistic analysis and generation) and Neuro-Linguistic Programming (a 
+therapeutic and psychological approach). This article has detailed the definitions, methodologies, 
+applications, and challenges inherent in both interpretations. Our key findings are as follows: 
+• 
+Distinct Domains: 
+o 
+Natural Language Processing leverages statistical methods, deep learning, 
+and Transformer-based architectures to process and generate human language. 
+o 
+Neuro-Linguistic Programming uses structured therapeutic techniques such 
+as the Meta Model to influence cognitive and behavioral change. 
+• 
+Methodological Differences: 
+o 
+Computational NLP focuses on quantitative metrics and model performance 
+(e.g., accuracy, F1 scores) while NLP therapy emphasizes qualitative improvements 
+measured through psychological evaluations. 
+o 
+The tools and techniques differ markedly—in computational settings, we 
+apply ensemble methods such as CASEml and lexicon-based approaches like VADER, 
+whereas in therapeutic settings, strategies such as anchoring and reframing are 
+paramount. 
+• 
+Applications and Impact: 
+o 
+Computational NLP drives innovations in text generation, sentiment analysis, 
+and medical informatics, having widespread impacts on industry and research. 
+o 
+Neuro-Linguistic Programming shows promise in treating mental health 
+challenges and enhancing communicative abilities, particularly in speech therapy and 
+depression management. 
+• 
+Challenges and Future Directions: 
+o 
+Both domains face challenges such as ambiguity in textual outputs 
+(hallucination in computational NLP) as well as standardization issues and 
+replicability in therapeutic outcomes. 
+o 
+Future research should prioritize explicit definition of domain-specific terms, 
+integrative methodologies, and interdisciplinary collaborations to overcome current 
+hurdles. 
+Key Findings: 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+16  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+• 
+Clarification Need: Clear contextual definition is essential whenever “NLP” is 
+referenced to avoid misinterpretation. 
+• 
+Technological vs. Psychological: Although both domains share linguistic 
+underpinnings, their operational frameworks are fundamentally different. 
+• 
+Implications for Research: A better understanding of these distinctions guides 
+more targeted research, ensuring that computational methods and therapeutic techniques 
+evolve in a manner best suited to their respective applications. 
+By outlining these distinctions and outlining future research directions through empirical 
+evidence and visual diagrams, this article contributes to a more nuanced understanding of the term 
+“NLP.” This clarity is crucial not only for academic rigor but also for practical implementations in 
+both technological and therapeutic settings. 
+In conclusion, researchers and practitioners must exercise precise terminology and specify 
+contextual applications when using the term “NLP.” Doing so will ensure that the intended 
+domain—whether it be the advanced computational techniques of Natural Language Processing or 
+the human-centered practices of Neuro-Linguistic Programming—is accurately understood and 
+effectively applied. 
+References : 
+[1]. 
+Shatte ABR, Hutchinson DM, Teague SJ. Machine learning in mental health: a scoping 
+review of methods and applications. Psychol Med 2019 Jul;49(9):1426-1448 1. 
+[2]. 
+Cohen AS, Mitchell KR, Elvevåg B. What do we really know about blunted vocal affect and 
+alogia? A meta-analysis of objective assessments. Schizophr Res 2014 Nov;159(2-3):533-538 . 
+[3]. 
+ T. Witkowski, “A review of research findings on neuro-linguistic programming,” Scientific 
+Review of Mental Health Practice, vol. 10, no. 2, pp. 34–41, 2012. 
+[4]. 
+ J. Passmore and T. S. Rowson, “Neuro-linguistic programming: A critical review of NLP 
+research and the application of NLP in coaching,” International Coaching Psychology Review, vol. 
+14, no. 1, pp. 41–52, 2019. 
+[5]. 
+ Y. Kotera and D. Sheffield, “The applications of neuro‐linguistic programming in 
+organizational settings: A systematic review of psychological outcomes,” Human Resource 
+Development Quarterly, vol. 30, no. 1, pp. 101–116, 2019. 
+[6]. 
+ R. Biswal and B. Prusty, “Trends in neuro-linguistic programming (NLP): A critical review,” 
+Social Science International, vol. 27, no. 2, pp. 200–209, 2011. 
+[7]. 
+ P. Tosey and J. Mathison, “Neuro‐linguistic programming as an innovation in education and 
+teaching,” Innovations in Education and Teaching International, vol. 47, no. 3, pp. 317–326, 
+2010. 
+[8]. 
+ A. Dowlen, “NLP—help or hype? Investigating the uses of neuro‐linguistic programming in 
+management learning,” Career Development International, vol. 1, no. 1, pp. 27–34, 1996. 
+[9]. 
+ Y. Purnama, B. Sobirov, and L. Ino, “Neuro-linguistic programming as an instructional 
+strategy to enhance foreign language teaching,” Studies in Media and Communication, vol. 11, no. 
+2, pp. 45–59, 2023. 
+[10]. 
+S. M. Seitova, G. O. Kozhasheva, and Y. N. Gavrilova, “Peculiarities of using neuro-linguistic 
+programming techniques in teaching,” International Electronic Journal of Mathematics 
+Education, vol. 11, no. 5, pp. 1077–1086, 2016. 
+[11]. 
+H. J. Hejase, M. I. Tartozi, and F. Hashem, “Neuro-linguistic programming and leadership: 
+An exploratory study on Lebanese management,” European Journal of Business and Social 
+Sciences, vol. 3, no. 1, pp. 47–63, 2015. 
+[12]. 
+R. S. Nompo, A. Pragholapati, and A. L. Thome, “Effect of neuro-linguistic programming 
+(NLP) on anxiety: A systematic literature review,” KnE Life Sciences, pp. 12–20, 2021. 
+[13]. 
+M. C. G. Anelo, “Metaphors and neuro-linguistic programming,” International Journal of 
+Interdisciplinary Social Sciences, vol. 5, no. 2, pp. 99–111, 2010. 
+[14]. 
+B. Grimley, “Neuro-linguistic programming (NLP) and coaching,” in Handbook of Coaching 
+Psychology, Routledge, 2018, pp. 234–250. 
+
+ 
+ 
+ Polaris Global Journal of Scholarly Research and Trends 
+Volume  4, No. 1, May 2025, pp. 1-18 
+ 
+                 
+17  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+[15]. 
+R. Sidhu, “Neuro-linguistic programming,” in Gower Handbook of People in Project 
+Management, Routledge, 2016, pp. 487–496. 
+[16]. 
+A. M. B. Ismail and F. J. Al-Ajmi, “Neuro-linguistic programming and its relationship with 
+psychological flexibility among secondary school students,” Qubahan Academic Journal, vol. 4, 
+no. 1, pp. 18–29, 2024. 
+[17]. 
+M. H. Amirhosseini and H. Kazemian, “Automating the process of identifying the preferred 
+representational system in Neuro Linguistic Programming using Natural Language Processing,” 
+Cognitive Processing, vol. 20, no. 4, pp. 465–474, 2019. 
+[18]. 
+S. Gran, “Using NLP methods in teaching and learning: Case studies on the potential and 
+impact of NLP methods,” University of Duisburg-Essen Dissertation, 2021. [Online]. Available: 
+https://duepublico2.uni-due.de 
+[19]. 
+F. M. M. Hassan, F. Binzafrah, and M. Alqahtani, “A structural framework for NLP and its 
+consequence on leadership succession planning,” Sumy State University Repository, 2022. 
+[20]. O. M. Maisenbacher, “Neuro-linguistic programming as a communication tool for 
+management,” University of Johannesburg Graduate Research, 2013. 
+[21]. 
+T. Witkowski, “NLP: A final verdict,” Scientific Review of Mental Health Practice, vol. 12, no. 
+3, pp. 22–36, 2012. 
+[22]. 
+J. Passmore and T. S. Rowson, “What works in NLP? Methodological concerns in research,” 
+International Coaching Psychology Review, vol. 14, no. 1, pp. 41–52, 2019. 
+[23]. 
+Hays DG. Introduction to Computational Linguistics, Mathematical Linguistics and 
+Automatic Language Processing. Cambridge: American Elsevier Publishing Co; 1967 . 
+[24]. 
+Manning CD, Schutze H. Foundations of Statistical Natural Language Processing. 
+Cambridge: MIT Press Ltd; 1999 . 
+[25]. 
+Harris ZS. Distributional Structure. WORD 2015 Dec 4;10(2-3):146-162 . 
+[26]. 
+Landauer TK, Foltz PW, Laham D. An introduction to latent semantic analysis. Discourse 
+Processes 1998 Jan;25(2-3):259-284 . 
+[27]. 
+Chollet F. Deep Learning with Python. Shelter Island: Manning Publications; 2017 . 
+[28]. 
+Sinnenberg L, Buttenheim AM, Padrez K, Mancheno C, Ungar L, Merchant RM. Twitter as a 
+tool for health research: a systematic review. Am J Public Health 2017 Jan;107(1):e1-e8 1. 
+[29]. 
+Castro VM, Minnier J, Murphy SN, Kohane I, Churchill SE, Gainer G, International Cohort 
+Collection for Bipolar Disorder Consortium. Validation of electronic health record phenotyping of 
+bipolar disorder cases and controls. Am J Psychiatry 2015 Apr;172(4):363-372 . 
+[30]. 
+Carson NJ. Identification of suicidal behavior among psychiatrically hospitalized adolescents 
+using natural language processing and machine learning of electronic health records. PLoS One 
+2019 Feb 19;14(2):01-14 . 
+[31]. 
+Bedi G, Carrillo F, Cecchi GA, Fernandez Slezak D, Sigman M, Mota NB, et al. Automated 
+analysis of free speech predicts psychosis onset in high-risk youths. NPJ Schizophr 2015 Aug 
+26;1:15030 . 
+[32]. 
+Roy T, McClendon J, Hodges L. Analyzing Abusive Text Messages to Detect Digital Dating 
+Abuse. In: IEEE International Conference on Healthcare Informatics. 2018 Presented at: IEEE'18; 
+March 2-3, 2018; New-York . 
+[33]. 
+Doan S, Ritchart A, Perry N, Chaparro JD, Conway M. How do you #relax when you're 
+#stressed? A content analysis and infodemiology study of stress-related tweets. JMIR Public 
+Health Surveill 2017 Jun 13;3(2):e35 . 
+[34]. 
+Luo SX, Shinall JA, Peterson BS, Gerber AJ. Semantic mapping reveals distinct patterns in 
+descriptions of social relations in adults with autism spectrum disorder. Autism Res 2016 
+Aug;9(8):846-853 . 
+
+ 
+Polaris Global Journal of Scholarly Research and Trends 
+Volume. 4, No. 1, May 2025, pp. 1-18 
+ 
+18  
+Awaz Ahmed Shaban, et al., 2025 
+PGJSRT 
+[35]. Tanana M, Hallgren KA, Imel ZE, Atkins DC, Srikumar V. A comparison of natural language 
+processing methods for automated coding of motivational interviewing. J Subst Abuse Treat 2016 
+Jun;65:43-50 .

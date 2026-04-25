@@ -1,0 +1,1424 @@
+Efficient and Effective Retrieval of Dense-Sparse Hybrid Vectors
+using Graph-based Approximate Nearest Neighbor Search
+Haoyu Zhang
+Tsinghua University
+China
+hy-zhang22@mails.tsinghua.edu.cn
+Jun Liu
+Shanghai Jiaotong University
+China
+liu-j23@sjtu.edu.cn
+Zhenhua Zhu
+Tsinghua University
+China
+zhuzhenhua@mail.tsinghua.edu.cn
+Shulin Zeng
+Tsinghua University
+China
+zengshulin@mail.tsinghua.edu.cn
+Maojia Sheng
+ByteDance
+China
+shengmaojia@bytedance.com
+Tao Yang
+ByteDance
+China
+yangtao.chen@bytedance.com
+Guohao Dai
+Shanghai Jiaotong University
+China
+daiguohao@sjtu.edu.cn
+Yu Wang
+Tsinghua University
+China
+yu-wang@mail.tsinghua.edu.cn
+ABSTRACT
+The approximate nearest neighbor search (ANNS) over embedded
+vector representations of texts is a common method in information
+retrieval. Lexical-based sparse vectors and semantic-based dense
+vectors are two important and complementary information repre-
+sentations. The fusion of them has been empirically demonstrated
+to enhance effectiveness and robustness. The prevailing approach
+for hybrid vector search is to cunduct the sparse and dense vector
+search separately, then merge the results. However, the two-route
+method suffers from high system complexity and poor scalability.
+Another promising approach is to build unified index for hybrid
+vectors. Nevertheless, the unified system faces two key challenges
+regarding accuracy and efficiency. (1) The significant difference in
+data distribution between dense and sparse vectors poses a chal-
+lenge in combining them, leading to low accuracy. (2) The high
+dimensionality and sparsity characteristics of sparse vectors cause
+expensive distance computation, resulting in inefficient retrieval.
+To address the above challenges, we propose a novel graph-
+based ANNS algorithm for dense-sparse hybrid vectors. (1) For
+effectiveness, we propose the distribution alignment method by
+pre-sampling dense and sparse vectors and analysing the statistic
+of distance distribution. It can improve the accuracy by 1%∼9%.
+(2) For efficiency, we find that the sparse vectors information has
+little contribution at the beginning of hybrid vectors index con-
+struction and search. It inspires us to design an adaptive two-stage
+computation strategy, which initially computes dense distances
+only and later computes hybrid distances. Further, we prune the
+sparse vectors to speed up the calculation. Compared to naive imple-
+mentation, we achieve ∼2.1× acceleration. Thorough exhaustive
+experiments on mainstream text retrieval datasets, our algorithm
+achieves 8.9×∼11.7× end-to-end throughput at equal accuracy com-
+pared with existing hybrid vector search algorithms.
+KEYWORDS
+Approximate Nearest Neighbor Search, Vector Retrieval, Hybrid
+Vector
+1
+INTRODUCTION
+Information retrieval focuses on locating relevant information re-
+sources, such as documents or passages, in response to user queries.
+It finds extensive application in various domains, including web
+search, recommendation systems, and knowledge mining [27]. To
+be able to find relevant information from a large amount of candi-
+date texts, a common practice is to map texts into vectors, and use
+the distance between vectors to represent the similarity between
+texts [25]. Therefore, the information retrieval task is transformed
+into a nearest neighbor search (NNS) task on vectors.
+Existing text embedding approaches can be categorized into
+sparse and dense methods. Sparse methods, such as TF-IDF [21]
+and BM25 [22], rely on keywords frequency statistics to map texts
+into high-dimensional sparse vectors. While these methods excel
+at exact keyword matching and offer interpretable representations,
+their performance suffers in scenarios with keyword mismatches.
+On the other hand, dense methods, such as Word2Vec [6] and
+BERT-based DPR [15], learn low-dimensional dense vectors that
+encode semantic and contextual information. These vectors excel
+in semantic matching but lack the keyword information needed for
+precise matching. To exploit the complementary strengths of both
+methods and mitigate their respective limitations, the dense-sparse
+hybrid method has been developed [5, 11, 17, 19, 24]. These hybrid
+methods have demonstrated significant improvements in retrieval
+accuracy, as shown in Fig. 1. Furthermore, they exhibit enhanced
+robustness in cross-domain and long-text retrieval scenarios [5, 19].
+In the growing field of Retrieval Augmented Generation (RAG) of
+Large Language Models (LLMs), the adoption of hybrid retrieval
+techniques has emerged as a widespread practice.
+Although dense-sparse hybrid vector retrieval has shown im-
+proved accuracy and robustness, there is a lack of established meth-
+ods for a unified and efficient hybrid vector search. Efficiently
+searching in such hybrid spaces poses a challenge due to the lack of
+overlap between retrieval methods that excel with sparse or dense
+vectors individually. The classical sparse retrieval method, inverted
+arXiv:2410.20381v1  [cs.IR]  27 Oct 2024
+
+Conference’17, July 2017, Washington, DC, USA
+Haoyu Zhang, Jun Liu, Zhenhua Zhu, Shulin Zeng, Maojia Sheng, Tao Yang, Guohao Dai, and Yu Wang
+0.77 
+0.64 
+0.78 
+0.73 
+0.74 
+0.67 
+0.71 
+0.71 
+0.81 
+0.68 
+0.81 
+0.76 
+0.60
+0.70
+0.80
+0.90
+NQ
+MS MARCO
+HotpotQA
+Avg
+Dense
+Sparse
+Hybrid
+Recall@10
+Figure 1: Comparison of recall accuracy (Recall@10) on NQ,
+MA MARCO, HotpotQA datasets, using dense (embedded by
+BGE model [26]), sparse (embedded by SPLADE model [26]),
+and hybrid vector retrieval approaches.
+0.6
+0.65
+0.7
+0.75
+0.8
+0.85
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Recall@10
+Dense Weight α
+NQ
+MS MARCO
+HotpotQA
+naïve
+aligned
+Figure 2: Recall accuracy (Recall@10) of hybrid search with
+varying dense weights on NQ, MS MARCO, and HotpotQA
+datasets, embedded by BGE and SPLADE models. After dense
+and sparse space alignment, the optimal weights shift to
+around 0.5, achieving higher recall accuracy.
+indexing, faces issues with the dense vector part requiring brute-
+force search, leading to a 10∼100× increase in latency. Conversely,
+for dense retrieval methods, the high-dimensional sparse vector
+poses challenges for index construction (e.g. linear increase of clus-
+tering time with dimension in Inverted File index (IVF) [9]) and
+distance calculation (e.g. expensive sparse distance computation be-
+tween points in graph-based index). To avoid the above challenges,
+the prevailing approach is a two-route retrieval method, i.e., con-
+ducting sparse and dense vector searches separately, then merging
+the results. However, this approach increases system complexity by
+requiring two indexes and data synchronization. It also constrains
+overall throughput and may compromise result accuracy as the
+top-k hybrid results may not be present in the individual sparse
+and dense top-k results.
+Therefore, we require a unified dense-sparse hybrid vector search
+approach to ensure accurate results and efficient search perfor-
+mance. While Bruch et al. [4] have introduced a IVF-based hybrid
+vector retrieval algorithm, its efficiency remains suboptimal. Con-
+sidering the high connectivity advantage of the graph-based index
+in high-dimensional spaces, we adopt the Hierarchical Navigable
+Small World (HNSW) [20], one of the optimal graph-based ANNS
+algorithms, for hybrid vectors retrieval. However, applying HNSW
+directly to hybrid vectors created by concatenating sparse and dense
+vectors presents the following two challenges:
+31%
+61%
+8%
+Other
+Sparse Compute
+Dense Compute
+0
+0.4
+0.8
+1.2
+30
+60
+90
+120
+150
+Sparse Elements Num
+Sparse(30000)
+Dense(150)
+Compute Time (us)
+11X
+Figure 3: Left: Comparison of IP distance computing time of
+sparse vectors with varying number of non-zero elements
+(dim = 30,000) v.s. dense vectors (dim = 150). Right: Time
+distribution of hybrid search using naive HNSW algorithm.
+Sparse calculation accounts for ∼61%.
+(1) The distance distributions of sparse vectors and dense vec-
+tors are inconsistent, which means disparate similarity dif-
+ferences represented by the same sparse and dense distance
+differences. This makes it difficult to optimally combine the
+two types of similarities and damaging retrieval effective-
+ness. We have observed that using linear weighted fusion
+of sparse and dense distances with varying weights has a
+substantial impact on accuracy, as shown in Fig. 2.
+(2) While graph index can maintain excellent performance in
+high-dimensional space, sparse vectors incur high computa-
+tional overhead, degrading efficiency and even worse than
+dense recall at low accuracy. This is because sparse vectors
+are stored in a compressed indices-value format to save space,
+which introduces indices matching overhead during distance
+computations. We discovered that computing inner product
+(IP) distance between sparse vectors takes ∼11× longer time
+than dense vectors, and accounts for over 60% of the total
+time in the naive HNSW search process, as shown in Fig. 3.
+To address the above challenges, we propose a distribution align-
+ment method for dense and sparse vectors, and optimize the com-
+putation of sparse vectors during index construction and search.
+Specifically, for the first challenge, we statistically analyze the distri-
+butions of sparse and dense vector distances through pre-sampling
+to determine the optimal fusion weights. For the second challenge,
+we introduce an adaptive two-stage index construction and search
+strategy that evolves from dense to hybrid. This approach exploits
+our finding of a significant positive correlation between sparse
+and dense distances and little contribution of sparse vectors at the
+initial stage. Leveraging this, we can eliminate a large number of
+sparse distance calculations while maintaining accuracy. Addition-
+ally, we perform pruning on sparse vectors to further accelerate
+sparse computations.
+Overall, the contributions of this paper are as follows:
+(1) We propose a method for aligning sparse and dense vector
+distributions that effectively combines both types of simi-
+larity, thereby enhancing the accuracy of recall results. Our
+experiments demonstrate that this approach can improve
+the recall accuracy by 1%∼9%.
+
+Efficient and Effective Retrieval of Dense-Sparse Hybrid Vectors using Graph-based Approximate Nearest Neighbor Search
+Conference’17, July 2017, Washington, DC, USA
+(2) We verify the potential performance of graph index for hy-
+brid vector retrieval and further introduce an adaptive two-
+stage approach to reduce sparse vector computations. Ad-
+ditionally, we implement vector pruning to speed sparse
+computations. Compared to a naive implementation, our
+methods achieve a ∼2.1× speedup.
+(3) We conducted thorough experiments on mainstream text re-
+trieval datasets and a variety of dense and sparse embedding
+models. With the powerful performance of HNSW and our
+optimization method, we improve the end-to-end Queries
+Per Second (QPS) by 8.9×∼11.7× at equal accuracy compared
+with existing methods.
+2
+PRELIMINARIES AND RELATED WORK
+2.1
+Nearest Neighbor Search Algorithm
+For sparse vectors search, inverted index-based algorithms are com-
+monly used, such as WAND and its variants [1, 8]. Recently, re-
+searchers have proposed improved algorithms (e.g. LinScan and
+Sinnamon [3]) for model-based sparse vectors. These methods lever-
+age vector sparsity to reduce computation and therefore are not
+suitable for dense vectors. For dense vectors search, a wide range
+of algorithms have been developed, including hash-based methods
+[7, 23], Product-Quantization (PQ) [12, 14], Inverted File index [9],
+and Graph-based ANNS (GANNS) [13, 20]. These methods achieve
+efficient ANNS by calculating only a subset of candidates, or by
+approximating the calculation through quantization. However, the
+high dimensionality of sparse vectors makes it hard to build ef-
+ficient index using IVF or hash-based methods. But for GANNS,
+because of the high connectivity of gragh, it has the potential to
+maintain excellent performance in high-dimensional space.
+In this study, we adopt the HNSW, one of the most popular
+GANNS algorithms, as the base algorithm for hybrid vector search.
+HNSW constructs a graph with multiple layers, establishing con-
+nections between elements based on proximity. The search starts
+from the top layer, performing 1-greedy search until the nearest
+neighbor is found. This node becomes the entry point for the next
+layer. At the bottom layer (L0), HNSW performs a best-first beam
+search for final candidates. The trade-off between search time and
+accuracy is controlled by the parameter "ef", which determines the
+length of the candidate queue.
+2.2
+Hybrid Vector Search
+The prevailing and straightforward method for hybrid vector search
+is to perform sparse and dense recall separately, followed by a hy-
+brid sorting [2, 5]. But the two disconnected recall systems intro-
+duce data synchronization overhead and can impact scalability and
+accuracy. To address these issues, recent research has proposed the
+Sinnamon algorithm [4], which projects high-dimensional sparse
+vectors into lower-dimensional denser vectors using a hashing
+function. The resulting vector is then concatenated with the dense
+vector, and indexes are constructed using the IVF algorithm for
+hybrid retrieval. However, the hashing process introduces addi-
+tional errors. And the IVF method performs worse than GANNS in
+large-scale datasets. In addition, the LADR algorithm [16] leverages
+sparse retrieval results to generate the entry point for dense vector
+0
+-5
+-10
+-15
+-20
+Sparse distance
+0.5          0.75
+Dense distance
+0.5          0.75
+Dense distance
+0
+-5
+ 
+-10
+ 
+-15
+Sparse distance
+0
+-5
+-10
+-15
+-20
+Sparse distance
+0.4        0.6         0.8
+Dense distance
+NQ
+MS MARCO
+HotpotQA
+Figure 4: The distribution of dense distance and sparse dis-
+tance on NQ, MS MARCO, and HotpotQA datasets embedded
+by BGE model and SPLADE model.
+search on the index graph. However, this method primarily focuses
+on dense recall and does not achieve true hybrid retrieval.
+In this paper, we suppose that dense models embed queries and
+candidate texts into 𝑁-dimensional vectors, denoted as𝑞𝑑,𝑑𝑑∈R𝑁
+respectively. And sparse models embed them into 𝑀-dimensional
+vectors, denoted as 𝑞𝑠,𝑑𝑠∈R𝑀, where 𝑀>> 𝑁. Then we can
+write the hybrid vectors as 𝑞= 𝑞𝑑⊕𝑞𝑠,𝑑= 𝑑𝑑⊕𝑑𝑠∈R𝑁+𝑀, where
+⊕denotes concatenation. We denote the distance function between
+vectors as 𝑓(𝑥1,𝑥2) and adopt the Inner Product (IP) distance func-
+tion, i.e. 𝑓(𝑥1,𝑥2) = 1 −⟨𝑥1,𝑥2⟩. To combine the dense distance and
+sparse distance, most works adopt the linear weighted method to
+calculate the hybrid distances [11, 17, 19, 24]:
+𝑓ℎ(𝑞,𝑑) = 𝛼· 𝑓(𝑞𝑑,𝑑𝑑) + (1 −𝛼) · 𝑓(𝑞𝑠,𝑑𝑠)
+(1)
+where 𝑓ℎis the distance computation function for hybrid vectors
+and the hyperparameter 𝛼, which is called dense weight, controls
+the relative importance of the dense and sparse distances. Previ-
+ous studies have also proposed the Reciprocal Rank Fusion (RRF)
+method for hybrid scores computation [5]. However, as our ap-
+proach does not follow the two-route retrieval method, we lack
+the ranking positions of candidates. Therefore, we adopt the linear
+weighted method, which has been shown to achieve excellent per-
+formance [2]. The objective of hybrid vector search is to identify
+the set S of top-k vectors with the minimal hybrid distance to query
+vector 𝑞from the candidate dataset D:
+S = 𝑎𝑟𝑔
+(𝑘)
+min
+d∈𝐷𝑓ℎ(𝑞,𝑑)
+(2)
+3
+DENSE AND SPARSE SPACE ALIGNMENT
+In this section, we introduce the the distribution alignment method
+to determine the optimal fusion weight and achieve high accuracy.
+Typically, dense embedding vectors are normalized to unit magni-
+tude, with IP distances ranging from zero to one [18, 26]. In contrast,
+sparse vectors have indeterminate magnitudes, often exceeding one.
+Due to their high dimensionality and sparsity, sparse vectors of
+unrelated texts likely yield an IP of zero (IP distance of one), while
+those with high keyword matches may produce an IP greater than
+one (IP distance below zero). Note that we adopt linear weight-
+ing for sparse and dense distances, the negative sparse distance
+does not affect the final hybrid distance ranking. We analyze the
+vector distance distribution on real datasets by sampling and the
+results are shown in Fig. 4. The distribution space and probability
+of sparse and dense distance exhibit significant differences, which
+means that same absolute distance between sparse versus dense
+
+Conference’17, July 2017, Washington, DC, USA
+Haoyu Zhang, Jun Liu, Zhenhua Zhu, Shulin Zeng, Maojia Sheng, Tao Yang, Guohao Dai, and Yu Wang
+represents very different levels of similarity. So it is hard to choose
+the optimal fusion weight, as illustrated in Fig. 2. Unlike the two-
+route retrieval method, which can normalize scores after obtaining
+separate search results [2], our method needs to predetermine the
+weight for index building and hybrid search. Addressing this chal-
+lenge requires carefully normalizing and aligning the distributions
+of sparse and dense vectors.
+Firstly, we normalize the sparse vector of candidate texts, i.e.
+dividing by the maximum value of magnitude:
+𝑑𝑠
+𝑛𝑜𝑟𝑚=
+𝑑𝑠
+max𝑑∈D ∥𝑑𝑠∥
+(3)
+This is because the maximum IP of dense vectors is 1, which reflect-
+ing the highest level of similarity. We hope to limit the maximum IP
+of sparse vectors to be 1 as well. The sparse query vectors are nor-
+malized by dividing by the same denominator since the maximum
+magnitude of the query sparse vectors cannot be predetermined.
+After normalization, the further alignment is performed by pre-
+sampling and analyzing the IPs distribution. Since our objective is
+to identify the top-k vectors with minimal distances, what is crucial
+is not the absolute values of distances but the relative differences.
+And we should focus on vectors with small distance. Therefore, we
+align the distance differences among vectors with small distances.
+Specifically, we compute the differences between the minimum IP
+distance and the top-1% IP distance from the sampled data for both
+sparse and dense vectors. The scale factor 𝛾for sparse vectors is
+determined by the ratio of the two differences:
+𝛾=
+𝑓(𝑞𝑑,𝑑𝑑
+𝑡𝑜𝑝1%) −𝑓(𝑞𝑑,𝑑𝑑
+𝑚𝑖𝑛)
+𝑓(𝑞𝑠𝑛𝑜𝑟𝑚,𝑑𝑠
+𝑛𝑜𝑟𝑚,𝑡𝑜𝑝1%)) −𝑓(𝑞𝑠𝑛𝑜𝑟𝑚,𝑑𝑠
+𝑛𝑜𝑟𝑚,𝑚𝑖𝑛)
+(4)
+The distributions of sparse and dense distances exhibit a certain
+degree of consistency across different queries [2], allowing us to an-
+alyze a small subset of queries through pre-sampling. Experimental
+on real datasets has shown that by randomly selecting less than
+1% of queries and documents, we can obtain a reasonably accurate
+distance distribution.
+After alignment, the optimal fusion weights tend to be around 0.5,
+as shown in Fig. 2. To determine the optimal weight more precisely,
+we select values around 0.5 as the fusion weights to perform NNS
+on a small pre-sampled portion of the query vectors and choose
+the optimal weight based on search accuracy. The finally hybrid
+distance formula is:
+𝑓ℎ(𝑞,𝑑) = 𝛼· 𝑓(𝑞𝑑,𝑑𝑑) + (1 −𝛼) · 𝛾· 𝑓(𝑞𝑠
+𝑛𝑜𝑟𝑚,𝑑𝑠
+𝑛𝑜𝑟𝑚)
+(5)
+Compared to directly adopting the weight of 0.5, our method can
+improve recall accuracy by approximately 1% to 9%.
+4
+SPARSE COMPUTATION OPTIMIZATION
+Thanks to the efficient graph index in high-dimensional space, the
+original HNSW algorithm has achieved better performance than
+existing algorithms in hybrid vector retrieval. However, the sparse
+computing overhead causes the algorithm’s efficiency to be worse
+than pure dense recall at low accuracy levels. To address this, we
+introduce two ways to reduce the sparse computation overhead: 1)
+reducing the number of sparse vector calculations by adopting a
+dense-to-hybrid two-stage strategy, and 2) accelerating individual
+computations by pruning non-zero elements in sparse vectors.
+layer 2
+layer 1
+layer 0
+layer 0
+layer 0
+layer 0
+Dense Construction
+Hybrid Fine-tuning
+layer 2
+layer 1
+layer 0
+layer 0
+Dense Search
+Hybrid Search
+(a) Two-stage construction
+(b) Two-stage search
+Dense Search
+Hybrid Search
+Figure 5: Illustration of two-stage graph construction and
+two-stage search processes.
+4.1
+Adaptive Two-stage Computation Strategy
+The sparse distance captures the degree of keyword matching, while
+the dense distance reflects semantic similarity. Empirical evidence
+suggests that these two types of similarities typically exhibit a posi-
+tive correlation in practical scenarios. We can observe that in Fig. 4.
+This observation has inspired us to approximate the hybrid distance
+by the dense distance alone in situations where precise hybrid dis-
+tances are not necessary. In GANNS algorithms, the initial phases
+of index construction and search do not necessitate high precision
+in distance measurements. During the search stage, we start with
+an extensive coarse search before transitioning to a precise local
+search. Therefore, sparse distance information is not necessary
+in the initial stage. So we propose the dense-to-hybrid two-stage
+strategy for both construction and search, as illustrated in Fig. 5.
+4.1.1
+Construction Algorithm. We extend the original HNSW con-
+struction algorithm to comprise two phases: a dense-only con-
+struction phase and a hybrid fine-tuning phase. The algorithm is
+presented as Algorithm 1.
+During the dense-only construction process, we follow the orig-
+inal HNSW construction algorithm, which using dense distances
+to select neighbors. The parameter cef-dense controls the trade-off
+between construction time and graph quality. When sequentially
+inserting nodes into the graph, we store both sparse vectors and
+dense vectors in the graph. The fixed-length dense vectors are
+stored in an array format. Since the number of non-zero elements
+in each sparse vector is uncertain, we adopt a storage format similar
+to the Compressed Sparse Row (CSR) format. This format saves
+the values and corresponding index positions of non-zero elements
+separately in two arrays, namely values and indices. Additionally,
+the starting pointers of each vector are saved in a third array called
+index pointers. Compared to the original dense HNSW graph index,
+
+Efficient and Effective Retrieval of Dense-Sparse Hybrid Vectors using Graph-based Approximate Nearest Neighbor Search
+Conference’17, July 2017, Washington, DC, USA
+Algorithm 1 Two-stage Construction Algorithm
+Input: vector set D, number of neighbors M, length of dense
+candidate queue cef-dense, length of hybrid candidate queue
+cef-hybrid, construction dense-weight 𝛼
+Output: Multi-layer graph hnsw-hybrid
+1: # Stage 1: Dense Construction
+2: build dense graph hnsw-dense ←𝐻𝑁𝑆𝑊𝑐𝑜𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛(D, 𝑀,
+cef-dense, distance = dense-only)
+3: # Stage 2: Hybrid Fine-tuning
+4: for 𝑑∈D do
+5:
+𝑅←𝐻𝑁𝑆𝑊𝑠𝑒𝑎𝑟𝑐ℎ(𝑑,𝑒𝑝= 𝑑,𝑒𝑓= cef-hybrid,
+𝑤𝑒𝑖𝑔ℎ𝑡= 𝛼, distance = hybrid)
+6:
+neighbors[𝑑] ←heuristic select M neighbors from 𝑅
+7: end for
+8: hnsw-hybrid ←using neighbors to update hnsw-dense 𝐿0
+9: return Multi-layer graph hnsw-hybrid
+Algorithm 2 Two-stage Search Algorithm
+Input: query vector 𝑞, number of search results top-k, length of
+candidate queue sef, dense search stop threshold𝜏-dense, hybrid
+search stop threshold 𝜏-hybrid, dense-weight 𝛼
+Output: top-k nearest vectors to 𝑞
+1: C = candidate queue
+2: R = nearest neighbor queue
+3: 𝑒𝑝𝑖= enter point on the layer 𝑖
+4: #Stage 1: Dense Search
+5: C ←insert 𝑒𝑝𝑙
+6: for 𝑖←𝑙𝑡𝑜1 do
+7:
+R, C ←𝐻𝑁𝑆𝑊𝑠𝑒𝑎𝑟𝑐ℎ(𝑞,𝑒𝑝= 𝑒𝑝𝑖,𝑒𝑓= 1,
+𝑑𝑖𝑠𝑡𝑎𝑛𝑐𝑒= 𝑑𝑒𝑛𝑠𝑒,𝑙𝑎𝑦𝑒𝑟= 𝑖)
+8:
+𝑒𝑝𝑖−1 ←get the nearest vector from R
+9: end for
+10: R, C ←𝐻𝑁𝑆𝑊𝑠𝑒𝑎𝑟𝑐ℎ(𝑞,𝑒𝑝= 𝑒𝑝0,𝑒𝑓= 𝑠𝑒𝑓,
+𝑑𝑖𝑠𝑡𝑎𝑛𝑐𝑒= 𝑑𝑒𝑛𝑠𝑒,𝑙𝑎𝑦𝑒𝑟= 0,𝑡ℎ𝑟𝑒𝑠ℎ𝑜𝑙𝑑= 𝜏-dense)
+11: #Stage 2: Hybrid Search
+12: R, C ←update the hybrid distance of vectors in R, C
+13: 𝑒𝑝0 ←get the nearest vector from R
+14: 𝑅←𝐻𝑁𝑆𝑊𝑠𝑒𝑎𝑟𝑐ℎ(𝑞,𝑒𝑝= 𝑒𝑝0,𝑒𝑓= sef,𝑤𝑒𝑖𝑔ℎ𝑡= 𝛼,
+𝑑𝑖𝑠𝑡𝑎𝑛𝑐𝑒= ℎ𝑦𝑏𝑟𝑖𝑑,𝑙𝑎𝑦𝑒𝑟= 0,𝑡ℎ𝑟𝑒𝑠ℎ𝑜𝑙𝑑= 𝜏-hybrid)
+15: return top-k nearest vectors from R
+the additional storage overhead of the hybrid index is the sparse
+vector component.
+After initially building the graph using only dense distances,
+we refine it based on the sparse-dense hybrid distance. The goal
+is to further improve the quality of the graph index. Specifically,
+we focus on enhancing the connections at the lowest level (𝐿0) of
+the multi-layer graph. For each node at this level, we perform a
+hybrid search using the node itself as the entry point (𝑒𝑝). The aim
+is to find better neighbors by leveraging both sparse and dense
+distances. The cef-hybrid parameter controls the tradeoff between
+search time and accuracy. The weight parameter 𝛼determines the
+relative importance of sparse and dense distances in the hybrid
+distance metric. We then update the neighbor list of each node by
+heuristically selecting neighbors from the hybrid search results.
+The initial phase calculates only dense distances, which is sig-
+nificantly faster than the naive approach of computing the hybrid
+distance. While the two-stage method includes an additional refine-
+ment phase using hybrid distances, this second stage does not add
+substantial time overhead. This is because the initial neighbor graph
+eliminates the need for extensive searches during the refinement.
+By setting the cef-hybrid parameter to a relatively small value, e.g.
+16 or 32, a satisfactory graph can be obtained. As a result, the two-
+stage construction method achieves ∼2× acceleration compared to
+the naive implementation.
+4.1.2
+Search Algorithm. The HNSW search process has two phases:
+the upper layer graph search and the lowest layer graph search.
+For the upper layers, we use the standard HNSW search and only
+calculate dense distances. In the lowest layer, we employ the two-
+stage strategy, as shown in Algorithm 2.
+In the initial stage of the lowest layer graph search, we use
+dense distance for a rough search. Once the search satisfies the
+termination condition regulated by the parameters 𝜏-dense and 𝑠𝑒𝑓,
+the dense search is stopped. When transitioning from the dense
+search to the hybrid search, we update the distance values in the
+nearest neighbor queue 𝑊and the candidate queue 𝐶, replacing
+the dense distances with hybrid distances. We then extract the node
+with the minimum hybrid distance from 𝐶as the entry point and
+perform the hybrid search. The hybrid search is stopped when the
+condition, governed by the parameters 𝜏-hybrid and 𝑠𝑒𝑓, is met.
+Unlike conventional HNSW algorithms, our two-stage search
+uses a stopping condition determined by both the 𝑠𝑒𝑓parameter
+and the 𝜏parameter. The 𝑠𝑒𝑓parameter controls the length of the
+candidate queue. In our algorithm, it affects the transition from
+the dense search to the hybrid search, as the starting point of the
+hybrid search is selected from the candidate queue. The nodes
+present in the candidate queue constitute the initial set for the
+hybrid search stage. A longer candidate queue can enhance the
+entry point and improve recall accuracy. However, a larger 𝑠𝑒𝑓
+can also lead to a looser stopping condition and longer search
+times. To address this, we introduce the 𝜏parameter to further
+control the stopping condition. The search terminates when the
+number of updated points in the candidate queue during the current
+iteration is less than the product of the queue length (𝑠𝑒𝑓) and (1-𝜏),
+where 𝜏is between zero and one. When 𝜏is one, the condition is
+consistent with the original algorithm, and the search terminates
+more quickly as 𝜏decreases. We do not use the stopping condition
+from prior work, which employs the top-𝑠𝑒𝑓distance multiplied
+by a parameter 𝜏as a distance threshold. This is because the sparse
+distance may not be non-negative, making the condition potentially
+erroneous. The three parameters, 𝑠𝑒𝑓, 𝜏-dense, and 𝜏-hybrid, control
+the tradeoff between search speed and accuracy together. With two-
+stage search, the number of sparse distance calculations can be
+reduced by 3× ∼7×.
+4.2
+Sparse Vector Pruning
+Graph index construction and search require discontinuous access
+to candidate vectors. Therefore, we use an indices-value pair format
+to store sparse vectors, instead of an inverted index. The compu-
+tation time of the IP distance between sparse vectors is positively
+correlated with the number of non-zero elements. This computation
+
+Conference’17, July 2017, Washington, DC, USA
+Haoyu Zhang, Jun Liu, Zhenhua Zhu, Shulin Zeng, Maojia Sheng, Tao Yang, Guohao Dai, and Yu Wang
+0.6
+0.7
+0.8
+0.9
+150
+120
+90
+60
+30
+10
+Recall@10
+Sparse elements num
+No-Prune
+NQ
+MS MARCO
+HotpotQA
+Figure 6: Effect of sparse vector pruning on recall accuracy for
+vectors embedded by Bge&Splad model on NQ, MSMARCO,
+and HotpotQA datasets.
+Table 1: Information of datasets, including the number of
+base vectors, the dimensions (Dim) and the average number
+of non-zero elements for candidate sparse vectors (in paren-
+theses is for queries sparse vectors).
+Dataset
+Document
+Count
+SPLADE
+BM25
+BGE
+Dim
+GTE
+Dim
+element
+num
+Dim
+element
+num
+Dim
+NQ
+2.68M
+153 (49)
+30522
+40 (5)
+4295M
+1024
+768
+MS MARCO
+8.8M
+127 (49)
+26 (5)
+HotpotQA
+5.23M
+131 (59)
+24 (9)
+time significantly exceeds that of dense vectors with the same num-
+ber of non-zero elements, as shown in Fig. 3. Importantly, the IP
+computation has the property that elements with larger values are
+more important, while those with smaller values are less important.
+We leverage this property to design a pruning strategy, where we
+trim the elements with smaller values. According to experimental
+results (Fig. 6), more than 40% of the data in the sparse vector can
+be pruned without significantly reducing the recall. As a result, the
+IP computation of sparse vectors can be accelerated by ∼1.4×.
+5
+EXPERIMENTS
+5.1
+Experiment Setup
+5.1.1
+Hardware Configuration. We conducted all the experiments
+on a CPU server, which is equipped with an Intel(R) Xeon(R) Plat-
+inum 8260 CPU(24 cores, running at 2.40 GHz). The operating
+system is Debian GNU/Linux 9.13. To save time, we builded indexes
+with 10 threads. And during the search process, we all employed
+one thread to compare the algorithms.
+5.1.2
+Datasets. The datasets and embedding models that we used
+are shown in the Table. 1. For dense embedding models, we chose
+BGE-large1 [26] and GTE-base2 [18], which are among the SOTA
+dense models for text retrieval 3. For sparse methods, we chose
+the SPLADE model4 [10] and the BM25 method5. The former is a
+sparse embedding model, while the latter is a classic term frequency-
+based method. The average number of non-zero elements and the
+dimension of sparse vectors are different for different models and
+1https://huggingface.co/BAAI/bge-large-en-v1.5
+2https://huggingface.co/thenlper/gte-base
+3https://huggingface.co/spaces/mteb/leaderboard
+4https://github.com/naver/splade
+5https://github.com/pinecone-io/pinecone-text
+1E+0
+1E+1
+1E+2
+1E+3
+1E+4
+0.6
+0.8
+1
+1E+0
+1E+1
+1E+2
+1E+3
+1E+4
+0.6
+0.8
+1
+1E+0
+1E+1
+1E+2
+1E+3
+1E+4
+0.6
+0.8
+1
+1E+0
+1E+1
+1E+2
+1E+3
+1E+4
+0.6
+0.8
+1
+QPS
+Sinnamon
+Ours
+BGE&SPLADE
+BGE&BM25
+Recall@10
+Recall@10
+GTE&SPLADE
+GTE&BM25
+Recall@10
+Recall@10
+QPS
+Figure 7: QPS and Recall@10 against brute force on NQ
+dataset.
+datasets. We present the characteristics of vectors derived from
+various datasets using different models in Table 1.
+5.1.3
+Baselines. To evaluate our index construction algorithm, we
+compared it to the original HNSW methods, including the naive hy-
+brid algorithm and the dense algorithm. The naive hybrid algorithm
+uses the hybrid distance metric to construct the index. The dense
+algorithm only uses the dense distance, but stores both vectors.
+For the search stage, we compared to two existing hybrid ANNS
+approaches: the two-route retrieval strategy and the Sinnamon al-
+gorithm [4]. In our experiments, the two-route strategy employs
+HNSW for dense vector retrieval, while using WAND [1] for search-
+ing BM25 sparse vectors and LinScan [3] for searching SPLADE
+sparse vectors. The Sinnamon algorithm projects sparse vectors
+into a lower-dimensional dense space using hashing and then uses
+an IVF-based algorithm to search the dense space. We reproduced
+this method according to the algorithm [4], while setting the hash
+mapping dimension to 1024 and the number of clusters to 1000. We
+also compared to pure dense vector retrieval, pure sparse vector
+retrieval, and the LADR algorithm [16], which uses sparse BM25
+vectors to quickly find starting points for dense searches.
+5.1.4
+Parameters setting. For index construction, we set the pa-
+rameter 𝑚to 32 and 𝑐𝑒𝑓to 200 by default. And we set 𝑐𝑒𝑓-ℎ𝑦𝑏𝑟𝑖𝑑
+to 32 in our two-stage construction algorithm. In the search stage,
+we vary the key parameters: the 𝑠𝑒𝑓ranges from 10 to 200, 𝜏-𝑑𝑒𝑛𝑠𝑒
+is set between 0.6 and 1.0, and 𝜏-ℎ𝑦𝑏𝑟𝑖𝑑is set between 0.0 and 1.0.
+5.2
+Experiment Results
+5.2.1
+Graph Index Construction. The comparison of the construc-
+tion time and quality of the graph index is presented in Table 2. We
+executed hybrid searches on these indices and compute recall@10
+against brute force results as accuracy metric. The results indicate
+that our approach, denoted as Opt Hybrid, enhances the construc-
+tion efficiency by approximately 2.1× compared to the naive hybrid
+method and delivers superior search performance when compared
+to the dense method.
+
+Efficient and Effective Retrieval of Dense-Sparse Hybrid Vectors using Graph-based Approximate Nearest Neighbor Search
+Conference’17, July 2017, Washington, DC, USA
+Table 2: Comparison of graph index construction time and quality across different methods on NQ, MS MARCO, and HotpotQA
+datasets embedded by Bge&Splade models.
+NQ
+MS MARCO
+HotpotQA
+Method
+Build Time
+(us)
+QPS
+(recall@10∼0.99)
+recall@10
+(QPS∼500)
+Build Time
+(us)
+QPS
+(recall@10∼0.96)
+recall@10
+(QPS∼250)
+Build Time
+(us)
+QPS
+(recall@10∼0.94)
+recall@10
+(QPS∼167)
+Naive Hybrid
+3.11E+09 (2.10×)
+117.33
+0.933
+9.51E+09 (2.19×)
+167.61
+0.946
+6.82E+09 (2.21×)
+83.33
+0.89
+Dense
+1.11E+09 (0.75×)
+85.35
+0.925
+3.52E+09 (0.81×)
+128.04
+0.933
+2.65E+09 (0.82×)
+68.43
+0.87
+Opt Hybrid
+1.48E+09 (1.00×)
+114.97
+0.932
+4.35E+09 (1.00×)
+162.34
+0.943
+3.24E+09 (1.00×)
+80.6
+0.89
+NDCG@10
+NDCG@10
+NDCG@10
+NDCG@10
+NDCG@10
+NDCG@10
+NDCG@10
+NDCG@10
+MRR@10
+MRR@10
+MRR@10
+MRR@10
+QPS
+NQ
+QPS
+QPS
+MS MARCO
+HOTPOT QA
+1E+1
+1E+2
+1E+3
+1E+4
+0.38
+0.48
+0.58
+1E+1
+1E+2
+1E+3
+1E+4
+0.45
+0.5
+0.55
+1E+1
+1E+2
+1E+3
+1E+4
+0.45
+0.5
+0.55
+1E+1
+1E+2
+1E+3
+1E+4
+0.45
+0.5
+1E+1
+1E+2
+1E+3
+1E+4
+0.2
+0.3
+0.4
+1E+1
+1E+2
+1E+3
+1E+4
+0.23
+0.28
+0.33
+1E+1
+1E+2
+1E+3
+1E+4
+0.2
+0.3
+1E+1
+1E+2
+1E+3
+1E+4
+0.21
+0.26
+0.31
+1E+1
+1E+2
+1E+3
+0.45
+0.65
+1E+1
+1E+2
+1E+3
+0.51
+0.61
+0.71
+1E+1
+1E+2
+1E+3
+1E+4
+0.43
+0.63
+1E+1
+1E+2
+1E+3
+1E+4
+0.5
+0.6
+0.7
+BGE&SPLADE
+BGE&BM25
+GTE&SPLADE
+GTE&BM25
+Dense
+Sparse
+Ladr
+Two-route
+Sinnamon
+Ours
+Figure 8: QPS and end-to-end Recall@10 on NQ, MS MARCO and HotpotQA datasets.
+5.2.2
+Recall against Brute Force. We tested the QPS and accuracy
+of retrieval results against brute-force search between our methods
+and Sinnamon. The experiment is conducted on NQ dataset, using
+the BGE or GTE model to generate dense vectors, and using the
+SPLADE model or BM25 algorithm to generate sparse vectors. We
+select recall@10 as the accuracy metric.
+Fig.7 shows the performance comparison results. Due to the
+errors introduced by hash mapping and the inherently poor perfor-
+mance of IVF, Sinnamon performed relatively poorly. Our method
+achieved over 10 × higher QPS compared to the Sinnamon algo-
+rithm, while can achieve higher recall accuracy.
+5.2.3
+End-to-end Performance. To further validate the performance
+of hybrid vector search in information retrieval, we conducted end-
+to-end experiment. We calculated the retrieval performance based
+on the test data provided in real retrieval datasets. We chose mrr@10
+as metric for MS MARCO and ndcg@10 for NQ and HotpotQA. The
+experimental results are shown in Fig. 8 and Table 3.
+Overall, our algorithm provides the best QPS-vs-accuracy perfor-
+mance. The two-route retrieval method has a long latency and low
+QPS because of the need for separate sparse and dense retrieval.
+Compared with the Sinnamon algorithm and two-route method,
+our method can achieve 8.9×∼11.7× QPS at equal retrieval accuracy.
+Althrough dense retrieval and LADR algorithm can achieve similar
+performance at lower accuracy thresholds, they are unable to attain
+the same high accuracy levels as hybrid search.
+5.2.4
+Effect of Parameters. We performed an analysis of the key
+parameters in our proposed algorithm: the length of the candidate
+queue during search (𝑠𝑒𝑓) and the stop condition for dense search
+(𝜏-𝑑𝑒𝑛𝑠𝑒) and for hybrid search (𝜏-ℎ𝑦𝑏𝑟𝑖𝑑). Fig. 9 reports the re-
+trieval accuracy (NDCG@10) and QPS on NQ dataset embedded
+by Bge&Splade models. We observed that as the 𝑠𝑒𝑓, 𝜏-𝑑𝑒𝑛𝑠𝑒, and
+𝜏-ℎ𝑦𝑏𝑟𝑖𝑑increase, the results accuracy also improves, but at the
+cost of decreased QPS. Furthermore, when 𝑠𝑒𝑓and 𝜏-𝑑𝑒𝑛𝑠𝑒are both
+large, the increase of 𝜏-ℎ𝑦𝑏𝑟𝑖𝑑improves the accuracy slowly, but
+significantly reduces the QPS. These findings suggest that when
+improving result accuracy, the focus should be on increasing 𝑠𝑒𝑓
+and 𝜏-𝑑𝑒𝑛𝑠𝑒first, followed by adjustments to 𝜏-ℎ𝑦𝑏𝑟𝑖𝑑.
+5.2.5
+Ablation Studies. We conducted an ablation experiment on
+NQ dataset using Bge&Splade models to demonstrate the effect of
+
+Conference’17, July 2017, Washington, DC, USA
+Haoyu Zhang, Jun Liu, Zhenhua Zhu, Shulin Zeng, Maojia Sheng, Tao Yang, Guohao Dai, and Yu Wang
+Table 3: Comparison of QPS across different methods at two accuracy points on NQ, MS MARCO, and HotpotQA datasets.
+Datasets are embedded using Bge/Gte models for dense and Splade/BM25 models for sparse. Results that cannot be matched to
+the accuracy point are indicated with "-".
+NQ (ndcg@10)
+MS MARCO (mrr@10)
+HotpotQA (ndcg@10)
+Method
+BGE&
+SPLADE
+BGE&
+BM25
+GTE&
+SPLADE
+GTE&
+BM25
+BGE&
+SPLADE
+BGE&
+BM25
+GTE&
+SPLADE
+GTE&
+BM25
+BGE&
+SPLADE
+BGE&
+BM25
+GTE&
+SPLADE
+GTE&
+BM25
+Accuracy
+0.55
+0.53
+0.53
+0.52
+0.35
+0.35
+0.33
+0.32
+0.70
+0.71
+0.64
+0.64
+QPS
+Dense
+73.15
+1078.45
+336.72
+1350.12
+687.59
+687.59
+874.16
+1851.92
+177.54
+142.26
+225.18
+225.18
+Sparse
+-
+-
+15.942
+-
+42.32
+-
+48.31
+-
+-
+-
+35.02
+-
+Ladr
+53.55
+871.43
+137.68
+382.75
+478.34
+478.34
+943.57
+1861.25
+184.69
+148.55
+233.44
+233.44
+Two-route
+57.31
+87.66
+58.12
+59.23
+77.55
+98.43
+68.43
+21.56
+44.54
+128.43
+61.35
+66.70
+Sinnamon
+136.08
+72.04
+135.34
+145.25
+220.78
+39.65
+44.05
+145.33
+76.31
+42.39
+96.47
+22.39
+Ours
+1378.38
+1178.82
+1686.18
+1369.24
+1365.91
+686.87
+1672.77
+1852.74
+216.90
+135.45
+360.38
+231.68
+Accuracy
+0.58
+0.55
+0.57
+0.53
+0.38
+0.36
+0.38
+0.33
+0.74
+0.74
+0.71
+0.68
+QPS
+Dense
+-
+73.15
+-
+-
+-
+162.01
+-
+874.16
+-
+-
+-
+-
+Sparse
+-
+-
+-
+-
+10.28
+-
+10.28
+-
+-
+-
+-
+-
+Ladr
+-
+53.55
+-
+-
+-
+109.58
+-
+943.57
+-
+-
+-
+-
+Two-route
+22.24
+56.43
+28.34
+21.54
+26.55
+12.47
+17.98
+8.94
+12.36
+11.49
+15.44
+9.04
+Sinnamon
+-
+29.88
+14.96
+53.63
+9.95
+-
+-
+103.58
+32.57
+17.63
+18.69
+18.27
+Ours
+664.66
+345.79
+846.63
+463.26
+476.58
+164.69
+299.96
+986.48
+113.59
+32.25
+30.37
+26.85
+sef
+τ-hybrid
+NDCG@10
+τ-dense=0.8
+τ-hybrid
+QPS
+sef
+τ-dense=0.9
+Figure 9: Comparison of our algorithm performance on
+NQ embedded by Bge&Splade models while varying 𝜏-𝑑𝑒𝑛𝑠𝑒,
+𝜏-ℎ𝑦𝑏𝑟𝑖𝑑, and 𝑠𝑒𝑓.
+the sparse vector pruning and two-stage search method on perfor-
+mance. We implemented a naive hybrid search based on HNSW,
+which directly replaces the dense distance calculation with the hy-
+brid distance. The QPS-vs-accuracy performance comparison and
+latency analysis are shown in Fig. 10 and Fig. 11. Since the excellent
+performance of the HNSW index, the naive implementation already
+outperformed the two-stage algorithm and Sinnamon algorithm.
+However, due to the overheads introduced by sparse vectors, the
+naive implementation underperformed the pure dense retrieval at
+0
+500
+1000
+1500
+0.5
+0.52
+0.54
+0.56
+0.58
+0.6
+Naïve
+Prune
+Prune+Two-stage
+QPS
+NDCG@10
+Figure 10: Ablation experiment results (QPS-vs-accuracy) on
+NQ dataset embedded by Bge&Splade.
+0
+2000
+4000
+6000
+8000
+10000
+12000
+0.511
+0.530
+0.578
+0.587
+0.590
+0.511
+0.529
+0.574
+0.585
+0.589
+0.511
+0.531
+0.573
+0.585
+0.590
+Dense
+Sparse
+Other
+NDCG@10
+Latency (us)
+Naïve
+Prune
+Prune+Two-stage
+61%
+31%
+8%
+56%
+35%
+9%
+7%
+77%
+16%
+Figure 11: Ablation experiment results (latency distribution)
+on NQ dataset embedded by Bge&Splade.
+lower accuracy thresholds. By implementing sparse vector pruning,
+we achieved ∼1.2× acceleration. Combining this with the two-stage
+search strategy resulted in a total 2.1× speedup and outperforming
+pure dense retrieval in general. As shown in Fig. 11, the primary
+time bottleneck for the naive implementation is the sparse vector
+computation component, for which our approach is optimized.
+
+Efficient and Effective Retrieval of Dense-Sparse Hybrid Vectors using Graph-based Approximate Nearest Neighbor Search
+Conference’17, July 2017, Washington, DC, USA
+6
+CONCLUSION
+Sparse-dense hybrid vector search significantly improves the ac-
+curacy of text retrieval, but efficient and effective implementation
+remains challenging. The vast differences of distribution between
+sparse and dense vectors make it difficult to properly fuse the two
+distance metrics, impacting precision. We addressed this by align-
+ing the sparse and dense vector distributions through sampling
+analysis, achieving 1∼9% accuracy gains. For efficient search, we
+validated the superior performance of the HNSW algorithm for hy-
+brid retrieval. However, the high computational overhead of sparse
+vectors degraded efficiency, underperforming dense methods at
+low accuracy thresholds. To optimize sparse computation overhead,
+we propose a two-stage dense-to-hybrid strategy, taking into ac-
+count the limited contribution of sparse embedding information
+in the initial stages. And we introduce sparse vector pruning to
+accelerate individual computation. Ultimately we achieve a 2.1×
+speedup over the naive approach. Leveraging the efficient HNSW
+algorithm and our optimization techniques, our hybrid retrieval
+method attains 8.9∼11.7× throughput improvements over existing
+hybrid approaches at comparable accuracy levels.
+REFERENCES
+[1] Andrei Z Broder, David Carmel, Michael Herscovici, Aya Soffer, and Jason Zien.
+2003. Efficient query evaluation using a two-level retrieval process. In Proceedings
+of the twelfth international conference on Information and knowledge management.
+426–434.
+[2] Sebastian Bruch, Siyu Gai, and Amir Ingber. 2023. An Analysis of Fusion Func-
+tions for Hybrid Retrieval. ACM Transactions on Information Systems (2023).
+[3] Sebastian Bruch, Franco Maria Nardini, Amir Ingber, and Edo Liberty. 2023. An
+Approximate Algorithm for Maximum Inner Product Search over Streaming
+Sparse Vectors. arXiv preprint arXiv:2301.10622 (2023).
+[4] Sebastian Bruch, Franco Maria Nardini, Amir Ingber, and Edo Liberty. 2023.
+Bridging Dense and Sparse Maximum Inner Product Search. arXiv preprint
+arXiv:2309.09013 (2023).
+[5] Tao Chen, Mingyang Zhang, Jing Lu, Michael Bendersky, and Marc Najork. 2022.
+Out-of-domain semantics to the rescue! zero-shot hybrid retrieval models. In
+European Conference on Information Retrieval. Springer, 95–110.
+[6] Kenneth Ward Church. 2017. Word2Vec. Natural Language Engineering 23, 1
+(2017), 155–162.
+[7] Mayur Datar, Nicole Immorlica, Piotr Indyk, and Vahab S Mirrokni. 2004. Locality-
+sensitive hashing scheme based on p-stable distributions. In Proceedings of the
+twentieth annual symposium on Computational geometry. 253–262.
+[8] Constantinos Dimopoulos, Sergey Nepomnyachiy, and Torsten Suel. 2013. Opti-
+mizing top-k document retrieval strategies for block-max indexes. In Proceedings
+of the sixth ACM international conference on Web search and data mining. 113–122.
+[9] Matthijs Douze, Alexandr Guzhva, Chengqi Deng, Jeff Johnson, Gergely Szilvasy,
+Pierre-Emmanuel Mazaré, Maria Lomeli, Lucas Hosseini, and Hervé Jégou. 2024.
+The Faiss library. (2024). arXiv:2401.08281 [cs.LG]
+[10] Thibault Formal, Benjamin Piwowarski, and Stéphane Clinchant. 2021. SPLADE:
+Sparse lexical and expansion model for first stage ranking. In Proceedings of
+the 44th International ACM SIGIR Conference on Research and Development in
+Information Retrieval. 2288–2292.
+[11] Luyu Gao, Zhuyun Dai, Tongfei Chen, Zhen Fan, Benjamin Van Durme, and
+Jamie Callan. 2021. Complement lexical retrieval model with semantic residual
+embeddings. In Advances in Information Retrieval: 43rd European Conference on
+IR Research, ECIR 2021, Virtual Event, March 28–April 1, 2021, Proceedings, Part I
+43. Springer, 146–160.
+[12] Ruiqi Guo, Philip Sun, Erik Lindgren, Quan Geng, David Simcha, Felix Chern, and
+Sanjiv Kumar. 2020. Accelerating large-scale inference with anisotropic vector
+quantization. In International Conference on Machine Learning. PMLR, 3887–3896.
+[13] Kiana Hajebi, Yasin Abbasi-Yadkori, Hossein Shahbazi, and Hong Zhang. 2011.
+Fast approximate nearest-neighbor search with k-nearest neighbor graph. In
+Twenty-Second International Joint Conference on Artificial Intelligence.
+[14] Jeff Johnson, Matthijs Douze, and Hervé Jégou. 2019. Billion-scale similarity
+search with gpus. IEEE Transactions on Big Data 7, 3 (2019), 535–547.
+[15] Vladimir Karpukhin, Barlas Oğuz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey
+Edunov, Danqi Chen, and Wen-tau Yih. 2020. Dense passage retrieval for open-
+domain question answering. arXiv preprint arXiv:2004.04906 (2020).
+[16] Hrishikesh Kulkarni, Sean MacAvaney, Nazli Goharian, and Ophir Frieder. 2023.
+Lexically-Accelerated Dense Retrieval. In Proceedings of the 46th International
+ACM SIGIR Conference on Research and Development in Information Retrieval.
+152–162.
+[17] Dohyeon Lee, Seung-won Hwang, Kyungjae Lee, Seungtaek Choi, and Sunghyun
+Park. 2023. On Complementarity Objectives for Hybrid Retrieval. In Proceedings
+of the 61st Annual Meeting of the Association for Computational Linguistics (Volume
+1: Long Papers). 13357–13368.
+[18] Zehan Li, Xin Zhang, Yanzhao Zhang, Dingkun Long, Pengjun Xie, and Meishan
+Zhang. 2023. Towards General Text Embeddings with Multi-stage Contrastive
+Learning. arXiv:2308.03281 [cs.CL]
+[19] Yi Luan, Jacob Eisenstein, Kristina Toutanova, and Michael Collins. 2021. Sparse,
+dense, and attentional representations for text retrieval. Transactions of the
+Association for Computational Linguistics 9 (2021), 329–345.
+[20] Yu A Malkov and Dmitry A Yashunin. 2018. Efficient and robust approximate
+nearest neighbor search using hierarchical navigable small world graphs. IEEE
+transactions on pattern analysis and machine intelligence 42, 4 (2018), 824–836.
+[21] Juan Ramos et al. 2003. Using tf-idf to determine word relevance in document
+queries. In Proceedings of the first instructional conference on machine learning,
+Vol. 242. Citeseer, 29–48.
+[22] Stephen Robertson, Hugo Zaragoza, et al. 2009. The probabilistic relevance
+framework: BM25 and beyond. Foundations and Trends® in Information Retrieval
+3, 4 (2009), 333–389.
+[23] Anshumali Shrivastava and Ping Li. 2014. Asymmetric LSH (ALSH) for sublinear
+time maximum inner product search (MIPS). Advances in neural information
+processing systems 27 (2014).
+[24] Shuai Wang, Shengyao Zhuang, and Guido Zuccon. 2021. Bert-based dense
+retrievers require interpolation with bm25 for effective passage retrieval. In
+Proceedings of the 2021 ACM SIGIR international conference on theory of information
+retrieval. 317–324.
+[25] S. K. Michael Wong, Wojciech Ziarko, Vijay V. Raghavan, and Patrick CN Wong.
+1987. On modeling of information retrieval concepts in vector spaces. ACM
+Transactions on Database Systems (TODS) 12, 2 (1987), 299–321.
+[26] Shitao Xiao, Zheng Liu, Peitian Zhang, and Niklas Muennighoff. 2023.
+C-Pack: Packaged Resources To Advance General Chinese Embedding.
+arXiv:2309.07597 [cs.CL]
+[27] Wayne Xin Zhao, Jing Liu, Ruiyang Ren, and Ji-Rong Wen. 2022.
+Dense
+text retrieval based on pretrained language models: A survey. arXiv preprint
+arXiv:2211.14876 (2022).

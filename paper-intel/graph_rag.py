@@ -40,9 +40,11 @@ Comparison baseline identifiers (for eval_compare.py):
   - 'hybrid_graph' : BM25 + FAISS + graph + RRF  (this file, use_bm25=True)
 """
 
+import os
 import pickle
 import re
 import math
+import time
 import logging
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Set, Any
@@ -54,6 +56,8 @@ import requests
 import networkx as nx
 
 logger = logging.getLogger(__name__)
+
+from nim_embedder import embed_text as _nim_embed_text, NIM_EMBED_DIM, NIM_EMBED_MODEL
 
 # ---------------------------------------------------------------------------
 # Stopwords (lightweight, no NLTK dependency)
@@ -143,25 +147,16 @@ class GraphRAG:
         # Cross-encoder reranker (lazy-loaded on first search)
         self._reranker = None
 
-        # sentence-transformers embedding model (lazy-loaded, CPU fallback for Ollama)
-        self._st_model = None
 
     # ------------------------------------------------------------------
     # Helpers
     # ------------------------------------------------------------------
 
     def _get_reranker(self):
-        """Lazy-load the cross-encoder reranker (cached after first call)."""
+        """Lazy-load the NIM Mistral-4B reranker (cached after first call)."""
         if self._reranker is None:
-            import os
-            # Prevent OpenBLAS multi-thread conflicts on Windows when loading
-            # a second model into the same process that already uses numpy.
-            os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
-            from core.reranker import CrossEncoderReranker
-            self._reranker = CrossEncoderReranker(
-                model_name="cross-encoder/ms-marco-MiniLM-L-6-v2",
-                device="cpu",
-            )
+            from core.nim_reranker import NIMReranker
+            self._reranker = NIMReranker()
         return self._reranker
 
     def _tokenize(self, text: str) -> List[str]:
@@ -169,43 +164,9 @@ class GraphRAG:
         tokens = re.findall(r'\b[a-zA-Z][a-zA-Z0-9]{2,}\b', text.lower())
         return [t for t in tokens if t not in _STOP_WORDS]
 
-    def _get_st_model(self):
-        """Lazy-load sentence-transformers BGE-M3 (CPU). Cached after first call."""
-        if self._st_model is None:
-            from sentence_transformers import SentenceTransformer
-            logger.info("Loading BAAI/bge-m3 via sentence-transformers (CPU)...")
-            self._st_model = SentenceTransformer("BAAI/bge-m3", device="cpu")
-            logger.info("BAAI/bge-m3 loaded.")
-        return self._st_model
-
-    def get_embedding(self, text: str) -> np.ndarray:
-        """
-        Get normalised BGE-M3 embedding.
-        Tries sentence-transformers (CPU) first; falls back to Ollama if unavailable.
-        """
-        st_err = None
-        try:
-            model = self._get_st_model()
-            emb = model.encode(text, normalize_embeddings=True, show_progress_bar=False)
-            return emb.astype(np.float32)
-        except Exception as e:
-            st_err = e
-            logger.debug("sentence-transformers failed (%s), trying Ollama...", st_err)
-
-        try:
-            resp = requests.post(
-                f"{self.ollama_url}/api/embeddings",
-                json={"model": self.ollama_embed, "prompt": text},
-                timeout=60,
-            )
-            resp.raise_for_status()
-            emb = np.array(resp.json()["embedding"], dtype=np.float32)
-            norm = np.linalg.norm(emb)
-            return emb / norm if norm > 0 else emb
-        except Exception as ollama_err:
-            raise RuntimeError(
-                f"Embedding failed - sentence-transformers: {st_err}; Ollama: {ollama_err}"
-            )
+    def get_embedding(self, text: str, input_type: str = "query") -> np.ndarray:
+        """Embed via NIM (model: NIM_EMBED_MODEL). See nim_embedder for details."""
+        return _nim_embed_text(text, input_type=input_type)
 
     # ------------------------------------------------------------------
     # BM25

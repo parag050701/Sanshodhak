@@ -29,27 +29,9 @@ class OllamaRAG:
         self.metadata = []
         
     def get_embedding(self, text: str) -> np.ndarray:
-        """Get embedding using sentence-transformers (bge-m3) or fallback to Ollama."""
-        try:
-            from sentence_transformers import SentenceTransformer
-            import torch
-            if not hasattr(self, '_bge_model'):
-                print("[INFO] Loading bge-m3 embedding model (sentence-transformers)...")
-                self._bge_model = SentenceTransformer("BAAI/bge-m3")
-            emb = self._bge_model.encode(text, normalize_embeddings=True)
-            return np.array(emb, dtype=np.float32)
-        except Exception as e:
-            print(f"[WARN] sentence-transformers embedding failed: {e}. Falling back to Ollama API.")
-            response = requests.post(
-                f"{self.ollama_url}/api/embeddings",
-                json={"model": self.embed_model, "prompt": text}
-            )
-            if response.status_code != 200:
-                raise Exception(f"Ollama API error: {response.text}")
-            embedding = np.array(response.json()["embedding"], dtype=np.float32)
-            # Normalize for cosine similarity
-            embedding = embedding / np.linalg.norm(embedding)
-            return embedding
+        """Embed via NIM. Same model as VR-H/GR/HGR for fair comparison."""
+        from nim_embedder import embed_text
+        return embed_text(text, input_type="query")
     
     def chunk_text(self, text: str, chunk_size: int = 500) -> List[str]:
         """Simple chunking by characters."""
@@ -240,7 +222,9 @@ Answer:"""
             from openai import OpenAI
         except ImportError:
             return "Error: openai package not installed. Please install with 'pip install openai'"
-        nv_api_key = os.getenv("NVIDIA_API_KEY", "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")
+        nv_api_key = os.getenv("NVIDIA_API_KEY") or os.getenv("NVIDIA_NIM_API_KEY")
+        if not nv_api_key:
+            return "Error: NVIDIA_API_KEY (or NVIDIA_NIM_API_KEY) not set in environment"
         client = OpenAI(
             base_url = "https://integrate.api.nvidia.com/v1",
             api_key = nv_api_key

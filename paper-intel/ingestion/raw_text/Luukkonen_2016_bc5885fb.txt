@@ -1,0 +1,693 @@
+LSTM-Based Predictions for Proactive Information
+Retrieval
+Petri Luukkonen, Markus Koskela, Patrik Floréen
+Helsinki Institute for Information Technology HIIT
+Department of Computer Science, University of Helsinki
+ﬁrst.last@helsinki.ﬁ
+ABSTRACT
+We describe a method for proactive information retrieval
+targeted at retrieving relevant information during a writing
+task. In our method, the current task and the needs of the
+user are estimated, and the potential next steps are unob-
+trusively predicted based on the user’s past actions.
+We
+focus on the task of writing, in which the user is coalescing
+previously collected information into a text. Our proactive
+system automatically recommends the user relevant back-
+ground information. The proposed system incorporates text
+input prediction using a long short-term memory (LSTM)
+network. We present simulations, which show that the sys-
+tem is able to reach higher precision values in an exploratory
+search setting compared to both a baseline and a comparison
+system.
+CCS Concepts
+•Information systems →Query intent; Users and inter-
+active retrieval; •Human-centered computing →Text
+input; •Computing methodologies →Neural networks;
+Keywords
+Task-based Information Retrieval; Proactive Search; Long
+short-term memory networks; Recurrent neural networks;
+Text prediction
+1.
+INTRODUCTION
+Proactive systems [31] anticipate the needs of the user and
+predict possible next steps based on the user’s preferences
+and current context. The central component of proactive
+systems is the inference engine, which analyzes the current
+context to provide the highest-ranking suggestions. Proac-
+tive systems have recently gained popularity, and many of
+the contemporary major operating systems include proactive
+components, e.g., Google Now, Apple Siri, and Microsoft
+Cortana.
+Permission to make digital or hard copies of part or all of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for proﬁt or commercial advantage and that copies bear this notice and the full citation
+on the ﬁrst page. Copyrights for third-party components of this work must be honored.
+For all other uses, contact the owner/author(s).
+Neu-IR ’16 SIGIR Workshop on Neural Information Retrieval, July 21,
+2016, Pisa, Italy
+c⃝2016 Copyright held by the owner/author(s).
+ 
+ 
+TASK 
+CONTEXT
+QUERY 
+EXPANSION
+LSTM or 
+INTENT MODEL
+PROACTIVE 
+QUERY
+CONTEXTUAL
+RECOMMEN-
+DATIONS
+Figure 1:
+Overview of the proposed proactive re-
+trieval system, and the comparison and baseline sys-
+tem used in the experiments.
+The rationale for using search engines is to ﬁnd informa-
+tion that helps us in our daily tasks, be they leisure or pro-
+fessional. An ideal search engine would support searching
+and identifying useful information that can then be used in
+solving these tasks [33]. In proactive information retrieval [5]
+the estimation of the current task and context are utilized to
+proactively retrieve and recommend relevant items. In par-
+ticular, this can include associative forms of recall, e.g., in
+a situation where the user does not realize having forgotten
+about a speciﬁc resource [27]. A proactive retrieval system
+can be viewed as a digital personal assistant that knows the
+user’s preferences and aims to provide useful and relevant
+information in the current task context.
+Long short-term memory (LSTM) networks [17] have re-
+cently shown remarkable performance in a variety of natu-
+ral language processing tasks, including speech recognition
+[16], automatic translation [30], image captioning [35] and
+information retrieval [18, 26, 28]. LSTM networks have also
+been used to generate various kinds of sequences, including
+text [15, 29]. In sequence generation, the network is used
+to process input sequences one at a time and to sample the
+next item from the output distribution of the network. The
+sampled item is then fed to the network as the next input.
+This capability to predict future continuations of a sequence
+(viz. text in this case) makes LSTMs particularly attractive
+for proactive information retrieval.
+A typical example of a task is writing about a given topic
+[24, 27, 33]. In this paper, we propose a method for sup-
+porting the user by proactive information retrieval during a
+writing task. An LSTM network is used to expand the proac-
+tive queries by predicting the most likely continuations of the
+current written text. An overview of the proposed method
+is shown in Figure 1. We present simulated experiments to
+validate the utility of the LSTM predictions in providing
+relevant documents, and compare the method to a baseline
+and to another method based on user intent modeling.
+The rest of the paper is organized as follows. In the follow-
+arXiv:1606.06137v1  [cs.IR]  20 Jun 2016
+
+ing section a discussion of related work is provided. In Sec-
+tion 3 we describe the components of our proactive retrieval
+system: the query expansion methods (based on an LSTM
+and on user intent modeling), and the proactive query gener-
+ation. In Section 4 we describe our simulation experiments.
+In Section 5 we present our experimental user interface for
+providing proactive recommendations based on the current
+task context. The user interface is used in forthcoming user
+studies. We conclude and discuss future work in Section 6.
+2.
+RELATED WORK
+Recurrent neural networks (RNNs), and LSTMs in par-
+ticular, have recently been used to generate sequences in
+various domains, such as music [7], text [15, 29], and hand-
+writing [15]. In information retrieval, RNNs have been used,
+e.g., for extracting sentence-level semantic vectors [26] and
+context-aware query suggestion [28].
+Other kinds of deep
+neural networks have been used to project queries and doc-
+uments to low-dimensional semantic spaces [18] and to learn
+ﬁxed-length vectors for variable-length pieces of texts, such
+as sentences, paragraphs, and documents [21].
+Various types of task activities have been studied in the
+literature as a basis for query suggestion or query sup-
+port. Motivated by the observation that a notable propor-
+tion of the user’s information needs were triggered by previ-
+ous web browsing activity, several authors have studied the
+correlation between web browsing behavior and consecutive
+searches [10, 20, 22]. Another popular approach is to use
+previous search queries [9, 36]. Our work is related to query
+auto-completion [4], in which possible completions of search
+engine queries are predicted. Query auto-completion for web
+and mobile queries has recently been studied in [25, 34].
+A much studied task scenario for intelligent assistants is
+writing.
+The existing work has largely focused on biblio-
+graphic tasks involved in writing scientiﬁc or professional
+texts [3, 23, 32]. These mostly target either the planning or
+review phases of writing, as translation, i.e., transforming
+the writer’s mental ideas into sentences, is the most chal-
+lenging process in terms of tolerance to undesired disrup-
+tions. In [24], the impact of proactive recommendations to
+diﬀerent phases of the writing process is analyzed. The Re-
+active Keyboard [11] is an early prototype for predicting the
+succeeding words from a user-written text fragment. Com-
+pleting written sentences has also been studied in [6, 14].
+The setup of our work is closely related to what was envi-
+sioned already by Rhodes and Starner in their Remembrance
+Agent (RA) [27]. The user ﬁrst indexes her personal data,
+e.g., emails and written notes. RA is then set to run con-
+tinuously in the background and display a list of summaries
+of documents that are related to the current document be-
+ing read or written. Other similar tools include Watson [8]
+and Implicit Query [12]. The main diﬀerence of our method
+compared to these systems is the of use an LSTM-based pre-
+dictive model to perform query expansion. We also compare
+our method to a baseline and a method based on user intent
+modeling. In this paper, we evaluate our method using a
+simulated writing task, but our method can be applied to
+other sources of context, such as what is read on the screen.
+3.
+METHOD FOR PROACTIVE IR
+The proactive recommendations produced by our method
+are based on user input observed during the current task. To
+Figure 2: A tree is formed from the diﬀerent con-
+tinuations estimated from the input word w0.
+On
+each level of the tree, nodes other than k = 3 high-
+est scoring ones are pruned out. As the branching
+coeﬃcient is b = 4, there are at most 12 candidates
+on each level before the pruning.
+improve the recommendations, we propose to use an LSTM-
+based method for query expansion described in Section 3.1.
+For comparison, we use a method based on estimating user
+intent using a multi-armed bandit model (Section 3.2 and
+Appendix A). Proactive information retrieval using the ex-
+panded query is described in Section 3.3. An overview of the
+proposed method (and the comparison and baseline meth-
+ods) is shown in Figure 1.
+3.1
+LSTM Text Prediction
+In LSTM-based query expansion, the most probable con-
+tinuations are estimated for the current written text and the
+expansion words are selected from these estimated contin-
+uations. For computing the continuations, we use a beam
+search algorithm [19] described below.
+The LSTM network f is ﬁrst trained using a text corpus,
+like abstracts of scientiﬁc articles. The trained network can
+then serve as a model for text generation.
+Let us assume the user has written n input words and
+denote by w0 the latest word in the input sequence. When
+given an input word w, the network f will return a proba-
+bility distribution for the next word, of which we will con-
+sider the b most probable candidates. For example, with the
+
+Figure 3: Examples of diﬀerent continuations corresponding the paths in the pruned tree of Figure 2. Words
+having the highest scores are selected and added to the query.
+branching coeﬃcient b = 4 and w0 = “neural”, the top candi-
+dates from f could be {w1
+1 = “model”, w1
+2 = “network”, w1
+3 =
+“surgery”, w1
+4 = “system”}, where wj
+i denotes the ith candi-
+date for the jth word following the input word w0.
+The
+output probability of the word is denoted as p(wj
+i ). Fur-
+ther continuations are computed by using previous candi-
+date words as input to f. Note that the output of f depends
+not only on the latest input word, but on all input words so
+far. The diﬀerent continuations form a tree structure, where
+the root node is the input word w0 from which the contin-
+uations or paths evolve (see Figure 2). We denote by d the
+depth of the tree, i.e., the number of words in the estimated
+continuations of the sentence.
+As the size of the tree grows rather quickly, the number of
+generated paths is controlled by the beam width k, pruning
+nodes on each level based on word probabilities on their
+corresponding paths. The path from w0 to wj
+i is denoted
+by π(wj
+i ), e.g., in Figure 2, π(w3
+1) = (w0, w1
+1, w2
+3, w3
+1). The
+pruning score R(wj
+i ) is deﬁned as the product of the word
+probabilities on π(wj
+i ):
+R(wj
+i ) =
+Y
+w′∈π(wj
+i )
+p(w′) .
+(1)
+On each level of the tree, nodes other than the k highest
+scoring ones are pruned out. After the pruning on level j,
+the level j +1 candidates are obtained using the k remaining
+words. Figures 2 and 3 show examples of the pruned tree
+and the corresponding continuations.
+Continuing our previous example, the second set of es-
+timated words following the input word w0 are computed
+using the estimated words from the level 1, e.g. when feed-
+ing to network f the word w1
+4 = “system”, the top candi-
+dates returned could be {w2
+9 = “and”, w2
+10 = “that”, w2
+11 =
+“of”, w2
+12 = “is”}.
+The third level of generated words are
+computed using the words from the second level and so
+forth: w2
+12 = “is” →{w3
+9 = “also”, w3
+10 = “without”, w3
+11 =
+“proposed”, w3
+12 = “derived”}.
+The query expansion is formed from the words remaining
+in the pruned tree.
+First, the words are ﬁltered using a
+standard list of English stop words. The query expansion
+score of wi
+j is deﬁned as the product of its idf value and its
+probability deﬁned by the model f:
+score(wj
+i ) = idf(wj
+i ) · p(wj
+i ) .
+(2)
+The idf values were computed from the same training data
+that was used to train the network using the form idf(w) =
+N
+Nw , where Nw is the number of documents where the word w
+appears in, and N is the total number of documents. Finally,
+the nexp words having the highest scores are added to the
+expanded query.
+3.2
+User Intent Model
+As a comparison method, we use an upper conﬁdence
+bound algorithm, which is based on estimating the user in-
+tent using a multi-armed bandit model [13]. The model bal-
+ances exploration with exploitation and selects words that
+have the highest upper conﬁdence bound [2]. This allows the
+user to interact with words that are relevant, but that are
+also uncertain to the model. Further details of the method
+are described in Appendix A.
+3.3
+Proactive Query
+Whenever resources are retrieved proactively, our system
+works as follows; for simplicity we refer to this as a proactive
+query, despite that there is no explicit query from the user.
+Based on the n input words, our query expansion modules
+retrieve nexp suggested words and add them to the query.
+The actual information retrieval is performed using the
+Lucene search engine with the standard cosine-similarity
+ranking.
+4.
+SIMULATION EXPERIMENTS
+In order to test whether our method provides relevant doc-
+uments, we performed two kinds of simulation experiments.
+In the simulations, the input corresponding to text the user
+types comes from a given document. We perform query ex-
+pansion with the LSTM-based text prediction method and
+with the user intent model. In the baseline experiments, we
+use only the written input as the queries.
+4.1
+Data Set
+The simulations were performed using the abstracts of the
+Computer Science branch of the arXiv 1 preprint database,
+downloaded on October 28, 2015. The branch contains a
+total of 40 subcategories, which are used as topics in our
+experiments. A document in the arXiv database can belong
+to several subcategories, i.e., several topics in our case.
+4.2
+Parameters
+We used the medium LSTM architecture of Zaremba et al.
+[37] with an Tensorﬂow implementation. The network has
+two layers, 650 units per layer, and is unrolled for 35 words.
+All the abstracts in the data set were used to train the LSTM
+network. The training data consisted of 15M words with a
+vocabulary of 10k words. Training the network took about
+36 hours using two GeForce GTX TITAN GPUs. Due to
+memory requirements, a random 10% of the abstracts was
+used to form the document term matrix for the user intent
+model.
+In the LSTM-based word prediction, the beam width was
+set to k = 80 and the depth to d = 3.
+The branching
+coeﬃcient was set to b = 10 and nexp = 10.
+1http://arxiv.org/
+
+5
+10
+15
+20
+25
+30
+35
+40
+size of context
+0.20
+0.25
+0.30
+0.35
+0.40
+0.45
+precision
+exploratory search
+LSTM
+intent model
+baseline
+5
+10
+15
+20
+25
+30
+35
+40
+size of context
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+known items found
+known-item search
+LSTM
+intent model
+baseline
+Figure 4: Exploratory search document precision (left) and the fraction of known items found (right) for the
+LSTM, intent model, and baseline runs.
+4.3
+Exploratory Search Task
+We simulate a setting where a user is writing a text about
+a given topic. We choose at random a document and sim-
+ulate inputting sequences of n consecutive words from the
+text. The variable n serves as the size of the context ex-
+pressed as the number of words from the written text. For
+instance, if n = 3, and the test text is “Machine learning is
+a subﬁeld”, the input sequences for the proactive search en-
+gine would be“Machine learning is”, “learning is a”, and“is a
+subﬁeld”. We envision a situation where the user has to ﬁnd
+some relevant background resources about the given topic.
+The aim is thus to ﬁnd other documents about the same
+topic t as the input document.
+For the proactive queries
+(Section 3.3), we use n input words and nexp = 10. The
+Lucene search engine was set to return 10 documents.
+We use all the documents in the database belonging to the
+same topic as the test document as the target set Dt. As
+a measure of performance, we use the precision of relevant
+documents with regard to the topic t of the input document.
+4.4
+Known-item Search Task
+We also run simulations of known-item search, in which
+the purpose is to study a setting where the user needs to
+re-ﬁnd a certain previously seen document. The setting is
+the same as for the exploratory search task, except that
+now we have only one target document in Dt. We take a
+random document as the query and perform a Lucene search
+over the rest of the data set to retrieve the highest-scoring
+document. This is now our target document. Note that the
+target document is thus a diﬀerent document than our input
+document, and in the simulation we either ﬁnd the target
+document or not.
+4.5
+Results
+Figure 4 shows the results of the simulations. On the left-
+hand side, the retrieval precision in the exploratory search
+task is shown.
+The right-hand ﬁgure shows the fractions
+of known items found in the known-item search task. First
+of all, as expected, in both tasks the results improve as the
+size of the context increases. This was especially anticipated
+for known-item search, due to how the target document was
+selected.
+Second, the results show that the query expansion meth-
+ods can improve the precision of the proactively retrieved
+documents on the exploratory search task.
+The LSTM-
+based query expansion improves the results when the con-
+text is long enough, i.e., when n > 10. The intent model
+based query expansion, on the other hand, is suited for small
+context sizes (n < 10). For known-item search, the query
+expansion methods are not equally beneﬁcial. The intent
+model again improves the results for small context sizes,
+but the LSTM-based predictions degrade the results.
+The simulation results agree rather well with intuition of
+the query expansion methods. The user intent model based
+method expands the query with terms that have high tf-idf
+values in the same documents as the input words. It is con-
+ceivable that this is primarily useful when the input context
+is small, as the expansion can then bring useful additional
+information to the query. The LSTM-based query expan-
+sion, on the other hand, dynamically models the written
+context and can predict upcoming words. It is unsurprising
+that this works better when there is enough input context.
+For exploratory search, the predictions made by the LSTM
+network are accurate enough to increase the retrieval preci-
+sion; in known-item search the target is smaller, i.e., a single
+document, and the predictions are not equally useful.
+5.
+USER INTERFACE
+Our research calls for a user study in order to assess the
+usefulness of the proactive search results in real-world tasks.
+For this reason we have implemented an experimental user
+interface intended to be shown in a corner of the screen, dis-
+playing the proactive recommendations; see Figure 5. The
+interface is designed to allow the user to maintain her fo-
+cus on the current task at hand, while oﬀering peripherally-
+shown contextual recommendations. Any data source, e.g.,
+the user’s own emails, a database of documents, or any
+web pages, can be used as information to be proactively
+retrieved.
+In Figure 5, the resources displayed are arXiv
+preprints.
+
+Figure 5: The user interface of the experimental application displaying proactive recommendations.
+The
+words in the green boxes on the left indicate the written input words (“long short term”). The predictions
+by the LSTM network are shown in the white boxes.
+For obtaining the current writing context, we have imple-
+mented a speciﬁc text editor, which transmits the current
+word surrounding the text cursor at each keypress to the
+proactive search application; this way the input of n words
+gradually builds up. Similarly, the context could be deduced
+from, e.g., the text read in a web browser.
+By clicking on any of the resources, its contents (i.e., the
+corresponding arXiv page in the setting of Figure 5) are
+shown in a regular web browser.
+6.
+DISCUSSION AND CONCLUSIONS
+We have described a method for query expansion to en-
+hance proactive information retrieval. The method is based
+on predicting the most likely continuations of the current
+input using an LSTM network.
+The performed experiments provide evidence that our
+method is able to proactively produce relevant resources.
+The query expansion computed using an LSTM network
+improved retrieval precision in an exploratory search task,
+when enough context data is available. The results with the
+method used as comparison, based on user intent model-
+ing using an upper conﬁdence bound algorithm, were par-
+tially complementary, improving the results when only lim-
+ited context is available. This naturally suggests a further
+study on combining the two query expansion methods. Fur-
+ther experiments with diﬀerent kinds of datasets and tasks
+are in any case needed to validate the results.
+In this work, we concentrated on the writing task. We
+introduced a simple user interface for showing the proactive
+search results based on the written context received from
+a dedicated text editor. The text predictions produced by
+the LSTM network could also be used to to automatically
+suggest diﬀerent continuations for the currently written text,
+as in the Reactive Keyboard [11], [6], or [14]. Furthermore,
+user studies where the users are performing real-world tasks
+need to be carried out.
+Finally, in contrast to many of the existing methods
+for producing proactive recommendations, the proposed
+method generalizes the context gathering in the sense that
+the context data can be extracted from several sources, such
+as a word processing software, PDF reader, or web browser.
+The only requirement for the context data is that it has to
+be in textual form.
+7.
+ACKNOWLEDGMENTS
+This work has been partly supported by the Finnish
+Funding Agency for Innovation (project Re:Know) and the
+Academy of Finland (Finnish Centre of Excellence in Com-
+putational Inference Research COIN, 251170).
+8.
+REFERENCES
+[1] K. Athukorala, A. Medlar, K. Ilves, and D. Glowacka.
+Balancing exploration and exploitation: Empirical
+parameterization of exploratory search systems. In Proc.
+CIKM, pages 1703–1706, 2015.
+[2] P. Auer. Using conﬁdence bounds for
+exploitation-exploration trade-oﬀs. J. Mach. Learn. Res.,
+3:397–422, Mar. 2003.
+[3] T. Babaian, B. J. Grosz, and S. M. Shieber. A writer’s
+collaborative assistant. In Proc. IUI, pages 7–14, 2002.
+[4] H. Bast and I. Weber. Type less, ﬁnd more: Fast
+autocompletion search with a succinct index. In Proc.
+SIGIR, pages 364–371, 2006.
+[5] S. Bhatia, D. Majumdar, and N. Aggarwal. Proactive
+information retrieval: Anticipating users’ information need.
+In Proc. ECIR, pages 874–877. 2016.
+[6] S. Bickel, P. Haider, and T. Scheﬀer. Learning to complete
+sentences. In Proc. ECML, pages 497–504. 2005.
+[7] N. Boulanger-Lewandowski, Y. Bengio, and P. Vincent.
+Modeling temporal dependencies in high-dimensional
+sequences: Application to polyphonic music generation and
+transcription. In Proc. ICML, pages 1159–1166, 2012.
+[8] J. Budzik, K. Hammond, and L. Birnbaum. Information
+access in context. Knowledge-Based Systems,
+14(1–2):37–53, 2001.
+[9] H. Cao, D. H. Hu, D. Shen, D. Jiang, J.-T. Sun, E. Chen,
+and Q. Yang. Context-aware query classiﬁcation. In Proc.
+SIGIR, pages 3–10, 2009.
+[10] Z. Cheng, B. Gao, and T.-Y. Liu. Actively predicting
+diverse search intent from user browsing behaviors. In Proc.
+WWW, pages 221–230, 2010.
+
+[11] J. J. Darragh, I. H. Witten, and M. L. James. The Reactive
+Keyboard: A predictive typing aid. Computer,
+23(11):41–49, 1990.
+[12] S. Dumais, E. Cutrell, R. Sarin, and E. Horvitz. Implicit
+queries (IQ) for contextualized search. In Proc. SIGIR,
+pages 594–594, 2004.
+[13] D. Glowacka, T. Ruotsalo, K. Konuyshkova, S. Kaski,
+G. Jacucci, et al. Directing exploratory search:
+Reinforcement learning from user interactions with
+keywords. In Proc. IUI, pages 117–128, 2013.
+[14] K. Grabski and T. Scheﬀer. Sentence completion. In Proc.
+SIGIR, pages 433–439, 2004.
+[15] A. Graves. Generating sequences with recurrent neural
+networks. arXiv preprint arXiv:1308.0850, 2013.
+[16] A. Graves, A. r. Mohamed, and G. Hinton. Speech
+recognition with deep recurrent neural networks. In Proc
+ICASSP, pages 6645–6649, 2013.
+[17] S. Hochreiter and J. Schmidhuber. Long short-term
+memory. Neural Computation, 9(8):1735–1780, 1997.
+[18] P.-S. Huang, X. He, J. Gao, L. Deng, A. Acero, and
+L. Heck. Learning deep structured semantic models for web
+search using clickthrough data. In Proc. CIKM, pages
+2333–2338, 2013.
+[19] P. Koehn. Statistical machine translation. Cambridge
+University Press, 2009.
+[20] W. Kong, R. Li, J. Luo, A. Zhang, Y. Chang, and J. Allan.
+Predicting search intent based on pre-search context. In
+Proc. SIGIR, pages 503–512, 2015.
+[21] Q. V. Le and T. Mikolov. Distributed representations of
+sentences and documents. arXiv preprint arXiv:1405.4053,
+2014.
+[22] D. J. Liebling, P. N. Bennett, and R. W. White.
+Anticipatory search: Using context to initiate search. In
+Proc. SIGIR, pages 1035–1036, 2012.
+[23] A. Livne, V. Gokuladas, J. Teevan, S. T. Dumais, and
+E. Adar. Citesight: Supporting contextual citation
+recommendation using diﬀerential search. In Proc. SIGIR,
+pages 807–816, 2014.
+[24] M. C. P. Melguizo, L. Boves, and O. M. Ramos. A
+proactive recommendation system for writing: Helping
+without disrupting. International Journal of Industrial
+Ergonomics, 39(3):516–523, 2009.
+[25] B. Mitra and N. Craswell. Query auto-completion for rare
+preﬁxes. In Proc. CIKM, pages 1755–1758, 2015.
+[26] H. Palangi, L. Deng, Y. Shen, J. Gao, X. He, J. Chen,
+X. Song, and R. Ward. Deep sentence embedding using
+long short-term memory networks. arXiv:1502.06922, 2015.
+[27] B. Rhodes and T. Starner. Remembrance Agent: A
+continuously running automated information retrieval
+system. In Proc. PAAM96, pages 487–495, 1996.
+[28] A. Sordoni, Y. Bengio, H. Vahabi, C. Lioma,
+J. Grue Simonsen, and J.-Y. Nie. A hierarchical recurrent
+encoder-decoder for generative context-aware query
+suggestion. In Proc. CIKM, pages 553–562, 2015.
+[29] I. Sutskever, J. Martens, and G. E. Hinton. Generating text
+with recurrent neural networks. In Proc. ICML, pages
+1017–1024, 2011.
+[30] I. Sutskever, O. Vinyals, and Q. V. Le. Sequence to
+sequence learning with neural networks. arXiv preprint
+arXiv:1409.3215, 2014.
+[31] D. Tennenhouse. Proactive computing. Commun. ACM,
+43(5):43–50, May 2000.
+[32] M. B. Twidale, A. A. Gruzd, and D. M. Nichols. Writing in
+the library: Exploring tighter integration of digital library
+use with the writing process. Information Processing &
+Management, 44(2):558–580, 2008.
+[33] P. Vakkari. A theory of the task-based information retrieval
+process: a summary and generalization of a longitudinal
+study. Journal of Documentation, 57(1):44–60, 2001.
+[34] S. Vargas, R. Blanco, and P. Mika. Term-by-term query
+auto-completion for mobile search. In Proc. WSDM, pages
+143–152, 2016.
+[35] O. Vinyals, A. Toshev, S. Bengio, and D. Erhan. Show and
+tell: A neural image caption generator. In Proc. CVPR,
+pages 3156–3164, 2015.
+[36] B. Xiang, D. Jiang, J. Pei, X. Sun, E. Chen, and H. Li.
+Context-aware ranking in web search. In Proc. SIGIR,
+pages 451–458, 2010.
+[37] W. Zaremba, I. Sutskever, and O. Vinyals. Recurrent
+neural network regularization. arXiv preprint
+arXiv:1409.2329, 2014.
+APPENDIX
+A.
+USER INTENT MODEL
+For computing the user intent model, we use a training
+database consisting of M documents, from which N unique
+words are extracted by excluding stop words. The jth doc-
+ument in the database is represented by a feature vector
+xj ∈RN where xij is the tf-idf value of the ith word. We
+denote by X ∈RN×M the tf-idf matrix of the M documents,
+where each column of X corresponds to one document fea-
+ture vector and each row corresponds to a distribution of
+the words over the documents.
+The user intent model is estimated using the context
+formed using n previously written words. Based on this in-
+put, a set of word weights are computed by using the LinRel
+algorithm proposed in [2].
+We denote the relevance vector of observed words by y ∈
+[0, 1]N , where yi = 1 corresponds to having observed the
+ith word in the input. If the ith word does not occur in the
+subsequent input words, its relevance value starts decreasing
+such that yi = n−1
+i
+, where ni is the number of sets of input
+words since the last occurrence of the ith word. For omitting
+words having very low relevance values, we use a threshold
+τ = 0.1: when yi < τ the value of yi is set to zero.
+The observed values in y, corresponding to the input
+words so far, are assumed to be formed from the model
+y = X ˆw ,
+(3)
+where ˆw ∈RM is the estimated user intent model describ-
+ing what documents from the training set are currently es-
+timated to be relevant for the user.
+Given y and X, the user model ˆw can be obtained as
+ˆw = (XT X + µI)−1XT y ,
+(4)
+where I is an identity matrix of size M × M and µ ≥0 is a
+regularization parameter, set to µ = 1.0 in our experiments.
+Using Eq. (4) the relevance estimate ˆy of the words in the
+vocabulary is computed as
+ˆy = X ˆw = X(XT X + µI)−1XT y = Ay
+(5)
+and the upper bound of the standard deviation of ˆyi as
+ˆσi = ∥rowi(A)∥2.
+(6)
+The nexp words to be included in the expanded query
+correspond to the nexp maximum components of the vector
+v = ˆy + cˆσ,
+(7)
+with words appearing in the input excluded. Here c ≥0
+is the exploration/exploitation parameter controlling the
+trade-oﬀbetween exploring the search space (large c) and
+focusing on the currently most promising region (small c).
+We use here c = 1.0 as recommended in the literature [1].

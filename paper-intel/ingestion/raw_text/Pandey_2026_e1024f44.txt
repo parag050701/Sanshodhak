@@ -1,0 +1,904 @@
+DOMAIN-ADAPTIVE AND SCALABLE DENSE RETRIEVAL FOR
+CONTENT-BASED RECOMMENDATION
+Mritunjay Pandey
+Aditya Birla Group
+mritunjay.p@adityabirla.com
+February 3, 2026
+ABSTRACT
+E-commerce recommendation and search commonly rely on sparse keyword matching (e.g., BM25),
+which breaks down under vocabulary mismatch when user intent has limited lexical overlap with
+product metadata. We cast content-based recommendation as recommendation-as-retrieval: given
+a natural-language intent signal (a query or review), retrieve the top-K most relevant items from a
+large catalog via semantic similarity.
+We present a scalable dense retrieval system based on a two-tower bi-encoder, fine-tuned on the
+Amazon Reviews 2023 (Fashion) subset using supervised contrastive learning with Multiple Negatives
+Ranking Loss (MNRL). We construct training pairs from review text (as a query proxy) and item
+metadata (as the positive document) and fine-tune on 50,000 sampled interactions with a maximum
+sequence length of 500 tokens.
+For efficient serving, we combine FAISS HNSW indexing with an ONNX Runtime inference
+pipeline using INT8 dynamic quantization. On a review-to-title benchmark over 826,402 catalog
+items, our approach improves Recall@10 from 0.26 (BM25) to 0.66, while meeting practical latency
+and model-size constraints: 6.1 ms median CPU inference latency (batch size 1) and a 4× reduction
+in model size.
+Overall, we provide an end-to-end, reproducible blueprint for taking domain-adapted dense retrieval
+from offline training to CPU-efficient serving at catalog scale.
+1
+Introduction
+Motivating example and challenge.
+In e-commerce, users often express intent in free-form language (e.g., reviews or
+descriptive queries) with limited lexical overlap with structured product metadata. As a result, keyword-based methods
+(e.g., BM25) can miss relevant items.
+Positioning.
+We study dense semantic retrieval for content-based recommendation, emphasizing (i) domain-adaptive
+fine-tuning for accuracy and (ii) production-ready serving for low latency and scalability.
+1.1
+Background & Motivation
+Information retrieval in e-commerce has historically relied on sparse retrieval methods such as TF–IDF and Okapi
+BM25, for both search and content-based recommendation pipelines that match user intent to product content. While
+computationally efficient, these algorithms depend on exact lexical overlap between query terms and document tokens.
+This limitation manifests as the vocabulary mismatch problem, where a user’s intent-driven, colloquial query (e.g.,
+“breathable summer wedding attire”) fails to retrieve relevant products described with structured, technical attributes
+(e.g., “Men’s Linen Suit Beige”). In domains like fashion, where visual and stylistic attributes are often described
+subjectively, keyword-based matching fails to capture the latent semantic relationships required for effective product
+discovery.
+arXiv:2602.00899v1  [cs.LG]  31 Jan 2026
+
+A PREPRINT - FEBRUARY 3, 2026
+Dense retrieval projects queries and items into a continuous vector space using deep neural networks, enabling matching
+by semantics rather than keywords and serving as the core of a scalable content-based recommender system. However,
+generic pre-trained language models often lack the domain knowledge required to distinguish subtle fashion attributes,
+motivating domain-adaptive fine-tuning on large-scale interaction data, particularly user reviews that serve as rich
+semantic proxies for colloquial search intent.
+Task definition (recommendation-as-retrieval).
+Given a user context expressed as natural language (e.g., a search
+query or review text), the system recommends the top-K most relevant catalog items by retrieving nearest neighbors in
+an embedding space learned from product metadata.
+1.2
+Problem Statement
+While Transformer-based bi-encoders significantly improve retrieval quality, their deployment in production recommen-
+dation and search environments introduces substantial engineering challenges. Standard 32-bit floating-point (FP32)
+models impose high memory bandwidth requirements and incur significant inference latency, often exceeding typical
+interactive thresholds (e.g., 50 ms) for real-time systems. Furthermore, performing exact nearest neighbor search over
+high-dimensional vectors scales linearly (O(N)), creating a computational bottleneck as catalogs grow to millions
+of items. The central challenge, therefore, is to architect a retrieval system that retains the high semantic precision
+of deep learning models while achieving the low latency and high throughput characteristics required by interactive
+content-based recommendation and search. This requires a holistic optimization strategy spanning model architecture,
+numerical precision, and indexing algorithms.
+Results teaser and contributions.
+On a hard review-to-title benchmark over a catalog of 826,402 items, our fine-
+tuned bi-encoder improves Recall@10 from 0.26 (BM25) to 0.66 while enabling low-latency CPU inference via INT8
+quantization in ONNX Runtime and scalable ANN search via FAISS HNSW.
+Paper organization.
+Section 2 reviews related work. Section 3 describes dataset construction and model training.
+Section 4 details inference and indexing optimizations. Section 5 reports accuracy and efficiency experiments.
+2
+Related Work
+2.1
+Scope and positioning
+Our work sits at the intersection of (i) dense retrieval for first-stage ranking and (ii) retrieval-based recommender
+systems. Compared to generic sentence-embedding models used zero-shot, we emphasize domain-adaptive fine-tuning
+on in-domain interactions. Compared to systems-only work on vector search, we report retrieval quality and end-to-end
+serving trade-offs (accuracy vs. latency).
+2.2
+Sparse vs. Dense Retrieval
+Information retrieval has historically been dominated by sparse retrieval methods, notably TF–IDF and Okapi
+BM25[Robertson and Zaragoza(2009)]. These algorithms construct an inverted index based on bag-of-words rep-
+resentations, scoring relevance via probabilistic functions of term frequency (tf) and inverse document frequency (idf).
+The standard BM25 score for a query q and document d is given by:
+BM25(q, d) =
+X
+t∈q
+idf(t) ·
+tf(t, d)(k1 + 1)
+tf(t, d) + k1
+
+1 −b + b ·
+|d|
+avgdl
+,
+(1)
+where tf(t, d) is the term frequency of query term t in document d, |d| is the document length, avgdl is the average
+document length in the collection, and k1, b are free parameters. While computationally efficient, sparse methods
+suffer intrinsically from the vocabulary mismatch problem, failing to retrieve relevant documents that use synonyms or
+conceptual descriptions rather than exact keywords.
+The advent of neural embeddings, starting with Word2Vec and advancing to Transformer-based models like
+BERT[Devlin et al.(2019)Devlin, Chang, Lee, and Toutanova], facilitated the shift toward dense retrieval. In this
+paradigm, queries and documents are mapped to continuous vectors q, d ∈Rm, enabling relevance scoring via
+geometric proximity (e.g., cosine similarity) rather than lexical overlap.
+2
+
+A PREPRINT - FEBRUARY 3, 2026
+2.3
+Bi-Encoder Architectures
+Neural retrieval architectures generally fall into two categories: cross-encoders and bi-encoders. Cross-encoders process
+the query and document jointly, e.g., Enc([q; d]), allowing full self-attention between query and document tokens;
+however, this yields prohibitive inference cost at retrieval time since the model must be run per candidate document.
+To address scalability, works such as Sentence-BERT[Reimers and Gurevych(2019)], Dense Passage Retrieval
+(DPR)[Karpukhin et al.(2020)Karpukhin, O˘guz, Min, Lewis, Wu, Edunov, Chen, and Yih], and late-interaction meth-
+ods such as ColBERT[Khattab and Zaharia(2020)] explore retrieval architectures that decouple query and document
+processing.
+A common bi-encoder (two-tower) approach encodes queries and documents independently:
+q = fq(q),
+d = fd(d),
+(2)
+where fq and fd are separate (or weight-shared) Transformer encoders. The similarity score is computed as a dot
+product,
+s(q, d) = q⊤d,
+(3)
+allowing document embeddings to be pre-computed and indexed and reducing online retrieval to efficient Maximum
+Inner Product Search (MIPS).
+2.4
+Contrastive Learning in Recommendation
+Contrastive learning has become the de facto standard for training dense retrievers. Methods such as SimCSE showed
+that robust sentence embeddings can be learned by maximizing agreement between different views of the same sentence
+(often via dropout noise).
+In recommendation settings, BLAIR extended this paradigm to bridge the semantic gap between unstructured language
+(e.g., reviews) and structured item metadata. By treating a user review as a semantic proxy for a query and the
+corresponding item metadata as the positive document, contrastive training aligns these heterogeneous modalities.
+We
+adopt
+Multiple
+Negatives
+Ranking
+Loss
+(MNRL),
+an
+InfoNCE-style
+objec-
+tive
+that
+uses
+in-batch
+negatives[van den Oord et al.(2018)van den Oord, Li, and Vinyals,
+Chen et al.(2020)Chen, Kornblith, Norouzi, and Hinton].
+In practice, the other B −1 samples in a batch act
+as implicit negatives, scaling training efficiency without the overhead of explicit hard-negative mining:
+L = −1
+B
+B
+X
+i=1
+log
+exp (sim(qi, di)/τ)
+B
+P
+j=1
+exp (sim(qi, dj)/τ)
+,
+(4)
+where B is the batch size, τ is a temperature parameter, and sim(·, ·) is typically the dot product or cosine similarity.
+2.5
+Efficient Inference
+Deploying
+dense
+retrieval
+at
+scale
+requires
+reducing
+both
+memory
+footprint
+and
+search
+la-
+tency.
+Vector
+quantization
+(e.g.,
+PQ)
+compresses
+embeddings
+at
+some
+recall
+cost,
+while
+post-training
+INT8
+quantization
+reduces
+model
+memory
+bandwidth
+and
+can
+accelerate
+CPU
+inference[Jacob et al.(2018)Jacob, Kligys, Chen, Zhu, Tang, Howard, Adam, and Kalenichenko]
+by
+leveraging
+hardware-specific vector neural network instructions (VNNI). Exporting to ONNX enables graph-level optimizations
+and more efficient deployment[bai(2019)], such as operator fusion to reduce runtime overhead.
+2.6
+Retrieval-Based Recommender Systems
+Two-tower
+retrieval
+models
+are
+widely
+used
+in
+industrial
+recommender
+systems
+to
+en-
+able
+candidate
+generation
+at
+scale[Huang et al.(2013)Huang, He, Gao, Deng, Acero, and Heck,
+Covington et al.(2016)Covington, Adams, and Sargin].
+Recent
+work
+studies
+content-based
+recom-
+mendation
+and
+retrieval-based
+recommendation-as-retrieval
+formulations,
+often
+combining
+interac-
+tion
+supervision
+with
+text
+or
+multimodal
+content[Covington et al.(2016)Covington, Adams, and Sargin,
+Radford et al.(2021)Radford, Kim, Hallacy, et al.].
+3
+
+A PREPRINT - FEBRUARY 3, 2026
+2.7
+Hybrid Retrieval and Filtering
+Hybrid
+approaches
+combine
+lexical
+matching
+(e.g.,
+BM25)
+with
+dense
+representations
+via
+score
+fusion
+or
+re-ranking
+and
+may
+include
+explicit
+post-retrieval
+filters
+(e.g.,
+brand
+con-
+straints)
+to
+mitigate
+entity
+confusion[Formal et al.(2021)Formal, Piwowarski, and Clinchant,
+Lin et al.(2021)Lin, Ma, Lin, Yang, Pradeep, and Nogueira].
+2.8
+Approximate Nearest Neighbor Search
+Approximate
+nearest
+neighbor
+(ANN)
+indexing
+is
+essential
+for
+large-scale
+dense
+retrieval.
+HNSW[Malkov and Yashunin(2020)]
+and
+FAISS[Johnson et al.(2021)Johnson, Douze, and Jégou]
+are
+widely
+used ANN methods. ANN performance depends on index hyperparameters and hardware constraints, motivating
+end-to-end evaluation of accuracy–latency trade-offs[Wang et al.(2021)Wang, Zhang, and Wang].
+2.9
+Domain Adaptation
+Domain
+adaptation
+methods
+aim
+to
+improve
+generalization
+under
+distribu-
+tion
+shift
+using
+in-domain
+supervision
+or
+domain-invariant
+representations
+[Ganin et al.(2016)Ganin, Ustinova, Ajakan, Germain, Larochelle, Laviolette, Marchand, and Lempitsky].
+In
+our setting, we treat reviews as in-domain language signals and fine-tune the retriever to align colloquial intent text with
+structured catalog metadata.
+3
+Methodology
+3.1
+Problem Formulation
+Let C = {dj}N
+j=1 be a catalog of N items, where each item dj is represented by text metadata. Let D = {(qi, di)}M
+i=1
+be a set of M observed positive interactions, where qi is a natural language intent signal (review/query proxy) and
+di ∈C is the corresponding positive item.
+We train a bi-encoder to learn embeddings qi = f(qi) and dj = g(dj) such that the positive pair (qi, di) has higher
+similarity than negatives (qi, dj) for j ̸= i. At inference time, we retrieve the top-K items via approximate nearest
+neighbor search:
+TopK(q) = arg
+K
+max
+d∈C s
+ f(q), g(d)
+
+.
+(5)
+3.2
+Dataset Curation
+Dataset curation & preprocessing
+To evaluate our domain-adaptive recommendation-as-retrieval framework, we
+utilize the Amazon Reviews 2023 dataset[Hou et al.(2024)Hou, Li, He, Yan, Chen, and McAuley], specifically the
+Fashion category subset. This dataset is selected for its scale and its high variance in linguistic expression, which yields
+a pronounced vocabulary mismatch challenge compared to more technical product categories.
+Data filtering pipeline
+The raw dataset contains 2,500,000+ interactions. To ensure the model learns robust semantic
+signals rather than noise, we apply a multi-stage filtering pipeline:
+1. Sentiment thresholding: We remove interactions with ratings < 4. Ratings of 4 and 5 are treated as implicit
+positive feedback, ensuring the model trains on interactions that reflect genuine user satisfaction and typically
+higher review verbosity.
+2. Language and length constraints: We filter out non-English reviews and remove short-text noise. Reviews with
+fewer than 5 tokens are discarded (e.g., “good”, “nice”).
+3. Deduplication: We remove duplicate user–item pairs and filter out users with fewer than 3 total positive
+interactions.
+4. Catalog consistency: We perform an inner join between filtered interactions and the item metadata file. Items
+missing essential textual fields (title or description) are removed.
+Semantic pair construction
+Post-filtering, the dataset results in a dense catalog of 826,402 unique items and 50,000
+high-quality interaction pairs for fine-tuning. We structure training examples as query–document pairs (qi, di):
+4
+
+A PREPRINT - FEBRUARY 3, 2026
+Figure 1: User–item interaction sparsity. The heatmap visualizes interactions between the top 100 users and items. The
+dominance of empty entries (blue) highlights the cold start and sparsity limits of collaborative filtering, motivating the
+need for content-based semantic retrieval.
+• User context/query (q): To model user intent, we construct q by concatenating the user’s review summary
+(headline) with the review text (e.g., “Comfortable heels for wedding... I needed shoes that wouldn’t hurt after
+4 hours”).
+• Positive document (d): The corresponding item is represented by standardizing its metadata into the format
+Title + [SEP] + Brand + [SEP] + Features, truncated to 1,200 characters to optimize memory usage
+and fit within the encoder’s effective context window.
+Leakage prevention & splitting strategy
+To evaluate generalization and prevent data leakage, we avoid a naive
+random split that can overfit to user identity. Instead, we employ a stratified interaction split:
+• Training set (95%): used for contrastive fine-tuning; contains 47,500 pairs.
+• Test set (5%): held out for evaluation; contains 2,500 pairs.
+We verify that no individual (q, d) interaction pair appears in both sets. Furthermore, the test set is curated as a hard
+benchmark: queries q are drawn strictly from user reviews, while retrieval targets are item titles. Since there is often
+minimal lexical overlap between subjective preferences (e.g., “comfy”) and product titles (e.g., “foam midsole”), this
+split tests semantic generalization rather than memorization.
+3.3
+Model Architecture
+We adopt a Siamese bi-encoder architecture with shared weights, designed to project heterogeneous inputs into a
+common semantic vector space. Figure 2 summarizes the baseline (zero-shot) pipeline, while Figure 3 summarizes the
+optimized fine-tuned and quantized production architecture.
+5
+
+A PREPRINT - FEBRUARY 3, 2026
+Encoding Pipeline
+Offline Training
+Online Serving
+User Query
+Tokenizer
+Inference
+Mean Pooling
+L2 Norm
+FAISS Flat Index
+(Brute Force)
+Metadata Retrieval
+(Cache)
+Ranked Results
+Query Vector
+Top-K IDs
+Indexing
+(FAISS Flat Index)
+Fine-Tuned
+PyTorch Model
+Fine-Tuning
+(SentenceTransformer)
+Preprocessing
+& Tokenization
+Metadata Lookup
+(Text-based)
+MNRL Loss
+Raw Data
+Vectorization
+(GPU)
+Catalog
+Metadata
+Supervisor
+Embeddings
+Load Index
+Figure 2: Baseline (zero-shot) recommendation-as-retrieval system architecture.
+3.3.1
+Backbone & tokenization
+We initialize both towers from the all-mpnet-base-v2 checkpoint, a pre-trained Transformer model optimized for
+semantic search (used here for recommendation-as-retrieval)[Wolf et al.(2020)Wolf, Debut, Sanh, et al.].
+• Tokenizer: We use the standard MPNet tokenizer (WordPiece) with a vocabulary size of 30,527.
+• Sequence length: We enforce a strict maximum sequence length of 500 tokens. Inputs exceeding this length
+are truncated, while shorter sequences are padded.
+3.3.2
+Encoder dynamics
+Let fθ denote the Transformer encoder parameterized by weights θ. The system consists of a query tower and an item
+tower which explicitly share the same parameter set θ (Siamese configuration). This weight sharing regularizes training
+by forcing a unified semantic function over both user language and catalog attributes.
+3.3.3
+Pooling & output
+For an input token sequence x = (x1, . . . , xT ), the encoder outputs hidden states H = (h1, . . . , hT ) with ht ∈Rm,
+where m is the hidden size of the MPNet base encoder (m = 768). We compute a fixed-size representation via mean
+pooling over tokens, weighted by the attention mask at ∈{0, 1}:
+z(x) =
+PT
+t=1 at ht
+PT
+t=1 at
+∈Rm.
+(6)
+We then apply ℓ2 normalization, ˆz(x) = z(x)/∥z(x)∥2, and score relevance using cosine similarity:
+s(q, d) = cos (ˆz(q), ˆz(d)) = ˆz(q)⊤ˆz(d).
+(7)
+6
+
+A PREPRINT - FEBRUARY 3, 2026
+Inference Service
+User Query
+Query Encoding
+(ONNX Runtime)
+Vector Search
+(FAISS HNSW)
+Metadata Enrichment
+(O(1) Lookup)
+JSON Response
+ONNX Model
+(.onnx, Int8)
+FAISS Index
+(.index, HNSW)
+Metadata Cache
+(.pkl, Hash Map)
+ONNX Conversion
+(Quantization)
+Bi-Encoder Training
+(PyTorch, MNRL)
+Training Pairs
+Vectorization
+(Batch Inference)
+Metadata Filtering
+(Spark/Pandas)
+Raw Catalog
+Offline Optimization
+Online Serving
+Load Model
+Load Index
+Load Cache
+Figure 3: Fine-tuned and optimized recommendation-as-retrieval system architecture (training + serving).
+3.4
+Training Objective
+We fine-tune the encoder using Multiple Negatives Ranking Loss (MNRL). For a mini-batch of B positive pairs
+{(qi, di)}B
+i=1, MNRL treats the other B −1 items {dj}j̸=i as in-batch negatives for query qi. The loss minimizes the
+negative log-likelihood of the positive item being the most similar among batch candidates:
+L = −1
+B
+B
+X
+i=1
+log
+exp (s(qi, di)/τ)
+B
+P
+j=1
+exp (s(qi, dj)/τ)
+,
+(8)
+where τ is the temperature hyperparameter (set to 0.05). This objective aligns the embedding space such that user
+intents cluster closely with their purchased items while pushing apart unrelated products.
+3.5
+Training Strategy
+Hyperparameters
+We
+fine-tuned
+the
+model
+on
+a
+single
+NVIDIA
+T4
+GPU
+using
+the
+AdamW
+optimizer[Loshchilov and Hutter(2019)]. The optimization process followed a specific schedule:
+• Batch configuration: We utilized a batch size of B = 8. To compensate for the small physical batch size
+required by GPU memory limits, we employed gradient accumulation over 4 steps, resulting in an effective
+batch size of 32 for optimization stability.
+• Training duration: The model was trained for 1 epoch, totaling 6,250 optimization steps (50,000 samples / 8
+batch size).
+• Warmup: We employed a linear warmup scheduler for the first 10% of training steps (approx. 625 steps),
+followed by linear decay.
+7
+
+A PREPRINT - FEBRUARY 3, 2026
+Negative sampling strategy
+We employ in-batch negative sampling without external hard-negative mining. For a
+batch of B positive pairs {(qi, di)}B
+i=1, each query qi uses di as the positive target while the remaining B −1 items
+{dj}j̸=i serve as implicit negatives. This yields B2 similarity scores per forward pass.
+While BLAIR[Hou et al.(2024)Hou, Li, He, Yan, Chen, and McAuley] uses a large-scale version of this approach, we
+find that in our domain-adaptive setting the high variance within random batches provides sufficient gradient signal to
+align the vector space without the additional cost of mining hard negatives.
+4
+System Optimization & Engineering
+4.1
+Inference Acceleration
+The baseline PyTorch model (FP32, eager execution) incurs high CPU latency for interactive recommendation-as-
+retrieval. We export the model to ONNX Runtime[bai(2019)] and apply post-training dynamic INT8 quantiza-
+tion[Jacob et al.(2018)Jacob, Kligys, Chen, Zhu, Tang, Howard, Adam, and Kalenichenko].
+This pipeline reduces model size from 438 MB to 107 MB and decreases average inference latency from 32 ms to 6 ms
+on our CPU setup (AMD Ryzen 7 5800H; AVX2).
+4.2
+Scalable Indexing
+While the bi-encoder architecture decouples user context and item encoding, a naive recommendation-as-retrieval
+approach computes the similarity between the context vector q and every item vector di in the corpus. This brute-force
+(flat) approach scales linearly with catalog size:
+ˆi = arg
+max
+i∈{1,...,N} s(q, di),
+cost O(N).
+(9)
+To achieve sub-millisecond retrieval at scale, we implement FAISS HNSW (Hierarchical Navigable Small World)
+indexing[Johnson et al.(2021)Johnson, Douze, and Jégou, Malkov and Yashunin(2020)]. HNSW builds a multi-layer
+proximity graph in which each node (item) is connected to a small set of nearest neighbors. Search starts at a coarse
+layer using long-range links and descends to finer layers for local refinement, yielding sub-linear query time in practice
+(often approximated as O(log N)).
+In our setup, we configure the index with M = 32 neighbors per node, efConstruction=40 (build depth), and
+efSearch=16 (beam size), achieving retrieval speed of < 1 ms with negligible recall loss compared to exact search.
+4.3
+O(1) Metadata Retrieval
+A critical bottleneck in production recommendation systems is retrieving rich metadata (titles, image URLs, prices) after
+vector search. Fetching this data from a traditional SQL database or parsing large JSONL files on-the-fly introduces
+avoidable I/O latency.
+To address this, we build a binary metadata cache using Python’s pickle serialization. We preprocess the raw catalog
+into a hash map keyed by item ID (ASIN), storing only essential display attributes. The cache is serialized into a
+compact binary file (≈953 MB) that can be loaded quickly into RAM.
+During inference, once FAISS returns the top-K item IDs, we retrieve the corresponding metadata in constant time:
+lookup(ASIN) ∈O(1),
+(10)
+thereby eliminating disk I/O from the critical path and ensuring the end-to-end response time remains within interactive
+constraints (e.g., < 50 ms).
+5
+Experiments & Evaluation
+5.1
+Experimental Setup
+Evaluation protocol
+We evaluate the model in a realistic open-vocabulary recommendation-as-retrieval setting.
+• Corpus size (N): The recommendation search space consists of the full valid product catalog, totaling 826,402
+unique items. Unlike re-ranking tasks that operate on a small candidate set, our system must identify the
+correct item from the full catalog.
+8
+
+A PREPRINT - FEBRUARY 3, 2026
+Table 1: Comparative recommendation-as-retrieval performance on the hard benchmark.
+Model
+Recall@10
+MRR@10
+Improvement vs. BM25
+BM25 (Baseline)
+0.2600
+0.2500
+–
+Zero-shot MPNet
+0.4200
+0.3600
++61.5%
+Fine-tuned MPNet (Ours)
+0.6600
+0.5900
++153.8%
+• Recommendation scope: For every user context q, we recommend the global top-K items (with K = 10) by
+computing similarities against all N items via HNSW approximate nearest neighbor search.
+Hard context construction. To test semantic generalization beyond keyword matching, we construct a review-to-item
+recommendation-as-retrieval test set of 2,500 held-out samples.
+• Source: We use the review summary (or the first 20 tokens of the review body if the summary is empty) from
+interactions in the test split.
+• Target: The ground truth is the purchased item (represented by its product title at evaluation time).
+• Difficulty: Reviews describe utility/experience (e.g., “Great for standing all day”), while titles describe
+attributes (e.g., “Women’s Non-Slip Work Clogs”). The lack of lexical overlap forces the retriever to rely on
+learned semantic embeddings, creating a more rigorous test of intent understanding than matching queries to
+verbose product descriptions.
+Train/test split and metrics. We partition the Amazon Reviews 2023 (Fashion) interaction dataset into a training set
+(95%) and a held-out test set (5%). We sample 50,000 user–item pairs for contrastive fine-tuning, using 47,500 pairs for
+training and 2,500 pairs for evaluation. We report Recall@10 and MRR@10 as top-K recommendation metrics under
+the recommendation-as-retrieval formulation.
+Hardware for training. Training is conducted on Kaggle on a single NVIDIA Tesla T4 GPU (16 GB VRAM) using
+Automatic Mixed Precision (FP16 AMP). Training time: 3 h 40 min (single run; 3 h 40 min GPU time). Distributed
+training: none. Seed: 42.
+5.2
+Recommendation Performance (Retrieval Accuracy)
+We compare our domain-adaptive bi-encoder against two baselines:
+1. BM25: a robust sparse retrieval baseline based on probabilistic keyword matching.
+2. Zero-shot MPNet: the pre-trained all-mpnet-base-v2 model without any fine-tuning on Amazon data.
+As shown in Table 1, the fine-tuned MPNet substantially outperforms both baselines. The BM25 baseline achieves
+Recall@10 of 0.26, highlighting the failure of sparse methods to capture non-lexical matches. The zero-shot model
+improves this to 0.42 by leveraging general language representations. Our domain-adapted model achieves Recall@10
+of 0.66 (a 153.8% relative improvement over BM25), confirming that supervised contrastive training captures domain-
+specific semantic relationships (e.g., mapping “gym wear” to “leggings”) that are absent in general pre-training
+corpora.
+The quantitative advantage of domain adaptation is summarized in Figure 4. While the zero-shot model provides a
+baseline improvement over keywords, the fine-tuned model demonstrates a 153% increase in Recall@10 over BM25.
+This gap underscores the necessity of contrastive training to bridge the vocabulary mismatch in specialized domains.
+5.3
+Results Analysis
+Statistical testing.
+We report 95% confidence intervals using a paired bootstrap test over queries with 5,000 bootstrap
+samples (significance threshold p < 0.05).
+5.4
+Efficiency Benchmarks (Speed & Size)
+To validate the engineering viability of our proposed architecture, we conduct a reproducible benchmarking study
+isolating inference latency and throughput.
+9
+
+A PREPRINT - FEBRUARY 3, 2026
+BM25
+Zero-Shot
+Fine-Tuned
+0
+0.2
+0.4
+0.6
+0.26
+0.42
+0.66
+0.25
+0.36
+0.59
+Metric value
+Recall@10
+MRR@10
+Figure 4: Comparative recommendation performance. Recommendation-as-retrieval performance (Recall@10 and
+MRR@10) on the review-to-title benchmark.
+Table 2: Inference performance on AMD Ryzen 7 5800H CPU (batch size 1).
+System Config
+Quantization
+Batch
+Latency (p50)
+Latency (p99)
+Throughput
+PyTorch (Baseline)
+FP32
+1
+32.4 ms
+45.1 ms
+31 QPS
+ONNX Runtime
+FP32
+1
+24.8 ms
+29.2 ms
+40 QPS
+ONNX Runtime
+Int8 (Dynamic)
+1
+6.1 ms
+8.4 ms
+163 QPS
+Latency & throughput analysis. We measure performance in an online regime (batch size 1) to capture interactive
+latency.
+Observations. Latency: The optimized int8 model achieves p99 latency of 8.4 ms, comfortably below a typical
+real-time SLA of 50 ms.
+Quantization gain: Converting from FP32 to int8 yields a substantial improvement in p50 latency, consistent with
+improved compute and memory efficiency from reduced precision and lower memory bandwidth.
+Stability: The variance between p50 and p99 latency is reduced under ONNX Runtime, providing more predictable tail
+latency for production deployments.
+5.5
+Ablation Studies
+To disentangle the contributions of modeling and engineering decisions, we perform a component-wise ablation study.
+Table 3 isolates the impact of domain adaptation (fine-tuning), precision reduction (quantization), and search
+approximation (indexing) on both retrieval accuracy and system latency.
+Analysis.
+(i) Domain adaptation: Fine-tuning provides the largest gain in retrieval performance, improving Re-
+call@10 from 0.42 to 0.66.
+(ii) Quantization trade-off: Dynamic int8 quantization yields a substantial latency reduction (24.8 ms to 6.1 ms) and a
+75% reduction in model size, with negligible loss in Recall@10 (0.6600 to 0.6582).
+(iii) Search cost (O(N) vs. O(log N)): Exact flat search becomes prohibitive at large catalog size (N), while HNSW
+reduces retrieval latency to sub-millisecond levels with a small approximation gap (0.6582 to 0.6550), at the cost of
+increased RAM usage for the graph structure (approx. 2.7 GB for 800k items).
+6
+Discussion & Real-World Application
+6.1
+Deployment & Benchmarking
+To demonstrate production viability, we deploy the optimized recommendation-as-retrieval system as a lightweight
+inference service hosted on Hugging Face Spaces. The application is containerized and served via Gradio, and the
+ONNX Runtime inference engine runs in-process alongside tokenization and vector search. To minimize cold-start
+10
+
+A PREPRINT - FEBRUARY 3, 2026
+Table 3: Component-wise ablation analysis.
+Ablation Component
+Configuration
+Recall@10
+Avg. Latency
+Storage/RAM
+(i) Model quality
+Zero-shot MPNet
+0.4200
+–
+–
+Fine-tuned (Ours)
+0.6600
+–
+–
+(ii) Inference runtime
+ONNX FP32
+0.6600
+24.8 ms
+438 MB
+ONNX Int8
+0.6582
+6.1 ms
+107 MB
+(iii) Indexing strategy
+Flat index (Exact)
+0.6582
+92.0 ms
+–
+FAISS HNSW
+0.6550
+< 1.0 ms
+–
+latency, we implement a “cloud-to-cloud” artifact-loading strategy that fetches the pre-computed HNSW index (2.7 GB)
+and binary metadata cache directly from remote object storage into ephemeral container memory at initialization,
+decoupling inference logic from heavy artifacts.
+We also implement an integrated A/B benchmarking dashboard to compare the legacy PyTorch endpoint against the
+local ONNX+HNSW pipeline under identical queries. The dashboard reports end-to-end latency and throughput (QPS)
+in real time.
+6.2
+Limitations
+While dense retrieval improves recall for intent-based queries, it introduces challenges inherent to vector-based semantic
+matching, primarily semantic drift.
+• Entity confusion: optimizing for semantic similarity can override specific entity constraints. For example,
+a query for “Nike running shoes” may retrieve “Adidas running shoes” because both share similar semantic
+attributes (e.g., “athletic,” “cushioned,” “mesh”).
+• Attribute hallucination: for highly specific visual features (e.g., “V-neck with gold buttons”), the dense
+retriever may prioritize the dominant concept (“V-neck”) while ignoring finer-grained details (“gold buttons”)
+if they are weakly represented during training.
+Potential fixes.
+A practical mitigation is hybrid search, combining the semantic understanding of dense retrieval with
+exact matching from sparse retrieval[Formal et al.(2021)Formal, Piwowarski, and Clinchant]. This can be implemented
+via score fusion,
+shybrid(q, d) = λ sdense(q, d) + (1 −λ) ssparse(q, d),
+(11)
+or by applying post-retrieval hard filters (e.g., Brand == ’Nike’). Hybrid retrieval preserves semantic recall while
+enforcing strict attribute precision.
+7
+Reproducibility & Ethics
+7.1
+Reproducibility Checklist
+• Training environment (Kaggle): NVIDIA Tesla T4 (16 GB VRAM), Python 3.10.12, PyTorch 2.1.0, Trans-
+formers 4.37.2, CUDA 11.8; mixed precision enabled (FP16 AMP).
+• Inference environment (local): AMD Ryzen 7 5800H @ 3.20 GHz (16 vCPUs), 16 GB DDR4 RAM; Python
+3.10.12, PyTorch 2.1.0 (CPU), Transformers 4.37.2, ONNX Runtime 1.17.0.
+• CPU instructions: AVX2 supported; AVX-512/VNNI not supported.
+• Training configuration: epochs = 1; effective batch size = 32 (batch size 8 with gradient accumulation 4); max
+sequence length = 500; seed = 42.
+• Hardware and timing: training time = 3 h 40 min (single run; no distributed training). Threads pinned to 1 core;
+dynamic INT8 quantization for CPU.
+• Evaluation: the candidate set is the full catalog of 826,402 items (no filtering).
+11
+
+A PREPRINT - FEBRUARY 3, 2026
+7.2
+Ethical Considerations
+This study uses the Amazon Reviews 2023 (Fashion) dataset, which consists of publicly available user reviews paired
+with item metadata. The model is trained and evaluated only for retrieval (embedding and nearest-neighbor search) and
+does not generate text.
+7.3
+Artifacts
+For transparency, we provide access to the main artifacts used in this study:
+• Data: https://huggingface.co/datasets/Pandeymp29/Amazon-Fashion-Training-Data-2023.
+• Model artifacts: https://huggingface.co/Pandeymp29/Amazon-Fashion-Semantic-Search.
+• Demo: https://huggingface.co/spaces/Pandeymp29/Optimised-Amazon-RecSys.
+• Code: https://www.kaggle.com/code/pandeymritunjay/recommendation-system-optimised.
+• Benchmarking notebook: https://www.kaggle.com/code/pandeymritunjay/comparision.
+8
+Conclusion
+We present an end-to-end methodology for engineering and deploying a high-performance content-based recommen-
+dation system tailored to e-commerce, with dense semantic retrieval as the core matching engine. By fine-tuning a
+bi-encoder on domain-specific user–item interactions, we bridge the vocabulary-mismatch gap, achieving a 153%
+improvement in Recall@10 over a BM25 baseline. These results suggest that learning from user reviews enables
+the retriever to capture latent semantic attributes—such as style, occasion, and fit—that are often absent in generic
+pre-trained language models.
+We also show that the computational cost of dense retrieval is not an insurmountable barrier for production environments.
+Using an optimization pipeline combining ONNX Runtime, INT8 quantization, and FAISS HNSW indexing, we
+reduce inference latency by 81% (to 6 ms) and the storage footprint by 76%, enabling real-time, high-throughput
+search on commodity CPU hardware. Overall, the proposed system provides a reproducible blueprint for deploying
+neural retrieval under strict latency and resource constraints.
+Future work will focus on (i) hybrid search that integrates sparse signals (BM25) with dense vectors to mitigate semantic
+drift and better handle exact-match queries (e.g., brand names or model numbers), (ii) cross-encoder re-ranking of the
+top candidates returned by HNSW to improve precision at the top ranks (e.g., MRR) with minimal latency overhead,
+and (iii) multimodal embeddings that incorporate visual signals (product images) alongside text, for example using
+CLIP[Radford et al.(2021)Radford, Kim, Hallacy, et al.], to support both text and visual search.
+References
+[Robertson and Zaragoza(2009)] Stephen Robertson and Hugo Zaragoza. The probabilistic relevance framework:
+BM25 and beyond. Foundations and Trends in Information Retrieval, 3(4):333–389, 2009.
+[Devlin et al.(2019)Devlin, Chang, Lee, and Toutanova] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina
+Toutanova. Bert: Pre-training of deep bidirectional transformers for language understanding. In Proceedings of
+NAACL-HLT, pages 4171–4186, 2019.
+[Reimers and Gurevych(2019)] Nils Reimers and Iryna Gurevych. Sentence-bert: Sentence embeddings using siamese
+bert-networks. In Proceedings of EMNLP, pages 3982–3992, 2019.
+[Karpukhin et al.(2020)Karpukhin, O˘guz, Min, Lewis, Wu, Edunov, Chen, and Yih] Vladimir
+Karpukhin,
+Barlas
+O˘guz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, and Wen-tau Yih. Dense passage
+retrieval for open-domain question answering. In Proceedings of EMNLP, pages 6769–6781, 2020.
+[Khattab and Zaharia(2020)] Omar Khattab and Matei Zaharia. Colbert: Efficient and effective passage search via
+contextualized late interaction over BERT. In Proceedings of SIGIR, pages 39–48, 2020.
+[van den Oord et al.(2018)van den Oord, Li, and Vinyals] A"aron van den Oord, Yazhe Li, and Oriol Vinyals. Repre-
+sentation learning with contrastive predictive coding, 2018.
+[Chen et al.(2020)Chen, Kornblith, Norouzi, and Hinton] Ting Chen, Simon Kornblith, Mohammad Norouzi, and
+Geoffrey Hinton. A simple framework for contrastive learning of visual representations. In Proceedings of ICML,
+pages 1597–1607, 2020.
+12
+
+A PREPRINT - FEBRUARY 3, 2026
+[Jacob et al.(2018)Jacob, Kligys, Chen, Zhu, Tang, Howard, Adam, and Kalenichenko] Benoit Jacob, Skirmantas Kli-
+gys, Bo Chen, Menglong Zhu, Matthew Tang, Andrew Howard, Hartwig Adam, and Dmitry Kalenichenko.
+Quantization and training of neural networks for efficient integer-arithmetic-only inference. In Proceedings of
+CVPR, pages 2704–2713, 2018.
+[bai(2019)] Onnx: Open neural network exchange. Specification, 2019. https://onnx.ai.
+[Huang et al.(2013)Huang, He, Gao, Deng, Acero, and Heck] Po-Sen Huang, Xiaodong He, Jianfeng Gao, Li Deng,
+Alex Acero, and Larry Heck. Learning deep structured semantic models for web search using clickthrough data.
+In Proceedings of CIKM, 2013.
+[Covington et al.(2016)Covington, Adams, and Sargin] Paul Covington, Jay Adams, and Emre Sargin. Deep neural
+networks for YouTube recommendations. In Proceedings of RecSys, 2016.
+[Radford et al.(2021)Radford, Kim, Hallacy, et al.] Alec Radford, Jong Wook Kim, Chris Hallacy, et al. Learning
+transferable visual models from natural language supervision. In Proceedings of ICML, pages 8748–8763, 2021.
+[Formal et al.(2021)Formal, Piwowarski, and Clinchant] Thibault Formal, Benjamin Piwowarski, and Stéphane Clin-
+chant. Splade: Sparse lexical and expansion model for first stage ranking. In Proceedings of SIGIR, pages
+2288–2292, 2021.
+[Lin et al.(2021)Lin, Ma, Lin, Yang, Pradeep, and Nogueira] Jimmy Lin, Xueguang Ma, Sheng-Chieh Lin, Jheng-
+Hong Yang, Ronak Pradeep, and Rodrigo Nogueira. Pretrained transformers for text ranking: BERT and beyond.
+Morgan & Claypool, 2021.
+[Malkov and Yashunin(2020)] Yu A. Malkov and Dmitry A. Yashunin. Efficient and robust approximate nearest
+neighbor search using hierarchical navigable small world graphs. IEEE Transactions on Pattern Analysis and
+Machine Intelligence, 42(4):824–836, 2020.
+[Johnson et al.(2021)Johnson, Douze, and Jégou] Jeff Johnson, Matthijs Douze, and Hervé Jégou. Billion-scale simi-
+larity search with GPUs. IEEE Transactions on Big Data, 7(3):535–547, 2021.
+[Wang et al.(2021)Wang, Zhang, and Wang] Jiale Wang, Yuxiang Zhang, and Jing Wang. A survey on approximate
+nearest neighbor search. IEEE Access, 9:150154–150178, 2021.
+[Ganin et al.(2016)Ganin, Ustinova, Ajakan, Germain, Larochelle, Laviolette, Marchand, and Lempitsky] Yaroslav
+Ganin, Evgeniya Ustinova, Hana Ajakan, Pascal Germain, Hugo Larochelle, François Laviolette, Mario Marchand,
+and Victor Lempitsky. Domain-adversarial training of neural networks. Journal of Machine Learning Research,
+17(59):1–35, 2016.
+[Hou et al.(2024)Hou, Li, He, Yan, Chen, and McAuley] Yifan Hou, Junjie Li, Zhankui He, An Yan, Xiusi Chen, and
+Julian McAuley. Bridging language and items for retrieval and recommendation, 2024.
+[Wolf et al.(2020)Wolf, Debut, Sanh, et al.] Thomas Wolf, Lysandre Debut, Victor Sanh, et al. Transformers: State-of-
+the-art natural language processing. In Proceedings of EMNLP: System Demonstrations, pages 38–45, 2020.
+[Loshchilov and Hutter(2019)] Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. In Proceed-
+ings of ICLR, 2019.
+13

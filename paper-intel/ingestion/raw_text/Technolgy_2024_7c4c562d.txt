@@ -1,0 +1,436 @@
+International Journal of Scientific Research in Engineering and Management (IJSREM) 
+                        Volume: 08 Issue: 04 | April - 2024                                SJIF Rating: 8.448                            ISSN: 2582-3930                             
+ 
+© 2024, IJSREM      | www.ijsrem.com                           DOI: 10.55041/IJSREM32111                                                |        Page 1 
+ 
+Mental Health Assistant using Sentiment Analysis through NLP 
+Sakshi Talele1, Akanksha Amdekar2, Pranjal Kashid3,  Dr. Vidya Chitre4   
+1 Student, Information Technology, Vidyalankar Institute of Technolgy 
+2 Student, Information Technology, Vidyalankar Institute of Technolgy 
+3 Student, Information Technology, Vidyalankar Institute of Technolgy 
+4Professor, Information Technology, Vidyalankar Institute of Technolgy 
+ 
+ 
+---------------------------------------------------------------------***---------------------------------------------------------------------
+Abstract - Given the increasing prevalence of mental 
+health problems and social disruption, quality mental 
+health services are an important issue in today's society. 
+This paper provides a comprehensive understanding of 
+the mental health assistant application proposed. By 
+combining insights from psychology, healthcare, and 
+technology, we identify problems arising from existing 
+systems, 
+including 
+barriers 
+to 
+access, 
+limited 
+affordability, and disparities in supply. The system is an 
+Android platform that allows people seeking mental 
+health care to record and use features such as self-
+diagnosis, taking mental health tests for various 
+conditions such as Depression, Bipolar Disorder, OCD 
+and Anxiety, analyzing their daily mood , and sharing 
+one-on-one 
+conversations 
+with 
+mental 
+health 
+professionals. This research contributes by providing 
+opportunities for improving mental health services in the 
+future. 
+ 
+Key Words:  Mental Health, Android, Personality Tests,  
+One-on-one Conversation  
+ 
+1.INTRODUCTION  
+ 
+Our emotional, psychological, and social well-being are 
+all parts of our mental health. It influences our thoughts, 
+emotions, and behavior’s. Additionally, it influences how 
+we respond to stress, interact with others, and make good 
+decisions. Every period of life, from childhood and 
+adolescence to maturity, is vital for mental health. Poor 
+mental health and mental illness are not the same things, 
+despite the fact that the phrases are sometimes used 
+synonymously. Even if they may not have a mental 
+disorder, a person can have poor mental health. Poor 
+mental health can serve as a breeding ground for 
+conditions like depression, OCD, anxiety, and bipolar 
+disorder, 
+where 
+unresolved 
+stressors, 
+genetic 
+predispositions, and neurochemical imbalances converge 
+to manifest debilitating symptoms. Mental health 
+disorders such as depression, obsessive-compulsive 
+disorder 
+(OCD), 
+anxiety, 
+and 
+bipolar 
+disorder 
+significantly impact daily life, affecting individuals' 
+cognitive, 
+emotional, 
+and 
+behavioral 
+functioning. 
+Depression manifests as persistent feelings of sadness, 
+hopelessness, and lethargy, hindering motivation and 
+engagement in activities of daily living. OCD entails 
+intrusive thoughts and compulsive behaviors, disrupting 
+routine tasks and causing distressing preoccupation with 
+rituals. Anxiety disorders provoke excessive worry and 
+fear, impairing concentration, sleep, and decision-making 
+abilities. Bipolar disorder involves unpredictable mood 
+swings, alternating between manic episodes of elevated 
+mood and energy and depressive episodes characterized 
+by profound sadness and fatigue. These conditions not 
+only 
+undermine 
+productivity 
+and 
+interpersonal 
+relationships but also pose substantial challenges in 
+maintaining overall well-being and quality of life. 
+Effective 
+intervention 
+strategies, 
+including 
+psychotherapy, medication, and lifestyle adjustments, are 
+essential in mitigating symptoms and facilitating 
+functional recovery for individuals grappling with these 
+mental health challenges. 
+2. LITERATURE SURVEY 
+ 
+Paper Name: Mental Health Mobile Application with 
+Diagnosis, Sentiment Analysis and Chatbot [1] 
+Tanvi Gadgil et al,in,2022, [1] This study looks at a 
+variety of mental health-related app-related issues that 
+appeared between 2016 and 2020 in the Google Play 
+Store. The data was scraped using a variety of 
+programs and programming languages. It provides a 
+variety of strategies for enhancing mental health. One 
+of the methods is to relax, manage stress, track 
+symptoms, listen to calming music, journal, connect 
+with mental health resources, get support from others, 
+practice meditation, and so on. 
+Paper 
+Name: 
+Awareness 
+of 
+Mental 
+Health 
+Applications among Smartphone Users in India: A 
+Population-Based Survey [2] 
+Sneha Chakraverty et al,in, 2020, [2] To find out how 
+often people use smartphones and health apps, a 
+population- based online survey was conducted and 
+303 responses were recorded nationwide. The subjects 
+were required to complete a Google form survey 
+online. The use of health apps and smartphones was 
+evaluated via a cross-sectional survey. 46.2% of 
+respondents indicated they are only familiar with a 
+
+          International Journal of Scientific Research in Engineering and Management (IJSREM) 
+                        Volume: 08 Issue: 04 | April - 2024                                SJIF Rating: 8.448                            ISSN: 2582-3930                             
+ 
+© 2024, IJSREM      | www.ijsrem.com                           DOI: 10.55041/IJSREM32111                                                |        Page 2 
+ 
+small number of the applications on their phones, 
+compared to 50.8% who said they are familiar with the 
+bulk of them. Only 30.2% of individuals are aware of 
+mental health apps, despite the fact that most people 
+are familiar with all of the apps on their smartphones. 
+This implies that it is necessary to inform Indian 
+smartphone users about the availability of mental 
+health apps before releasing various mental health 
+applications. 
+Paper Name: Mobile Mental Health: A Review of 
+Applications for Depression Assistance [3] 
+Wellington S. Silva et al,in, 2019,[3] The purpose of 
+this study is to define, examine, and classify the 
+condition of mobile applications for depression as it 
+stands right now. To do this, we thoroughly examined 
+depression treatment applications. The findings of this 
+study demonstrated that apps are being used for an 
+increasing number of purposes, including chatbots, 
+online 
+therapy, 
+mood 
+monitoring, 
+self-help, 
+educational tools, and testing. 
+3. PROPOSED SYSTEM 
+ 
+The mental health app is built on Android studio 
+framework where Java is used for backend development 
+and XML (Extensible Markup Language) is used for 
+frontend development. The app also includes an NLP 
+emotional analysis model trained using a machine 
+learning SVM (Support Vector Machine) algorithm. 
+The following sections describe all the methods and 
+functions of the application. The flow chart of the 
+application is shown in Figure 2.3.1. 
+ 
+Figure 1. Proposed Algorithm 
+The application process is an Android application 
+developed in JAVA and has a control panel that helps 
+the user navigate the application and access all the 
+features of the application. The application includes 
+features 
+such 
+as 
+psychological 
+diagnosis, 
+communication with a psychologist, and a Daily Diary 
+that can record the user’s thoughts and feelings. 
+Psychological 
+tests 
+provide 
+users 
+with 
+detailed 
+information about their mental state based on their 
+performance on the test. Another feature is daily thought 
+journal where users can write down their thoughts for 
+the day. Machine learning and NLP sentiment analysis 
+will be used on logged emotions to analyse the user's 
+mood. This will help the user keep track of their 
+thoughts and improve accordingly. Chat allows users to 
+communicate with psychologists. A pedometer is also 
+provided to the users as it has been proven that walking 
+can help one’s mental health. Apart from these features, 
+the application also provides authentication, profile, 
+settings and all other necessary features. Firebase Cloud 
+Services is used for authentication, instant databases, 
+and Firebase Storage. 
+ 
+3.1 Evaluation: 
+ 
+The general health questionnaire (GHQ-12), comprising 
+12 questions, serves as the initial round of assessment, 
+and this is the method employed to calculate the results 
+of this round:  
+For depression, higher scores on questions 1, 2, 6, 8, and 
+11 may indicate a greater likelihood of depressive 
+symptoms, with an adjusted cutoff of 8 or higher 
+suggesting such symptoms. Anxiety symptoms may be 
+suggested by higher scores on questions 3, 4, 7, and 9, 
+with a cutoff of 7 or higher indicating a higher 
+likelihood. For OCD, a higher score on question 10, 
+addressing persistent unwanted thoughts or repetitive 
+behaviors, may suggest symptoms, with a cutoff of 2 or 
+higher. Bipolar disorder symptoms may be indicated by 
+higher scores on questions 5, 8, and 12, addressing 
+changes in energy levels, avoidance due to anxiety or 
+fear, and heightened irritability or impulsivity, with a 
+cutoff of 6 or higher. Methods for coping include 
+staying in touch, being active, eating healthily, and 
+establishing 
+routines 
+for 
+depression; 
+employing 
+strategies like the 333 rule, breathing exercises, stepping 
+back from stressful situations, and journaling for 
+anxiety; establishing routines, prioritizing sleep, and 
+mood tracking for bipolar disorder; and using 
+distraction, engaging in physical activity, and practicing 
+acceptance for OCD. 
+Based on the results of the preceding initial round, a 
+subsequent round is conducted to categorize whether the 
+individual exhibits symptoms indicative of depression, 
+anxiety, OCD, or bipolar disorder, determined by the 
+evaluation process: 
+1) Becks Depression Inventory: 
+The evaluation of scores on the Beck Depression 
+Inventory (BDI) can provide valuable insights into the 
+severity of depressive symptoms experienced by 
+individuals. Scores ranging from 1 to 10 are typically 
+considered indicative of normal fluctuations in mood, 
+
+          International Journal of Scientific Research in Engineering and Management (IJSREM) 
+                        Volume: 08 Issue: 04 | April - 2024                                SJIF Rating: 8.448                            ISSN: 2582-3930                             
+ 
+© 2024, IJSREM      | www.ijsrem.com                           DOI: 10.55041/IJSREM32111                                                |        Page 3 
+ 
+while scores between 11 and 16 suggest mild mood 
+disturbance. Those scoring between 17 and 20 may be 
+experiencing borderline clinical depression, while scores 
+falling within the range of 21 to 30 indicate moderate 
+depression. Scores between 31 and 40 signify severe 
+depression, and scores surpassing 40 suggest extreme 
+depression. 
+2) Hamilton Anxiety Scale: 
+In assessing responses to the Hamilton Anxiety Scale 
+(HAM-A), each item's score, ranging from 0 (not 
+present) to 4 (severe), contributes to a comprehensive 
+evaluation of anxiety symptom severity. The total score 
+spans from 0 to 56, with varying ranges indicating 
+different levels of severity: scores less than 17 suggest 
+mild severity, scores between 18 and 24 suggest mild to 
+moderate severity, and scores between 25 and 30 
+suggest moderate to severe anxiety symptoms. Notably, 
+this scoring system allows for nuanced interpretation, 
+capturing the spectrum of anxiety symptomatology and 
+guiding clinicians in determining the appropriate level of 
+intervention and support for individuals experiencing 
+anxiety. 
+3) Mood Disorder Questionnaire: 
+In evaluating responses to the Mood Disorder 
+Questionnaire (MDQ), specific criteria suggest a higher 
+likelihood of bipolar disorder symptoms. If the patient 
+answers "Yes" to seven or more of the 13 items in 
+question number 1, indicating a prevalence of mood-
+related symptoms, and also responds affirmatively to 
+question number 2, which addresses the presence of 
+episodic 
+mood 
+changes, 
+along 
+with 
+endorsing 
+"Moderate" or "Serious" to question number 3, which 
+assesses the impact of these symptoms on daily 
+functioning, it may indicate a significant likelihood of 
+bipolar disorder symptoms. This combination of 
+responses suggests a pattern of mood instability and 
+impairment that aligns with the diagnostic criteria for 
+bipolar disorder. 
+4) Obsessive Compulsive Inventory: 
+In evaluating responses to the Obsessive-Compulsive 
+Inventory (OCI), particularly considering a total score of 
+21 or above, there's a potential indication of the presence 
+of obsessive-compulsive disorder (OCD). A higher 
+overall score, especially surpassing this threshold, 
+suggests a more pronounced severity of OCD symptoms 
+across the various dimensions assessed by the inventory. 
+These dimensions encompass a range of obsessive 
+thoughts and compulsive behaviors, including washing, 
+checking, 
+obsessing, 
+hoarding, 
+ordering, 
+and 
+neutralizing. A total score meeting or exceeding 21 
+underscores the likelihood of significant impairment due 
+to OCD-related symptoms and warrants further clinical 
+assessment and intervention. 
+ 
+3.2 Sentiment Analysis: 
+ 
+The NLP Sentiment Analysis used in the application in 
+the Daily Diary section for predicting user’s sentient is 
+trained using Support Vector Classifier (SVC). The 
+model uses a Reviews Dataset which is first cleaned and 
+then converted into vectorized format. Converting the 
+unstructured reviews into a high dimension vector 
+format is essential step and is carried out using TF-IDF 
+vectorizer. Later this vectorized dataset is trained using 
+Support Vector Classifier (SVC). The accuracy, 
+confusion matrix and performance matrix of the 
+sentiment analysis model is shown in the figures below. 
+ 
+Figure 2. Confusion Matrix 
+Fig. 2 shows the Confusion Matrix of the model trained 
+using Support Vector Classifier. True negative, true 
+positive, false negative and false positive values of the 
+confusion matrix are shown accordingly in the figure. 
+The Performance Matrix of the model is shown in Fig. 
+3. This performance matrix gives performance measures 
+such as precision, recall, f1-score, and support for the 
+trained model. And finally, the accuracy of the model 
+with respect to Support Vector Classifier is shown is 
+Fig.4. The model is 84.375 percentage accurate which 
+works fine for the application. The model is converted 
+into a pickle file and used in the flask API which is then 
+called whenever the user clicks on the “SAVE” button 
+on the Daily Diary Section of the android application. 
+ 
+Figure 3. Performance Matrix 
+ 
+Figure 4. Accuracy 
+ 
+ 
+ 
+ 
+
+          International Journal of Scientific Research in Engineering and Management (IJSREM) 
+                        Volume: 08 Issue: 04 | April - 2024                                SJIF Rating: 8.448                            ISSN: 2582-3930                             
+ 
+© 2024, IJSREM      | www.ijsrem.com                           DOI: 10.55041/IJSREM32111                                                |        Page 4 
+ 
+4. FUTURE SCOPE 
+ 
+A mental health android app's future potential is huge, 
+with the possibility to extend and improve on current 
+capabilities to better serve the needs of users. Wearable 
+devices: such as smartwatches or fitness trackers, might 
+be coupled with the app to provide additional data points 
+on users' mental and physical health. Data on sleep 
+patterns, exercise routines, and stress levels, for example, 
+could assist users and mental health practitioners in 
+better understanding and managing mental health 
+symptoms. 
+Personalized 
+recommendations 
+using 
+machine learning: Machine learning algorithms could be 
+used to analyze user data and deliver personalized 
+suggestions for self-help resources, therapies, or mental 
+health experts. This could assist users in locating the 
+most effective and acceptable.  
+ 
+5. CONCLUSIONS 
+ 
+Users can get professional advice from this mental 
+health support android app, which also offers a variety 
+of mental health support services. The user doesn't have 
+to physically visit the psychiatrist or stand in long 
+patient queues because everything is available on a 
+single platform. Users can simply communicate their 
+needs and difficulties with Psychiatrists by sending them 
+The application offers a simple interface, allowing any 
+user to utilize it with ease. Users of the application can 
+take mental health tests and receive test results and 
+analysis for improvement. This test results can be very 
+helpful for the user as the user can know the current 
+state of its mind. Based upon the test results the user 
+can attempt to further tests if required. Therefore users 
+can enhance their performance by applying for Mental 
+Health examinations and reviewing the results. The 
+daily diary feature allows the user to write down his or 
+her thoughts and keep track of them. The use of this 
+program will result in an overall improvement of the 
+user's mental health without requiring the user to go 
+through many obstacles. This ease of access to 
+treatments will encourage individuals to take better care 
+of their mental health rather than neglecting it. 
+ 
+REFERENCES 
+ 
+1. Abid Hassan, M. D. Iftekhar Ali, Rifat Ahammed, 
+Sami Bourouis Mohammad Monirujjaman Khan, 
+“Development of NLP-Integrated Intelligent Web 
+System for E-Mental Health” December 2021.  
+2. Nidhi Vashistha, Dharmendra Kumar, Ankit Bairwa, 
+“Development of Android Application for Mental 
+Health of The Students for Betterment” April 2018.  
+3. Md. Aminul Islam, Naziat Choudhury, “Mobile 
+apps for Mental Health: a content analysis” August 
+2020.  
+4. Arfan Ahmed, Nashva Ali, Anna Giannicchi, Alaa 
+A Abd-alrazaq, Mohamed Ali, “Mobile applications 
+for mental health self-care: A scoping review” 
+October 2021.  
+5. Devarapalli, S. V. Siddhardh Kumar; Kallakuri, 
+Sudha; Salam, Abdul; Maulik, Pallab K., “Mental 
+health research on scheduled tribes in India” 
+December 2020.  
+6. Kit Huckvale, Jennifer Nicholas, John Torous, Mark 
+E Laresen, “Smartphone apps for the treatment of 
+mental health conditions: status and considerations” 
+May 2020.

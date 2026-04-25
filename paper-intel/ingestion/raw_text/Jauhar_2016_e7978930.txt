@@ -1,0 +1,439 @@
+TabMCQ: A Dataset of General Knowledge Tables and Multiple-choice
+Questions
+Sujay Kumar Jauhar∗, Peter Turney†, Eduard Hovy∗
+∗Carnegie Mellon University
+Pittsburgh, PA, USA
+{sjauhar, hovy}@cs.cmu.edu
+† Allen Institute for Artiﬁcial Intelligence
+Seattle, WA, USA
+petert@allenai.org
+Abstract
+We describe two new related resources that facilitate modelling of general knowledge reasoning in 4th grade science exams. The ﬁrst is
+a collection of curated facts in the form of tables, and the second is a large set of crowd-sourced multiple-choice questions covering the
+facts in the tables. Through the setup of the crowd-sourced annotation task we obtain implicit alignment information between questions
+and tables. We envisage that the resources will be useful not only to researchers working on question answering, but also to people
+investigating a diverse range of other applications such as information extraction, question parsing, answer type identiﬁcation, and
+lexical semantic modelling.
+Keywords: General Knowledge, Tables, Question Answering, MCQ, Crowd-sourcing, Mechanical Turk
+1.
+Introduction
+The Aristo project at AI2 (Clark, 2015) uses standardized
+science exams as drivers for research in Artiﬁcial Intelli-
+gence. Aristo’s question answering format exposes a vari-
+ety of interesting problems and challenges in NLP (Weston
+et al., 2015), such as information extraction, semantic mod-
+elling and reasoning. An important component of a system
+that performs Question Answering (QA) is a store of back-
+ground knowledge for fact-checking and reasoning. This
+store can be in a variety of modes and formalisms: large-
+scale extracted and curated knowledge bases (Fader et al.,
+2014), structured models such as Markov Logic Networks
+(Khot et al., 2015), or simple text corpora in information
+retrieval approaches (Tellex et al., 2003).
+There is, however, a fundamental trade-off in the expres-
+sive power of a formalism and its ability to be curated
+easily using existing data and tools.
+In this paper we
+describe our work on building knowledge tables, whose
+semi-structured format affords a balance between expres-
+sive power and ease of creation. Additionally, we intro-
+duce our efforts at building a large bank of Multiple-Choice
+Questions (MCQs) using crowd-sourcing on Mechanical
+Turk (MTurk) by imposing structural constraints on the
+MCQs from the tables. These constraints lead to consis-
+tency in MCQ quality and additionally enable us to harvest
+alignment information between questions and table cells
+with little additional effort from annotators. The tables, the
+MCQs, and the alignments between the two constitute a
+trio of resources that are, to the best of our knowledge, a
+ﬁrst of their kind. We are releasing this dataset publicly1,
+and we believe it will not only be useful to those working
+on question answering, but present interesting challenges to
+researchers exploring a number of related areas.
+1http://allenai.org/content/data/TabMCQ_
+v_1.0.zip
+2.
+Related Work
+In related recent work Pasupat and Liang (2015) create a
+dataset of QA pairs over tables. However, their annotation
+setup does not impose structural constraints from tables,
+and produces simple QA pairs rather than MCQs. (Yin et
+al., 2015) and (Neelakantan et al., 2015) use tables in the
+context of question answering, but deal with synthetically
+generated query data for those tables. More generally ta-
+bles have been related to QA in the context of queries over
+relational databases (Cafarella et al., 2008; Pimplikar and
+Sarawagi, 2012). Regarding crowd-sourcing for question
+creation, Aydin et al. (2014) harvest MCQs via a gamiﬁed
+app. However their work does not involve tables. Monolin-
+gual alignment datasets have also been explored separately,
+for example by Brockett (2007) in the context of Textual
+Entailment.
+3.
+Motivation for the Dataset
+Our motivation for constructing and releasing this data
+stems from promising preliminary results on using tables
+and their alignments to MCQs for solving AI2’s Aristo
+challenge. We manually annotated 77 of the 108 4th grade
+science exam questions in the Regents dataset2 for align-
+ment to tables. The resulting data was exactly like the one
+in this paper, but at a fraction of the scale. Even with this
+small amount of data we were able to build a system that
+rivaled our best in-house solvers of the Aristo challenge. A
+larger dataset will enable us to exceed this performance,
+and also allow us to explore models that require greater
+amounts of data (such as Neural Networks).
+A detailed description of our system is beyond the scope of
+this paper, but in summary it uses a feature-rich log-linear
+model to score table cells on their relevance to answering a
+2http://allenai.org/content/data/Regents.
+zip
+arXiv:1602.03960v1  [cs.CL]  12 Feb 2016
+
+question. A combination of structural and textual features
+are used to capitalize on the semi-structured format of ta-
+bles.
+4.
+General Knowledge Tables
+In this section we present the set of tables of curated natural
+language facts. We discuss their semi-structured form and
+its utility for knowledge representation. We then detail the
+data and possibilities for its extension.
+4.1.
+Tables as a Form of Knowledge
+Representation
+An example of the kind of table we construct is given in
+Table 1. This format is semi-structured: the rows of the
+table (with the exception of the header) are essentially a list
+of sentences, but with well-deﬁned recurring ﬁller patterns.
+Together with the header, these patterns divide the rows into
+meaningful columns.
+The resulting table structure has some interesting seman-
+tics. A row in a table corresponds to a fact in the world3.
+The cells in a row correspond to concepts, entities, or pro-
+cesses that participate in this fact. A content column4 cor-
+responds to a group of concepts, entities, or processes that
+are the same type. The head of the column is an abstract
+description of the type. We may view the head as a hyper-
+nym and the cells in the column below as co-hyponyms of
+the head.
+The structure of tables also exposes sets of analogies. More
+formally, let rowi and rowj be any two rows in a table. Let
+colk and colm be any two content columns in a table. The
+four cells where the rows and columns intersect form an
+analogy: celli,k is to celli,m as cellj,k is to cellj,m. That
+is, the relation between celli,k and celli,m is highly similar
+to the relation between cellj,k and cellj,m. For example,
+in Table 1 one such analogy is: “Melting” is to “solid” as
+“Condensation” is to “gas”. Here the latent relation being
+represented is the one between a “Phase Change” and the
+“initial state” of a substance upon which it acts. The table
+is essentially a compact representation of a large number of
+scientiﬁc analogies.
+The semi-structured nature of this data is ﬂexible. Since
+facts are presented as sentences, the tables can simply act
+as a text corpus for information retrieval. Depending on
+the end application, more complex models can rely on the
+inherent structure in tables. They can be used as is for in-
+formation extraction tasks that seek to zero in on speciﬁc
+nuggets of information, or they can be converted to logi-
+cal expressions using rules deﬁned over neighboring cells.
+Regarding construction, the recurring ﬁller patterns can be
+used as templates to extend the tables semi-automatically
+by searching over large corpora for similar facts (Ravichan-
+dran and Hovy, 2002).
+4.2.
+The Dataset
+Our dataset of tables was, for the most part, constructed
+manually by the second author of this paper and a knowl-
+3Rows may also be seen as predicates, or more generally
+frames with typed arguments.
+4We differentiate these from ﬁller columns, which only con-
+tain a recurring pattern, and no information in their header cells.
+edge engineer. The target domain for the tables was the Re-
+gents 4th grade science exam. The majority of tables were
+constructed to contain topics and facts in this exam (with
+additional facts being added once a coherent topic had been
+identiﬁed), with the rest being targeted at an additional in-
+house question bank of 500 questions.
+The dataset consists of 65 hand-crafted tables organized
+topic-wise, from bounded tables such as the one about
+phase changes, to virtually unbounded tables, such as the
+kind of energy used in performing an action.
+An addi-
+tional collection of 5 semi-automatically generated tables
+contains a more heterogeneous mix of facts across topics.
+A total of 3851 facts, or information rows, are present in
+the manually constructed tables, while an additional 4415
+are present in the semi-automatically generated ones. The
+number of content columns in a given table varies from 2
+to 5.
+4.3.
+Future Extensions
+While the tables are reasonably complete with regard to the
+target domain for which they were constructed, they are
+not comprehensive for any open-ended knowledge retrieval
+task. We are in the process of investigating ways to extend
+the tables semi-automatically to cover a wider collection of
+facts, by using the set of existing facts as seeds. An in-
+house fuzzy search engine allows us to search over patterns
+consisting not only of words and wild-card symbols, but
+parts-of-speech and semantically related concepts.
+An interesting avenue for future research is to completely
+automate the process of this extension, and even construct
+semi-structured knowledge tables on the ﬂy for targeted
+queries.
+5.
+Crowd-sourcing Multiple-choice
+Questions from Tables
+In this section we outline the MCQs generated from ta-
+bles. We ﬁrst describe the annotation task and argue for
+constraints imposed by table structure. We next describe
+the data we generated via crowd-sourcing. Finally, we also
+list some possible extensions to the kinds of questions we
+generate.
+5.1.
+The Annotation Task – Constraining MCQs
+with Tables
+We use MTurk to generate MCQs by imposing constraints
+derived from the structure of the tables. These constraints
+help annotators create questions with scaffolding informa-
+tion, and lead to consistent quality in the generated output.
+An additional beneﬁt of this format is the alignment infor-
+mation from cells in the tables to the MCQs that are gener-
+ated as a by-product.
+The annotation task guides a Turker through the process of
+creating an MCQ. Given a table, we choose a target cell to
+be the correct answer for a new MCQ. First, we ask Turk-
+ers to create a question by primarily using information from
+the rest of the row containing the target cell, in such a way
+that the target cell is its correct answer. Then annotators
+must select all the cells in the row that they actually used to
+construct the question. Following this, Turkers must con-
+struct 4 succinct choices for the question, one of which is
+
+Phase Change
+Initial State
+Final State
+Heat Transfer
+Melting
+causes a
+solid
+to change into a
+liquid
+by
+adding heat
+Vaporization
+causes a
+liquid
+to change into a
+gas
+by
+adding heat
+Condensation
+causes a
+gas
+to change into a
+liquid
+by
+removing heat
+Sublimation
+causes a
+solid
+to change into a
+gas
+by
+adding heat
+Table 1: Example part of table concerning phase state changes.
+the correct answer and the other 3 are distractors. These
+distractors must be formed from other cells in the column
+containing the target cell. If there are insufﬁcient unique
+cells in the column Turkers may create their own. To sim-
+plify and reinforce table constraints over rows and columns,
+our interface highlights table cells as shown in Figure 1.
+Turkers are allowed to rephrase and shufﬂe the contents of
+cells to arrive at the 4 succinct choices. Consequently we
+require Turkers to indicate which of the 4 choices that they
+created is the correct one for their MCQ.
+In addition to an MCQ we obtain the following alignment
+information with no additional effort from annotators. We
+know which table, row, and column contain the answer, and
+thus also which header cells might be relevant to the ques-
+tion. Additionally, we know the cells of a row that were
+used to construct a question.
+5.2.
+The Dataset
+We created an individual HIT for every content bearing cell
+from each one of the 65 manually constructed tables. We
+paid annotators a reward of 10 cents per MCQ, and asked
+for 1 annotation per HIT for most tables. However, for an
+initial set of 4 tables which we used in a pilot study, we
+asked for 3 annotations per HIT5.
+In terms of qualiﬁcations, we required Turkers to have a
+HIT approval rating of 95% or higher, with a minimum of
+at least 500 HITs approved. Additionally, we restricted the
+demographics of our workers to the US.
+The annotators were able to create an MCQ from a table in
+approximately 70 seconds. They were also largely success-
+ful in their attempts. Manual inspection of the generated
+output also revealed that questions are of consistently good
+quality. They are certainly good enough for training ma-
+chine learning models and many are even good enough as
+evaluation data for QA. A sample of generated MCQs are
+presented in Table 2.
+Once annotations were completed we implemented some
+simple sanity checks to evaluate the data before approving
+HITs. These included things like checking if an MCQ has at
+least 3 choices, whether choices are repeated, etc. Through
+this process we rejected about 0.7% of submitted HITs. We
+had to further prune our data to discard some MCQs after
+accepting HITs due to corrupted data, or badly constructed
+MCQs. A total of 160 MCQs were lost through the cleanup.
+Thus our dataset of MCQs covers the overwhelming major-
+ity, but not all, of the cells in the collection of tables.
+In the end our complete data consists of 9091 MCQs, which
+is – to the best of our knowledge – orders of magnitude
+5The goal was to observe whether there was diversity in the
+MCQs created for a target cell. The results were not sufﬁciently
+conclusive to warrant a threefold increase in the cost of creation.
+larger than any existing collection of science exam MCQs
+available for research. These MCQs also come with align-
+ment information to tables, rows, columns and cells.
+5.3.
+Future Extensions
+In the future we hope to generate MCQs with other kinds
+of constraints from tables. Currently the constraints are
+row-dominant: the questions are based on cells from the
+row in which a target cell occurs. Such questions are of-
+ten information look-up questions – the simplest kind. We
+plan to explore column-dominant questions, which would
+lead to questions about abstraction or speciﬁcation (based
+on the hypernym-hyponym relationship in columns). Other
+structural semantics we hope to investigate are multi-row
+constraints that result in comparisons, or joins on multiple
+tables with related columns that results in chaining or rea-
+soning.
+6.
+Utility to the Research Community
+We believe that the data we have collected will be useful to
+people with diverse research interests in the NLP commu-
+nity. While the tables were designed for facts covered in 4th
+grade science exams, the contents are general enough to be
+used as background knowledge in simple domains. The ad-
+ditional structure presents interesting challenges to people
+interested in information extraction, especially when con-
+sidered with the alignments to MCQs. They can be used
+for applications such as question parsing and answer type
+extraction. The structural semantics of tables (as described
+in Section 4.1.) can also present a interesting challenges for
+those interested in lexical semantics and analogical reason-
+ing. Jointly, the tables and MCQs can be used for QA, –
+with great effect as summarized in Section 3.
+7.
+Conclusion
+We have presented a dataset of tables, MCQs and align-
+ment information between the two. Our preliminary exper-
+iments with this trio of resources even on a much smaller
+scale showed promising results, rivaling the best current
+systems on the Aristo QA challenge. We are thus led to
+believe the data described in this paper will be very use-
+ful to researchers working on QA. However the usefulness
+of the dataset potentially extends to other areas of NLP
+as well. The tables and MCQs individually represent re-
+sources of interest to people requiring background knowl-
+edge or working on semantic modelling and information
+extraction. Moreover, alignment information is expensive
+and time-consuming to annotate and consequently scarce;
+yet alignment of textual fragments is a recurring theme in
+NLP. Our setup allows us to harvest this resource easily at
+scale, thus becoming useful to people working on problems
+like paraphrasing, textual entailment and question parsing.
+
+Figure 1: Example table from MTurk annotation task illustrating constraints. We ask Turkers to construct questions from
+blue cells, such that the red cell is the correct answer, and distractors must be selected from yellow cells.
+What is the orbital event with the longest day and the shortest night.
+What sense organ is used to detect pitch and harmony?
+A) Summer solstice
+A) Ears
+B) Winter solstice
+B) Eyes
+C) Spring equinox
+C) Noses
+D) Fall equinox
+D) Tongues
+A graduated cylinder is used to measure what of liquids?
+Steel is a/an
+of electricity
+A) Volume
+A) Separator
+B) Density
+B) Isolator
+C) Depth
+C) Insulator
+D) Pressure
+D) Conductor
+Table 2: Example MCQs generated from our pilot MTurk tasks. Correct answer choices are in bold.
+8.
+Acknowledgements
+We’d like to thank the Allen Institute for Artiﬁcial Intelli-
+gence for generously funding the creation of this dataset,
+and permitting its release. Thanks also go to Isaac Cowhey
+for his effort in painstakingly building the tables. The ﬁrst
+and third authors of this paper were supported in part by
+the following grants: NSF grant IIS-1143703, NSF award
+IIS-1147810, DARPA grant FA87501220342.
+9.
+References
+Aydin, B. I., Yilmaz, Y. S., Li, Y., Li, Q., Gao, J., and
+Demirbas, M.
+(2014).
+Crowdsourcing for multiple-
+choice question answering. In Twenty-Sixth IAAI Con-
+ference.
+Brockett, C. (2007). Aligning the rte 2006 corpus. Techni-
+cal Report MSR-TR-2007-77, Microsoft Research, June.
+Cafarella, M. J., Halevy, A., Wang, D. Z., Wu, E., and
+Zhang, Y. (2008). Webtables: exploring the power of ta-
+bles on the web. Proceedings of the VLDB Endowment,
+1(1):538–549.
+Clark, P. (2015). Elementary school science and math tests
+as a driver for ai: Take the aristo challenge. Proceedings
+of IAAI, 2015.
+Fader, A., Zettlemoyer, L., and Etzioni, O. (2014). Open
+question answering over curated and extracted knowl-
+edge bases. In Proceedings of the 20th ACM SIGKDD
+international conference on Knowledge discovery and
+data mining, pages 1156–1165. ACM.
+Khot, T., Balasubramanian, N., Gribkoff, E., Sabharwal,
+A., Clark, P., and Etzioni, O. (2015). Exploring markov
+logic networks for question answering. Proceedings of
+EMNLP, 2015.
+Neelakantan, A., Le, Q. V., and Sutskever, I. (2015). Neu-
+ral programmer: Inducing latent programs with gradient
+descent. arXiv preprint arXiv:1511.04834.
+Pasupat, P. and Liang, P. (2015). Compositional seman-
+tic parsing on semi-structured tables.
+arXiv preprint
+arXiv:1508.00305.
+Pimplikar, R. and Sarawagi, S. (2012). Answering table
+queries on the web using column keywords. Proceedings
+of the VLDB Endowment, 5(10):908–919.
+Ravichandran, D. and Hovy, E. (2002). Learning surface
+text patterns for a question answering system. In Pro-
+ceedings of the 40th Annual Meeting on Association for
+Computational Linguistics, pages 41–47. Association for
+Computational Linguistics.
+Tellex, S., Katz, B., Lin, J., Fernandes, A., and Marton, G.
+(2003). Quantitative evaluation of passage retrieval al-
+gorithms for question answering. In Proceedings of the
+26th annual international ACM SIGIR conference on Re-
+search and development in informaion retrieval, pages
+41–47. ACM.
+Weston, J., Bordes, A., Chopra, S., and Mikolov, T. (2015).
+Towards ai-complete question answering: a set of prereq-
+uisite toy tasks. arXiv preprint arXiv:1502.05698.
+Yin, P., Lu, Z., Li, H., and Kao, B.
+(2015).
+Neu-
+ral enquirer: Learning to query tables. arXiv preprint
+arXiv:1512.00965.

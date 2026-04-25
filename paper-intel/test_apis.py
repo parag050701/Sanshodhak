@@ -200,7 +200,7 @@ def test_search_engine():
         
         # Test unified search
         print("\n🔍 Testing unified search (both layers + ranking)...")
-        papers = engine.search_unified("natural language processing", limit_per_source=5, top_k=10)
+        papers = engine.search_unified("natural language processing", limit=10)
         print(f"   ✅ Found {len(papers)} ranked papers")
         
         if papers:

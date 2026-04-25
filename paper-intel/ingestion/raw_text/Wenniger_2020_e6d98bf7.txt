@@ -1,0 +1,1224 @@
+Structure-Tags Improve Text Classiﬁcation for Scholarly Document
+Quality Prediction
+Gideon Maillette de Buy Wenniger†, Thomas van Dongen†, Eleri Aedmaa‡,
+Herbert Teun Kruitbosch‡, Edwin A. Valentijn§, and Lambert Schomaker†
+†Bernoulli Institute for Mathematics,Computer Science and Artiﬁcial Intelligence
+University of Groningen, Groningen, The Netherlands
+gemdbw AT gmail.com
+t.a.van.dongen AT student.rug.nl
+‡Center for Information Technology, University of Groningen, Groningen, The Netherlands
+e.aedmaa AT rug.nl
+h.t.kruitbosch AT rug.nl
+§Kapteyn Astronomical Institute, University of Groningen, Groningen, The Netherlands
+e.a.valentijn AT rug.nl
+Abstract
+Training recurrent neural networks on long
+texts,
+in
+particular
+scholarly
+documents,
+causes
+problems
+for
+learning.
+While
+hierarchical attention networks (HANs) are
+effective in solving these problems,
+they
+still lose important information about the
+structure of the text. To tackle these problems,
+we propose the use of HANs combined
+with structure-tags which mark the role of
+sentences in the document.
+Adding tags to
+sentences, marking them as corresponding
+to title, abstract or main body text, yields
+improvements over the state-of-the-art for
+scholarly document quality prediction.
+The
+proposed system is applied to the task of ac-
+cept/reject prediction on the PeerRead dataset
+and compared against a recent BiLSTM-based
+model and joint textual+visual model as
+well as against plain HANs.
+Compared to
+plain HANs, accuracy increases on all three
+domains. On the computation and language
+domain our new model works best overall,
+and increases accuracy 4.7% over the best
+literature result. We also obtain improvements
+when introducing the tags for prediction of
+the number of citations for 88k scientiﬁc
+publications that we compiled from the Allen
+AI S2ORC dataset.
+For our HAN-system
+with structure-tags we reach 28.5% explained
+variance, an improvement of 1.8% over our
+reimplementation
+of
+the
+BiLSTM-based
+model as well as 1.0% improvement over
+plain HANs.
+1
+Introduction
+Automatic prediction of the quality of scientiﬁc
+and other texts is a new topic within the ﬁeld of
+deep learning. Deep learning has been success-
+fully applied to many natural language processing
+(NLP) problems including text classiﬁcation, as
+well as many computer vision applications includ-
+ing document structure analysis. These successes
+suggest automatic quality assessment of scientiﬁc
+documents, while still highly ambitious, is feasible
+for scientiﬁc study.
+Sequential deep learning models, particularly
+recurrent neural networks (RNNs), long short-term
+memories (LSTMs) and their variants, have been
+particularly successful for applications that require
+the encoding and/or generation of relatively short
+sequences of text, typically at most a few sen-
+tences. Applications include (short) text classi-
+ﬁcation (Rao and Spasojevic, 2016), entailment
+(Rocktäschel et al., 2015) and neural machine trans-
+lation (MT) (Bahdanau et al., 2014; Luong et al.,
+2015). Newer attention-based models, particularly
+the transformer model (Vaswani et al., 2017) are
+even more apt at using all of the possible context
+when encoding sentences, further improving perfor-
+mance. Transformers are also used to build general
+sentence embeddings with the BERT model (De-
+vlin et al., 2018). In comparison, the accurate clas-
+siﬁcation of full documents remains challenging.
+To be effective, a deep learning model for longer
+text should fulﬁll the following three criteria:
+1. Trainability: being trainable on long texts.
+2. Computational efﬁciency: efﬁciency as well
+as parallelizability, to effectively use GPUs.
+3. Rich context: having access to rich context at
+sentence and document level. And avoiding
+therefore: 1) the assumption that sentences
+at different locations are independent, 2) the
+even more crippling assumption of statistical
+independence of document words.
+Plain sequential models such as RNNs and
+arXiv:2005.00129v2  [cs.CL]  17 Dec 2020
+
+LSTMs model text as unstructured word sequences.
+This causes problems on longer texts because of the
+vanishing gradient and exploding gradient problem
+(Pascanu et al., 2013), which hampers trainabil-
+ity. Gradient bounding methods including gradient
+clipping (Hochreiter, 1998), can help to reduce
+these problems, but provide no solution for docu-
+ments with thousands of words. Transformers and
+BERT are not a good match for long texts either, as
+these models have a computational cost that grows
+quadratically with sentence length. Arguably, bag-
+of-word models, including models performing av-
+erage pooling over word embeddings accomplish
+trainability and computational efﬁciency. How-
+ever, their computational cheapness is achieved at
+the price of making very strong statistical indepen-
+dence assumptions that harm prediction quality.
+A group of models does fulﬁll all three crite-
+ria: hierarchical versions of sequential models, in
+particular hierarchical attention networks (HANs)
+(Yang et al., 2016). HANs produce hierarchical text
+encodings using a hierarchical stacking of LSTMs-
+with attention, for the sentence and text level. This
+massively increases parallelization while simulta-
+neously reducing the number of steps the gradient
+signal needs to be back-propagated during training,
+increasing learnability. HAN text encodings can
+still take much context into account at every level
+in the representation, thanks to the use of LSTMs.
+While HANs are highly effective in forming ad-
+equate representations of longer texts, they are still
+deﬁcient in the use of structure information inher-
+ent in the text. The reason is simple: these models
+have only one ((Bi)LSTM) encoding sub-model per
+level in the hierarchy. This sub-model is used to
+encode all the inputs at that level, without access to
+relevant structure context. In this work we observe
+that this problem can be tackled by adding XML-
+like structure-tags at the beginning and end of each
+input sentence. The effectiveness of our approach
+is demonstrated on two tasks:
+A Paper accept/reject prediction on the Peer-
+Read dataset (Kang et al., 2018).
+B Number of citations prediction for scholarly
+documents, on a new dataset with 88K articles
+compiled from the Allen AI S2ORC dataset.
+The experiments for both tasks show that using
+just three tags to mark abstract, title and body
+text, already provides substantial improvements:
+A) outperforming all models on the computation
+and language domain and HAN without tags on
+all domains, B) outperforming all other models.
+Larger gains can likely be made by further enrich-
+ing the tag-set. The proposed tagging approach is
+particularly useful in the domain of scholarly doc-
+ument understanding, since while these document
+are typically long, they are also highly structured.
+The rest of the paper is structured as follows. In
+section 2 we discuss the various existing and alter-
+native NLP models for the aforementioned tasks
+of quality prediction. Section 3 describes the pro-
+posed HAN model combined with structure-tags.
+Section 4 and 5 respectively discuss their use for
+accept/reject and number of citations prediction.
+2
+Related Work
+Multiple methods have been proposed to estimate
+the quality of scientiﬁc papers. The most common
+approach is to use the citation counts as a measure
+of quality, to be predicted by models. Fu and Alif-
+eris (2008) proposed one of the ﬁrst models which
+used both the papers content in the form of the
+paper title, abstract and keywords as well as biblio-
+metric information. Notably they used automated
+scripts to retrieve bibliometric information, even so
+their ﬁnal corpus is still relatively small, containing
+3788 papers.
+Limited recent research is available on the sub-
+ject of predicting the quality of papers with deep
+learning using the textual content.
+Shen et al.
+(2019) combine visual and textual content using a
+CNN and LSTM respectively. The authors make
+use of the Wikipedia and the arXiv datasets. The
+authors propose a joint model that classiﬁes the
+quality of papers. To generate textual embeddings,
+the authors use a bi-directional LSTM model sim-
+ilar to the one proposed by the same authors in
+(Shen et al., 2017). The input to the model is the
+word embeddings of a paper, obtained using GloVe,
+and the output is a textual embedding.
+Some recent work focuses on predicting the
+number of citations from the paper text augmented
+with review text. To do so, Li et al. (2019) created
+a dataset of abstracts and reviews from the ICLR
+and NIPS conferences: 1739 abstracts with a
+total of 7171 reviews for ICLR and 384 abstracts
+with 1119 reviews for NIPS. Plank and van Dale
+(2019) collect a dataset of 3427 papers with 12260
+reviews. Both papers show improvement in the
+results from using the review information.
+Hierarchical sequential models
+
+embedding
+TE
+embedding
+embedding
+BiLSTMs
+BiLSTMs
+BiLSTMs
+s+1
+s+2
+s+n
+BiLSTMT
+linear
+output layer
+Legend
+S+ = Input (sentence segmented text with     BiLSTMs = Sentence level bidirectional-LSTM with attention     TE = Text embedding             
+         structure tags, one-hot encoded)          SE = Sentence embedding                                                           output layer = Softmax  or     
+SWE = Sentence words embedding              BiLSTMT = Text level bidirectional-LSTM                                                            Leaky ReLu
+. . .
+SWE1
+SE2
+SE1
+SE2
+SWE3
+SWE2
+output
+(a) Our model based on HAN.
+embedding
+embedding
+embedding
+AP
+AP
+AP
+s1
+s2
+sn
+BiLSTM
+linear
+output layer
+Legend
+S = Input (sentence segmented text, one-hot encoded)       BiLSTM = Bidirectional LSTM                   linear + ReLU =   
+SWE = Sentence words embedding                                     TE = Text embedding                                     Rectified Linear 
+AP = Average-pooling                                                           MP = Maxpooling Layer                                 Hidden Layer      
+SE = Sentence embedding                                                   output layer = Softmax or Leaky Relu                                                                  
+MP
+linear + 
+ReLU
+. . .
+SWE1
+SWE2
+SWE3
+SE1
+SE2
+SE3
+TE
+output
+(b) Model proposed by Shen et al. (2019).
+Figure 1: Most important models compared in this work.
+Hierarchical versions of sequential models have
+already been pioneered in the literature for a long
+time in the form of hierarchical RNNs (Hihi and
+Bengio, 1996). More recently however, use of
+LSTMs instead of RNNs and use of attention re-
+sulted in the now popular HAN model (Yang et al.,
+2016), which was successfully applied to sentiment
+analysis and text classiﬁcation.
+Adding structure through additional inputs
+Our proposed structure-tag framework resembles
+the approach that been used for neural MT trans-
+lating multiple source languages to multiple target
+languages using a uniﬁed model (Johnson et al.,
+2016), in which a special “command token” is used
+to indicate which kind of translation is desired. Re-
+lated also is the idea of using multiple embeddings
+for different types of information, as introduced in
+neural MT by Sennrich and Haddow (2016), which
+was later also exploited in the transformer model
+(Vaswani et al., 2017). In contrast to the latter ap-
+proaches which change the embedding layer, like
+(Johnson et al., 2016) we leave the (HAN) model
+exactly as is and only change the input.
+3
+Models
+In this work we use and reﬁne state-of-the-art text-
+based deep learning models for text classiﬁcation
+and regression tasks: accept/reject prediction and
+number of citations prediction respectively. Our
+contributions focus on HANs,1 which we show for
+these tasks to be competitive with models that use
+a ﬂat BiLSTM encoder at their core (Shen et al.,
+2019). Figure 1a shows a diagram of our HAN
+model with structure-tags added to the input, and
+Figure 1b shows a diagram of the BiLSTM-based
+model, our baseline for comparison. As can be seen
+from the diagrams, both models use a BiLSTM at
+the text level that works on embeddings computed
+for the sentences of the text. However, while HAN
+uses the sequential order to compute an embed-
+ding, the baseline model averages word vectors,
+disregarding order, similar to bag-of-word repre-
+sentations. We also use a second baseline model:
+Average Word Embeddings (AWE), which simply
+encodes text by the average word embedding.
+3.1
+Sentence type tags for more structure
+The hierarchical structure of text characterized by
+structure elements such as sections, paragraphs
+and sentences and labeling elements such as docu-
+ment titles and section titles reveals important in-
+formation. Models without hierarchy such as plain
+RNN/LSTM models ignore this structure, which
+motivated HAN. HAN uses an LSTM with atten-
+tion to create encodings of each sentence separately
+and combines this with a second LSTM with atten-
+tion on top to transform these into an encoding of
+1Our
+HAN
+implementation
+is
+adapted
+from
+https://github.com/cedias/Hierarchical-Sentiment
+
+<TITLE>Cross-Task Knowledge-Constrained Self Training
+</TITLE>
+<ABSTRACT> Abstract </ABSTRACT>
+<ABSTRACT> We present an algorithmic framework for learn-
+ing multiple related tasks. </ABSTRACT>
+. . .
+<BODY_TEXT> 1 Introduction </BODY_TEXT>
+<BODY_TEXT> When two NLP systems are run on the same
+data, we expect certain constraints to hold between their out-
+puts. </BODY_TEXT>
+. . .
+Figure 2: Example of structure-tags for a paper from in
+the PeerRead computation and language arXiv dataset.
+the entire text. The hierarchical structure of HAN
+provides several advantages over ﬂat sequential
+models, i.e. plain RNNs/LSTMs:
+1. Trainability on long texts: using less steps for
+back-propagating gradients during training,
+HAN can process longer texts without running
+into vanishing/exploding gradient problems.
+HAN preserves high-resolution when forming
+sentence-level encodings.
+2. Computational efﬁciency: the structure of
+HAN makes computations better paralleliz-
+able, since its sentence encoding LSTMs can
+process their inputs in parallel.
+3. Interpretability of predictions: visualizing
+HAN attention facilitates some qualitative in-
+sight into what inputs are important for mak-
+ing predictions at a sentence and word level.
+Despite these large advantages, HAN in its nor-
+mal application still remains limited in its use of
+structure. In particular, while HAN encodes sen-
+tences in a hierarchical way, it does so while using
+the same LSTM encoder for every sentence without
+structure context. In this work we introduce a way
+to overcome these problems by adding sentence
+type tags encoding the role of a sentences or other
+information, which is then directly available to the
+BiLSTM when encoding the sentences. This is
+illustrated in Figure 2. First the input is segmented
+into a list of sentences,2 as is also done in prepro-
+cessing for regular HAN. Then the role of each
+sentence is added at the beginning and end of each
+sentence. In our current experiments the roles are
+restricted to three options: TITLE, ABSTRACT,
+BODY_TEXT, however, the idea is general enough
+to include much more speciﬁc tags as well as tags
+encoding relative or absolute sentence position in-
+formation; to be explored in future work. We will
+2We use spaCy for this: https://spacy.io/
+refer to this system as hierarchical attention net-
+work with structure tags (HANST). The advantages
+of the tag-base approach over other possible solu-
+tions, such as using different BiLSTMs for differ-
+ent types of sentences are simplicity and scalability.
+Equally important, using tags allows the BiLSTM
+to only specialize its functioning to speciﬁc types of
+sentences where needed, while effectively sharing
+what can be generalized independent of sentence
+type.
+4
+Accept/Reject prediction on PeerRead
+The ﬁrst scholarly document quality prediction task
+we test our methods on is accept/reject prediction
+on arXiv papers from the PeerRead dataset (Kang
+et al., 2018). This dataset is chosen because of
+the large amount of earlier work in the literature
+reporting results on it, allowing comparison against
+the state-of-the-art on a well studied task.
+The full PeerRead dataset holds 14784 papers
+in total, each of which contains implicit or explicit
+accept/reject labels. Furthermore, PeerRead con-
+tains different subsets of papers. The largest subset
+consists of arXiv papers (11778) in three computer-
+science sub-domains:3 machine learning (cs.LG),
+computation and language (cs.CL), artiﬁcial intel-
+ligence (cs.AI), and has only accept/reject labels;
+this is the dataset that we use. A part of the papers
+also include reviews (3006 papers) and a subset of
+the latter also contains aspect scores (586 papers).
+However, of these papers with reviews, the large
+majority is from NIPS (2420 papers), and those
+papers are all accepted. As the arXiv portion is rel-
+atively larger, and accept/reject labeled, most work
+has focused on the task of accept/reject prediction
+for the papers in this set.
+Table 1 shows the sizes of the different subsets
+of the arXiv PeerRead dataset and their respective
+division in number of accept and reject examples.
+Note that this division is imbalanced for each of
+the three domains, with the least imbalance for the
+machine learning subset and the most imbalance for
+the artiﬁcial intelligence subset, in which around
+90% of the examples is rejected. These imbalances
+in the number of examples for each of the classes
+make learning harder, but can be partly overcome
+by using strategies such as re-sampling.
+3Based on arXiv categories within computer science, see:
+https://arxiv.org/archive/cs
+
+Table 1: Data sizes and division between the ratio of accepted and rejected papers for the arXiv subsets
+training
+validation
+testing
+total
+num
+acc:rej
+num
+acc:rej
+num
+acc:rej
+machine learning
+4543
+36.4% : 63.6%
+252
+36.5% : 63.5%
+253
+32.0% : 68.0%
+5048
+computation & language
+2374
+24.3% : 75.7%
+132
+22.0% : 78.0%
+132
+31.1% : 68.9%
+2638
+artiﬁcial intelligence
+3682
+10.5% : 89.5%
+205
+8.3% : 91.7%
+205
+7.8% : 92.2%
+4092
+Table 2: Hyperparameters used in the experiments.
+PeerRead
+classiﬁcation
+S2ORC
+regression
+optimizer, learning rate
+Adam, 0.005
+maximum input characters
+20000
+vocabulary size
+10000
+weight initialization
+general
+Xavier uniform
+lstm
+Xavier normal
+bias
+zero
+word embeddings
+GloVe
+loss function
+cross entropy
+MAE
+dropout probability
+0.5
+0.2
+BiLSTM hidden size
+256
+100
+batch size
+4
+64
+embedding size
+50
+300
+Table 3: Total trainable parameters per model.
+Task
+AWE
+BiLSTM
+HAN/HANST
+PeerRead
+500202
+1657222
+3235206
+citation prediction
+3000901
+3402801
+3644801
+4.1
+Experimental Setup
+In our experiments we tried to stay close to the ex-
+perimental setup used by (Shen et al., 2019), while
+deviating from their settings when necessary. We
+used PyTorch for our code and a single GeForce
+RTX 2080 Ti GPU for our experiments. Table 2
+gives an overview of the used hyperparameters that
+are shared across experiments, as well as the hy-
+perparameters that are speciﬁc to the accept/reject
+prediction task. We used Adam (Kingma and Ba,
+2014) as optimizer, and Xavier (Glorot) (Glorot and
+Bengio, 2010) weight initialization. We use a con-
+siderably larger learning rate of 0.005, compared to
+0.0001 used by (Shen et al., 2019).4 On PeerRead,
+we use a small batch size of 4 . This is necessary for
+HAN as it uses relatively much memory, because
+it builds rich hierarchical BiLSTM-based represen-
+tations directly from the word embeddings. We
+furthermore use re-sampling on the computational
+language and artiﬁcial intelligence subsets, as we
+ﬁnd that without it, due to the imbalance in the label
+frequencies, learning fails. The re-sampling is done
+for each epoch, by keeping the full subset of exam-
+ples with the less frequent label, but sub-sampling
+4Learning rate 0.0001 gave poor results in our experiments.
+Table 4: The effect of the length cutoff policy on the
+number of words distribution.
+average words
+per example
+median words
+per example
+20000 chars length cutoff
+3909 ± 692
+4076
+360 sentences length cutoff
+5246 ± 1717
+5514
+an equal number of random examples from the
+more frequent label subset. In our experiments the
+training of all our models proceeds slower than the
+number of epochs (60) used by Shen et al. (2019)
+suggests. This observation holds not only for our
+models but also for our reimplementation of their
+model, and in spite of the fact that we are using a
+higher learning rate. We therefore used a higher
+number of 360 training epochs. In each experi-
+ment, we used the highest accuracy score on the
+validation set to select the best model, using the
+last epoch that achieves that score in case of ties.
+We trained plus evaluated every model three times,
+to control for optimizer instability, reporting mean
+and standard deviation of the metric scores.
+4.1.1
+Input cutoff
+Using the full text as input is in theory preferred
+over using only selected text, in order not to lose
+information prematurely. In practice however, this
+is not feasible with high resolution deep learning
+models such as HANs, which take input that starts
+at the word level. To save memory and computa-
+tion, models may instead start out from the sen-
+tence level, using embeddings directly as inputs.
+But with simple sentence embeddings, this leads to
+a substantial loss of input information, which may
+hamper performance. Even so, (Shen et al., 2019)
+apply this strategy in a basic way by computing the
+average word embedding for each sentence, and us-
+ing a BiLSTM model on top of that. Nevertheless,
+they still use a limit on the input length, by allow-
+ing only a maximum of 350 sentences. With HAN,
+which uses more memory and computation-intense
+sentence-level encodings, limiting the input length
+is even more crucial. However, rather than limiting
+the number of sentences, we limited the maximum
+number of characters, set to 20000. We found that
+
+Table 5: PeerRead accept/reject prediction accuracy: comparison of HANST against state-of-the-art.
+arXiv sub-domain
+dataset
+Majority class
+prediction
+Benchmark
+(Kang et al.,
+2018)
+BiLSTM
+(Shen et al.,
+2019)
+Joint
+(Shen et al., 2019)
+HANST
+artiﬁcial intelligence
+92.2%
+92.6%
+91.5 ± 1.03%
+93.4 ± 1.07%
+89.6 ± 1.02%
+computation & language
+68.9%
+75.7%
+76.2 ± 1.30%
+77.1 ± 3.10%
+81.8 ± 1.91%
+machine learning
+68.0%
+70.7%
+81.1 ± 0.83%
+79.9 ± 2.54%
+78.7 ± 0.69%
+Table 6: PeerRead accept/reject prediction accuracy and AUC (area under ROC curve) scores for our models.
+arXiv
+sub-domain
+dataset
+metric
+Majority
+class
+prediction
+Average
+Word
+Embeddings
+BiLSTM
+(re-
+implemented)
+HAN
+HANST
+artiﬁcial
+intelligence
+accuracy
+92.2%
+74.1 ± 0.49%
+92.4 ± 1.02%
+88.9 ± 1.97 %
+89.6 ± 1.02%
+AUC
+0.50
+0.793 ± 0.0143
+0.711 ± 0.0771
+0.625 ± 0.042
+0.705 ± 0.055
+computation
+& language
+accuracy
+68.9%
+73.7 ± 0.87%
+80.1 ± 1.91%
+80.3 ± 2.00%
+81.8 ± 1.91%
+AUC
+0.50
+0.740 ± 0.010
+0.744 ± 0.056
+0.712 ± 0.029
+0.745 ± 0.011
+machine
+learning
+accuracy
+67.9%
+72.9 ± 0.60%
+79.6 ± 3.19%
+76.7 ± 2.77%
+78.7 ± 0.69%
+AUC
+0.50
+0.662 ± 0.003
+0.743 ± 0.025
+0.743 ± 0.019
+0.758 ± 0.0149
+with HANs this gives better results, even though
+on average it corresponds to less words. This is
+explained by the distribution over the number of
+words per example for each of the two length cut-
+off policies, see Table 4. Fixing the number of
+sentences causes large variance in the number of
+words per example, likely caused by writing style
+differences across authors. In contrast, ﬁxing the
+number of characters by deﬁnition assures a con-
+stant input length, and hence a more constant num-
+ber of words (which is proportional to number of
+characters). We believe this more constant amount
+of information in the input aides learning.
+4.1.2
+Results
+Table 5 shows our best results on the PeerRead
+dataset, using HANST. The same table also shows
+the previous literature results of (Shen et al., 2019)
+and (Kang et al., 2018). Observe that in the compu-
+tation & language domain, we gain 4.7% accuracy
+over the best of the these literature models (Joint),
+while on the machine learning domain and artiﬁ-
+cial intelligence domain datasets we lose 2.4% and
+3.8% respectively in comparison to the best per-
+forming of the literature models on these domains
+(BiLSTM and Joint). In Table 6 we show the results
+for both our HAN models as well as for the other
+models. These results show a clear and consistent
+improvement from HANST over plain HAN: 1.5%
+accuracy for the computation & language domain
+and 2.1% for the machine learning domain and
+0.7% for the machine learning domain. Table 6
+also shows results for our own re-implementation
+of the BiLSTM model described by (Shen et al.,
+2019). This useful for comparison since we made
+some changes to the experimental setup, includ-
+ing the use of higher learning rate and use of re-
+sampling. We observe better results with our re-
+implementation of BiLSTM than in the original
+work for these datasets where re-sampling was
+helpful, showing its importance for imbalanced
+datasets. Statistical signiﬁcance was tested with
+the exact two-sided McNemar’s test.5 Comparing
+to the AWE systems: At signiﬁcance level 0.05,
+other systems improve signiﬁcantly over AWE ex-
+cept for HAN on the machine learning domain. At
+signiﬁcance level 0.01 improvements over AWE
+are only signiﬁcant on the artiﬁcial intelligence do-
+main for BiLSTM and HANST . Other differences
+are not statistically signiﬁcant.
+While HANST is competitive with the literature
+models on PeerRead, it beneﬁts from larger train-
+ing data, as is available for the task of number of
+citations prediction.
+4.1.3
+Effects of reducing the label set
+To determine the importance of different structure
+tags, in particular the title marking, we performed
+ablation experiments in which we reduced the label
+set. We combined the title and abstract label into
+one, leaving a structure-tag set with only two tags.
+Table 7 shows the results. As can be seen, the
+smaller structure-tag set reduces performance in
+comparison to HAN with three structure tags on
+5The scores of the 3 runs for one system are combined at
+example level by taking the mode/average, i.e. simple voting.
+
+Table 7: Results of the HANST model with a reduced structure-tag set of only two tags.
+metric
+domain
+artiﬁcial
+intelligence
+computation
+& language
+machine
+learning
+accuracy
+89.6 ± 1.57%
+79.3 ± 0.14%
+77.2 ± 1.21%
+AUC
+0.610 ± 0.067
+0.727 ± 0.015
+0.759 ± 0.017
+all three domains. In the computation & language
+domain, the model performs worse also than HAN
+without structure tags on both accuracy and AUC,
+and in the artiﬁcial intelligence domain it performs
+equal in terms of accuracy but worse still on AUC.
+In the machine learning domain the model also
+loses performance over HAN with three structure
+tags, but still outperforms plain HAN. The results
+suggest that the titles of articles contain informa-
+tion that is relatively important for the model to
+make correct classiﬁcation decisions, at least for
+the accept/reject prediction task with the PeerRead
+data. We leave study into the effect of extending
+the structure-tag set for future work.
+5
+Number of citations prediction
+The second task we test our models on is number
+of citations prediction. A key advantage of this
+task is that large datasets can be obtained relatively
+easy by leveraging public sources such as the Se-
+mantic Scholar Database. In contrast, obtaining
+accept/reject labels in large quantities typically re-
+quires having an agreement with publishers, and
+even then because of legal problems, it is hard to
+obtain and publish such data.6
+Yet, how useful it is to predict the number of cita-
+tions? More speciﬁcally: is the number of citations
+of a paper predictive of its quality? Intuitively one
+would expect this to be the case at least to some
+extent. Figure 3 shows histograms of the numbers
+of citations of articles from the PeerRead datasets
+for accepted and rejected papers.7 While there are
+some differences between the two domains, the
+main trend is the same in both cases: for rejected
+papers, the counts are peaked around zero citations
+and quickly decrease to one or zero for high cita-
+tion counts. In contrast, the number of citations for
+accepted papers is two to three times higher on aver-
+age, depending on the domain. Finally, we formally
+computed correlation in the form of the Spearman
+rank-order correlation coefﬁcient (ρ) and associ-
+6Note that while the PeerRead arXiv accept/reject dataset
+is relatively large, its labels are based on heuristics.
+7By restricting citation counting to citing papers published
+within two years of each paper’s publication, we keep citation
+counts comparable across papers.
+Table 8: S2ORC dataset size statistics.
+data subset
+num examples
+avg num words
+training
+78894
+839.1 ± 473.7
+validation
+4383
+849.1 ± 477.5
+testing
+4382
+856.4 ± 489.0
+ated p-value for both domains. For both domains,
+the value of ρ is high and the p-value extremely
+close to zero, which indicates signiﬁcant correla-
+tion can be concluded at all p-levels of signiﬁcance
+for a two-sided test. These histograms and num-
+bers prove that there is indeed a strong correlation
+between acceptance/rejection and the number of
+citations. Therefore it makes sense to consider the
+number of citations as an imperfect but nonetheless
+useful proxy for the quality of scholarly documents.
+5.1
+The dataset
+Recent works undertake the task of number of cita-
+tions prediction based on the scholarly document
+text, but mostly do so while using relatively small
+datasets. As discussed in related work, some of the
+recent work adds review text to the input. However,
+creating models using reviewer comments limits
+their practical application to after reviewing and
+reduces available training data. These observations
+motivated us to rather aim for a relatively large
+dataset of ⟨paper, number of citations⟩pairs. We
+selected a subset of papers in the computer science
+domain from the S2ORC (Lo et al., 2020) data, for
+which title, abstract and body text information is
+present; these are combined as the example text.
+We did this for papers in the year range 2000–2010,
+and counted the number of citations of citing papers
+that are published within 8 years after the publica-
+tion of a paper. Randomly ordering the papers,
+from this we compiled a dataset with in total about
+88K papers, and statistics as shown in Table 8.8
+Note that to the best of our knowledge, the largest
+number of articles used for citation prediction in
+earlier work is described in (Plank and van Dale,
+2019), we use more than 23 times the number of
+8The new S2ORC-derived log-citation-count predic-
+tion dataset, used in our experiments, is available from:
+https://github.com/gwenniger/s2orc-cc/
+
+0
+20
+40
+60
+80
+100
+number of citations
+0
+100
+200
+300
+400
+500
+frequency
+Rejected papers
+0
+20
+40
+60
+80
+100
+number of citations
+0
+20
+40
+60
+frequency
+Accepted papers
+(a) Machine Learning domain.
+0
+20
+40
+60
+80
+100
+number of citations
+0
+100
+200
+300
+frequency
+Rejected papers
+0
+20
+40
+60
+80
+100
+number of citations
+0
+5
+10
+15
+20
+25
+frequency
+Accepted papers
+(b) Computation and Language domain.
+Domain
+Average number of citations
+Spearman rank-order correlation
+coefﬁcient (ρ), p-value
+rejected articles
+accepted articles
+Machine Learning
+24.0 ± 127.3
+61.0 ± 232.6
+0.375, 5 × 10−153
+Computation and Language
+14.8 ± 44.3
+59.0 ± 105.9
+0.466, 1.6 × 10−128
+(c) Global statistics.
+Figure 3: Histograms and global statistics of number of citations for accepted and rejected papers for the sub-
+domains of PeerRead. Histograms are truncated on the right at 100 citations. The table in 3c shows the formal
+correlation measure: average numbers of citations and Spearman rank-order correlation in the different domains
+articles used in their experiments. While we kept
+the maximum number of words per example at
+20000, during our experiments we have only used
+the ﬁrst of the list of text dictionaries for each arti-
+cle in S2ORC , consequently the average number
+of words is much lower: around 840 words per
+example.9 We leave creating examples with the
+full paper text for future work. The labels added to
+the examples consist of a function of the number
+of citations, as explained next.
+5.2
+Citation-score as a quality proxy
+The number of citations follow of scholarly doc-
+uments follow a Zipﬁan distribution (Silagadze,
+1997). That is, most papers have little citations, but
+those that obtain more citations tend to get expo-
+nentially more. To account for this, we used the
+9Due to a misunderstanding of the S2ORC data format,
+which actually does contain longer text when combining all
+the text dictionaries, which got clariﬁed after submission.
+log of the number of citations to create a metric
+that aims to approximates a measure of quality on
+a linear scale. In practice, we use the function:
+citation-score = loge(n + 1)
+(1)
+adding one to the number of citations n before
+taking the log, to make sure the function is
+well-deﬁned even for papers with zero citations.
+Comparison to alternative citation scores
+What alternatives to our log-based metric have been
+explored in the literature? Li et al. (2019) map
+citation counts to the [0,1] range, presumably by
+simply scaling them after the paper with the maxi-
+mum and minimum number of citations in a dataset
+have been determined. But this approach transfers
+poorly to new data, since as the number of citations
+follows the Zipﬁan distribution, still higher cita-
+tion counts in unseen data are likely. Furthermore,
+because of the Zipﬁan nature of the number of ci-
+tations, this transformation will map the citation
+
+Table 9: Test scores for the log number of citations prediction on the S2ORC dataset.
+Average Word Embeddings
+BiLSTM (re-implemented)
+HAN
+HANstruct-tag
+R2 score
+0.238 ± 0.0005
+0.267 ± 0.007
+0.275 ± 0.008
+0.285 ± 0.002
+mean squared error
+1.261 ± 0.0008
+1.214 ± 0.009
+1.201 ± 0.007
+1.184 ± 0.002
+mean absolute error
+0.867 ± 0.0002
+0.842 ± 0.001
+0.833 ± 0.003
+0.831 ± 0.001
+score of many papers to a number close to zero,
+drastically inﬂating the evaluation scores of predic-
+tions for this citation score. A better approach is to
+discretize the number of citations into a ﬁxed num-
+ber of ranges. To predict the impact of scientiﬁc
+papers, Plank and van Dale (2019) discretize time-
+normalized citation statistics into low, medium and
+high impact papers based on a boxplot and outlier
+analysis. In comparison however, our approach
+does not require discretization/binning, which has
+advantages: 1) not committing to a ﬁxed resolution,
+2) avoiding problems for papers with a number of
+citations on the border of two bins, 3) allowing
+the predicted scores to be deterministically trans-
+formed back to a number of citations.
+5.3
+Loss function and evaluation metrics
+The next important question is what loss function
+we should optimize when training our networks
+to predict the chosen citation score (1). Whereas
+mean-squared-error (MSE) is the default choice
+for regression problems, we found this loss func-
+tion to perform poorly in combination with our
+score. In contrast, preliminary experiments showed
+that mean-absolute-error (MAE) facilitates effec-
+tive and relatively stable optimization, so we de-
+cided to use this. Another important question is the
+choice of quality metrics. MSE and MAE are stan-
+dard metrics for regression evaluation, so we report
+those. Additionally, we report the R2 score, denot-
+ing the proportion of the variance in the dependent
+variable that is predictable from the independent
+variable(s), deﬁned as:
+R2 = 1 −FVU = 1 −MSE(Y, Y ′)
+var[Y ]
+(2)
+With Y ′ and Y being the predicted and actual labels
+respectively, MSE being the mean-squared-error
+and and FVU the fraction of variance unexplained.
+This explains how the R2 score normalizes for the
+relative difﬁculty for the task, by dividing by the
+variance of the labels in the test set. Another in-
+terpretation is that the R2 score normalizes by the
+error obtained when always predicting the average
+of the test labels. Consequently, a R2 score larger
+than 0 means performance better than this baseline,
+and below 0 means worse. This avoids the need
+to add scores for this baseline as reference, mak-
+ing the R2 score more directly interpretable than
+MSE or MAE. As such, unlike the other metrics the
+R2 score is also meaningfully comparable across
+datasets, which typically differ in test set variance.
+5.4
+Number of citations prediction results
+Table 9 shows the results of our models trained
+on our new S2ORC number of citations predic-
+tion dataset. We observe that the HANST model
+outperforms the other models. Furthermore, the
+improvements of HANST over BiLSTM and AWE
+is statistically signiﬁcant (wilcoxon signed-rank
+test), with p-value 0.008 in both cases .
+6
+Conclusion
+This work showed the usefulness of HAN and rich
+context tags to the processing of scientiﬁc doc-
+uments. Consistent improvements in prediction
+quality were obtained for both accept/reject estima-
+tion and number of citations prediction for HAN
+when adding structure-tags. A strong and signiﬁ-
+cant correlation between accept/reject labels and
+number of citations was demonstrated, signaling
+the usefulness of the latter as a measure of schol-
+arly document quality. With more training data,
+as available on the citation-score prediction task,
+HAN with structure-tags outperforms the strong
+and recently proposed scholarly document qual-
+ity prediction models that we compared to in this
+study.
+Acknowledgments
+This project has been supported by the Eu-
+ropean Fund for Regional development (EFRO)
+and the Target Fieldlab. The Peregrine high per-
+formance computing cluster, at the Center for In-
+formation Technology of the University (CIT) of
+Groningen, was used for running part of the exper-
+iments in this study. We would like to thank the
+people at the CIT for their support and access to
+the cluster. We would like to thank the anonymous
+reviewers for their helpful comments. We would
+
+also like to thank Charles-Emmanuel Dias for shar-
+ing his HAN implementation, which proved to be
+a solid foundation for the HAN-based models used
+in this work.
+References
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Ben-
+gio. 2014.
+Neural machine translation by jointly
+learning to align and translate.
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and
+Kristina Toutanova. 2018.
+BERT: pre-training of
+deep bidirectional transformers for language under-
+standing. CoRR, abs/1810.04805.
+Lawrence Fu and Constantin Aliferis. 2008.
+Mod-
+els for predicting and explaining citation count of
+biomedical articles.
+AMIA ... Annual Symposium
+proceedings / AMIA Symposium. AMIA Symposium,
+6:222–6.
+Xavier Glorot and Yoshua Bengio. 2010. Understand-
+ing the difﬁculty of training deep feedforward neural
+networks. In AISTATS, volume 9 of JMLR Proceed-
+ings, pages 249–256. JMLR.org.
+Salah El Hihi and Yoshua Bengio. 1996. Hierarchical
+recurrent neural networks for long-term dependen-
+cies. In D. S. Touretzky, M. C. Mozer, and M. E.
+Hasselmo, editors, Advances in Neural Information
+Processing Systems 8, pages 493–499. MIT Press.
+Sepp Hochreiter. 1998. The vanishing gradient prob-
+lem during learning recurrent neural nets and prob-
+lem solutions. International Journal of Uncertainty,
+Fuzziness and Knowledge-Based Systems, 6(2):107–
+116.
+Melvin Johnson, Mike Schuster, Quoc V. Le, Maxim
+Krikun, Yonghui Wu, Zhifeng Chen, Nikhil Tho-
+rat, Fernanda B. Viégas, Martin Wattenberg, Greg
+Corrado, Macduff Hughes, and Jeffrey Dean. 2016.
+Google’s multilingual neural machine translation
+system:
+Enabling zero-shot translation.
+CoRR,
+abs/1611.04558.
+Dongyeop Kang, Waleed Ammar, Bhavana Dalvi,
+Madeleine van Zuylen, Sebastian Kohlmeier, Ed-
+uard Hovy, and Roy Schwartz. 2018. A dataset of
+peer reviews (peerread): Collection, insights and nlp
+applications.
+Diederik P. Kingma and Jimmy Ba. 2014.
+Adam:
+A method for stochastic optimization.
+Cite
+arxiv:1412.6980Comment: Published as a confer-
+ence paper at the 3rd International Conference for
+Learning Representations, San Diego, 2015.
+Siqing Li, Wayne Xin Zhao, Eddy Jing Yin, and Ji-
+Rong Wen. 2019. A neural citation count prediction
+model based on peer review text. In Proceedings of
+the 2019 Conference on Empirical Methods in Nat-
+ural Language Processing and the 9th International
+Joint Conference on Natural Language Processing
+(EMNLP-IJCNLP), pages 4914–4924, Hong Kong,
+China. Association for Computational Linguistics.
+Kyle Lo, Lucy Lu Wang, Mark Neumann, Rodney Kin-
+ney, and Daniel S. Weld. 2020. S2orc: The seman-
+tic scholar open research corpus. In Proceedings of
+ACL.
+Minh-Thang Luong, Hieu Pham, and Christopher D.
+Manning. 2015. Effective approaches to attention-
+based neural machine translation.
+Razvan Pascanu, Tomas Mikolov, and Yoshua Bengio.
+2013.
+On the difﬁculty of training recurrent neu-
+ral networks.
+In ICML (3), volume 28 of JMLR
+Workshop and Conference Proceedings, pages 1310–
+1318. JMLR.org.
+Barbara Plank and Reinard van Dale. 2019.
+Cite-
+tracked:
+A longitudinal dataset ofpeer reviews
+and citations.
+In Proceedings of the 4th Joint
+Workshop on Bibliometric-enhanced Information Re-
+trieval and Natural Language Processing for Digital
+Libraries (BIRNDL 2019).
+Adithya Rao and Nemanja Spasojevic. 2016. Action-
+able and political text classiﬁcation using word em-
+beddings and lstm.
+Tim Rocktäschel, Edward Grefenstette, Karl Moritz
+Hermann, Tomáš Koˇciský, and Phil Blunsom. 2015.
+Reasoning about entailment with neural attention.
+Rico Sennrich and Barry Haddow. 2016.
+Linguistic
+input features improve neural machine translation.
+CoRR, abs/1606.02892.
+Aili Shen,
+Jianzhong Qi,
+and Timothy Baldwin.
+2017.
+A hybrid model for quality assessment of
+wikipedia articles.
+In Proceedings of the Aus-
+tralasian Language Technology Association Work-
+shop 2017, pages 43–52.
+Ali Shen,
+Bahar Salehi,
+Timothy Baldwin,
+and
+Jianzhong Qi. 2019. A joint model for multimodal
+document quality assessment. In JCDL ’19: Pro-
+ceedings of the 18th Joint Conference on Digital Li-
+braries, pages 107–110.
+Z. K. Silagadze. 1997.
+Citations and the zipf-
+mandelbrot’s law.
+Complex Systems, 11(6):487–
+499.
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob
+Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz
+Kaiser, and Illia Polosukhin. 2017. Attention is all
+you need. CoRR, abs/1706.03762.
+Zichao Yang, Diyi Yang, Chris Dyer, Xiaodong He,
+Alex Smola, and Eduard Hovy. 2016. Hierarchical
+attention networks for document classiﬁcation. In
+Proceedings of the 2016 Conference of the North
+American Chapter of the Association for Computa-
+tional Linguistics: Human Language Technologies,
+pages 1480–1489, San Diego, California. Associa-
+tion for Computational Linguistics.

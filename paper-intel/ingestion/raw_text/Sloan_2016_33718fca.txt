@@ -1,0 +1,1581 @@
+Dynamic Information Retrieval: Theoretical Framework and
+Application
+Marc Sloan and Jun Wang
+Department of Computer Science
+University College London
+M.Sloan@cs.ucl.ac.uk, J.Wang@cs.ucl.ac.uk
+ABSTRACT
+Theoretical frameworks like the Probability Ranking Prin-
+ciple and its more recent Interactive Information Retrieval
+variant have guided the development of ranking and retrieval
+algorithms for decades, yet they are not capable of helping
+us model problems in Dynamic Information Retrieval which
+exhibit the following three properties; an observable user sig-
+nal, retrieval over multiple stages and an overall search in-
+tent. In this paper a new theoretical framework for retrieval
+in these scenarios is proposed. We derive a general dynamic
+utility function for optimizing over these types of tasks, that
+takes into account the utility of each stage and the proba-
+bility of observing user feedback. We apply our framework
+to experiments over TREC data in the dynamic multi page
+search scenario as a practical demonstration of its eﬀective-
+ness and to frame the discussion of its use, its limitations
+and to compare it against the existing frameworks.
+Categories and Subject Descriptors
+H.3.3 [Information Search and Retrieval]: Relevance
+feedback; Retrieval Models; Search process;
+Keywords
+Dynamic IR, Interactive IR, Ranking and Retrieval Theory
+1.
+INTRODUCTION
+The theoretical frameworks that underpin research in In-
+formation Retrieval (IR) are based on abstract models of
+user beneﬁt. For instance, the loss function deﬁned in the
+classic Probability Ranking Principle (PRP) [26] leads to
+justiﬁcation for the simplest and most powerful ranking rule
+in IR; ranking documents in decreasing order of their prob-
+ability of relevance. A recent counterpart is the Probabil-
+ity Ranking Principle for Interactive Information Retrieval
+(IIR-PRP) [12], which relaxes the independence assump-
+tion in the PRP’s model to take into account non-linear
+decision making. For example, document dependence is a
+key element in IR diversiﬁcation that is not handled by
+the PRP [32]. These models deal with traditional ad hoc
+query ranking and retrieval. Yet search tasks are complex
+and often exploratory, being comprised of multiple stages
+of retrieval with information needs specialized or general-
+ized over time [35]. Throughout, a user may broadcast sig-
+nals of search intent that can help an IR system to improve
+retrieval. Examples include query reformulation in session
+search [29] and item ratings in collaborative ﬁltering [15].
+The described models are not capable of representing search
+tasks that operate over multiple stages nor can they incor-
+porate user feedback.
+These types of problems belong to the area of IR research
+known as Dynamic Information Retrieval (DIR), which we
+deﬁne as exhibiting three characteristics: user feedback, tem-
+poral dependency and an overall goal.
+In this paper we
+present DIR as a natural progression in IR research complex-
+ity; where early research concerned static problems such as
+ad hoc retrieval, which gave way to interactive tasks such as
+those incorporating relevance feedback [27], ﬁnally leading
+to dynamic systems where tasks such as ranking for session
+search are optimized [24].
+From this progression we mathematically formulate a gen-
+eralized framework that models the expected beneﬁt to a
+user of completing a DIR task. This beneﬁt is represented as
+a recursive utility function that is goal oriented and adaptive
+over time. The components of this utility function represent
+the three DIR features: the likelihood of user feedback, a
+probability of relevance model conditioned on this feedback
+and an individual stage utility function. The optimization
+of this recursive utility leads to an optimal policy of actions
+dependent on user interactions in the dynamic setting.
+This utility is shown to be a form of Bellman equation [3],
+the framework an instantiation of a Partially Observable
+Markov Decision Process (POMDP) [31] and also a gen-
+eralization over existing research in DIR [24, 19]. The com-
+ponents of the utility can also be linked to the cost-beneﬁt
+parameters of the IIR-PRP and the discount-gain functions
+found in session-based metrics such as sDCG [21].
+The
+structure of the utility function and its links to these areas
+of research give us interesting insights into the behavior of
+the function in DIR problems. These insights, such as how
+the quality and diversiﬁcation of rankings vary over multiple
+stages, are supported by our experiments performed using a
+speciﬁc application of the DIR utility function over TREC
+data. Our experimental setting is the multi-page search sce-
+nario of choosing optimal rankings to display over several
+search pages for a ﬁxed query [22, 19], a simpliﬁed DIR
+problem. As well as being a demonstration of the implemen-
+tation of each of the components that make up the utility,
+practical aspects such as the computational complexity are
+also explored.
+Thus, through its supporting theory (Section 2) and appli-
+cation (Section 4), we establish our dynamic utility function
+(Section 3) as a new theoretical framework for the modeling
+of dynamic information retrieval problems.
+2.
+COMPARISON OF IR FRAMEWORKS
+Before setting up our framework for dynamic information
+retrieval, we consider DIR in the context of existing static
+arXiv:1601.04605v1  [cs.IR]  18 Jan 2016
+
+Figure 1: An example illustration of document ranking and relevance feedback using the vector space model for query
+Q1 = apple. Documents are given as points over two term frequency axes, computer and fruit, and can belong to one
+of three subtopics apple fruit, apple logo and apple computer. The distance between Q and each document is inversely
+proportional to its relevance r. The documents ranked for Q1 or its reformulation Q2 are contained in each circular shape ⃗a,
+whose area could be thought of as the static utility US(⃗a,⃗r), or UD the combined area of actions across stages 1 and 2.
+Q1
+fruit
+computer
+r
+apple fruit
+apple logo
+apple computer
+aPRP
+ 
+(a) Static IR: Documents within
+the ranking ⃗aPRP are shown to
+the user for query Q1, but do not
+cover all subtopics.
+Optimally
+ranking using the PRP results in
+choosing those documents with
+the highest relevance.
+aIIR
+ 
+Q1
+fruit
+computer
+  
+Q2
+o
+o
+(b) Interactive IR: After rele-
+vance feedback is observed (the
+two click observations o) on the
+static ranking in Fig. 1a, Q1 is
+modiﬁed to Q2. Document rele-
+vance for Q2 is now deﬁned by τ
+and the new interactive ranking
+given by documents in ⃗aIIR.
+ 
+Q1
+fruit
+computer
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+aPRP
+a3 
+a1 
+a2 
+(c) Dynamic IR: Four potential
+rankings ⃗a1, ⃗a2, ⃗a3 and ⃗aPRP
+and their observation probabili-
+ties (shown as click observations
+with likelihood relative to size)
+for Q1 are explored to ﬁnd the
+optimal ranking action for both
+stages.
+Q1
+fruit
+computer
+Q2
+o
+o
+aIIR
+ 
+aDIR
+ 
+(d) Optimal Solution:
+Action
+⃗a1
+is
+chosen
+as
+the
+optimal
+stage 1 ranking ⃗aDIR as it di-
+versely contains documents from
+all subtopics.
+As a result, the
+ranking ⃗aIIR for Q2 is more ac-
+curately modiﬁed after observing
+interactive feedback.
+and interactive theoretical IR frameworks in order to math-
+ematically identify those features that distinguish it.
+2.1
+Static IR Framework
+Deﬁnition: A static IR framework is one which models
+single user interactions, or else multiple independent interac-
+tions of diﬀerent search intents. A typical application would
+be an ad hoc ranking and retrieval system.
+The objective of a static system is to choose an action
+a (or sequence of actions ⃗a = ⟨a1, a2, . . .⟩), each of which
+has an associated probability of relevance r (or ⃗r for
+a sequence of actions) that maximizes some static utility
+function US(a, r). The action represents a choice that can
+be made by the system and belongs to some action space
+A. For example, a may be a query suggestion to display
+to a user, or ⃗a the ranking order of a set of documents for
+retrieval. The utility function gives value to the action based
+on its probability of relevance by modeling the beneﬁt of
+the action to the user. Utilities such as expected DCG and
+MAP [33] are examples from document retrieval, rewarding
+the ranking of relevant documents at high ranking positions.
+2.1.1
+Probability Ranking Principle (PRP)
+The PRP deﬁnes US(a, r) as a loss minimizing function
+across pairs of documents, which is optimized when ranking
+documents in decreasing order of probability of relevance
+(under document independence assumptions) [26]. Nonethe-
+less, in instances where result diversity is important, it can
+be shown that PRP is no longer optimal [32]. We illustrate
+this with our example in Fig. 1a. Here, we represent a sim-
+pliﬁed vector space model for ranking and retrieval using a
+graph over two term axes. In this case, the query is apple,
+an ambiguous term that can describe three subtopic search
+intents. Those documents within the ranking ⃗aPRP for the
+query are retrieved (analogous to ranking under the PRP),
+and as we can see, in this case only two subtopic preferences
+are captured. Over a population of users, those seeking in-
+formation on the apple logo subtopic would be dissatisﬁed.
+We can capture this probabilistically by supposing that
+we have two classes of users, user1 and user2, where user1
+has twice as many members as user2. Users in the user1
+class are satisﬁed with the apple logo and apple computer
+subtopics, but not apple fruit, while those in the user2
+class are only satisﬁed with the apple fruit subtopic. Our
+action space here is the set of subtopics which we denote
+{a1 = apple logo, a2 = apple computer, a3 = apple fruit}
+and our goal is to choose the best ranking of subtopics.
+If we set Rak = 1 if ak is relevant, and rak = P(Rak = 1),
+then we have ra1 = 2
+3, ra2 = 2
+3 and ra3 = 1
+3. According to
+the PRP, we should rank in decreasing order of the proba-
+bility of relevance, giving us the ranking sequence ⃗aPRP =
+⟨a1, a2, a3⟩. However, intuitively this is not optimal because
+users belonging to user2 have to reject two subtopics before
+reaching their preference [8].
+We can explain this math-
+ematically by studying the optimization of the diversity-
+encouraging metric Expected Search Length. One can also
+derive the same conclusion analogously using the equivalent
+Expected Reciprocal Rank or k-call at n measures [5]. In
+this scenario, US(⃗a,⃗r) = E[L]⃗a which is the summation of
+all possible search lengths L weighted by their respective
+probabilities, given as
+E[L]⃗a =
+X
+i
+ (i −1)P(R1 = 0, . . . , Ri−1 = 0, Ri = 1)
+
+where Ri is the relevance of the subtopic at rank position
+i. When assuming subtopics are independent, i.e. P(R1 =
+0, . . . , Ri = 1) = P(R1 = 0) . . . P(Ri−1 = 0)P(Ri = 1) the
+expected search length for ranking ⃗aPRP is
+E[L]⃗aPRP = 0·ra1 + 1·ra2(1−ra1) + 2·ra3(1−ra2)(1−ra1)
+= 0·(2/3) + 1·(2/3)(1/3) + 2·(1/3)(1/3)(1/3) = 8/27
+and for a diversiﬁed ranking ⃗aDIV = ⟨a1, a3, a2⟩the expected
+search length is
+E[L]⃗aDIV = 0·(2/3)+1·(1/3)(1/3)+2·(2/3)2(1/3)=11/27
+Thus, in this case the PRP ranked documents have a
+shorter expected search path than the diversiﬁed ranking.
+Here, the PRP does lead to the optimal ranking under the
+independence assumption, but when we remove it this is no
+
+longer the case.
+To see this, we recalculate the expected
+search length for ⃗aPRP and ⃗aDIV but this time without the
+independence assumption:
+E[L]⃗aPRP = 0 · ra1 + 1 · P(Ra2 = 1, Ra1 = 0))
++ 2 · P(Ra3 = 1, Ra2 = 0, Ra1 = 0)
+= 0 · (2/3) + 1 · 0 + 2 · (1/3) = 2/3
+E[L]⃗aDIV = 0 · (2/3) + 1 · (1/3) + 2 · 0 = 1/3
+Now we ﬁnd that the diversiﬁed ranking ⃗aDIV has the
+shorter expected search length and is thus the optimal rank-
+ing, despite the lower probability of relevance for a3.
+2.2
+Interactive IR Framework
+Deﬁnition: An interactive IR framework extends a static
+framework to cover multiple stages of IR. It is responsive to
+feedback from a previous stage but does not anticipate future
+feedback.
+A stage represents an interaction with the search system
+that is distinct from other interactions but belongs to the
+same search task, for example a sequence of impressions in
+session search. Generally, an IR system will operate over
+1 ≤t ≤T stages with T being potentially inﬁnite.
+Further to this, an interactive IR framework incorporates
+user feedback. Feedback is an observation signal o (or a se-
+quence of observations ⃗o) in the space O, that is measurable
+by the search system. These signals may be explicit dec-
+larations of the relevance of search items (such as a movie
+rating), or implicit interpretations of user actions (such as
+document clicks).
+The ﬁnal element of this framework is the relevance up-
+date function τ where rt+1 = τ(at, rt, ot). Thus, the objec-
+tive function for interactive IR at stage t+1 can now be rep-
+resented as argmaxat+1∈A US
+ at+1, τ(at, rt, ot)
+
+. The rele-
+vance update function τ introduces temporal dependency
+into the framework, without it the objective simply devolves
+to optimization over the static utility US(a, r). This is also
+the case when ﬁnding the optimal ﬁrst stage action a1 i.e.
+when there are not yet any observations. In interactive IR,
+the optimal action is chosen at each stage as a reaction to
+the feedback observed in the previous stage and there is no
+consideration for future utility.
+With these features in mind, we extend the vector space
+example to the interactive scenario in Fig. 1b by introduc-
+ing the Rocchio relevance feedback algorithm [27] for in-
+teractively re-ranking documents. Here, clicked documents
+in the PRP ranked ﬁrst stage are used as implicit signals of
+relevance to modify the user’s original query Q1 to Q2. Doc-
+ument re-retrieval occurs using Q2, returning documents us-
+ing updated relevance scores given by τ, which is a function
+of Q2 and thus the original ranking ⃗aPRP, document relevan-
+cies r and observations o. Nonetheless, even in this interac-
+tive framework, a user interested in the apple logo subtopic
+would be dissatisﬁed with both the ⃗aPRP and ⃗aIIR rankings
+due to a lack of documents for the relevant subtopic.
+2.2.1
+Interactive Information Retrieval (IIR)
+For clariﬁcation, the area of research traditionally known
+as Interactive Information Retrieval (IIR) has an alternative
+deﬁnition to the interactive IR framework discussed in this
+paper, despite the similarity in name. IIR research explores
+the complex sequence of interactions a user may have with
+a search ranking within the static framework [28], largely
+motivated by the contradictory results found from conven-
+tional Cranﬁeld style evaluation [7] and observational user
+studies [14]. With the exception of the IIR-PRP framework
+which we cover in more detail in Section 3.3.1, for the re-
+mainder of this paper any reference to interactive IR instead
+reﬂects the framework deﬁned in this paper.
+3.
+DYNAMIC IR THEORY
+A dynamic system is one which is goal-directed and adap-
+tive to its environment. From this deﬁnition we can specify
+three elements that determine whether an IR system is a
+dynamic one:
+Feedback An observation signal from the user.
+Temporal Dependency Operation across multiple stages
+where each stage depends on the previous stage.
+Overall Goal An objective across all stages.
+3.1
+Dynamic IR Framework
+Deﬁnition: A dynamic IR framework extends an inter-
+active framework by being responsive to user feedback and
+optimizing for it in advance.
+We previously deﬁned systems in the interactive IR frame-
+work as exhibiting both feedback and temporal dependency
+features, but they are only capable of locally optimizing for
+a single stage at a time. In contrast, the optimization of
+a dynamic system will ﬁnd the optimal sequence of actions
+for all future interactions. A result of this is that the utility
+of an individual stage may be reduced so that gains can be
+made in the utility at a future stage.
+Unlike the interactive IR framework, the observation o
+is unknown when evaluating the utility of future stages in
+the dynamic IR framework.
+Instead, the expected utility
+can be found by marginalizing the utility function over the
+space of observations O. When doing this the observation
+likelihood function P(o|a, r) must be speciﬁed. This gives
+the expected utility
+E[US(a, r)] =
+X
+o∈O
+P(o|a, r)US(a, r)
+(1)
+The observation likelihood function is represented visually
+in Fig. 1c. In dynamic IR, the expected utility of potential
+ﬁrst stage rankings (given here as ⃗a1, ⃗a2, ⃗a3 and the opti-
+mal static ranking ⃗aPRP) are calculated by estimating which
+documents are likely to receive clicks and the eﬀect this has
+on the utility of future stages. The PRP ranking is simply
+one among many rank actions that can be considered.
+The ﬁnal component of the DIR framework is the path
+discount function ω(t). When optimizing over a potentially
+inﬁnite number of future stages, this helps ensure that a
+solution exists and also gives greater weight to earlier stage
+utilities.
+By bringing together all of the components described so
+far, we can deﬁne the utility function for dynamic in-
+formation retrieval as
+UD(rt, t) = max
+at∈A
+
+US(at, rt)+
+ω(t)
+X
+o∈O
+P(o|at, rt)UD(τ(at, rt, o), t + 1)
+
+(2)
+where UD(rT , T) = maxaT ∈A
+
+US(aT , rT )
+
+is the static op-
+timization of the ﬁnal stage. Thus, our objective is to ﬁnd,
+
+through backwards induction, the optimal sequence of ac-
+tions ⃗a∗= ⟨a1, . . . , aT ⟩that maximizes the dynamic util-
+ity UD given in Eq. (2). To derive this utility we have simply
+recursively applied the dynamic utility to the expected util-
+ity from Eq. (1).
+Through the maximization of the dynamic utility, in our
+example in Fig. 1d we ﬁnd the optimal action for stage 1,
+which is to diversify the initial ranking so that it retrieves
+documents belonging to all three subtopics. While this may
+harm the immediate retrieval utility score, overall the system
+improves because it can more accurately re-rank results over
+the subtopic preferences for all users in the next stage.
+We observe that the eight elements of the DIR frame-
+work: a, r, US, t, o, τ, P(o|a, r) and ω(t), are also the
+elements that deﬁne a POMDP [31], and that the dynamic
+utility function is its corresponding Bellman equation [3].
+Intuitively this makes sense, like a POMDP the dynamic
+IR framework ﬁnds an optimal Markovian sequence of ac-
+tions to maximize a reward (here the static utility) subject
+to discounting (with ω). The state of the system (the un-
+derlying document relevance) is unknown but a belief state
+(the probability of relevance) is updated according to ob-
+servations. The key diﬀerence from a POMDP is that for
+dynamic IR we do not deﬁne a transition probability be-
+tween states as we assume that the hidden relevance of each
+document does not change throughout the search task.
+3.2
+Framework Analysis
+So far we have described the general framework for dy-
+namic IR but have not addressed the setting of its param-
+eters. Here we analyze each component within the context
+of dynamic information retrieval.
+Relevance. As with any framework in information retrieval,
+the overall aim is to retrieve relevant information items and
+present them to the user.
+The intrinsic ‘relevance’ of an
+information item is an unknown quality and the subject of
+most of the research in IR. In the DIR framework any doc-
+ument relevance scoring method can be used. For instance,
+in our application in the next section we make use of ﬁve
+well established relevance scoring techniques.
+The relevance update function τ is more diﬃcult to deﬁne
+as it depends speciﬁcally on the action and observation space
+of the DIR task, for instance in Fig. 1b it depends on the
+distance of the documents from Q2, which itself depends
+on Q1, ⃗aPRP and its clicked documents. This dependence
+allows τ to adapt to the hidden relevance preferences of the
+user over the course of the search process.
+It may not always be clear how to update the relevance
+score based on a given observation, the most straightforward
+setting for τ can simply be to set ra = 0 for actions already
+chosen by the IR system. Because τ enforces the temporal
+dependency, it is the most important aspect in the dynamic
+utility because without it the utility is static.
+Actions. The action space is what distinguishes search tasks
+from one another and it is the size of this space that dictates
+the complexity of optimizing over the dynamic utility func-
+tion. For example, the action space in query suggestion or
+document ranking is potentially inﬁnite whereas the space
+of available advertisements in an ad selection problem may
+be small and ﬁnite. In our example the action space is any
+potential grouping of the documents in the 2D term space
+(four such groupings are shown in Fig. 1c). Along with τ,
+the setting of the static utility US is important for deter-
+mining the desirable features of the optimal action sequence
+⃗a∗, such as results diversiﬁcation.
+Observations. The observation space is dependent on the
+action space, its elements representing the user’s response
+to system actions. Each observation must contain some sig-
+nal of relevance or search intent, otherwise we would have
+τ(a, r, o) = τ(a, r) and lose the temporal dependency.
+In
+some cases the value of the observation likelihood is simply
+P(o|a, r) = r, for instance in search tasks where accurate ex-
+plicit relevance feedback is guaranteed. Otherwise, in most
+situations the observations will be click-related and thus the
+observation probability is the probability of click, as is the
+case in our example (Fig. 1).
+Stages. Typically, the stages in a DIR task will represent
+distinct interactions occurring in a linear time order.
+In
+these cases ω(t) may take a value between 0 and 1 or be set to
+a monotonically decreasing function that favorably weights
+the utility scores of immediate stages.
+Setting ω(1) = 1
+and ω(t) = 0 for t > 1 gives us the static and interactive
+scenarios.
+Alternatively, a non-linear sequence of interactions (or
+search path) can be modeled as Yang and Lad did with
+their session-based utility function [37]. For instance in ses-
+sion search, a search path represents a particular sequence
+of documents examined by the user and the query reformu-
+lations made. For our framework, the stage t may instead
+represent a speciﬁc search path, and so ω(t) could be inter-
+preted as the likelihood of this path rather than an explicit
+discount, penalizing improbable search paths and rewarding
+likely ones.
+The time horizon T dictates the number of advance stages
+to optimize for. A large time horizon will lead to explorative
+action strategies that beneﬁt later stages.
+In our experi-
+ments, we set T = 2 so that we only consider exploitative
+optimizations for the immediate next stage.
+Dynamic Utility. Through the recursive evaluation of the
+utility function we not only learn the optimal sequence of ac-
+tions to make in the dynamic system, but we also learn the
+optimal action for each possible observation at each stage.
+If we were to store these in a lookup table ahead of deploy-
+ment, then the dynamic system would be immediately re-
+sponsive to user feedback and able to cater to a population
+of users.
+Nonetheless, the construction and storage com-
+plexity of such a table may prove intractable. We also note
+that the static utility US may be set as the dynamic utility
+function UD of a nested subproblem in the search task. For
+example, the utility of choosing an optimal ranking of doc-
+uments may be embedded in the utility for determining an
+optimal sequence of rankings for a user in a session, which
+itself may be deﬁned within the context of modeling a user’s
+topic preference from search sessions in their search history.
+3.3
+Links to Existing Work
+Building on our analysis of the DIR framework, here we
+identify links between its components and other related work
+in IIR and session search.
+3.3.1
+IIR-PRP
+The IIR-PRP [12] is a framework designed for interac-
+tive IR in the traditional sense. The objective function in
+
+IIR-PRP balances the costs and beneﬁts of choosing actions
+within a sequence and bears some similarities to our dynamic
+utility function. Nonetheless, by lacking any form of user
+feedback or temporal dependency, we do not describe the
+model as interactive or dynamic, and as already discussed,
+within the terminology used in this paper this means that
+it is actually a static method.
+By mapping our notation onto the IIR-PRP objective
+function, we get
+UIIR(⃗a,⃗r) =
+M
+X
+i=1
+i−1
+Y
+j=1
+(1 −rj)
+
+×
+
+ω(i) + ri
+X
+o∈⃗o
+P(o|ai, ri)US(ai, ri)
+
+(3)
+evaluated over a sequence of M actions (usually a ranking of
+documents). Eq. (3) is a generalization of the formula orig-
+inally deﬁned, where we recognize that the cost and beneﬁt
+parameters are simply a utility value, that the probability of
+whether a user continues searching or not is the observation
+likelihood, and that the cost of reaching a speciﬁc action is
+the path discount.
+Further to this, the IIR-PRP deﬁnes a simple ranking
+rule according to this utility model, ranking documents in
+order of decreasing value of function ϱ(a, r), which balances
+the costs and beneﬁts of choosing an action as well as its
+probability of relevance. We can deﬁne ϱ in our setting as
+ϱ(⃗a1...i,⃗r1...i, ω) = US(⃗a1...i,⃗r1...i) −ω
+rai
+i−1
+Y
+j=1
+(1 −raj)
+(4)
+where the utility of adding an action ai to an existing se-
+quence is countered by the path discount and the probability
+of not ﬁnding previous actions relevant. We implement this
+in our algorithm for IIR-PRP in Algorithm 2 in the next
+section.
+3.3.2
+Session-Based Utility
+There have been recent advances in the modeling of user
+beneﬁt across queries in search sessions. This is in recogni-
+tion of the fact that ad-hoc retrieval often occurs over multi-
+ple queries in a session [35], with one study ﬁnding that 32%
+of search sessions consisted of at least three queries [17]. A
+simple approach has been to extend discount-gain metrics
+such as DCG and Average Precision, typically associated
+with static retrieval, across multiple stages. Using our ter-
+minology, a discount-gain function for a single stage has the
+form PM
+i=1 ω(i)US(ai, ri). For example, in the DCG met-
+ric the setting would be ω(i) =
+1
+log2(i+1) and US(ai, ri) =
+2rai −1. For the session-DCG (sDCG) [18] metric, a single
+layer of recursion is introduced, where
+sDCG =
+T
+X
+t=1
+ω(t)U(⃗at,⃗rt)
+(5)
+and the discount and gain functions are set as ω(t) =
+1
+log2t(t+1)
+and
+U(⃗at,⃗rt) = DCG(⃗at,⃗rt) =
+M
+X
+i=1
+1
+log2(i + 1)
+|
+{z
+}
+ω(i)
+×( 2rati −1
+|
+{z
+}
+US(ati,rti)
+)
+Here, the stages operate across a linear sequence of search
+rankings.
+In the session-Average Precision (sAP) metric,
+the path of interaction taken by the user is unknown and so
+the metric function marginalizes over the space of all such
+paths to ﬁnd the expected sAP [21].
+4.
+APPLICATION
+So far we have formulated a theoretical framework for dy-
+namic IR and derived the dynamic utility function UD given
+in Eq. (2). In this section we apply this framework to the
+multi page search problem in DIR. In doing so we demon-
+strate functional settings for the elements in the framework
+and their implementation in a workable algorithm, which
+gives us useful insight into the practical limitations of op-
+timizing over UD. We compare our algorithm against PRP
+and IIR-PRP based approaches in experiments using TREC
+data and also investigate static and interactive variants of
+our objective function. Through this we gain understanding
+of the eﬀect that dynamic utility optimization has on the
+quality and diversity of rankings in multi page search.
+4.1
+Multi Page Search Problem
+The Multi Page Search (MPS) scenario concerns the rank-
+ing of documents over multiple pages of search results [22,
+19]. MPS typically models exploratory search queries which
+are more likely to lead to multi-query sessions and multi-
+page searches [35] (with one study ﬁnding that 27% of all
+searches occur over multiple pages [16]).
+In this scenario
+documents are retrieved for a single query, ranked and then
+segregated into pages of M documents. On each page, a user
+may examine and click on documents. We assume that the
+user will return to the results page and move onto the next
+page and we deﬁne a threshold of T pages which the user
+will search over. The goal in MPS is to create rankings of
+relevant documents across T pages. For the pages following
+the ﬁrst, document clicks can be used to personalize search
+rankings, a situation analogous to our example in Fig. 1.
+We chose this particular problem to apply our dynamic IR
+framework to as it exhibits the following beneﬁcial features:
+1) it is a DIR problem that is familiar and easy to deﬁne,
+2) it is a simple IR scenario where we only have to consider
+a single query and a single set of documents, 3) we can use
+existing ad hoc ranking and retrieval research to ﬁnd suit-
+able implementations for the DIR framework components,
+4) we can readily use TREC data collections and relevance
+judgments to evaluate our algorithms, and 5) it is naturally
+translatable to the PRP and IIR-PRP frameworks. A sim-
+ilar analysis of DIR in the session search scenario was also
+conducted by Luo et al. [24]
+In this scenario, each page of search represents a stage in
+our framework, with T the threshold number of pages. We
+nominally set T = 2 although a larger number of pages is
+feasible and has been studied by Jin et al. [19].
+The ac-
+tion sequence ⃗at = ⟨at1, . . . , atM⟩represents the ranking of
+documents for ranks 1 to M on page t. Before we can fully
+implement Eq. (2), we must ﬁrst deﬁne each of its functional
+components in the context of MPS.
+4.1.1
+Expected DCG
+The static utility in multi page search is a measure of the
+quality of the ranking of documents on each page. As with
+ad hoc ranking and retrieval, we can evaluate this using
+a metric such as DCG, MAP or ERR. In the absence of
+
+relevance judgments, we can instead ﬁnd the expected metric
+value which uses probabilities of relevance instead [33]. In
+our application we set the static utility as the expected DCG
+function, given by
+US(⃗at,⃗rt) =
+M
+X
+i=i
+2rati −1 + 2rati −1 log2(2)V ar[rati]
+log(i + 1)
+(6)
+This utility also takes into consideration the variance of the
+document’s probability of relevance.
+4.1.2
+Examination Hypothesis
+In multi page search our observations are document clicks,
+which we regard as an implicit signal of the relevance of
+a document to the user.
+Thus, we can utilize the clicks
+from previous search pages to update our probability of rel-
+evance model and personalize the document rankings for
+future pages.
+For a ranking of M documents, the observation space O in
+MPS for a particular page is the combination of binary click
+events for each document in the ranking. We denote this as
+the observation vector ⃗o = ⟨o1, . . . , oM⟩where o ∈{0, 1}.
+We could na¨ıvely set the observation likelihood to the uni-
+form distribution P(o|a, r) =
+1
+|O| but eye-tracking studies
+tell us that this is not the case. Instead, the probability of
+a click occurring on a ranked document is dependent on not
+only its probability of relevance but also its rank position,
+amongst other variables [20].
+The probabilistic modeling
+of user clicks is an extensive area of IR research and in our
+application we use the simplest model, the Examination Hy-
+pothesis model [10].
+This model supports the eye tracking research by inferring
+that the probability of a click on a document in a ranked list
+is equal to the product of its probability of relevance and the
+bias of its rank position. Thus, the probability of a sequence
+of clicks is given by
+P(⃗o|⃗at,⃗rt) =
+M
+Y
+i=1
+(birati)oi(1 −birati)1−oi
+(7)
+where bi is a rank bias parameter. In our implementation
+we set Eq. (7) as our observation likelihood function and set
+bi =
+1
+log(i+1) which is the discount value used in our expected
+DCG utility.
+4.1.3
+Conditional Multivariate Gaussian Distribution
+Once we have a sequence of click observations for a rank-
+ing of documents, we can update the probability of relevance
+distribution for the remaining documents. Here, we achieve
+this by deﬁning the distribution of all the probabilities of rel-
+evance for all documents in the collection as a multivariate
+Gaussian distribution R ∼N(⃗r, Σ), where R is their collec-
+tive random variable, ⃗r the vector of mean relevance scores
+and Σ the covariance matrix over the documents. ⃗r may be
+set as any relevance score and Σ may be set using document
+similarity or other correlation scores [19]. If ⃗r represents a
+probability of relevance, then we can set the distribution as
+a truncated multivariate Gaussian bounded between 0 and
+1. If it is not possible to deﬁne the distribution of a rele-
+vance score, then the distribution of the mean of multiple
+relevance scoring techniques can be derived, resulting in an
+approximately Gaussian distribution that incorporates mul-
+tiple signals of relevance. It is this approach we take in our
+experiment, where we set ⃗r and Σ as the means and vari-
+ances of the retrieval scores from ﬁve well known techniques,
+with the diagonal elements from Σ used as variance values
+for our utility calculation in Eq. (6).
+Modeling the relevance distribution in this way allows us
+to conditionally update the probabilities of relevance ⃗r based
+on our click observations. For a given rank action ⃗at (which
+includes both clicked and non-clicked documents in the rank-
+ing), we denote the remaining non-ranked documents as \⃗at
+and partition our distribution parameters as
+⃗r =
+⃗r\⃗at
+⃗r⃗a
+
+Σ =
+
+Σ\⃗at\⃗at
+Σ\⃗at⃗at
+Σ⃗at\⃗at
+Σ⃗a⃗a
+
+We can then update the mean relevance scores and covari-
+ance matrix for non ranked documents using the formulae
+⃗r\⃗at = ⃗r\⃗at + Σ\⃗at⃗atΣ−1
+⃗a⃗a (⃗o −⃗r⃗at)
+(8)
+Σ\⃗at\⃗at = Σ\⃗at\⃗at −Σ\⃗at⃗atΣ−1
+⃗at⃗atΣ⃗at\⃗at
+and observations ⃗o.
+Thus, for given actions and obser-
+vations, we can use the functions above to deﬁne a new
+conditional multivariate Gaussian distribution of the prob-
+ability of relevance of the remaining documents, given as
+Rt+1 ∼N(⃗r\⃗at, Σ\⃗at\⃗at|⃗at,⃗o).
+For the multi page search
+setting, we deﬁne τ(a, r, o) as the relevance update function
+in Eq. (8).
+4.1.4
+Geometric Discount
+The ﬁnal component required for our application is the
+discount function ω(t). In the multi page scenario, we mea-
+sure the utility of a linear sequence of document rankings
+rather than the path-based behavior of users. As such, we
+adopt the simple discount used in a POMDP, setting ω = λ
+(which is eﬀectively setting it as the geometric discount
+ω(t) = λt−1 due to the recursion of the dynamic utility).
+Here, we can consider ω(t) as the probability of the user
+visiting page t. When λ = 0, we assume only the ﬁrst page
+will be visited, and when λ = 1 all pages are equally likely
+and given equal weight. The optimal setting for λ will vary
+depending on the type of searches being performed as well
+as the corpus and quality of results.
+4.2
+DIR-MPS
+Now that we have deﬁned each of the functional compo-
+nents of the dynamic IR framework for the multi page search
+scenario, we present the DIR-MPS algorithm in Algorithm 1.
+This algorithm is a direct implementation of the recursive
+utility function UD in Eq. (2) that determines the optimal
+sequence of document rankings to display for each page.
+It is worth noting that Algorithm 1 and the described set-
+tings for the DIR framework elements are one such instan-
+tiation of the framework in the multi page search scenario.
+Our motive in this section is not to develop a state of the
+art new ranking technique but rather to demonstrate the
+application of the framework to a DIR problem.
+4.2.1
+Dynamic Utility Approximation
+The DIR-MPS algorithm features a number of approxi-
+mation techniques that increase its computational eﬃciency
+as a way to counteract the inherent complexity of the DIR
+framework (discussed further in Section 4.3). Firstly, we re-
+duce the action space of potential rankings by employing a
+Sequential Ranking Decision policy. That is, for each page
+
+Algorithm 1 The DIR-MPS Algorithm
+function DIR-MPS(t,⃗r, A)
+if t = T + 1 then return [0, ⟨⟩]
+end if
+⃗a∗
+t = ⟨⟩;⃗a∗
+t+1 = ⟨⟩
+loop i ←1 to M
+▷Sequential Ranking Decision
+⃗a = ⃗a∗
+t ; u∗= 0
+for all a ∈A\⃗a do
+⃗at = ⟨⃗a, a⟩
+ut = US(⃗at,⃗rt)
+▷Eq. (6)
+for all ⃗o ∈O do
+⃗rt+1 = τ(⃗at,⃗r, o)
+▷Eq. (8)
+[ut+1,⃗at+1] = DIR-MPS(t + 1,⃗rt+1, A\⃗at)
+ut = ut + λ · P(⃗o|⃗at,⃗rt) · ut+1
+▷Eq. (7)
+end for
+if ut > u∗then
+u∗= ut;⃗a∗
+t = ⃗at;⃗a∗
+t+1 = ⃗at+1
+end if
+end for
+end loop
+return [u∗, ⟨⃗a∗
+t ,⃗a∗
+t+1⟩]
+end function
+we ﬁnd the optimal document to rank at each position one
+by one. For example, we set M = 1 and ﬁnd the document
+a∗that maximizes US(a, ra). Then we ﬁx this document,
+set M = 2 and ﬁnd the next in the sequence that maxi-
+mizes US(⟨a∗, a⟩,⃗r⟨a∗,a⟩). Continuing in this fashion allows
+us to ﬁnd an approximately optimal ranking for a single
+page, one document at a time, greatly reducing the compu-
+tational complexity.
+A property of the probability distribution given in Eq. (7)
+also allows us to greatly reduce the observation space. We
+ﬁnd that this distribution follows Zipf’s law, with a few
+of the click combinations contributing towards most of the
+probability mass. In fact, from our experiments we typically
+found that around 15% of the combinations contributed to
+95% of the aggregated probability. As such, in our imple-
+mentation of DIR-MPS we restrict the observation space
+to only the most probable click combinations that cumula-
+tively sum to 0.95, trading oﬀthe potential 5% inaccuracy
+for speed.
+Finally, it can be shown that when ranking over a sin-
+gle stage, the expected DCG utility function is maximized
+when documents are ranked according to the PRP [33]. We
+exploit this to increase the eﬃciency of our algorithm by
+ranking the threshold page (where we no longer consider a
+future temporal dependency) according to the PRP over the
+conditionally updated probabilities of relevance.
+4.2.2
+IIR-PRP-MPS
+In our experiments we directly compare DIR-MPS against
+rankings created from the applied PRP and IIR-PRP rank-
+ing rules. With the Probability Ranking Principle we can
+simply rank documents in decreasing order of the probability
+of relevance across T pages. However, the IIR-PRP has no
+existing direct application to our scenario. Instead, we use
+our deﬁnition of the ranking function ϱ given in Eq. (4) to
+create the IIR-PRP-MPS algorithm shown in Algorithm 2.
+Here, the sequential ranking rule is also employed to build
+up an optimal ranking over all pages, one document at a
+Algorithm 2 The IIR-PRP-MPS algorithm
+function IIR-PRP-MPS(M, T, λ, A,⃗r)
+⃗a∗= ⟨⟩
+loop i ←1 to M × T
+a∗= argmaxa∈A\⃗a∗ϱ(⟨⃗a∗, a⟩,⃗r, λ)
+▷Eq. (4)
+⃗a∗= ⟨⃗a∗, a∗⟩
+end loop
+return ⃗a∗
+end function
+time, by selecting the document that has the highest ϱ value
+for each rank. Thus, there is some dependency on previously
+ranked documents, which is not possible in the PRP, but like
+the PRP there is no way to take into account user feedback
+or update the probabilities of relevance.
+4.3
+Practical Limitations
+The general computational complexity of the optimiza-
+tion of UD can be shown to be PSPACE-Complete (through
+its connection to POMDPs). For small T and observation
+and action spaces this can be reasonable, but typically these
+spaces may be impractically large.
+For example, an IR task such as information ﬁltering or
+music recommendation may operate over potentially inﬁnite
+time steps. In these cases the discount factor and thresh-
+old T are important. Further, the observation space may
+not be as well deﬁned as that in our multi page search
+scenario where |O| = 2M, for example, the space of pos-
+sible reformulations for a query or 2D gaze positions in eye-
+tracking. Finally, the action space can be diﬃcult to opti-
+mize over as is the case with DIR-MPS, where the sequential
+ranking decision reduces the size of the action space from
+O(N!/(N −TM)!) to O(TNM −TM 2) for a collection of
+N documents. Our application serves to demonstrate that
+such approximations may be needed when working with the
+DIR framework, especially given that the optimization of
+UD is not guaranteed to be tractable, and an optimal so-
+lution may not exist depending on the particular problem
+settings.
+4.4
+Experiment
+To gain insight into our application of the dynamic IR
+framework in the multi page search scenario, and to com-
+pare with the other theoretical frameworks, we conducted an
+experiment using the WT10g, AQUAINT and ClueWeb09
+datasets, the details of which are included in Table 1. We
+chose these collections as they were designed for evaluating
+ranking and retrieval algorithms and were easily extended to
+the multi page problem. The WT10g dataset allowed us to
+test the theoretical frameworks in the standard ad hoc rank-
+ing and retrieval environment. The Robust data consists of
+diﬃcult to rank ad hoc queries which we hypothesized would
+be more likely to require several pages of search results. The
+diversity track data allowed us to test our hypothesis that
+dynamic optimization leads to increased diversiﬁcation in
+ad hoc retrieval. A drawback to using these datasets is that
+they lack interaction data, which is not needed when opti-
+mizing for probable clicks in the DIR framework, but im-
+portant in the interactive setting.
+On each collection we retrieved the top 100 documents for
+each topic scored using each of the TF-IDF, BM25, Jelinek-
+Mercer, Dirichlet and Two-Stage language model retrieval
+
+Table 1: Overview of the three TREC test collections
+Name
+Task
+# Docs
+Topics
+WT10g
+TREC 9 Web
+Track
+1,692,096
+451-500
+AQUAINT Robust 2005
+1,033,461
+50 diﬃcult Ro-
+bust 2004 topics
+ClueWeb09 Diversity
+Task 2009/10
+503,903,810 1-100
+(461
+subtopics)
+methods from the Indri1 search engine. We pooled the docu-
+ments and subsequently scored them over all the techniques.
+This gave us an average of 193 ranked documents per topic
+each with 5 relevance score values. After min-max normal-
+ization we averaged each score to give us our probability of
+relevance vector ⃗r and covariance matrix Σ. The dependen-
+cies in this covariance matrix reﬂect the level of agreement
+between the diﬀerent retrieval methods rather than direct
+correlations between the documents themselves i.e.
+simi-
+larly ranked documents will be positively correlated with
+one another. Finally, we selected those documents that had
+the top 30 mean relevance scores. These were then used by
+our algorithms to create rankings for two pages of search
+results with ten documents on each.
+We ranked these documents according to the baseline PRP
+approach and also the already described IIR-PRP-MPS and
+DIR-MPS algorithms. We also investigated an interactive
+version of DIR-MPS (called IIR-MPS) that ranks the ﬁrst
+page of results according to the PRP and then optimizes
+a ranking for the second page of results by marginalizing
+over potential clicks using Eq. (1). We also created a static
+version of DIR-MPS (called S-MPS) that removes feedback
+from UD entirely to give us the objective function US(⃗a1,⃗r)+
+λUS(⃗a2,⃗r). We also investigated ‘perfect click’ variants of
+the dynamic (DIR-MPSC) and interactive (IIR-MPSC) al-
+gorithms, where we interpret the hidden relevance labels as
+clicks on the ﬁrst page of results, giving us the optimal ob-
+servation setting and an upper bound on performance for
+the second page.
+To evaluate the quality of the rankings we measured MAP,
+NDCG and ERR for each page. For the DIR-MPS and IIR-
+MPS algorithms we actually generate an optimal 2nd page
+ranking for every click combination in our observation space,
+giving us diﬀerent metrics scores for each. In these cases, the
+reported page two metric scores are averages over the page
+two scores for all click combination based rankings.
+This
+highlights an open area for research; the deﬁnition of evalu-
+ation metrics for DIR that can take into account all of the
+potential rankings in a dynamic system. We also measure
+the session-based metrics sDCG (deﬁned in Eq. (5)) and
+sAP to evaluate performance over both pages, although it
+is worth noting that these metrics were designed for session
+search rather than multi page search. Finally, we also mea-
+sure α−NDCG [6], Intent-Aware Precision (IA-Precision) [1]
+and Intent-Aware ERR (ERR-IA) [4] for scoring the diver-
+sity of rankings in the ClueWeb09 collection.
+The results of our experiments are shown in Table 2. For
+the Web Track and Robust collections, we observe that the
+1st page losses of the dynamic techniques (when compared
+to the PRP and IIR-PRP-MPS baselines) are made up for
+by gains in the second page, signiﬁcantly so on the WT10g
+dataset. Nonetheless, in these ad hoc ranking scenarios it is
+1http://www.lemurproject.org/indri.php
+Table 3: α-DCG, IA-Precision and ERR-IA scores for page
+1 and 2 search results from the diversity track data. The
+maximum score for each metric on each page is given in
+boldface. A 2 indicates that the result is signiﬁcantly better
+than the IIR-PRP-MPS baseline score using the Wilcoxon
+signed-rank test (p < 0.05).
+Page 1
+Page 2
+Algorithm
+α-
+DCG
+IA-
+Prec
+ERR-
+IA
+α-
+DCG
+IA-
+Prec
+ERR-
+IA
+PRP
+0.360
+0.083 0.239
+0.420 0.085
+0.294
+IIR-PRP-MPS 0.345
+0.077
+0.230
+0.404
+0.086
+0.269
+S-MPS
+0.352
+0.078
+0.233
+0.417
+0.089 0.280
+IIR-MPS
+0.360
+0.083 0.239
+0.377
+0.079
+0.243
+IIR-MPSC
+0.379
+0.080
+0.236
+DIR-MPS
+0.4032 0.082
+0.270
+0.400
+0.079
+0.264
+DIR-MPSC
+0.386
+0.077
+0.254
+clear that the static PRP and IIR-PRP frameworks are still
+very eﬀective.
+We see diﬀerent results with the diversity track data. The
+metric scores for this data in Table 2 were calculated using
+relevance judgments from all subtopics. We see the opposite
+relationship between page scores here, with DIR-MPS hav-
+ing higher scores for the 1st page and losses in the second
+(except for ERR which is signiﬁcantly improved across both
+pages). We see further evidence of this with the diversity
+metric scores in Table 3, where it is clear that diversiﬁcation
+is occurring in the ﬁrst page and less so in the second. This
+backs up our intuition (in Fig. 1d) that a dynamic technique
+will initially diversify results to improve future rankings, and
+also helps explain the losses in performance of the 1st page
+in the other datasets (which do not have subtopic relevance
+judgments).
+The reduced diversity of the 2nd page indi-
+cates that it is more tightly focused on the user’s subtopic
+preference.
+We observe that the diversity task is more suited as an
+application of the dynamic IR framework. This is evidenced
+by the optimal settings for λ in each collection. For the ad
+hoc ranking task in the WT10g and AQUAINT collections,
+the setting for λ gives greater weight to the 1st page of
+results, rewarding immediately eﬀective rankings. Whereas
+in the diversity task, the utility of the 2nd page has a larger
+eﬀect on the overall utility, encouraging diversity.
+Further to this, the interactive variant scored highly with
+session based metrics on the Robust dataset, but otherwise
+the static techniques were optimal, even for the diversity
+task. This may partly be due to the application of a session-
+based metric to the multi page scenario and also the inabil-
+ity of the metric to take into account the user interaction.
+Finally, we also see that the ‘perfect click’ variants gener-
+ally outperform their counterparts (except over the diversity
+data), indicating that the 2nd page ranking can be improved
+when high quality clicks are observed.
+In summary, by its nature the DIR approach to multi-
+page search places greater emphasis on diﬀerent stages of
+the search task. We ﬁnd that this may not be suited to all
+search environments i.e. ad hoc search. In such cases the
+static approaches can be more eﬀective. Nonetheless, the
+dynamic IR framework has other desirable properties such as
+the diversiﬁcation and personalization of results over time.
+5.
+RELATED WORK
+
+Table 2: NDCG, MAP and ERR scores for pages 1 and 2 of the search results and sAP and sDCG over both pages. Static,
+interactive and dynamic algorithms are grouped. The results shown are those for the optimal value of λ in each collection,
+found by repeating the experiment for values in the range [0, 1]. The maximum score for each metric on each page is given in
+boldface. A 1 or 2 indicates that the result is signiﬁcantly better than the PRP or IIR-PRP-MPS baseline scores respectively
+using the Wilcoxon signed-rank test (p < 0.05).
+Page 1
+Page 2
+Both Pages
+Collection
+Algorithm
+NDCG
+MAP
+ERR
+NDCG
+MAP
+ERR
+sAP
+sDCG
+Web
+Track
+(WT10g)
+λ = 0.5
+PRP
+0.338
+0.167
+0.169
+0.133
+0.025
+0.053
+0.097
+1.326
+IIR-PRP-MPS
+0.330
+0.162
+0.162
+0.166
+0.041
+0.078
+0.101
+1.347
+S-MPS
+0.295
+0.134
+0.130
+0.226
+0.070
+0.24212
+0.095
+1.236
+IIR-MPS
+0.338
+0.167
+0.169
+0.125
+0.025
+0.1031
+0.097
+1.291
+IIR-MPSC
+0.154
+0.040
+0.1511
+0.102
+1.353
+DIR-MPS
+0.235
+0.091
+0.092
+0.2121
+0.0541
+0.28912
+0.069
+1.022
+DIR-MPSC
+0.2301
+0.059
+0.29712
+0.072
+1.027
+Robust
+(AQUAINT)
+λ = 0.5
+PRP
+0.624
+0.107
+0.398
+0.552
+0.061
+0.294
+0.085
+5.735
+IIR-PRP-MPS
+0.629
+0.107
+0.398
+0.514
+0.052
+0.288
+0.083
+5.680
+S-MPS
+0.608
+0.096
+0.388
+0.595
+0.066
+0.88712
+0.083
+5.749
+IIR-MPS
+0.624
+0.107
+0.398
+0.519
+0.050
+0.73712
+0.081
+5.543
+IIR-MPSC
+0.554
+0.057
+0.69012
+0.084
+5.729
+DIR-MPS
+0.548
+0.063
+0.304
+0.575
+0.065
+0.65612
+0.065
+4.921
+DIR-MPSC
+0.553
+0.058
+0.69712
+0.062
+4.909
+Diversity
+(ClueWeb09)
+λ = 0.8
+PRP
+0.4022
+0.0492
+0.199
+0.476
+0.052
+0.265
+0.0512
+1.8832
+IIR-PRP-MPS
+0.384
+0.046
+0.193
+0.468
+0.051
+0.257
+0.048
+1.808
+S-MPS
+0.388
+0.041
+0.193
+0.465
+0.054
+0.35812
+0.049
+1.787
+IIR-MPS
+0.4022
+0.0492
+0.199
+0.431
+0.042
+0.35312
+0.047
+1.783
+IIR-MPSC
+0.436
+0.042
+0.34512
+0.047
+1.787
+DIR-MPS
+0.4512
+0.047
+0.2382
+0.445
+0.042
+0.37312
+0.046
+1.859
+DIR-MPSC
+0.426
+0.037
+0.35612
+0.044
+1.839
+Throughout this paper we have presented the dynamic IR
+theory within the context of the surrounding literature, so
+in this section we cover those areas of the related work not
+already discussed.
+For instance, the settings of the components in the DIR
+framework for multi page search cover a wide area of research
+in IR. Firstly, the examination hypothesis model used is just
+one of a number of probabilistic click models that could have
+been employed, including the click-chain model [13] and even
+a POMDP-based model [34].
+Other path-based discount
+functions have been explored in the literature [36] as well as
+other multi-stage utilities and metrics such as Time-Based
+Gain [30]. Related work on using Markov chains to measure
+the utility of rankings at each time step is a potential method
+for evaluating DIR problems [11]. Further to this, the iden-
+tiﬁcation of the dynamic IR framework as a POMDP raises
+the possibility of using established techniques such as the
+Witness algorithm [23] to ﬁnd optimal action policies. Also,
+the performance of the PRP under results diversiﬁcation is
+well-reported in the static frameworks quantum-PRP [38]
+and the portfolio theory of IR [32].
+The concept of evaluating for retrieval utility rather than
+relevance was proposed by Cooper in 1973 [9] and is ex-
+tended to all the frameworks discussed in this paper, where
+we aim to maximize some utility function that balances the
+costs and beneﬁts of an IR system’s actions. Other work in
+this area includes Azzopardi’s [2] work on economic models,
+which is itself an extension of the IIR-PRP, and also the
+work of Mostafa et al. [25] who had a similar motivation to
+this work, where they deﬁned a framework for running user
+simulations for information ﬁltering, itself a DIR problem.
+Other than the PRP and IIR-PRP, the closest related
+works to this one are the following: The application of a
+POMDP to multi page search [19], from which many aspects
+of our experiments in this paper are derived, including the
+problem setting and the probability of relevance distribu-
+tion. This paper extends their formulation to a general one
+applicable to other DIR problems and explores a diﬀerent
+setting for the static utility, observation likelihood and dis-
+count, while also linking to static and interactive techniques.
+Our experimental time horizon setting of T = 2 is based on
+the optimal results found in their work. Finally, the work
+on deﬁning the elements of a POMDP in session search [24]
+is a close relation to this work, though focusing more on
+the testing of particular settings of DIR components in the
+session search scenario rather than explicitly gaining an un-
+derstanding of the framework and components themselves.
+Nonetheless, their work contains an evaluation of algorithms
+that fall under the DIR framework including one similar to
+DIR-MPS.
+This work diﬀers from the literature in that: 1) ours is
+the ﬁrst work to deﬁne the characteristics that distinguish
+dynamic IR from the other theoretical IR frameworks, 2) our
+utility is the generalization of many existing ranking utilities
+and incorporates many elements of IR research such as click
+models, and 3) we conﬁrm the eﬀectiveness of ours and the
+static frameworks in diﬀerent scenarios in our experiments.
+6.
+CONCLUSION
+In this paper we have established a theoretical framework
+for Dynamic Information Retrieval.
+By contrasting with
+static and interactive frameworks, we found three character-
+istics that deﬁne dynamic IR systems; user feedback, tem-
+
+poral dependency and an overall goal. This motivated the
+derivation of our dynamic utility function UD, which has its
+roots in the POMDP formulation. The components of this
+utility can be directly implemented using elements from ex-
+isting research which we apply in the DIR-MPS algorithm,
+an example instantiation designed for the multi page search
+problem.
+Our experiments conﬁrm that in this scenario,
+one of the eﬀects of optimizing for UD is the diversiﬁcation
+of search results. Otherwise, we also demonstrate that for
+other scenarios the PRP and IIR-PRP frameworks are still
+eﬀective.
+Like the PRP and IIR-PRP, our framework deﬁnes cer-
+tain functional parameters but does not deﬁnitively specify
+how to set them. Instead, this work is a point of reference
+that can be used for the development of specialized mod-
+els and algorithms applied to DIR problems. Through our
+application we were able to consider the limitations of the
+DIR framework, a result of which is the approximations used
+in the DIR-MPS algorithm. Finally, the derivation of a sta-
+tionary solution to the DIR Markovian model is an intended
+future goal and would be an important result to come from
+this work.
+7.
+REFERENCES
+[1] Agrawal, R., Gollapudi, S., Halverson, A., and Ieong, S.
+Diversifying search results. WSDM ’09, ACM, pp. 5–14.
+[2] Azzopardi, L. Modelling interaction with economic models of
+search. SIGIR ’14, ACM, pp. 3–12.
+[3] Bellman, R. E. Dynamic Programming. Dover Publications,
+2003.
+[4] Chapelle, O., Metlzer, D., Zhang, Y., and Grinspan, P.
+Expected reciprocal rank for graded relevance. CIKM ’09,
+ACM, pp. 621–630.
+[5] Chen, H., and Karger, D. R. Less is more: Probabilistic models
+for retrieving fewer relevant documents. SIGIR ’06, ACM,
+pp. 429–436.
+[6] Clarke, C. L., Kolla, M., Cormack, G. V., Vechtomova, O.,
+Ashkan, A., B¨uttcher, S., and MacKinnon, I. Novelty and
+diversity in information retrieval evaluation. SIGIR ’08, ACM,
+pp. 659–666.
+[7] Cleverdon, C., and Kean, M. Factors determining the
+performance of indexing systems. Aslib Cranﬁeld Research
+Project, Cranﬁeld, England, 1968.
+[8] Cooper, W. S. The inadequacy of probability of usefulness as a
+ranking criterion for retrieval system output. University of
+California, Berkeley (1971).
+[9] Cooper, W. S. On selecting a measure of retrieval eﬀectiveness.
+Journal of the American Society for Information Science 24,
+2 (1973), 87–100.
+[10] Craswell, N., Zoeter, O., Taylor, M., and Ramsey, B. An
+experimental comparison of click position-bias models. WSDM
+’08, ACM, pp. 87–94.
+[11] Ferrante, M., Ferro, N., and Maistro, M. Injecting user
+models and time into precision via Markov chains. SIGIR ’14,
+ACM, pp. 597–606.
+[12] Fuhr, N. A probability ranking principle for interactive
+information retrieval. Inf. Retr. 11, 3 (2008), 251–265.
+[13] Guo, F., Liu, C., Kannan, A., Minka, T., Taylor, M., Wang,
+Y.-M., and Faloutsos, C. Click chain model in web search.
+WWW ’09, ACM, pp. 11–20.
+[14] Hersh, W., Turpin, A., Price, S., Chan, B., Kramer, D.,
+Sacherek, L., and Olson, D. Do batch and user evaluations
+give the same results? SIGIR ’00, ACM, pp. 17–24.
+[15] Jambor, T., Wang, J., and Lathia, N. Using control theory for
+stable and eﬃcient recommender systems. WWW ’12, ACM,
+pp. 11–20.
+[16] Jansen, B. J., and Spink, A. How are we searching the world
+wide web?: A comparison of nine search engine transaction
+logs. Inf. Process. Manage. 42, 1 (2006), 248–263.
+[17] Jansen, B. J., Spink, A., and Pedersen, J. A temporal
+comparison of AltaVista web searching: Research articles. J.
+Am. Soc. Inf. Sci. Technol. 56, 6 (2005), 559–570.
+[18] J¨arvelin, K., Price, S. L., Delcambre, L. M. L., and Nielsen,
+M. L. Discounted cumulated gain based evaluation of
+multiple-query IR sessions. ECIR’08, Springer-Verlag, pp. 4–15.
+[19] Jin, X., Sloan, M., and Wang, J. Interactive exploratory search
+for multi page search results. In WWW ’13 (2013),
+pp. 655–666.
+[20] Joachims, T., Granka, L., Pan, B., Hembrooke, H., Radlinski,
+F., and Gay, G. Evaluating the accuracy of implicit feedback
+from clicks and query reformulations in web search. ACM
+Trans. Inf. Syst. 25, 2 (2007).
+[21] Kanoulas, E., Carterette, B., Clough, P. D., and Sanderson,
+M. Evaluating multi-query sessions. SIGIR ’11, ACM,
+pp. 1053–1062.
+[22] Kim, J. Y., Cramer, M., Teevan, J., and Lagun, D.
+Understanding how people interact with web search results that
+change in real-time using implicit feedback. CIKM ’13, ACM,
+pp. 2321–2326.
+[23] Littman, M. L. The witness algorithm: Solving partially
+observable markov decision processes. Tech. rep., 1994.
+[24] Luo, J., Zhang, S., Dong, X., and Yang, H. Designing states,
+actions, and rewards for using POMDP in session search. In
+Advances in Information Retrieval, vol. 9022 of Lecture Notes
+in Computer Science. Springer International Publishing, 2015,
+pp. 526–537.
+[25] Mostafa, J., Mukhopadhyay, S., and Palakal, M. Simulation
+studies of diﬀerent dimensions of users’ interests and their
+impact on user modeling and information ﬁltering. Information
+Retrieval 6, 2 (2003), 199–223.
+[26] Robertson, S. E. The Probability Ranking Principle in IR.
+Journal of Documentation 33, 4 (1977), 294–304.
+[27] Rocchio, J. Relevance Feedback in Information Retrieval.
+1971, pp. 313–323.
+[28] Ruthven, I. Interactive information retrieval. ARIST 42, 1
+(2008), 43–91.
+[29] Sloan, M., Yang, H., and Wang, J. A term-based methodology
+for query reformulation understanding. Information Retrieval
+Journal 18, 2 (2015), 145–165.
+[30] Smucker, M. D., and Clarke, C. L. Time-based calibration of
+eﬀectiveness measures. SIGIR ’12, ACM, pp. 95–104.
+[31] Sondik, E. The optimal control of partially observable markov
+processes over the inﬁnite horizon: Discounted cost. Operations
+Research 26, 2 (1978), 282–304.
+[32] Wang, J., and Zhu, J. Portfolio theory of information retrieval.
+SIGIR’ 09, ACM, pp. 115–122.
+[33] Wang, J., and Zhu, J. On statistical analysis and optimization
+of information retrieval eﬀectiveness metrics. SIGIR ’10,
+pp. 226–233.
+[34] Wang, K., Gloy, N., and Li, X. Inferring search behaviors using
+partially observable markov (POM) model. WSDM ’10, ACM,
+pp. 211–220.
+[35] White, R., White, R., and Roth, R. Exploratory Search:
+Beyond the Query-Response Paradigm. Synthesis Lectures on
+Information Concepts, Retrieval, and Services Series. Morgan &
+Claypool, 2009.
+[36] White, R. W., Ruthven, I., Jose, J. M., and Rijsbergen, C.
+J. V. Evaluating implicit feedback models using searcher
+simulations. ACM Trans. Inf. Syst. 23, 3 (2005), 325–361.
+[37] Yang, Y., and Lad, A. Modeling expected utility of
+multi-session information distillation. In Advances in
+Information Retrieval Theory, vol. 5766 of Lecture Notes in
+Computer Science. Springer Berlin Heidelberg, 2009,
+pp. 164–175.
+[38] Zuccon, G., Azzopardi, L., and van Rijsbergen, K. The
+quantum probability ranking principle for information retrieval.
+In Advances in Information Retrieval Theory, vol. 5766.
+Springer Berlin Heidelberg, 2009, pp. 232–240.

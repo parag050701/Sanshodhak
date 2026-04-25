@@ -30,11 +30,132 @@ import json
 import logging
 import re
 import os
+from pathlib import Path
 from typing import List, Optional
 
 import requests
 
+# Load .env at import time so callers (eval drivers, retrieval pipeline, etc.)
+# pick up NVIDIA_NIM_API_KEY without having to call load_dotenv themselves.
+# Mirrors the pattern in nim_embedder.py.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent / ".env")
+except ImportError:
+    pass
+
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# NVIDIA NIM client (lazy, module-level singleton)
+# ---------------------------------------------------------------------------
+
+NIM_CHAT_MODEL = os.getenv("NIM_CHAT_MODEL", "meta/llama-3.1-8b-instruct")
+
+_nim_client = None
+
+
+def _get_nim_client():
+    """Lazy-init OpenAI-compatible client pointed at NVIDIA NIM."""
+    global _nim_client
+    if _nim_client is None:
+        from openai import OpenAI
+        api_key = os.getenv("NVIDIA_NIM_API_KEY")
+        base_url = os.getenv("NIM_API_BASE_URL", "https://integrate.api.nvidia.com/v1")
+        if not api_key:
+            raise RuntimeError("NVIDIA_NIM_API_KEY not set in environment")
+        logger.info("Initializing NIM chat client (model=%s)", NIM_CHAT_MODEL)
+        _nim_client = OpenAI(api_key=api_key, base_url=base_url)
+    return _nim_client
+
+
+# ---------------------------------------------------------------------------
+# Standalone NIM-backed expansion function (preferred entry point)
+# ---------------------------------------------------------------------------
+
+_EXPANSION_PROMPT = (
+    'Given this academic research query: "{query}"\n\n'
+    "Generate exactly {n} diverse reformulations for improved literature search.\n"
+    "Each reformulation should take a DIFFERENT angle:\n"
+    "  1. Conceptual: rephrase in terms of the underlying concepts/theory\n"
+    "  2. Methodology-focused: name specific techniques, algorithms, or methods\n"
+    "  3. Synonym-based: replace key terms with academic synonyms\n"
+    "(If n>3, add Application and Survey angles for the extra slots.)\n\n"
+    "Respond ONLY with a valid JSON array of {n} strings, no prose, no markdown:\n"
+    '["reformulation 1", "reformulation 2", "reformulation 3"]'
+)
+
+
+def expand_query(query: str, n: int = 3) -> List[str]:
+    """
+    Generate query reformulations via NVIDIA NIM (single LLM call).
+
+    Args:
+        query : Original user query
+        n     : Number of reformulations to generate (default 3)
+
+    Returns:
+        List of strings: [original_query, reformulation_1, ..., reformulation_n].
+        On ANY failure (network, JSON parse, empty, missing key) returns
+        [query] — never raises.
+    """
+    if not query or not query.strip():
+        return [query] if query is not None else [""]
+
+    n = max(1, min(int(n), 5))
+    prompt = _EXPANSION_PROMPT.format(query=query, n=n)
+
+    try:
+        client = _get_nim_client()
+        resp = client.chat.completions.create(
+            model=NIM_CHAT_MODEL,
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a scholarly search assistant. You output only "
+                        "valid JSON arrays of reformulated queries — no prose."
+                    ),
+                },
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.4,
+            max_tokens=300,
+        )
+        text = (resp.choices[0].message.content or "").strip()
+    except Exception as e:
+        logger.warning("NIM query expansion failed: %s — returning original query only", e)
+        return [query]
+
+    # Parse a JSON array out of the response (model may wrap with prose
+    # despite instructions). Use the regex parser the spec asked for.
+    reformulations: List[str] = []
+    try:
+        match = re.search(r'\[.*\]', text, re.DOTALL)
+        if match:
+            parsed = json.loads(match.group(0))
+            if isinstance(parsed, list):
+                reformulations = [str(x).strip() for x in parsed if str(x).strip()]
+    except Exception as e:
+        logger.warning("Failed to parse NIM response as JSON list: %s", e)
+        reformulations = []
+
+    if not reformulations:
+        return [query]
+
+    # Dedupe (case-insensitive) against original + among themselves.
+    seen = {query.strip().lower()}
+    unique: List[str] = []
+    for r in reformulations:
+        rl = r.lower()
+        if rl and rl not in seen:
+            seen.add(rl)
+            unique.append(r)
+
+    if not unique:
+        return [query]
+
+    return [query] + unique[:n]
 
 
 class QueryExpander:

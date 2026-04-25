@@ -1,0 +1,1431 @@
+Symmetries and periodic orbits in simple hybrid
+Routhian systems$
+Leonardo J. Colombo1
+Instituto de Ciencias Matem´aticas, Consejo Superior de Investigaciones Cient´ıﬁcas
+Calle Nicol´as Cabrera 13-15, Cantoblanco, 28049, Madrid, Spain
+Mar´ıa Emma Eyrea Iraz´u2
+Department of Mathematics, Universidad Nacional de La Plata
+Calle 1 y 115, La Plata 1900, Buenos Aires, Argentina
+Abstract
+Symmetries are ubiquitous in a wide range of nonlinear systems. Particularly in
+systems whose dynamics is determined by a Lagrangian or Hamiltonian func-
+tion. For hybrid systems which possess a continuous-time dynamics determined
+by a Lagrangian function, with a cyclic variable, the degrees of freedom for the
+corresponding hybrid Lagrangian system can be reduced by means of a method
+known as hybrid Routhian reduction. In this paper we study suﬃcient condi-
+tions for the existence of periodic orbits in hybrid Routhian systems which also
+exhibit a time-reversal symmetry. Likewise, we explore some stability aspects of
+such orbits through the characterization of the eigenvalues for the corresponding
+linearized Poincar´e map. Finally, we apply the results to ﬁnd periodic solutions
+in underactuated hybrid Routhian control systems.
+$This work was partially supported by I-Link Project (Ref:
+linkA20079) from CSIC
+and by Ministerio de Econom´ıa, Industria y Competitividad (MINEICO, Spain) under
+grant MTM2016-76702-P. The project that gave rise to these results received the sup-
+port of a fellowship from “la Caixa’ Foundation” (ID 100010434).
+The fellowship code is
+LCF/BQ/PI19/11690016. The graduate student M.E. Eyrea Iraz´u was partially supported
+by CONICET Argentina.
+L. Colombo and M.E. Eyrea Iraz´u were partially supported by
+“Severo Ochoa Programme for Centres of Excellence” in R&D (SEV-2015-0554). The authors
+are indebted with the reviewers and editor for their recommendations that helped to improve
+the quality, clarity and exposition of this work.
+1Email address: leo.colombo@icmat.es.
+2First and Corresponding author. Email address: maemma@mate.unlp.edu.ar.
+Preprint submitted to Nonlinear Analysis: Hybrid Systems
+January 27, 2020
+arXiv:2001.08941v1  [eess.SY]  24 Jan 2020
+
+Keywords:
+Hybrid systems, Symmetries, Routh reduction, Poincar´e map.
+2010 MSC: Primary: 37K05, Secondary: 37J15, 37N05, 34A38, 34C14, 34C25
+1. Introduction
+Hybrid systems are dynamical systems with continuous-time and discrete-
+time components in its dynamics.
+These dynamical systems are capable of
+modeling several physical systems, such as, multiple UAV systems [36], [48],
+bipedal robots [46], [47], [49], embedded computer systems [12], [39], [44] and
+underactuated mobile vehicles [18], among others.
+Simple hybrid systems are a type of hybrid systems introduced in [30], called
+in this manner because of its simple nature. A simple hybrid system is char-
+acterized by a tuple H = (D, X, S, ∆) where D is a smooth manifold, X is a
+smooth vector ﬁeld on D, S is an embedded submanifold of D with co-dimension
+1 called the switching surface (or the guard), and ∆: S →D is a smooth em-
+bedding called the impact map (or the reset map). This type of hybrid system
+has been mainly employed for the understanding of walking gaits in bipeds and
+insects [3], [26], [53]. In the situation where the vector ﬁeld X is associated
+with a mechanical system (Lagrangian or Hamiltonian), alternative approaches
+for mechanical systems with unilateral constraints have been considered in [15],
+[16], [27], [28], and [31].
+A symmetry is a transformation that leave invariant the solutions in a dy-
+namical system. The type of symmetry that most mechanical systems naturally
+exhibit is known as reversing symmetry. Reversing symmetries leave the equa-
+tions of motion invariant if the direction of time is reversed. Dynamical systems
+possessing this class of symmetry are called reversible if the reversing symmetry
+is an involution [32]. It is important to mention that the existence of periodic
+orbits has been a predominant topic of research in dynamical systems since the
+studies of Poincar´e [40]. The use of reversing symmetries to ﬁnd periodic orbits
+has been employed, for instance, in the restricted three-body problem [6].
+When a dynamical system exhibits a symmetry, it produces a conserved
+2
+
+quantity for the system. This reduces the degrees of freedom in the dynamics of
+the system. One of the classical reduction by symmetry procedures in mechanics
+is the Routh reduction method [23]. During the last few years there has been a
+growing interest in Routh reduction, mainly motivated by physical applications
+[10], [19], [34], [35]. Routh reduction for hybrid systems has been introduced by
+A. Ames and S. Satry and it has been applied in the ﬁeld of bipedal locomotion
+[2], [3], [5]. The reduced simple hybrid system is called simple hybrid Routhian
+system. In this work we build in the former approach to that concept by study-
+ing suﬃcient conditions for which a simple hybrid Routhian system exhibits a
+periodic solution.
+The search of limit cycles in hybrid systems has been an active research ﬁeld
+in the robotics and automatic control community since the works of Mc’Geer
+due to the study of periodic walking gaits for passive dynamic walkers [13],
+[38]. Since these works, the study of orbital stability for hybrid systems has
+been the more explored analysis in this ﬁeld. The method of Poincar´e map is
+frequently used in the legged locomotion community to study orbital stability
+of walking gaits [21], [25], [42], [43], [52], [53]. In most of the studies analyzed
+in the literature employing such an approach, one assumes the existence of a
+periodic solution. Then one proceed with the corresponding stability analysis
+of the orbits by examining the eigenvalues of the linearized Poincar´e Map at
+its ﬁxed points. In general, since ﬁxed points of the Poincar´e map corresponds
+with periodic orbits for the underlying dynamical system, to ﬁnd these orbits
+one needs to employ computational resources to ﬁnd the Poincar´e map and its
+ﬁxed points.
+In this work, we show how to ensure the existence of periodic solutions by
+examining the symmetries for a simple hybrid Routhian system excluding com-
+putational tools.
+Moreover, with the method proposed in this work we also
+provide a characterization for the eigenvalues associated with the linearized
+Poincar´e map for these periodic solutions, also from an analytical point of view.
+To the best of our knowledge, suﬃcient conditions for simple hybrid Routhian
+systems under which one can ensure the existence of periodic solutions and the
+3
+
+characterization of its qualitative behavior, excluding the use of computational
+tools, has not yet been widely discussed in the literature. Similar results for
+simple hybrid (non-Routhian) systems concerning the existence of periodic so-
+lutions can be found in [8] and [14]. Suﬃcient conditions for the existence and
+uniqueness of Poincar´e maps can be found in [11] and results about stability of
+periodic solutions for 2D-simple hybrid systems can be found in [22].
+The primary goal of this paper consists on establishing the conditions under
+which we can ensure the existence of periodic orbits in simple hybrid Routhian
+systems. By introducing a time-reversal symmetry, trajectories for a simple hy-
+brid Routhian system will become in a periodic orbit if the trajectory begins
+at a ﬁxed point of the symmetry map. In this work, we provide characteriza-
+tions for the eigenvalues associated with the linearized Poincar´e map for these
+periodic solutions. We also apply the results to the classical example of the
+2D one-leg robotic hopper for which, after applying Routh reduction method
+for simple hybrid system, we reduce the hybrid dynamics to the one for the
+2D spring loaded inverted pendulum (SLIP). Then we study the existence of
+periodic motions and show that periodic orbits are at most marginally stable.
+As an application we employ the results given in this work for the search of pe-
+riodic orbits in underactuated hybrid mechanical control systems, in particular,
+for the 2D spring loaded inverted pendulum.
+The paper is structured as follows: Section 2 presents a review on Lagrangian
+mechanics and Routh reduction. Section 3 introduces simple hybrid Routhian
+systems and the 2D-SLIP model is derived as the simple hybrid Routhian system
+for to the 2D one leg robotic hopper. Section 4 contains the main results of the
+paper, such as how after introducing time-reversal symmetries we ﬁnd suﬃcient
+conditions to ensure the existence of periodic solutions and we study how to
+characterize some of the eigenvalues for the linearization of the Poincar´e map
+corresponding to the periodic orbit. In this section we also explain how to apply
+the results for the reduced system associated with the 2D one leg robotic hopper.
+Finally, Section 5 shows the results obtained in Section 4 to study the existence
+of periodic solutions in underactuated simple hybrid Routhian control systems.
+4
+
+2. Preliminaries on Routh reduction
+Let Q be the conﬁguration space of a mechanical system, a diﬀerentiable
+manifold of dimension n, with local coordinates q = (q1, . . . , qn). Let TQ be
+the tangent bundle of Q, locally described by the positions and velocities for
+the system (q, ˙q) = (q1, . . . , qn, ˙q1, . . . , ˙qn) ∈TQ with dim(TQ) = 2n.
+The dynamics of the mechanical system is determined by a Lagrangian func-
+tion L : TQ →R given by L(q, ˙q) = K(q, ˙q) −V (q) where K : TQ →R is the
+kinetic energy and V : Q →R the potential energy. Along this work we will
+assume that the Lagrangian L is regular, that is, det
+ ∂2L
+∂˙qi∂˙qj
+
+̸= 0 for all
+i, j = 1, . . . , n.
+The corresponding equations of motion describing the dynamics of the sys-
+tem are given by the Euler-Lagrange equations for L, that is, d
+dt
+ ∂L
+∂˙qi
+
+= ∂L
+∂qi ,
+i = 1, . . . , n; a system of n second-order ordinary diﬀerential equations. These
+equations induce a vector ﬁeld XL : TQ →T(TQ) describing the dynamics of
+the Lagrangian system, given by
+XL(qi, ˙qi) =
+ 
+qi, ˙qi; ˙qi,
+ ∂2L
+∂˙qi∂˙qj
+−1  ∂L
+∂qi −
+∂2L
+∂˙qi∂qj ˙qj
+!
+.
+There exists a large class of systems for which the Lagrangian does not
+depend on some of the generalized coordinates.
+Such coordinates are called
+cyclic or ignorable, and the corresponding generalized momenta is easily checked
+to be constants of the motion.
+The Routh reduction procedure is a classical reduction technique which takes
+advantage of the conservation law to deﬁne a reduced Lagrangian function, so-
+called the Routhian, such that the solutions of the Euler-Lagrange equations
+for the Routhian are in correspondence with the solutions of Euler-Lagrange
+equations for the original Lagrangian, when the conservation of momenta is
+taken into account. The technique is due to Edward Routh, who successfully
+applied it to the study of the stability of steady motions (today, we call these
+relative equilibria).
+The steps to carry out Routh reduction are described in many classical texts
+5
+
+of mechanics (such as [23]) as follows. Assume qi = (xa, θ) are local coordinates
+on Q, a = 1, . . . , n −1.
+1) Let L(xa, ˙xa, θ, ˙θ) be a G-regular Lagrangian with cyclic coordinate θ, that
+is, ∂L
+∂θ = 0, and denote by pθ the generalized momentum corresponding to
+θ.
+2) Fix a value of the momentum µ = pθ, and consider the function
+Rµ
+c (xa, ˙xa) =
+
+L −˙θpθ
+ 
+pθ=µ ,
+(1)
+where the notation means that we have used the relation µ = pθ to replace all
+the appearances of ˙θ in terms of (xa, ˙xa) and the parameter µ. The function
+Rµ
+c is the (classical) Routhian.
+3) If we regard Rµ
+c as a new Lagrangian in the variables (xa, ˙xa), then the
+solutions of the Euler-Lagrange equations for Rµ
+c are in correspondence with
+those of L when one takes into account the relation pθ = µ. More precisely,
+if L is G-regular:
+(i) Any solution (xa(t), θ(t)) of the Euler-Lagrange equations for L with
+momentum pθ = µ projects onto a solutions xa(t) of the Euler-Lagrange
+equations for Rµ
+c ,
+d
+dt
+∂Rµ
+c
+∂˙xa
+
+−∂Rµ
+c
+∂xa = 0.
+(2)
+These equations will be referred to as Routh equations. Equations (2)
+induce a vector ﬁeld XRµ
+c : TQ →T(TQ) describing the dynamics of
+the reduced system, called Routhian vector ﬁeld, and given by
+XRµ
+c (xa, ˙xa) =
+
+xa, ˙xa, ˙xa, Mab
+ ∂L
+∂xa −
+∂2L
+∂˙xa∂xb ˙xb
+
+,
+where Mab =
+
+∂2L
+∂˙xa∂˙xb
+−1
+.
+(ii) Conversely, any solution of Routh equations for Rµ
+c can be lifted to a
+solution of the Euler-Lagrange equations for L with momentum pθ = µ.
+This is best understood by means of an example:
+6
+
+Example 1. The Lagrangian L : T(R × S1) →R given by
+L(r, ˙r, θ, ˙θ) = 1
+2m( ˙r2 + r2 ˙θ2) −1
+2r2k.
+describes (in polar coordinates) the motion of a mass m on the plane which is
+pinned to a ﬁxed point through a spring of elastic constant k (as it is shown in
+Figure 1).
+k
+m
+θ
+r
+Figure 1: spring-loaded pendulum
+Note that the Lagrangian L is regular since det
+
+
+∂2L
+∂˙r∂˙r
+∂2L
+∂˙r∂˙θ
+∂2L
+∂˙θ∂˙r
+∂2L
+∂˙θ∂˙θ
+
+= (mr)2 ̸= 0.
+The coordinate θ is cyclic, and the associated conservation law reads pθ = mr2 ˙θ.
+If we set pθ = µ ̸= 0 (a ﬁxed constant µ which represents the ﬁxed value of the
+momentum), we can work out ˙θ in terms of the (r, ˙r) and ﬁnd the relation
+˙θ = µ/mr2. Then the Routhian Rµ
+c : TR →R is given by
+Rµ
+c (r, ˙r) =
+
+L −µ ˙θ
+ 
+pθ=µ = 1
+2
+
+m ˙r2 −kr2 −µ2
+mr2
+
+.
+The equivalence of solutions between L and Rµ
+c happens when one takes into
+account the conservation law pθ = µ.
+More precisely: a solution (r(t), θ(t))
+of the Euler Lagrange for the G-regular Lagrangian L with momentum pθ = µ
+projects onto a solution r(t) of Routh equations for Rµ
+c . Conversely, given a
+solution r(t) of the Routh equations for Rµ
+c , one can use the conservation law
+pθ = µ to lift r(t) to a solution (r(t), θ(t)) of the Euler Lagrange for L (with
+momentum µ, obviously).
+7
+
+3. Simple hybrid Routhian systems
+3.1. Simple hybrid system
+Simple hybrid systems [30] (see also [2]) are characterized by the 4-tuple
+H = (D, X, S, ∆) where D is a smooth manifold, the domain, X is a smooth
+vector ﬁeld on D, S is an embedded submanifold of D with co-dimension 1
+called switching surface, and ∆: S →D is a smooth embedding called the
+impact map. S and ∆are also called the guard and reset map, respectively, in
+[2]-[4].
+In this work, the dynamics associated with a simple hybrid system is de-
+scribed by an autonomous system with impulse eﬀects as in [53]. We denote by
+ΣH the simple hybrid dynamical system generated by H, that is,
+ΣH :
+
+
+
+
+
+˙γ(t) = X(γ(t)),
+γ−(t) /∈S
+γ+(t) = ∆(γ−(t)),
+γ−(t) ∈S
+(3)
+where γ : I ⊂R →D, and γ−(t) := lim
+τ→t−γ(τ), γ+(t) := lim
+τ→t+γ(τ) are the left
+and right limits of the state trajectory γ(t), respectively, describing the states
+immediately before and after the times when integral curves of X intersects S
+(i.e., pre and post impact of the solution γ(t) with S).
+Remark 1. Consider the impact map ∆given by the identity map. When a
+trajectory crosses S, we will have γ+ = ∆(γ−) = γ−∈S, so that we are again
+in the regime of discrete dynamics where re-initialization (to γ−) will occur. It
+is clear that this process will never end. Consequently, there exists an inﬁnite
+number of resets in a ﬁnite amount of time. This situation generates a class
+of behavior called Zeno behavior. That is, a solution of a hybrid system may
+experience a Zeno state if inﬁnity many impacts occur in a ﬁnite amount of
+time [2]. This is particularly problematic in applications where numerical work
+is conducted, as computation time grows inﬁnitely large at these Zeno points.
+There are two primary modes through which zeno behavior can occur:
+(1) A trajectory is reset back onto the guard, prompting additional resets.
+As seen in the above example where γ+ = ∆(γ−) = γ−∈S, if there is a set of
+8
+
+points in the guard which the reset map cycles between, we can get ’stuck’ on
+the guard. To exclude this type of behavior, we require that S ∩∆(S) = ∅, where
+∆(S) denotes the closure as a set of ∆(S). This ensures that the trajectory will
+always be reset to a point with positive distance from the guard.
+(2) The set of times where a solution to our system reaches the guard (and is
+correspondingly reset) has a limit point. This happens, for example, in the case
+of the bouncing ball with coeﬃcient of restitution 1/2. If t0 is the time between
+two impacts, then the time between the next two impacts will be t0/2, then t0/4,
+and so on. In time
+T = t0 + t0
+2 + t0
+4 + ... = 2t0
+we will have inﬁnite resets in a ﬁnite time. To exclude these kind of situations,
+we require the set of impact times to be closed and discrete, as in [53].
+Both of the previously established hypothesis will be assumed implicitly through-
+out the rest of the paper (i.e., ∆(S)∩S = ∅and the set of impact times is closed
+and discrete). Necessary and suﬃcient conditions for the existence of Zeno be-
+havior in the class of hybrid systems studied in this work have been explored in
+[33].
+3.2. Simple hybrid Routhian systems
+When the conﬁguration space is Q = P × G (i.e., D = TQ = TP × TG)
+with G an abelian Lie group and P a smooth manifold, A. Ames and S. Sastry
+introduced the notion of hybrid Routhian systems in [2] and [5]. This is based on
+2 invariance properties allowing the reduction by symmetries: a cyclic regular
+Lagrangian L : TQ →R and a function h : Q →R describing an unilateral
+constraint which induces the switching surface, being h cyclic and deﬁned in
+the same generalized coordinates as L. These two invariance properties allow
+to deﬁne the Routhian Rµ
+c : TP →R and the reduced constraint function
+¯h : P →R.
+The starting point for symmetry reduction is a Lie group action ψ: G×Q →
+Q of some Lie group G on the manifold Q. There is a natural lift of the action
+9
+
+ψ to the space T ∗Q,
+ΨT ∗Q : G × T ∗Q →T ∗Q,
+(g, (q, p)) 7→T ∗ψg−1(q, p).
+The cotangent bundle T ∗Q is equipped with the following geometric structure,
+called canonical symplectic structure (see, for instance, [37]) Ω= dq ∧dp with
+(q, p) being local coordinates on T ∗Q. The action ΨT ∗Q enjoys the following
+properties (see [37]):
+• ΨT ∗Q is a symplectic action, meaning that, if we denote ΨT ∗Q
+g
+≡ΨT ∗Q(g, ·),
+(ΨT ∗Q
+g
+)∗Ω= Ω, where (ΨT ∗Q
+g
+)∗Ωaccounts for the pullback by ΨT ∗Q
+g
+of
+the 2-form Ω.
+• It admits an Ad∗-equivariant momentum map J : T ∗Q →g∗given by
+⟨J(q, p), ξ⟩= ⟨p, ξQ⟩,
+∀ξ ∈g∗,
+where ξQ(q) :=
+d
+dtψexp(tξ)q is the inﬁnitesimal generator of the element
+ξ ∈g∗and where g∗denotes the dual of g, the Lie algebra associated with
+the Lie group G.
+Likewise, there is a lift of the action ψ to TQ denoted by ΨT Q
+ΨT Q : G × TQ →TQ,
+(g, (q, ˙q)) 7→Tψg(q, ˙q).
+It has been shown in [2] and [5] that to perform a hybrid Routhian reduction
+one needs to impose some compatibility conditions between the action and the
+simple hybrid system whose continuous-time dynamics is described by a La-
+grangian ﬂow associated to L (a.k.a simple hybrid Lagrangian system). By the
+term hybrid action we mean a Lie group action ψ: G × Q →Q such that (i) L
+is invariant under ΨT Q, i.e. L ◦ΨT Q = L; (ii) ΨT Q restricts to an action on S;
+(iii) ∆is equivariant w.r.t. the previous action, namely ∆◦ΨT Q
+g
+|S= ΨT Q
+g
+◦∆.
+In the case of a hybrid action, ΨT Q admits an Ad∗-equivariant (Lagrangian)
+momentum map JL : TQ →g∗given by JL = J ◦FL, where FL : T →T ∗Q
+10
+
+is the Legendre transformation associated with regular Lagrangian L, given by
+FL(q, ˙q) := (q, p = ∂L/∂˙q). This follows directly from the invariance of L, since
+it implies that FL is an equivariant diﬀeomorphism, i.e. FL◦ΨT Q
+g
+= ΨT ∗Q
+g
+◦FL.
+The hybrid equivalent of momentum map is the notion of hybrid momentum
+map introduced in [2]. For example, in the case of TQ, JL is a hybrid momentum
+map if the diagram
+g∗
+TQ
+S
+TQ
+JL
+JL|S
+i
+∆
+JL
+(4)
+commutes, where i denotes the canonical inclusion from S to TQ.
+The situation of interest in this paper is that of an Abelian group action, i.e.
+G = S1 (the case G = R is analogous; and if G is a product one can iterate the
+procedure): this corresponds to the classical notion of cyclic coordinates. From
+now on we will assume Q = P × S1 where P is called the shape space and the
+action being given by
+ψα : S1 × Q →S1 × Q,
+(θ, x) 7→(θ + α, x).
+(5)
+While this is indeed a strong assumption, it is always the case locally, so as long
+as it applies to the domain of interest of a speciﬁc problem the procedure below
+applies. More general results where the manifold is not a product or the Lie
+group is arbitrary (not necessarily Abelian) can be handled by using the same
+tools, but involving more technicalities such as the introduction of a principal
+connection. These matters will be discussed in a future extension of this work.
+A. Ames and S. Sastry also shown that if the trajectory γ for a simple hybrid
+Lagrangian system starting at γ0 ∈J−1(µ), with J : TQ →g∗the momentum
+map associated for the conserved quantity µ, being g the Lie algebra associated
+with G, then the trajectory for a simple hybrid Routhian system starting at
+π(γ0) with π : TQ →TP the projection over the ﬁrst factor of TQ = TP ×TG,
+is determined by π(γ(t)).
+11
+
+Deﬁnition 3.1. A simple hybrid system H = (D, X, S, ∆) is said to be a simple
+hybrid Routhian system if it is determined by HRµ
+c := (TP, XRµ
+c , Sµ, ∆µ), where
+XRµ
+c : TP →T(TP) is the Routhian vector ﬁeld, Sµ is the reduced switching
+surface given by S |(JL|S)−1(µ) with µ the momentum constraint determined by
+the conserved quantity which arises from the cyclic coordinate and ∆µ : Sµ →
+TP is the impact map on Sµ given by ∆|(JL|S)−1(µ).
+Deﬁnition 3.2. The simple hybrid Routhian dynamical system generated by
+HRµ
+c is given by
+ΣHRµ
+c :
+
+
+
+
+
+˙γ(t) = XRµ
+c (γ(t)), if γ−(t) /∈Sµ,
+γ+(t) = ∆µ(γ−(t)), if γ−(t) ∈Sµ,
+(6)
+where γ(t) ∈TP.
+Note that, as before, ∆µ : Sµ →TP is continuous and if we denote ∆µ(Sµ)
+the closure of ∆µ(Sµ) then we must assume ∆µ(Sµ) ∩Sµ = ∅and therefore,
+an impact does not lead immediately to another impact. We shall assume that
+HRµ
+c satisﬁes (see Section 4.1 in reference [53] for more details)
+(A1) Assumption 1: Sµ ̸= ∅and there exists an open subset U ⊂TP and
+a diﬀerentiable function ¯h : U →R such that Sµ = {x ∈U | ¯h(x) = 0} with
+∂¯h
+∂x(s) ̸= 0 for all s ∈Sµ (that is, Sµ is an embedded submanifold of TP with
+co-dimension 1) and the Lie derivative of the vector ﬁeld XRµ
+c with respect to
+¯h does not vanish on TP, that is LXRµ
+c ¯h(w) ̸= 0, ∀w ∈TP.
+(A2) Assumption 2: A trajectory γ : [0, T] →TP crosses the switching
+surface Sµ at t−
+i = inf{t > 0|γ(t) ∈Sµ}. We allow the trajectory γ to be non-
+smooth but continuous at t−
+i . That is, the velocity before the impact ˙x−may
+be diﬀerent from the velocity ˙x+ after the impact at Sµ, i.e., ˙x(t−
+i ) ̸= ˙x(t+
+i ).
+The requirement that the conﬁguration right after the impact does not be-
+long to Sµ (that is, ∆µ(Sµ) ∩Sµ = ∅), becomes a requirement on the exit
+velocity which states that the system has to be moving away from the switching
+surface right after the impact, that is, ∇¯h(γ(ti)) · ˙γ(t+
+i ) ≤0, with ¯h : TP →R
+as in A1.
+12
+
+A trajectory of a hybrid Routhian system is determined by the dynamics as-
+sociated with the Routhian until the instant when the state attains the switching
+surface Sµ. We refer to such instant as the impact time. There is an instan-
+taneous change in the velocity component of the state at impact times. The
+impact map gives new initial conditions from which the continuous dynamics
+evolves until the next impact occurs.
+Remark 2. We deﬁned simple hybrid Routhian systems from simple hybrid
+systems as in [2]-[4]. However our deﬁnition is slightly diﬀerent, but it is not
+contradictory, with the one given in [2] and [3]. The constraint deﬁning Sµ
+is smooth satisfying both assumptions A1 and A2, (it is not determined by
+unilateral constraints as considered in [2]-[4] and [9], since we use the approach
+for systems with impulsive eﬀects following [21] and [53]). Usually, and specially
+in biped locomotion, the impact map is given by foot placement on the ground
+and it comes from a Newtonian impact equation [3], [4], [9]. In this work we
+only assume ∆µ is a smooth embedding on Sµ satisfying A1 and A2 .
+Solutions for the simple hybrid Routhian dynamical system ΣHRµ
+c , are con-
+sidered right continuous and with ﬁnite left and right limits at each impact with
+Sµ. More precisely:
+Deﬁnition 3.3. A solution for the hybrid Routhian system ΣHRµ
+c is a curve
+γ : [t0, tf) →TP, tf ∈R ∪{∞}, tf > t0, unique from a given initial condition,
+depending continuously on it, satisfying A2, and such that:
+(i) γ(t) is right continuous on [t0, tf),
+(ii) left and right limits, denoted by γ−(t) and γ+(t), respectively, exists at
+each point t ∈(t0, tf),
+(iii) there exists a closed discrete subset I ⊂[t0, tf), the impact times, such
+that, for each t /∈I, γ(t) is diﬀerentiable, ˙γ(t) = XRµ
+c (γ(t)), and γ(t) /∈
+Sµ; and for t ∈I, γ−(t) ∈Sµ and γ+(t) = ∆µ(γ−(t)).
+13
+
+Note that right continuity of solutions implies γ(t) = γ+(t) at all the points
+in its domain of deﬁnition. If α0 ∈TP denotes the initial state at time t0, the
+solution at t0 is denoted γ(t0, α0). When α0 /∈Sµ, γ(t0, α0) = α0 and when
+α0 ∈Sµ, γ(t0, α0) = ∆µ(α0) = γ(t0, ∆µ(α0)) (see Section 4.1 in [53] for details).
+Remark 3. As we commented in Section 2, since the Euler-Lagrange equations
+for Rµ
+c involve less variables, they are easier to solve. If the Lagrangian L is reg-
+ular, then one usually proceeds to solve these ﬁrst, and then uses the momentum
+constraint ∂L/∂˙θ = µ to reconstruct the sought solutions of the Euler-Lagrange
+equations of L.
+Special care should be taken when translating this reduction
+technique to hybrid systems. The reason is that the collisions with the switching
+surface will, in general, modify the value of the momentum map. Therefore, if
+I = {Ii}i∈Λ, where Λ = {0, 1, 2, ...} ⊆N is a ﬁnite (or inﬁnite) indexing set,
+and Ii = [ti, ti+1] if i, i + 1 ∈Λ and IN−1 = [tN−1, tN) or [tN−1, ∞) if |Λ| = N,
+N ﬁnite, with ti, ti+1, tN−1 ∈R and ti ≤ti+1, then the Routhian has to be
+deﬁned in each Ii taken into account the value of the momentum µi after the
+collision at time τi. Note that this also has inﬂuence in the way the reset map
+∆is reduced.
+Let us denote: (1) µi the momentum of the system in Ii = [ti, ti+1], (2) ∆µi
+is given by ∆|(JL|S)−1(µi), and (3) Sµi is given by S |(JL|S)−1(µi), There is a
+sequence of hybrid Routhian systems
+[t0, t1]
+(P, Rµ0
+c , Sµ0, ∆µ0)
+[t1, t2]
+(P, Rµ1
+c , Sµ1, ∆µ1)
+(. . . )
+(. . . )
+Coll.
+Red.
+Coll.
+Coll.
+Red.
+Coll.
+Red.
+Similarly as in [5], the reconstruction procedure from the reduced hybrid ﬂow
+to the ﬂow for the simple hybrid Lagrangian system involves a recursive inte-
+gration at each stage in the previous diagram of the cyclic variable using the
+solution of the reduced hybrid Routhian system. Roughly speaking, this accounts
+14
+
+to imposing the momentum constraint on the reconstructed solution.
+Example 2 (The 2D one leg robotic hopper). The 2D one leg hopper robot
+consists of a spring loaded inverted pendulum together with a planar rigid body
+attached at the top of the spring (see Figure 2). This model is a schematic rep-
+resentation for the stance phase of a running or hopping biped with one foot on
+the ground at any time (see [1] for details). The common point of attachment
+is the center of mass of the rigid body (i.e., the sprung leg is attached at a hip
+joint which is the center of mass).
+Figure 2: 2D one leg robotic hopper
+The conﬁguration space of the system is Q = (R×S1)×S1, locally parametrized
+by the coordinates q = (ξ, ϕ, θ) describing the length of the spring, the angle of
+the spring with respect to the ground (i.e., the angle formed between the line
+joining the foothold to the center of mass and the vertical gravitational axis)
+and the attitude for the rigid body, respectively. We denote by m the mass of
+the rigid body and I its moment of inertia. The spring is considered massless
+and l0 denotes the non-load length of the spring.
+The motion is divided into two phases: The ﬁrst one is the stance phase, with
+foothold ﬁxed, the leg under compression, and the body swinging forwards (i.e.,
+θ is increasing). The second one is a ﬂight phase, which occurs when the rigid
+body moves, describing a ballistic motion under the inﬂuence of gravity. The
+transition between both phases occurs when the spring is uncompressed (i.e., it
+is unloaded) until the time when the spring touch the ground again. Both phases
+deﬁne a hybrid system.
+15
+
+The Lagrangian describing the ﬂight phase is given by the kinetic energy
+minus the potential energy, which is given by the spring potential V (ξ) and the
+gravitational potential, that is,
+L(ξ, ϕ, θ, ˙ξ, ˙ϕ, ˙θ) = 1
+2m( ˙ξ2 + ξ2 ˙ϕ2) + 1
+2I ˙θ2 −(mgξ cos ϕ + V (ξ)).
+To derive the switching surface and the impact map, we note that the ﬂight
+starts when the spring length reaches its non-load length (i.e., ξ = l0). Therefore
+the switching surface is given by S = {(ξ, ϕ, θ, ˙ξ, ˙ϕ, ˙θ) ∈TQ| ξ = l0}.
+By assuming that at the start of the stance phase the leg is at an angle of
+−ϕ0, by employing polar coordinates x = ξ sin ϕ, y = ξ cos ϕ and nothing that
+y+ = l0 cos(−ϕ0) = l0 cos(ϕ0), the impact map is given by
+∆(x−, y−, θ−, ˙x−, ˙y−, ˙θ−) = (−l0 sin ϕ0, l0 cos ϕ0, −θ−, ˙x−, −˙y−, −˙θ−).
+Note that the Lagrangian and the constraint which deﬁne the switching sur-
+face, i.e., h(q) = ξ −l0, are both cyclic in θ.
+Therefore by denoting µ the
+conserved quantity, the Routhian Rµ
+c : T(S1 × R) →R is given by
+Rµ
+c (ξ, ϕ, ˙ξ, ˙ϕ) = m
+2 ( ˙ξ2 + ξ2 ˙ϕ2) −µ2
+2I −mgξ cos ϕ −V (ξ).
+Note that Rµ
+c describes the motion for the spring-loaded inverted pendulum
+(SLIP) which has been used as a model which reasonably provides a template for
+sagittal plane motions of the center of mass (COM) of diverse legged systems
+as it was reviewed in [26] and further studied in [20] and [17].
+Figure 3: 2D spring loaded inverted pendulum
+The aerial phase consists of a projectile (or ballistic) motion for the COM
+16
+
+(where the only external force is gravity) at the end of which, when ξ = l0, the
+next stance phase starts as is shown in Figure 2.
+Routh equations for Rµ
+c are given by
+¨ξ = ξ ˙ϕ2 −g cos ϕ −1
+m
+∂V
+∂ξ ,
+¨ϕ = g
+ξ sin ϕ −2 ˙ϕ ˙ξ
+ξ ,
+which deﬁnes the Routh vector ﬁeld
+XRµ
+c (s) =
+ 
+s, ˙ξ, ˙ϕ, ξ ˙ϕ2 −g cos ϕ −1
+m
+∂V
+∂ξ , g
+ξ sin ϕ −2 ˙ϕ ˙ξ
+ξ
+!T
+,
+where s(t) = (ξ(t), ˙ξ(t), ϕ(t), ˙ϕ(t)) ∈T(R × S1). Therefore the simple hybrid
+Routhian system ΣHRµ
+c is given by
+ΣHRµ
+c :
+
+
+
+
+
+˙s(t) = XRµ
+c (s(t)), if s−(t) /∈Sµ,
+s+(t) = ∆µ(s−(t)), if s−(t) ∈Sµ,
+(7)
+where
+Sµ = {(ξ, ˙ξ, ϕ, ˙ϕ) ∈T(R × S1)|ξ = l0}
+and
+∆µ(x−, y−, ˙x−, ˙y−) = (−l0 sin ϕ0, l0 cos ϕ0, ˙x−, −˙y−).
+4. Time reversal symmetries and periodic solutions for Simple Hybrid
+Routhian systems
+In this section we study how to impose symmetries on the Routhian vector
+ﬁeld XRµ
+c describing the continuous-time dynamics for a simple hybrid Routhian
+system, and onto the impact map, to achieve periodic motions in these classes
+of hybrid systems.
+4.1. Time-reversal symmetries for simple hybrid Routhian systems
+As it was reviewed in [32] (see also [1]), the notion of time reversal symme-
+tries plays a fundamental role in mechanical systems which are invariant under
+the transformation (q, ˙q, t) 7→(q, −˙q, −t).
+This symmetry implies that for a
+17
+
+trajectory in phase space γ(t) = (q(t), ˙q(t)) with initial condition γ0 = (q0, ˙q0),
+then β(t) = (q(−t), −˙q(−t)) is also a solution for the system with initial condi-
+tion β0 = (q0, −˙q0). In particular, if we have the trajectory q(t), we also have
+the trajectory q(−t).
+Deﬁnition 4.1. [32] A diﬀeomorphism Φ : TP →TP is called time-reversal
+symmetry for the Routh vector ﬁeld XRµ
+c with Routhian Rµ
+c : TP →R if Φ is
+an involution, that is, Φ ◦Φ = Id, and it satisﬁes
+dΦ
+dt (γ(t)) = −XRµ
+c (Φ(γ(t))).
+(8)
+That is, the Routh vector ﬁeld satisﬁes XRµ
+c (Φ(q, ˙q)) = −dΦ(q, ˙q) · XRµ
+c (q, ˙q).
+We call a Routh vector ﬁeld satisfying condition (8) a reversible Routh vector
+ﬁeld under the time-reversing symmetry Φ.
+Remark 4. Note that the name “time-reversal” is given by the fact that equa-
+tion (8) can be read as
+Φ ◦Xt
+Rµ
+c = X−t
+Rµ
+c ◦Φ,
+where −t means the time-reversibility of the vector ﬁeld Xt
+Rµ
+c .
+Proposition 1. Consider a time-reversal symmetry Φ for XRµ
+c . If γ∗is a ﬁxed
+point of Φ such that γ(0) = γ∗for γ an integral curve of XRµ
+c passing through
+γ∗, then Φ(γ(t)) = γ(−t).
+Proof: Consider ˜γ(t) = Φ(γ(−t)), then ˜γ(0) = Φ(γ(0)) = Φ(γ∗) = γ∗. That
+is, γ and ˜γ satisfy the same initial value.
+Note that ˙˜γ(t) = −dΦ · ˙γ(−t), but γ(t) is a solution of XRµ
+c , then ˙˜γ(t) =
+−dΦ · XRµ
+c (γ(−t)).
+Since Φ is a time-reversal symmetry for XRµ
+c , then ˙˜γ(t) = XRµ
+c (Φ(γ(−t))),
+and by deﬁnition of ˜γ(t), it follows that ˙˜γ(t) = XRµ
+c (˜γ(t)). Therefore, ˜γ(t) is a
+solution for XRµ
+c with initial value γ∗. By uniqueness of solutions for an initial
+value problem, ˜γ(t) = γ(t), that is Φ(γ(−t)) = γ(t). Since Φ is an involution,
+Φ(γ(t)) = γ(−t).
+□
+18
+
+Theorem 4.2. Let Rµ
+c : TP →R be the Routhian function invariant under the
+map Φ : TP →TP,
+Φ(q(t), ˙q(t)) = (F(q(t)), −dF(q) · ˙q(t))
+(9)
+with F : Q →Q a smooth involution. If γ∗= (q∗, ˙q∗) is a ﬁxed point of Φ, then
+Φ(γ(t)) = γ(−t). In particular F(q(t)) = q(−t).
+Proof: Let γ(t) be a solution of Routh equations for Rµ
+c with initial value
+γ(0) = γ∗and consider the map ˜γ(t) = Φ(γ(−t)). Given that γ∗is a ﬁxed point
+of Φ both curves in TP, γ(t) and ˜γ(t), satisfy the same initial values. Since
+Rµ
+c is invariant under Φ, Rµ
+c (˜γ(t)) = Rµ
+c (Φ(γ(−t))) = Rµ
+c (γ(−t)) and given
+the Routh’s equations are invariant under (q, ˙q, t) 7→(q, −˙q, −t), Rµ
+c (˜γ(t)) =
+Rµ
+c (γ(t)). Therefore, ˜γ(t) and γ(t) satisfy the same Routh equations. Next, by
+uniqueness of solutions for the initial value problem, it follows that Φ(γ(t)) =
+γ(−t). Therefore, F(q(t)) = q(−t).
+□
+4.2. Existence of periodic orbits
+In this section, based on the properties of the Routhian, we ﬁnd suﬃcient
+conditions for the existence of periodic solutions in simple hybrid Routhian
+systems in analogy with the results for invariant Hamiltonian systems studied
+in [14].
+Theorem 4.3. Let ΣHRµ
+c be a simple hybrid Routhian dynamical system with
+Routhian Rµ
+c : TP →R invariant under Φ : TP →TP deﬁned as in (9). If γ∗is
+a ﬁxed point of Φ, γ crosses the switching surface S at t−
+i = inf {t > 0|γ(t) ∈S}
+and the impact map is deﬁned as ∆(γ−(ti)) = Φ(γ−(ti)) then γ(t) is a periodic
+solution for ΣHRµ
+c with period 2t−
+i .
+Proof: Since Rµ
+c is invariant under Φ, by Theorem 4.2 Φ must satisfy
+Φ(γ(t)) = γ(−t). In particular, for t = t−
+i , using the notation γ(t−
+i ) = γ−(ti),
+we have Φ(γ−) = γ(−t−
+i ) = γ−(−ti). Given that by deﬁnition ∆(γ−) = γ+(t)
+we have that γ(t+
+i ) = γ(−ti) and therefore, right after the impact, γ(t) is re-
+initialized back to γ(−ti) so, it is periodic with period 2t−
+i .
+□
+19
+
+The advantage of this result is that we can search for periodic orbits just
+looking at the Routhian function, instead of, for instance, using the Poincar´e
+return map.
+Also, depending on the quantity of ﬁxed points, Theorem 4.3
+provides a family of periodic solutions instead of a single periodic orbit.
+Example 3 (The 2D robotic hopper - continuation). Consider the 2D hy-
+brid system given by the planar robotic hopper introduced in Example 2. We have
+seen that after employing Routh reduction this system becomes in the 2D SLIP.
+Consider the function F : R × S1 →R × S1 as F(ξ, ϕ) = (ξ, −ϕ). F is a
+smooth involution. Using F we can construct the symmetry map Φ : T(R×S1) →
+T(R × S1) using (9) as Φ(ξ, ϕ, ˙ξ, ˙ϕ) = (ξ, −ϕ, −˙ξ, ˙ϕ). It is easy to check that
+Rµ
+c ◦Φ = Rµ
+c .
+Fixed points of Φ are given by γ∗= (ξ∗, 0, 0, ˙ϕ∗), for any ξ∗and ˙ϕ∗. Let
+t−
+i
+the point where γ crosses the switching surface Sµ and deﬁne ∆µ(t−
+i ) =
+∆µ(ξ−, ϕ−, ˙ξ−, ˙ϕ−) = Φ(ξ−, ϕ−, ˙ξ−, ˙ϕ−) = (l0, −ϕ0, −˙ξ−, ˙ϕ−). Therefore, by
+Theorem 4.3, there exists a periodic solution for the hybrid Routhian system
+determined by Rµ
+c and ∆µ with period 2t−
+i .
+4.3. Stability analysis of periodic orbits
+Let γ(t) be a periodic solution for ΣHRµ
+c (with period 2t−
+i ) associated with
+the time-reversal symmetry Φ : TP →TP and γ∗= γ(0) be a ﬁxed point of
+Φ. For the stability analysis of this orbit, we use the method of Poincar´e maps
+[24], [41].
+Let P be the Poincar´e map corresponding to the periodic orbit γ(t), that
+is, P : Sµ
+γ∗→Sµ
+γ∗, being Sµ
+γ∗(i.e., the reduced switching surface at the ﬁxed
+point γ∗) the Poincar´e section, a hypersurface at γ∗, with co-dimension one of
+the reduced conﬁguration space, where we are assuming that γ∗∈Sµ
+γ∗.
+Given that γ is a periodic orbit and γ(0) = γ∗, by deﬁnition of Poincar´e
+map, P(γ∗) = γ∗. Stability analysis employing the method of Poincar´e maps
+tell us that γ(t) is asymptotically stable at γ∗if the eigenvalues for the Jacobian
+of P (i.e., its tangent map) at γ∗, denoted by T P : Tγ∗Sµ
+γ∗→Tγ∗Sµ
+γ∗, are within
+20
+
+the unit circle (that is, if the discrete system γn+1 = P(γn) is asymptotically
+stable at γ∗).
+Denote by Fix(f) the set of ﬁxed points associated with a function f : TP →
+TP, that is,
+Fix(f) = {x ∈TP| f(x) = x}.
+Given that Φ is a diﬀeomorphism, Fix(Φ) is an embedded submanifold of
+TP and we assume it has constant dimension, r = dim(Fix(Φ)) < dim(TP).
+Therefore, there exists a hypersurface Sµ
+γ∗at γ∗such that TγFix(Φ) ⊂TγSµ
+γ∗.
+We denote by {qα} = (q1, . . . , qr) with 1 ≤α ≤r local coordinates on the
+submanifold Fix(Φ). Therefore, in this set of local coordinates, γ∗∈TP has
+the expression, γ∗= (γ∗
+1, . . . , γ∗
+r, 0, . . . , 0) ∈Fix(Φ), then P(γ∗, 0) = γ∗.
+Deﬁnition 4.4 ([53]). Let φ(t, α0) be a solution for ΣHRµ
+c . The map T∆µ :
+TP →R ∪{∞} given by
+T∆µ(α0) =
+
+
+
+
+
+inf {t ≤0|φ(t, α0) ∈Sµ} if there exists t : φ(t, α0) ∈Sµ,
+∞otherwise
+(10)
+is called time-to-impact map.
+Next, we denote by λi the eigenvalues of the Jacobian T P, and
+Λ0 = {#λi such that |λi| = 0},
+Λ1 = {#λi such that |λi| = 1}
+where # means“quantity”.
+Lemma 4.5. Let γ(t) be a periodic solution for a simple hybrid system ΣH as
+in equation (3), and P : S →S the corresponding Poincar´e map to γ(t). If
+rank(∆) = β is constant, then Λ0 ≥n −1 −β.
+Proof: Consider the function N : ∆(S) →S given by N(x) = φ(T∆(x), x).
+Therefore, P(x) = N(∆(x)) and it follows that
+T P(γ∗) = dN(∆(γ∗)) · d∆(γ∗).
+21
+
+Given that rank dN(∆(γ∗)) · d∆(γ∗) ≤rank (d∆(γ∗)) = β and dim(S) ≤
+n −1, by rank-nullity Theorem and the fact that kernel of T P is precisely the
+eigenspace corresponding to the eigenvalue 0, if follows that Λ0 ≥n −1 −β.□.
+Theorem 4.6. Let ΣHRµ
+c be a simple hybrid Routhian system satisfying Φ(γ(t)) =
+γ(−t) with γ(0) = γ∗a ﬁxed point of Φ. If γ(t) is a periodic solution transversal
+to Sµ
+γ∗at γ∗, then Λ1 ≥r.
+Proof: By the transversality assumption, we can employ [Theorem 3.3 in [22]]
+and so there is an open subset O ⊂TP of γ∗with Sµ
+γ∗⊂O, where every
+trajectory starting form O crosses Sµ and where there exists a Poincar´e map
+P : Sµ
+γ∗→Sµ
+γ∗. Denote by P = [P1, P2, . . . , Pn−1] the Poincar´e map in local
+coordinates (xa, ˙xa) ∈TP, satisfying P(γ∗, 0) = γ∗where γ∗∈Fix(Φ). Since
+Φ is a time-reversal symmetry, every solution starting at γ∗is a periodic orbit.
+It is easy to check that T Pij(γ∗) = δij with δij = 1 if i = j and δij = 0 if
+i ̸= j, for i = 1, . . . , n −1 and j = 1, . . . , r, where T Pij denotes the (i, j)-entries
+for the Jacobian matrix of P. Indeed, it follows from
+T Pii(γ∗) =lim
+h→0
+Pi(γ∗
+1, . . . , γ∗
+i + h, . . . , γ∗
+k, 0, . . . , 0) −Pi(γ∗
+1, . . . , γ∗
+i , . . . , γ∗
+k, 0, . . . , 0)
+h
+=lim
+h→0
+γ∗
+i + h −γ∗
+i
+h
+= 1,
+and the fact that if i ̸= j,
+T Pij(γ∗) =lim
+h→0
+Pi(γ∗
+1, . . . , γ∗
+j + h, . . . , γ∗
+k, 0, . . . , 0) −Pi(γ∗
+1, . . . , γ∗
+i , . . . , γ∗
+k, 0, . . . , 0)
+h
+=lim
+h→0
+γ∗
+i −γ∗
+i
+h
+= 0.
+Therefore T P has at least r eigenvalues λi with |λi| = 1.
+□
+Example 4 (The 2D robotic hopper - continuation). Consider the situ-
+ation of Example 3, which is a 4-dimensional system on T(R × S1). The ﬁxed
+points of Φ are γ∗= (ξ∗, 0, 0, ˙ϕ∗). Then dim(Fix(Φ)) = 2.
+22
+
+By Theorem 4.6, Λ1 ≥2. Then T P(γ∗) is of the form
+T P(γ∗) =
+
+
+1
+0
+∗
+∗
+0
+1
+∗
+∗
+0
+0
+∗
+∗
+0
+0
+∗
+∗
+
+
+.
+Given that rank(∆µ) = 2, Λ0 ≥1. Therefore T P(γ∗), in an appropriate choice
+of coordinates, takes the form
+T P(γ∗) =
+
+
+1
+0
+∗
+0
+0
+1
+∗
+0
+0
+0
+∗
+0
+0
+0
+∗
+0
+
+
+.
+It follows that the set of eigenvalues for T P are {1, 1, λ, 0}. Hence, if |λ| < 1,
+the periodic orbit is marginally stable.
+Remark 5. Note that in Example 4 we can get, at most a characterization of
+neutral stability for the periodic solution γ. It would be interesting to consider
+perturbed simple hybrid Routhian systems, similarly to the framework given in
+[43], while the perturbation preserves the symmetry, in order that we can turn
+the neutrally stable periodic orbit into a stable limit cycle. This will be explored
+in a future work by considering an adaptation of the averaging method and
+approximate for hybrid systems given in [17] and [50], respectively.
+5. Application to existence of periodic solutions for hybrid Routhian
+control systems
+In this section we apply the results given in Section 4 to underactuated con-
+trol systems. We study how by considering the notion of hybrid zero dynamics
+given [53] together with a time reversible symmetry we can obtain a charac-
+terization which facilitates the searching of periodic solutions in simple hybrid
+Routhian control system.
+23
+
+5.1. Underactuated mechanical control system
+An underactuated control system is a control system where the quantity of
+actuators is fewer than the dimension of the conﬁguration space.
+Consider a Lagrangian function L : TQ →R, with dim(Q) = n which
+is cyclic with respect to one of the generalized coordinates. Without loss of
+generality, we assume that the cyclic variable is the last one, that is, qi = (xa, θ),
+a = 1, . . . , n −1, with θ cyclic. In order to design control laws for controlled
+simple hybrid Routhian systems we consider the underactuated controlled Euler-
+Lagrange equations [7]
+d
+dt
+ ∂L
+∂˙xα
+
+−∂L
+∂xα = uα,
+d
+dt
+∂L
+∂˙θ
+
+−∂L
+∂θ = 0,
+d
+dt
+ ∂L
+∂˙xβ
+
+−∂L
+∂xβ = 0,
+where α = 1, . . . , k; β = k+1, . . . , n−1, with u(t) = (u1(t), ..., uk(t)) ∈U control
+inputs and where U is an open subset of Rk, the set of admissible controls.
+We assume at least one degree of underactuation, where the underactuated
+conﬁgurations include the cyclic variable θ.
+Since the cyclic variable is uncontrolled, by employing Routh reduction, the
+reduced equations are given by the controlled Routh equations for the Routhian
+Rµ
+c : TP →R, that is,
+d
+dt
+∂Rµ
+c
+∂˙xa
+
+−∂Rµ
+c
+∂xa = uα,
+d
+dt
+∂Rµ
+c
+∂˙xβ
+
+−∂Rµ
+c
+∂xβ = 0.
+(11)
+Equations (11) give rise to a model of an aﬃne control system of the form
+˙γ = XRµ
+c (γ) + C(γ)u := X(γ, u)
+(12)
+where C is a constant matrix, XRµ
+c is the Routh vector ﬁeld and X : TP ×U →
+T(TP) is a vector ﬁeld, called control vector ﬁeld.
+The tuple HRµ
+c
+c
+= (TP, U, Sµ, ∆µ, X) with Sµ and ∆µ as in Deﬁnition 3.1,
+and X : TP × U →T(TP) deﬁned in (12), is called simple hybrid Routhian
+control system. A simple hybrid Routhian system is a simple hybrid Routhian
+control system with U = {0}.
+24
+
+5.2. Hybrid zero dynamics and periodic solutions for simple hybrid
+Routhian control systems
+Deﬁnition 5.1 ([29]). Consider the control vector ﬁeld X(γ, w) given in (12).
+The embedded submanifold Z of TP given by
+Z = {˜γ ∈TP| ∃!u⋆(˜γ) s.t. X(˜γ, u⋆(γ)) ∈T˜γZ}
+is called the zero dynamics submanifold of TP, and ˙˜γ = X(˜γ, u⋆(˜γ)) is the
+associated zero dynamics on Z.
+Theorem 5.2. Consider a control system ˙γ = X(γ, u) as in (12) with associ-
+ated Routhian vector ﬁeld XRµ
+c and Z the associated zero dynamics submanifold.
+Assume that Z is invariant under the time reversal symmetry Φ for XRµ
+c ,
+C(Φ(γ))Γ(u) = −(dΦ(γ)C(γ))u
+(13)
+for all γ ∈TP and with Γ : U →U a one to one invertible map. If γ∗is a ﬁxed
+point of Φ in Z, the solution γ(t) : I →TP with initial condition γ(0) = γ∗
+belongs to Z and Φ(γ(t)) = γ(−t) ∀t ∈I. Moreover, for all γ ∈Z it follows
+that u⋆(Φ(γ)) = Γ(u⋆(γ)) and
+X(Ψ(γ)) = −dΨ(γ) · X,
+where X and Ψ denotes the restrictions to Z of X and Φ respectively.
+Proof: If γ∗∈Z is a ﬁxed point of Φ, by deﬁnition of the zero dynamics
+X(γ, u⋆(γ)) ∈TγZ ∀γ ∈Z, hence γ(t) ∈Z ∀t ∈I. Moreover, by Theorem 4.2
+Φ(γ(t)) = γ(−t).
+Now, given that Z is invariant under Φ, that is Φ(γ) ∈Z ∀γ ∈Z, then
+−dΦ(γ) · X(γ, u⋆(γ)) ∈TΦ(γ)Z.
+(14)
+By the deﬁnition of the zero dynamics X(Φ(γ), u⋆(Φ(γ))) ∈TΦ(γ)Z. Us-
+ing that C(Φ(γ)))Γ(u(γ)) = −(dΦ(γ)C(γ))u(γ) and the fact that Φ is a time
+reversible symmetry for XRµ
+c , −dΦ(γ) · XRµ
+c (γ) = XRµ
+c (Φ(γ)). Therefore,
+XRµ
+c (Φ(γ)) + C(Φ(γ))Γ(u⋆(γ)) ∈TΦ(γ)Z.
+25
+
+Finally, by Deﬁnition 5.1 the feedback control u⋆(γ) is unique, then (14) is
+equivalent to XRµ
+c (Φ(γ)) + C(Φ(γ))Γ(u⋆(γ)). Therefore ∀γ ∈Z, Γ(u⋆(γ)) =
+u⋆(Φ(γ)) and given that Φ is a time reversible symmetry for XRµ
+c , it follows
+that −dΦ(γ) · X(γ, u⋆(γ)) = X(Φ(γ), u⋆(Φ(γ))) ∈TΦ(γ)Z .
+□
+The following deﬁnition are given in analogy with [53] for the class of simple
+hybrid Routhian control systems:
+Deﬁnition 5.3. Let HRµ
+c
+c
+be a simple hybrid Routhian control system and let
+Z be the zero dynamics submanifold for XRµ
+c imposed by u⋆(γ). Denoting by
+W = Z ∩Sµ, the submanifold Z is called hybrid invariant if ∆µ(W) ⊂Z.
+Deﬁnition 5.4. Consider the simple hybrid Routhian control system eHRµ
+c
+c
+=
+(Z, U, W, ∆µ|Z, X) generating the hybrid dynamical control system
+ΣeH
+Rµ
+c
+c
+:
+
+
+
+
+
+˙γ(t) = X(γ(t), u⋆(γ(t))),
+γ−(t) /∈X
+γ+(t) = ∆µ|Z(γ−(t)),
+γ−(t) ∈W.
+(15)
+The hybrid dynamical control system ΣeH
+Rµ
+c
+c
+is called hybrid zero dynamics asso-
+ciated with the simple hybrid Routhian control system HRµ
+c
+c .
+Theorem 5.5. Consider the situation and hypothesis of Theorem 5.2, but where
+γ is any solution of ΣeH
+Rµ
+c
+c
+satisfying γ(0) = γ∗with γ∗∈Z a ﬁxed point of the
+time reversal symmetry Φ for XRµ
+c with Z hybrid invariant. If in addition γ
+crosses the switching surface W at t−
+i = inf {t > ti−1|γ(t) ∈W} and the impact
+map is deﬁned as ∆µ(γ−(ti)) = Φ(γ−(ti)), then γ(t) is a periodic solution on
+Z for the simple hybrid Routhian control system ΣeH
+Rµ
+c
+c
+with period 2t−
+i .
+Proof: By Theorem 5.2 γ(t) ∈Z and Φ(γ(t)) = γ(−t) ∀t ∈I. In particular,
+for ti = t−
+i , denoting γ(t−
+i ) = γ−(ti) ∈W, we have Φ(γ−) = γ−(−ti). Since
+∆µ(γ−(ti)) = Φ(γ−(ti)), ∆µ(γ−) = γ+(t) and then γ(t+
+i ) = γ(−ti). Therefore,
+right after the impact, the solution γ(t) is re-initialized back to γ(−ti) so, it is
+periodic with period 2t−
+i .
+□
+Note that from the previous result, depending on the quantity of ﬁxed points,
+we are able to ﬁnd a family of periodic solutions, instead of a single periodic
+orbit.
+26
+
+Example 5 (2D controlled spring loaded inverted pendulum). Consider
+the 2D robotic hopper with two degrees of underactuation, one in the pitch an-
+gle and the other in the rigid body attitude (i.e., we only control the length of
+the spring). By employing the results given in Example 2 the controlled Routh
+equations are given by
+¨ξ = ξ ˙ϕ2 −g cos ϕ −1
+m
+∂V
+∂ξ + u,
+¨ϕ = g
+ξ sin ϕ −2 ˙ϕ ˙ξ
+ξ
+where u is a torque applied to control the length of the spring. We consider the
+elastic potential to be V (ξ) = 1
+2κ(ξ −l0)2, with κ ∈R+ the spring constant.
+Following Example 3, we consider the smooth involution F(ξ(t), ϕ(t)) =
+(ξ(t), −ϕ(t)) and Φ(γ(t)) = (ξ(t), −ϕ(t), −˙ξ(t), ˙ϕ(t)).
+Fixed points of Φ are
+γ∗= (ξ∗, 0, 0, ˙ϕ∗). The Routhian Rµ
+c is invariant under Φ and XRµ
+c is a time
+reversible Routhian vector ﬁeld. Then Φ(γ(t)) = (ξ(−t), −ϕ(t), −˙ξ(t), ˙ϕ(−t)),
+as a consequence of Theorem 4.2.
+Next, deﬁne the zero dynamics submanifold as
+Z =
+
+(ξ, ϕ, ˙ξ, ˙ϕ) ∈T(R × S1)| ξ = h(ϕ), ˙ξ = ∂h
+∂ϕ ˙ϕ
+
+where h is an even function of ϕ. Note that this choice of h makes Z invariant
+under Φ and therefore the zero dynamics reads
+¨ϕ =
+1
+h(ϕ)
+
+g sin ϕ −2 ˙ϕ2 ∂h
+∂ϕ
+
+.
+Note that C(γ) ◦Φ(γ) = −dΦ(γ)C(γ) and then Γ(u) = u.
+The control input u⋆(ϕ, ˙ϕ) on Z is
+u⋆(ϕ, ˙ϕ) = ∂2h
+∂ϕ2 + ∂h
+∂ϕ
+g sin ϕ
+h(ϕ) −2
+˙ϕ2
+h(ϕ)
+ ∂h
+∂ϕ
+2
+−h(ϕ) ˙ϕ2 +g cos ϕ + κ(h(ϕ) −l0)
+m
+and it is easy to verify that it satisﬁes u⋆(−ϕ, ˙ϕ) = u⋆(ϕ, ˙ϕ), that is, u⋆(Φ(γ)) =
+Γ(u⋆(γ)).
+The function Φ in Z is given by
+Φ(ϕ, ˙ϕ) = (h(ϕ), −ϕ, −∂h
+∂ϕ ˙ϕ, ˙ϕ).
+27
+
+Since eγ∗= (h(0), 0, −∂h
+∂ϕ|ϕ=0 · ˙ϕ∗, ˙ϕ∗) is a ﬁxed point of Φ in Z, the solution
+γ(t) with γ(0) = eγ∗belongs to Z.
+Finally, if we deﬁne the switching surface S as in Example 3, and impact map
+as ∆µ(ξ−, ϕ−, ˙ξ−, ˙ϕ−) = Φ(ξ−, ϕ−, ˙ξ−, ˙ϕ−) = (l0, −ϕ0, −˙ξ−, ˙ϕ−) then W =
+{(ϕ, ˙ϕ) ∈Z| h(ϕ) = l0} and Z is hybrid invariant because h is an even function.
+Therefore, γ(t) is a periodic solution for the simple hybrid Routhian control
+system.
+References
+[1] R. Alerndorfer, D. Koditscheck, and P. Holmes. Stability analysis of legged
+locomotion models by symmetry-factored return maps. The international
+Journal of Robotics Research. 23 (10-11): 979-999, 2004.
+[2] A. Ames. A categorical theory of hybrid systems. PhD thesis, University of
+California, Berkeley, 2006.
+[3] A. D. Ames, R. D. Gregg, and M. W. Spong, A geometric approach to
+three-dimensional hipped bipedal robotic walking, in Proc. of the 45th IEEE
+Conference on Decision and Control. 2006.
+[4] A. Ames, S. Sastry. Hybrid cotangent bundle reduction of simple hybrid
+mechanical systems with symmetry. in Proceedings of the 25th American
+Control Conference Minneapolis MN 2006.
+[5] A. Ames, S. Sastry. Hybrid Routhian reduction of Lagrangian hybrid sys-
+tems. in Proceedings of the 25th American Control Conference Minneapolis
+MN 2006.
+[6] G. Birkhoﬀ. The restricted problem of three bodies. Rend. Circ. Mat.
+Palermo 39, 265- 334, 1915.
+[7] A. M. Bloch. Nonholonomic Mechanics and Control, Series IAM. New York:
+Springer-Verlag, vol. 24. 2nd Edition 2015.
+28
+
+[8] A. Bloch, W. Clark, L. Colombo. Quasivelocities and symmetries in sim-
+ple hybrid systems. Decision and Control (CDC), 2017 IEEE 56th Annual
+Conference on, 1529- 534.
+[9] B. Brogliato, Nonsmooth Impact Dynamics: Models, Dynamics and Con-
+trol. Springer-Verlag, 1996, vol. 220.
+[10] S. Capriotti. Routh reduction and Cartan mechanics. J. Geom. Phys. 114
+(2017), 23-64.
+[11] W. Clark, A. Bloch, L. Colombo. A Poincar´e-Bendixon Theorem for Hybrid
+Systems. arXiv preprint arXiv:1801.09014.
+[12] S. Coogan, M. Arcak. Finite abstraction of mixed monotone systems with
+discrete and continuous inputs. Nonlinear Analysis: Hybrid Systems, Vol.
+23, 254-271, 2017.
+[13] S. Collins, A. Ruina, R. Tedrake, M. Wisse. Eﬃcient bipedal robots based
+on passive-dynamic walkers, Science 307 (5712) (2005), 1082-1085.
+[14] L. Colombo, W. Clark, A. Bloch. Time reversal symmetries and zero dy-
+namics for simple hybrid Hamiltonian control systems. 2018 Annual Amer-
+ican Control Conference (ACC), 2218-2223.
+[15] J. Cortes, M. de Le´on, M. Mart´ın de Diego, S. Martinez. Mechanical sys-
+tems subjected to generalized non-holonomic constraints. R. Soc. Lond.Proc.
+Ser. A Math. Phys. Eng. Sci. 457 (2001), no. 2007, 651-670.
+[16] J. Cortes, A. Vinogradov. Hamiltonian theory of constrained impulsive mo-
+tion. (English summary) J. Math. Phys. 47 (2006), no. 4, 042905, 30 pp.
+[17] A. De, S. Burden and D. Koditschek. A hybrid dynamical extension of aver-
+aging and its application to the analysis of legged gait stability. The Inter-
+national Journal of Robotics Research. DOI:10. 1177/0278364918756498,
+2018.
+29
+
+[18] E. Frazzoli. Robust Hybrid Control for Autonomous Vehicle Motion Plan-
+ning. PhD thesis, Massachusetts Institute of Technology, Cambridge, MA,
+2001.
+[19] E. Garcia-Torano Andres, B. Langerock, F. Cantrijn. Aspects of reduction
+and transformation of Lagrangian systems with symmetry. J. Geom. Mech.
+6 (2014), no. 1, 1-23.
+[20] R. M. Ghigliazza, R. Altendorfer, P. Holmes, and D. Koditschek. A simply
+stabilized running model. SIAM Journal on Applied Dynamical Systems,
+2(2):187-218, 2003.
+[21] J. Grizzle, G. Abba, and F. Plestan, Asymptotically stable walking for biped
+robots: analysis via systems with impulse eﬀects, IEEE Transactions on
+Automatic Control, vol. 46, no. 1, pp. 51-64, 2001.
+[22] J. Goodman and L. Colombo. On the Existence and Uniqueness of Poincar´e
+Maps for Systems with Impulse Eﬀects. arXiv preprint arXiv:1810.05426,
+2018.
+[23] H. Goldstein. Classical mechanics. Addison-Wesley Publishing Co., Read-
+ing, Mass., second edition, 1980. Addison-Wesley Series in Physics.
+[24] J. Guckenheimer and P. Holmes, Nonlinear Oscillations, Dynamical Sys-
+tems, and Bifurcations of Vector Fields, Springer-Verlag, New York, 1983.
+[25] K. Hamed, J. Grizzle. Reduced-order framework for exponential stabiliza-
+tion of periodic orbits on parameterized hybrid zero dynamics manifolds:
+Application to bipedal locomotion. Nonlinear Analysis: Hybrid Systems
+25, 227-245, 2017.
+[26] P. Holmes, R. Full, D. Koditschek, J. Guckenheimer. The dynamics of
+legged locomotion: models, analyses, and challenges. SIAM Review 48, no.
+2, 207-304, 2006.
+30
+
+[27] A. Ibort, M. de Leon, E. Lacomba, J.C. Marrero, D. Mart´ın de Diego, P.
+Pitanga. Geometric formulation of Carnot’s theorem. J. Phys. A 34 (2001),
+no. 8, 1691-1712.
+[28] A. Ibort, M. de Le´on, E. Lacomba, D. Mart´ın de Diego, P. Pitanga. Me-
+chanical systems subjected to impulsive constraints. J. Phys. A 30 (1997),
+no. 16, 5835-5854.
+[29] A. Isidori. Nonlinear control systems. Springer, 1995.
+[30] S. Johnson. Simple hybrid systems Int. J. Bifurcation and Chaos, 04, 1655,
+1994.
+[31] E. Lacomba and W. Tulczyjew. Geometric formulation of mechanical sys-
+tems with one-sided constraints. J. Phys. A 23 (1990), no.13, 2801-2813.
+[32] J. Lamb, A. Roberts. Time reversal symmetry in dynamical systems: A
+survey. Physica D 112, 1-39, 1998.
+[33] A. Lamperski and A. Ames. Lyapunov-like cinditions for the existence of
+Zeno behavior in hybrid and Lagrangian hybrid systems. In Proc. IEEE
+Conf. on Decision and Control, 15-120, 2007.
+[34] Langerock, B.; Cantrijn, F.; Vankerschaver, J. Routhian reduction for
+quasi-invariant Lagrangians. J. Math. Phys. 51 (2010), no. 2, 022902.
+[35] B. Langerock, E. Garc´ıa-Torano, F. Cantrijn. Routh reduction and the class
+of magnetic Lagrangian systems. J. Math. Phys. 53 (2012), no. 6, 062902
+[36] T. Lee, K. Sreenath, and V. Kumar.Geometric Control of Cooperating
+Multiple Quadrotor UAVs with a Suspended Payload. IEEE Conference on
+Decision and Control (CDC), 5510–5515, Florence, Italy, 2013.
+[37] J. Marsden and T. Ratiu, Introduction to Mechanics and Symmetry,
+2nd ed., ser. Texts in Appl. Math. New York: Springer, , vol. 17, 1999.
+[38] T. McGeer, Passive dynamic walking, Int. J. Robot. Res. 9 (2) (1990) 6282.
+31
+
+[39] P.J. Meyer and D. Dimarogonas. Compositional abstraction reﬁnement for
+control synthesis, Nonlinear Analysis: Hybrid Systems, Vol. 27, pp. 437-
+451, 2018.
+[40] H. Poincar´e. Les m´ethodes nouvelles de la m´ecanique c´eleste. Tome I, II,
+III (French) Dover Publications, Inc., New York, N.Y., 1957.
+[41] L. Perko. Diﬀerential equations and dynamical systems. 2nd Edition,
+Springer, 2001.
+[42] H. Razavi, A. M. Bloch, X. Da, A. Ijspeert. Symmetric Virtual Constraints
+for Periodic Walking of Legged Robots, 55th IEEE Conference on Decision
+and Control (CDC), 2016.
+[43] H. Razavi, A. Bloch, C. Chevallereau, and J. W. Grizzle (2016), Symmetry
+in legged locomotion: A new method for designing stable periodic gaits,
+Journal of Autonomous Robots, 41 (5), 1119-1142, 2017.
+[44] R. Goebel, R. Sanfelice, and A. Teel. Hybrid dynamical systems. Princeton
+University Press. 2012.
+[45] E. Sidorov, M. Zacksenhouse. Lyapunov based estimation of the basin of
+attraction of Poincare maps with applications to limit cycle walking. Non-
+linear Analysis: Hybrid Systems, Vol. 33, 179-194, 2019.
+[46] A. Siravuru, S. Viswanathan, K. Sreenath, and A. Sanyal. The Reaction
+Mass Biped: Geometric Mechanics and Control. Journal of Intelligent and
+Robotic Systems (JINT), 89(1–2):155–173, 2018.
+[47] S. Spedicato, G. Notarstefano. An optimal control approach to the design
+of periodic orbits for mechanical systems with impacts. Nonlinear Analysis:
+Hybrid Systems, Vol. 23, 111-121, 2017.
+[48] K. Sreenath, N. Michael, and V. Kumar. Trajectory Generation and Con-
+trol of a Quadrotor with a Cable-Suspended Load – A Diﬀerentially-Flat
+32
+
+Hybrid System. IEEE International Conference on Robotics and Automa-
+tion (ICRA), 2013.
+[49] K. Sreenath, H. Park, I. Poulakakis, and J. Grizzle. Compliant Hybrid Zero
+Dynamics Controller for achieving Stable, Eﬃcient and Fast Bipedal Walk-
+ing on MABEL. The International Journal of Robotics Research (IJRR),
+30(9):1170–1193, 2011.
+[50] P. Tabuada, A. Ames, A. Julius, G. Pappas. Approximate reduction of
+dynamic systems. Systems & Control Letters 57 (7), 538-545, 2008.
+[51] P. Tabuada, A. Ames, A. Julius, G. Pappas., Approximate reduction of
+dynamical systems, in the Proc. 45th IEEE Conf. Decision and Control,
+San Diego, USA, 2006.
+[52] E. Wendel and A. D. Ames. Rank Deﬁciency and Superstability of Hybrid
+Systems. Nonlinear Analysis: Hybrid Systems, Vol. 6(2), 787-805, 2012.
+[53] E. Westervelt, J. Grizzle, C. Chevallereau, J. Ho Choi, and B. Morris. Feed-
+back control of dynamic bipedal robot locomotion. Taylor & Francis/CRC,
+2007.
+33

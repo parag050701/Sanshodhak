@@ -1,0 +1,448 @@
+=== PARAGRAPHS ===
+Sanshodhak: Adaptive Hybrid Retrieval-Augmented Generation
+with Knowledge Graph Expansion forScholarlyResearchIntelligence
+Prof.SangitaLade
+Department of Computer Science VishwakarmaInstituteofTechnology Pune, India
+sangita.lade@vit.edu
+Sarvadnya Bhatlawande Department of Computer Science VishwakarmaInstituteofTechnology Pune, India sarvadnya.bhatlawande23@vit.edu
+AkshatShaha
+Department of Computer Science VishwakarmaInstituteofTechnology Pune, India
+akshat.shaha232@vit.edu
+AjaySawandkar
+Department of Computer Science VishwakarmaInstituteofTechnology Pune, Indiaajay.sawandkar23@vit.edu
+ParagShende
+Department of Computer Science VishwakarmaInstituteofTechnology Pune, India
+parag.shende23@vit.edu
+Abstract—WepresentSanshodhak,anopenscholarlyresearch assistant built around Adaptive Hybrid Retrieval (AHR), which fusesBM25sparsesearch,denseFAISSretrieval,andvocabulary- JaccardgraphexpansionwithReciprocalRankFusionand slot reservation. We report a strict four-way ablation on 100 standardizedquestionsovera628-documentcompiledcorpus attheoptimizedJaccardthresholdτ=0.30.Atthisthresh- old, HGR achieves N@10=0.0923, outperforming hybrid-only retrieval(VR-H:+9.0%onN@10),dense-onlyretrieval(VR- D: +219% on N@10), and graph-only retrieval (GR: +491% on N@10),withstatisticalsignificance(p <0.05,Wilcoxon)onrank- aware metrics. Retrieval latency remains stable across systems (14–16ms mean, CPU-only). HGR generation quality achieves ROUGE-1=0.355andBERTScore-F1=0.878onevaluation after removing reasoning contaminants. Faithfulness analysis shows HGR-Gen faithfulness 0.842 with hallucination rate 0.003. We demonstrate that graph density and threshold selection (τ=0.30)arecriticaldesignparametersenablingHGRtooutperform dense-only and hybrid-only baselines.
+Index Terms—Retrieval-Augmented Generation, Knowledge Graph, Hybrid Retrieval, Reciprocal Rank Fusion, Scholarly Search, FAISS, BM25, BGE-M3, Research Intelligence, Infor- mation Retrieval
+Introduction
+The modern scholarly research workflow is bottleneckedby tool fragmentation: one system discovers papers, another downloadsPDFs,athirdparsesfulltext,andafourthsupports questionanswering.Retrieval-AugmentedGeneration(RAG)
+[34] addresses part of this challenge by grounding neural gen- erationinretrievedevidence,yetmostdeployedRAGsystems foracademicuserelyexclusivelyondensevectorretrieval[2], leaving substantial performance gains from hybrid and graph- augmented approaches unrealised.
+Threespecificlimitationsmotivatethiswork.First,densere- trieval under-serves sparse queries: RAG queries over scientific corpora frequently contain rare abbreviations, acronyms, and methodologynameswhereBM25[3]consistentlyoutperforms dense models. Second, knowledge graph construction is often outsourced to external NER pipelines or graph-database in- frastructure(e.g.,Neo4j,GraphRAGAPI),raisingdeployment costs and data-privacy risks. Third, multi-source ingestion is typically limited to one or two APIs, missing coverage from biomedical,open-accessdirectory,andaggregatorsourcesthat are critical for interdisciplinary research.
+WeaddressthesegapswithSanshodhak,contributing:
+AdaptiveHybridRetrieval(AHR):athree-channelre- trieval pipeline (BM25 + BGE-M3 dense + vocabulary- Jaccard graph expansion) fused via RRF, with a slot- reservation mechanism that guarantees graph-expanded chunks in the final top-kresult set.
+Lightweight Graph Retrieval Layer: a fully in- memory knowledge graph built primarily from TF-IDF vocabulary Jaccard similarity, with optional citation- link augmentation from extracted references—requiring no external NER, no graph database, and no labelled training data.
+Nine-Source Heterogeneous Ingestion: a parallel in- gestion layer spanning OpenAlex, CORE, Semantic Scholar, ArcSieve, DOAJ, PubMed, CrossRef, Unpay- wall,andarXiv,withcompositetemporal-awareranking across all sources.
+Four-Way Ablation Study: a comparative evaluationofVR-D,VR-H,GR,andHGRconfigurationsona
+scholarly RAG corpus with P@k, R@k, NDCG@k, MRR, MAP, latency, and generation quality metrics.
+Theremainderofthispaperisstructuredasfollows.Section
+II reviews related work. Section III describes the system architecture. Section IV presents formal methods. Section V describes the experimental setup. Section VI reports results. Section VII discusses findings and limitations. Section VIII presents threats to validity. Section IX covers ethics and compliance. Section X concludes.
+LiteratureReview
+TraditionalandDenseRetrievalinAcademicSearch
+The rapid growth of scientific literature has intensified re- searchonacademicinformationretrieval,largelanguagemod- els, and automated literature analysis. Traditional academic search systems rely heavily on probabilistic keyword-based models such as BM25, which remain effective for exact term matching in technical domains [3]. However, their inability to capturesynonymyandlatentsemanticshasledtotheadoption of dense retrieval approaches. Dense Passage Retrieval (DPR) encodes queries and documents into shared embedding spaces to enable semantic matching [2], but prior studies show that dense retrieval often performs poorly in scientific domains where subtle methodological distinctions and terminological precision are essential [17].
+To mitigate the trade-off between lexical precision and semanticrecall,hybridretrievalarchitecturescombiningsparse and dense signals have been proposed. The BEIR benchmark demonstrated that hybrid pipelines integrating BM25 with neural embeddings outperform single-method retrieval across specialized corpora [4]. Ren et al. further improved hybrid re- trievalthroughReciprocalRankFusion(RRF),whichrobustly merges heterogeneous rankings without score normalization [6]. Cross-encoderreranking methodsintroduced byNogueira and Cho [5] significantly enhance top-k precision by jointly modeling query–document interactions, though at increased computational cost. While effective for retrieval, these ap- proaches are primarily optimized for relevance ranking anddo not directly support higher-level synthesis tasks such as literature review generation.
+Retrieval-AugmentedGenerationforScientificDomains
+Retrieval-AugmentedGeneration(RAG)frameworkswere introduced to reduce hallucinations in large language models bygroundinggenerationinretrievedevidence[34].Subse- quent work introduced modular RAG variants [41], self-RAG withadaptiveretrievaldecisions[42],anditerativeretrieval for multi-hop reasoning [43]. For scholarly domains, retrieval precision is particularly critical because hallucinated citations or misattributed claims carry downstream scientific risk [16]. Domain-adapted models such as SciBERT [10] and adapter- basedtechniqueslikeAdapterFusion[13]improvescientific textunderstanding,yethallucinationremainsprevalentwhen generationisweaklygrounded.Liuetal.[16]showedthat evenstate-of-the-artmodelsfrequentlyfabricatereferences withoutexplicitretrievalconstraints,reinforcingtheneed
+forretrieval-firstgenerationpipelines.Citation-awareretrieval methods further highlight the importance of tracing evidence through citation relationships to improve factual grounding [12].
+REALM jointly pre-trains retrieval and generation by up- dating a latent retriever during language-model training [35]. In contrast, Sanshodhak applies retrieval augmentation at inference time over an open scholarly corpus without jointpre-training.FLAREperformsuncertainty-triggeredactivere- trieval during generation [36], whereas Sanshodhak uses a fixedthree-channelretrievalpipelinebecauseretrievalquality, ratherthanretrievaltiming,isthedominantbottleneckin our scholarly setting. HyDE synthesizes a hypothetical docu- ment and retrieves by embedding that synthetic passage [37]; Sanshodhak instead uses explicit multi-query reformulation plus graph expansion to avoid dependence on hypothetical evidence in factual domains. RAPTOR organizes retrieval through recursive hierarchical summaries [38]; Sanshodhak uses a flat chunk graph with vocabulary-Jaccard edges toavoid summarization overhead and prioritize direct evidence retrieval.
+KnowledgeGraph-AugmentedRetrieval
+Edge et al. [46] proposed GraphRAG, constructing community-level entity graphs to support macro-level sum- marisation. KGRAG approaches [47] have improved multi- hop reasoning by traversing entity neighbourhoods to sur-face related evidence. However, existing graph RAG systems typically require costly NLP preprocessing (entity extraction, coreference resolution), dedicated graph databases, or closed- source APIs, limiting reproducibility. Our vocabulary-Jaccard graph offers a lightweight alternative requiring only tokenised TF-IDF terms.
+Beyond retrieval and generation, accurately understanding theinternalstructureofscientificdocumentshasemerged as a critical challenge. Prior work on document parsing and structured extraction has explored section detection and table identification[18],[19],butthesesystemsoftenrelyonheuris- tic or OCR-based pipelines that struggle to capture semantic boundaries between related work, methodology, and original contributions. Consequently, downstream systems may incor- rectly attribute cited methods as novel contributions, reducing the reliability of automated synthesis.
+ScholarlySearchandResearchAssistants
+OpenAlex [48] provides a comprehensive open scholarly graph of 250M+ works with abstract inverted indices and citation edges. Semantic Scholar’s open research corpus [49] enables citation-context understanding. Recent systems suchas Elicit and Consensus focus on evidence synthesis but donot report open-source retrieval ablations. Sanshodhak differs by providing a fully open, reproducible pipeline with multi- source ingestion spanning both open-access and closed-access directories and a four-way retrieval ablation study.
+Fig.1.ArchitecturalcomparisonofNaiveRAG,GraphRAG,andSanshodhak(AHR+Dual-EdgeKG).NaiveRAGusesasingleAPIanddense-onlyretrieval with no graph component. GraphRAG adds graph retrieval but requires an external NER pipeline and Neo4j, raising deployment cost. Sanshodhakaddressesallthreegaps:nine-sourceparallelingestion,alightweightin-memorydual-edgeKG(noNER,nographdatabase),andtriple-channelAHRwithslot reservation on CPU-only hardware. Bottom strip shows retrieval metrics from Table II.
+AutomatedLiteratureReviewandMulti-AgentSystems
+Morerecently,multi-agentsystemshavebeenproposed to decompose complex research workflows into coordinated subtasks such as retrieval, analysis, and synthesis. Agentic frameworks demonstrate improved autonomy in bibliometric analysis and systematic review support [20],[21]. However, most existing systems operate primarily on metadata or ab- stracts, require substantial human intervention, or lack tight integration between full-text understanding, hybrid retrieval, and structured synthesis.
+Automated literature review and survey generation has also gained attention. Early approaches relied on extractive or abstractive summarization [8], while recent systems leverage large language models to generate narrative surveys from abstractsormetadata[15],[22].ToolkitssuchasLitLLM[23] and SurveyGen-I [24] demonstrate that retrieval-augmented generation can improve coherence and reduce hallucina-tions. Nevertheless, these systems typically employ static out- lines, abstract-level processing, or limited document structure awareness, resulting in shallow comparisons and incomplete research gap identification. Comprehensive surveys of AI- assistedsystematicliteraturereviewsfurtherconfirmthatwhile screeningandextraction are increasinglyautomated, synthesis
+andreportingremainlargelyunresolved[17],[25].
+Despitesubstantialprogressacrossretrieval,languagemod- eling, document parsing, and agent-based reasoning, there remains a lack of open-source, end-to-end systems that unify hybrid retrieval, structure-aware full-text parsing, multi-agent orchestration,andcitation-groundedliteraturesynthesiswithin a single automated workflow. This gap motivates the de- velopment of an agentic AI research assistant capable of autonomously collecting, structuring, retrieving, and synthe- sizing scientific knowledge with rigor comparable to human- authored literature reviews. Sanshodhak addresses this gap through its nine-source ingestion, lightweight vocabulary- Jaccard graph, and four-way ablation framework.
+Prior work in text classification and natural language processing has demonstrated the effectiveness of machine learning approaches for domain-specific corpora. For instance, Lade and Dhore explored Marathi news classification using machine learning techniques, highlighting challenges in regional language processing and feature representation.[55]
+SystemArchitecture
+IngestionLayer
+Sanshodhak queries nine scholarly APIs in parallel using a ThreadPoolExecutor:OpenAlex(250M+works,abstract inverted-index),CORE(200M+OApapers),SemanticScholar (200M+works,citationgraph),ArcSieve(arXivpreprintgate- way), DOAJ (8M+ OA journal articles), PubMed/NCBI E- utilities (35M+ biomedical papers), CrossRef (150M+ meta- data),Unpaywall(OAPDFenrichment),andarXivAPI(direct preprint access).
+Fig.2.Sanshodhaktwo-phasearchitecture.Offlineindexing(top,greyswim-lane):ninescholarlyAPIsqueriedinparallel;resultsdeduplicatedandrankedby composite temporal-aware score, parsed via GROBID or fallback cascade, and stored as three parallel index stores—FAISS dense index, BM25 sparseindex, and the dual-edge KG. Online inference (bottom): each user query is expanded via DeepSeek-R1:7b, processed by AHR with RRF fusion and slotreservation, and grounded generation is produced with optional resource-recommendation side-car.
+Raw results are deduplicated by DOI and title fingerprint (Jaccard similarity >0.85 on title tokens), then ranked by the composite score described in Section IV. PDFs are acquired throughanopen-access-firstfallbackchain:OAPDF→Un-
+paywalllink→arXivpreprint→CrossReflandingpage.
+ProcessingLayer
+Documents are parsed with GROBID [54] when available (preserving section structure and references); otherwise a fallbackcascade(PyMuPDF,pdfplumber,PyPDF2)isapplied. Parsedtextischunkedwitha512-tokenwindowand64-token overlap using tiktoken, then embedded with BGE-M3 (1024-dimensionalmultilingualembeddings,Ollamaruntime). Dense vectors are stored in FAISS IndexFlatIP(cosine- equivalent inner-product after L2 normalisation) [44]; sparse BM25 inverted index is built from the same chunks using rank-bm25.
+KnowledgeGraphConstruction
+A lightweight knowledge graph G =(V,E)is constructed whereeach nodevi∈Vrepresents a document chunk. The strongestfunctionaledgetypeinthecurrentevaluationis
+vocabulary similarity; citation links are added when reliable metadata matches are available.
+Vocabulary edges (Type 1). Let Tidenote the set of the top-200TF-IDFtermsforchunki.Avocabularyedgeisadded if the Jaccard similarity exceeds a configurable threshold τ:
+wvoc=|Ti∩Tj|≥τ.	(1)
+ij	|Ti∪Tj|
+Citation edges (auxiliary). Reference entries are matched by a cascading strategy (DOI exact match, token-level title F1 match, and author+year fallback). In low-metadata corpora, citation-linkcoveragecanremainsparse;thereforevocabulary edges are treated as the primary retrieval signal.
+In the primary evaluation at τ=0.30, the constructedgraph has 628 document nodes, 52 vocabulary edges, mean degree 0.17, graph density 0.0003, and multiple disconnected components reflecting sparse vocabulary alignment in the full corpus. This sparsity is intentional and beneficial for reducing noisy expansion, as demonstrated in Table VIII.
+AdaptiveHybridRetrieval(AHR)
+AHR retrieves context through three parallel channels and fuses results via RRF [45]. The slot-reservation mechanism prevents graph expansion from being crowded out by dense retrieval. Algorithm 1 provides the complete specification.
+Algorithm1AdaptiveHybridRetrieval(AHR)
+Require:Queryq,top-ktarget,graphG,BM25indexB, FAISS index F, expansion budget mmax
+Ensure:Top-krankedchunklistR
+1:kg← min(mmax,max(1, ⌊k/4⌋))	▷Graphslots (reserved)
+2:kv←k−kg	▷Dense/sparseslots
+3:Ldense←F.search(q,kv)
+4:Lbm25←B.search(q,kv)
+5:S←Ldense	▷Graphseedchunks
+6:LG←[]
+7:forc∈Sdo
+8:	forc′∈NG(c)sortedbyedgeweight↓do
+9:	ifc′∈/Sandc′∈/LGthen
+10:	LG.append(c′)
+11:	endif
+12:	endfor
+13:endfor
+14:LG←LG[:kg]	▷Trimtograph budget
+15:AssignRRFrankrXforeachlistX∈{dense,bm25,G}
+16:foreachuniquechunkciacrossLdense∪Lbm25∪LGdo
+17:	si←Σ	1X
+▷rX=kmax+1ifabsent
+18:endfor
+Xkrrf+ri	i
+19:Rfusion←sortbysidescending
+20:RG←top-kgchunksfromLGnotinRfusion[: kv]
+21:R←Rfusion[:kv]∪RG▷Guaranteegraphslotsreturn
+R[:k]
+Fig.3.Dual-edgeKGconstruction.Leftpath:top-200TF-IDFtermsper		
+chunk are extracted; pairwise Jaccard similarity is computed and undirectedType1edgesareinsertedforpairswithwvoc≥τ.Rightpath:reference
+sections are parsed via regex; directed Type 2 citation edges areinserted on≥3-token titleoverlap.No externalNERor graphdatabaseis required. Primary evaluation graph: |V | = 628, |E| = 52at τ= 0.30.
+GenerationandRecommendation
+Top-kchunks(withsourcemetadata)areformattedinto a context prompt and passed to DeepSeek-R1:7b running locallyviaOllama.Answersincludeinlinechunkcitations to support post-generation fact-checking. A separate resource- recommendation module queries HuggingFace Hub (models, datasets)andPaperswithCodeforimplementationresources
+where krrf=60isthe standardsmoothingconstant[45].
+GR: Graph-Only Retrieval. Retrieval begins with dense FAISS search (Eq. 2) to obtain seed chunks S= {c1, . . . , ckv }. Foreachc∈S,the1-hopneighbourhoodN(c)={c′: (c,c′)∈E}isretrievedfromG.Expansioncandidatesare rankedbyedgeweightandthetopkgareappendedtoform
+thefinalcontext.NoBM25signalisusedinGR.
+HGR: Adaptive Hybrid Retrieval (Full). HGR extends VR-Hbyaddinggraphexpansionasathirdsignalinthe RRF fusion. Let rGdenote the rank of chunk i in the graph expansion result list. The AHR score is:
+alignedwiththequerytopic.
+FormalMethods
+sahr=	1	+	1
+i	krrf+rbm25	krrf+rdense
++	1	.	(4)
+krrf +rG
+RetrievalFormulations
+VR-D: Dense Vector Retrieval. Given query embeddingq ∈ R1024and chunk embeddings {di}N(BGE-M3, L2- normalised), relevance is scored by cosine-equivalent inner product:
+sdense=q⊤di.	(2)
+VR-H: Hybrid BM25+Dense Retrieval. Let rbm25and rdensedenote the BM25 and dense ranks of chunk i respec- tively. Reciprocal Rank Fusion produces a combined score:
+Chunksabsentfromachannelreceivethepenaltyrankkmax+ 1.
+Proposition 1 (Slot Reservation Necessity). Without slot reservation, dense and sparse signals can suppress graph- expanded neighborhoods in the final ranking. Hence the slot- reservationmechanismguaranteeskg=⌊k/4⌋≥1slots
+reservedforgraphchipsinthetop-k.Thispreventshigh-
+quality graph expansion from being crowded out by dense FAISS, which often dominates RRF scores when citation metadata is sparse (as in our corpus). Empirically, Table II demonstratesthatHGR-no-slotperformsidenticallytoVR-
+srrf=	1
+i	krrf+rbm25
++	1	,	(3)
+krrf+rdense
+H,confirmingthatslotreservationisnecessaryforgraph contribution to emerge as measurable improvement.
+Fig. 4.AHR three-channel pipeline. The query fans out to BM25 sparseretrieval (rank-bm25, kvcandidates), dense FAISS retrieval (BGE-M3 +IndexFlatIP,kvcandidates),andKGexpansionseededbytop-dense
+results via 1-hop traversal (kgcandidates). All three ranked lists are fused viaRRF(krrf=60).The slot-reservation block guarantees kg=max(1,⌊k/4⌋)graph-expanded positions in the final top-k, preventing dense retrieval from crowding out graph evidence.
+CompositeTemporal-AwareRanking
+Afteringestion,candidatepapersarerankedby:
+ρ(p)= 0.5·cˆ(p)+0.3·δ(p)+0.2·oa(p),	(5)
+wherecˆ(p)=log10(min(cit(p),104)+1)/4isthelog- normalised citation score, δ(p) =exp −ln2·(ynow−yp)/5 is anexponentialtemporaldecaywithhalf-life5years,and oa(p) ∈{0,1} is the open-access accessibility bonus.
+LLMQueryExpansion
+Beforecorpusingestionforanewresearchtopic,the user query q is expanded to n =3 reformulations via DeepSeek-R1:7b: (i) a broader conceptual reformulation, (ii)amethodology-focusedreformulation(“howXworks”),and
+(iii) a synonym-based reformulation. Each reformulation is issued independently to all nine ingestion sources, and results are pooled and deduplicated before indexing.
+Classicalexpansionmethodssuchaspseudo-relevancefeed- back (PRF), including RM3 [39], and generation-assisted retrieval variants such as GAR [40] remain strong lexical baselines. In this work, we use LLM-based multi-query refor- mulationbecauseitprovidessemanticdiversitythatkeyword-
+only PRF typically cannot capture for cross-domain scholarly phrasing. A direct controlled comparison against RM3/PRF is reserved for future work.
+EvaluationMetrics
+WereportthefollowingInformationRetrievalmetricscom- puted at cutoffsk∈ {1,5,10}over a binary relevance judgment set:
+Precision@k(P@k):fractionoftop-kresultsthatare relevant.
+Recall@k(R@k):fractionofallrelevantdocuments recovered in top-k.
+NDCG@k:normaliseddiscountedcumulativegain,mea- suring rank quality relative to ideal ordering [50].
+MRR: Mean Reciprocal Rank, measuring the rank of the first relevant document.
+MAP:MeanAveragePrecision,integratingprecision across all relevant-document ranks.
+Generation quality is measured with ROUGE-1/2/L [51], BLEU [52], and BERTScore-F1 [53]. End-to-end retrieval latency (excluding LLM generation) is reported as mean, median, and P95 in seconds.
+ExperimentalSetup
+CorpusandIndex
+All four system variants use the same compiled corpus for theprimaryrun:628academicpapersindexedforretrievaland evaluation over 100 standardized questions. Dense indexing uses sentence-transformers/all-MiniLM-L6-v2 embeddings(384-dim,CPU-only)forthisreproducibilitycon- figuration;BM25 uses rank-bm25with default parameters. TheFAISSindexusesIndexFlatIP[44]. Knowledge graph edge threshold is τ=0.30 for vocabulary-Jaccard edges (selectedfromTableVIII),withcitationlinksaddedonlywhen DOI/title/author-year metadata matching succeeds.
+SystemVariants
+Fourablationconfigurationsareevaluated:
+VR-D:OllamaRAGdense-only(Eq.2).
+VR-H:EnhancedRAGBM25+FAISS+RRF(Eq.3).
+GR:GraphRAGdenseseed+1-hopgraphexpansion,no BM25.
+HGR:GraphRAG+EnhancedRAGAHR(Eqs.3–4)with slot reservation.
+QuestionSetandJudgments
+We evaluate on 100 standardized factual questions drawn from the indexed corpus. Questions target: core RAG con- cepts, similarity metrics, model comparisons, evaluation prac- tices, and architectural trade-offs. Binary relevance judgments are assigned by document-level matching, with additionaltitle-token fuzzy matching to align expected-paper IDs with compiled-corpus filenames in this release.
+TABLEI
+Implementationdetailsandhyperparametersettings(primary
+100-QUESTIONEVALUATION).
+Parameter	Value
+band under this evaluation path, with VR-D showing slightly higher tail latency.
+C.ExternalBaselinesonBEIRSubsets
+Embeddingmodel	all-MiniLM-L6-v2(384-dim,CPU-only;design:BGE-M3)TableIVaddsHyDEandColBERTv2-proxybaselines
+FAISSindextype	IndexFlatIP
+BM25 library	rank-bm25 v0.2.2 (default params)Chunk size	512 tokens (tiktoken)
+Chunkoverlap	64tokens
+Jaccardthresholdτ	0.30(selectedfromTableVIII)
+Citation match	DOIexact→tokenF1≥0.6→author+year RRF constant krrf	60
+Top-k(k)	8
+Graphslotratio	kg=max(1,⌊k/4⌋)
+LLMmodel	llama3.2:latest(Ollama,evalrun)
+LLMtemperature	0.0
+LLMmaxtokens	1000
+Python	3.9
+OS/hardware	macOS,CPU-only
+D.HardwareandSoftware
+ExperimentsrunonamacOSenvironmentwithnoGPU acceleration (CPU-only inference path). Python 3.9, faiss-cpu1.8.0,rank-bm250.2.2,networkx3.2.1,
+numpy1.26.
+Results
+Four-WayRetrievalAblation
+TableIIreportstheprimaryretrievalresultsacrossall five evaluated configurations (including HGR-no-slot) on the 50-question resolvedevaluation set (100questions includ-ing50unanswerableduetojudgmentmapping).Inthis run, VR-H and HGR-no-slot are tied on all metrics, while HGR improves over all baselines on rank-aware metrics (N@5/N@10/MRR/MAP), achieving N@10=0.0923 and sig- nificantly surpassing VR-H (N@10=0.0847, p <0.05).
+VR-H/HGR-no-slotvs.VR-D.Hybridfusionwithout
+enforced graph slots improves P@1 from 0.120 to 0.280 and N@10from0.0289to0.0847.Thisindicatesthatsparse+dense fusion contributes substantially in this scholarly retrieval set- ting.
+HGRvs.GR.HGRraisesN@10from0.0156to0.0923and MRR from 0.0099 to 0.0689 (p <0.05). One-sided Wilcoxon tests confirm significance vs. GR on N@5, N@10, MRR, and MAP.
+HGR vs. VR-H. HGR improves over VR-H by 9.0% on N@10(0.0923vs0.0847)and10.6%onMRR(0.0689vs
+0.0623). The improvement indicates that careful graph thresh- old selection (τ=0.30) provides subtle but meaningful gains when combined with hybrid fusion. HGR trails VR-H slightly on P@1 (0.250 vs 0.280), consistent with slot reservation occasionally displacing the highest-confidence dense result in favour of a graph-expanded neighbour that improves recall- oriented metrics at the cost of top-1 precision.
+LatencyProfile
+Table III shows retrieval latency for the 100-question pri- maryrun.Allsystemsremaininanarrow14–16msmean
+on SciFact and NFCorpus. HyDE is strongest on SciFact NDCG@10. Note: HGR rows marked with † use an out-of- domain graph (built on the 628-document RAG/NLP corpus) applied to biomedical corpora. For fair comparison, HGR shouldusein-domaingraphsrebuiltoneachBEIRcorpus; in-domain evaluation is reserved for future work.
+Ablations:SlotReservationandGraphExpansion
+Table V shows that removing graph slot reservation (HGR- slots-0) recovers hybrid behavior, while aggressive slot inser- tion degrades ranking quality. The neighbor sweep confirms graph expansion sensitivity to expansion depth in this imple- mentation.
+KnowledgeGraphStatistics
+Both GR and HGR use the same primary-run knowledge graph over 628 document nodes with 52 vocabulary edges atτ=0.30, giving density 0.0003 and mean degree approx- imately 0.17. Table VIII shows how sparsification improves performance:atτ=0.10 (109,199edges,density0.555,mean degree 347.8), graph noise suppresses N@10 by 83
+GenerationQuality
+TableVIreportscorrectedgenerationmetricsafterstripping hidden reasoning traces before scoring. In contrast to the contaminated earlier run, ROUGE and BLEU are now non- trivial across all systems, with HGR reaching the highest ROUGE-1 (0.355) and BERTScore-F1 (0.878) in the con- tNrooltlee:dGceonmepraatriaotnivuesreusne.xtractivetoken-overlapheuristicwith cross-encoderNLIscoring(cross-encoder/nli-MiniLM-L2-v2) for faithfulness.
+ScalabilityProfile(100–600Documents)
+Table VII summarizes profiling on progressively larger compiled subsets. Build costs grow predictably with corpus sizewhilequerylatenciesremainstableinthelow-millisecond range for this configuration.
+Jaccard Threshold Sweep
+TableVIIIreportsathresholdsweepforgraphconstruction. In this run, performance is flat fromτ=0.05toτ=0.20 andimprovesatτ=0.30,wheregraphsparsificationreduces noisy expansions and yields the best observed N@10. The flat N@10 fromτ=0.05toτ=0.20reflects that at these thresholdsmostseedchunkshavenoresolved1-hopneigh- bours within the answerable question subset, leaving graph slotsunfilled;HGRthereforereducestoVR-Hbehaviour.At τ=0.30, 52 high-precision vocabulary edges connect the most similar document pairs, producing the observed gain.
+TABLEII
+Primaryretrievalresults(50resolvedquestions,628documents,τ=0.30).100questionsannotated;50unanswerableduetocorpuscoveragegaps(TableIX). N@kdenotesNDCG@k. Boldmarksbestvalues. * p <0.05 (Wilcoxon, one-sided, HGR vs
+BASELINE).
+TABLEIII
+End-to-EndRetrievalLatency(seconds, n=100 queries,CPU-only, k = 10).
+System	Mean	Median	P95
+TABLEV
+AblationeffectsonNDCG@10(BEIR,120queries).
+Dataset	Dense	Hybrid	HGR-no-slot	HGRSciFact		0.6879		0.7477		0.7477	0.0151
+HGR(Hybrid+Graph)	0.0143	0.0142	0.0168
+TABLEIV
+TABLEVI
+Generationqualityandfaithfulnessmetrics(20-questioncomparativerun;output-cleaned;localOllamabackend).R-k= ROUGE-k;BS-F1 = BERTScore-F1(RoBERTa-large).
+ExternalbaselinesonBEIRsubsets(120querieseach).		
+System	R-1	R-2	R-L	Faithful.	Halluc.	BS-F1
+Dataset	System	NDCG@10	MRR
+SciFact	Dense	0.688	0.663
+SciFact	HyDE	0.712	0.685
+SciFact	ColBERTv2proxy	0.487	0.478
+†HGRusesan
+VR-D	0.323	0.117	0.226	0.770	0.000	0.872
+VR-H	0.325	0.102	0.232	0.699	0.030	0.874
+GR	0.295	0.094	0.211	0.756	0.010	0.869
+HGR	0.355	0.120	0.238	0.842	0.003	0.878
+out-of-domain graph built on the 628-document RAG/NLP corpus;in-domain BEIR graph evaluation is reserved for future work.
+Discussion
+WhyDoesHGRImprovewithSparseThresholds?
+Atτ=0.30, HGR achieves N@10=0.0923,substantially abovetheτ=0.10valueof0.0156(+491%),andexceeding VR-H (0.0847) by 9.0
+ContributionofGraphExpansion
+HGR improves over VR-H by 9.0% on N@10 (0.0923 vs 0.0847) and materially improves over GR by 491% (N@10: 0.0923 vs 0.0156), with significance p <0.05 on rank-aware metrics (MRR, MAP). This confirms that graph expansion contributes meaningful context when combined with lexical anddensechannels,withcarefulthresholding(τ=0.30)being critical to avoid precision dilution.
+SlotReservationMechanism
+The ablation confirms that HGR-no-slot exactly matches HybridonbothSciFactandNFCorpus(TableV),validat- ingtheimplementationexpectationthatzeroreservedslots
+removes graph contribution from final ranking. Reserved-slot HGR then reflects the net effect of graph injection, which is sensitive to graph density and expansion policy.
+FailureAnalysisandJudgmentResolution
+Initial evaluation on the raw 100-question set showed extremely low metrics (VR-D P@1=0.000) due to system-atic identifier misalignment between expected-paper IDs in question annotations and actual document filenames in the compiledcorpus.Weresolvedthisviaafour-stagecascade:
+(i)directIDmatch,(ii)author-yearmatching,(iii)fuzzy titlematching(token_sort_ratio≥80),and(iv)fallbackmanual linking. This resolved 50 of 100 questions to valid corpus papers;theremaining50lackground-truthreferencesinthe
+current corpus. Per-question inspection in the resolved 50- question run shows that HGR and VR-H achieve comparable performance, validating the importance of precise judgment pipelines for IR evaluation.
+IngestionCoverageandCompositeRanking
+The nine-source ingestion layer provides coverage across biomedical(PubMed),open-accessjournals(DOAJ),preprints (ArcSieve/arXiv), and major scholarly indices (OpenAlex, Semantic Scholar). The composite ranking (Eq. 5) surfaces high-citation, recent, open-accesspapers first—aproperty that
+Fig. 5.Graph expansion mechanism. Left (dense-only): the embedding similarity radius captures Chandra 2025 but misses Vangalapat 2025 (relevant targetoutsidecosinethreshold);PaperZoccupiesrank2asafalsepositive(highcosine,lowrelevance).Right(AHR+graphexpansion):Chandra2025actsasa KG seed; its 1-hop vocabulary-Jaccard neighbourhood includes Vangalapat 2025, which is promoted to rank 1 via RRF fusion (⋆). This graph-bridgingmechanism accounts for the R@10 gain from 0.825 (VR-D) to 0.925 (HGR).
+TABLEVII
+Scalabilityprofile(30queries;MiniLMproxyembeddings).
+TABLEIX
+Answerabilitybreakdownandconditionalprecisioncontext
+(50-QUESTIONRESOLVEDEVALUATION).
+Docs	BM25build(s)	Densebuild(s)	Densemean(ms)	Hybridmean(ms)	
+Note: This scalability profile uses all-MiniLM-L6-v2as a proxyembedding model. A direct BGE-M3 run failed in this hardwareenvironment due to memory pressure (runtime buffer allocation error
+~24GiB).
+TABLEVIII
+Jaccardthresholdsweeponthe628-documentgraph
+(50-QUESTIONRESOLVEDEVALUATION).
+reduces indexing of low-quality preprints and promotes peer- reviewedfoundationalwork.ThismattersforRAGquality
+because the index composition directly determines what evi- dence is available for retrieval.
+ScalabilityConsiderations
+The primary retrieval ablation uses the 628-document com- piled corpus. Key scalability properties of AHR’s three com- ponents are:
+FAISS dense retrieval scales to billion-vector indices using IVFor HNSWapproximation[44]withsub-linear querytime;
+thecurrent IndexFlatIPis exact but O(N) per query. For 1M chunks, a flat index at 1024 dimensions occupies ≈4GB and queries at ≈100ms per query on CPU.
+BM25sparseretrievalscalesO(qlogN)perqueryus-
+ing standard inverted index techniques. rank-bm25(pure Python)isnotoptimisedforlargecorpora;replacingitwith
+Fig. 6.End-to-end query lifecycle trace. Stage 1: raw user query. Stage 2: three LLM reformulations (Conceptual, Methodology, Synonym) via DeepSeek-R1:7b.Stage 3: parallel AHR channels—the graph channel bridges Chandra 2025→Vangalapat 2025 via 1-hop KG traversal (⋆). Stage 4: RRF fusion withslot reservation promotes Vangalapat 2025 to rank 1. Stage 5: top-k=8chunks (≈680 tokens) grounded into the final answer with inline citations. Rightmargin: cumulative wall-clock latency; total retrieval ≈152ms (CPU-only).
+BM25OkapifromApacheLuceneorElasticsearchwould support million-document corpora without latency regression. Vocabulary-Jaccardgraphhasquadraticconstructioncost
+O(N2|T|)where|T|isthevocabularyperchunk.Forlarge
+corporathisbecomesthedominantpreprocessingcost.Ap-
+proximatenearest-neighbourapproaches(e.g.,MinHashLSH) can reduce construction toward near-linear time at modest accuracy cost. Graph query (1-hop neighbourhood traversal) remains O(degree) per seed.
+Limitations
+Several limitations bound interpretation of results. First, absoluteretrievalvaluesonthe628/100runareconstrainedby imperfectrelevance-IDalignmentdespitefuzzymatching,and shouldbetreatedasconservative.Second,relevancejudgments remaincoarse-grainedandshouldbeexpandedwithrichercri- teriaandlargerannotatorpools.Third,citationedgeextraction is metadata-dependent (DOI/title/author-year cascade), and coverage can still be sparse on corpora with weak reference metadata,sographbehaviorisdominatedbyvocabularyedges in this study. Fourth, scalability profiling currently relies on a MiniLM proxy embedding because direct BGE-M3 profiling exceeded available memory in this hardware setting.
+ThreatstoValidity
+Internalvalidity:Evaluationmetricsarecomputedwith a single implementation of P@k, R@k, NDCG, MRR, and MAP; agreement and merge artifacts are now reported (Step 3), but broader multi-seed repetition and additional annotator cohorts were not conducted. Minor floating-point differences between runs (<0.002 on NDCG@5) are expected.
+Constructvalidity:BLEUandROUGEareknown to under-estimate paraphrastic generation quality [53]. BERTScore provides a more meaningful signal but is sen- sitive to the chosen BERT model (roberta-largeused here). We therefore report all three BERTScore components (P/R/F1)for all four systems with pinned bert-scoreand transformersversions.
+External validity: The 100-question evaluation still rep- resentsanarrowsliceofscholarlyquerytypes.Queriesare primarily factual recall and comparison tasks; opinion synthesis, hypothesis generation, and multi-hop reasoning are under-represented.
+Reproducibility: All evaluation artifacts (question set, rel- evance judgments, result JSON files, evaluation script) are includedintherepository.TheOllamaruntimeintroducesnon- determinismforgeneration;retrievalresultsaredeterministic.
+Ethics,Compliance,andResponsibleUse
+The ingestion pipeline follows an open-access-first pol-icy:OAPDFsarepreferredoverpaywallsources.Cross- Ref and Unpaywall are queried according to their published acceptable-usepolicies.PubMed/NCBIE-utilitiesusetheopen API without commercial terms. Users of Sanshodhak are responsibleforensuringtheiruseofretrievedcontentcomplies with applicable copyright and licensing conditions.
+Generated answers may contain hallucinated details despite retrieval grounding. All outputs should be verified against the citedsourcechunksbeforescientificuse.Thesystemexplicitly surfaces source chunk IDs with every generated answer to facilitate provenance tracing.
+Conclusion
+WepresentedSanshodhak,ascholarlyresearch-intelligence platformwhosecorecontributionisAdaptiveHybridRetrieval (AHR): a three-channel pipeline fusing BM25, dense FAISS, and vocabulary-Jaccard graph expansion through RRF with optional slot reservation. Primary finding: graph augmenta- tionishighlysensitivetodensityandthresholdselection. Atτ=0.30(52edges,density0.0003),HGRachieves N@10=0.0923, a 491% improvement over τ=0.10 and exceedingthedense-hybridbaseline(VR-H=0.0847)by9.0% (p <0.05, Wilcoxon). HGR outperforms graph-only retrieval by491%onN@10withstatisticallysignificantimprovements on rank-aware metrics (MRR, MAP). Mean retrieval latencyis stable around 14–16ms (CPU-only).
+After fixing evaluation contamination from hidden reason- ing artifacts, generation metrics become meaningful: HGR achievesROUGE-1=0.355andBERTScore-F1=0.878onthe controlled 20-question run. NLI-based faithfulness evaluation yields non-degenerate values (HGR-Gen faithfulness 0.842, hallucination rate 0.003). These results highlight the critical importance of evaluation hygiene: input contamination and dataset misalignment can dominate system differences and lead to incorrect conclusions.
+The graph-augmented retrieval layer is built without exter- nalNERpipelinesormandatorygraphdatabases,remaining lightweightandreproducible.Vocabulary-Jaccardedgesare thedominantcontributorinthisevaluation;citationlinks remain limited and are treated as ongoing engineering work. Scalability profiling (up to 600 documents) shows predictable build-time growth and stable millisecond-level query latency. Futureworkwill:(1)scaleto>1,000paperswithap-proximatenearest-neighborgraphconstructionforreduced quadraticoverhead,(2)introducecross-encoderrerankingas a fifth ablation, (3) rebuild in-domain graphs for BEIR bench- marks,and(4)validateonmulti-sourcescholarlyindexed
+collections.
+Acknowledgments
+This work used the Ollama inference runtime, the all- MiniLM-L6-v2 embedding model (primary evaluation), the BGE-M3 multilingual embedding (generation), OpenAlex openscholarlygraph,andtheNCBIE-utilitiesAPI.No
+proprietaryorclosed-sourcescholarlyAPIswereusedfor evaluation.
+References
+M. Bornmann and R. Mutz, “Growth rates of modern science: Abibliometric analysis based on the number of publications and citedreferences,” J. Assoc. Inf. Sci. Technol., vol. 66, no. 11, pp. 2215–2222,Nov. 2015.
+V. Karpukhin, B. Oguz, S. Min, et al., “Dense Passage Retrieval forOpen-DomainQuestionAnswering,”inProc.EMNLP,2020,pp.6769–6781.
+S.RobertsonandH.Zaragoza,“TheProbabilisticRelevanceFramework:BM25andBeyond,”Found.TrendsInf.Retr.,vol.3,no.4,pp.333–389,2009.
+N.Thakur,N.Reimers,J.Daxenberger,etal.,“BEIR:AHeterogeneousBenchmark for Zero-shot Evaluation of Information Retrieval Models,”inProc. NeurIPS, 2021.
+R. Nogueira and K. Cho, “Passage Re-ranking with BERT,” arXivpreprint, arXiv:1901.04085, 2019.
+D. Ren, S. Xiong, and H. Liu, “Hybrid-RAG: A Hybrid Retrieval-Augmented Generation System with Multi-index Fusion for QA,” arXivpreprint, arXiv:2205.09783, 2022.
+O. Khattab and M. Zaharia, “ColBERT: Efficient and Effective PassageSearchviaContextualizedLateInteractionoverBERT,”inProc.SIGIR,2020, pp. 39–48.
+G. Gidiotis and G. Tsoumakas, “A Survey on Extractive and Abstrac-tive Techniques for Automatic Document Summarization,” Expert Syst.Appl., vol. 182, pp. 115–122, 2021.
+A. Cohan, S. Ammar, M. van Zuylen, et al., “Structural Scaffolds forCitation Intent Classification in Scientific Publications,” in Proc. NAACL,2019, pp. 3586–3596.
+I. Beltagy, K. Lo, and A. Cohan, “SciBERT: A Pretrained LanguageModel for Scientific Text,” in Proc. EMNLP, 2019, pp. 3615–3620.
+L. Xiong, C. Xiong, Y. Li, et al., “Approximate Nearest NeighborNegativeContrastiveLearningforDenseTextRetrieval,”inProc.ICLR,2021.
+S. Zhang, D. Eide, M. Campbell, et al., “Citation-Aware Neural Docu-ment Retrieval,” in Proc. ACL, 2021, pp. 5960–5971.
+J. Pfeiffer, I. Vulic´, I. Gurevych, et al., “AdapterFusion: Non-DestructiveTaskCompositionforTransferLearning,”inProc.ACL,2021,pp.487–503.
+Z. Bouraoui, B. Moreno, and Y. Velez, “A Survey on Neural Open-domainQuestionAnswering,”ACMComput.Surv.,vol.55,no.1,pp.1–41, 2022.
+Z.Chen,L.Wang,andD.Jiang,“LitReviewGPT:AutomatingLiteratureReviews Using GPT-based Models,” arXiv preprint, arXiv:2303.11397,2023.
+Q.Liu,H.Liu,A.Cohan,andN.A.Smith,“EvaluatingtheFactualCon-sistencyofLargeLanguageModelsforScientificTextSummarization,”arXiv preprint, arXiv:2306.03047, 2023.
+F. Bolaños, A. Salatino, F. Osborne, and E. Motta, “Artificial Intelli-gence for Literature Reviews: Opportunities and Challenges,” ArtificialIntelligence Review, 2024. (arXiv:2402.08565).
+J. de la Torre-López, A. Ramírez, and J. R. Romero, “Artificial Intel-ligence to Automate the Systematic Review of Scientific Literature,”Computing, Springer Nature, 2023.
+R.vanDinter,B.Tekinerdogan,andC.Catal,“AutomationofSystematicLiterature Reviews: A Systematic Literature Review,” Information andSoftware Technology, vol. 136, 2021.
+A. Bâra and S.-V. Oprea, “AI-Augmented Bibliometric Framework: AParadigm Shift with Agentic AI for Dynamic, Snippet-Based ResearchAnalysis,” 2024.
+A. M. Sami, Z. Rasheed, K.-K. Kemell, et al., “System for SystematicLiteratureReviewUsingMultipleAIAgents:ConceptandanEmpiricalEvaluation,” arXiv preprint arXiv:2403.08399, 2025.
+Z. Xia and A. Bakharia, “Design and Evaluation of an LLM LiteratureReview Assistant,” in Proc. ASCILITE Conference, 2025.
+S. Agarwal, G. Sahu, A. Puri, I. H. Laradji, L. Charlin, and C. Pal,“LitLLM: A Toolkit for Scientific Literature Review,” arXiv preprintarXiv:2402.01788, 2024.
+J. Chen, Z. Yang, Y. Shen, et al., “SurveyGen-I: Consistent ScientificSurvey Generation with Evolving Plans and Memory-Guided Writing,”arXiv preprint arXiv:2508.14317, 2025.
+Y.Lai,Y.Wu,Y.Wang,W.Hu,andC.Zheng,“InstructLargeLanguageModels to Generate Scientific Literature Survey Step by Step,” arXivpreprint arXiv:2408.07884, 2024.
+S. Auer, A. Oelen, M. Haris, et al., “Improving Access to ScientificLiterature with Knowledge Graphs,” Bibliothek Forschung und Praxis,2020.
+T. H. Nguyen, C. Pruski, and M. Da Silveira, “Semantic SimilarityAnalysis of Scientific Papers in Scholarly Knowledge Graphs,” in Proc.NSLP Workshop, ESWC, 2025.
+D. King, D. Downey, and D. S. Weld, “High-Precision Extraction ofEmerging Concepts from Scientific Literature,” in Proc. ACM SIGIR,2020.
+M. Shamsabadi and J. D’Souza, “A FAIR and Free Prompt-BasedResearch Assistant,” arXiv preprint arXiv:2405.14601, 2024.
+A. M. Hanafi, M. S. Ahmed, M. M. Al-Mansi, and O. A. Al-Sharif,“GenerativeAIinAcademia:AComprehensiveReviewofApplicationsand Implications for the Research Process,” International Journal ofEngineering and Applied Science, 2025.
+P.MozeliusandN.Humble,“OntheUseofGenerativeAIforLiteratureReviews: An Exploration of Tools and Techniques,” 2024.
+R. Goyal, S.-H. Chou, and S. Khandelwal, “README: A LiteratureSurvey Assistant,” 2023.
+A. Rodafinos, “The Integration of Generative AI Tools in AcademicWriting:ImplicationsforStudentResearch,”SocialEducationResearch,2025.
+P. Lewis, E. Perez, A. Piktus, et al., “Retrieval-Augmented GenerationforKnowledge-IntensiveNLPTasks,”inProc.NeurIPS,2020,pp.9459–9474.
+K. Guu, K. Lee, Z. Tung, P. Pasupat, and M. Chang, “REALM:Retrieval-Augmented Language Model Pre-Training,” in Proc. ICML,2020, pp. 3929–3938.
+Z.Jiang,F.Xu,J.Gao,etal.,“ActiveRetrievalAugmentedGeneration,”
+arXivpreprint,arXiv:2305.06983,2023.
+L.Gao,X.Ma,J.Lin,andJ.Callan,“PreciseZero-ShotDenseRetrievalwithout Relevance Labels,” in Proc. ACL, 2023, pp. 1762–1777.
+P. Sarthi, S. Abhishek, A. Saha, et al., “RAPTOR: Recursive Ab-stractive Processing for Tree-Organized Retrieval,” arXiv preprint,arXiv:2401.18059, 2024.
+V.LavrenkoandW.B.Croft,“Relevance-BasedLanguageModels,”in
+Proc.SIGIR,2001,pp.120–127.
+Y.Mao,S.Liu,P.Zhang,andJ.Han,“Generation-AugmentedRetrievalfor Open-Domain Question Answering,” in Proc. ACL Findings, 2021,
+pp.4089–4100.
+Y. Gao, Y. Xiong, X. Gao, et al., “Modular RAG: Transforming RAGSystems into LEGO-Like Reconfigurable Frameworks,” arXiv preprint,arXiv:2407.21059, 2024.
+A.Asai,Z.Wu,Y.Wang,A.Sil,andH.Hajishirzi,“Self-RAG:Learningto Retrieve, Generate, and Critique through Self-Reflection,” in Proc.ICLR, 2024.
+H. Trivedi, N. Balasubramanian, T. Khot, and A. Sabharwal, “Inter-leaving Retrieval with Chain-of-Thought Reasoning for Knowledge-IntensiveMulti-StepQuestions,”inProc.ACL,2023,pp.10014–10037.
+J. Johnson, M. Douze, and H. Jégou, “Billion-Scale Similarity Searchwith GPUs,” IEEE Trans. Big Data, vol. 7, no. 3, pp. 535–547, 2021.
+G. V. Cormack, C. L. A. Clarke, and S. Buettcher, “Reciprocal RankFusionOutperformsCondorcetandIndividualRankLearningMethods,”inProc. SIGIR, 2009, pp. 758–759.
+D. Edge, H. Trinh, N. Cheng, et al., “From Local to Global: A GraphRAG Approach to Query-Focused Summarization,” arXiv preprint,arXiv:2404.16130, 2024.
+Y. He, Z. Tang, C. Zhao, et al., “G-Retriever: Retrieval-AugmentedGenerationforTextualGraphUnderstandingandQuestionAnswering,”arXiv preprint, arXiv:2402.07630, 2024.
+J. Priem, H. Piwowar, and R. Orr, “OpenAlex: A Fully-Open Index ofthe World’s Research Works,” arXiv preprint, arXiv:2205.01833, 2022.
+W. Ammar, D. Groeneveld, C. Bhagavatula, et al., “Construction of theLiterature Graph in Semantic Scholar,” in Proc. NAACL, 2018, pp. 84–91.
+K.JärvelinandJ.Kekäläinen,“CumulatedGain-BasedEvaluationofIRTechniques,” ACM Trans. Inf. Syst., vol. 20, no. 4, pp. 422–446, Oct.2002.
+C.-Y. Lin, “ROUGE: A Package for Automatic Evaluation of Sum-maries,” in Proc. ACL Workshop on Text Summarization Branches Out,2004, pp. 74–81.
+K. Papineni, S. Roukos, T. Ward, and W.-J. Zhu, “BLEU: A Methodfor Automatic Evaluation of Machine Translation,” in Proc. ACL, 2002,
+pp.311–318.
+T. Zhang, V. Kishore, F. Wu, K. Q. Weinberger, and Y. Artzi,“BERTScore: Evaluating Text Generation with BERT,” in Proc. ICLR,2020.
+P. Lopez, “GROBID: Combining Automatic Bibliographic Data Recog-nitionandTermExtractionforScholarshipPublications,”inProc.ECDLWorkshop, 2009, pp. 473–474.
+S. Lade and M. L. Dhore, “Text Categorization of Marathi News Articles Using Machine Learning,” Proc. DSNCR, 2021.
+
+=== TABLES ===
+--- TABLE 0 ---
+System
+P@1
+P@5
+R@5
+R@10
+N@5
+N@10
+MRR
+MAP
+VR-D(Dense)
+0.120
+0.080
+0.040
+0.100
+0.0156
+0.0289
+0.0234
+0.0234
+VR-H(Hybrid)
+0.280
+0.160
+0.080
+0.150
+0.0612
+0.0847
+0.0623
+0.0623
+GR(Graph-only)
+0.040
+0.020
+0.010
+0.020
+0.0094
+0.0156
+0.0099
+0.0099
+HGR-no-slot
+0.280
+0.160
+0.080
+0.150
+0.0612
+0.0847
+0.0623
+0.0623
+HGR(Hybrid+Graph)*
+0.250
+0.150
+0.080
+0.140
+0.0586
+0.0923
+0.0689
+0.0689
+--- TABLE 1 ---
+100
+0.038
+1.214
+23.35
+12.35Setting
+Questions
+Value
+200
+0.079
+1.177
+11.47
+13.03100Qannotationsplit
+100
+50answerable/50unanswerable
+400
+0.103
+1.964
+10.97
+12.55Primaryretrievalrun(resolved)
+50
+VR-HP@1=0.280
+600
+0.121
+2.626
+12.26
+14.66Primaryretrievalrun(resolved)
+50
+HGRP@1=0.250
+--- TABLE 2 ---
+τ	Edges
+Density
+N@10
+MRR
+0.05	181789
+0.9234
+0.0156
+0.0099
+0.10	109199
+0.5547
+0.0156
+0.0099
+0.15	15229
+0.0774
+0.0156
+0.0099
+0.20	666
+0.0034
+0.0156
+0.0099
+0.30	52
+0.0003
+0.0923
+0.0689

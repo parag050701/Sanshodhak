@@ -1,0 +1,465 @@
+International Journal of Computer and Information System (IJCIS) 
+Peer Reviewed – International Journal 
+Vol         : Vol. 05, Issue 02, May 2024 
+e-ISSN  : 2745-9659 
+https://ijcis.net/index.php/ijcis/index 
+ 
+IJCIS Journal homepage - https://ijcis.net/index.php/ijcis/index  
+pages 73 
+A Query Expansion Using Support Vector Machine (SVM) and 
+Best Matching 25 (BM25) 
+Muhadi 
+Department of Master of Science and Information Technology 
+President University  
+Bekasi, Indonesia 
+muhadi@student.president.ac.id  
+ 
+Abstract - The information retrieval system needs to be upgraded constantly to improving retrieval performance. Expansion 
+Query is one of the information retrieval methods for retrieve more relevant documents. Several technique expansion queries 
+are synonym expansion, Thesaurus Expansion, and Word Embedding Expansion. This research uses a Support Vector 
+Machine ( SVM ) to get new terms from the corpus. Some people are sometimes confused about what must to write to get the 
+desired document or are too lazy to write a lot of words. In this research, Based on the input query data SVM will search for 
+condition data from the existing corpus so that the data obtained will later become an expansion for the query. Adding 
+additional terms to capture a broader range of relevant documents will retrieve more documents and improve the relevance 
+of search results. 
+Keyword: Information Retrieval, Query Expansion, Support Vector Machine, Best Matching 25 
+ 
+I. INTRODUCTION 
+Along with advances in internet technology today, 
+we have an abundance of new document sources. In 
+terms of document types, the internet also provides 
+various choices of document types including 
+multimedia elements. With so many documents 
+whose data would be very difficult if document 
+searches were done manually, users need more 
+sophisticated tools to find their relevant information. 
+Therefore, a number of language technologies are 
+used in various information management applications 
+of multilingual search engines.The main problem of 
+this article is trying to provide an alternative 
+document search engine through expansion queries 
+using a Support Vector Machine. It is believed that 
+this technique will be able to improve the relevance 
+of search results. 
+ 
+Query Expansion (QE) is a process in Information 
+Retrieval that consists of selecting and adding terms 
+to the user’s query with the goal to capture more 
+relevant documents and thereby improving retrieval 
+performance. 
+ 
+Several studies have focused on A Query 
+Expansion Method Using a Machine Learning 
+algorithm. Research [1] Use Multinomial Naive 
+Bayes to get additional terms.  Researh[2][3] has 
+studied and surveyed about Expansion Query. This 
+research using a Support Vector Machine (SVM) for 
+get new terms and Best Matching 25 (BM25) for 
+Document retrieval. 
+ 
+II. RESEARCH METHODS 
+ 
+1.1 Diagram 
+ 
+ 
+Figure 1. Diagram 
+ 
+2.2 Corpus 
+In this research, we use corpus data from 
+http://www.trec-cds.org/2017. The corpus consists of 
+a set of clinical trials, on text format and the document 
+contains a title, condition, intervention, summary, 
+details description, and eligibility (gender, age, 
+criteria). 
+ 
+
+International Journal of Computer and Information System (IJCIS) 
+Peer Reviewed – International Journal 
+Vol         : Vol. 05, Issue 02, May 2024 
+e-ISSN  : 2745-9659 
+https://ijcis.net/index.php/ijcis/index 
+ 
+IJCIS Journal homepage - https://ijcis.net/index.php/ijcis/index  
+pages 74 
+ 
+Figure 2. Corpus 
+ 
+2.3 Dataframe 
+For an easy process in machine learning, need to 
+convert data from text file to data frame format. The 
+data frame format will be easy for reading, filtering, 
+and processing in machine learning applications. The 
+data will be split only into 3 fields: file_name, 
+condition, and text. A text field is a result of 
+combining several sections of data in a text file:  data 
+title, 
+condition, 
+intervention, 
+summary, 
+and 
+description. Figure 3 shows the dataset in data frame 
+format. 
+ 
+ 
+Figure 3. Data frame format 
+ 
+ 
+2.4 Text Pre-Processing 
+The characteristics of a corpus sometimes use 
+unusual language, various abbreviations, and certain 
+characters. so the data obtained is still in unstructured 
+form. The system will experience difficulty analyzing 
+data like that, pre-processing steps need to be carried 
+out. Likewise, in this research pre-processing steps 
+were carried out. The first is to change all letters to 
+lowercase. Then remove stop words, hyperlinks, non-
+alpha characters, and other words that have no 
+meaning. 
+ 
+ 
+Figure 4. Text Preprocessing 
+ 
+ 
+2.5 Best Matching 25 (BM25) Scoring 
+     Best Matching 25 is a ranking system that can sort 
+the match results for a document. This ranking 
+function is commonly used in information retrieval 
+systems to rank documents based on their relevance 
+to a particular query. BM25 is an extension of the TF-
+IDF weighting scheme. 
+ 
+2.5.1 Term Frequency (TF) Calculation 
+     BM25 calculates the term frequency (TF) for each 
+term in each document. Unlike standard TF in TF-
+IDF, BM25 uses a saturation function to dampen the 
+effect of excessively high term frequencies.  
+ 
+The TF component in BM25 is calculated using 
+the formula: 
+ 
+TF(𝑡,𝑑) = 
+(𝑘+1)×tf(𝑡,𝑑)𝑘×(1−𝑏+𝑏×∣𝑑∣avg_dl)+tf(𝑡,𝑑) 
+TF(t,d) = k×(1−b+b×avg_dl∣d∣)+tf(t,d)(k+1)×tf(t,d) 
+ 
+tf(𝑡,𝑑)tf(t,d) is the raw term frequency of term 𝑡t in 
+document 𝑑d. 
+∣𝑑∣∣d∣ is the length of document 𝑑d. 
+avg_dlavg_dl is the average document length in the 
+corpus. 
+𝑘k and 𝑏b are tuning parameters that control the 
+scaling and normalization of term frequencies. 
+Typically, 𝑘k is set to a value such as 1.2 and 𝑏b to a 
+value such as 0.75. 
+ 
+
+International Journal of Computer and Information System (IJCIS) 
+Peer Reviewed – International Journal 
+Vol         : Vol. 05, Issue 02, May 2024 
+e-ISSN  : 2745-9659 
+https://ijcis.net/index.php/ijcis/index 
+ 
+IJCIS Journal homepage - https://ijcis.net/index.php/ijcis/index  
+pages 75 
+2.5.2 
+Inverse 
+Document 
+Frequency 
+(IDF) 
+Calculation 
+     Like TF-IDF, BM25 also incorporates IDF to 
+weigh down terms that occur in many documents. 
+However, unlike TF-IDF, BM25 uses a simplified 
+IDF calculation without the logarithm. 
+The IDF component in BM25 is calculated as: 
+ 
+IDF(𝑡)=log
+(𝑁−𝑛(𝑡)+0.5𝑛(𝑡)+0.5)IDF(t)=log(n(t)
++0.5N−n(t)+0.5) 
+ 
+𝑁N is the total number of documents in the corpus. 
+𝑛(𝑡)n(t) is the number of documents containing term 
+𝑡t. 
+ 
+2.5.3 Query Term Weighting 
+     After calculating TF and IDF for each term in each 
+document, BM25 calculates a score for each 
+document based on how well it matches the query. For 
+a given query 𝑞q, the score of document 𝑑d is 
+calculated as the sum of the weights of its terms that 
+match the query terms. 
+The final score for document 𝑑d is calculated as: 
+score(𝑑,𝑞)=∑𝑡∈𝑞TF(𝑡,𝑑)×IDF(𝑡)score(d,q)=∑t∈q
+TF(t,d)×IDF(t) 
+ 
+2.5.4 Ranking 
+     Finally, the documents are ranked based on their 
+scores. The documents with higher scores are 
+considered more relevant to the query and are 
+typically presented to the user first in the search 
+results. 
+     Overall, BM25 is a powerful ranking function that 
+takes into account both term frequency and document 
+length normalization, making it suitable for ranking 
+documents 
+in 
+information 
+retrieval 
+systems. 
+Adjusting the tuning parameters 𝑘k and 𝑏b allows 
+fine-tuning of the ranking algorithm based on the 
+characteristics of the corpus and the specific 
+requirements of the application. 
+ 
+2.6 Support Vector Machine (SVM) 
+This research uses a Support Vector Machine with 
+C parameter = 1 and linear kernel. For SVM text 
+classification setting C=1 is common, and the result 
+for this setting is often good. This setting represents a 
+balanced trade-off between achieving a low training 
+error and a low testing error.  
+Linear kernels are popular choices and generally 
+faster to train compared to more complex kernels like 
+RBF. Linear kernel can work well for text 
+classification especially when using techniques like 
+TF-IDF or word embeddings, the data is often high-
+dimensional. 
+III. RESULT 
+      
+3.1 Text Preprocessing and SVM Accuracy 
+     After going through text processing, some 
+characters and words from the collection of 
+documents will be lost, including special characters / 
+strange characters, numbers, and words that are 
+considered unimportant in the stopword list. Figure 5 
+shows the difference between the original text data 
+and the text after text processing. You can see in the 
+picture the comparison between the original test and 
+the preprocessed text. If we compare, there are 
+several characters missing, there are even words 
+removed too. Open-close bracket characters and 
+numbers are not visible in the preprocessed results. 
+Irrelevant words are also lost such as 'and', 'of', and 
+'in'. This format provides a structured overview of the 
+NLP processing results, making it easy to understand 
+and interpret the findings. 
+ 
+ 
+ 
+Figure 5. Text Processed 
+ 
+     This research uses Machine Learning with text 
+classification Support Vector Machine algorithm, an 
+accuracy value of 100% was obtained from the data 
+train and 58% for the data test. This accuracy was 
+obtained from a dataset of 274 documents. 
+ 
+3.2 BM25 Scoring 
+     Results of this research, the BM25 score value of 
+the document query results has increased both in 
+terms of the score of each document and the number 
+of documents that have a score > 0.  Table 1 shows 
+comparison of the number of documents that have a 
+score between normal query (NQ) and expansion 
+query (EQ).  All experiments show that the number of 
+documents that have a score for Expansion Query has 
+increased until 67 %. 
+ 
+ 
+ 
+
+International Journal of Computer and Information System (IJCIS) 
+Peer Reviewed – International Journal 
+Vol         : Vol. 05, Issue 02, May 2024 
+e-ISSN  : 2745-9659 
+https://ijcis.net/index.php/ijcis/index 
+ 
+IJCIS Journal homepage - https://ijcis.net/index.php/ijcis/index  
+pages 76 
+Table 1. The number of documents have a score 
+ 
+The number of documents have a score 
+No 
+Query 
+NQ 
+EQ 
+% 
+1 
+'impaired 
+glucose 
+(carbohydrate) 
+tolerance' 
+165 
+276 
+67,2 
+2 
+'reductions in central vision' 
+163 
+172 
+5,5 
+3 
+'risk factors for cataract' 
+100 
+182 
+82,0 
+4 
+'effectiveness of buprenorphine' 
+230 
+286 
+24,3 
+5 
+'effects of nitrous oxide in humans' 
+233 
+287 
+23,2 
+6 
+'effects of treatment medications' 
+272 
+294 
+8,1 
+7 
+'role 
+cotinine 
+plays 
+in 
+nicotine 
+addiction' 
+164 
+210 
+28,0 
+8 
+'clinical protocol to detoxify patients' 
+193 
+271 
+40,4 
+9 
+'tablet buprenorphine formulations' 
+211 
+291 
+37,9 
+10 
+'evaluate the efficacy of desipramine' 
+227 
+281 
+23,7 
+ 
+     Tables 2 and 3 show the top 20 score values from 
+the query results both in normal query (NQ) and in 
+Extension Query (EQ). Table 4 shows that in all 
+experiments top 20 query scores increased until 50%. 
+ 
+ 
+ 
+Table 02. Top 20 BM25 Score( Query no 1 ~ 5 ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Table 3. Top 20 BM25 Score( Query no 6 ~ 10 ) 
+ 
+ 
+ 
+IV. CONCLUSION AND FUTURE WORK 
+ 
+Table 1 shows that the number of documents has 
+increased, this means that the results obtained with 
+expansion queries are in accordance with their 
+objectives. Query expansion techniques aim to 
+capture more relevant documents 
+Tables 2 and 3 show that the score value for each 
+document has increased, improving the relevance of 
+search results 
+The increase in the number of documents and score 
+values shows that the method of using SVM has been 
+successfully used for expansion queries which can 
+improve 
+the 
+relevance 
+of 
+documents 
+and 
+effectiveness of search results. 
+This research only uses 274 documents which 
+consist of a set of clinical trials, and need to be tried 
+with more datasets and with other themes. 
+ 
+ 
+REFERENCES 
+ 
+[1]. 
+Silva, Sergio, Adrián Seara Vieira, Pedro 
+Celard, Eva Lorenzo Iglesias, and Lourdes 
+Borrajo. 2021. “A Query Expansion Method 
+Using Multinomial Naive Bayes.” Applied 
+Sciences (Switzerland) 
+[2].   Afuan, Lasmedi, Ahmad Ashari, and Yohanes 
+Suyanto. 2019. “A Study: Query Expansion 
+Methods in Information Retrieval.” Journal of 
+Physics: Conference Series 1367(1). 
+[3]. 
+Azad, Hiteshwar Kumar, and Akshay Deepak. 
+2019. “Query Expansion Techniques for 
+Information Retrieval: A Survey.” Information 
+Processing and Management 56(5): 1698–
+1735. 
+
+International Journal of Computer and Information System (IJCIS) 
+Peer Reviewed – International Journal 
+Vol         : Vol. 05, Issue 02, May 2024 
+e-ISSN  : 2745-9659 
+https://ijcis.net/index.php/ijcis/index 
+ 
+IJCIS Journal homepage - https://ijcis.net/index.php/ijcis/index  
+pages 77 
+[4]. 
+Blanco, 
+Roi, 
+and 
+Paolo 
+Boldi. 
+2012. 
+“Extending BM25 with Multiple Query 
+Operators.” SIGIR’12 - Proceedings of the 
+International ACM SIGIR Conference on 
+Research and Development in Information 
+Retrieval: 921–30. 
+[5]. 
+Hou, Fenglei, and Bingxi Wang. 2001. “Text-
+Independent 
+Speaker 
+Recognition 
+Using 
+Support Vector Machine.” 2001 International 
+Conferences on Info-Tech and Info-Net: A Key 
+to Better Life, ICII 2001 - Proceedings 3(306): 
+402–7. 
+[6]. 
+Hwang, Young Sup. 2014. “Wrapper-Based 
+Feature Selection Using Support Vector 
+Machine.” Life Science Journal 11(7): 632–36. 
+[7]. 
+Maier, J., and K. Ferens. 2009. “Classification 
+of English Phrases and SMS Text Messages 
+Using Bayes and Support Vector Machine 
+Classifiers.” 
+Canadian 
+Conference 
+on 
+Electrical and Computer Engineering: 415–18. 
+[8]. 
+Ramadhani, P. P., and S. Hadi. 2021. “Text 
+Classification on the Instagram Caption Using 
+Support Vector Machine.” Journal of Physics: 
+Conference Series 1722(1). 
+[9]. 
+Svore, Krysta M., and Christopher J.C. Burges. 
+2009. “A Machine Learning Approach for 
+Improved BM25 Retrieval.” International 
+Conference on Information and Knowledge 
+Management, Proceedings: 1811–14. 
+[10]. Whissell, John S., and Charles L.A. Clarke. 
+2011. “Improving Document Clustering Using 
+Okapi BM25 Feature Weighting.” Information 
+Retrieval 14(5): 466–87.

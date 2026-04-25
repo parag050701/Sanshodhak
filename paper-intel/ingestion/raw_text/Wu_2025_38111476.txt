@@ -1,0 +1,1877 @@
+Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 28443–28467
+July 27 - August 1, 2025 ©2025 Association for Computational Linguistics
+Medical Graph RAG: Evidence-based Medical Large Language Model via
+Graph Retrieval-Augmented Generation
+Junde Wu1, Jiayuan Zhu1, Yunli Qi1, Jingkun Chen1,
+Min Xu2,3, Filippo Menolascina4, Yueming Jin5, Vicente Grau1,
+1University of Oxford, 2Carnegie Mellon University, 3MBZUAI,
+4University of Edinburgh, 5National University of Singapore
+Abstract
+We introduce MedGraphRAG, a novel graph-
+based Retrieval-Augmented Generation (RAG)
+framework designed to enhance LLMs in gen-
+erating evidence-based medical responses, im-
+proving safety and reliability with private med-
+ical data. We introduce Triple Graph Construc-
+tion and U-Retrieval to enhance GraphRAG,
+enabling holistic insights and evidence-based
+response generation for medical applications.
+Specifically, we connect user documents to
+credible medical sources and integrate Top-
+down Precise Retrieval with Bottom-up Re-
+sponse Refinement for balanced context aware-
+ness and precise indexing. Validated on 9 med-
+ical Q&A benchmarks, 2 health fact-checking
+datasets, and a long-form generation test set,
+MedGraphRAG outperforms state-of-the-art
+models while ensuring credible sourcing. Our
+code is publicly available.
+1
+Introduction
+The rapid advancement of large language mod-
+els (LLMs), such as OpenAI’s GPT-4 (OpenAI,
+2023a), has accelerated research in natural lan-
+guage processing and driven numerous AI applica-
+tions. However, these models still face significant
+challenges in specialized fields like medicine (Hadi
+et al., 2024; Williams et al., 2024; Xie et al., 2024).
+The first challenge is that these domains rely on
+vast knowledge bases -principles and notions dis-
+covered and accumulated over thousands of years;
+fitting such knowledge into the finite context win-
+dow of current LLMs is a hopeless task. Supervised
+Fine-Tuning (SFT) provides an alternative to us-
+ing the context window, but it is often prohibitively
+expensive or unfeasible due to the closed-source na-
+ture of most commercial models. Second, medicine
+is a specialized field that relies on a precise termi-
+nology system and numerous established truths,
+such as specific disease symptoms or drug side ef-
+fects. In this domain, it is essential that LLMs do
+not distort, modify, or introduce creative elements
+into the data. Unfortunately, verifying the accuracy
+of responses in medicine is particularly challeng-
+ing for non-expert users. Therefore, the ability to
+perform complex reasoning using large external
+datasets, while generating accurate and credible
+responses backed by verifiable sources, is crucial
+in medical applications of LLMs.
+Retrieval-augmented generation (RAG) (Lewis
+et al., 2021) is a technique that answers user queries
+using specific and private datasets without requir-
+ing further training of the model. However, RAG
+struggles to synthesize new insights and underper-
+forms in tasks requiring a holistic understanding
+across extensive documents. GraphRAG (Hu et al.,
+2024) has been recently introduced to overcome
+these limitations. GraphRAG constructs a knowl-
+edge graph from raw documents using an LLM, and
+retrieves knowledge from the graph to enhance re-
+sponses. By representing clear conceptual relation-
+ships across the data, it significantly outperforms
+classic RAG, especially for complex reasoning (Hu
+et al., 2024). However, its graph construction lacks
+a specific design to ensure response authentication
+and credibility, and its hierarchical community con-
+struction process is costly, as it is designed to han-
+dle various cases for general-purpose use. We find
+that specific effort is required to apply it effectively
+in the medical domain.
+In this paper, we introduce a novel graph-based
+RAG method for medical domain, which we refer
+to as Medical GraphRAG (MedGraphRAG). This
+technique enhances LLM performance in the medi-
+cal domain by generating evidence-based responses
+and official medical term explanation, which not
+only increases their credibility but also significantly
+improves their overall quality. Our method builds
+on GraphRAG with a more sophisticated graph con-
+struction technique, called Triple Graph Construc-
+tion, to generate evidence-based responses, and an
+efficient retrieval method, U-Retrieval, which im-
+28443
+
+proves response quality with few costs. In Triple
+Graph Construction, we design a mechanism to
+link user RAG data to credible medical papers and
+foundational medical dictionaries. This process
+generates triples [RAG data, source, definition]
+to construct a comprehensive graph of user doc-
+uments. It enhances LLM reasoning and ensures
+responses are traceable to their sources and defi-
+nitions, guaranteeing reliability and explainability.
+We also developed a unique U-Retrieval strategy to
+respond to user queries. Instead of building costly
+graph communities, we streamline the process by
+summarizing each graph using predefined medical
+tags, then iteratively clustering similar graphs to
+form a multi-layer hierarchical tag structure, from
+broad to detailed tags. The LLM generates tags for
+the user query and indexes the most relevant graph
+based on tag similarity in a top-down approach,
+using it to formulate the initial response. Then it
+refines the response by progressively integrating
+back the higher-level tags in a bottom-up manner
+until the final answer is generated. This U-Retrieval
+technique strikes a balance between global context
+awareness and the retrieval efficiency.
+To evaluate our MedGraphRAG method, we
+implemented it on several popular open-source
+and commercial LLMs, including GPT (OpenAI,
+2023b), Gemini(Team et al., 2023) and LLaMA
+(Touvron et al., 2023).
+The results evaluated
+across 9 medical Q&A benchmarks show that Med-
+GraphRAG yields materially better results than
+classic RAG and GraphRAG. Our final results even
+surpass many specifically trained LLMs on medi-
+cal corpora, setting a new state-of-the-art (SOTA)
+across all benchmarks. To verify its evidence-based
+response capability, we quantitatively tested Med-
+GraphRAG on 2 health fact-checking benchmarks
+and conducted a human evaluation by experienced
+clinicians. Both evaluations strongly support that
+our responses are more source-based and reliable
+than previous methods.
+Our contributions are as follows:
+1. We are the first to propose a specialized frame-
+work for introducing graph-based RAG in the med-
+ical domain, which we named MedGraphRAG.
+2.
+We have developed unique Triple Graph
+Construction and U-Retrieval methods that enable
+LLMs to efficiently generate evidence-based re-
+sponses utilizing holistic RAG data.
+3. MedGraphRAG outperforms other retrieval
+methods and extensively fine-tuned Medical LLMs
+across a wide range of medical Q&A benchmarks,
+establishing the new SOTAs.
+4.
+Validated by human evaluations, Med-
+GraphRAG is able to generate more understand-
+able and evidence-based responses in the medical
+domain.
+2
+Method
+The overall workflow of MedGraphRAG is shown
+in Fig. 1. We first construct the knowledge graphs
+from the documents by using Triple Graph Con-
+struction (Section 2.1), then tag the graphs for U-
+Retrieval to response the user queries (Section 2.2).
+2.1
+Triple Graph Construction
+2.1.1
+Preliminary: Document Chunking &
+Entities Extraction
+Large medical documents often contain diverse
+content. We segment them into chunks respect-
+ing LLMs’ context limits. We adopt the semantic
+chunking function implemented in LangChain to
+chunk the documents(langchain, 2024). Specifi-
+cally, we isolate paragraphs Pi within the document
+D = {P1, P2, . . . , PNp} using a text embedding
+model. We then set a buffer size of 5 and enforce
+the token limit according to the graph construction
+LLM LG.
+We then extract entities from each chunk through
+graph construction LLM LG. We prompt LG to
+identify all relevant entities E = {e1, e2, . . . , eN1e }
+in each chunk and generate a structured output
+with name, type, and a description of the context:
+e = {na, ty, cx}, as the examples shown in the
+Step2 in Fig. 1. We set name be the text from the
+document, type selected from the UMLS semantic
+types (Bodenreider, 2004), and context a few sen-
+tences generated by LG contextualized within the
+document.
+2.1.2
+Triple Linking
+Medicine relies on precise terminology and estab-
+lished facts, making it essential for LLMs to pro-
+duce responses grounded in established facts. To
+achieve this, we introduced Triple Graph Construc-
+tion, linking user documents to credible sources
+and professional definitions. Specifically, we build
+repository graph (RepoGraph), which is intended
+to be fixed across different users, providing estab-
+lished sources and controlled vocabulary defini-
+tions for user RAG documents. We construct Re-
+poGraph under user RAG graph with two layers:
+one based on medical papers/books and another
+based on medical dictionaries. We build the bottom
+28444
+
+Figure 1: The overall workflow of MedGraphRAG begins with Triple Graph Construction, where documents are
+chunked, and entities are extracted. Triple linking then connects user entities to referenced papers and vocabulary
+graph layers, forming the Med-MetaGraph. In the subsequent U-Retrieval phase, graphs are tagged to enable
+top-down precise retrieval and bottom-up response refinement, ensuring graph-enhanced query responses.
+layer of RepoGraph as UMLS (Bodenreider, 2004)
+graph, which consist comprehensive, well-defined
+medical vocabularies and their relationships. The
+upper layer of RepoGraph is constructed from med-
+ical textbooks and scholarly articles using the same
+graph construction method described here.
+The entities of all three tiers of graphs are
+hierarchically
+linked
+through
+semantic
+rela-
+tionships.
+Let us denoted entities extracted
+from RAG documents as E1. We link them to
+entities extracted from medical books/papers,
+denoted as E2, based on their relevance, which
+is determined by computing the cosine similarity
+between their content embeddings ϕ(Ce). The
+content of an entity Ce is the concatenation
+of its name, type, and context, represented
+as:
+Ce = Text[name: na; type: ty; context: cx].
+This
+directed
+linking
+is
+annotated
+as
+the
+reference
+of,
+indicating
+the
+reference
+rela-
+tionship between entities in the two layers:
+Re1
+e2 =
+
+(e1
+i , TheReferenceOf, e2
+j)
+
+ϕ(Ce1
+i )·ϕ(Ce2
+j )
+∥ϕ(Ce1
+i )∥∥ϕ(Ce2
+j )∥≥δr
+
+,
+where δr is the pre-defined threshold.
+Entities
+e2 ∈E2 are linked to e3 ∈E3 through the same
+way with relationships annotated as the definition
+of . Thus, RAG entities are constructed as triples
+[RAG entity, source, definition].
+We then instruct LG to identify the relationships
+among RAG entities in each chunk, which we
+noted as e1 ∈Em. This relationship is a concise
+phrase generated by LG based on the content
+of the entity Ce1 and associated references
+{Ce2|Re1
+e2
+= the reference of}.
+The identified
+relationships specify the source and target enti-
+ties, provide a description of their relationship:
+R
+e1
+j
+e1
+i =
+n
+(e1
+i , rij, e1
+j)
+ rij = LG
+rel(Ce1
+i ; Ce2
+i , Ce1
+j; Ce2
+j)
+o
+,
+where LG
+rel is LG with relationship identification
+and generation prompt. We show an example of
+relationship linking in the Step4 of Fig. 1. After
+performing this analysis, we have generated a di-
+rected graph for each data chunk, which is referred
+to as Meta-MedGraphs Gm = {Em, R(Em)}.
+2.2
+U-Retrieval
+2.2.1
+Preliminary: Graph Tagging
+Organizing and summarizing the graphs in ad-
+vance is intuitive and has proven to facilitate ef-
+ficient retrieval (Hu et al., 2024). However, unlike
+GraphRAG, we avoid constructing costly graph
+communities. We observe that, unlike general lan-
+guage content, medical text is often structured and
+can be summarized effectively using predefined
+tags. Motivated by this, we simply summarize
+28445
+
+each Meta-MedGraph Gm with several predefined
+tags T, and iteratively generate more abstract tag
+summaries for clusters of closely-related graphs.
+Specifically, LLM LG first summarises the con-
+tent of each Meta-MedGraph {Ce | e ∈Gm}
+given a set of given tags T. The tags T consist of
+multiple medical categories following Society for
+Testing and Materials (ASTM) standards for con-
+tent of electronic health records, mainly including
+Symptoms, Patient History, Body Functions, and
+Medication. This process generates a structured
+tag-summary for each Gm, denoted as Tm.
+We then apply a variant agglomerative hierarchi-
+cal clustering method with dynamic thresholding
+based on tag similarity, to group the graphs and
+generate synthesized tag summaries. Initially, each
+graph begins as its own group. At each iteration,
+we compute the tag similarity between all pairs
+of clusters and dynamically set the threshold δt to
+merge the top 20% most similar pairs. The graphs
+will be merged if all pairwise similarities within the
+group exceed δt. Note that we don’t really link the
+nodes across different graphs, but generate a syn-
+thesized tag-summary for each group. Specifically,
+we calculate the similarity of pairs by measuring
+the average cosine similarity of all their tag em-
+beddings. Let ϕ(t) denote the embedding of a tag
+t ∈Tm. Taking two Meta-MedGraphs Gmi and
+Gmj with tag sets Tmi and Tmj as an example, we
+generate the abstract tag summery Tmij if their co-
+sine similarity of tag embeddings ϕ(t) and ϕ(t′)
+higher than the threshold δt
+Tmij = LG(Tmi, Tmj),
+if
+1
+|Tmi| · |Tmj|
+X
+t∈Tmi
+X
+t′∈Tmj
+ϕ(t)⊤ϕ(t′)
+∥ϕ(t)∥∥ϕ(t′)∥≥δt;
+These newly merged tag-summary, along with
+those that remain unmerged, form a new layer of
+tags. As tag-summaries become less detailed at
+higher layers, there is a trade-off between precision
+and efficiency. In practice, we limit the process
+to 12 layers, as this is sufficient for most model
+variants (detailed in Fig. 5).
+2.2.2
+Top-down Precise Retrieval
+After constructing the graph, we use response LLM
+LR efficiently retrieves information to respond to
+user queries. We begin by generating tag-summary
+on the user query TQ = LR(Q), and use these
+to identify the most relevant graph through a Top-
+down Precise Retrieval. Let’s indicate the jth tags
+at layer i summarised tag T i as T i[j], it starts from
+the top layer: T 0, progressively indexing down by
+selecting the most similar tag in each layer:
+T i+1 = arg max
+T i[j]∈T i sim(TQ, T i[j])
+until we reach the tag for the target Meta-
+MedGraph Gmt.
+We then retrieve Top Nu
+entities
+based
+on
+the
+embedding
+similarity
+between the
+query and
+the entity
+content:
+Er = {e | TopNu(sim(ϕ(Q), ϕ(Ce))), e ∈Mt},
+and gather all their Top ku nearest triple neighbours
+Tri≤ku(e) as Eku
+r
+=
+
+e, Tri≤ku(e), | e ∈Er
+	
+.
+2.2.3
+Bottom-up Response Refinement
+By using all these entities and their relationships
+Gr = {Eku
+r , R(Eku
+r )}, we prompt LR to an-
+swer the question given the concatenated entity
+names and relationships in Gr: Given QUESTION:
+{Q}. GRAPH: {ei[na]+Rej
+ei +ej[na], ...}. Answer
+the user question: QUESTION using the graph:
+GRAPH... as LR
+Gr.
+In the Bottom-up Response Refinement step, we
+then move back to the higher-level tag retrieved in
+the previous step T i−1, in a bottom-up manner. We
+provide LR QUESTION: {Q}, LAST RESPONSE:
+..., and SUMMARY: {T i−1}, and ask it to Adjust
+the response:RESPONSE of the question: QUES-
+TION using the updated information: SUMMARY.
+LR continues refining its responses until it reaches
+the target layer. In practice, we retrieve 4-6 layers
+depends on the baseline LLM, a detailed experi-
+ment about it is shown in Fig. 5. It ultimately
+generate a final response after scanning all indexed
+graphs along the trajectory. This method enables
+the LLM to gain a comprehensive overview by in-
+teracting with all relevant data in the graph, while
+remaining efficient by accessing less relevant data
+in summarized form.
+3
+Experiment
+3.1
+Dataset
+3.1.1
+RAG data
+We anticipate that users will use frequently-updated
+private data as RAG data, such as patient electronic
+medical records. Thus, we employ MIMIC-IV
+(Johnson et al., 2023), a publicly available elec-
+tronic health record dataset, as RAG data.
+3.1.2
+Repository data
+We provide repository data to support LLM re-
+sponses with credible sources and authoritative vo-
+28446
+
+Figure 2: Example responses from GraphRAG and MedGraphRAG, with abstracted graphs. MedGraphRAG
+provides more detailed explanations and more complex reasoning with evidences. Full results are in the appendix.
+cabulary definitions. We use MedC-K (Wu et al.,
+2023), a corpus containing 4.8 million biomedical
+academic papers and 30,000 textbooks, along with
+all evidence publications from FakeHealth (Dai
+et al., 2020) and PubHealth (Kotonya and Toni,
+2020), as the upper repository data, and UMLS
+graph, which includes authoritative medical vo-
+cabularis and semantic relationships as the bottom
+repository data.
+3.1.3
+Test Data
+Our test set are the test split of 9 multiple-choice
+biomedical datasets from the MultiMedQA suite,
+2 fact verification datasets about public health,
+i.e., FakeHealth (Dai et al., 2020) and PubHealth
+(Kotonya and Toni, 2020), and 1 test set we col-
+lected, called DiverseHealth.
+MultiMedQA in-
+cludes MedQA (Jin et al., 2021), MedMCQA (Pal
+et al., 2022) PubMedQA (Jin et al., 2019) and
+MMLU clinic topics (Hendrycks et al., 2020). We
+also collected the DiverseHealth test set, focused
+on health equity, consisting of 50 real-world clin-
+ical questions that cover a wide range of topics,
+including rare diseases, minority health, comorbidi-
+ties, drug use, alcohol, COVID-19, obesity, suicide,
+and chronic disease management.
+3.2
+Experiment Setting
+We compare different RAG methods across 6 lan-
+guage models as LR: Llama2 (13B, 70B), Llama3
+(8B, 70B), Gemini-pro, and GPT-4. The Llama
+models were obtained from their official Hugging-
+Face page. We used gemini-1.0-pro for Gemini-
+pro and gpt-4-0613 for GPT-4. We primarily com-
+pare our approach with standard RAG implemented
+by LangChain(langchain, 2024) and GraphRAG
+(Edge et al., 2024a) implemented by Microsoft
+Azure (microsoft, 2024). All retrieval methods
+are compared under same RAG data and test data.
+We deploy LG as Llama3-70B to construct the
+graph. For text embeddings, we utilize OpenAI’s
+text-embedding-3-large model. Model comparison
+is performed using a 5-shot response ensemble (Li
+et al., 2024). MedGraphRAG used U-Retrieval
+with 4 levels on GPT-4, and 5 levels for the oth-
+ers. In the retrieval, we picked top 60 entities with
+their 16-hop neighbors. Unless otherwise noted, all
+thresholds are set as 0.5. We use the same query
+prompt for all models to generate responses.
+3.3
+Results
+3.3.1
+Multi-Choice Evaluation
+Baselines with different retrievals
+First, we con-
+ducted experiments to evaluate retrieval methods
+on various LLM baselines, with the results shown
+in Table 1. We compared MedGraphRAG against
+baselines without retrieval, standard RAG, and
+GraphRAG. Performance is measured by the ac-
+curacy of selecting the correct option. The results
+show that MedGraphRAG significantly enhances
+LLM performance on both health fact-checking
+and medical Q&A benchmarks. Compared to base-
+lines without retrieval, MedGraphRAG achieves
+28447
+
+an average improvement of nearly 10% in fact-
+checking and 8% in medical Q&A. When com-
+pared to baselines using GraphRAG, it demon-
+strates an average improvement of around 8% in
+fact-checking and 5% in medical Q&A Notably,
+MedGraphRAG yields more pronounced improve-
+ments in smaller LLMs, such as Llama213B and
+Llama28B. This suggests that MedGraphRAG ef-
+fectively utilizes the models’ own reasoning capa-
+bilities while providing them with additional knowl-
+edge beyond their parameters, serving as an exter-
+nal memory for information.
+Comparing with SOTA Medical LLMs
+When
+applied MedGraphRAG to larger models, like
+Llama70B or GPT, it resulted in new SOTA across
+all 11 datasets. This result also outperforms in-
+tensively fine-tuning based medical large language
+models like Med-PaLM 2 (Singhal et al., 2023b)
+and Med-Gemini (Saab et al., 2024), establishing
+a new SOTA on the medical LLM leaderboard. A
+detailed comparison is shown in Fig. 6.
+Figure 3:
+Impact of Repository Data on RAG,
+GraphRAG, and MedGraphRAG with GPT-4. Line
+chart: performance with incremental data inclusion;
+bar chart: performance with individual data inclusion.
+3.3.2
+Long-form Generation Evaluation
+Human Evaluation
+We conducted human evalu-
+ations of long-form model generation on the Mul-
+tiMedQA and DiverseHealth benchmarks, com-
+paring our method to SOTA models that generate
+citation-backed responses, including Inline Search
+in (Gao et al., 2023b), ATTR-FIRST (Slobodkin
+et al., 2024), and MIRAGE (Qi et al., 2024). Our
+evaluation panel consisted of 7 certified clinicians
+and 5 laypersons to ensure feedback from both pro-
+fessional and general users. Raters completed a
+five-level rating survey for each model’s response,
+assessing responses across five dimensions: perti-
+nence (Pert.), correctness (Cor.), citation precision
+(CP), citation recall (CR), and understandability
+(Und.). As shown in Table 2, MedGraphRAG con-
+sistently received higher ratings across all metrics.
+Notably, it showed a significant advantage in CP,
+CR and Und., indicating that its responses were
+more often backed by accurate sources and were
+easier to understand, even for laypersons, thanks to
+evidence-backed responses and clear explanations
+of complex medical terms.
+Case Study
+As illustrated in Fig. 7, we com-
+pare the responses from GraphRAG and Med-
+GraphRAG for a complex case involving pa-
+tients with both chronic obstructive pulmonary
+disease (COPD) and heart failure (left plot).
+GraphRAG suggested general COPD treatments
+like bronchodilators and pulmonary rehabilita-
+tion but overlooked that certain bronchodilators
+may worsen heart failure symptoms. In contrast,
+MedGraphRAG provided a more comprehensive
+answer by recommending cardioselective beta-
+blockers—such as bisoprolol or metoprolol—that
+safely manage both conditions without adverse ef-
+fects. As we can see from the graph abstracted,
+this superiority stems from MedGraphRAG’s ar-
+chitecture, where entities are directly linked to key
+information in references, allowing retrieval of spe-
+cific evidence. Conversely, GraphRAG struggles
+to retrieve specific information since its reference
+and user data are intertwined within the same layer
+of the graph, which leads to missing key informa-
+tion under the same number of nearest neighbors.
+And its retrieval based purely on graph summaries
+results in a lack of detailed insights.
+3.4
+Ablation and Analysis
+3.4.1
+Overall Ablation Study
+We conducted a comprehensive ablation study to
+validate the effectiveness of our proposed mod-
+ules, with the results presented in Table 3. Starting
+with GraphRAG (Hu et al., 2024) as the baseline,
+we incrementally incorporated our unique compo-
+nents, including Triple Graph Construction, and
+U-Retrieval. Notably, both experiments were con-
+ducted on the same RAG dataset, eliminating data-
+related improvements. The results show a gradual
+performance improvement as more of our modules
+are added, with significant gains observed when
+replacing GraphRAG graph construction with our
+Triple Graph Construction. Additionally, by replac-
+ing the summary-based retrieval(Edge et al., 2024b)
+in GraphRAG with our U-Retrieval method, we
+28448
+
+Table 1: Accuracy(%) of LLMs using different retrieval methods. Columns with a blue background represent
+health fact-checking benchmarks, while the others correspond to medical Q&A benchmarks. The best results are
+highlighted in bold.
+Model
+Fake
+Health
+Pub
+Health
+MedQA
+Med
+MCQA
+Pub
+MedQA
+MMLU
+Col-Med
+MMLU
+Col-Bio
+MMLU
+Pro-Med
+MMLU
+Anatomy
+MMLU
+Gene
+MMLU
+Clinic
+Baselines without retrieval
+Llama2-13B
+53.8
+49.4
+42.7
+37.4
+68.0
+60.7
+69.4
+60.3
+52.6
+66.0
+63.8
+Llama2-70B
+58.9
+56.7
+43.7
+35.0
+74.3
+64.2
+84.7
+75.0
+62.3
+74.0
+71.7
+Llama3-8B
+51.1
+53.2
+59.8
+57.3
+75.2
+61.9
+78.5
+70.2
+68.9
+83.0
+74.7
+Llama3-70B
+64.2
+61.0
+72.1
+65.5
+77.5
+72.3
+92.5
+86.7
+72.5
+83.9
+82.7
+Gemini-pro
+60.6
+63.7
+59.0
+54.8
+69.8
+69.2
+88.0
+77.7
+66.7
+75.8
+76.7
+GPT-4
+71.4
+70.9
+78.2
+72.6
+75.3
+76.7
+95.3
+93.8
+81.3
+90.4
+86.2
+Baselines with RAG
+Llama2-13B
+56.2
+54.3
+48.1
+42.0
+68.6
+62.5
+68.3
+63.7
+51.0
+64.5
+67.4
+Llama2-70B
+64.6
+63.2
+56.2
+49.8
+75.2
+69.6
+85.8
+77.4
+63.0
+75.8
+73.3
+Llama3-8B
+60.5
+59.6
+64.3
+58.2
+76.0
+68.6
+84.9
+73.2
+72.1
+85.2
+77.8
+Llama3-70B
+76.2
+72.1
+82.3
+72.5
+80.6
+86.8
+94.4
+89.7
+84.3
+87.1
+87.6
+Gemini-pro
+72.5
+68.4
+64.5
+57.3
+76.9
+79.0
+91.3
+86.4
+79.5
+80.4
+83.9
+GPT-4
+78.6
+77.3
+88.1
+76.3
+77.6
+81.2
+95.5
+94.3
+83.1
+92.9
+93.1
+Baselines with GraphRAG
+Llama2-13B
+58.7
+57.5
+52.3
+44.6
+72.8
+64.1
+73.0
+64.6
+52.1
+66.2
+67.9
+Llama2-70B
+65.7
+63.8
+55.1
+52.4
+74.6
+68.0
+86.4
+79.2
+64.6
+73.9
+75.8
+Llama3-8B
+61.7
+61.0
+64.8
+58.7
+76.6
+69.2
+84.3
+73.9
+72.8
+85.5
+77.4
+Llama3-70B
+77.7
+74.5
+84.1
+73.2
+81.2
+87.4
+94.8
+89.8
+85.2
+87.9
+88.5
+Gemini-pro
+73.8
+70.6
+65.1
+59.1
+75.2
+79.8
+90.8
+85.8
+80.7
+81.5
+84.7
+GPT-4
+78.4
+77.8
+88.9
+77.2
+77.9
+82.1
+95.1
+94.8
+82.6
+92.5
+94.0
+Baselines with MedGraphRAG
+Llama2-13B
+64.1
+61.2
+65.5
+51.4
+73.2
+68.4
+76.5
+67.2
+56.0
+67.3
+69.5
+Llama2-70B
+69.3
+68.6
+69.2
+58.7
+76.0
+73.3
+88.6
+84.5
+68.9
+76.0
+77.3
+Llama3-8B
+79.9
+77.6
+74.2
+61.6
+77.8
+89.2
+95.4
+91.6
+85.9
+89.3
+89.7
+Llama3-70B
+81.2
+79.2
+88.4
+79.1
+83.8
+91.4
+96.5
+93.2
+89.8
+91.0
+94.1
+Gemini-pro
+79.2
+76.4
+71.8
+62.0
+76.2
+86.3
+92.9
+89.7
+85.0
+87.1
+89.3
+GPT-4
+86.5
+83.4
+91.3
+81.5
+83.3
+91.5
+98.1
+95.8
+93.2
+98.5
+96.4
+Table 2: Human evaluation on MedQA and Diverse-
+Health samples.
+Data
+Methods
+Pert.
+Cor.
+CP
+CR
+Und.
+MultiMedQA
+INLINE
+91
+88
+80
+74
+85
+ATTR.FIRST
+93
+91
+86
+77
+93
+MIRAGE
+95
+90
+84
+75
+91
+MedGrapgRAG
+97
+94
+92
+86
+95
+Diverse Health
+INLINE
+95
+84
+78
+71
+81
+ATTR.FIRST
+96
+91
+81
+78
+85
+MIRAGE
+97
+89
+83
+76
+87
+MedGrapgRAG
+97
+96
+89
+84
+93
+Table 3: An ablation study of MedGraphRAG, starting
+from GraphRAG, evaluated using accuracy (%) on Q&A
+datasets.
+MedQA
+PubMedQA
+MedMCQA
+GraphRAG
+88.9
+77.9
+77.2
++Triple Graph Construction
+91.1
+81.8
+80.9
++U-Retrieval
+91.3
+83.3
+81.5
+achieved further improvements, setting new state-
+of-the-art results across all three benchmarks.
+3.4.2
+Detailed Ablation on Triple Linking
+To assess the individual effects of external RAG
+data and retrieval technologies, we conducted ex-
+periments comparing retrieval methods: RAG,
+GraphRAG, and MedGraphRAG under two set-
+tings: (1) retrieving each tier of data separately (bar
+chart in Fig. 3), and (2) incrementally adding all
+three tiers (line chart in Fig. 3). The results show
+that both the data and the right retrieval method
+must work together to unlock the full potential.
+When retrieving data by standard RAG, Med-Paper
+data individually improves performance by less
+than 2%, and Med-Dictionary data by less than 1%.
+Accumulating three tier data also leads to mediocre
+improvements. GraphRAG shows improvement in
+retrieving individual data but has minimal gains
+when incrementally adding more data, likely due
+to superficiality from linking trivial entities, as dis-
+cussed in the previous case study. In contrast, Med-
+GraphRAG efficiently handles the additional data,
+using its hierarchical structure to clarify relation-
+ships and show strong improvements as more data
+is added. With MedGraphRAG, we see significant
+improvements of over 6% and 8% for Med-Paper
+and Med-Dictionary data, respectively, highlight-
+ing the importance of the retrieval method in maxi-
+mizing the impact of the data.
+3.5
+Detailed Ablation on U-Retrieval
+In U-Retrieval, we set the retrieval depth to 4-5
+layers, the number of retrieval entities to 60, and
+entity neighbors to 16. These settings were de-
+28449
+
+termined through comprehensive trials. First, we
+examine the impact of the retrieval range, i.e. the
+number of entities and neighbors, using GPT-4 with
+MedGraphRAG on MedQA, as shown in Fig. 4.
+Our findings show that retrieving more data does
+not necessarily lead to better performance. In fact,
+more data can introduce noise and exacerbate LLM
+performance issues with long contexts. The peak
+performance occurs when the retrieval size reaches
+approximately 120 entities with 4-hop neighbors
+or 60 entities with 16-hop neighbors. The 16-hop
+neighbors setting performed slightly better, likely
+due to the robustness of graph-based linking com-
+pared to vector-similarity-based retrieval.
+As previously mentioned, there is also a trade-off
+between model accuracy and response time with
+retrieval layer increases. This relationship is ex-
+plored in Fig. 5. The figure compares the cost time
+and MedQA accuracy across retrieval depths from
+0 to 9 layers. We observe that both performance
+and response time increase as the retrieval layer
+increases initially. However, performance begins to
+degrade when retrieving more layers, as higher lay-
+ers often contain less relevant information, which
+can interfere with refining the response. The opti-
+mal retrieval depth is 4 layers for the GPT-4 model
+and 5 layers for others, which we use as the default
+setting in our experiments.
+Figure 4: The effect of retrieving different number of
+entities and neighbourhoods. Performance evaluated by
+GPT-4 (MedGraphRAG) on MedQA.
+Figure 5: The relationship between U-retrieval level and
+time cost.
+4
+Related Work
+Large language models (LLMs) built on Trans-
+former architectures have advanced rapidly, lead-
+ing to specialized medical LLMs such as BioGPT
+(Luo et al., 2022), PMC-LLaMA (Wu et al., 2023),
+BioMedLM (Bolton et al., 2022), and Med-PaLM 2
+(Singhal et al., 2023b). While many are fine-tuned
+by large organizations, recent research has focused
+on cost-efficient, non-fine-tuned approaches, pri-
+marily using prompt engineering (Saab et al., 2024;
+Wang et al., 2023; Savage et al., 2024). RAG, as
+another non-finetuning approach, is rarely explored
+for medical applications (Miao et al., 2024; Xiong
+et al., 2024; Long et al., 2024) and lacks support for
+evidence-based responses and term explanations
+required in clinical settings.
+RAG (Lewis et al., 2021) enables models to use
+specific datasets without additional training, im-
+proving response accuracy and reducing hallucina-
+tions (Guu et al., 2020). RAG has shown strong
+results across various tasks, including generating
+responses with citations (Gao et al., 2023b; Slobod-
+kin et al., 2024; Qi et al., 2024; Nakano et al., 2021;
+Bohnet et al., 2022; Gao et al., 2023a,c; Schiman-
+ski et al., 2024; Zhang et al., 2024). GraphRAG
+(Hu et al., 2024) further enhances complex reason-
+ing by constructing knowledge graphs, but lacks
+specific design features for generating attributed
+responses, and its application in medical special-
+ization remains limited.
+5
+Conclusion
+MedGraphRAG improves the reliability of medi-
+cal response generation with its graph-based RAG
+framework, using Triple Graph Construction and
+U-Retrieval to enhance evidence-based, context-
+aware responses. Future work will focus on real-
+time data updates and validation on real-world clin-
+ical data.
+28450
+
+6
+Limitation
+Despite the strong capabilities demonstrated by
+MedGraphRAG, the graph construction step incurs
+significant computational costs. In the retrieval and
+response stage, although the costs are lower than
+graph construction, they remain higher than stan-
+dard large language model (LLM) calls, with each
+question taking around 70 seconds to process (see
+Figure 6 for details). Future efforts should explore
+methods to transfer pre-constructed graphs or ac-
+celerate the graph construction process to mitigate
+these computational costs.
+Additionally, the scale of experimental data and
+the expensive nature of graph construction make
+it challenging to conduct comprehensive compar-
+isons of hyper-parameter settings and technology
+choices. For instance, factors such as the number of
+paragraphs in the context window during document
+chunking, the use of alternative RAG datasets, and
+the impact of different prompts for graph construc-
+tion were selected empirically based on limited
+data. A more rigorous and comprehensive compar-
+ison of these factors is needed in future work to
+identify the optimal configurations that maximize
+the method’s potential.
+For latency, while our method introduces addi-
+tional computational overhead, we believe that in
+critical fields like medicine, users are often will-
+ing to trade speed for precision. As demonstrated
+in our manuscript, our approach delivers signifi-
+cantly more accurate and evidence-based responses.
+A useful analogy is the increasing popularity of
+GPT-based deep research assistants, which users
+accept despite longer response times in exchange
+for higher-quality, more professional outputs. On
+the graph updating side, we designed the graph
+structure with hierarchical modularity to accom-
+modate different update frequencies: The bottom
+layer contains foundational medical dictionaries
+and terminology, which change infrequently and
+can be treated as static. The middle layer integrates
+moderately updated sources like medical literature.
+The top layer includes frequently changing sources
+such as clinical reports. Since updates to the lower
+layers are more costly while the upper layers are
+more lightweight and cost-efficient to update, the
+differing update frequencies across layers naturally
+align with this structure—thereby helping to reduce
+the overall update cost to some extent. In the future
+work, to address the remaining challenge of expen-
+sive updates even at the top layer, we can propose
+a local update strategy. Specifically, we can com-
+pute the semantic distance between newly inserted
+knowledge and existing Meta-Graphs, and apply
+updates only to relevant subgraphs that exceed a de-
+fined threshold. This selective updating approach
+balances both efficiency and accuracy. We recog-
+nize these as practical and important limitations,
+and we plan to supply more detailed discussion on
+them as part of our future work in this research
+direction.
+Finally, regarding human evaluation, while we
+made efforts to ensure diversity and expertise
+among our raters, the evaluation may still carry
+biases due to the limited sample size (120 ques-
+tions on MultiMedQA and 50 questions on Diverse-
+Health). Future research should include larger-
+scale and better-designed human evaluations to
+thoroughly assess the model’s performance.
+Acknowledgments
+Junde Wu is supported by the Engineering and
+Physical Sciences Research Council (EPSRC) un-
+der grant EP/S024093/1 and GE HealthCare. Ji-
+ayuan Zhu is supported by the Engineering and
+Physical Sciences Research Council (EPSRC)
+under grant EP/S024093/1 and Global Health
+R&D of Merck Healthcare, Ares Trading S.A.
+(an affiliate of Merck KGaA, Darmstadt, Ger-
+many), Eysins, Switzerland (Crossref Funder ID:
+10.13039/100009945). Yueming Jin is supported
+by the Ministry of Education Tier 1 grant, NUS,
+Singapore (24-1250-P0001).
+References
+Olivier Bodenreider. 2004. The unified medical lan-
+guage system (umls): integrating biomedical termi-
+nology. Nucleic acids research, 32(suppl_1):D267–
+D270.
+Bernd Bohnet, Vinh Q. Tran, Pat Verga, Roee Aha-
+roni, Daniel Andor, Livio Baldini Soares, Massimil-
+iano Ciaramita, Jacob Eisenstein, Kuzman Ganchev,
+Jonathan Herzig, Kai Hui, Tom Kwiatkowski, Ji Ma,
+Jianmo Ni, Lierni Sestorain Saralegui, Tal Schus-
+ter, William W. Cohen, Michael Collins, Dipanjan
+Das, Donald Metzler, Slav Petrov, and Kellie Webster.
+2022. Attributed Question Answering: Evaluation
+and Modeling for Attributed Large Language Mod-
+els.
+Elliot Bolton, David Hall, Michihiro Yasunaga, Tony
+Lee, Chris Manning, and Percy Liang. 2022.
+Biomedlm. Stanford Center for Research on Founda-
+tion Models.
+28451
+
+Tong Chen, Hongwei Wang, Sihao Chen, Wenhao Yu,
+Kaixin Ma, Xinran Zhao, Hongming Zhang, and
+Dong Yu. 2023.
+Dense X Retrieval: What Re-
+trieval Granularity Should We Use? arXiv preprint.
+ArXiv:2312.06648 [cs].
+Enyan Dai, Yiwei Sun, and Suhang Wang. 2020. Gin-
+ger cannot cure cancer: Battling fake health news
+with a comprehensive data repository. arXiv preprint
+arXiv:2002.00837.
+Darren Edge, Ha Trinh, Newman Cheng, Joshua
+Bradley, Alex Chao, Apurva Mody, Steven Truitt,
+and Jonathan Larson. 2024a. From local to global: A
+graph rag approach to query-focused summarization.
+arXiv preprint arXiv:2404.16130.
+Darren Edge, Ha Trinh, Newman Cheng, Joshua
+Bradley, Alex Chao, Apurva Mody, Steven Truitt,
+and Jonathan Larson. 2024b. From Local to Global:
+A Graph RAG Approach to Query-Focused Summa-
+rization. arXiv preprint. ArXiv:2404.16130 [cs].
+Luyu Gao, Zhuyun Dai, Panupong Pasupat, Anthony
+Chen, Arun Tejasvi Chaganty, Yicheng Fan, Vincent
+Zhao, Ni Lao, Hongrae Lee, Da-Cheng Juan, and
+Kelvin Guu. 2023a. RARR: Researching and Revis-
+ing What Language Models Say, Using Language
+Models. In Proceedings of the 61st Annual Meeting
+of the Association for Computational Linguistics (Vol-
+ume 1: Long Papers), pages 16477–16508, Toronto,
+Canada. Association for Computational Linguistics.
+Tianyu Gao, Howard Yen, Jiatong Yu, and Danqi Chen.
+2023b. Enabling large language models to generate
+text with citations. arXiv preprint arXiv:2305.14627.
+Tianyu Gao, Howard Yen, Jiatong Yu, and Danqi Chen.
+2023c. Enabling Large Language Models to Gener-
+ate Text with Citations. In Proceedings of the 2023
+Conference on Empirical Methods in Natural Lan-
+guage Processing, pages 6465–6488, Singapore. As-
+sociation for Computational Linguistics.
+Yu Gu, Robert Tinn, Hao Cheng, Michael Lucas, Naoto
+Usuyama, Xiaodong Liu, Tristan Naumann, Jianfeng
+Gao, and Hoifung Poon. 2022.
+Domain-Specific
+Language Model Pretraining for Biomedical Natural
+Language Processing. ACM Transactions on Com-
+puting for Healthcare, 3(1):1–23. ArXiv:2007.15779
+[cs].
+Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat,
+and Ming-Wei Chang. 2020. REALM: Retrieval-
+Augmented Language Model Pre-Training. arXiv
+preprint. ArXiv:2002.08909 [cs].
+Ali Hadi, Edward Tran, Branavan Nagarajan, and Amrit
+Kirpalani. 2024. Evaluation of chatgpt as a diagnos-
+tic tool for medical learners and clinicians. Plos one,
+19(7):e0307383.
+Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou,
+Mantas Mazeika, Dawn Song, and Jacob Steinhardt.
+2020. Measuring massive multitask language under-
+standing. arXiv preprint arXiv:2009.03300.
+Yuntong Hu, Zhihan Lei, Zheng Zhang, Bo Pan,
+Chen Ling, and Liang Zhao. 2024. GRAG: Graph
+Retrieval-Augmented Generation. arXiv preprint.
+ArXiv:2405.16506 [cs].
+Minbyul Jeong, Jiwoong Sohn, Mujeen Sung, and Jae-
+woo Kang. 2024.
+Improving medical reasoning
+through retrieval and self-reflection with retrieval-
+augmented large language models. Bioinformatics,
+40(Supplement_1):i119–i129.
+Di Jin, Eileen Pan, Nassim Oufattole, Wei-Hung Weng,
+Hanyi Fang, and Peter Szolovits. 2021. What disease
+does this patient have? a large-scale open domain
+question answering dataset from medical exams. Ap-
+plied Sciences, 11(14):6421.
+Qiao Jin, Bhuwan Dhingra, Zhengping Liu, William W
+Cohen, and Xinghua Lu. 2019. Pubmedqa: A dataset
+for biomedical research question answering. arXiv
+preprint arXiv:1909.06146.
+Qiao Jin, Won Kim, Qingyu Chen, Donald C Comeau,
+Lana Yeganova, W John Wilbur, and Zhiyong Lu.
+2023. Medcpt: Contrastive pre-trained transformers
+with large-scale pubmed search logs for zero-shot
+biomedical information retrieval.
+Bioinformatics,
+39(11):btad651.
+Alistair EW Johnson, Lucas Bulgarelli, Lu Shen, Alvin
+Gayles, Ayad Shammout, Steven Horng, Tom J Pol-
+lard, Sicheng Hao, Benjamin Moody, Brian Gow,
+et al. 2023. Mimic-iv, a freely accessible electronic
+health record dataset. Scientific data, 10(1):1.
+Neema Kotonya and Francesca Toni. 2020. Explain-
+able automated fact-checking for public health claims.
+arXiv preprint arXiv:2010.09926.
+langchain. 2024.
+Enhancing rag-based application
+accuracy by constructing and leveraging knowledge
+graphs. https://blog.langchain.dev/enhancing-rag-
+based-applications-accuracy-by-constructing-and-
+leveraging-knowledge-graphs/.
+Patrick Lewis,
+Ethan Perez,
+Aleksandra Piktus,
+Fabio Petroni, Vladimir Karpukhin, Naman Goyal,
+Heinrich Küttler,
+Mike Lewis,
+Wen-tau Yih,
+Tim Rocktäschel, Sebastian Riedel, and Douwe
+Kiela. 2021. Retrieval-Augmented Generation for
+Knowledge-Intensive NLP Tasks. arXiv preprint.
+ArXiv:2005.11401 [cs].
+Junyou Li, Qin Zhang, Yangbin Yu, Qiang Fu, and De-
+heng Ye. 2024. More agents is all you need. Preprint,
+arXiv:2402.05120.
+Cui Long, Yongbin Liu, Chunping Ouyang, and Ying
+Yu. 2024. Bailicai: A domain-optimized retrieval-
+augmented generation framework for medical appli-
+cations. arXiv preprint arXiv:2407.21055.
+Renqian Luo, Liai Sun, Yingce Xia, Tao Qin, Sheng
+Zhang, Hoifung Poon, and Tie-Yan Liu. 2022.
+Biogpt:
+generative pre-trained transformer for
+biomedical text generation and mining. Briefings
+in bioinformatics, 23(6):bbac409.
+28452
+
+Jing Miao, Charat Thongprayoon, Supawadee Sup-
+padungsuk, Oscar A Garcia Valencia, and Wisit Che-
+ungpasitporn. 2024. Integrating retrieval-augmented
+generation with large language models in nephrol-
+ogy: advancing practical applications. Medicina,
+60(3):445.
+microsoft.
+2024.
+Microsoft
+azure
+graphrag.
+https://github.com/Azure-Samples/graphrag-
+accelerator?tab=readme-ov-file.
+Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff
+Wu, Long Ouyang, Christina Kim, Christopher
+Hesse, Shantanu Jain, Vineet Kosaraju, William
+Saunders, Xu Jiang, Karl Cobbe, Tyna Eloundou,
+Gretchen Krueger, Kevin Button, Matthew Knight,
+Benjamin Chess, and John Schulman. 2021. We-
+bGPT: Browser-assisted question-answering with hu-
+man feedback.
+Harsha Nori, Yin Tat Lee, Sheng Zhang, Dean Carig-
+nan, Richard Edgar, Nicolo Fusi, Nicholas King,
+Jonathan Larson, Yuanzhi Li, Weishung Liu, Ren-
+qian Luo, Scott Mayer McKinney, Robert Osazuwa
+Ness, Hoifung Poon, Tao Qin, Naoto Usuyama,
+Chris White, and Eric Horvitz. 2023. Can General-
+ist Foundation Models Outcompete Special-Purpose
+Tuning? Case Study in Medicine. arXiv preprint.
+ArXiv:2311.16452 [cs].
+OpenAI. 2023a.
+Gpt-4 technical report.
+Preprint,
+arXiv:2303.08774.
+OpenAI. 2023b. Openai. introducing chatgpt. https:
+//openai.com/blog/chatgpt/.
+Ankit Pal, Logesh Kumar Umapathi, and Malaikan-
+nan Sankarasubbu. 2022. Medmcqa: A large-scale
+multi-subject multi-choice dataset for medical do-
+main question answering. In Conference on health,
+inference, and learning, pages 248–260. PMLR.
+Jirui Qi, Gabriele Sarti, Raquel Fernández, and Arianna
+Bisazza. 2024. Model internals-based answer attribu-
+tion for trustworthy retrieval-augmented generation.
+arXiv preprint arXiv:2406.13663.
+Khaled Saab, Tao Tu, Wei-Hung Weng, Ryutaro Tanno,
+David Stutz, Ellery Wulczyn, Fan Zhang, Tim
+Strother, Chunjong Park, Elahe Vedadi, et al. 2024.
+Capabilities of gemini models in medicine. arXiv
+preprint arXiv:2404.18416.
+Thomas Savage, Ashwin Nayak, Robert Gallo, Ekanath
+Rangan, and Jonathan H Chen. 2024. Diagnostic
+reasoning prompts reveal the potential for large lan-
+guage model interpretability in medicine. NPJ Digi-
+tal Medicine, 7(1):20.
+Tobias Schimanski, Jingwei Ni, Mathias Kraus, Elliott
+Ash, and Markus Leippold. 2024. Towards Faith-
+ful and Robust LLM Specialists for Evidence-Based
+Question-Answering. In Proceedings of the 62nd An-
+nual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers), pages 1913–
+1931, Bangkok, Thailand. Association for Computa-
+tional Linguistics.
+Karan Singhal, Shekoofeh Azizi, Tao Tu, S Sara Mah-
+davi, Jason Wei, Hyung Won Chung, Nathan Scales,
+Ajay Tanwani, Heather Cole-Lewis, Stephen Pfohl,
+et al. 2022. Large language models encode clinical
+knowledge. arXiv preprint arXiv:2212.13138.
+Karan Singhal, Tao Tu, Juraj Gottweis, Rory Sayres,
+Ellery Wulczyn, Le Hou, Kevin Clark, Stephen Pfohl,
+Heather Cole-Lewis, Darlene Neal, Mike Schaek-
+ermann, Amy Wang, Mohamed Amin, Sami Lach-
+gar, Philip Mansfield, Sushant Prakash, Bradley
+Green, Ewa Dominowska, Blaise Aguera y Arcas,
+Nenad Tomasev, Yun Liu, Renee Wong, Christo-
+pher Semturs, S. Sara Mahdavi, Joelle Barral, Dale
+Webster, Greg S. Corrado, Yossi Matias, Shekoofeh
+Azizi, Alan Karthikesalingam, and Vivek Natara-
+jan. 2023a. Towards expert-level medical question
+answering with large language models. Preprint,
+arXiv:2305.09617.
+Karan Singhal, Tao Tu, Juraj Gottweis, Rory Sayres,
+Ellery Wulczyn, Le Hou, Kevin Clark, Stephen
+Pfohl, Heather Cole-Lewis, Darlene Neal, et al.
+2023b. Towards expert-level medical question an-
+swering with large language models. arXiv preprint
+arXiv:2305.09617.
+Aviv Slobodkin, Eran Hirsch, Arie Cattan, Tal Schuster,
+and Ido Dagan. 2024. Attribute first, then generate:
+Locally-attributable grounded text generation. arXiv
+preprint arXiv:2403.17104.
+Eric E Smith and Andrew E Beaudin. 2018. New in-
+sights into cerebral small vessel disease and vascular
+cognitive impairment from mri. Current opinion in
+neurology, 31(1):36–43.
+Jiwoong Sohn, Yein Park, Chanwoong Yoon, Sihyeon
+Park, Hyeon Hwang, Mujeen Sung, Hyunjae Kim,
+and Jaewoo Kang. 2024. Rationale-guided retrieval
+augmented generation for medical question answer-
+ing. arXiv preprint arXiv:2411.00300.
+Gemini Team, Rohan Anil, Sebastian Borgeaud,
+Yonghui Wu, Jean-Baptiste Alayrac, Jiahui Yu,
+Radu Soricut, Johan Schalkwyk, Andrew M Dai,
+Anja Hauth, et al. 2023.
+Gemini: a family of
+highly capable multimodal models. arXiv preprint
+arXiv:2312.11805.
+Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier
+Martinet, Marie-Anne Lachaux, Timothée Lacroix,
+Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal
+Azhar, Aurelien Rodriguez, Armand Joulin, Edouard
+Grave, and Guillaume Lample. 2023. LLaMA: Open
+and Efficient Foundation Language Models. arXiv
+preprint. ArXiv:2302.13971 [cs].
+Jiaqi Wang, Enze Shi, Sigang Yu, Zihao Wu, Chong
+Ma, Haixing Dai, Qiushi Yang, Yanqing Kang, Jinru
+Wu, Huawen Hu, et al. 2023. Prompt engineering for
+healthcare: Methodologies and applications. arXiv
+preprint arXiv:2304.14670.
+Christopher YK Williams, Brenda Y Miao, Aaron E
+Kornblith, and Atul J Butte. 2024. Evaluating the
+28453
+
+use of large language models to provide clinical rec-
+ommendations in the emergency department. Nature
+Communications, 15(1):8236.
+Chaoyi Wu, Weixiong Lin, Xiaoman Zhang, Ya Zhang,
+Yanfeng Wang, and Weidi Xie. 2023. PMC-LLaMA:
+Towards Building Open-source Language Models for
+Medicine. arXiv preprint. ArXiv:2304.14454 [cs].
+Yunfei Xie, Juncheng Wu, Haoqin Tu, Siwei Yang,
+Bingchen Zhao, Yongshuo Zong, Qiao Jin, Cihang
+Xie, and Yuyin Zhou. 2024. A preliminary study of
+o1 in medicine: Are we closer to an ai doctor? arXiv
+preprint arXiv:2409.15277.
+Guangzhi
+Xiong,
+Qiao
+Jin,
+Zhiyong
+Lu,
+and
+Aidong Zhang. 2024.
+Benchmarking retrieval-
+augmented generation for medicine. arXiv preprint
+arXiv:2402.13178.
+Michihiro Yasunaga, Antoine Bosselut, Hongyu Ren,
+Xikun Zhang, Christopher D. Manning, Percy Liang,
+and Jure Leskovec. 2022a.
+Deep Bidirectional
+Language-Knowledge Graph Pretraining.
+arXiv
+preprint. ArXiv:2210.09338 [cs].
+Michihiro Yasunaga,
+Jure Leskovec,
+and Percy
+Liang. 2022b.
+LinkBERT: Pretraining Language
+Models with Document Links.
+arXiv preprint.
+ArXiv:2203.15827 [cs].
+Jiajie Zhang, Yushi Bai, Xin Lv, Wanjun Gu, Danqing
+Liu, Minhao Zou, Shulin Cao, Lei Hou, Yuxiao Dong,
+Ling Feng, et al. 2024. Longcite: Enabling llms to
+generate fine-grained citations in long-context qa.
+arXiv e-prints, pages arXiv–2409.
+Xuejiao Zhao, Siyan Liu, Su-Yin Yang, and Chun-
+yan Miao. 2025.
+Medrag: Enhancing retrieval-
+augmented generation with knowledge graph-elicited
+reasoning for healthcare copilot. In Proceedings of
+the ACM on Web Conference 2025, pages 4442–4457.
+28454
+
+Contents
+A Detailed Implementation
+13
+B Additional Results and Analysis
+13
+B.1
+Compare to SOTA Medical LLM
+Models
+. . . . . . . . . . . . . .
+13
+B.2
+Case study: GPT4 with and with-
+out MedGraphRAG . . . . . . . .
+14
+B.3
+Case study: Long-form generation
+of MedGraphRAG
+. . . . . . . .
+14
+B.4
+Case study:
+Abstracted Graph
+comparison between GraphRAG
+and MedGraphRAG . . . . . . . .
+14
+C Boarder Impact
+15
+A
+Detailed Implementation
+In the semantic document chunking process, we
+apply proposition transfer (Chen et al., 2023) to
+each paragraph before semantic validation to ex-
+tract standalone statements that are self-contained
+and unambiguous (e.g., transforming "It prevents
+respiratory disease" to "Remdesivir prevents res-
+piratory disease"). Through proposition transfer,
+each paragraph is transformed into independent,
+clear statements. For semantic validation, we uti-
+lize an LLM to first generate a short summary and
+a title for the current chunk. The LLM then de-
+termines if the current paragraph belongs to this
+chunk based on the title and summary. If it belongs,
+the LLM updates the title and summary accord-
+ingly. If not, the current chunk is finalized, and the
+LLM generates a title and summary for the new
+paragraph, treating it as the start of a new chunk.
+If the scan reaches the end of the document, the
+current chunk is automatically finalized to ensure
+no chunk spans across multiple documents.
+In the entity extraction, we include unique IDs
+to trace their source document. In practice, for the
+user privacy data, we generate a universally unique
+identifier (UUID) for each document as their IDs.
+For the medical papers and books, we use their Dig-
+ital object identifier (DOI) as their IDs, and for the
+medical dictionaries, we use their UMLS Concept
+Unique Identifiers (CUI) as their IDs. This identi-
+fier is crucial for retrieving information from the
+source, enabling the generation of evidence-based
+responses later. For tag-based summary generation
+and merging, we insert ten tags into the prompt at
+a time to iteratively generate the response.
+For the standard LangChain RAG baseline, we
+followed the official implementation, which uses
+similarity search based on cosine similarity be-
+tween the embedded query and the embedded doc-
+uments in a vector store. In our experiments, we
+used this default setup to ensure a fair and repro-
+ducible comparison. Since in MedGraphRAG, be-
+sides the contributed U-Retrieval, we also relied on
+cosine similarity to retrieve the final bottom-level
+Meta-Graph. This design choice ensures consis-
+tency across all baselines and isolates the impact
+of our proposed retrieval strategy.
+For testing the models on MultiMedQA, we eval-
+uate their zero-shot performance using only the
+test set of each dataset, without utilizing the train-
+ing data for fine-tuning or including it in the RAG
+data for retrieval. For evaluating accuracy on Fake-
+Health, we incorporate its news content into the
+Medical-Papers-tier graph of MedGraphRAG and
+into RAG data of the others, then use the criteria
+questions from the news content to prompt the mod-
+els to respond with ’Satisfactory’ or ’Not Satisfac-
+tory.’ For PubHealth, we integrate its news/reviews
+into Medical-Papers-tier graph of MedGraphRAG
+and into RAG data of the others, and prompt the
+models to classify each claim as ’True,’ ’False,’
+’Unproven,’ or a ’Mixture.’
+B
+Additional Results and Analysis
+B.1
+Compare to SOTA Medical LLM Models
+We also evaluated MedGraphRAG against a range
+of previous SOTA medical large language models
+on these benchmarks, including both intensively
+fine-tuned models (Gu et al., 2022)(Yasunaga
+et al., 2022a)(Yasunaga et al., 2022b)(Bolton
+et al., 2022)(Singhal et al., 2022)(Singhal et al.,
+2023a)(Wu et al., 2023) and non-fine-tuned mod-
+els (Nori et al., 2023)(OpenAI, 2023b)(OpenAI,
+2023a)(Saab et al., 2024). The results, depicted
+in Fig. 6, show that when combined with GPT-4,
+our MedGraphRAG surpasses the previous SOTA
+model, Medprompt (Nori et al., 2023), by a no-
+table 1.1% on the MedQA benchmark, and also
+outperforms it across all 9 datasets, establishing
+a new SOTA on the medical LLM leaderboard.
+It’s important to note that while Medprompt re-
+trieves training data with similar questions and
+correct answers as examples for prompting, our
+model operates with a simple prompt containing
+only the original question. This improvement fur-
+ther demonstrates MedGraphRAG’s superior capa-
+28455
+
+Table 4: Compare to several specialized medical retrievers across nine medical Q&A benchmarks.
+MedQA
+MedMCQA
+PubMedQA
+MMLU-Col-Med
+MMLU-Col-Bio
+MMLU-Pro-Med
+MMLU-Anatomy
+MMLU-Gene
+MMLU-Clinic
+MedCPT
+79.6
+74.9
+76.8
+77.8
+95.4
+93.9
+82.6
+90.9
+88.3
+MedRAG
+88.5
+78.1
+78.9
+85.5
+96.8
+94.8
+84.5
+93.6
+94.5
+RAG2
+85.2
+76.2
+79.3
+83.4
+96.1
+94.8
+83.9
+91.0
+93.2
+Self-BioRAG
+81.1
+73.5
+76.2
+84.1
+95.7
+94.2
+82.1
+92.8
+92.7
+Ours
+91.3
+81.5
+83.8
+91.5
+98.1
+95.8
+93.2
+98.5
+96.4
+bility, even when retrieving from data with a dif-
+ferent distribution. Furthermore, when compared
+to intensive fine-tuning methods on these medi-
+cal datasets, MedGraphRAG outperforms strong
+models like Med-PaLM 2 (Singhal et al., 2023b)
+and Med-Gemini (Saab et al., 2024), establishing a
+new SOTA. This superior performance highlights
+MedGraphRAG’s ability to efficiently leverage the
+inherent capabilities of LLMs and enhance their
+performance with additional data, without the need
+for fine-tuning.
+B.2
+Case study: GPT4 with and without
+MedGraphRAG
+As shown in Fig. 7, we compare the responses
+generated by vanilla GPT-4 and MedGraphRAG
+for a misleading case where a patient presents with
+symptoms commonly associated with Alzheimer’s
+but is actually Vascular Dementia. GPT-4 was
+misled, returning an incorrect diagnosis. In con-
+trast, MedGraphRAG notes the details like that the
+MRI showed moderate vascular changes and white
+matter lesions, which are indicative of chronic
+ischemic damage—typical of vascular dementia
+rather than Alzheimer’s, through retrieving the
+findings in (Smith and Beaudin, 2018), "CBF and
+WMH that...causing ical impairments,". With de-
+tailed definitions of medical terms and source
+knowledge retrieved to assist the reasoning pro-
+cess, MedGraphRAG chose the correct answer and
+provided a detailed, easily understandable expla-
+nation with citation, enabling users to verify the
+response.
+In Table 4, we compared MedGraphRAG with
+several specialized medical retrievers, including
+MedCPT (Jin et al., 2023), MedRAG (Zhao et al.,
+2025), RAG2 (Sohn et al., 2024), and Self-BioRAG
+(Jeong et al., 2024), across nine medical Q&A
+benchmarks. All methods were evaluated under
+the same RAG corpus and experimental settings,
+as described in the manuscript. The results show
+that MedGraphRAG consistently outperforms all
+other specialized retrievers across all datasets, with
+significant performance gains. We attribute this im-
+provement to our method’s ability to semantically
+organize large-scale medical corpora, enabling pre-
+cise and context-aware retrieval even in complex
+and long-range RAG corpora.
+B.3
+Case study: Long-form generation of
+MedGraphRAG
+We provided four examples of MedGraphRAG
+Long-form response generation. We include the
+diverse cases across Comorbidity Fig. 8, 9, Rare
+Disease Fig. 10,11, Minority Health Fig. 12,13,
+and Chornic Disease Managment Fig. 14,15. We
+can see the unique responses provided by Med-
+GraphRAG combining citations with clear term
+explanations in medical responses ensures both
+credibility and understanding. Citations provide
+a foundation of evidence, reassuring patients and
+professionals that recommendations are grounded
+in research. For example, in the hormone replace-
+ment therapy answer, the association between HRT
+and increased risks of cardiovascular events and
+thromboembolic complications is backed by "Dhe-
+jne et al., 2011," which provides long-term follow-
+up data on health outcomes in transgender individ-
+uals undergoing hormone therapy. This level of
+transparency is particularly important in healthcare,
+where trust is critical for patient compliance and
+effective care.
+Clear term explanations help bridge the gap for
+those who might struggle with medical jargon. By
+explaining complex terms like cardioselective beta-
+blockers or hypoglycemia in simple language, pa-
+tients better understand their condition and the ra-
+tionale behind their treatment. This not only em-
+powers them but also helps in preventing misunder-
+standings that could lead to improper management
+of their health. Altogether, using citations for ev-
+idence and plain language for explanation strikes
+the right balance between trust, safety, and accessi-
+bility in medical communication.
+B.4
+Case study: Abstracted Graph
+comparison between GraphRAG and
+MedGraphRAG
+We conducted a closer examination of the ab-
+stracted graphs of GraphRAG (Fig. 16 a) and Med-
+GraphRAG (Fig. 16 b) for the case study shown in
+the left plot of Fig. 7. By abstracting similar near-
+est neighbors of the retrieved entities (COPD and
+28456
+
+Figure 6: Compare to SOTA Medical LLM Models on MedQA benchmark.
+Heart Failure), we observed that MedGraphRAG
+accessed more detailed and specific entities, such as
+beta-1 receptors and Cardioselective Beta-Blockers,
+by linking to relevant references. While these enti-
+ties are also present in the GraphRAG graph, they
+were not retrieved under the same number of near-
+est neighbors due to their indirect linkage with the
+retrieved entities. GraphRAG lacks a hierarchical
+graph that directly links these entities through an
+"is reference of" relationship, leading them to be
+overshadowed by more general neighbors at the
+same tier, ultimately missing retrieval.
+Moreover, MedGraphRAG’s approach to linking
+Heart Failure with Cardioselective Beta-Blockers
+enables further connections through beta-1 recep-
+tors in the second-tier graph, eventually linking
+back to Non-selective Beta-Blockers. It helps to
+link Heart Failure and Non-selective Beta-Blockers
+as neighbors in the first-tier graph relationship link-
+ing stage, which significantly enhances the LLM’s
+ability to generate specific and accurate responses.
+Such an observation demonstrates the importance
+of including triple linking relationships when con-
+structing the first-tier graph. MedGraphRAG lever-
+ages this unique design to build a more detailed
+and professional knowledge graph, resulting in bet-
+ter entity retrieval and richer context for accurate
+generation.
+C
+Boarder Impact
+Our MedGraphRAG enhances LLMs by provid-
+ing intrinsic source citations, significantly improv-
+ing transparency, interpretability, and verifiability.
+This tool ensures that each response generated by
+the LLM is accompanied by provenance or source
+grounding information, clearly demonstrating that
+answers are rooted in the dataset. The availability
+of cited sources for each assertion allows users, es-
+pecially in the critical field of medicine, to swiftly
+and accurately audit the LLM’s output against the
+original source material. This feature is crucial
+where (a) a trustworthy relationship -based on trans-
+parency of reasoning, needs to exist between hu-
+man experts and LLM agents and (b) where the
+security/privacy of the information shared with
+the agent is mission critical. By employing this
+method, we have developed an Evidence-based
+Medical LLM. Clinicians can easily verify the
+source of the reasoning and adjust the model’s re-
+sponses, ensuring the safe use of LLMs in clinical
+scenarios.
+28457
+
+Figure 7: Example case shows MedGraphRAG generating evidence-based responses with grounded citations and
+terminology explanations.
+28458
+
+Figure 8: MedGraphRAG long-form generation response on Comorbidity example-part1.
+28459
+
+Figure 9: MedGraphRAG long-form generation response on Comorbidity example-part2.
+28460
+
+Figure 10: MedGraphRAG long-form generation response on Minority Health example-part1.
+28461
+
+Figure 11: MedGraphRAG long-form generation response on Minority Health example-part2.
+28462
+
+Figure 12: MedGraphRAG long-form generation response on Rare Disease example1.
+28463
+
+Figure 13: MedGraphRAG long-form generation response on Rare Disease example-part2.
+28464
+
+Figure 14: MedGraphRAG long-form generation response on Chornic Disease Managment example-part1.
+28465
+
+Figure 15: MedGraphRAG long-form generation response on Chornic Disease Managment example-part2.
+28466
+
+Figure 16: The comparison of abstracted graph between
+GraphRAG and MedGraphRAG.
+28467

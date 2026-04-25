@@ -1,0 +1,494 @@
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+1
+ 
+Retrieval-Augmented Generation (RAG) for Real-Time 
+Business Intelligence 
+ 
+Gopal Rath 
+ 
+ MISM, B.E. 
+Mountain Lakes, NJ 
+ 
+Abstract: 
+In today's era, information is vast and overloaded which makes data-driven intelligence, real-time and 
+context-aware information extraction a challenge. The Retrieval-Augmented Generation (RAG) 
+mechanism can be a potential solution for dynamically retrieving information relevant to the domain. 
+This mechanism interacts with Large Language Model (LLM) models using live data feeds, as well as 
+BI Systems, and creates interactive, meaningful, and explainable intelligence. This paper illustrates the 
+limitations of current BI systems, new architecture, source live data integration, and evaluation 
+techniques with business impact. RAG for Business Intelligence can be a game changer for BI systems 
+analytical landscape to context-based answers for complex business-driven questions.  
+ 
+Keyword: component, formatting, style, styling, insert. 
+ 
+I. INTRODUCTION  
+The Business Intelligence System was traditionally built to support analytical decisions with a defined 
+structure, a historical dataset, and business-driven KPIs, as well as visualization and dashboards. With the 
+dataset growing and a rapidly changing business environment, traditional BI systems often lag behind real-
+time analytics, context-driven analysis, prompt-based reports, and dynamic analysis. Also, organizations built 
+data science models that used for future predictions, identifying real patterns, classifications, simulations, and 
+anomaly detections. There is a need for more interaction and integration of these LLM models with real time, 
+external, and denormalized data so that it can be used to develop decision-making by real-time interpretability 
+context-aware, proactive business decision and dynamic analysis. RAG-enabled dynamic agents can be 
+conversational-based and answer based on context-aware information, which can help decision-makers make 
+high-stake decisions. RAG architecture can be beneficial to high-stakes domains such as finance, healthcare, 
+logistics, and insurance. 
+ 
+II. REVIEW OF LITERATURE 
+This literature review aims to systematically explore the evolution, implementation, and impact of Retrieval-
+Augmented Generation in the realm of Real-Time Business Intelligence. We begin by examining the historical 
+foundations and limitations of traditional BI systems, then delve into the technical anatomy and innovations of 
+RAG. Following this, we explore practical applications across domains, compare RAG with competing 
+paradigms (pure LLMs and traditional BI tools), and assess existing evaluation frameworks. Finally, we 
+highlight key challenges and emerging directions that will shape the future of RAG-enabled BI systems. 
+ 
+A. Background: Business Intelligence and Its LimitationsSpecifications 
+Traditional Business Intelligence Systems have been well utilized for making business decisions through 
+dashboards, and refined data structures. Its core architecture involves transformation from raw dataset into 
+business transformation which helps analysts, and business stakeholders to make key decisions. Traditional 
+data warehouses and data marts are created through the ETL ( Extract, transform, and loading) process to 
+support analytical reporting. Also, BI tools are designed to offer visualization, trend analysis charts, reporting 
+functionalities, and forecasting. BI ETL processes are batch in nature and generally run once a day along with 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+2
+ 
+weekly or monthly once. These systems have served organizations well for many years and are still used as 
+first-hand tools for analytics. With modern infrastructure, GPUs, and compute databases create opportunities 
+for large dataset integration along with external systems, optimization, and handling complex processes. It also 
+opens up opportunities to enhance and improve BI systems through new tools and report modernization. 
+ 
+The Lag in Static BI Pipelines: 
+Most of the BI Data Integration processes are running batch mode which is static and sometimes dynamic on 
+an adhoc basis. Also, it is scheduled mostly once a day, sometimes once a week or month. There is a 24-hour 
+gap between data generated and the analytical insights. In some domains where data is very volatile and fast 
+moments it can create bottlenecks and delays in decision-making process. Adhoc requests are handled mostly 
+by analysts which is required technical skills and can be a hindrance for business users.Also BI with static 
+pipelines questions addressed by business are static and any immediate need to have additional insights requires 
+investing time and money, which can be cause delays in strategic and dynamic decisions. 
+ 
+The Fragmentation of Data Sources: 
+Traditional BI systems certainly address the business gaps. They can perform analytical operations on a day-
+to-day basis. However, they still cannot address the gaps with the competitors as well as the struggle to unify 
+several types of sources such as unstructured data, sentimental data, and information logs. Real-time, external 
+data integration along with the BI system is also needed to have an instant decision which can help 
+organizations to react better for fast fast-moving world. 
+ 
+Lack of Natural Language Interaction and Context Reasoning:  
+Legacy BI systems rely heavily on user inputs, filters, and requirement-driven dashboards for analytics.  It still 
+lags with context-driven understanding and the ability to understand the intent behind the query and answers 
+for homogenous datasets. Predefined mappings and transformations help guide future business decisions by 
+focusing on current events instead of raw data summaries. 
+ 
+Real-Time BI: Evolution  
+With the evolution of technologies, there are much more advanced platforms and infrastructures available for 
+capturing data in real time and transforming them into meaningful insights. Also, computer databases such as 
+Snowflake, Redshifts, GoogleBigQuery and Databricks can be used to store and process data. Also, with GPU 
+computing, vector search, and LLM models, real-time data can be integrated to generate context-driven 
+answers for helpful business questions and decisions. 
+ 
+Inability to Leverage Unstructured and External Data 
+Structured data is mainly utilized for analysis in traditional business intelligence (BI).  However, many 
+important data points are captured in unstructured forms in information logs, social media, and real-time news, 
+serving as sources of unstructured data.BI systems need to integrate these unstructured data for initiative-taking 
+and context-driven decisions. 
+ 
+B. Foundations of RAG: Architecture and Key Concepts  
+With the evolution of natural language systems transformers' advancement on retrieval mechanisms allows 
+context-driven search and along with real-time integration. LLM conventional models are mostly generate 
+answers with patterns learned during pre-trained models which create sometimes hallucinations while RAG 
+architecture allows real-time or domain-specific knowledge which can be used in generative models and with 
+embedded retrieval it can generate answers and source of the information. RAG architecture is mostly evolved 
+with transformer architecture advancement. 
+ 
+ 
+ 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+3
+ 
+Transformer-Based Language Models: 
+The transformer concept is introduced by Vaswani et al. (2017) which is further advanced by the multi-headed 
+self-attention mechanism is primarily used in RAG.LLMs such as BERT (Devlin et al., 2018), GPT (Brown et 
+al., 2020), T5 (Raffel et al., 2020), and BART (Lewis et al., 2020) also have been advanced in architecture and 
+as well as captured massive datasets with computing power. Hallucinations, Static knowledge, and domain-
+specific knowledge are hindrances to the pretrain model. Pretrained models can only generate answers that 
+they have been trained to do so.  
+ 
+The Core RAG Architecture 
+Lewis et al. (2020), the RAG architecture primarily is based on two components: the Retriever which searches 
+relevant answers from the knowledge base, and the generator generates a response based on the input. Once a 
+user submits a response, DPR—Dense Passage Retrieval by Karpukhin et al., 2020 retrieves the data based on 
+top-k relevant information from vast knowledge store. The second step uses a sequence-to-sequence generator 
+model to generate answer-based input. RAG mechanism allows real-time domain-specific information rather 
+than memorized dataset. Lewis, Oguz, Rinott, Riedel, & Schwenk, 2020, RAG combines parametric generation 
+with non-parametric memory to ground outputs in retrieved knowledge, enabling more accurate and contextual 
+business responses. 
+ 
+The retriever in an RAG is a combined hybrid architecture of Sparse which is keyword searched using 
+semantics learning and Dense which uses embedding using contrastive learning and retrieves based on vector 
+similarity. Vector databases such as Bedrocks and Weaviate are used for storing and searching using 
+embeddings efficiently.  
+The generator in RAG uses different models than traditional LLM models. Typically, a transformer-based 
+seq2seq model such as BART used pretrain information for summarizations and QA. T5 used for 
+summarization, GPT for prompt engineering while RAG can use these LLM models align with external 
+document making to more context and traceable contents.  
+ 
+ 
+Fig 1.a RAG model 
+ 
+RAG has different variants such as RAG-Sequence which retrieves one at a time, RAG token which are more 
+computed intensive. REALM and RETRO are some of other variants which extend RAG with improved 
+retrieval information. 
+For BI Systems, RAG is a key evolution for combining context-sensitive, dynamic external data which can 
+provide up-to-date insights for various analytics and key answers to business problems. 
+ 
+C. Evaluation Metrics and Comparative Study 
+Evaluation in RAG architecture is essential to evaluate metrics in separate phases of deployment for Business 
+Intelligence. As RAG is based on retriever and decoder architecture it is required to implement strategies to 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+4
+ 
+measure retrieval and generator quality. Context reasoning, timely retrieval, and domain-driven data synthesis 
+are three key aspects to be measured for dynamic real-time data for key business decisions.  
+ 
+Retrieval Metrics 
+The retrieval component in RAG is evaluated using information retrieval metrics that reflect the quality of 
+ranking and semantic relevance. Key metrics include Precision@k, Recall@k, MRR, BERT Score and NDCG.  
+Precision retrieves how many of the top-k retrieved documents are relevant while Recall focuses on how many 
+relevant documents are retrieved in top k. Precision focuses on quality while Recall emphasizes coverage of 
+relevant documents. Both techniques are calculated top-k retrieved documents. 
+Precision@k = (# of relevant items in top-k) / k (Mean Reciprocal Rank)   
+Recall@k = (# of relevant items in top-k) / (Total # of relevant items) 
+MRR (Mean Reciprocal Rank) calculates the rank position of the first relevant result, favoring early retrieval.  
+BERTScore is also used for retrieval which uses soft match technique on critical business context paraphrase. 
+Liu, Yin, Yang, & Song, 2022, Metrics such as BERTScore align closely with human judgment, validating the 
+reliability of RAG outputs for real-time decision making. 
+ 
+Generation Metrics 
+The generation metrics are measured on quality checks relevant to context reasoning and domain data 
+synthesis. Quality is often compared with traditional NLP models. BLUE, ROUGE, and BERT Score are major 
+methods used for generation evaluation metrics. 
+BLEU (Bilingual Evaluation Understudy) selects n-gram overlap limited for paraphrased outputs while 
+ROUGE (Recall-Oriented Understudy for Gisting Evaluation) Evaluates overlap in n-grams and sequences 
+between generated and reference texts. BLUE focuses on Precision (how many generated) and ROUGE 
+evaluates Recall (how many referenced). ROUGE is used in many use cases related to summarization, decision 
+summary, and longer output texts.  
+BERTScore used pretrained models to compare generated answers with context-aware ground truth. This 
+helps to analyze whether generated texts or results are significant to business decisions. It uses precision, Recall 
+and F1 for computing cosine similarity between tokens across the two texts and is extremely helpful evaluating 
+explanations, summaries, or insights generated by RAG. Devlin Chang, Lee,& Toutanova, 2018. BERT's deep 
+contextual embeddings enable foundational language understanding, critical for precise retrieval in RAG 
+systems. 
+ 
+Other Evaluation Metrics 
+Faithfulness keeps track of the verified source and Groundedness evaluates that output does not represent 
+wrong data.  The retrieval Attribution technique ensures that each sentence is cross-checked against the source 
+of the document. 
+Factual Consistency checks are very important while accessing generated answers against experts as well as 
+past historical data. FactCC is an automated tool which can be used for factual checks. 
+Explainability refers to reasoning why the generated responses the system’s ability to provide human-
+understandable reasoning behind its outputs so that business users understand the reason behind outputs and it 
+builds trust and confidence. Source Highlighting, Token-Level Attention Visualization, Chain-of-Thought 
+Tracing, Natural Language Justification, Prompt Engineering are some of the methods used for handling 
+explainability.  
+Traceability is the ability to verify the source for the generated responses. Document ID Attribution, Log-
+Level  process Tracking, Token Attribution Mapping, and Trace Logging Systems methods are used to track 
+fact-checking, error diagnosis, and in some cases used for compliance. 
+Some of the timeliness metrics include Retrieval Latency which is retrieved time from vector DB, generation 
+latency for model response time, and Decision Timeliness Index to provide an alert for any major events such 
+as any delay, drop in revenue, and price drop, Offline Benchmarks  and Online A/B Tests. 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+5
+ 
+Earning Summarization, Earning prediction, Stock Movement, Anomaly detection, and Medical fact check are 
+few uses cases which use these evaluation techniques for quality and relevance checks. 
+Augmented Generation models in general outperform large language models (LLMs) like GPT or BERT or 
+other in-house models. For instance, Karpukhin et al. (2020) demonstrate that DPR-based RAG achieves 
+significantly higher exact match and F1 scores on open-domain QA benchmarks than BERT-based models 
+without retrieval. This translates to more accurate forecasting, compliance alerts, or policy decisions. Also, 
+Comparative research (Lewis et al., 2020) shows RAG reduces hallucination by 30–45% over generative-only 
+models due to grounding in retrieved knowledge. This is especially important in high-stake business domain 
+decisions in finance, logistics, or healthcare BI. RAG models, along with domain-specific data knowledge, 
+outperform GenAI models like GPT, and T5 by decision efficiency and relevance of 20-30 percent. In the 
+future, these evaluation techniques can all be mixed and the framework can be built. 
+ 
+D. Applications of Retrieval-Augmented Generation in Real-Time Business Intelligence 
+Integration of Augmented Generation with real-time or near real-time is groundbreaking for enabling 
+interactive analysis as well as advancement in sentiment, context driven, accurate and timely, up-to-date 
+answers that can help make effective business decisions for various domains in this fast-moving world. Static 
+dashboards or analytical predictions are good enough for analysis but may not be enough for quick decisions 
+as various external factors can influence the business environment. RAG structure can enable BI applications 
+to combine structured internal databases (transactional, CRM, logs, marts) and unstructured data such as social 
+media, real-time news, and regulatory and compliance changes to help company stakeholders aware of these 
+volatile environments. 
+ 
+Financial Services: Market Intelligence and Risk Assessment 
+Risk assessment, live financial news feeds, and market sentiment are currently lagging especially in the 
+financial world as most of the Business Intelligence relies predefined earning, P/E ratio, moving average. 
+Financial sectors still cannot react if any event occurs that impact to financial industry. RAG is essential and 
+can play a valuable tool to monitor these real time events, social signals, regulatory changes and combine them 
+with firm-specific data and provide quick assessment and trends. Market events like US tariff news, chip 
+restrictions, live tweets, geopolitical tensions, and delays in shipment can interrupt business and companies 
+need to either act proactively or do adjustment and take steps to mitigate risks. With the new RAG architecture, 
+integration with live data with the existing company's data assets will certainly help to improve decision quality 
+and support explainability and traceability. Certainly, RAG AI can help traditional BI to assess live risk along 
+with past trends and do analytics. Zhao, Ma, & Xu, 2021, Context-aware models significantly enhance financial 
+decision-making by retrieving and synthesizing real time data streams. 
+ 
+Sales and Marketing 
+In sales and marketing, it is exceedingly difficult to predict how customers will react to the new release. Also, 
+customers’ demands change with the market trends and sentiments. One that is good for the buyer may not be 
+the same over the period. Current Sales Business Intelligence has relied on more static CRM data, customer 
+data, and behavior over some time. But it lags live company news such as acquisition, new rival’s product 
+launches, geopolitical situations, trade, and tariff talks. Sentimental analysis of customers on different social 
+platforms can also play a key role in promoting products. Also, sales reps can use these real time data for their 
+customer's sales pitch. Through RAG architecture fully personalized sales conversations, customer 
+segmentation, and adaptive marketing campaigns, with measurable improvements in conversion rates are 
+possible in sales and marketing. 
+ 
+Operations and Supply Chain 
+Supply chains are the most affected domain, as they are fragile to real-time disruptions including trade talks, 
+selecting bans, weather events, geopolitical changes, inventory shortages, and transportation delays. RAG can 
+help to integrate these real-time events with operational BI systems to create customized alerts, and intelligent 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+6
+ 
+decision assistant tools so that the company can react to these events and take necessary steps. RAG can also 
+help in providing alternate routing, inflation forecast, new planning and inventory. Forecasting updates, risk 
+scores, pipelines, and inventory all can be updated based on real time retail news, social media customer 
+sentiments with new RAG architecture. 
+ 
+Human Resources and Talent Intelligence 
+In HR, RAG-based BI can support organizations to identify current resource needs, skill gaps, and training 
+needs. Instead of relying on historical data employers can focus on the internal survey, external market 
+demands, forecast hiring, and retention resource needs based on real-time as well as uncertainty in the market. 
+Also, some of the social platform news feeds on company performance as well as competitors can also help to 
+forecast and plan for future needs along with reasons. RAG can easily retrieve talent trends, job postings from 
+competitors, retention strategies adopted by competitors as well as in research articles can help HR to 
+benchmark salary bands, limit attrition and identify skill gaps and training needs, improve transparency on 
+various HR decisions. 
+ 
+Regulatory Compliance and Audit Readiness 
+Healthcare, Insurance, and Banking are some of the regulatory industries which is completely dependent upon 
+latest regulation and change in laws and compliance. With static data these regulations can be monitored, and 
+the BI system plays a crucial role in it. But it still lags and has delays in addressing recent policy changes, 
+privacy standards, rules and regulations, and standard practices. It takes time to ingest these new policies into 
+the systems and this delays regulatory and audit readiness. RAG. RAG certainly can integrate external 
+compliance and regulation data along with existing assets to create a system that further assesses whether the 
+current system meets standards such as HIPAA, PII, and other regulatory compliance. In insurance, automated 
+claim summaries, fraud detection, cause of damage, past claim settlement, regulations change, natural disaster, 
+emerging market behavior, regulations, natural disasters, emerging market, Real-time weather data are some 
+of the data that can be integrated with traditional structure BI data to improve Claims Management and 
+Summarization proactive compliance, lowers audit risks, and traceable decision-making, Underwriting Support 
+and Risk Intelligence. 
+ 
+Customer Service and Experience Management 
+Traditional BI is not enough to address customer service and experience. Though it tracks end to end resolution 
+time, CSAT scores do not explain the reason for any delays, customer behaviors on during service handling 
+process, social media sentiments and other knowledgebase required to enhance customer experience. RAG AI 
+can help to integrate sentiment data as well as customer interaction, chats, and other unstructured data. Voice-
+of-customer (VoC) analytics using RAG structure can become more powerful and actionable when 
+unstructured feedback sentiment classification, release logs can combine with structured data to build a robust 
+system that can help to make strategic decisions to improve customer service and experience management.  
+ 
+Real-Time Strategy and Executive Decision Support: 
+This is the most important platform where strategies and executives from different companies often ask about 
+the latest events that can impact their company. So, context-driven, and real-time insights are required on 
+geopolitical developments, industry benchmarks, regulatory and compliance changes, new tariffs, and other 
+trade decisions that can have immediate and long-term impacts on a company. Uncertainty environments, 
+earning reports, sales trends, economic forecasts, and geopolitical developments can influence and require 
+acting proactively by company executives and RAG With these GenAI tools can play a key role in enterprise 
+decision-making suites with explainable data lineage and context-aware recommendations. 
+ 
+ 
+ 
+ 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+7
+ 
+Use Cases of RAG Implementation: 
+Department Functions 
+Finance 
+Market trend analysis, news-based stock movements, risk/fraud alerts 
+Sales 
+& 
+Marketing 
+Lead/pipeline enrichment, adaptive personalization, advanced campaign  
+Supply 
+Chain 
+Disruption risk alerts, demand forecasting, adaptive rerouting 
+HR 
+& 
+Workforce 
+Skill gap and benchmarking, attrition and retention forecasting, resource trend  
+Customer 
+Support 
+Contextual support handling, sentiment score, VoC insights 
+Compliance 
+Real-time compliance and regulation audit monitoring, new policy impact 
+assessment 
+Executive 
+Strategy 
+Dynamic strategic insights, competitor benchmarking, summarization, and 
+geopolitical analysis 
+ 
+Fig 1.b Use Case Diagram 
+ 
+The integration of RAG into Real-Time Business Intelligence ecosystems can create significant context-
+aware, transparent, and adaptive decision-support systems to empower stakeholders to ask nuanced 
+questions, receive actionable answers, and explore the reasoning behind them. 
+ 
+E. Challenges and Future Directions 
+As RAG architecture brings value to the organization's dynamic decision-making it is imperative to implement 
+RAG models. However, there are key challenges to having a technical infrastructure, skillset, and many other 
+challenges in adaptation and scalability followed by directions in research and building systems to overcome 
+the barriers. 
+ 
+Latency in Real-Time Retrieval and Generation:  
+RAG structure in a fast-moving world integrates real-time data along with retrieval-generated responses. So, 
+latency can be an issue while retrieving from vector database or retrieving top k-documents using ranking. 
+Additionally, substantial transformations can potentially result in delays.  This opens the opportunity for future 
+research and implementation, cache methods, early exits, sparse attention as well as parallelized processes. 
+Also adding infrastructure such as GPU/TPU and memory-efficient techniques is an immense help but a cost 
+to the company. 
+ 
+Domain Adaptation and Context Misalignment 
+Domain and context-driven data setting is very necessary for RAG models. If RAG models are pre-trained 
+open domain information rather than the companies inside assets with real-time data, then there are chances 
+RAG models can bring irrelevant information that is not important to the business. Strategic ss decision 
+depends on augmented data which is domain and organization specific. So future research and direction can be 
+implementing a hybrid architecture to integrate internal data with external data that matters and pretrain in a 
+domain-specialized setting.  
+ 
+Evaluation Bottlenecks  
+Evaluation metrics are key to measuring the performance and accuracy of any RAG model. Techniques like 
+BLUE, BERT Score, and ROUGE are essential but in a dynamic context-driven model explainability and 
+traceability are also important. In the future along with different techniques Latency score, decision impact 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+8
+ 
+score, Business value alignment, human valuation, and faithfulness are some of the research and future 
+direction methods to overcome evaluation bottlenecks. 
+ 
+Hallucination, Noisy Data, Explainability and Traceability  
+RAG system is designed to reduce the Hallucination rate but when retrieval or integration fails then it may 
+produce inaccurate sights, wrong forecasts, or compliance violations.  Fabrication and misattributing are some 
+of the issues when there is a misalignment or irrelevant data is used for training and transformation. Retrieval 
+verification on each step, faithfulness, and contrastive ranking is some of the research topics and future 
+directions to reduce hallucination in generated responses.  
+ 
+Businesses and analysts are often interested in understanding the rationales behind every response generated 
+by RAG models and it is necessary, especially in highly volatile environments such as finance, strategies, and 
+supply chains. Also, in compliance systems traceability is required for audit, SOX, and other regulatory 
+compliance. Source attribution and automating reports of trace logs and templates are some of the research and 
+direction required specific to the company's needs. 
+ 
+In most scenarios, unstructured data captures a lot of business-valued data, and it changes extremely fast. 
+Without version control, retrieval of these unstructured data can bring wrong and outdated data. So, there is a 
+need for research and future direction on document versioning, dynamic indexing on the latest data, 
+maintaining the latest version, and policy so that output can be relevant with up-to-date information. 
+ 
+Security, Privacy, and Data Governance, BI Tool Integration 
+Unauthorized access, PII data, data leakage, and sensitive information can be present in unstructured data which 
+is used in RAG architecture. It is essential to address security and data privacy, as there is a risk of unauthorized 
+retrieval of information, which can expose confidential policies and sensitive customer data. Hence there is a 
+need for RBAC policy in the retrieval layer as well as different security and privacy mechanisms, audits are 
+some of the research and future direction is required to protect confidential and sensitive information. 
+Security, Privacy, and Data Governance, BI Tool Integration 
+Unauthorized access, PII data, data leakage, and sensitive information can be present in unstructured data which 
+is used in RAG architecture. It is essential to address security and data privacy, as there is a risk of unauthorized 
+retrieval of information, which can expose confidential policies and sensitive customer data. Hence there is a 
+need for RBAC policy in the retrieval layer as well as different security and privacy mechanisms, audits are 
+some of the research and direction is required to protect confidential and sensitive information. 
+For traditional BI there are many enterprise tools such as Tableau, Power BI, and SAP are used. Seamless 
+integration of RAG-generated responses with these tools can benefit RAG insights on a daily, intra-day or real-
+time basis. API integration, Dashboard, and Connectors to BI Tools with RAG are some of the research and 
+future directions needed for seamless integration. 
+ 
+F. Conclusion 
+Retrieval-augmented generation (RAG) architecture evolution into traditional BI systems can bring dynamic 
+business decision capability. It can change the perspective to see and act on the business data. Davenport, 
+2006, Organizations that compete on analytics must convert data into actionable insight rapidly—an outcome 
+RAG architectures are now enabling. Context-aware RAG models address the limitations of both generic 
+LLM and static BI systems. This paper highlighted current traditional BI challenges, RAG applications in 
+various domains such Finance, Retail, Supply chain, and other strategic domains. Evaluation methods remain 
+challenge but LLM evaluation technique along with automated evaluation can be used for groundedness truth, 
+traceability and explainability. Latency, hallucination risks, domain misalignment, explainability, and data 
+governance all pose significant barriers to scalable deployment. These challenges require technical 
+advancements in retrieval and generation but also tighter integration with enterprise workflows, regulatory 
+frameworks, and user trust models. Looking ahead, future directions point toward more robust, multimodal, 
+
+International Journal for Multidisciplinary Research (IJFMR) 
+ 
+E-ISSN: 2582-2160   ●   Website: www.ijfmr.com   ●   Email: editor@ijfmr.com 
+ 
+IJFMR250452677 
+Volume 7, Issue 4, July-August 2025 
+9
+ 
+and explainable RAG systems that are deeply embedded in enterprise ecosystems. In conclusion, RAG is not 
+merely a technological upgrade—it is a foundational shift in the architecture of business intelligence, offering 
+organizations a competitive edge in an increasingly data-driven and fast-paced world.  
+ 
+REFERENCES: 
+1. Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional 
+Transformers for Language Understanding. arXiv:1810.04805. 
+2. Lewis, P., Oguz, B., Rinott, R., Riedel, S., & Schwenk, H. (2020). Retrieval-Augmented Generation 
+for Knowledge-Intensive NLP Tasks. Advances in Neural Information Processing Systems, 33. 
+3. Khattab, O., & Zaharia, M. (2020). ColBERT: Efficient and Effective Passage Search via 
+Contextualized Late Interaction over BERT. Proceedings of SIGIR. 
+4. Liu, S., Yin, J., Yang, Y., & Song, Y. (2022). Evaluating Text Generation with BERTScore, BLEU, 
+and Human Judgments. EMNLP. 
+5. Zhao, W., Ma, X., & Xu, Q. (2021). Context-Aware Financial Decision-Making with Augmented 
+Language Models. Journal of Financial Technology, 4(2), 55–74. 
+6. Xie, J., Chen, W., & Gupta, A. (2023). Trustworthy Generative AI for Business Applications: A 
+Survey of Attribution and Traceability. ACM Computing Surveys. 
+7. Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., & Artzi, Y. (2020). BERTScore: Evaluating Text 
+Generation with BERT. ICLR. 
+8. Davenport, T. H. (2006). Competing in Analytics. Harvard Business Review.

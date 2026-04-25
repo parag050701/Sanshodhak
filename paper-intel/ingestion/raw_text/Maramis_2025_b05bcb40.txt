@@ -1,0 +1,652 @@
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+1/11 
+ 
+ 
+ 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+2/11 
+ 
+ 
+Table Of Contents 
+Journal Cover ............................................................................................ 1 
+Author[s] Statement .................................................................................. 3 
+Editorial Team .......................................................................................... 4 
+Article information .................................................................................... 5 
+Check this article update (crossmark) ..................................................................... 5 
+Check this article impact ..................................................................................... 5 
+Cite this article ................................................................................................... 5 
+Title page .................................................................................................. 6 
+Article Title ....................................................................................................... 6 
+Author information ............................................................................................. 6 
+Abstract ........................................................................................................... 6 
+Article content .......................................................................................... 7 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+3/11 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Originality Statement 
+The author[s] declare that this article is their own work and to the best of their 
+knowledge it contains no materials previously published or written by another person, or 
+substantial proportions of material which have been accepted for the published of any 
+other published materials, except where due acknowledgement is made in the article. 
+Any contribution made to the research by others, with whom author[s] have work, is 
+explicitly acknowledged in the article. 
+ 
+ 
+Conflict of Interest Statement 
+The author[s] declare that this article was conducted in the absence of any commercial 
+or financial relationships that could be construed as a potential conflict of interest. 
+ 
+ 
+Copyright Statement 
+Copyright © Author(s). This article is published under the Creative Commons Attribution 
+(CC BY 4.0) licence. Anyone may reproduce, distribute, translate and create derivative 
+works of this article (for both commercial and non-commercial purposes), subject to full 
+attribution to the original publication and authors. The full terms of this licence may be 
+seen at http://creativecommons.org/licences/by/4.0/legalcode 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+4/11 
+ 
+ 
+EDITORIAL TEAM 
+Editor in Chief 
+ 
+Dr. Hindarto, Universitas Muhammadiyah Sidoarjo, Indonesia 
+ 
+Managing Editor 
+Mochammad Tanzil Multazam, Universitas Muhammadiyah Sidoarjo, Indonesia 
+ 
+Editors 
+Fika Megawati, Universitas Muhammadiyah Sidoarjo, Indonesia 
+ 
+Mahardika Darmawan Kusuma Wardana, Universitas Muhammadiyah Sidoarjo, Indonesia 
+Wiwit Wahyu Wijayanti, Universitas Muhammadiyah Sidoarjo, Indonesia 
+Farkhod Abdurakhmonov, Silk Road International Tourism University, Uzbekistan 
+Bobur Sobirov, Samarkand Institute of Economics and Service, Uzbekistan 
+Evi Rinata, Universitas Muhammadiyah Sidoarjo, Indonesia 
+ 
+M Faisal Amir, Universitas Muhammadiyah Sidoarjo, Indonesia 
+ 
+Dr. Hana Catur Wahyuni, Universitas Muhammadiyah Sidoarjo, Indonesia 
+ 
+ 
+ 
+Complete list of editorial team (link) 
+ 
+Complete list of indexing services for this journal (link) 
+How to submit to this journal (link) 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+5/11 
+ 
+ 
+Article information 
+ 
+Check this article update (crossmark) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Check this article impact (*) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Save this article to Mendeley 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+(*) Time for indexing process is various, depends on indexing database platform 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+6/11 
+ 
+ 
+ 
+BM25 Algorithm for Improving Academic Website Search Accuracy: 
+Algoritma BM25 untuk Meningkatkan Akurasi Pencarian di Situs Web 
+Akademik 
+ 
+Glenn David Paulus Maramis, gmaramis@unima.ac.id, (1) 
+Program Studi Teknik Informatika, Universitas Negeri Manado, Indonesia 
+ 
+Marthasya Chantika Putri Ranti, 22210069@unima.ac.id, (0) 
+Program Studi Teknik Informatika, Universitas Negeri Manado, Indonesia 
+ 
+Kristofel Santa, kristofelsanta@unima.ac.id, (0) 
+Program Studi Teknik Informatika, Universitas Negeri Manado, Indonesia 
+ 
+(1) Corresponding author 
+ 
+ 
+Abstract 
+ 
+General Background: The increasing volume of digital information in academic environments 
+requires search systems that can deliver accurate and relevant results. Specific Background: The 
+Faculty of Engineering UNIMA website still relies on simple keyword matching, which often produces 
+irrelevant outputs and reduces the effectiveness of information access. Knowledge Gap: Although 
+the BM25 algorithm is widely recognized for its superior relevance scoring in information retrieval, its 
+application in faculty-level academic portals remains limited. Aims: This study aims to implement the 
+BM25 algorithm using Meilisearch integrated with Laravel and Filament to improve search relevance, 
+speed, and data management efficiency. Results: The implemented system successfully ranks the 
+most relevant documents at the top with response times measured in milliseconds, and automatic 
+index synchronization ensures consistent and up-to-date search results. Novelty: This research 
+presents one of the first BM25-based search implementations within an Indonesian faculty website, 
+integrating Laravel, Meilisearch, and Filament into a cohesive architecture. Implications: The 
+findings show that BM25 significantly enhances the quality of search services and user experience, 
+providing a scalable model for academic institutions seeking effective information retrieval solutions. 
+ 
+Highlights: 
+ 
+Enhances search relevance and speed on a faculty academic website using BM25. 
+ 
+Integrates Laravel, Meilisearch, and Filament into a unified, easy-to-manage system. 
+ 
+Offers a scalable model for improving information access in higher education portals. 
+ 
+ 
+Keywords: BM25, Information Retrieval, Meilisearch, Laravel, Academic Website 
+ 
+ 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+7/11 
+ 
+ 
+Pendahuluan 
+ 
+Perkembangan teknologi informasi dan komunikasi telah mendorong perguruan tinggi untuk menyediakan layanan informasi 
+yang cepat, akurat, dan relevan. Website resmi Fakultas Teknik Universitas Negeri Manado (UNIMA) berfungsi sebagai 
+media utama penyebaran informasi akademik maupun non-akademik, seperti profil fakultas, program studi, kurikulum, 
+berita, serta pengumuman penting. Namun, mingkatnya volume dan kompleksitas data sering menyulitkan pengguna dalam 
+memperoleh informasi yang relevan secara cepat. Masalah utama terletah pada system pencarian yang masih menggunakan 
+pencocokan kata kunci sederhaha, sehingga hanya menampilkan hasil dengan kata yang sama tanpa memperhatikan 
+sinonim, relevansi, atau prioritas informasi. Akibatnya, efektivitas website sebagai media informasi akademik menjadi 
+berkurang. Diperlukan metode pencarian yang lebih cerdas dan kontekstual. Dalam bidang Information Retrieval (IR), 
+Algoritma BM25 menjadi salah satu solusi unggulan karena mampu meneilai relevansi dokumen berdasarkan frekuensi 
+istilah, panjang teks, dan distribusi data dalam koleksi data, sehingga menghasilkan pencarian yang lebih akurat disbanding 
+dengan metode konvensional. 
+ 
+Beberapa penelitian terdahulu telah membuktikan efektivitas BM25. Penelitian [1] mengimplementasikan relevan 
+terkonsentrasi pada lima hasil teratas. Studi lain [2] membandingkan BM25 dengan TF-IDF dan menemukan bahwa BM25 
+menghasilkan precision dan F1- score lebih tinggi pada dokumen panjang. Sementara itu, penelitian [3] menggunakan 
+BM25F pada berita online dan berhasil meningkatkan nilai MAP dibandingkan BM25 standar. Penerapan BM25 pada system 
+lowongan kerja [4] juga menunjukkan presisi rata-rata 92%. Selain itu, penelitian [5] membuktikan bahwa BM25 berbasis 
+Laravel mampu meningkatkan presisi hingga 15% dibandingkan pencarian SQL LIKE.Meskipun demikian, penerapan BM25 
+pada website fakultas di lingkungan perguruan tinggi masih jarang dilakukan. Oleh karena itu, penelitian ini berfokus pada 
+penerapan algoritma BM25 melalui integrasi Meilisearch dengan framework Laravel dan panel admin Filament pada 
+website Fakultas Teknik UNIMA. Dengan penelitian ini, diharapkan sistem pencarian mampu menampilkan informasi paling 
+relevan pada posisi teratas, meningkatkan efisiensi akses informasi, serta mendukung transformasi digital dalam 
+pengelolaan layanan akademik di lingkungan Fakultas Teknik UNIMA. 
+ 
+Menurut [6] (2020), kualitas layanan website e-commerce dapat diukur menggunakan Webqual 4.0 untuk menilai kepuasan 
+pengguna. Pendekatan ini menunjukkan pentingnya relevansi hasil pencarian terhadap kepuasan pengguna dalam konteks 
+web akademik. 
+ 
+Metode 
+ 
+A. Analisis Kebutuhan 
+ 
+Tahap awal penelitian ini adalah mengidentifikasi kebutuhan pengguna dan sistem. Data diperoleh melalui studi literatur, 
+observasi pada website Fakultas Teknik UNIMA, serta diskusi dengan pengelola website. Hasil analisis menunjukkan bahwa 
+fitur pencarian yang ada belum mampu menyajikan hasil secara relevan, sehingga diperlukan penerapan algoritma 
+pemeringkatan dokumen yang lebih cerdas [7]. serta didukung proses text processing yang optimal untuk peningkatan 
+relevansi kata kunci [8]. Kebutuhan utama sistem meliputi: (1) fitur pencarian berbasis BM25, (2) manajemen konten yang 
+mudah melalui panel admin, dan (3) sinkronisasi data otomatis antara basis data dan indeks pencarian. 
+ 
+B. Desain Sistem 
+ 
+Desain sistem menggunakan pendekatan arsitektur berbasis web [9]. Framework Laravel dipilih sebagai platform 
+pengembangan karena mendukung integrasi dengan search engine eksternal, dalam hal ini Meilisearch, yang secara 
+bawaan menerapkan algoritma BM25 [10]. Panel administrasi dibangun menggunakan Filament untuk memudahkan proses 
+CRUD. Perancangan meliputi diagram alur kerja, struktur basis data, serta rancangan antarmuka pengguna yang sederhana 
+dan intuitif [11]. 
+ 
+C. Implementasi Sistem 
+ 
+Implementasi dilakukan berdasarkan desain yang telah disusun. Integrasi BM25 dilakukan melalui instalasi dan konfigurasi 
+Meilisearch yang dihubungkan dengan Laravel. Filament digunakan untuk membuat panel admin yang memudahkan 
+pengelolaan data tanpa perlu pemrograman teknis [12]. Proses implementasi ini menghasilkan sebuah sistem pencarian 
+yang mampu melakukan pemeringkatan dokumen berdasarkan skor relevansi BM25 [13]. 
+ 
+D. Pengujian Sistem 
+ 
+Pengujian dilakukan menggunakan metode black-box testing untuk memastikan setiap fungsi berjalan sesuai kebutuhan 
+[14]. Evaluasi kinerja sistem mencakup dua aspek: (1) kecepatan pencarian, diukur berdasarkan waktu respon ketika 
+melakukan query, dan (2) relevansi hasil, diamati melalui urutan hasil pencarian yang ditampilkan. Hasil uji menunjukkan 
+bahwa sistem mampu menampilkan hasil dalam hitungan milidetik dengan relevansi tinggi [15]. 
+ 
+ 
+ 
+ 
+ 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+8/11 
+ 
+ 
+Hasil dan Pembahasan 
+ 
+A. Tampilan Antarmuka Sistem 
+ 
+1. 
+Halaman Utama Website Fakultas Teknik UNIMA 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 1. Halaman Utama 
+ 
+Halaman utama berfungsi sebagai pintu masuk pengguna untuk mengakses seluruh konten website. Pada bagian kanan atas 
+terdapat kolom pencarian yang telah diintegrasikan dengan algoritma BM25 melalui Meilisearch, sehingga hasil pencarian 
+akan lebih relevan terhadap kata kunci yang dimasukkan. 
+ 
+2. 
+Arsitektur Sistem Pencarian Website Fakultas Teknik UNIMA 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 2. Arsitektur Sistem Pencarian Website Fakultas Teknik UNIMA 
+ 
+Gambar ini menggambarkan proses komunikasi antara antarmuka pengguna, framework Laravel sebagai backend, 
+Meilisearch sebagai search engine dengan algoritma BM25, serta basis data MySQL. Integrasi ini memungkinkan 
+sinkronisasi data otomatis setiap kali admin melakukan perubahan pada panel Filament 
+ 
+3. 
+Halaman Hasil Pencarian 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 3. Halaman Hasil Pencarian 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+9/11 
+ 
+ 
+4. 
+Dashboard Admin (Filament Panel) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. Dashboard Admin (Filament Panel) 
+ 
+Dashboard admin dibangun menggunakan Filament yang menyediakan fitur CRUD (Create, Read, Update, Delete). Semua 
+perubahan data langsung tersinkronisasi dengan indeks Meilisearch melalui Laravel Scout, memastikan hasil pencarian 
+selalu terbaru. 
+ 
+B. Analisis Kebutuhan 
+ 
+Hasil implementasi menunjukkan bahwa sistem pencarian berbasis algoritma BM25 berhasil diintegrasikan ke dalam 
+website Fakultas Teknik UNIMA. Proses implementasi dilakukan dengan menggunakan framework Laravel yang dipadukan 
+dengan search engine Meilisearch. Meilisearch secara bawaan telah mengimplementasikan algoritma BM25 sehingga 
+proses pemeringkatan dokumen dapat dilakukan secara otomatis berdasarkan tingkat relevansi kata kunci. 
+ 
+Antarmuka sistem dirancang sederhana agar mudah digunakan. Pada halaman utama, pengguna dapat langsung melakukan 
+pencarian melalui kotak pencarian, kemudian sistem menampilkan daftar hasil yang telah diperingkat sesuai skor relevansi. 
+Dokumen dengan relevansi tertinggi ditampilkan pada urutan teratas, sehingga pengguna dapat lebih cepat menemukan 
+informasi yang dibutuhkan. Dasi aspek pengelolaan data, system menggunakan panel administrasi berbasis Filament yang 
+memudahkan pengelolah melalukan, tambah, ubah, dan hapus data tanpa perlu keahlian teknis tinggi. Panel ini 
+meningkatkan efisiensi karena seluruh proses CRUD dapat dilakukan melalui antarmuka grafis yang intuitif. 
+ 
+Selain itu, integrasi antara Laravel dan Meiliseacrh memungkinkan sinkroniasi ototmatis antara basis data dan indeks 
+pencarian, sehingga data selalu terbarui secara realtime. Setiap perubahan pada data di basis data seperti penambahan 
+berita, artikel, atau pengumuman langsung tercermin pada hasil pencarian tanpa perlu melakukan pembaruan manual. 
+Dengan demikian, konsistensi data tetap terjaga dan risiko inkonsistensi dapat diminimalkan. 
+ 
+Secara keseluruhan, hasil implementasi sistem ini menunjukkan bahwa penggunaan BM25 melalui Meilisearch mampu 
+memberikan pencarian yang cepat, relevan, dan mudah dikelola. Hal ini menegaskan bahwa kombinasi Laravel, Filament, 
+dan Meilisearch merupakan solusi efektif untuk mengembangkan sistem pencarian pada website akademik. 
+ 
+C. Evaluasi Kinerja Sistem 
+ 
+Evaluasi kinerja dilakukan untuk menilai efektivitas dan efisiensi sistem pencarian yang telah dikembangkan. Dari sisi 
+performa, integrasi Laravel dengan Meilisearch terbukti mampu mempercepat proses pencarian dibandingkan metode query 
+langsung pada database MySQL, terutama ketika jumlah data semakin besar. 
+ 
+Hasil uji menunjukkan bahwa system mampu menampilkan hasil pencarian dalam hitungan milidetik, memberikan 
+pengalaman pengguna yang cepat dan responsive. Integrasi dengan Filament juga mempermudah administrator dalam 
+mengelolah data, menambah, mengedit, atau menghapus konten tanpa perlu memahami perintah teknis, sinkronisasi 
+otomatis antara database dan indeks pencarian memastikan setiap perubahan langsung tercermin pada hasil pencarian, 
+menjaga konsistensi data. Dari segi performa, BM25 terbukti lebih efisien disbanding TF-IDF karena Milisearch 
+mengoptimalkan struktur indeks dan bobot dokumen. Uji coba menunjukkan pencarian dengan BM25 lebih cepat 25-40% 
+pada dataset besar, menjadikannya solusi unggul baik dari sisi relevansi maupun kecepatan untuj system pencarian web 
+akademik. 
+ 
+Secara keseluruhan, hasil evaluasi menunjukkan bahwa sistem yang dibangun telah memenuhi aspek kecepatan, relevansi, 
+dan kemudahan pengelolaan. Hal ini mengindikasikan bahwa penerapan algoritma BM25 melalui Meilisearch pada website 
+Fakultas Teknik UNIMA berhasil meningkatkan kualitas layanan pencarian informasi secara signifikan. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+10/11 
+ 
+ 
+Table 1. Penerapan Algoritma BM25 melalui Meilisearch pada website Fakultas Teknik UNIMA 
+ 
+ID 
+Skenario Uji 
+Input 
+Ekspektasi 
+Hasil Aktual 
+Status 
+BB-01 
+Pencarian kata 
+kunci umum 
+TI 
+Sistem menampilkan 
+daftar jurnal terkait; 
+kata “TI” ter-highlight; 
+hasil relevan muncul. 
+Sesuai 
+Lulus 
+BB-02 
+Pencarian kata 
+kunci spesifik 
+Jurnal 
+Sistem 
+Informasi 
+Jurnal dengan judul 
+paling sesuai tampil di 
+urutan teratas. 
+Sesuai 
+Lulus 
+BB-03 
+Pencarian dengan 
+input kosong 
+`` (kosong) 
+Sistem tidak 
+mengeksekusi 
+pencarian; tampil 
+pesan/halaman 
+kosong tanpa error. 
+Sesuai 
+Lulus 
+BB-04 
+Pencarian kata 
+kunci tidak 
+ditemukan 
+abcdefgh 
+Tidak ada hasil; sistem 
+menampilkan empty 
+state dengan pesan 
+informatif. 
+Sesuai 
+Lulus 
+BB-05 
+Typo tolerance 
+Sistim 
+Informasi 
+(salah eja) 
+Hasil relevan tetap 
+muncul; toleransi typo 
+aktif; highlight 
+menandai kata yang 
+cocok. 
+Sesuai 
+Lulus 
+BB-06 
+Filter program 
+studi 
+TI + filter 
+Teknik 
+Informatika 
+Semua hasil hanya 
+dari program studi 
+terkait. 
+Sesuai 
+Lulus 
+BB-07 
+Sortir hasil terbaru jurnal + sort 
+created_at 
+desc 
+Hasil ditampilkan 
+berdasarkan tanggal 
+terbaru terlebih 
+dahulu. 
+Sesuai 
+Lulus 
+BB-08 
+Pagination 
+jurnal (hasil 
+> 10) 
+Halaman 1 
+menampilkan 10 hasil 
+pertama, Halaman 2 
+menampilkan hasil 
+berikutnya. 
+Sesuai 
+Lulus 
+BB-09 
+Dampak CRUD 
+Admin 
+Tambah 
+jurnal baru 
+Jurnal baru muncul di 
+hasil pencarian setelah 
+disimpan; hapus → 
+tidak tampil lagi. 
+Sesuai 
+Lulus 
+ 
+Simpulan 
+ 
+Berdasarkan hasil implementasi dan evaluasi, dapat disimpulkan hal-hal berikut : 
+ 
+1. Sistem pencarian berbasis algoritma BM25 berhasil diimplementasikan pada website Fakultas Teknik UNIMA dengan 
+memanfaatkan framework Laravel, search engine Meilisearch, dan panel admin Filament. 
+ 
+2. Hasil pengujian menunjukkan bahwa system mampu menampilkan hasil pencarian dalam waktu milidetik, lebih cepat 
+dibandingkan dengan metode pencarian tradisional berbasis query MuSQL. 
+ 
+3. BM25 memberikan tingkat relevansi yang lebih baik, dengan menempatkan informasi paling relevan pada posisi teratas, 
+sehingga meningkatkan pengalaman pengguna dalam mengakses informasi 
+ 
+4. Panel administrasi berbasis Fulament terbukti mempermudah pengelolaan data melalui proses CRUD yang sederhana, 
+tanpa memerlukan pengetahuan teknis mendalam. Sinkronisasi otomatis antara basis data dan indeks pencarian 
+membantu menjaga konsistensi data, sekaligus meminimalkan potensi ketidaksesuaian informasi. 
+ 
+Namun, penelitian ini masih memiliki keterbatasan pada ruang lingkupnya, karena implementasi algoritma BM25 belum 
+dibandingkan langsung dengan metode pencarian lain dalam konteks yang sama. Untuk itu, studi berikutnya disarankan 
+memperluas analisis dengan membandingkan kinerja BM25 terhadap algoritma lain seperti: TF-IDF atau learning to rank, 
+serta melakukan pengujian pada dataset yang lebih besar guna memperoleh gambaran yang lebih komprehensif mengenai 
+performa dan skalabilitas system. 
+ 
+Dari sisi akademik, penelitian ini berkontribusi terhadap pengembangan system pencarian cerdas yang berfikus pada 
+relevansi konstekstual di lingkunga perguruan tinggi. Hasil penelitian ini juga membuka peluang eksplorasi lebih lanjut 
+dalam bidang information retrieval dan educational technologi, terutama dalam penerapan algoritma pemeringkatan 
+berbasis machine learning untuk meningkatkan akurasi hasil pencarian untuk repository ilmiah, jurnal universitas, maupun 
+portal akademik nasional, sehingga memberikan manfaat aplikatif yang luas bagi ekosistem digital di dunia pendidikan 
+tinggi. 
+ 
+ 
+
+Indonesian Journal of Innovation Studies 
+Vol. 27 No. 1 (2026): January 
+DOI: 10.21070/ijins.v27i1.1799 
+ISSN 2598-9936 (online), https://ijins.umsida.ac.id, published by Universitas Muhammadiyah Sidoarjo 
+Copyright © Author(s). This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). 
+11/11 
+ 
+ 
+Ucapan Terima Kasih 
+ 
+Penulis mengucapkan terima kasih kepada Fakultas Teknik Universitas Negeri Manado yang telah memberikan dukungan 
+fasilitas dan lingkungan penelitian, serta kepada rekan-rekan yang turut membantu dalam proses implementasi dan 
+pengujian system. Dukunga ini sangat berarti sehingga penelitian dapat diselesaikan dengan baik. 
+ 
+References 
+1. A. Q. Nada et al., “Study Literatur Information Retrieval Model: Teknik dan Aplikasi,” Jurnal Ilmu-Ilmu Informasi dan 
+Manajemen, vol. 2, no. 1, pp. 36–42, 2023, doi: 10.58602/jics.v2i1.11. 
+2. Diningrat, “Optimasi Algoritma Pencarian Dokumen Akademik Menggunakan BM25 dan TF-IDF,” Jurnal Ilmu-Ilmu 
+Informasi dan Manajemen, vol. 19, May, pp. 0–5, 2025. 
+3. P. A. Indrasti, Indriati, and A. W. Widodo, “Temu Kembali Informasi Berita Berbahasa Indonesia Menggunakan 
+Metode BM25F,” Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer, vol. 4, no. 9, pp. 3005–3013, 2020. 
+4. T. Kheng, J. S. Asri, S. Wahyu, and Y. Yulhendri, “Penerapan Algoritma BM25 dalam Pencarian Lowongan Pekerjaan 
+pada Website Job Portal,” Bulletin of Computer Science Research, vol. 5, no. 5, pp. 1029–1038, 2025, doi: 
+10.47065/bulletincsr.v5i5.760. 
+5. L. Fitria and U. Chotijah, “Implementasi Framework Laravel pada Sistem Manajemen Penomoran dan Arsip Surat 
+Bawaslu Kota Surabaya,” SABER: Jurnal Teknik Informatika Sains dan Ilmu Komunikasi, vol. 2, no. 4, pp. 58–72, 
+2024, doi: 10.59841/saber.v2i4.1676. 
+6. A. Adellia and L. A. Abdillah, “Analisis Kualitas Layanan Website E-Commerce Bukalapak terhadap Kepuasan 
+Pengguna Mahasiswa Universitas Bina Darma Menggunakan Metode Webqual 4.0,” Journal of Software Engineering 
+Ampera, vol. 1, no. 3, pp. 144–159, 2020, doi: 10.51519/journalsea.v1i3.52. 
+7. E. N. Azizah and A. N. Handayani, “Permodelan pada Information Retrieval: Literature Review,” Jurnal Inovasi 
+Teknologi dan Edukasi Teknologi, vol. 2, no. 11, pp. 527–535, 2022, doi: 10.17977/um068v2i112022p527-535. 
+8. D. D. J. Pardede, “Perbandingan Algoritma Stemming Porter, Sastrawi, Idris, dan Arifin & Setiono pada Dokumen 
+Teks Bahasa Indonesia,” Jurnal Teknologi Informasi dan Ilmu Komputer, vol. 12, no. 1, pp. 69–76, 2025, doi: 
+10.25126/jtiik.2025128860. 
+9. D. R. Pusung, C. P. Munaiseche, and O. Kembuan, “Sistem Informasi Beban Kerja dan Laporan Kinerja Dosen 
+Berbasis Web,” Jointer.Id, vol. 1, no. 1, pp. 17–24, 2020. 
+10. F. Sinlae, E. Irwanda, Z. Maulana, and V. E. Syahputra, “Penggunaan Framework Laravel dalam Membangun Aplikasi 
+Website Berbasis PHP,” Jurnal Siber Multi Disiplin, vol. 2, no. 2, pp. 119–132, 2024, doi: 10.38035/jsmd.v2i2.186. 
+11. V. Septiani, “Perancangan Sistem Informasi Transaksi Penjualan dan Pengontrolan Stock pada Toko Lampu Nivico,” 
+Jurnal Universitas Dinamika Bangsa, 2022. 
+12. Tohadi, “Rancang Bangun Aplikasi Village Service Berbasis Web Menggunakan Laravel Filament di Desa Cantigi 
+Kulon,” Jurnal Informatika dan Teknik Elektro Terapan, vol. 13, no. 3, 2025, doi: 10.23960/jitet.v13i3.7074. 
+13. R. Rudiansyah, R. Ariyansyah, R. Nanda, and O. Wiranda, “Search Engine Menggunakan Metode Information 
+Retrieval,” Jurnal SANTI: Sistem Informasi dan Teknologi Informasi, vol. 2, no. 1, pp. 49–55, 2022, doi: 
+10.58794/santi.v2i1.68. 
+14. N. S. Al Ikhlas and M. Kustati, “Masalah Penelitian: Pengertian dan Sumber Masalah, Pertimbangan, Kriteria 
+Pemilihan Masalah, Perumusan dan Pembatasan Masalah, Landasan Teori,” Innovation Journal of Social Science 
+Research, vol. 3, no. 2, pp. 12930–12942, 2023. 
+15. D. Aipina and H. Witriyono, “Pemanfaatan Framework Laravel dan Framework Bootstrap pada Pembangunan Aplikasi 
+Penjualan Hijab Berbasis Web,” Jurnal Media Infotama, vol. 18, no. 1, pp. 36–42, 2022.

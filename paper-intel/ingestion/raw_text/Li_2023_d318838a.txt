@@ -1,0 +1,1523 @@
+FlexKBQA: A Flexible LLM-Powered Framework for Few-Shot Knowledge Base
+Question Answering
+Zhenyu Li1*, Sunqi Fan1*, Yu Gu2, Xiuxing Li3†, Zhichao Duan1,
+Bowen Dong1, Ning Liu4, Jianyong Wang1†
+1Tsinghua University
+2The Ohio State University
+3University of Chinese Academy of Sciences
+4 Shandong University
+Abstract
+Knowledge base question answering (KBQA) is a critical yet
+challenging task due to the vast number of entities within
+knowledge bases and the diversity of natural language ques-
+tions posed by users. Unfortunately, the performance of most
+KBQA models tends to decline significantly in real-world
+scenarios where high-quality annotated data is insufficient.
+To mitigate the burden associated with manual annotation, we
+introduce FlexKBQA by utilizing Large Language Models
+(LLMs) as program translators for addressing the challenges
+inherent in the few-shot KBQA task. Specifically, FlexKBQA
+leverages automated algorithms to sample diverse programs,
+such as SPARQL queries, from the knowledge base, which
+are subsequently converted into natural language questions
+via LLMs. This synthetic dataset facilitates training a spe-
+cialized lightweight model for the KB. Additionally, to re-
+duce the barriers of distribution shift between synthetic data
+and real user questions, FlexKBQA introduces an execution-
+guided self-training method to iterative leverage unlabeled
+user questions. Furthermore, we explore harnessing the inher-
+ent reasoning capability of LLMs to enhance the entire frame-
+work. Consequently, FlexKBQA delivers substantial flexibil-
+ity, encompassing data annotation, deployment, and being do-
+main agnostic. Through extensive experiments on GrailQA,
+WebQSP, and KQA Pro, we observe that under the few-shot
+even the more challenging zero-shot scenarios, FlexKBQA
+achieves impressive results with a few annotations, surpass-
+ing all previous baselines and even approaching the perfor-
+mance of supervised models, achieving a remarkable 93%
+performance relative to the fully-supervised models. We posit
+that FlexKBQA represents a significant advancement towards
+exploring better integration of large and lightweight models.
+The source code and pertinent documentation are readily ac-
+cessible on established open-source repositories 1.
+Introduction
+Knowledge base question answering (KBQA) plays a cru-
+cial role in leveraging the substantial knowledge stored in
+knowledge bases and making it accessible to users (Berant
+et al. 2013; Yih et al. 2016; Gu et al. 2022). With the ever-
+growing size and complexity of knowledge bases (KBs), ef-
+fective KBQA systems are becoming increasingly impor-
+tant. Many current KBQA systems depend on supervised
+*These authors contributed equally.
+†Corresponding author
+1https://github.com/leezythu/FlexKBQA
+Figure 1: An analytical experiment on 500 random samples
+of GrailQA dev set (oracle entity linking). FlexKBQA’s per-
+formance exhibits a consistently upward trend with the in-
+creasing synthetic data size, surpassing all in-context learn-
+ing models with limited window length. Since our synthetic
+data are generated based on 25-shot real data, we also de-
+pict the performance of our underlying model (RnG-KBQA)
+trained by 25-shot real data as a baseline.
+training using large sets of manually annotated data. This
+approach brings about significant labor challenges for two
+main reasons: (1) The substantial size and comprehensive
+scope of the KB, coupled with its ever-evolving content, lead
+to a vast sample space (Berant et al. 2013; Gu et al. 2021).
+This complicates the process of collecting a representative
+and exhaustive set of training data. (2) The heterogeneity in
+KB schema and design protocols, combined with differences
+in the query languages, such as SPARQL (Su et al. 2016), S-
+expression (Gu et al. 2021), and KoPL (Cao et al. 2022a),
+requires tailored training processes for each KB. This inten-
+sifies the labor involved in developing and adapting models
+for each distinct KB. Considering these complexities, there
+emerges an imperative to forge a flexible framework that can
+efficiently build adaptable KBQA models for different KBs
+and query languages, utilizing only a limited set of anno-
+tated examples.
+The emergence of large language models (LLMs) in re-
+cent times, such as Codex (Chen et al. 2021a) and GPT-
+4 (OpenAI 2023), suggests promising avenues for con-
+arXiv:2308.12060v3  [cs.CL]  26 Jan 2024
+
+structing such frameworks. LLMs have showcased versatil-
+ity across diverse tasks and remarkable generalization with
+minimal demonstrations (Wei et al. 2022; Li et al. 2023a),
+as exemplified in Cheng et al. (2023), where Codex out-
+performs previous fine-tuning methods with only a handful
+of examples. Such feats hint at LLMs’ potential in KBQA.
+However, research on LLMs’ utility for few-shot KBQA re-
+mains scant. Initial explorations by Li et al. (2023a) and Gu,
+Deng, and Su (2023) employ in-context learning, allowing
+LLMs to transform questions into programs using minimal
+demonstrations. Nonetheless, this paradigm possess several
+limitations. First, LLMs inherently scuffle with constraints
+such as limited context window and considerable inference
+overhead. Furthermore, LLMs, despite their generalization
+capacities, face challenges in addressing the intricacies em-
+bedded within domain-specific KBs when not fine-tuned,
+leading to inaccuracies when generating target entities and
+relations (Li et al. 2023a). Additionally, without fine-tuning,
+the benefits of in-context learning diminish as more training
+data is introduced (Gu, Deng, and Su 2023).
+In light of these challenges, we present FlexKBQA (see
+Figure 2), a flexible KBQA framework harnesses the ad-
+vanced generative abilities of LLMs to produce synthetic
+data, which in turn aids in the training of lightweight models.
+Specifically, FlexKBQA first leverages collected templates
+of structured queries to sample a substantial number of pro-
+grams (i.e., S-expressions) from the KB. These programs
+are then converted into coherent natural language questions
+using LLMs, ensuring both the accuracy of the programs
+and the fluency of the generated questions. Upon gener-
+ating these program-question pairs, they serve as valuable
+resources for the fine-tuning of lightweight models. How-
+ever, there could be a potential distribution shift between
+synthetic data and real user queries. To bridge this gap, we
+further introduce the execution-guided self-training (EGST)
+method, which employs the fine-tuned lightweight model to
+proactively annotate real user queries over the KB. These an-
+notated queries subsequently serve as valuable training data,
+enabling self-improvement. FlexKBQA addresses the inher-
+ent constraints of the context window of LLMs, enabling
+the KBQA model to exhibit consistent improvement as more
+training data is incorporated (Figure 1). Additionally, by del-
+egating the inference process to lightweight models rather
+than relying on the LLM directly, our approach ensures en-
+hanced efficiency in inference.
+We conduct extensive experiments on three representa-
+tive datasets - GrailQA, WebQSP, and KQA Pro. FlexK-
+BQA outperforms existing models by a large margin in the
+few-shot setting. Remarkably, with a mere 25 labeled ex-
+amples, FlexKBQA surpasses the performance of all previ-
+ous methods utilizing 100 shots on GrailQA. Furthermore,
+FlexKBQA’s results are comparable to several fully super-
+vised models on both GrailQA and WebQSP datasets.
+The main contributions of the paper can be highlighted as
+follows:
+• We present an efficient and flexible KBQA framework,
+capitalizing on the notable generative capabilities of
+LLMs.
+• We introduce the execution-guided self-training strategy
+to address the distribution shift challenge by facilitat-
+ing interaction between heterogeneous information and
+leveraging the inherent reasoning ability of LLM.
+• Experimental results demonstrate that FlexKBQA signif-
+icantly outperforms all baselines on real-world datasets
+under different settings.
+• To the best of our knowledge, our work represents the
+inaugural endeavor in exploring the zero-shot KBQA.
+Related Work
+Knoweldge Base Question Answering
+One prominent line of research on KBQA involves seman-
+tic parsing, where natural language questions are mapped
+to formal representations, such as SPARQL queries (Lan
+et al. 2021; Cao et al. 2022b), enabling efficient querying
+of structured knowledge bases. Recently, researchers have
+proposed using step-wise discriminative approaches instead
+of directly generating programs in an autoregressive fashion
+to effectively limit the massive search space and reduce er-
+rors, leading to state-of-the-art results (Gu and Su 2022; Gu,
+Deng, and Su 2023). However, these models rely on a sub-
+stantial number of annotated training samples from the KB.
+Developing a usable QA system with only a limited amount
+of annotated data from the KB is of great practical signifi-
+cance.
+Few-Shot Language Understanding with LLMs
+Researchers have been dedicated to studying the language
+understanding capabilities in the zero-shot or few-shot set-
+ting (Gao et al. 2019; Li et al. 2022, 2023b). In recent years,
+LLMs have demonstrated strong few-shot learning abilities
+across various tasks, such as question answering (Cheng
+et al. 2023), code generation (Ni et al. 2023), and embod-
+ied agents (Singh et al. 2023). Recently, Pangu (Gu, Deng,
+and Su 2023) and KB-BINDER (Li et al. 2023a) have pio-
+neered the exploration of the few-shot setting on the KBQA
+task. They conduct experiments under the in-context learn-
+ing paradigm, providing a few question-program pairs and
+allowing the large language model to leverage its comple-
+tion capability to make new predictions. Despite the remark-
+able generalization ability of large language models, they are
+still limited by the inherent window size of in-context learn-
+ing, which constrains their performance. Additionally, large
+models come with drawbacks in terms of cost and security.
+Therefore, in this paper, we explore a hybrid approach that
+combines large and lightweight models, aiming to achieve
+improved performance while being more deployable.
+Combination of LLMs and light-weight models
+Although LLMs have demonstrated strong capabilities
+across various tasks, they are computationally expensive,
+slow during inference, and difficult to deploy. Numerous re-
+search endeavors have been focused on exploring the inter-
+action and complementary aspects between large-scale mod-
+els and lightweight models, e.g., distilling the knowledge
+from large-scale models to lightweight models by matching
+
+the output distribution (Hinton, Vinyals, and Dean 2015).
+Despite the traditional knowledge distillation, researchers
+propose a new paradigm called teaching via data (TvD),
+in which they use an LLM-based “teacher” model to gen-
+erate synthetic data for a specific task, then use the data
+to fine-tune a smaller “student” model (Schick and Sch¨utze
+2021; Rosenbaum et al. 2022a,b; Meng et al. 2022; Ye et al.
+2022a). The types of synthetic data generated by LLM are
+diverse. SYMGEN (Ye et al. 2023) first proposes using LLM
+to generate symbolic language with execution-based verifi-
+cation. Our work adopts the teaching via data paradigm but
+we are the first to utilize LLM as program translator, thereby
+addressing the challenge of annotating KBQA training data.
+Methodology
+Preliminaries
+A knowledge base can be formally represented as K ∈
+E × R × (E ∪L ∪C), where E represents the set of en-
+tities, R denotes the set of relations between entities, and
+C denotes the set of classes. The primary goal of KBQA is
+to answer user questions by leveraging the facts stored in
+the knowledge base. For accuracy and interpretability, most
+existing work adopt a semantic parsing framework, trans-
+forming natural language questions into programs, such as
+S-expression or SPARQL. These programs can be executed
+on the knowledge base to retrieve the final answer.
+Most models utilize a framework comprising a ranking
+model, a generation model, or a combination of both. The
+ranking model is usually optimized as follows:
+Lranker = −
+es(q,p)
+es(q,p) + P
+pi∈P ∧pi̸=p es(q,pi)
+(1)
+where p is the target program, and s(q, pi) is the similar-
+ity score between the question q and each program pi from
+a candidate set P. The score is derived from a lightweight
+model like BERT (Devlin et al. 2019). On the other hand, a
+generation model employs advanced pre-trained generative
+models, such as T5, to generate the target program:
+Lgen = −
+n
+X
+t=1
+log(probability(pt|p<t; q; r))
+(2)
+where n is the length of p, and r represents additional infor-
+mation like ranking results.
+Automatic Program Sampling
+The objective of program sampling is to generate valid (ex-
+ecutable on KB) programs. We break this process into two
+crucial steps: template collection and step-wise grounding.
+Template collection Taking a SPARQL query as an ex-
+ample, if we replace the entities and relations within it
+with variables (e.g., ent0, rel0, ent1), the resulting struc-
+tural form is referred to as a “template”. By employing auto-
+mated algorithms, we can generate a diverse set of templates
+to cover various question types that users may encounter in
+real-world scenarios. Compared to annotating programs for
+a large number of questions, the cost of collecting a handful
+of templates is negligible.
+Step-wise grounding After obtaining a collection of di-
+verse program templates, the next step is to perform entity
+and relation grounding. Leveraging the querying mechanism
+of SPARQL, we can directly treat the variables as query ob-
+jects. However, directly executing the query with multiple
+variables can result in long execution times or errors, par-
+ticularly when dealing with large-scale knowledge bases. To
+address this challenge, we introduce a “step-wise ground-
+ing” approach, where we iteratively determine the values
+of variables. Through empirical assessment, we note that
+this strategy efficiently narrows down the search space while
+maintaining diversity, ultimately enabling the derivation of a
+substantial number of programs. We give a specific example
+in Appendix A to illustrate this process.
+Low-Resource Program Translation
+As illustrated in Figure 2, conventional approaches often uti-
+lized language models to directly convert questions into pro-
+grams via in-context learning. However, given that LLMs
+are primarily trained on natural language and lack specific
+training on programs, we argue that translating programs
+into natural language questions is a more efficient and in-
+tuitive approach, especially under the low-resource setting.
+In this paper, we consider the LLM as a program trans-
+lator that converts a program ps
+i into its corresponding nat-
+ural language question qs
+i . The prompt is composed of (1)
+an instruction Inst to guide the model in transforming pro-
+grams into natural language questions. (2) a few seed pairs
+of golden programs and questions {(pf
+1, qf
+1 ), ..., (pf
+N, qf
+N)}
+as demonstrations, where N denotes a N-shot setting, and
+N = 0 represents the zero-shot setting. Note that when con-
+structing seed pairs, we should prioritize selecting diverse
+programs to cover a wide range of question types. Overall,
+the translation process can be formulated as:
+qs
+i ←Translator(Inst; (pf
+1, qf
+1 ), ..., (pf
+N, qf
+N); ps
+i)
+(3)
+For detailed prompts, please refer to Appendix B.
+Execution-Guided Self Training
+After generating a synthetic dataset using the aforemen-
+tioned steps for training lightweight models, a potential is-
+sue still remains – the distribution discrepancy between syn-
+thetic and real-world questions. This discrepancy primarily
+arises from the limited overlap of entities and relations. Ex-
+isting literature emphasizes that distribution shifts can have a
+substantial impact on the model’s performance. For instance,
+a model trained on the GrailQA dataset might achieve only
+around 65% performance compared to being trained directly
+on the WebQSP (Gu et al. 2021). Therefore, in this paper, we
+propose using execution-guided self-training (EGST) to ad-
+dress this issue. Taking into account the ease of collecting
+user questions in real-world scenarios, we apply the self-
+training method to harness the information from these unla-
+beled user questions. Moreover, we introduce the utilization
+of execution results from structured queries as feedback in-
+formation, substantially enhancing the purity of the training
+samples.
+
+Figure 2: A comparison between FlexKBQA and prior methods. (a): Prior approaches enable LLMs to directly ground the
+question to the knowledge base through in-context learning capabilities. (b): An illustration of FlexKBQA’s innovative design:
+(1) Automatic Program Sampling module generates diverse and executable programs. (2) Low-Resource Program Translation
+module synthesizes high-quality data pairs. (3) Execution-Guided Self-Training module addresses distribution shift. (4) Inherent
+Reasoning module boosts the pipeline by leveraging inherent knowledge within LLMs.
+Specifically, the entire training process follows a teacher-
+student iterative training approach shown in Algorithm 1.
+Firstly, we train a teacher model using the synthetic data
+generated by the LLM. Subsequently, in each iteration, the
+teacher model generates pseudo programs for unlabeled real
+user questions, which undergo an execution-guided filter-
+ing mechanism to remove noisy data and obtain a cleaner
+training dataset. This filtered dataset, alongside the synthetic
+data, is employed to train the student model, which serves as
+the teacher model for the subsequent iteration. This iterative
+process continues until convergence is achieved.
+For the execution-guided filtering mechanism, we employ
+the following filtering rules during each iteration (more de-
+tails and explorations in Appendix C and H):
+• Error Filtering: we remove those data pairs where the
+predicted SPARQL queries either result in execution er-
+rors or fail to retrieve answers.
+• Semantic Filtering: we employ an off-the-shelf pre-
+trained sentence-transformer (Reimers and Gurevych
+2019) to calculate the semantic textual similarity be-
+tween natural language questions and the relations in pre-
+dicted programs, and filter out those data pairs with low
+similarity.
+• Inherent Reasoning Filtering: We exclude samples whose
+pseudo answers do not align with the outcomes of Inher-
+ent Reasoning. Further details are provided in the next
+section.
+Inherent Reasoning Augmentation
+A widely accepted view is that LLMs encode knowledge in
+their parameters, allowing them to answer complex ques-
+tions and directly respond to user queries. We refer this
+approach as Inherent Reasoning (IR). However, compared
+to transforming user questions into executable programs on
+KBs, Inherent Reasoning lacks interpretability and could
+Algorithm 1: Execution-Guided Self Training Procedure
+Input: Unlabeled user questions Du = {(qu
+i )} ;
+A few labeled question-program pairs Df = {(qf
+i , pf
+i )};
+Synthetic pairs from LLM Ds = {(qs
+i , ps
+i)};
+Initial model parameters θini
+Output: Model parameter θfinal
+1: Fine-tune teacher model θtea on synthetic data and
+small labeled data Ds ∪Df from θini
+2: while not converged do
+3:
+//Generate pseudo-label for user questions
+pu
+i ←f(qu
+i ; θtea)
+4:
+//Execution-guided filtering
+{(quf
+i , puf
+i )} ←Filter(KB, {(qu
+i , pu
+i )})
+5:
+//Fine-tune student model θstu on all data
+D = {(qs
+i , ps
+i)} ∪{(qf
+i , pf
+i )} ∪{(quf
+i , puf
+i )}
+6:
+//Update the teacher model
+θtea ←θstu
+7: end while
+8: θfinal ←θtea
+exhibit limited effectiveness when dealing with domain-
+specific KBs. Thus, in this paper, we employ Inherent Rea-
+soning as a data augmentation technique. It primarily oper-
+ates in two stages. (1) In the execution-guided self-training
+stage, after annotating pseudo programs and obtaining an-
+swers for real user questions, we select samples where the
+answers align with those generated through Inherent Rea-
+soning. By combining Inherent Reasoning with execution-
+guided filtering, we can obtain a training dataset with re-
+duced noise. (2) Inherent Reasoning can serve as a comple-
+mentary approach to semantic parsing. When the semantic
+parsing method fails to retrieve an answer (e.g. cannot enu-
+
+Dataset
+KB
+Questions
+Program Type
+GrailQA
+Freebase
+64,331
+S-expression
+WebQSP
+Freebase
+4,737
+SPARQL
+KQA Pro
+Wikidata
+117,970
+SPARQL
+Table 1: Dataset Statistics
+merate ranking candidates or the predicted programs result
+in execution errors), we resort to using results from Inherent
+Reasoning as the final answers for the initially unanswerable
+questions. We believe that the integration of Inherent Rea-
+soning and the semantic parsing approach holds significant
+value in the development of more accurate and interpretable
+KBQA systems. Please refer Appendix B for more details.
+In summary, with the aforementioned core components,
+FlexKBQA can achieve the following dimensions of flexi-
+bility: (1) Data Efficient: FlexKBQA requires only a small
+number of question-program pairs as prompts. (2) Domain-
+Agnostic: FlexKBQA is applicable to diverse knowledge
+bases, and alleviates common distribution shifting issues. (3)
+Deployable: Utilizing a lightweight model allows for cost-
+effective deployment compared to closed-source LLMs and
+enables seamless integration of domain-specific knowledge
+through fine-tuning.
+Experimental Setup
+Datasets
+We conduct experiments on datasets from different KB and
+of diverse program types (statistics in Table 1).
+GrailQA (Gu et al. 2021) dataset is a large-scale dataset
+for knowledge base question answering that contains 64,331
+question-logical form pairs. It has a broad coverage and
+many unique canonical logical forms. GrailQA introduces
+three levels of generalization for KBQA: i.i.d., composi-
+tional and zero-shot. This dataset has attracted substantial
+research interest in recent years.
+WebQSP (Yih et al. 2016) is another widely recognized
+KBQA dataset. The questions in this dataset are extracted
+from Google query logs, making them reflective of user
+preferences in real-world scenarios. It also offers SPARQL
+annotations that can be executed directly on Freebase. The
+main objective of this dataset is to evaluate the generaliza-
+tion capability in an i.i.d. setting, as the training and testing
+data share common entities and relations.
+KQA Pro (Cao et al. 2022a) consists of around 120,000 di-
+verse natural language questions that require various reason-
+ing capabilities, such as multi-hop inference, attribute com-
+parison, and set operations. KQA Pro is constructed based
+on a sub-knowledge base from Wikidata and does not as-
+sume an entity linking stage. Therefore, it requires models
+to memorize entities and relations, making it a more strong
+and challenging i.i.d task.
+Underlying Model and Baselines
+Note that FlexKBQA is model-agnostic. Considering per-
+formance and reproducibility, we choose a well performing
+RnG-KBQA (Ye et al. 2022b) as the underlying model for
+GrailQA and WebQSP. For KQA Pro, we select the BART-
+SPARQL (Cao et al. 2022a) model.
+For baselines, we mainly evaluate FlexKBQA against
+Pangu (Gu, Deng, and Su 2023) and KB-BINDER (Li et al.
+2023a). Both of them leverage the potent large language
+model Codex for in-context learning. Note that because
+the few-shot KBQA is a relatively novel task, our baseline
+choices are limited to these two methods. Since there are no
+available experimental results for Pangu and KB-BINDER
+on KQA Pro, we also re-implement an in-context learning
+model called LLM-ICL as an alternative for evaluation. We
+also provide the supervised results of several representative
+models for comparison. We provide detailed descriptions of
+these models in Appendix D.
+Implementation Details
+In experiments, we consider the original training dataset
+as the unlabeled real user questions. During the “step-wise
+grounding” stage, we not only employ random sampling but
+also gather the set of entities present in unlabeled user ques-
+tions. These entities are then used as “topic entities” for con-
+structing SPARQL queries. After removing duplicates, we
+obtain 6,184 synthetic pairs on Freebase and 5,017 on Wiki-
+data. For a fair comparison, we use the same off-the-shelf
+entity linkers as Pangu (Gu, Deng, and Su 2023). And the
+LLM we utilize for program translation is gpt-3.5-turbo2.
+More details can be found in Appendix E.
+Results
+Main Results
+The results are presented in Table 2, 3 and 4. Compared to
+other baselines that also target the few-shot KBQA scenario,
+FlexKBQA demonstrates significant superiority. On the test
+set of GrailQA , it achieved an impressive Exact Match (EM)
+score of 62.8 and an F1 score of 69.4 with only 25 anno-
+tated samples, outperforming the previous state-of-the-art
+model Pangu by a significant margin of 6.7 points in terms
+of F1 score, despite Pangu utilizing more shots. Surprisingly,
+FlexKBQA also surpasses several supervised models, such
+as ReTraCk, which demand training with tens of thousands
+of samples. Since we use RnG-KBQA model as the underly-
+ing model of FlexKBQA, it’s interesting to note that FlexK-
+BQA attains a remarkable 93% performance relative to the
+fully-supervised RnG-KBQA model.
+On WebQSP and KQA Pro datasets, FlexKBQA exhibits
+a similar trend of remarkable superiority over in-context
+learning methods. Specifically, when considering the F1
+score, FlexKBQA achieves a significant 6.1-point improve-
+ment over Pangu on WebQSP under the 100-shot setting. It
+is worth noting that FlexKBQA’s performance on the KQA
+Pro dataset shows a gap compared to the best-performing
+model. This difference can be attributed to the absence of an
+2https://platform.openai.com/docs/models/gpt-3-5
+
+Overall
+I.I.D.
+Compositional
+Zero-shot
+Dev Overall
+Model
+EM
+F1
+EM
+F1
+EM
+F1
+EM
+F1
+EM
+F1
+Supervised
+QGG (Lan and Jiang 2020)
+-
+36.7
+-
+40.5
+-
+33.0
+-
+36.6
+-
+-
+BERT+Ranking (Gu et al. 2021)
+50.6
+58.0
+59.9
+67.0
+45.5
+53.9
+48.6
+55.7
+-
+-
+ReTraCk (Chen et al. 2021b)
+58.1
+65.3
+84.4
+87.5
+61.5
+70.9
+44.6
+52.5
+-
+-
+RnG-KBQA (Ye et al. 2022b)
+68.8
+74.4
+86.2
+89.0
+63.8
+71.2
+63.0
+69.2
+71.4
+76.8
+ArcaneQA (Gu and Su 2022)
+63.8
+73.7
+85.6
+88.9
+65.8
+75.3
+52.9
+66.0
+69.5
+76.9
+DecAF (Yu et al. 2023)
+68.4
+78.7
+84.8
+89.9
+73.4
+81.8
+58.6
+72.3
+-
+81.4
+Few-Shot
+(100 shots)
+KB-BINDER (Li et al. 2023a)
+50.6
+56.0
+-
+-
+-
+-
+-
+-
+-
+-
+Pangu (Gu, Deng, and Su 2023)
+53.3
+62.7
+54.7
+62.9
+54.5
+63.7
+52.3
+62.2
+-
+-
+Few-Shot
+(25 shots)
+Fine-Tuning
+16.6
+21.3
+19.0
+24.8
+17.3
+21.8
+15.2
+19.4
+16.4
+21.6
+FlexKBQA
+62.8
+69.4
+71.3
+75.8
+59.1
+65.4
+60.6
+68.3
+65.5
+71.1
+-w/o IR
+62.8
+68.0
+71.3
+75.3
+59.1
+64.1
+60.6
+66.4
+65.5
+70.6
+-w/o EGST
+52.4
+57.7
+56.9
+61.8
+49.4
+54.4
+51.7
+57.3
+57.0
+62.1
+Zero-Shot
+FlexKBQA
+61.9
+68.9
+72.1
+77.0
+58.4
+65.2
+58.9
+66.9
+64.6
+70.3
+-w/o IR
+61.9
+67.6
+72.1
+76.5
+58.4
+64.1
+58.9
+65.0
+64.6
+69.8
+-w/o EGST
+51.9
+57.5
+56.1
+60.5
+49.6
+53.7
+52.9
+57.8
+56.4
+61.2
+Table 2: Results on GrailQA
+Model
+F1
+Supervised
+QGG (Lan and Jiang 2020)
+74.0
+ReTraCk (Chen et al. 2021b)
+71.0
+CBR (Das et al. 2021)
+72.8
+Program Transfer (Cao et al. 2022b)
+76.5
+RnG-KBQA (Ye et al. 2022b)
+75.6
+DecAF (Yu et al. 2023)
+78.8
+Few-Shot
+(100 shots)
+Fine-Tuning
+25.6
+KB-BINDER (Li et al. 2023a)
+53.2
+Pangu (Gu, Deng, and Su 2023)
+54.5
+FlexKBQA
+60.6
+-w/o IR
+58.2
+-w/o EGST
+51.1
+Zero-Shot
+FlexKBQA
+46.2
+-w/o IR
+45.7
+-w/o EGST
+33.4
+Table 3: Results on WebQSP
+entity linking stage in KQA Pro. As a result, if the relations
+or entities in the test set were not present during training,
+FlexKBQA is more prone to producing semantic correct but
+unexecutable programs.
+We also conduct experiments under a more challenging
+zero-shot setting, assuming no available annotated samples
+at all. This scenario has been rarely explored in previous
+research. We observe that, although the performance is be-
+hind the level achieved in the few-shot scenario, results on
+GrailQA show significant potential of our method. And we
+believe that this direction is worth further exploration.
+EGST and IR
+According to Tables 2, 3, and 4, FlexKBQA trained using
+synthetic data only demonstrates comparable performance
+when compared to previous in-context learning-based meth-
+Model
+Accuracy
+Supervised
+EmbedKGQA (Saxena et al. 2020)
+28.36
+RGCN (Schlichtkrull et al. 2018)
+35.07
+RNN SPARQL (Cao et al. 2022a)
+41.98
+BART+SPARQL (Cao et al. 2022a)
+89.68
+Few-Shot
+(100 shots)
+Fine-Tuning
+22.45
+LLM-ICL
+31.75
+FlexKBQA
+46.83
+-w/o IR
+33.32
+-w/o EGST
+23.10
+Zero-Shot
+FlexKBQA
+33.28
+-w/o IR
+11.11
+-w/o EGST
+8.24
+Table 4: Results on KQA Pro
+ods. The experimental results clearly illustrate the signif-
+icant contribution of EGST to the model’s performance.
+It resulted in a substantial increase of 10.3 and 7.1 in F1
+score on GrailQA and WebQSP, respectively, and a notable
+10.2 increase in accuracy on KQA Pro. These findings pro-
+vide strong evidence of the effectiveness of EGST in miti-
+gating the impact of distribution shift. Inherent Reasoning
+can be regarded as an effective and flexible enhancement
+method that leverages the inherent knowledge of large mod-
+els. On the GrailQA and WebQSP datasets, Inherent Rea-
+soning leads to a F1 score improvement of 1.4 (EM score
+remains unchanged as it focuses solely on the consistency
+of structural queries) and 2.4, respectively. Remarkably, on
+the KQA Pro dataset, Inherent Reasoning achieves a accu-
+racy increase of 13.5. This is because the absence of the en-
+tity linking stage results in numerous SPARQL execution
+errors. However, LLM was able to provide accurate answers
+directly in such cases.
+In conclusion, FlexKBQA achieves superior performance
+compared to previous few-shot KBQA systems. Moreover,
+
+Question I
+What type of art leonardo da vinci do?
+Pangu
+(JOIN (R visual art.visual artist.associated periods or movements) m.04lg6) (%)
+FlexKBQA
+(JOIN (R visual art.visual artist.art forms) m.04lg6) (!)
+Synthetic Data Pair
+What type of art did andy warhol create?
+(JOIN (R visual art.visual artist.art forms) m.0kc6)
+Question II
+What airport do you fly into to get to destin fl?
+Pangu
+(JOIN (R travel.travel destination.tourist attractions) m.0rp8x) (%)
+FlexKBQA w/o EGST
+(JOIN (R travel.travel destination.how to get here) m.0rp8x) (%)
+FlexKBQA
+(JOIN (R location.location.nearby airports) m.0rp8x) (!)
+Pseudo Labeled Pair
+What airport is closer to downtown houston?
+(JOIN (R location.location.nearby airports) m.03l2n) (!)
+Table 5: Two typical questions from the test set of WebQSP that FlexKBQA succeeds while Pangu fails. The incorrect relations
+are marked as red, while the correct relations are marked as green.
+Figure 3: Results beyond few-shot setting. FlexKBQA con-
+sistently performs better with more annotated data.
+on certain datasets, it demonstrates competitive results when
+compared to supervised models. We claim that the superior-
+ity two main reasons. Firstly, it benefits from a large amount
+of synthetic data compared to in-context learning, leading
+to better convergence with respect to data distribution. Sec-
+ondly, the innovative EGST and IR approaches equip FlexK-
+BQA with the capability to harness unlabeled real user ques-
+tions and leverage the inherent prowess of LLMs. These
+unique features distinguish FlexKBQA from other methods.
+Beyond Few-Shot KBQA
+In this section, we delve into its efficacy beyond the few-
+shot scenario. As demonstrated in Figure 3, with an increase
+in the number of samples, the model pretrained on our syn-
+thetic data consistently performs better. Even when there are
+1000 real samples available, it still maintains an 8-point ad-
+vantage over models trained solely on real samples. This ob-
+servation underscores that our approach is not only applica-
+ble to few-shot scenarios but can also serve as a valuable
+data augmentation technique.
+Ablation and Case Studies
+In Figure 4, we delve into an ablation study to gauge the im-
+pact of EGST. We can observe that with each iteration, the
+model’s performance steadily enhances, eventually converg-
+ing around the 6th epoch. The underlying reason, illustrated
+Figure 4: Variation of model performances and the error rate
+of pseudo-labeled programs with EGST Iterations.
+by the green line, is the diminishing error rate of pseudo pro-
+grams. We also conduct ablation experiments regarding syn-
+thetic data and the number of in-context learning samples in
+Appendix F and G.
+To better showcase the advantages of FlexKBQA, we con-
+duct a comparison between FlexKBQA and Pangu, a state-
+of-the-art model. In Table 5, Question I illustrates a non-
+i.i.d scenario, where the relation involved in the question
+is not present in in-context examples. Consequently, Pangu
+struggles to answer correctly. However, due to FlexKBQA’s
+inclusion of the relevant relation in its synthetic data, it
+manages to generate the correct answer. In an ideal situa-
+tion where the synthetic data coverage is extensive enough,
+non-i.i.d scenarios like this could be eradicated. Question II
+demonstrates the impact of EGST. By utilizing information
+from a correctly pseudo-labeled user question, the model can
+successfully answer similar but ambiguous or more complex
+questions in the test set.
+Conclusion and Future Work
+In conclusion, this paper presented FlexKBQA, a framework
+that harnesses the power of LLMs as program translators
+and their inherent reasoning ability for KBQA tasks. Exten-
+sive experiments on diverse datasets showcase the effective-
+ness of FlexKBQA under the few-shot setting, surpassing all
+baseline methods and even approaching the performance of
+supervised models. Furthermore, we are pioneers in explor-
+
+ing zero-shot KBQA setting. FlexKBQA represents a signif-
+icant advancement in the integration of large and lightweight
+models, offering three-fold flexibilities: data annotation, de-
+ployment, and being domain agnostic. Future research can
+explore the broader applications of this framework in more
+natural language understanding and reasoning tasks.
+References
+Berant, J.; Chou, A.; Frostig, R.; and Liang, P. 2013. Se-
+mantic parsing on freebase from question-answer pairs. In
+Proceedings of the 2013 conference on empirical methods in
+natural language processing, 1533–1544.
+Cao, S.; Shi, J.; Pan, L.; Nie, L.; Xiang, Y.; Hou, L.; Li, J.;
+He, B.; and Zhang, H. 2022a. KQA Pro: A Dataset with Ex-
+plicit Compositional Programs for Complex Question An-
+swering over Knowledge Base. In Proceedings of the 60th
+Annual Meeting of the Association for Computational Lin-
+guistics (Volume 1: Long Papers), 6101–6119.
+Cao, S.; Shi, J.; Yao, Z.; Lv, X.; Yu, J.; Hou, L.; Li, J.; Liu,
+Z.; and Xiao, J. 2022b. Program transfer for answering com-
+plex questions over knowledge bases. In Proceedings of the
+60th Annual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers), 8128–8140.
+Chen, M.; Tworek, J.; Jun, H.; Yuan, Q.; de Oliveira Pinto,
+H. P.; Kaplan, J.; Edwards, H.; Burda, Y.; Joseph, N.; Brock-
+man, G.; Ray, A.; Puri, R.; Krueger, G.; Petrov, M.; Khlaaf,
+H.; Sastry, G.; Mishkin, P.; Chan, B.; Gray, S.; Ryder, N.;
+Pavlov, M.; Power, A.; Kaiser, L.; Bavarian, M.; Winter, C.;
+Tillet, P.; Such, F. P.; Cummings, D.; Plappert, M.; Chantzis,
+F.; Barnes, E.; Herbert-Voss, A.; Guss, W. H.; Nichol, A.;
+Paino, A.; Tezak, N.; Tang, J.; Babuschkin, I.; Balaji, S.;
+Jain, S.; Saunders, W.; Hesse, C.; Carr, A. N.; Leike, J.;
+Achiam, J.; Misra, V.; Morikawa, E.; Radford, A.; Knight,
+M.; Brundage, M.; Murati, M.; Mayer, K.; Welinder, P.; Mc-
+Grew, B.; Amodei, D.; McCandlish, S.; Sutskever, I.; and
+Zaremba, W. 2021a.
+Evaluating Large Language Models
+Trained on Code. arXiv:2107.03374.
+Chen, S.; Liu, Q.; Yu, Z.; Lin, C.-Y.; Lou, J.-G.; and Jiang,
+F. 2021b. ReTraCk: A flexible and efficient framework for
+knowledge base question answering. In Proceedings of the
+59th annual meeting of the association for computational
+linguistics and the 11th international joint conference on
+natural language processing: system demonstrations, 325–
+336.
+Cheng, Z.; Kasai, J.; and Yu, T. 2023.
+Batch Prompt-
+ing: Efficient Inference with Large Language Model APIs.
+arXiv:2301.08721.
+Cheng, Z.; Xie, T.; Shi, P.; Li, C.; Nadkarni, R.; Hu,
+Y.; Xiong, C.; Radev, D.; Ostendorf, M.; Zettlemoyer, L.;
+Smith, N. A.; and Yu, T. 2023. Binding Language Models
+in Symbolic Languages. arXiv:2210.02875.
+Das, R.; Zaheer, M.; Thai, D.; Godbole, A.; Perez, E.; Lee,
+J. Y.; Tan, L.; Polymenakos, L.; and McCallum, A. 2021.
+Case-based Reasoning for Natural Language Queries over
+Knowledge Bases.
+In Proceedings of the 2021 Confer-
+ence on Empirical Methods in Natural Language Process-
+ing, 9594–9611.
+Devlin, J.; Chang, M.-W.; Lee, K.; and Toutanova, K. 2019.
+BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding. In Proceedings of the 2019 Con-
+ference of the North American Chapter of the Association
+for Computational Linguistics: Human Language Technolo-
+gies, Volume 1 (Long and Short Papers), 4171–4186. Min-
+neapolis, Minnesota: Association for Computational Lin-
+guistics.
+Gao, T.; Han, X.; Zhu, H.; Liu, Z.; Li, P.; Sun, M.; and Zhou,
+J. 2019. FewRel 2.0: Towards More Challenging Few-Shot
+Relation Classification. In Proceedings of the 2019 Confer-
+ence on Empirical Methods in Natural Language Processing
+and the 9th International Joint Conference on Natural Lan-
+guage Processing (EMNLP-IJCNLP), 6250–6255.
+Gu, Y.; Deng, X.; and Su, Y. 2023. Don’t Generate, Dis-
+criminate: A Proposal for Grounding Language Models to
+Real-World Environments. arXiv:2212.09736.
+Gu, Y.; Kase, S.; Vanni, M.; Sadler, B.; Liang, P.; Yan, X.;
+and Su, Y. 2021. Beyond iid: three levels of generalization
+for question answering on knowledge bases. In Proceedings
+of the Web Conference 2021, 3477–3488.
+Gu, Y.; Pahuja, V.; Cheng, G.; and Su, Y. 2022. Knowledge
+Base Question Answering: A Semantic Parsing Perspective.
+arXiv:2209.04994.
+Gu, Y.; and Su, Y. 2022. ArcaneQA: Dynamic Program In-
+duction and Contextualized Encoding for Knowledge Base
+Question Answering.
+In Proceedings of the 29th Inter-
+national Conference on Computational Linguistics, 1718–
+1731.
+Hinton, G.; Vinyals, O.; and Dean, J. 2015. Distilling the
+Knowledge in a Neural Network. arXiv:1503.02531.
+Lan, Y.; He, G.; Jiang, J.; Jiang, J.; Zhao, W. X.; and
+Wen, J.-R. 2021. A Survey on Complex Knowledge Base
+Question Answering: Methods, Challenges and Solutions.
+arXiv:2105.11644.
+Lan, Y.; and Jiang, J. 2020. Query Graph Generation for
+Answering Multi-hop Complex Questions from Knowledge
+Bases. In Proceedings of the 58th Annual Meeting of the
+Association for Computational Linguistics, 969–974.
+Li, B. Z.; Min, S.; Iyer, S.; Mehdad, Y.; and tau Yih, W.
+2020.
+Efficient One-Pass End-to-End Entity Linking for
+Questions. arXiv:2010.02413.
+Li, T.; Ma, X.; Zhuang, A.; Gu, Y.; Su, Y.; and Chen, W.
+2023a. Few-shot In-context Learning for Knowledge Base
+Question Answering. arXiv:2305.01750.
+Li, X.; Li, Z.; Zhang, Z.; Liu, N.; Yuan, H.; Zhang, W.; Liu,
+Z.; and Wang, J. 2022. Effective few-shot named entity link-
+ing by meta-learning. In 2022 IEEE 38th International Con-
+ference on Data Engineering (ICDE), 178–191. IEEE.
+Li, Z.; Li, X.; Duan, Z.; Dong, B.; Liu, N.; and Wang,
+J. 2023b. Toward a Unified Framework for Unsupervised
+Complex Tabular Reasoning.
+In 2023 IEEE 39th Inter-
+national Conference on Data Engineering (ICDE), 1691–
+1704. IEEE.
+Meng, Y.; Huang, J.; Zhang, Y.; and Han, J. 2022. Gener-
+ating Training Data with Language Models: Towards Zero-
+Shot Language Understanding. arXiv:2202.04538.
+
+Ni, A.; Iyer, S.; Radev, D.; Stoyanov, V.; Yih, W.-t.; Wang,
+S.; and Lin, X. V. 2023. Lever: Learning to verify language-
+to-code generation with execution. In International Confer-
+ence on Machine Learning, 26106–26128. PMLR.
+OpenAI. 2023. GPT-4 Technical Report. arXiv:2303.08774.
+Reimers, N.; and Gurevych, I. 2019.
+Sentence-BERT:
+Sentence Embeddings using Siamese BERT-Networks.
+arXiv:1908.10084.
+Rosenbaum, A.; Soltan, S.; Hamza, W.; Saffari, A.; Da-
+monte, M.; and Groves, I. 2022a.
+CLASP: Few-Shot
+Cross-Lingual Data Augmentation for Semantic Parsing.
+arXiv:2210.07074.
+Rosenbaum, A.; Soltan, S.; Hamza, W.; Versley, Y.; and
+Boese, M. 2022b. LINGUIST: Language Model Instruction
+Tuning to Generate Annotated Utterances for Intent Classi-
+fication and Slot Tagging. arXiv:2209.09900.
+Schick, T.; and Sch¨utze, H. 2021. Generating Datasets with
+Pretrained Language Models. arXiv:2104.07540.
+Schlichtkrull, M.; Kipf, T. N.; Bloem, P.; Van Den Berg,
+R.; Titov, I.; and Welling, M. 2018.
+Modeling relational
+data with graph convolutional networks. In The Semantic
+Web: 15th International Conference, ESWC 2018, Herak-
+lion, Crete, Greece, June 3–7, 2018, Proceedings 15, 593–
+607. Springer.
+Shu, Y.; Yu, Z.; Li, Y.; Karlsson, B. F.; Ma, T.; Qu, Y.;
+and Lin, C.-Y. 2022. TIARA: Multi-grained Retrieval for
+Robust Question Answering over Large Knowledge Bases.
+arXiv:2210.12925.
+Singh, I.; Blukis, V.; Mousavian, A.; Goyal, A.; Xu, D.;
+Tremblay, J.; Fox, D.; Thomason, J.; and Garg, A. 2023.
+Progprompt: Generating situated robot task plans using large
+language models. In 2023 IEEE International Conference
+on Robotics and Automation (ICRA), 11523–11530. IEEE.
+Su, Y.; Sun, H.; Sadler, B.; Srivatsa, M.; G¨ur, I.; Yan, Z.;
+and Yan, X. 2016. On generating characteristic-rich question
+sets for qa evaluation. In Proceedings of the 2016 Confer-
+ence on Empirical Methods in Natural Language Process-
+ing, 562–572.
+Wei, J.; Wang, X.; Schuurmans, D.; Bosma, M.; Xia, F.;
+Chi, E.; Le, Q. V.; Zhou, D.; et al. 2022.
+Chain-of-
+thought prompting elicits reasoning in large language mod-
+els. Advances in Neural Information Processing Systems,
+35: 24824–24837.
+Ye, J.; Gao, J.; Li, Q.; Xu, H.; Feng, J.; Wu, Z.; Yu, T.; and
+Kong, L. 2022a. ZeroGen: Efficient Zero-shot Learning via
+Dataset Generation. arXiv:2202.07922.
+Ye, J.; Li, C.; Kong, L.; and Yu, T. 2023.
+Generating
+Data for Symbolic Language with Large Language Models.
+arXiv:2305.13917.
+Ye, X.; Yavuz, S.; Hashimoto, K.; Zhou, Y.; and Xiong,
+C. 2022b. RNG-KBQA: Generation Augmented Iterative
+Ranking for Knowledge Base Question Answering. In Pro-
+ceedings of the 60th Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers), 6032–
+6043.
+Yih, W.-t.; Richardson, M.; Meek, C.; Chang, M.-W.; and
+Suh, J. 2016.
+The value of semantic parse labeling for
+knowledge base question answering. In Proceedings of the
+54th Annual Meeting of the Association for Computational
+Linguistics (Volume 2: Short Papers), 201–206.
+Yu, D.; Zhang, S.; Ng, P.; Zhu, H.; Li, A. H.; Wang, J.; Hu,
+Y.; Wang, W.; Wang, Z.; and Xiang, B. 2023. DecAF: Joint
+Decoding of Answers and Logical Forms for Question An-
+swering over Knowledge Bases. arXiv:2210.00063.
+
+Appendix
+In this supplementary material, we furnish the additional de-
+tails that were left out in the main text. The appendices are
+organized as follows:
+• Appendix A: Automatic Program Sampling
+• Appendix B: Example Prompts and Inherent Reasoning
+• Appendix C: Execution-Guided Filtering
+• Appendix D: Underlying models and Baselines
+• Appendix E: Implementation Details
+• Appendix F: Synthetic vs. Real Data
+• Appendix G: Number of In-context Examples
+• Appendix H: Progressive Execution-guided Self-training
+A. Automatic Program Sampling
+A.1 Template Collection
+We replace the entities and relations within programs with
+variables (e.g., ent0, rel0, ent1) to get program templates.
+Different program templates capture the fundamental logic
+of various question types, so it’s essential to have a diverse
+range of templates. In practical settings, people can cus-
+tomize and design their own templates based on specific
+business scenarios.
+In the experiments, we construct templates using the pro-
+grams included in the few-shot annotated samples. Here is
+an example of a SPARQL template:
+SELECT ( ?x0 AS ?value ) WHERE
+{ ?x0 :type.object.type ?ent1 .
+VALUES ?x1 { ?ent0 }
+?x0 ?rel0 ?x1 .
+FILTER ( ?x0 ! = ?x1 ) }
+For S-expressions, we first convert them into SPARQL
+queries3 and then follow the same procedure.
+A.2 Step-wise Program Grounding
+We directly treat the variables in a template as query ob-
+jects. The aforementioned example can be rephrased as the
+following query:
+SELECT ?rel0 ?ent0 ?ent1 WHERE
+{ ?x0 :type.object.type ?ent1 .
+VALUES ?x1 { ?ent0 }
+?x0 ?rel0 ?x1 .
+FILTER ( ?x0 ! = ?x1 ) }
+Then we introduce a “step-wise grounding” approach,
+where we iteratively determine the values of variables. In
+the given example, a plausible order for establishing variable
+values could be ent0 →rel0 →ent1. Once these variables
+are grounded to specific values, we can populate them into
+the original template to form an executable program.
+3https://github.com/dki-lab/ArcaneQA/issues/3
+B. Example Prompts and Inherent Reasoning
+We show examples of prompts in Listing 1, 2, and 3 for
+GrailQA, WebQSP and KQA Pro, respectively. The prompt
+design is straightforward. More efficient prompting tech-
+niques like batch prompting (Cheng, Kasai, and Yu 2023)
+remain to be explored.
+For Inherent Reasoning, we also employ the in-context
+learning approach, but the prompts are directly constructed
+from question-answer pairs, which can be easily collected
+from the web. For convenience, we utilize question-answer
+pairs from the dataset.
+C. Execution-Guided Filtering
+For semantic filtering, we employ an off-the-shelf pre-
+trained
+sentence-transformer
+named
+all-MiniLM-L6-v2
+(Reimers and Gurevych 2019), which maps sentences to a
+384-dimensional dense vector space. We use the pre-trained
+model4 to calculate the semantic textual similarity between
+natural language questions and the relations in predicted
+programs. The semantic similarity is caculated as the cosine
+similarity of the embedding vectors, and we average the sim-
+ilarity scores if there are multiple relations in one predicted
+program. Empirically, we set the threshold of 0.2 to filter out
+those data pairs with similarity below the threshold. The se-
+mantic filtering technique can effectively filter out data pairs
+whose predicted relations are irrelevant to the natural lan-
+guage questions.
+For inherent filtering, once the surface name of the pre-
+dicted answer entity derived from the program appear in the
+direct response provided by the large language model, we
+consider this pseudo-label program valid. This approach can
+enhance the purity of pseudo-labeled training data.
+Additionally, We also remove data pairs where the sur-
+face names of retrieved entities cannot be obtained through
+the sparql endpoint to Freebase, as these entities are quite
+uncommon and usually lead to erroneous results.
+D. Underlying models and Baselines
+D.1 Underlying models
+We select advanced models that have demonstrated out-
+standing performance on KBQA datasets. Specifically, for
+GrailQA and WebQSP, we choose the RnG-KBQA (Ye et al.
+2022b) model. For KQA Pro, we select the BART-SPARQL
+(Cao et al. 2022a) model. They also demonstrate good re-
+producibility.
+RnG-KBQA follows a ranking-then-generate approach. It
+begins with searching for a collection of candidate programs
+on the graph, using the topic entity mentioned in the ques-
+tion. These candidates are then ranked by similarity scores
+outputted by a ranker model. Finally, a pretrained generation
+model, serving as the generator consumes both the ques-
+tion and the top-k candidate programs to generate the fi-
+nal answer. In experiments, we initialize the ranker with the
+BERT-base-uncased model, and the generator with T5-base.
+BART-SPARQL, in contrast, is an end-to-end generation
+4https://huggingface.co/sentence-transformers/all-MiniLM-
+L6-v2
+
+model that directly produces the corresponding SPARQL
+query given a question. It is worth noting that the pre-trained
+BART model is forced to have the capability to memorize
+the relations and entities present in the KB. As a result, the
+BART-SPARQL model is more sensitive to unseen questions
+compared to RnG-KBQA. We also use the BART-base for
+this model.
+D.2 Baselines
+Pangu is a recently emerged state-of-the-art model. It pro-
+poses using LLMs for discrimination rather than generation
+in grounded language understanding, combining symbolic
+search with neural scoring in a novel way. It incrementally
+constructs plans in a step-wise fashion to handle large search
+spaces. At each step, it extends existing plans into new valid
+candidates based on the environment. This allows it to guar-
+antee the grammaticality and faithfulness of the proposed
+plans.
+KB-BINDER enables few-shot learning for KBQA using
+LLMs through two key stages: Draft Generation, where
+given a question, an LLM generates a preliminary “draft”
+logical form by imitating few examples that capture seman-
+tic relationships but may contain mistakes; and Knowledge
+Base Binding, where entities and relations in the draft are
+grounded to the target KB using string matching and simi-
+larity search to produce refined, executable candidate logical
+forms.
+Fine-Tuning means that we train the model only on the
+few-shot data (e.g., 100 shots). This baseline is designed to
+demonstrate how existing models’ performance significantly
+decreases when faced with insufficient data, thereby high-
+lighting the superiority of our framework.
+LLM-ICL is an in-context learning-based baseline we im-
+plement for KQA Pro. As there are no experimental results
+of Pangu and KB-BINDER on KQA Pro, we use LLM-ICL
+as an alternative. Since KQA Pro models do not include an
+entity linking stage, LLM-ICL directly generates SPARQL
+queries without further grounding stage, ensuring a fair com-
+parison.
+We also presented the performance of several supervised
+models (e.g., ReTraCk (Chen et al. 2021b), DecAF (Yu et al.
+2023)) to demonstrate that FlexKBQA maintains usability
+while offering flexibility.
+E. Implementation Details
+On GrailQA and WebQSP datasets, we use the underly-
+ing model RnG-KBQA (Ye et al. 2022b). Empirically, we
+adopted the non-bootstrap ranking strategy in the RnG-
+KBQA. All other settings remain consistent with the orig-
+inal setting. Experiments can be conducted with a single
+GeForce RTX 3090 graphics card.
+For the entity linking, we adopt the same setting as our
+baseline models. On GrailQA, we use the entity linking
+results from TIARA (Shu et al. 2022). On WebQSP, we
+adopted the entity linking results from ELQ (Li et al. 2020).
+For the second stage of inherent reasoning augmenta-
+tion, we resort to using the responses from LLM as the fi-
+nal answers for the initially unanswerable questions. Specif-
+ically, we perform the Named Entity Recognition (NER)
+Setting
+EM
+F1
+Real Data
+61.4
+68.2
+Sythetic Data
+32.7
+35.5
+Real Program, Synthetic Question
+50.9
+56.3
+Table 6: Discrepancy between Synthetic and Real Data
+techniques on the textual responses and take the recognized
+entities as the final answers. The NER system we use is also
+consistent with the NER system in RnG-KBQA.
+F. Synthetic vs. Real Data
+To better demonstrate the gap between the synthetic data
+generated by our framework and the real data, as well as to
+explore the reasons behind this discrepancy, we conducted
+this supplementary experiment. We compare the model per-
+formance when trained using diverse data sources:
+• Synthetic Data: we produce around 1,000 synthetic data
+using our automatic program sampling and low-resource
+program translation method. We use those synthetic data
+to train the RnG-KBQA ranker model and evaluate the
+model performance on the WebQSP test set.
+• Real Data: we randomly sample the same amount of
+training data directly from the original WebQSP dataset.
+• Real Program, Synthetic Question: we leverage the
+real programs of training samples in the “real data” set-
+ting, and use the low-resource program translation to
+generate the natural language questions.
+The model performances under these three settings are
+demonstrated in Table 6. The performance of the model
+trained by synthetic data is significantly worse than that
+trained by real data. This is largely due to the fact that when
+generating synthetic data, the programs we sample are diffi-
+cult to form similar distribution as the test set, such as con-
+taining consistent relations. This scenario is more significant
+on the strong i.i.d. WebQSP dataset. In the “real program,
+synthetic question” setting, the model performance is just
+slightly weaker than the model trained by real data. This im-
+plies that LLMs have a strong ability to translate symbolic
+language into natural language.
+G. Number of In-context Examples
+We conduct an ablation study concerning the number of in-
+context learning examples in our framework. We conduct the
+experiment on the GrailQA dataset and evaluate the model
+performance using the GrailQA dev set and test set. To re-
+duce interference and focus on the impact of the number of
+in-context examples on data generation, we do not perform
+the inherent reasoning augmentation in this ablation experi-
+ment. The F1 scores are shown in Table 7. We can observe
+that the number of examples has little impact on the final
+performance of the model, as the knowledge about program
+languages (e.g. SPARQL, S-expression) in the examples has
+already been largely incorporated into the parameters of the
+LLMs.
+
+# Exmaples
+Model
+F1(dev)
+F1(test)
+10
+FlexKBQA
+-w/o IR
+70.04
+66.61
+-w/o EGST
+61.78
+57.70
+25
+FlexKBQA
+-w/o IR
+70.23
+67.19
+-w/o EGST
+62.10
+57.74
+60
+FlexKBQA
+-w/o IR
+70.29
+67.20
+-w/o EGST
+62.54
+58.71
+Table 7: Number of In-context Examples
+Figure 5: Model improvement in the PEGST process
+H. Progressive Execution-Guided
+Self-Training
+During the execution-guided filtering phase, we have mul-
+tiple filtering strategies available. Exploring effective ways
+to utilize them is still worth investigating. Here we also ex-
+plore a strategy called Progressive Execution-Guided Self-
+Training (PEGST), a slightly distinct variant of EGST. In
+PEGST, we employed different filtering strategies in differ-
+ent stages:
+• Stage I: Error Filtering
+• Stage II: Semantic Filtering
+• Stage III: We remove data pairs where the surface
+names of retrieved entities cannot be obtained through
+the SPARQL endpoint to Freebase.
+We conduct an experiment of PEGST on the WebQSP
+dataset with other settings remaining the same. From the in-
+creasing trend of the F1 score in Figure 5, we can notice
+that in PEGST, a substantial enhancement in the model’s
+capabilities can be achieved once a criterion for filtering
+data is altered. However, within a single stage, the increase
+in the model’s capacity is relatively minor. PEGST can be
+considered as a process of injecting diverse knowledge into
+the model in distinct phases. In experiments, PEGST can
+achieve a slight advantage over EGST, but it requires more
+self-training iterations and a longer period to execute. Con-
+sequently, we opted for employing the EGST approach in
+the main body of our study.
+
+Listing 1. Example Prompt for GrailQA
+### Convert the s-expressions to natural language questions.
+# s-expression:(AND medicine.routed_drug (JOIN medicine.routed_drug.
+marketed_formulations Oxybutynin chloride 5 extended release film coated tablet))
+# question:oxybutynin chloride 5 extended release film coated tablet is the
+ingredients of what routed drug?
+# s-expression:(ARGMAX food.food food.food.energy)
+# question:when it comes to the food that has the most energy per 100g what is the
+name of it?
+# s-expression:(AND music.genre (JOIN (R music.genre.parent_genre) (JOIN music.genre.
+albums confessions tour)))
+# question:the albums confessions tour is part of what parent genre of a musical genre
+?
+# s-expression:(AND architecture.architect (JOIN architecture.architect.
+architectural_style (JOIN (R architecture.architect.architectural_style) Josef
+Fanta)))
+# question:which architect has a similar architectural style to josef fanta?
+# s-expression:(AND architecture.building (lt architecture.building.floors 9ˆˆhttp://
+www.w3.org/2001/XMLSchema#integer))
+# question:which building has less than 9 floors?
+# s-expression:(AND comic_books.comic_book_series (JOIN (R comic_books.
+comic_book_genre.comic_book_series_in_this_genre) (JOIN (R comic_books.
+comic_book_story.genre) Case of the Namesake Murders)))
+# question:case of the namesake murders is the same genre as what comic book series?
+# s-expression:(AND film.director (JOIN (R media_common.quotation.author) It is an
+open question whether any behavior based on fear of eternal punishment can be
+regarded as ethical or should be regarded as merely cowardly.))
+# question:what is the name of the author who wrote it is an open question whether any
+behavior based on fear of eternal punishment can be regarded as ethical or should
+be regarded as merely cowardly.?
+# s-expression:(AND meteorology.beaufort_wind_force (ge meteorology.
+beaufort_wind_force.wave_height 7.0ˆˆhttp://www.w3.org/2001/XMLSchema#float))
+# question:for waves higher than 7.0 what is the beaufort window force?
+# s-expression:(AND book.short_story (JOIN book.short_story.characters (JOIN book.
+book_character.appears_in_stories Doing Clarence a Bit of Good)))
+# question:what short story has a character who also is in doing clarence a bit of
+good?
+# s-expression:(AND education.school_category (AND (JOIN (R education.
+educational_institution.school_type) Chiang Kai Shek College) (JOIN education.
+school_category.schools_of_this_kind Sacred Heart High School (Roseville, Michigan
+))))
+# question:chiang kai shek college and sacred heart high school (roseville, michigan)
+are in what category of school?
+# s-expression:(ARGMIN food.bottled_water food.bottled_water.nitrate_content)
+# question:the bottled water that has the least amount of nitrates?
+......
+# s-expression:
+
+Listing 2. Example Prompt for WebQSP
+### Convert the s-expressions to natural language questions.
+# s-expression:(JOIN (R location.location.containedby) Auburn University)
+# question:where is university of auburn?
+# s-expression:(JOIN (R government.political_party_tenure.politician) (JOIN (R
+government.political_party.politicians_in_this_party) New Democratic Party))
+# question:who founded the new democratic party?
+# s-expression:(ARGMAX (JOIN (R location.location.contains) China) topic_server.
+population_number)
+# question:where do most chinese live?
+# s-expression:(JOIN (R film.performance.actor) (AND (JOIN film.performance.character
+Dorothy Gale) (JOIN (R film.film.starring) The Wizard of Oz)))
+# question:who played dorothy in the film wizard of oz?
+# s-expression:(AND (JOIN common.topic.notable_types College/University) (JOIN (R
+education.education.institution) (JOIN (R people.person.education) Jerry Rice)))
+# question:what college did jerry rice attend?
+# s-expression:(AND (JOIN common.topic.notable_types City/Town/Village) (JOIN (R
+location.location.contains) Oakland County))
+# question:what cities are in oakland county michigan?
+# s-expression:(JOIN (R people.marriage.spouse) (AND (JOIN people.marriage.time_macro
+2015ˆˆhttp://www.w3.org/2001/XMLSchema#date) (AND (JOIN people.marriage.
+type_of_union Marriage) (JOIN (R people.person.spouse_s) Jane Krakowski))))
+# question:who is married to jane krakowski?
+# s-expression:(AND (JOIN people.person.gender Female) (JOIN (R people.marriage.spouse
+) (ARGMAX (JOIN (R people.person.spouse_s) Robert Downey Jr.) people.marriage.from
+)))
+# question:who is robert downey jr wife?
+# s-expression:(JOIN (R location.religion_percentage.religion) (ARGMAX (JOIN (R
+location.statistical_region.religions) United States of America) location.
+religion_percentage.percentage))
+# question:what is the most practiced religion in the united states?
+# s-expression:(ARGMAX (AND (JOIN sports.sports_championship_event.champion Dallas
+Cowboys) (JOIN (R sports.sports_team.championships) Dallas Cowboys)) time.event.
+end_date)
+# question:when was the last dallas cowboys super bowl win?
+# s-expression:(ARGMAX (JOIN (R film.performance.film) (JOIN (R film.actor.film)
+Brittany Murphy)) film.film.initial_release_date)
+# question:what is the last movie brittany murphy made?
+# s-expression:(AND (JOIN book.written_work.subjects Evolution) (AND (JOIN common.
+topic.notable_types Book) (JOIN (R book.author.works_written) Charles Darwin)))
+# question:what book did charles darwin write on evolution?
+......
+# s-expression:
+
+Listing 3. Example Prompt for KQA Pro
+### Convert the sparqls to natural language questions.
+# sparql:SELECT DISTINCT ?e WHERE { ?e <pred:instance_of> ?c . ?c <pred:name> "town" .
+?e <TOID> ?pv . ?pv <pred:value> "4000000074573917" . ?e <OS_grid_reference> ?
+pv_1 . ?pv_1 <pred:value> "SP8778" .
+}
+# question:Which town has a TOID of 4000000074573917 and has an OS grid reference of
+SP8778?
+# sparql:SELECT DISTINCT ?pv WHERE { ?e <pred:instance_of> ?c . ?c <pred:name> "human"
+. ?e <ISNI> ?pv_1 . ?pv_1 <pred:value> "0000 0001 2136 4821" . ?e <date_of_birth>
+?pv .
+}
+# question:When was the person with ISNI 0000 0001 2136 4821 born?
+# sparql:ASK { ?e <pred:name> "Eve Myles" . ?e <official_website> ?pv . ?pv <pred:
+value> "http://www.cheechandchong.com" .
+}
+# question:Is http://www.cheechandchong.com Eve Myles’s official website?
+# sparql:SELECT DISTINCT ?p WHERE { ?e_1 <pred:name> "alternative rock" . ?e_2 <pred:
+name> "Greg Graffin" . ?e_1 ?p ?e_2 .
+}
+# question:What has alternative rock in common with Greg Graffin?
+# sparql:ASK { ?e <pred:instance_of> ?c . ?c <pred:name> "human" . ?e <ISNI> ?pv_1 . ?
+pv_1 <pred:value> "0000 0001 0893 552X" . ?e <name_in_native_language> ?pv . ?pv <
+pred:value> "Elias Koteas" .
+}
+# question:Is Elias Koteas the name in native language of the person with ISNI 0000
+0001 0893 552X?
+# sparql:SELECT DISTINCT ?qpv WHERE { ?e_1 <pred:name> "Gregg Allman" . ?e_2 <pred:
+name> "Cher" . ?e_2 <birth_name> ?pv . ?pv <pred:value> "Cherilyn Sarkisian" . ?
+e_1 <spouse> ?e_2 . [ <pred:fact_h> ?e_1 ; <pred:fact_r> <spouse> ; <pred:fact_t>
+?e_2 ] <end_time> ?qpv .
+}
+# question:When did Gregg Allman stop being the spouse of Cher (the one whose birth
+name is Cherilyn Sarkisian)?
+# sparql:SELECT (COUNT(DISTINCT ?e) AS ?count) WHERE { ?e <pred:instance_of> ?c . ?c <
+pred:name> "town" . ?e <postal_code> ?pv . ?pv <pred:value> "VLT" . ?e <area> ?
+pv_1 . ?pv_1 <pred:unit> "square mile" . ?pv_1 <pred:value> ?v . FILTER ( ?v <
+"530"ˆˆxsd:double ) .
+}
+# question:How many towns’ postal code is VLT and area is less than 530 square miles?
+# sparql:SELECT (COUNT(DISTINCT ?e) AS ?count) WHERE { ?e <pred:instance_of> ?c . ?c <
+pred:name> "sovereign state" . ?e <population> ?pv . ?pv <pred:unit> "1" . ?pv <
+pred:value> ?v . FILTER ( ?v != "7600000000"ˆˆxsd:double ) .
+}
+# question:What number of sovereign states have a population not equal to 7600000000?
+# sparql:SELECT DISTINCT ?pv WHERE { ?e <pred:name> "63rd Golden Globe Awards" . ?e <
+edition_number> ?pv .
+}
+# question:What is the edition number of the 63rd Golden Globe Awards?
+# sparql:ASK { ?e <pred:instance_of> ?c . ?c <pred:name> "film" . ?e <official_website
+> ?pv_1 . ?pv_1 <pred:value> "http://www.lovelybones.com" . ?e <duration> ?pv . ?
+pv <pred:unit> "minute" . ?pv <pred:value> ?v . FILTER ( ?v > "60"ˆˆxsd:double ) .
+}
+# question:Does the film, whose official website is http://www.lovelybones.com, have a
+duration greater than 60 minutes?
+......
+# sparql:

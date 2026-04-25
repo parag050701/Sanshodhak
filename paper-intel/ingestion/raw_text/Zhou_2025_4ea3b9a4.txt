@@ -1,0 +1,3574 @@
+Large Language Models Penetration in Scholarly Writing and Peer Review
+Li Zhou1, Ruijie Zhang2, Xunlian Dai3, Daniel Hershcovich4, Haizhou Li1,5
+1The Chinese University of Hong Kong, Shenzhen
+2University of Electronic Science and Technology of China
+3Wuhan University of Technology 4University of Copenhagen
+5Shenzhen Research Institute of Big Data
+lizhou21@cuhk.edu.cn
+Abstract
+While the widespread use of Large Language
+Models (LLMs) brings convenience, it also
+raises concerns about the credibility of aca-
+demic research and scholarly processes. To
+better understand these dynamics, we evalu-
+ate the penetration of LLMs across academic
+workflows from multiple perspectives and di-
+mensions, providing compelling evidence of
+their growing influence. We propose a frame-
+work with two components: ScholarLens, a
+curated dataset of human-written and LLM-
+generated content across scholarly writing and
+peer review for multi-perspective evaluation,
+and LLMetrica, a tool for assessing LLM pen-
+etration using rule-based metrics and model-
+based detectors for multi-dimensional evalua-
+tion. Our experiments demonstrate the effec-
+tiveness of LLMetrica, revealing the increas-
+ing role of LLMs in scholarly processes. These
+findings emphasize the need for transparency,
+accountability, and ethical practices in LLM
+usage to maintain academic credibility.
+1
+Introduction
+The rapid advancement of large language models
+(LLMs; Achiam et al., 2023; Dubey et al., 2024;
+Guo et al., 2025) is significantly shaping the schol-
+arly landscape (Hosseini and Horbach, 2023; Geng
+et al., 2024). These technologies assist in various
+stages of scholarly work, from brainstorming and
+overcoming “blank-sheet syndrome” (Altmäe et al.,
+2023; Baek et al., 2024; Eger et al., 2025) to sup-
+porting paper writing (Wang et al., 2018; Birhane
+et al., 2023; Khalifa and Albadawy, 2024; Rehman
+et al., 2025). More recently, LLMs have also been
+considered as tools in the peer review process (Du
+et al., 2024; Zhou et al., 2024; Yu et al., 2024; Jin
+et al., 2024; Zou, 2024).
+However, LLM-generated content often reflects
+lower quality and inherent biases (Brooks et al.,
+2024; Du et al., 2024), such as factual inconsisten-
+cies (Yang et al., 2024; Chuang et al., 2024) and
+hallucinations (Tang et al., 2024; Chuang et al.,
+2024). Research also indicates that LLMs in the
+review process can lead to higher paper acceptance
+rates (Latona et al., 2024; Jin et al., 2024) and
+tend to use more positive language than human
+reviewers (Zhou et al., 2024). This raises con-
+cerns about the rigor of scientific research (Sun
+et al., 2024), highlighting the importance of en-
+suring transparency and accountability in the use
+of LLMs within academic workflows (Lund and
+Naheem, 2024).
+To address these concerns, we propose a compre-
+hensive evaluation framework aimed at revealing
+the increasing penetration of LLMs in scholarly
+writing and peer review. This framework takes a
+multi-perspective view by integrating diverse schol-
+arly data types and employs a multi-dimensional
+methodology that utilizes a range of evaluation
+methods to provide a reliable and nuanced under-
+standing of LLM usage trends. Figure 1 illustrate
+the pipeline of our work, and our contributions are
+as follows:
+• We introduce ScholarLens, a curated dataset
+for developing technical measurement meth-
+ods, comprising both human-written and
+LLM-generated content (§3).
+• We propose LLMetrica, a tool for assessing
+LLM penetration in scholarly workflows, com-
+bining rule-based metrics to analyze linguistic
+and semantic features with model-based detec-
+tors to identify LLM-generated content (§4).
+• Our experiments demonstrate the effective-
+ness of LLMetrica, consistently showing the
+increasing penetration of LLMs in scholarly
+writing and peer review from multiple per-
+spectives and dimensions (§5).
+Our findings emphasize the need for transparency,
+accountability, and ethical practices in LLM usage
+to maintain the credibility of academic research.
+arXiv:2502.11193v1  [cs.CL]  16 Feb 2025
+
+Figure 1: Pipeline Overview of Our Work: (1) ScholarLens Curation (§3): A designed dataset used to evaluate
+the effectiveness of metrics and train detection models; (2) LLMetrica framework (§4): The proposed method for
+distinguishing human-written from LLM-generated texts; (3) Experiments (§5): Evaluating the effectiveness of
+LLMetrica and applying it to real-world data to assess LLM penetration rates in scholarly writing and peer process.
+Symbolically, P = {T, A, C, R, MR} represents a research paper, where T, A and C denote its title, abstract and
+main content, R = {ri} represents the individual reviews, and MR denotes the meta-review.
+2
+Related Work
+Recent discussions in the scientific community
+have focused on improving the peer review pro-
+cess (Gurevych et al., 2024; Kuznetsov et al., 2024)
+to address issues like misalignment between re-
+viewers and paper topics, as well as social (Huber
+et al., 2022; Tomkins et al., 2017; Manzoor and
+Shah, 2021) and cognitive biases (Lee, 2015; Stel-
+makh et al., 2021). Proposed solutions include en-
+hancing structural incentives for reviewers (Rogers
+and Augenstein, 2020), using natural language pro-
+cessing for intelligent support (Kuznetsov et al.,
+2022; Zyska et al., 2023; Dycke et al., 2023; Guo
+et al., 2023; Kumar et al., 2023), and other pol-
+icy recommendations (Dycke et al., 2022). Fur-
+thermore, some studies focus on the collection
+and analysis of review data (Kennard et al., 2022;
+Staudinger et al., 2024; D’Arcy et al., 2024).1 How-
+ever, these efforts largely focus on human review-
+ers: what if instead the reviewers are LLMs (Weber,
+2024; Gao et al., 2024; Hossain et al., 2025)?
+Previous research has demonstrated that human-
+written and LLM-generated texts exhibit distinct
+linguistic characteristics (Cheng et al., 2024; Song
+et al., 2025). For instance, LLM-generated texts
+often display the recurrent use of specific syntac-
+tic templates (Shaib et al., 2024), which largely
+reflect patterns learned from the training data
+and highlight the model’s memorization capac-
+ity (Karamolegkou et al., 2023; Zeng et al., 2024;
+1ACL Rolling Review Data Collection (ARR-DC).
+Zhu et al., 2024). Furthermore, some studies de-
+velop detection models to identify LLM-generated
+text (Antoun et al., 2024; Cheng et al., 2024; Xu
+et al., 2024; Kumar et al., 2024; Abassy et al.,
+2024). However, Cheng et al. (2024) points out
+that supervised detectors exhibit poor cross-domain
+generalizability.
+Unlike previous work, we simulate LLM usage
+in scholarly writing and peer review, creating a
+comparison between LLM-generated and human-
+written texts. We also develop a robust frame-
+work to assess the distinctive tendencies of LLM-
+generated content and identify it within the schol-
+arly domain. This framework offers a comprehen-
+sive approach to evaluating LLM penetration from
+multiple perspectives and dimensions.
+3
+ScholarLens Curation
+In this section, we detail the process of curating
+ScholarLens, including the consideration of data
+types and the setup for collecting both human-
+written and LLM-generated text.
+3.1
+Data Types
+We
+formalize
+a
+research
+paper
+as
+P
+=
+{T, A, C, R, MR} where T, A, and C represent the
+title, abstract, and main content, respectively, and
+R = {ri} denotes individual reviews, with MR rep-
+resenting the meta-review summarizing feedback
+from multiple reviewers. Since the process of cre-
+ating a research paper involves both author drafting
+and peer review stages, our dataset includes con-
+
+tent from both the author and (meta-)reviewer roles.
+When creating LLM-generated text, we consider
+two perspectives: ‘refined’, which enhances exist-
+ing drafts, and ‘synthesized’, which summarizes
+and generates content from provided texts.
+For the author role, we focus on abstract writing,
+as it is a key element for summarizing the paper
+and is easily accessible, making it ideal for this
+study. Specifically, we adopt the ‘refined’ approach,
+where the original human-written abstract is input
+into the LLM to generate a refined version. For
+the (meta-)reviewer roles, we focus on their com-
+ment content. To simulate human-written reviews
+and meta-reviews, the LLM-generated version pri-
+marily adopts the ‘synthesized’ perspective. The
+review process requires the full text of the paper as
+input, while the meta-review process includes all
+associated reviews of the paper. All prompts used
+to create LLM-generated content are provided in
+the Appendix A.
+3.2
+Data Collection Setup
+Considering the challenges associated with parsing
+full-text papers, typically in PDF format, and the
+high computational cost of generating LLM-based
+reviews from lengthy input data, the ScholarLens
+collection integrates pre-existing review data with
+self-constructed abstracts and meta-reviews.
+For the self-constructed data, we first collect raw
+data from all main conference papers in ICLR up
+to 2019, totaling 2,831 papers, through the Open-
+Review website. This selection is motivated by
+two factors: first, ICLR’s peer review process pro-
+vides comprehensive and detailed (meta-)review
+data; second, by focusing on papers before 2019,
+we can assume that the source data remains en-
+tirely human-written, as it predates the release of
+ChatGPT. For each paper, we generate two types
+of LLM-generated content: LLM-refined abstracts
+and LLM-synthesized meta-reviews. Both types
+are created using three advanced closed-source
+LLMs: GPT-4o, Gemini-1.5 (Team et al., 2024),
+and Claude-3 Opus (Anthropic, 2024). This en-
+sures that for every human-written version of the
+content, there is a corresponding LLM-generated
+version from each of the three models. For the
+pre-existing review data, we directly leverage the
+review data from ReviewCritique (Du et al., 2024)2,
+which incorporates the same three LLMs.
+De-
+tails of ScholarLens are in Appendix B, including
+2Note that ReviewCritique includes LLM-generated re-
+views for only 20 papers.
+statistics and LLM settings.
+4
+LLMetrica Framework
+In this section, we introduce the LLMetrica frame-
+work, designed to evaluate the penetration rate of
+LLM-generated content in scholarly writing and
+peer review. The framework includes rule-based
+metrics for assessing linguistic features and seman-
+tic similarity, as well as model-based detectors fine-
+tuned specifically to identify LLM-generated con-
+tent within the scholarly domain.
+4.1
+Rule-Based Metrics: Preference
+Rule-Based Metrics define a metric function m to
+measure the feature value v of an input text x, i.e.,
+v = m(x), enabling the comparison and evalua-
+tion of feature preferences in LLM-generated text.
+Specifically, we use 10 general linguistic feature
+metrics and design 4 specialized semantic feature
+metrics to capture both linguistic and semantic char-
+acteristics.
+4.1.1
+General Linguistic Features
+General linguistic features are applicable to all
+types of text and can be categorized into word-level,
+sentence-level, and other related metrics. Specif-
+ically, word-level metrics include Average Word
+Length (AWL), Long Word Ratio (LWR), Stop-
+word Ratio (SWR), and Type Token Ratio (TTR).
+Given the nature of scholarly writing, the threshold
+for ‘long word’ is set at 10. For sentence-level met-
+rics, we include Average Sentence Length (ASL),
+Dependency Relation Variety (DRV), and Subor-
+dinate Clause Density (SCD). DRV quantifies the
+diversity of dependency relations within the text
+using Shannon entropy (Lin, 1991), while SCD
+focuses on dependency relations such as ‘advcl’,
+‘ccomp’, ‘xcomp’, ‘relcl’, and ‘acl’ (Nivre et al.,
+2017). In addition, we incorporate Flesch Read-
+ing Ease (FRE) (Farr et al., 1951) to evaluate the
+overall readability of the text, Sentiment Polarity
+Score (PS, range: [-1, 1], negative→positive) to
+assess the sentiment, and Sentiment Subjectivity
+Score (SS, range: [0, 1], objective →subjective)
+to measure the degree of subjectivity or objectivity
+in the text. The implementation details of these
+metrics are provided in the Appendix C.
+4.1.2
+Specific Semantic Features
+Inspired by Du et al. (2024), which shows that
+human-written reviews have greater diversity and
+segment-level specificity than LLM-generated
+
+ones, we design four semantic metrics to analyze
+meta-reviews and reviews, focusing on overall se-
+mantic similarity and sentence-level specificity.
+Overall Semantic Similarity
+We propose two
+semantic similarity metrics: (i) MRSim: measures
+the similarity between the MR and its reference
+set R, defined as the average semantic similarity
+between MR and each review ri ∈R. (ii) RSim:
+measures the similarity among reviews within R,
+defined as the maximum similarity among all pairs
+of reviews in R. The formulas are:
+MRSim =
+1
+|R|
+X
+ri∈R
+sim (MR, ri)
+(1)
+RSim =
+max
+ri,rj∈R,ri̸=rjsim (ri, rj)
+(2)
+Using maximum similarity for RSim accounts for
+the fact that not all reviews in R are LLM-generated,
+as averaging could obscure key differences. Fo-
+cusing on the maximum similarity highlights the
+strongest alignment, offering a more accurate mea-
+sure of overall similarity.
+Sentence-Level Specificity
+Building on ITF-
+IDF (Du et al., 2024)3 and the classic TF-IDF
+framework, we introduce the SF-IRF (Sentence
+Frequency-Inverse Reverence Frequency) metric
+to quantify the significance of sentences within
+a (meta-)review.
+Specifically, for a given tar-
+get (meta)-review r consisting of n sentences,
+SF-IRF (s, r, Rref) captures the importance of a
+sentence s in r by considering: (i) its frequency of
+occurrence within r (SF), and (ii) its rarity across
+the reference reviews Rref (IRF). The metric is for-
+mally defined as:
+SF-IRF (s, r, Rref) = SF (s, r) · IRF (s, Rref)
+= Or
+s
+n · log
+
+m
+QRref
+s
+
+(3)
+Here, if r represents a review, then Rref = R −r;
+if r is a meta-review, then Rref = R. Or
+s quantifies
+the “soft” occurrence of sentence s within the target
+review r, while QRref
+s
+represents the “soft” count
+of reviews in Rref that contain the sentence s. Ad-
+ditionally, m denotes the total number of reviews
+in Rref. Or
+s and QRref
+s
+are computed as follows:
+Or
+s =
+X
+˜s∈r
+I (sim (s, ˜s) ⩾t) · sim (s, ˜s)
+(4)
+3Unlike ITF-IDF (Du et al., 2024), we only measure the
+SF-IRF within a single paper, considering the meta-review
+and review levels.
+QRref
+s
+=
+X
+˜r∈Rref
+I
+
+max sim
+˜s∈˜r
+(s, ˜s) ⩾t
+
+· max sim
+˜s∈˜r
+(s, ˜s)
+(5)
+A segment s is counted when its similarity exceeds
+the threshold t, with the corresponding similar-
+ity score. We use SentenceBERT (Reimers and
+Gurevych, 2019) to calculate the all similarities,
+with t set to 0.5.
+4.2
+Model-Based Detectors: Distinction
+Model-based detectors are designed to train scholar-
+specific detection models f, capable of accurately
+identifying whether a scholarly input text x is
+human-written or LLM-generated. We use our cu-
+rated ScholarLens dataset to train these models,
+collectively referred to as ScholarDetect.
+Specifically, we split abstracts and meta-reviews
+data within ScholarLens into training and test
+sets in a 7:3 ratio, based on the human-written
+versions. The corresponding LLM-generated con-
+tent is partitioned accordingly, ensuring that each
+piece of LLM-generated text is paired with its
+human-written counterpart. All reviews data in
+ScholarLens are incorporated into the test set, en-
+suring a comprehensive evaluation.4 All test sets
+serve as benchmarks to assess the performance of
+both baseline models and the trained ScholarDe-
+tect models. We create three types of detection
+models based on the training data: one using only
+abstracts, one using only meta-reviews, and one
+using a hybrid of both. To maintain class balance
+in the training data, we ensure a 1:1 ratio between
+human-written and LLM-generated version. We
+employ two strategies: one using a single LLM
+(GPT-4o, Gemini, or Claude), and another using a
+mixed-LLM approach, where each human-written
+piece is paired with LLM-generated content from
+a randomly selected model. As a result, the Schol-
+arDetect framework involves a total of 12 distinct
+detection models.
+5
+Experiments
+We first demonstrate the effectiveness of rule-based
+metrics (§5.1) and ScholarDetect models (§5.2)
+in LLMetrica, then apply these methods to real-
+world conference data to assess and predict LLM
+penetration trends (§5.3). Finally, case studies are
+used to explore the specific differences between
+human-written and LLM-generated content (§5.4).
+4Data statistics after splitting for model training and evalu-
+ation are in Table 7.
+
+Abstract
+Meta-Review
+Review
+5
+6
+7
+AWL
+Average Word Length
+Abstract
+Meta-Review
+Review
+0.05
+0.10
+0.15
+0.20
+0.25
+LWR
+Long Word Ratio
+Abstract
+Meta-Review
+Review
+0.20
+0.25
+0.30
+0.35
+0.40
+SWR
+Stopword Ratio
+Abstract
+Meta-Review
+Review
+0.4
+0.5
+0.6
+0.7
+0.8
+TTR
+Type Token Ratio
+Abstract
+Meta-Review
+Review
+15
+20
+25
+ASL
+Average Sentence Length
+Abstract
+Meta-Review
+Review
+20
+25
+30
+DRV
+Dependency Relation Variety
+Abstract
+Meta-Review
+Review
+0.6
+0.8
+1.0
+1.2
+1.4
+1.6
+SCD
+Subordinate Clause Density
+Abstract
+Meta-Review
+Review
+0
+20
+40
+FRE
+Readability
+Abstract
+Meta-Review
+Review
+0.06
+0.08
+0.10
+0.12
+0.14
+0.16
+PS
+Sentiment Polarity Score
+Abstract
+Meta-Review
+Review
+0.30
+0.35
+0.40
+0.45
+0.50
+SS
+Sentiment Subjectivity Score
+Human
+GPT4o
+Gemini
+Claude
+(a) Comparison of Features for ALL Data Types
+Data Type
+↑
+↓
+→
+Abstract
+3 (AWL, LWR. TTR)
+5 (SWR, ASL, DRV, SCD, FRE)
+2 (PS,SS)
+Meta-Review
+3 (AWL, LWR. TTR)
+3 (SWR, DRV, FRE)
+4 (ASL, SCD, PS, SS)
+Review
+5 (AWL, LWR, ASL, PS, SS)
+3 (SWR, TTR, FRE)
+2 (DRV, SCD)
+(b) Feature preference of LLM-generated text: ↑indicates an increase across all LLMs, ↓indicates a decrease, →indicates
+inconsistency. Bold denotes consistent trends across all data types.
+Figure 2: Comparison of Human-Written and LLM-Generated Text Based on General Features in ScholarLens
+5.1
+Features Comparison: Human vs LLM
+We apply the proposed rule-based metrics (§4.1)
+to ScholarLens to compare the features of human-
+written and LLM-generated texts, and find that the
+feature preferences of LLM-generated texts can be
+effectively compared and evaluated.
+General Linguistic Features
+Figure 2 shows
+trends in the characteristics of LLM-generated
+texts, with slight variations across different data
+types. Each metric reflects the consistency of fea-
+tures across texts generated by the three LLMs in at
+least one data type, demonstrating the ‘comparabil-
+ity’ effectiveness of the chosen metrics. Moreover,
+regardless of the data type or LLM used, LLM-
+generated texts consistently show higher values
+for Average Word Length (AWL) and Long Word
+Ratio (LWR), and lower values for Stopword Ra-
+tio (SWR) and Readability (FRE). This suggests
+that LLM-generated texts tend to use longer words,
+avoid excessive stopwords, and have lower read-
+ability. For shorter text types, such as abstracts
+and meta-reviews, the observed increase in Type
+Token Ratio (TTR) reflects greater lexical diversity
+in LLM-generated texts. This may be due to the
+conciseness inherent in short-form LLM-generated
+content. In contrast, for longer reviews, TTR de-
+creases, potentially highlighting the limitations of
+LLMs in producing long-form content (Wang et al.,
+2024; Wu et al., 2025). Longer reviews may lack
+specificity (Du et al., 2024), resulting in redun-
+dancy and repetitive segments. Additionally, LLM-
+generated reviews tend to be more positive and
+subjective, suggesting a more favorable tone and
+less neutral objectivity. This aligns with Jin et al.
+(2024), who found that LLM-generated reviews
+generally assign higher scores and show a higher
+acceptance rate.
+Specific Semantic Features
+Figure 3 shows the
+preferences of human-written and LLM-generated
+texts in both meta-reviews and reviews, based on
+four specific semantic features. Notably, Since
+each LLM generates only one review per paper in
+ScholarLens, while each paper usually has mul-
+tiple reviews, we combine reviews from all three
+LLMs into a unified set, so comparisons do not dis-
+tinguish between them. Comparative results show
+that LLM-generated meta-reviews exhibit higher
+semantic similarity to the referenced reviews, with
+lower sentence specificity. This suggests that sen-
+tences within LLM-generated meta-reviews are
+more semantically similar to each other (prone to
+redundancy) and tend to mirror the content of the
+referenced reviews. A similar trend is observed
+for reviews, where the two specific features also
+show consistent patterns. It is important to note that
+for the reviews, we assume all are LLM-generated
+in this experiment, which may amplify the differ-
+ences in these semantic features. In reality, having
+more than two LLM-generated reviews per paper
+may be uncommon, which would likely reduce the
+observed disparity.
+
+Model
+LLM
+Source
+Abstract
+Meta-Review
+Review
+Avg.
+Human
+LLM
+Overall
+Human
+LLM
+Overall
+Human
+LLM
+Overall
+MAGE
+-
+40.62
+35.14
+38.00
+40.58
+33.43
+37.21
+92.98
+57.60
+87.95
+54.39
+RAIDetect
+49.51
+78.36
+69.71
+38.42
+73.50
+62.94
+24.48
+26.85
+25.68
+52.78
+HNDCDetect
+54.59
+85.85
+78.43
+57.93
+83.88
+76.69
+86.39
+54.90
+79.09
+78.07
+ScholarDetectAbs
+GPT-4o
+97.02±0.50
+99.02±0.15
+98.53±0.23
+87.65±3.01
+95.06±1.48
+92.95±2.00
+97.44±0.20
+79.97±1.96
+95.45±0.37
+95.64
+Gemini
+84.40±3.11
+93.48±1.59
+90.80±2.13
+90.62±1.98
+95.06±1.21
+92.93±1.63
+96.41±0.64
+68.68±7.26
+93.56±1.19
+92.43
+Claude
+91.61±1.09
+96.90±0.46
+95.47±0.65
+83.79±4.74
+93.02±2.60
+90.25±3.40
+95.69±0.89
+58.84±12.55
+92.20±1.68
+91.97
+Mix
+97.94±0.16
+99.32±0.05
+98.98±0.07
+93.84±0.23
+97.81±0.09
+96.76±0.13
+97.56±0.20
+81.16±1.92
+95.68±0.37
+97.14
+ScholarDetectMeta
+GPT-4o
+78.59±1.64
+90.47±1.19
+86.81±1.45
+99.53±0.13
+99.84±0.04
+99.76±0.06
+97.98±0.21
+84.95±1.89
+96.44±0.39
+94.34
+Gemini
+80.13±2.71
+91.45±1.56
+88.05±2.02
+97.70±1.86
+99.19±0.67
+98.80±0.98
+97.65±0.30
+81.90±2.69
+95.83±0.54
+94.23
+Claude
+62.42±13.17
+69.60±16.38
+66.93±15.79
+86.72±7.94
+94.15±3.67
+91.88±5.02
+97.82±0.62
+83.23±5.56
+96.14±1.11
+84.98
+Mix
+84.20±3.59
+94.12±2.24
+91.47±2.89
+99.84±0.10
+99.95±0.03
+99.92±0.05
+99.52±0.16
+96.86±1.08
+99.17±0.28
+96.85
+ScholarDetectHybrid
+GPT-4o
+97.69±0.35
+99.23±0.13
+98.84±0.19
+99.33±0.17
+99.78±0.06
+99.67±0.08
+97.73±0.16
+82.72±1.42
+95.98±0.28
+98.16
+Gemini
+85.88±0.19
+94.32±0.10
+91.90±0.13
+97.84±1.19
+99.25±0.43
+98.89±0.63
+97.69±0.31
+82.29±2.83
+95.91±0.56
+95.56
+Claude
+85.61±1.67
+94.11±0.84
+91.64±1.13
+96.49±1.22
+98.77±0.44
+98.18±0.65
+97.48±0.26
+80.35±2.44
+95.53±0.47
+95.13
+Mix
+98.11±0.35
+99.37±0.11
+99.06±0.17
+99.88±0.00
+99.96±0.00
+99.94±0.00
+98.06±0.18
+85.69±1.53
+96.59±0.32
+98.53
+Table 1: Detection performance comparison of baseline models and ScholarDetect. Bold denotes the best perfor-
+mance, and underlined denotes the second-best. “Avg.” shows the average overall score across the three test data
+types.
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+0.70
+MRSim
+MetaReview: MRSim
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+SFIRF
+MetaReview: SFIRF
+Human
+GPT4o
+Gemini
+Claude
+(a) Meta-Review
+0.6
+0.7
+0.8
+0.9
+1.0
+1.1
+RSim
+Review: RSim
+0.050
+0.075
+0.100
+0.125
+0.150
+0.175
+0.200
+SFIRF
+Review: SFIRF
+Human
+LLM
+(b) Review
+Figure 3: Comparison of Human-Written and LLM-
+Generated Text Based on Specific features for Review
+and Meta-Review.
+5.2
+ScholarDetect Evaluation: Detectability
+We evaluate the trained model-based detectors,
+ScholarDetect (§4.2), on the ScholarLens test sets
+and find that scholarly LLM-generated texts can be
+effectively identified.
+Experimental Setup
+(i) Training Setup: We
+adopt Longformer (Beltagy et al., 2020) as the
+base model for training our ScholarDetect detection
+models, as it has shown competitive performance
+among pretrained language models (Li et al., 2024;
+Cheng et al., 2024). Specifically, we train for five
+epochs in each configuration of the training set,
+using a learning rate of 2-e5. (ii) Metric: For eval-
+uation metrics, we report the F1 score for each
+class (human-written and LLM-generated), as well
+as the overall weighted F1 score to account for
+class imbalance. Each experimental setup (training
+data type and LLM-generated text source) is eval-
+uated through three random trials, and we report
+the average performance along with the standard
+deviation. (iii) Baselines: We compare the perfor-
+mance of three advanced detection model baselines:
+MAGE (Li et al., 2024), RAIDetect (Dugan et al.,
+2024), and HNDCDetect (Cheng et al., 2024). (iv)
+Test Sets: All models are evaluated on test sets
+from three data types: abstract, meta-review, and
+review, with the first two being shorter texts and
+reviews being long-form. The LLM-generated data
+includes tasks such as refinement (for abstracts) and
+summarization (for meta-reviews and reviews).
+Experimental Results
+The detection perfor-
+mance comparison results are presented in Table 1.
+Our trained ScholarDetect models consistently out-
+perform the existing advanced baseline models, un-
+derscoring the importance of developing detection
+systems specifically tailored for the scholarly do-
+main. The training approach that combines mixed
+LLM sources and hybrid data types yields the
+best overall performance, demonstrating robust-
+ness across various LLM sources and data types.
+Interestingly, the model trained on meta-reviews
+performs best when tests on reviews, likely be-
+cause both data types share a similar comment-
+based focus and offer a “synthesized” perspective
+in LLM-generated text. This is further supported
+by ScholarDetectAbs, which struggles to identify
+LLM-generated reviews when trained only on ab-
+stracts (F1: LLM < Human). Additionally, when
+trained on a single LLM source, the GPT-4o-based
+detectors show the strongest generalization, espe-
+cially on the abstract test set. Most ScholarDetect
+models outperform human-written text in detecting
+LLM-generated content on the meta-review and re-
+view test sets, but the reverse is true for the review
+test set.
+
+(a) Abstract
+(b) Meta-Review
+(c) Review
+Figure 4: Temporal trends based on four robust general
+linguistic metrics.
+(a) Meta-Review
+(b) Review
+Figure 5: Temporal trends based on specific semantic
+metrics.
+5.3
+LLM Penetration: Temporal Analysis
+We apply the proposed rule-based metrics and
+model-based detectors to assess and detect LLM
+penetration in recent scholarly texts (up to 2024),
+including abstracts, meta-reviews, and reviews.
+Trend in Rule-based Evaluation
+For the general
+linguistic metrics, we use only the four most robust
+(AWL, LWR, SWR, FRE), which show consistent
+preferences across the three data types, and we
+adopt all four specific semantic metrics. Figure 4
+illustrates the trend in general linguistic features
+across three data types in ICLR, while Figure 5
+shows the trend in specific semantic features for
+meta-reviews and reviews. Almost all the met-
+rics show consistent LLM preference trends across
+their associated data types, with an overall year-
+on-year increase, supporting the rising trend of
+LLM penetration in scholarly writing. Interestingly,
+among these metrics used to evaluate reviews, four
+show anomalous trend changes in 2023, highlight-
+ing the difficulties of using rule-based metrics to
+track LLM penetration in the complex and varied
+nature of review data.
+Figure 6: Abstarct: Trend based on detection model.
+Figure 7: Abstarct: Trend based on detection model.
+Trend in Model-based Detection
+Based on the
+performance shown in Table 1 and the avail-
+able evaluation data, we select ScholarDetectHybrid,
+which performs best on abstracts, to detect in-
+stances of LLM-assisted writing in seven confer-
+ence abstracts. Additionally, we utilize three vari-
+ants of ScholarDetect (Abs, Meta, Hybrid) to an-
+alyze all ICLR meta-reviews and reviews. The
+detected LLM penetration rates (i.e., the propor-
+tion of text predicted to be LLM-generated) are
+presented in Figures 6 and 7. In the abstract eval-
+uation data, the LLM penetration rate across all
+involved conferences increases starting in 2023
+and continues to rise in 2024, likely driven by
+ChatGPT’s initial release in November 2022 and
+its subsequent updates.
+In contrast, a notice-
+able increase appears in 2024 for comment-based
+data, particularly in reviews, although the overall
+rate remains lower than in abstracts. This may
+be attributed to the 2023 update of ChatGPT5,
+which enabled PDF uploads and content analy-
+sis, as well as the higher standards required for
+LLM-generated content in reviews, which limit the
+penetration rate. Specifically, ScholarDetectHybrid
+predicts the highest LLM penetration rate for
+two comment-based data types in 2024.
+For
+shorter meta-review texts, ScholarDetectAbs’s rate
+is close to ScholarDetectHybrid but higher than
+5ChatGPT — Release Notes
+
+POS
+Top 10 GPT-4o Preferred Words in Meta-Reviews
+NOUN
+refinement,
+advancements,
+methodologies,
+articulation,
+highlights,
+reliance,
+enhancement,
+underpinnings,
+enhancements, transparency
+VERB
+enhance, enhancing, deemed, showcasing, express, offering,
+enhances, recognizing, commend, praised
+ADJ
+innovative,
+collective,
+enhanced,
+established,
+notable,
+outdated, varied, undefined, comparative, noteworthy
+ADV
+collectively,
+inadequately,
+reportedly,
+comprehensively,
+robustly, occasionally, predominantly, notably, innovatively,
+effectively
+POS
+Top 10 GPT-4o Preferred Words in Abstracts
+NOUN
+abstract,
+advancements,
+realm,
+alterations,
+aligns,
+methodologies, clarity, adaptability, surpasses, examination
+VERB
+enhancing, necessitates, necessitating, featuring, revised,
+influenced, encompassing, enhances, showcasing, surpasses
+ADJ
+innovative,
+exceptional,
+pertinent,
+intricate,
+pivotal,
+necessitate, distinctive, enhanced, akin, potent
+ADV
+inadequately, predominantly, meticulously, strategically,
+notably, abstract, swiftly, additionally, adeptly, thereby
+Table 2: Top-10 LLM-preferred words in GPT-4o-
+generated vs.
+human-written meta-reviews and ab-
+stracts. Bold denotes long words, and underlined de-
+notes complex-syllabled words.
+ScholarDetectmeta. We hypothesize this is due to
+the greater role of LLMs in refining these texts.
+Based on insights from Cheng et al. (2024), we
+propose a fine-grained LLM-generated text detec-
+tion approach using three-class role recognition
+(human-written, LLM-synthesized, LLM-refined)
+for meta-reviews. Our results show that the LLM-
+refined role plays a more dominant part in LLM
+penetration.6
+5.4
+Case Study
+To investigate the specific differences between
+LLM-generated and human-written text, we focus
+on GPT-4o, conducting case studies at both the
+word and pattern levels. (i) At the word level, we
+design a Two-Sample t-test based on word pro-
+portions (Cressie and Whitford, 1986; WELCH,
+1947)7 to identify the LLM-preferred words. Ta-
+ble 2 shows the top 10 preferred words in four
+key part-of-speech (POS) categories from GPT-4o-
+generated abstracts and meta-reviews, compared
+to those in human-written versions. We find that
+LLMs tend to generate long words (≥10 letters)
+and complex-syllabled words (≥3 syllables) (Gun-
+6Experimental details of the three-class LLM role recogni-
+tion are in Appendix D.
+7https://www.statology.org/two-sample-t-test/.
+Method details of case studies and additional results are in the
+Appendix E.
+ning, 1952). This further supports the reliability
+of the four general linguistic metrics for assess-
+ing LLM penetration. Moreover, GPT-4o shows a
+strong preference for the word ‘enhance’ in schol-
+arly writing and peer reviews, with its variants
+appearing in the top 10 list. (ii) At the pattern
+level, manual inspection of paired data samples
+from comment-based data8, followed by automated
+evaluation of the full dataset, reveals that human-
+written (meta-)reviews exhibit: personability, fre-
+quently using the first person to express opinions;
+interactivity, often incorporating questions; and at-
+tention to detail, citing relevant literature to support
+arguments.
+6
+Conclusion and Suggestions
+Our work, including the creation of ScholarLens
+and the proposal of LLMetrica, provides meth-
+ods for assessing LLM penetration in scholarly
+writing and peer review. By incorporating diverse
+data types and a range of evaluation techniques,
+we consistently observe the growing influence of
+LLMs across various scholarly processes, raising
+concerns about the credibility of academic research.
+As LLMs become more integrated into scholarly
+workflows, it is crucial to establish strategies that
+ensure their responsible and ethical use, addressing
+both content creation and the peer review process.
+Despite existing guidelines restricting LLM-
+generated content in scholarly writing and peer
+review,9 challenges still remain. To address these,
+we propose the following based on our work and
+findings: (i) Increase transparency in LLM us-
+age within scholarly processes by incorporating
+LLM assistance into review checklists, encourag-
+ing explicit acknowledgment of LLM support in
+paper acknowledgments, and reporting LLM us-
+age patterns across diverse demographic groups;
+(ii) Adopt policies to prevent irresponsible LLM
+reviewers by establishing feedback channels for
+authors on LLM-generated reviews and developing
+fine-grained LLM detection models (Abassy et al.,
+2024; Cheng et al., 2024; Artemova et al., 2025) to
+distinguish acceptable LLM roles (e.g., language
+improvement vs. content creation); (iii) Promote
+data-driven research in scholarly processes by
+supporting the collection of review data for further
+robust analysis (Dycke et al., 2022).10
+8Conducted by one of the authors on 100 paired meta-
+reviews and 20 paired reviews.
+9Area Chair & Reviewer & Author guidelines.
+10https://arr-data.aclweb.org/
+
+Limitations
+While this study provides valuable insights into
+the penetration of LLMs in scholarly writing and
+peer review, it may not fully represent the com-
+plexities of the real-world scenario. On one hand,
+the analysis focuses on peer review data from the
+ICLR conference, where the process is fully trans-
+parent and the quality of reviews is generally well-
+maintained. However, in many journals and confer-
+ences where peer review remains closed, the pene-
+tration of LLMs could be even more pronounced.
+On the other hand, the data simulation may not fully
+capture the intricate dynamics of LLM-human col-
+laboration in real-world settings, making it difficult
+to distinguish between acceptable and unacceptable
+levels of LLM involvement, and potentially leading
+to a reduced ability of the model to detect LLM-
+generated text, which in turn lowers the assessment
+of LLM penetration. Therefore, the penetration
+of large language models in scholarly writing and
+peer review may be more significant in real-world
+scenarios than what is presented in this study.
+References
+Mervat Abassy, Kareem Elozeiri, Alexander Aziz,
+Minh Ngoc Ta, Raj Vardhan Tomar, Bimarsha Ad-
+hikari, Saad El Dine Ahmed, Yuxia Wang, Osama
+Mohammed Afzal, Zhuohan Xie, Jonibek Mansurov,
+Ekaterina Artemova, Vladislav Mikhailov, Rui Xing,
+Jiahui Geng, Hasan Iqbal, Zain Muhammad Mujahid,
+Tarek Mahmoud, Akim Tsvigun, Alham Fikri Aji,
+Artem Shelmanov, Nizar Habash, Iryna Gurevych,
+and Preslav Nakov. 2024. LLM-DetectAIve: a tool
+for fine-grained machine-generated text detection.
+In Proceedings of the 2024 Conference on Empir-
+ical Methods in Natural Language Processing: Sys-
+tem Demonstrations, pages 336–343, Miami, Florida,
+USA. Association for Computational Linguistics.
+Josh Achiam, Steven Adler, Sandhini Agarwal, Lama
+Ahmad, Ilge Akkaya, Florencia Leoni Aleman,
+Diogo Almeida, Janko Altenschmidt, Sam Altman,
+Shyamal Anadkat, et al. 2023. Gpt-4 technical report.
+arXiv preprint arXiv:2303.08774.
+Signe Altmäe,
+Alberto Sola-Leyva,
+and Andres
+Salumets. 2023. Artificial intelligence in scientific
+writing: a friend or a foe? Reproductive BioMedicine
+Online, 47(1):3–9.
+Anthropic. 2024. The claude 3 model family: Opus,
+sonnet, haiku.
+Wissam Antoun, Benoît Sagot, and Djamé Seddah.
+2024. From text to source: Results in detecting large
+language model-generated content. In Proceedings
+of the 2024 Joint International Conference on Compu-
+tational Linguistics, Language Resources and Eval-
+uation (LREC-COLING 2024), pages 7531–7543,
+Torino, Italia. ELRA and ICCL.
+Ekaterina Artemova, Jason Lucas, Saranya Venkatra-
+man, Jooyoung Lee, Sergei Tilga, Adaku Uchendu,
+and Vladislav Mikhailov. 2025.
+Beemo: Bench-
+mark of expert-edited machine-generated outputs.
+Preprint, arXiv:2411.04032.
+Jinheon Baek, Sujay Kumar Jauhar, Silviu Cucerzan,
+and Sung Ju Hwang. 2024.
+Researchagent: Iter-
+ative research idea generation over scientific liter-
+ature with large language models. arXiv preprint
+arXiv:2404.07738.
+Iz Beltagy, Matthew E. Peters, and Arman Cohan.
+2020. Longformer: The long-document transformer.
+arXiv:2004.05150.
+Abeba Birhane, Atoosa Kasirzadeh, David Leslie, and
+Sandra Wachter. 2023. Science in the age of large
+language models. Nature Reviews Physics, 5(5):277–
+280.
+Creston Brooks, Samuel Eggert, and Denis Peskoff.
+2024. The rise of AI-generated content in Wikipedia.
+In Proceedings of the First Workshop on Advancing
+Natural Language Processing for Wikipedia, pages
+67–79, Miami, Florida, USA. Association for Com-
+putational Linguistics.
+Zihao Cheng, Li Zhou, Feng Jiang, Benyou Wang, and
+Haizhou Li. 2024. Beyond binary: Towards fine-
+grained llm-generated text detection via role recogni-
+tion and involvement measurement. arXiv preprint
+arXiv:2410.14259.
+Yung-Sung Chuang, Linlu Qiu, Cheng-Yu Hsieh, Ran-
+jay Krishna, Yoon Kim, and James R. Glass. 2024.
+Lookback lens: Detecting and mitigating contextual
+hallucinations in large language models using only
+attention maps. In Proceedings of the 2024 Con-
+ference on Empirical Methods in Natural Language
+Processing, pages 1419–1436, Miami, Florida, USA.
+Association for Computational Linguistics.
+NAC Cressie and HJ Whitford. 1986. How to use the
+two sample t-test. Biometrical Journal, 28(2):131–
+148.
+Mike D’Arcy, Alexis Ross, Erin Bransom, Bailey Kuehl,
+Jonathan Bragg, Tom Hope, and Doug Downey. 2024.
+ARIES: A corpus of scientific paper edits made in
+response to peer reviews. In Proceedings of the 62nd
+Annual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers), pages 6985–
+7001, Bangkok, Thailand. Association for Computa-
+tional Linguistics.
+Jiangshu Du, Yibo Wang, Wenting Zhao, Zhongfen
+Deng, Shuaiqi Liu, Renze Lou, Henry Peng Zou,
+Pranav Narayanan Venkit, Nan Zhang, Mukund Sri-
+nath, Haoran Ranran Zhang, Vipul Gupta, Yinghui
+Li, Tao Li, Fei Wang, Qin Liu, Tianlin Liu, Pengzhi
+
+Gao, Congying Xia, Chen Xing, Cheng Jiayang,
+Zhaowei Wang, Ying Su, Raj Sanjay Shah, Ruohao
+Guo, Jing Gu, Haoran Li, Kangda Wei, Zihao Wang,
+Lu Cheng, Surangika Ranathunga, Meng Fang, Jie
+Fu, Fei Liu, Ruihong Huang, Eduardo Blanco, Yixin
+Cao, Rui Zhang, Philip S. Yu, and Wenpeng Yin.
+2024. LLMs assist NLP researchers: Critique paper
+(meta-)reviewing. In Proceedings of the 2024 Con-
+ference on Empirical Methods in Natural Language
+Processing, pages 5081–5099, Miami, Florida, USA.
+Association for Computational Linguistics.
+Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey,
+Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman,
+Akhil Mathur, Alan Schelten, Amy Yang, Angela
+Fan, et al. 2024. The llama 3 herd of models. arXiv
+preprint arXiv:2407.21783.
+Liam Dugan, Alyssa Hwang, Filip Trhlík, Andrew
+Zhu, Josh Magnus Ludan, Hainiu Xu, Daphne Ip-
+polito, and Chris Callison-Burch. 2024. RAID: A
+shared benchmark for robust evaluation of machine-
+generated text detectors. In Proceedings of the 62nd
+Annual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers), pages 12463–
+12492, Bangkok, Thailand. Association for Compu-
+tational Linguistics.
+Nils Dycke, Ilia Kuznetsov, and Iryna Gurevych. 2022.
+Yes-yes-yes:
+Proactive data collection for ACL
+rolling review and beyond. In Findings of the Associ-
+ation for Computational Linguistics: EMNLP 2022,
+pages 300–318, Abu Dhabi, United Arab Emirates.
+Association for Computational Linguistics.
+Nils Dycke, Ilia Kuznetsov, and Iryna Gurevych. 2023.
+NLPeer: A unified resource for the computational
+study of peer review. In Proceedings of the 61st An-
+nual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers), pages 5049–
+5073, Toronto, Canada. Association for Computa-
+tional Linguistics.
+Steffen Eger, Yong Cao, Jennifer D’Souza, Andreas
+Geiger, Christian Greisinger, Stephanie Gross, Yu-
+fang Hou, Brigitte Krenn, Anne Lauscher, Yizhi Li,
+Chenghua Lin, Nafise Sadat Moosavi, Wei Zhao, and
+Tristan Miller. 2025. Transforming science with large
+language models: A survey on ai-assisted scientific
+discovery, experimentation, content generation, and
+evaluation. Preprint, arXiv:2502.05151.
+James N Farr, James J Jenkins, and Donald G Paterson.
+1951. Simplification of flesch reading ease formula.
+Journal of applied psychology, 35(5):333.
+Zhaolin Gao, Kianté Brantley, and Thorsten Joachims.
+2024.
+Reviewer2:
+Optimizing review genera-
+tion through prompt generation.
+arXiv preprint
+arXiv:2402.10886.
+Mingmeng Geng, Caixi Chen, Yanru Wu, Dongping
+Chen, Yao Wan, and Pan Zhou. 2024. The impact of
+large language models in academia: from writing to
+speaking. arXiv preprint arXiv:2409.13686.
+Robert Gunning. 1952. The technique of clear writing.
+Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song,
+Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma,
+Peiyi Wang, Xiao Bi, et al. 2025. Deepseek-r1: In-
+centivizing reasoning capability in llms via reinforce-
+ment learning. arXiv preprint arXiv:2501.12948.
+Yanzhu Guo, Guokan Shang, Virgile Rennard, Michalis
+Vazirgiannis, and Chloé Clavel. 2023. Automatic
+analysis of substantiation in scientific peer reviews.
+In Findings of the Association for Computational
+Linguistics: EMNLP 2023, pages 10198–10216, Sin-
+gapore. Association for Computational Linguistics.
+Iryna Gurevych, Anna Rogers, Nihar B. Shah, and
+Jingyan Wang. 2024. Reviewer No. 2: Old and New
+Problems in Peer Review (Dagstuhl Seminar 24052).
+Dagstuhl Reports, 14(1):130–161.
+Eftekhar Hossain, Sanjeev Kumar Sinha, Naman
+Bansal, Alex Knipper, Souvika Sarkar, John Salvador,
+Yash Mahajan, Sri Guttikonda, Mousumi Akter,
+Md. Mahadi Hassan, Matthew Freestone, Matthew
+C. Williams Jr., Dongji Feng, and Santu Karmaker.
+2025. Llms as meta-reviewers’ assistants: A case
+study. Preprint, arXiv:2402.15589.
+Mohammad Hosseini and Serge PJM Horbach. 2023.
+Fighting reviewer fatigue or amplifying bias? consid-
+erations and recommendations for use of chatgpt and
+other large language models in scholarly peer review.
+Research integrity and peer review, 8(1):4.
+Jürgen Huber, Sabiou Inoua, Rudolf Kerschbamer,
+Christian König-Kersting, Stefan Palan, and Ver-
+non L Smith. 2022. Nobel and novice: Author promi-
+nence affects peer review. Proceedings of the Na-
+tional Academy of Sciences, 119(41):e2205779119.
+Yiqiao Jin, Qinlin Zhao, Yiyang Wang, Hao Chen, Kai-
+jie Zhu, Yijia Xiao, and Jindong Wang. 2024. Agen-
+tReview: Exploring peer review dynamics with LLM
+agents. In Proceedings of the 2024 Conference on
+Empirical Methods in Natural Language Processing,
+pages 1208–1226, Miami, Florida, USA. Association
+for Computational Linguistics.
+Antonia Karamolegkou, Jiaang Li, Li Zhou, and An-
+ders Søgaard. 2023. Copyright violations and large
+language models. In Proceedings of the 2023 Con-
+ference on Empirical Methods in Natural Language
+Processing, pages 7403–7412, Singapore. Associa-
+tion for Computational Linguistics.
+Neha Nayak Kennard, Tim O’Gorman, Rajarshi Das,
+Akshay Sharma, Chhandak Bagchi, Matthew Clin-
+ton, Pranay Kumar Yelugam, Hamed Zamani, and
+Andrew McCallum. 2022. DISAPERE: A dataset
+for discourse structure in peer review discussions.
+In Proceedings of the 2022 Conference of the North
+American Chapter of the Association for Computa-
+tional Linguistics: Human Language Technologies,
+pages 1234–1249, Seattle, United States. Association
+for Computational Linguistics.
+
+Mohamed Khalifa and Mona Albadawy. 2024. Using ar-
+tificial intelligence in academic writing and research:
+An essential productivity tool. Computer Methods
+and Programs in Biomedicine Update, page 100145.
+Sandeep Kumar, Tirthankar Ghosal, and Asif Ekbal.
+2023. When reviewers lock horns: Finding disagree-
+ments in scientific peer reviews. In Proceedings of
+the 2023 Conference on Empirical Methods in Natu-
+ral Language Processing, pages 16693–16704, Sin-
+gapore. Association for Computational Linguistics.
+Sandeep Kumar,
+Mohit Sahu,
+Vardhan Gacche,
+Tirthankar Ghosal, and Asif Ekbal. 2024. ‘quis cus-
+todiet ipsos custodes?’ who will watch the watch-
+men? on detecting AI-generated peer-reviews. In
+Proceedings of the 2024 Conference on Empirical
+Methods in Natural Language Processing, pages
+22663–22679, Miami, Florida, USA. Association
+for Computational Linguistics.
+Ilia Kuznetsov, Osama Mohammed Afzal, Koen Der-
+cksen, Nils Dycke, Alexander Goldberg, Tom Hope,
+Dirk Hovy, Jonathan K. Kummerfeld, Anne Lauscher,
+Kevin Leyton-Brown, Sheng Lu, Mausam, Margot
+Mieskes, Aurélie Névéol, Danish Pruthi, Lizhen
+Qu, Roy Schwartz, Noah A. Smith, Thamar Solorio,
+Jingyan Wang, Xiaodan Zhu, Anna Rogers, Nihar B.
+Shah, and Iryna Gurevych. 2024. What can natural
+language processing do for peer review? Preprint,
+arXiv:2405.06563.
+Ilia Kuznetsov, Jan Buchmann, Max Eichler, and Iryna
+Gurevych. 2022. Revise and resubmit: An intertex-
+tual model of text-based collaboration in peer review.
+Computational Linguistics, 48(4):949–986.
+Giuseppe Russo Latona, Manoel Horta Ribeiro, Tim R
+Davidson, Veniamin Veselovsky, and Robert West.
+2024. The ai review lottery: Widespread ai-assisted
+peer reviews boost paper scores and acceptance rates.
+arXiv preprint arXiv:2405.02150.
+Carole J Lee. 2015. Commensuration bias in peer re-
+view. Philosophy of Science, 82(5):1272–1283.
+Yafu Li, Qintong Li, Leyang Cui, Wei Bi, Zhilin Wang,
+Longyue Wang, Linyi Yang, Shuming Shi, and Yue
+Zhang. 2024. MAGE: Machine-generated text de-
+tection in the wild. In Proceedings of the 62nd An-
+nual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers), pages 36–53,
+Bangkok, Thailand. Association for Computational
+Linguistics.
+Jianhua Lin. 1991. Divergence measures based on the
+shannon entropy. IEEE Transactions on Information
+theory, 37(1):145–151.
+Brady D Lund and KT Naheem. 2024. Can chatgpt
+be an author? a study of artificial intelligence au-
+thorship policies in top academic journals. Learned
+Publishing, 37(1):13–21.
+Emaad Manzoor and Nihar B Shah. 2021. Uncovering
+latent biases in text: Method and application to peer
+review. In Proceedings of the AAAI Conference on
+Artificial Intelligence, volume 35, pages 4767–4775.
+Joakim Nivre, Daniel Zeman, Filip Ginter, and Francis
+Tyers. 2017. Universal Dependencies. In Proceed-
+ings of the 15th Conference of the European Chap-
+ter of the Association for Computational Linguistics:
+Tutorial Abstracts, Valencia, Spain. Association for
+Computational Linguistics.
+Tohida Rehman, Debarshi Kumar Sanyal, and Sami-
+ran Chattopadhyay. 2025. Can pre-trained language
+models generate titles for research papers?
+In In-
+ternational Conference on Asian Digital Libraries,
+pages 154–170. Springer.
+Nils Reimers and Iryna Gurevych. 2019.
+Sentence-
+BERT: Sentence embeddings using Siamese BERT-
+networks. In Proceedings of the 2019 Conference on
+Empirical Methods in Natural Language Processing
+and the 9th International Joint Conference on Natu-
+ral Language Processing (EMNLP-IJCNLP), pages
+3982–3992, Hong Kong, China. Association for Com-
+putational Linguistics.
+Anna Rogers and Isabelle Augenstein. 2020.
+What
+can we do to improve peer review in NLP? In Find-
+ings of the Association for Computational Linguistics:
+EMNLP 2020, pages 1256–1262, Online. Association
+for Computational Linguistics.
+Chantal Shaib, Yanai Elazar, Junyi Jessy Li, and By-
+ron C Wallace. 2024. Detection and measurement
+of syntactic templates in generated text. In Proceed-
+ings of the 2024 Conference on Empirical Methods
+in Natural Language Processing, pages 6416–6431,
+Miami, Florida, USA. Association for Computational
+Linguistics.
+Xiaoying Song, Sujana Mamidisetty, Eduardo Blanco,
+and Lingzi Hong. 2025. Assessing the human like-
+ness of AI-generated counterspeech. In Proceed-
+ings of the 31st International Conference on Compu-
+tational Linguistics, pages 3547–3559, Abu Dhabi,
+UAE. Association for Computational Linguistics.
+Moritz Staudinger, Wojciech Kusa, Florina Piroi, and
+Allan Hanbury. 2024.
+An analysis of tasks and
+datasets in peer reviewing. In Proceedings of the
+Fourth Workshop on Scholarly Document Process-
+ing (SDP 2024), pages 257–268, Bangkok, Thailand.
+Association for Computational Linguistics.
+Ivan Stelmakh, Nihar B Shah, Aarti Singh, and Hal
+Daumé III. 2021. Prior and prejudice: The novice
+reviewers’ bias against resubmissions in conference
+peer review. Proceedings of the ACM on Human-
+Computer Interaction, 5(CSCW1):1–17.
+Lu Sun, Stone Tao, Junjie Hu, and Steven P Dow. 2024.
+Metawriter: Exploring the potential and perils of ai
+writing support in scientific peer review. Proceed-
+ings of the ACM on Human-Computer Interaction,
+8(CSCW1):1–32.
+
+Xuemei Tang, Xufeng Duan, and Zhenguang G Cai.
+2024. Are llms good literature review writers? eval-
+uating the literature review writing ability of large
+language models. arXiv preprint arXiv:2412.13612.
+Gemini Team, Petko Georgiev, Ving Ian Lei, Ryan
+Burnell, Libin Bai, Anmol Gulati, Garrett Tanzer,
+Damien Vincent, Zhufeng Pan, Shibo Wang, et al.
+2024. Gemini 1.5: Unlocking multimodal under-
+standing across millions of tokens of context. arXiv
+preprint arXiv:2403.05530.
+Andrew Tomkins, Min Zhang, and William D Heavlin.
+2017. Reviewer bias in single-versus double-blind
+peer review. Proceedings of the National Academy
+of Sciences, 114(48):12708–12713.
+Qingyun Wang, Zhihao Zhou, Lifu Huang, Spencer
+Whitehead, Boliang Zhang, Heng Ji, and Kevin
+Knight. 2018. Paper abstract writing through edit-
+ing mechanism. In Proceedings of the 56th Annual
+Meeting of the Association for Computational Lin-
+guistics (Volume 2: Short Papers), pages 260–265,
+Melbourne, Australia. Association for Computational
+Linguistics.
+Yuxia Wang, Jonibek Mansurov, Petar Ivanov, Jinyan
+Su, Artem Shelmanov, Akim Tsvigun, Chenxi White-
+house, Osama Mohammed Afzal, Tarek Mahmoud,
+Toru Sasaki, Thomas Arnold, Alham Fikri Aji,
+Nizar Habash, Iryna Gurevych, and Preslav Nakov.
+2024. M4: Multi-generator, multi-domain, and multi-
+lingual black-box machine-generated text detection.
+In Proceedings of the 18th Conference of the Euro-
+pean Chapter of the Association for Computational
+Linguistics (Volume 1: Long Papers), pages 1369–
+1407, St. Julian’s, Malta. Association for Computa-
+tional Linguistics.
+Ron Weber. 2024. The other reviewer: Roboreviewer.
+Journal of the Association for Information Systems,
+25(1):85–97.
+B. L. WELCH. 1947. The generalization of ‘student’s’
+problem when several different population varlances
+are involved. Biometrika, 34(1-2):28–35.
+Junchao Wu, Shu Yang, Runzhe Zhan, Yulin Yuan,
+Lidia Sam Chao, and Derek Fai Wong. 2025. A
+survey on llm-generated text detection: Necessity,
+methods, and future directions. Computational Lin-
+guistics, pages 1–65.
+Yang Xu, Yu Wang, Hao An, Zhichen Liu, and
+Yongyuan Li. 2024. Detecting subtle differences
+between human and model languages using spec-
+trum of relative likelihood. In Proceedings of the
+2024 Conference on Empirical Methods in Natural
+Language Processing, pages 10108–10121, Miami,
+Florida, USA. Association for Computational Lin-
+guistics.
+Joonho Yang, Seunghyun Yoon, ByeongJeong Kim, and
+Hwanhee Lee. 2024. FIZZ: Factual inconsistency
+detection by zoom-in summary and zoom-out doc-
+ument. In Proceedings of the 2024 Conference on
+Empirical Methods in Natural Language Processing,
+pages 30–45, Miami, Florida, USA. Association for
+Computational Linguistics.
+Sungduk Yu, Man Luo, Avinash Madasu, Vasudev Lal,
+and Phillip Howard. 2024. Is your paper being re-
+viewed by an llm? investigating ai text detectability
+in peer review. arXiv preprint arXiv:2410.03019.
+Shenglai Zeng, Yaxin Li, Jie Ren, Yiding Liu, Han
+Xu, Pengfei He, Yue Xing, Shuaiqiang Wang, Jiliang
+Tang, and Dawei Yin. 2024. Exploring memoriza-
+tion in fine-tuned language models. In Proceedings
+of the 62nd Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers),
+pages 3917–3948, Bangkok, Thailand. Association
+for Computational Linguistics.
+Ruiyang Zhou, Lu Chen, and Kai Yu. 2024. Is LLM
+a reliable reviewer? a comprehensive evaluation of
+LLM on automatic paper reviewing tasks. In Pro-
+ceedings of the 2024 Joint International Conference
+on Computational Linguistics, Language Resources
+and Evaluation (LREC-COLING 2024), pages 9340–
+9351, Torino, Italia. ELRA and ICCL.
+Tongyao Zhu, Qian Liu, Liang Pang, Zhengbao Jiang,
+Min-Yen Kan, and Min Lin. 2024. Beyond memo-
+rization: The challenge of random memory access in
+language models. In Proceedings of the 62nd Annual
+Meeting of the Association for Computational Lin-
+guistics (Volume 1: Long Papers), pages 3373–3388,
+Bangkok, Thailand. Association for Computational
+Linguistics.
+James Zou. 2024.
+Chatgpt is transforming peer re-
+view—how can we use it responsibly?
+Nature,
+635(8037):10–10.
+Dennis Zyska, Nils Dycke, Jan Buchmann, Ilia
+Kuznetsov, and Iryna Gurevych. 2023. CARE: Col-
+laborative AI-assisted reading environment. In Pro-
+ceedings of the 61st Annual Meeting of the Asso-
+ciation for Computational Linguistics (Volume 3:
+System Demonstrations), pages 291–303, Toronto,
+Canada. Association for Computational Linguistics.
+A
+Prompts for Data Construction
+A.1
+Prompts for abstract
+To ensure diversity in the refinement process, we
+design five different prompts for polishing the ab-
+stract, as shown in Table 3. Each human-written
+abstract is randomly assigned one prompt to gener-
+ate the refined content.
+A.2
+Prompts for meta-review
+To ensure that LLM-generated meta-reviews
+closely mirror the writing style of human-written
+meta-reviews and maintain authenticity, we analyze
+the characteristics of human-written meta-reviews.
+
+Id
+Prompt
+1
+Can you help me revise the abstract? Please response directly with the revised abstract: {abstract}
+2
+Please revise the abstract, and response directly with the revised abstract: {abstract}
+3
+Can you check if the flow of the abstract makes sense? Please response directly with the revised abstract: {abstract}
+4
+Please revise the abstract to make it more logical, response it directly with the revised abstract: {abstract}
+5
+Please revise the abstract to make it more formal and academic, response it directly with the revised abstract: {abstract}
+Table 3: Five distinct prompts used to refine human-written abstracts.
+Based on this analysis, we provide three genera-
+tion templates as guidelines for constructing LLM-
+generated meta-reviews, as shown in Table 4. The
+basic prompt does not include any formalized struc-
+tures, while the other two prompts define more dis-
+tinct meta-review formats. Specifically, we conduct
+a detailed statistical analysis of the frequencies of
+these two paradigms and selected the correspond-
+ing prompts based on these frequencies. The prob-
+abilities we use are shown in Table 5.
+B
+Dataset Details
+Table 6 shows the statistics of ScholarLens.
+The LLM versions used for data construction
+are:
+GPT-4o (gpt-4o-2024-08-06), Gemini-
+1.5 (gemini-1.5-pro-002), and Claude-3-Opus
+(claude-3-opus-20240229).
+C
+General Linguistic Metrics
+Implementation
+For word-level metrics, NLTK tokenization is used,
+and only alphabetic words are considered. For
+sentence-level metrics, spaCy is used to process the
+text and extract features such as sentence length
+and the dependency relation label of each word.
+Additionally, Sentiment Polarity Score (PS) and
+Sentiment Subjectivity Score (SS) are evaluated
+using TextBlob, while FRE is calculated using
+Textstat.
+D
+Fine-Grained Detection Model
+Using
+the
+existing
+meta-review
+data
+from
+ScholarLens (including both human-written and
+LLM-synthesized versions), we apply the LLM-
+refined abstract construction method to generate
+an LLM-refined version for each human-written
+meta-review.
+We utilize GPT-4o as the single
+LLM source and train a fine-grained three-class
+detector on the meta-reviews using the same data
+split. This trained detection model is then used
+to predict the 2024 ICLR meta-reviews, with ap-
+proximately 35.32% predicted as LLM-refined and
+1.39% as LLM-synthesized, which show that the
+LLM-refined role plays a more dominant part in
+LLM penetration.
+E
+Case Study Details
+E.1
+Word-Level Algorithm and Experiments
+E.1.1
+Hypothesis Testing Algorithm
+Building on the Two-Sample t-test, we propose a
+word-proportion-based method to identify word-
+level LLM preferences. Specifically, given a set of
+pairs of human-written and LLM-generated texts
+D =
+ xh
+i , xl
+i
+	
+, where where xh
+i represents the
+human-written case and xl
+i represents the corre-
+sponding LLM-generated version, our goal is to
+determine whether a word w is preferentially gen-
+erated by the LLM.
+(i) Word Proportion
+We define the proportion of
+word w appearing in the human-written set
+
+xh
+i
+	
+and the LLM-generated set
+
+xl
+i
+	
+as ˆph (w) and
+ˆpl (w), respectively, representing the fraction of
+texts in which w occurs:
+ˆph (w) = cnth (w) + ϵ
+|D|
+(6)
+ˆpl(w) = cnth (w) + ϵ
+|D|
+(7)
+where cnt (w) = P
+i I (w ∈xi) counts the number
+of texts in the set xi where the word x appears, with
+I(w ∈xi) being an indicator function that returns
+1 if w appears in xi, and ϵ = 1 as a smoothing
+constant to account for words that do not appear in
+a given text.
+(ii) Hypothesis Setting
+Then, we define the fol-
+lowing two hypotheses:
+• Null hypothesis (H0): ˆph (w) ⩾ˆpl (w), sug-
+gesting that LLMs do not preferentially gen-
+erate the word w.
+• Alternative hypothesis (H1):
+ˆph (w)
+<
+ˆpl (w), suggesting that LLMs preferentially
+generate the word w.
+
+Basic Prompt Guideline
+You are an AI assistant tasked with generating meta-reviews from multiple reviewers’ feedback.
+Please write a meta review of the given reviewers’ response around {n} words.
+Do not include any section titles or headings. Do not reference individual reviewers by name or number. Instead, focus on
+synthesizing collective feedback and overall opinion.
+### Abstract: {abstract}
+### Reviewers’ feedback:{review_text}
+Formatted Prompt Guideline 1
+You are an AI assistant tasked with generating meta-reviews from multiple reviewers’ feedback.
+Please write a meta review of the given reviewers’ response around {n} words.
+Do not include any section titles or headings. Do not reference individual reviewers by name or number. Instead, focus on
+synthesizing collective feedback and overall opinion.
+Please include the given format in your meta review:
+Give a concise summary here.
+Strength: [List the strengths of the paper in points based on reviews.]
+Weakness: [List the weaknesses of the paper in points based on reviews.]
+### Abstract: {abstract}
+### Reviewers’ feedback:{review_text}
+Formatted Prompt Guideline 2
+You are an AI assistant tasked with generating meta-reviews from multiple reviewers’ feedback.
+Please write a meta review of the given reviewers’ response around {n} words.
+Do not include any section titles or headings. Do not reference individual reviewers by name or number. Instead, focus on
+synthesizing collective feedback and overall opinion.
+Please include the given format in your meta review:
+Give a concise summary here.
+Pros: [List the strengths of the paper in points based on reviews.]
+Cons: [List the weaknesses of the paper in points based on reviews.]
+### Abstract: {abstract} ### Reviewers’ feedback:{review_text}
+Table 4: Three prompts as guidelines for constructing LLM-generated meta-reviews. Here, n represents the
+approximate word length for the generated content.
+(iii) Hypothesis Testing
+Considering that the
+variance of word proportion may differ between the
+two text groups, we adopt Welch’s t-test to quantify
+the difference. Specifically, the test statistic and
+degrees of freedom are computed as follows:
+t(w) = ˆpl (w) −ˆph (w)
+r
+s2
+h+s2
+l
+|D|
+(8)
+df(w) =
+ s2
+h+s2
+l
+|D|
+2
+(s2
+h/|D|)2+(s2
+l /|D|)2
+|D|−1
+(9)
+where sh and sl represent the standard deviations
+of the corresponding word proportions, calculated
+as follows:
+s =
+s
+ˆp(1 −ˆp)
+|D|
+(10)
+(iv) Hypothesis Decision
+We define the critical t-
+value, tc, as the threshold for rejecting or accepting
+the null hypothesis. It is calculated using the in-
+verse of the cumulative distribution function (CDF)
+of the t-distribution:
+tc(w) = t−1
+α, df(w)
+(11)
+where α = 0.05 is the significance level. If t(w) >
+tc(w), we reject the null hypothesis and conclude
+that the word occurs significantly more often in
+LLM-generated texts than in human-written texts.
+In this way, we can identify the words favored by
+LLMs.
+E.1.2
+Experimental Setup
+To address part-of-speech variability of the same
+word (e.g., ‘record’ functioning as both a noun and
+
+Word Count
+Basic Prompt
+Formatted 1
+Formatted 2
+n ≤50
+1.000
+0.000
+0.000
+50 < n ≤110
+0.800
+0.100
+0.100
+110 < n ≤160
+0.400
+0.300
+0.300
+160 < n ≤220
+0.550
+0.225
+0.225
+> 220
+0.250
+0.375
+0.375
+Table 5: The statistical distribution of word lengths observed for each involved meta-review format.
+Academic Aspects
+Human (Size)
+LLM Source(Size)
+Data Source
+Abstract
+2831
+GPT-4o (2831) / Gemini-1.5 (2831) / Claude-3 Opus (2831)
+Ours
+Meta-Review
+GPT-4o (2831) / Gemini-1.5 (2831) / Claude-3 Opus (2831)
+Review
+20 × |R|
+GPT-4 (20) / Gemini-1.5 (20) / Claude-3 Opus (20)
+ReviewCritique
+Table 6: Statistics of ScholarLens: 20 × |R| represents 20 papers, each with |R| reviews, where |R| varies by paper.
+Data Type
+Data Source
+Train
+Test
+Abstract
+Human
+1981
+850
+LLM
+2550
+Meta-Review
+Human
+850
+LLM
+2550
+Review
+Human
+-
+20
+LLM
+60
+Table 7: Dataset split for training detection models.
+a verb in a sentence), we adopt (word, POS) pairs
+as the fundamental unit for analysis rather than
+isolated words. We use SpaCy for POS tagging,
+and stopwords are excluded from consideration.
+Using the proposed Hypothesis Testing Algorithm
+(§E.1.1), we filter the LLM-preferred word set and
+rank these words based on their Word Usage In-
+crease Ratio (WUIR), defined as follows:
+WUIR (w) = cntl (w) −cnth (w)
+cnth (w) + ϵ
+(12)
+E.1.3
+Results: LLM-Preferred words
+Tables 8 and 9 display the top-30 preferred words
+across four key part-of-speech (POS) categories
+in GPT-4o-generated abstracts and meta-reviews,
+with long words accounting for 40.48% and
+39.96%, and complex-syllabled words for 73.45%
+and 67.82%. Furthermore, Tables 10 and 11 show
+the top-30 preferred words in four key POS cat-
+egories for Gemini-generated abstracts and meta-
+reviews, while Tables 12 and 13 display the same
+for Claude-generated abstracts and meta-reviews.
+All show a high proportion of long words and
+complex-syllabled words.
+E.2
+Pattern-Level Feature Statistics
+We identify the following pattern-level features in
+human-written (meta-)reviews: personability, char-
+acterized by frequent use of the first person to ex-
+press opinions; interactivity, marked by the inclu-
+sion of questions; and attention to detail, demon-
+strated by citing relevant literature to support argu-
+ments. To compare these pattern-level features be-
+tween human-written and LLM-generated content,
+we calculate two metrics for each pattern in both
+meta-reviews and reviews within the ScholarLens
+dataset: Feature Proportion (FP) and Feature
+Intensity (FI). FP is defined as the proportion of
+instances exhibiting the feature within the target
+data group, while FI is the average number of occur-
+rences of the feature within instances that exhibit
+it. We report the FP and FI values for each pattern
+in meta-reviews and reviews across different data
+types—Human-written, GPT-4-generated, Gemini-
+generated, and Claude-generated— as shown in Ta-
+ble 8. The results show that, in both meta-reviews
+and reviews, the FP and FI values for each pattern
+feature in the Human-written data type are signif-
+icantly higher than those in the LLM-generated
+versions.
+E.3
+Validation of Detection Model Reliability
+We use our filtered full LLM-preferred word set
+and the identified pattern-level features to validate
+the reliability of our detection models. Specifi-
+cally, we classify all meta-reviews from ICLR 2024
+
+into two groups based on the fine-grained detec-
+tion results in Appendix §D: human-written and
+LLM-generated (including LLM-refined and LLM-
+synthesized prediction). For each meta-review, we
+calculate the proportion of words that belong to
+the full GPT-4-preferred word set, defined as the
+ratio of matching words to the total number of
+words in the set. The average ratios for the human-
+written and LLM-generated groups are 35.15% and
+44.95%, respectively. We then compute the FR and
+FI values for each pattern feature in each group,
+with results shown in Table 9. The FR and FI val-
+ues for predicted LLM-generated text are lower
+than those for predicted human-written text. These
+results provide evidence of the reliability of our
+model’s detection capabilities.
+Data Type
+Resource
+FR (%)
+FI
+Meta-review
+Human
+32.00
+1.62
+GPT4o
+0.07
+1.00
+Gemini
+0.11
+1.33
+Claude
+0.07
+1.00
+Review
+Human
+76.32
+2.07
+GPT4o
+0.00
+0.00
+Gemini
+0.00
+0.00
+Claude
+0.00
+0.00
+(a) Personability
+Data Type
+Resource
+FR (%)
+FI
+Meta-review
+Human
+2.01
+1.54
+GPT4o
+0.00
+0.00
+Gemini
+0.00
+0.00
+Claude
+0.00
+0.00
+Review
+Human
+17.11
+1.85
+GPT4o
+0.00
+0.00
+Gemini
+0.00
+0.00
+Claude
+0.00
+0.00
+(b) Interactivity
+Data Type
+Resource
+FR (%)
+FI
+Meta-review
+Human
+1.48
+1.60
+GPT4o
+0.00
+0.00
+Gemini
+0.00
+0.00
+Claude
+0.00
+0.00
+Review
+Human
+7.89
+3.17
+GPT4o
+0.00
+0.00
+Gemini
+0.00
+0.00
+Claude
+0.00
+0.00
+(c) Attention to Detail
+Figure 8: Comparison of Pattern Features of Meta-
+Reviews and Reviews in ScholarLens.
+Role
+FR (%)
+FI
+LLM-synthesized
+6.12
+1.00
+LLM-refined
+34.32
+1.53
+LLM-generated
+32.61
+1.53
+human-written
+39.50
+1.77
+(a) Personability
+Role
+FR (%)
+FI
+LLM-synthesized
+0.00
+0.00
+LLM-refined
+2.02
+1.53
+LLM-generated
+1.89
+1.53
+human-written
+4.87
+1.88
+(b) Interactivity
+Role
+FR (%)
+FI
+LLM-synthesized
+0.00
+0.00
+LLM-refined
+1.57
+1.13
+LLM-generated
+1.47
+1.06
+human-written
+3.77
+2.25
+(c) Attention to Detail
+Figure 9: Comparison of Pattern Features in Each Pre-
+diction Data Group for ICLR 2024 Meta-Reviews.
+
+POS
+Word
+WUIR
+Word
+WUIR
+Word
+WUIR
+NOUN
+abstract
+40.00
+advancements
+28.50
+realm
+24.00
+alterations
+20.00
+aligns
+19.00
+methodologies
+18.80
+clarity
+17.00
+adaptability
+13.00
+surpasses
+13.00
+examination
+10.00
+competitiveness
+9.00
+aids
+9.00
+reliance
+8.75
+necessitating
+8.00
+assurances
+8.00
+necessitates
+8.00
+assertions
+8.00
+threats
+8.00
+assessments
+7.33
+advancement
+7.25
+enhancements
+7.25
+demands
+7.00
+findings
+6.91
+standpoint
+6.00
+oversight
+6.00
+study
+5.42
+exhibit
+5.33
+enhancement
+5.00
+adjustments
+5.00
+capitalizes
+5.00
+VERB
+enhancing
+73.00
+necessitates
+58.00
+necessitating
+50.00
+featuring
+47.00
+revised
+46.00
+influenced
+40.00
+encompassing
+31.00
+enhances
+30.10
+showcasing
+29.00
+surpasses
+19.50
+underscoring
+19.00
+facilitating
+18.67
+necessitate
+18.00
+managing
+18.00
+concerning
+15.33
+garnered
+14.50
+employing
+14.06
+surpassing
+14.00
+adhere
+14.00
+neglecting
+14.00
+comprehend
+14.00
+underscore
+13.00
+discern
+13.00
+examines
+12.00
+accommodates
+11.00
+detail
+11.00
+utilizing
+10.87
+enhance
+10.82
+begins
+10.50
+integrating
+10.21
+ADJ
+innovative
+34.17
+exceptional
+24.00
+pertinent
+22.00
+intricate
+16.33
+pivotal
+16.00
+necessitate
+12.00
+distinctive
+11.00
+enhanced
+10.80
+akin
+10.40
+potent
+10.00
+adaptable
+9.67
+unfamiliar
+9.00
+straightforward
+8.42
+accessible
+8.00
+versatile
+7.13
+adept
+7.00
+devoid
+7.00
+advantageous
+6.80
+extended
+6.67
+prevalent
+6.00
+underexplored
+6.00
+commendable
+6.00
+contingent
+6.00
+foundational
+5.75
+comprehensive
+5.09
+strategic
+5.00
+renowned
+5.00
+attributable
+5.00
+unidentified
+5.00
+numerous
+4.82
+ADV
+inadequately
+17.00
+predominantly
+16.67
+meticulously
+16.00
+strategically
+14.00
+notably
+12.60
+abstract
+12.00
+swiftly
+12.00
+additionally
+9.08
+adeptly
+8.00
+thereby
+7.52
+conversely
+7.40
+traditionally
+7.33
+initially
+7.10
+innovatively
+7.00
+subsequently
+6.06
+unexpectedly
+6.00
+excessively
+5.00
+historically
+5.00
+seamlessly
+4.50
+nonetheless
+4.25
+primarily
+4.00
+markedly
+4.00
+short
+4.00
+infrequently
+4.00
+effectively
+3.97
+solely
+3.80
+consequently
+3.78
+inherently
+3.40
+concurrently
+3.33
+particularly
+3.09
+Table 8: Top-30 LLM-preferred Words in GPT-4o-generated vs. human-written abstracts, with long words making
+up 40.48%, and complex-syllabled words 73.45%.
+
+POS
+Word
+WUIR
+Word
+WUIR
+Word
+WUIR
+NOUN
+refinement
+284.00
+advancements
+88.00
+methodologies
+58.50
+articulation
+50.00
+highlights
+41.00
+reliance
+39.50
+enhancement
+39.00
+underpinnings
+37.00
+enhancements
+28.33
+transparency
+26.00
+complexities
+25.00
+skepticism
+24.67
+adaptability
+24.00
+narrative
+24.00
+integration
+23.43
+persist
+22.00
+acknowledgment
+22.00
+differentiation
+21.67
+advancement
+21.33
+contextualization
+21.00
+foundation
+20.50
+inconsistencies
+20.00
+reception
+20.00
+demands
+20.00
+backing
+19.50
+sections
+18.71
+refinements
+17.50
+credibility
+16.50
+benchmarking
+16.00
+reliability
+15.50
+VERB
+enhance
+239.00
+enhancing
+120.50
+deemed
+79.33
+showcasing
+66.00
+express
+52.17
+offering
+50.50
+enhances
+45.00
+recognizing
+41.00
+commend
+37.25
+praised
+37.20
+integrating
+36.25
+criticized
+32.00
+hindering
+32.00
+utilizes
+31.00
+highlights
+28.00
+surpass
+27.00
+bolster
+26.00
+emphasizing
+25.33
+substantiate
+25.00
+integrates
+24.50
+solidify
+23.00
+questioning
+22.67
+arise
+21.17
+expanding
+20.67
+faces
+20.67
+weakens
+20.00
+recognized
+19.71
+criticize
+19.00
+illustrating
+19.00
+critique
+19.00
+ADJ
+innovative
+114.50
+collective
+99.00
+enhanced
+45.00
+established
+30.00
+notable
+28.00
+outdated
+22.00
+varied
+16.00
+undefined
+15.00
+comparative
+14.70
+noteworthy
+14.50
+broader
+14.10
+comprehensive
+13.67
+clearer
+13.61
+intriguing
+13.50
+foundational
+13.00
+organizational
+13.00
+typographical
+12.50
+contextual
+12.00
+traditional
+11.83
+advanced
+11.00
+inadequate
+10.89
+diverse
+9.84
+insightful
+9.56
+prevalent
+9.50
+spatiotemporal
+9.00
+engaging
+9.00
+adaptable
+9.00
+illustrative
+8.50
+robotic
+8.50
+commendable
+8.33
+ADV
+collectively
+223.00
+inadequately
+38.00
+reportedly
+18.00
+comprehensively
+13.00
+robustly
+12.00
+occasionally
+10.00
+predominantly
+9.00
+notably
+8.38
+innovatively
+8.00
+effectively
+7.81
+insufficiently
+6.71
+additionally
+6.59
+particularly
+5.09
+creatively
+5.00
+distinctly
+5.00
+positively
+4.71
+overall
+4.30
+primarily
+3.32
+convincingly
+3.07
+elegantly
+3.00
+marginally
+2.93
+selectively
+2.50
+conclusively
+2.33
+especially
+2.26
+favorably
+2.20
+universally
+2.00
+theoretically
+1.71
+overly
+1.71
+consistently
+1.65
+potentially
+1.59
+Table 9: Top-30 LLM-preferred Words in GPT-4o-generated vs. human-written meta-reviews, with long words
+making up 39.96% and complex-syllabled words 67.82%.
+
+POS
+Word
+WUIR
+Word
+WUIR
+Word
+WUIR
+NOUN
+abstract
+40.00
+advancements
+28.50
+realm
+24.00
+alterations
+20.00
+aligns
+19.00
+methodologies
+18.80
+clarity
+17.00
+adaptability
+13.00
+surpasses
+13.00
+examination
+10.00
+competitiveness
+9.00
+aids
+9.00
+reliance
+8.75
+necessitating
+8.00
+assurances
+8.00
+necessitates
+8.00
+assertions
+8.00
+threats
+8.00
+assessments
+7.33
+advancement
+7.25
+enhancements
+7.25
+demands
+7.00
+findings
+6.91
+standpoint
+6.00
+oversight
+6.00
+study
+5.42
+exhibit
+5.33
+enhancement
+5.00
+adjustments
+5.00
+capitalizes
+5.00
+VERB
+enhancing
+73.00
+necessitates
+58.00
+necessitating
+50.00
+featuring
+47.00
+revised
+46.00
+influenced
+40.00
+encompassing
+31.00
+enhances
+30.10
+showcasing
+29.00
+surpasses
+19.50
+underscoring
+19.00
+facilitating
+18.67
+necessitate
+18.00
+managing
+18.00
+concerning
+15.33
+garnered
+14.50
+employing
+14.06
+surpassing
+14.00
+adhere
+14.00
+neglecting
+14.00
+comprehend
+14.00
+underscore
+13.00
+discern
+13.00
+examines
+12.00
+accommodates
+11.00
+detail
+11.00
+utilizing
+10.87
+enhance
+10.82
+begins
+10.50
+integrating
+10.21
+ADJ
+innovative
+34.17
+exceptional
+24.00
+pertinent
+22.00
+intricate
+16.33
+pivotal
+16.00
+necessitate
+12.00
+distinctive
+11.00
+enhanced
+10.80
+akin
+10.40
+potent
+10.00
+adaptable
+9.67
+unfamiliar
+9.00
+straightforward
+8.42
+accessible
+8.00
+versatile
+7.13
+adept
+7.00
+devoid
+7.00
+advantageous
+6.80
+extended
+6.67
+prevalent
+6.00
+underexplored
+6.00
+commendable
+6.00
+contingent
+6.00
+foundational
+5.75
+comprehensive
+5.09
+strategic
+5.00
+renowned
+5.00
+attributable
+5.00
+unidentified
+5.00
+numerous
+4.82
+ADV
+inadequately
+17.00
+predominantly
+16.67
+meticulously
+16.00
+strategically
+14.00
+notably
+12.60
+abstract
+12.00
+swiftly
+12.00
+additionally
+9.08
+adeptly
+8.00
+thereby
+7.52
+conversely
+7.40
+traditionally
+7.33
+initially
+7.10
+innovatively
+7.00
+subsequently
+6.06
+unexpectedly
+6.00
+excessively
+5.00
+historically
+5.00
+seamlessly
+4.50
+nonetheless
+4.25
+primarily
+4.00
+markedly
+4.00
+short
+4.00
+infrequently
+4.00
+effectively
+3.97
+solely
+3.80
+consequently
+3.78
+inherently
+3.40
+concurrently
+3.33
+particularly
+3.09
+Table 10: Top-30 LLM-preferred Words in Gemini-generated vs. human-written abstracts, with long words making
+up 44.35%, and complex-syllabled words 74.80%
+
+POS
+Word
+WUIR
+Word
+WUIR
+Word
+WUIR
+NOUN
+refinement
+59.00
+leans
+55.00
+reliance
+45.50
+generalizability
+37.00
+handling
+35.00
+advancements
+28.00
+achieves
+24.00
+explores
+23.00
+inconsistencies
+20.33
+underpinnings
+17.00
+core
+16.38
+clarification
+16.29
+hinder
+16.00
+contingent
+16.00
+implications
+14.42
+articulation
+14.00
+calculations
+14.00
+typos
+13.86
+quantification
+13.00
+testing
+12.71
+availability
+12.50
+efficacy
+12.33
+referencing
+12.00
+mitigation
+12.00
+contextualization
+12.00
+duration
+12.00
+investigation
+11.97
+practicality
+11.43
+grounding
+11.25
+overfitting
+11.00
+VERB
+deemed
+153.67
+solidify
+94.00
+hindering
+66.00
+criticized
+63.67
+praised
+52.20
+weakens
+42.00
+exceeding
+41.00
+praising
+40.33
+questioned
+37.68
+leans
+32.57
+recognizing
+32.00
+drew
+31.00
+leaned
+29.50
+enhance
+28.00
+offering
+27.25
+mitigating
+27.00
+weakened
+26.50
+utilizes
+25.00
+showcasing
+23.00
+hinders
+23.00
+arose
+21.67
+expanding
+20.67
+recurring
+19.00
+challenged
+17.00
+leverages
+16.75
+desired
+15.46
+raising
+15.33
+promoting
+15.00
+termed
+15.00
+differing
+15.00
+ADJ
+core
+65.25
+established
+29.00
+undefined
+17.00
+nuanced
+16.00
+cautious
+16.00
+presentational
+15.00
+absent
+13.00
+combined
+12.00
+innovative
+11.62
+outdated
+11.00
+simplified
+9.25
+robotic
+9.00
+benchmark
+8.56
+inconsistent
+8.50
+illustrative
+8.50
+diverse
+8.26
+adaptable
+8.00
+dataset
+7.44
+insightful
+7.33
+grammatical
+7.29
+observed
+7.20
+comprehensive
+7.03
+spatiotemporal
+7.00
+repetitive
+7.00
+certain
+6.98
+rigorous
+6.86
+deeper
+6.64
+superior
+6.55
+compact
+6.50
+unconvincing
+6.30
+ADV
+definitively
+9.00
+solely
+8.43
+reportedly
+8.00
+particularly
+7.35
+purportedly
+7.00
+primarily
+6.89
+positively
+5.43
+generally
+5.02
+straightforward
+5.00
+adaptively
+5.00
+specifically
+4.96
+favorably
+4.80
+demonstrably
+4.00
+locally
+3.50
+consistently
+3.41
+incrementally
+3.25
+potentially
+3.21
+visually
+3.00
+furthermore
+2.93
+theoretically
+2.58
+overhead
+2.50
+effectively
+2.35
+publicly
+2.29
+additionally
+2.15
+fine
+1.88
+especially
+1.76
+computationally
+1.71
+finally
+1.62
+insufficiently
+1.50
+overly
+1.47
+Table 11: Top-30 LLM-preferred Words in Gemini-generated vs. human-written meta-reviews, with long words
+making up 34.58%, and complex-syllabled words 62.07%
+
+POS
+Word
+WUIR
+Word
+WUIR
+Word
+WUIR
+NOUN
+abstract
+40.00
+advancements
+28.50
+realm
+24.00
+alterations
+20.00
+aligns
+19.00
+methodologies
+18.80
+clarity
+17.00
+adaptability
+13.00
+surpasses
+13.00
+examination
+10.00
+competitiveness
+9.00
+aids
+9.00
+reliance
+8.75
+necessitating
+8.00
+assurances
+8.00
+necessitates
+8.00
+assertions
+8.00
+threats
+8.00
+assessments
+7.33
+advancement
+7.25
+enhancements
+7.25
+demands
+7.00
+findings
+6.91
+standpoint
+6.00
+oversight
+6.00
+study
+5.42
+exhibit
+5.33
+enhancement
+5.00
+adjustments
+5.00
+capitalizes
+5.00
+VERB
+enhancing
+73.00
+necessitates
+58.00
+necessitating
+50.00
+featuring
+47.00
+revised
+46.00
+influenced
+40.00
+encompassing
+31.00
+enhances
+30.10
+showcasing
+29.00
+surpasses
+19.50
+underscoring
+19.00
+facilitating
+18.67
+necessitate
+18.00
+managing
+18.00
+concerning
+15.33
+garnered
+14.50
+employing
+14.06
+surpassing
+14.00
+adhere
+14.00
+neglecting
+14.00
+comprehend
+14.00
+underscore
+13.00
+discern
+13.00
+examines
+12.00
+accommodates
+11.00
+detail
+11.00
+utilizing
+10.87
+enhance
+10.82
+begins
+10.50
+integrating
+10.21
+ADJ
+innovative
+34.17
+exceptional
+24.00
+pertinent
+22.00
+intricate
+16.33
+pivotal
+16.00
+necessitate
+12.00
+distinctive
+11.00
+enhanced
+10.80
+akin
+10.40
+potent
+10.00
+adaptable
+9.67
+unfamiliar
+9.00
+straightforward
+8.42
+accessible
+8.00
+versatile
+7.13
+adept
+7.00
+devoid
+7.00
+advantageous
+6.80
+extended
+6.67
+prevalent
+6.00
+underexplored
+6.00
+commendable
+6.00
+contingent
+6.00
+foundational
+5.75
+comprehensive
+5.09
+strategic
+5.00
+renowned
+5.00
+attributable
+5.00
+unidentified
+5.00
+numerous
+4.82
+ADV
+inadequately
+17.00
+predominantly
+16.67
+meticulously
+16.00
+strategically
+14.00
+notably
+12.60
+abstract
+12.00
+swiftly
+12.00
+additionally
+9.08
+adeptly
+8.00
+thereby
+7.52
+conversely
+7.40
+traditionally
+7.33
+initially
+7.10
+innovatively
+7.00
+subsequently
+6.06
+unexpectedly
+6.00
+excessively
+5.00
+historically
+5.00
+seamlessly
+4.50
+nonetheless
+4.25
+primarily
+4.00
+markedly
+4.00
+short
+4.00
+infrequently
+4.00
+effectively
+3.97
+solely
+3.80
+consequently
+3.78
+inherently
+3.40
+concurrently
+3.33
+particularly
+3.09
+Table 12: Top-30 LLM-preferred Words in Claude-generated vs. human-written abstracts, with long words making
+up 42.81%, and complex-syllabled words 74.80%
+
+POS
+Word
+WUIR
+Word
+WUIR
+Word
+WUIR
+NOUN
+refinement
+604.00
+center
+151.00
+demonstrates
+108.00
+foundations
+99.00
+articulation
+70.00
+relies
+62.00
+generalizability
+60.57
+tier
+38.00
+reservations
+37.43
+sentiments
+37.00
+critiques
+34.00
+explores
+31.00
+vulnerabilities
+29.00
+transparency
+27.00
+achieves
+27.00
+promise
+25.67
+advancement
+25.67
+substantiation
+25.00
+introduces
+24.00
+benchmarking
+23.00
+leans
+23.00
+underpinnings
+22.00
+capabilities
+21.00
+skepticism
+21.00
+shows
+20.00
+challenges
+19.53
+ambiguities
+19.00
+narrative
+19.00
+highlights
+19.00
+differentiation
+18.67
+VERB
+synthesizes
+984.00
+recognizing
+153.00
+view
+131.33
+critique
+92.00
+express
+91.83
+revealing
+81.33
+appreciating
+73.67
+praising
+56.67
+expanding
+52.67
+highlighting
+47.53
+offering
+42.50
+acknowledging
+39.92
+center
+37.50
+mitigating
+36.00
+substantiate
+32.67
+persist
+27.00
+enhance
+26.50
+deemed
+26.00
+conducting
+24.00
+reveals
+24.00
+graph
+23.00
+handling
+20.67
+contexts
+20.00
+emerge
+19.75
+recognize
+19.43
+generative
+17.50
+represents
+17.10
+praised
+16.80
+offers
+16.66
+bridging
+16.00
+ADJ
+collective
+1049.00
+nuanced
+292.00
+innovative
+109.50
+cautious
+46.00
+comprehensive
+40.22
+comparative
+36.30
+revolutionary
+33.00
+definitive
+31.00
+meta
+27.84
+methodological
+22.28
+rigorous
+22.24
+transformative
+21.00
+noteworthy
+18.50
+substantive
+18.00
+presentational
+18.00
+notable
+17.75
+clearer
+17.06
+scholarly
+17.00
+academic
+16.00
+undefined
+15.00
+intriguing
+14.00
+addresses
+14.00
+robotic
+14.00
+core
+13.38
+diverse
+12.11
+adaptable
+12.00
+primary
+11.26
+scientific
+10.69
+deeper
+10.64
+broader
+10.17
+ADV
+collectively
+1112.00
+definitively
+54.00
+comprehensively
+37.00
+positively
+25.14
+conclusively
+16.00
+critically
+16.00
+consistently
+15.24
+scientifically
+12.00
+marginally
+8.57
+predominantly
+7.00
+cautiously
+6.50
+unanimously
+5.94
+robustly
+5.00
+adaptively
+5.00
+particularly
+4.59
+incrementally
+4.50
+meaningfully
+4.33
+generally
+4.11
+fully
+3.95
+primarily
+3.61
+overhead
+3.50
+short
+3.38
+potentially
+3.37
+genuinely
+3.33
+dynamically
+2.78
+fundamentally
+2.71
+technically
+2.54
+methodologically
+2.50
+semantically
+2.33
+dramatically
+2.33
+Table 13: Top-30 LLM-preferred Words in Claude-generated vs. human-written meta-reviews, with long words
+making up 43.93%, and complex-syllabled words 70.49%

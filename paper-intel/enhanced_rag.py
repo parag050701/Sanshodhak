@@ -23,7 +23,7 @@ except ImportError:
 class EnhancedRAG:
     def __init__(self, 
                  embed_model="BAAI/bge-m3",
-                 rerank_model="BAAI/bge-reranker-v2-m3",
+                 rerank_model="cross-encoder/ms-marco-MiniLM-L-6-v2",
                  use_ollama_fallback=True,
                  ollama_embed="bge-m3",
                  ollama_llm="deepseek-r1:7b",
@@ -68,21 +68,9 @@ class EnhancedRAG:
         self.avgdl = None
         
     def get_embedding(self, text: str) -> np.ndarray:
-        """Get embedding using transformers or Ollama."""
-        if self.use_ollama:
-            response = requests.post(
-                f"{self.ollama_url}/api/embeddings",
-                json={"model": self.ollama_embed, "prompt": text}
-            )
-            if response.status_code != 200:
-                raise Exception(f"Ollama error: {response.text}")
-            emb = np.array(response.json()["embedding"], dtype=np.float32)
-        else:
-            emb = self.embedder.encode(text, convert_to_numpy=True)
-        
-        # Normalize for cosine similarity
-        emb = emb / np.linalg.norm(emb)
-        return emb
+        """Embed via NIM. Same model as VR-D/GR/HGR for fair comparison."""
+        from nim_embedder import embed_text
+        return embed_text(text, input_type="query")
     
     def chunk_text(self, text: str, chunk_size: int = 600, overlap: int = 100) -> List[str]:
         """Chunk with overlap for better context preservation."""
